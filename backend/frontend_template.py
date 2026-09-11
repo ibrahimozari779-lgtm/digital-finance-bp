@@ -224,7 +224,7 @@ HOME_HTML = r'''<!doctype html>
 .siteFooter ul a{color:#33415C;text-decoration:none;font-size:13px}
 .siteFooter ul a:hover{color:var(--accent)}
 .siteFooter .legal{border-top:1px solid rgba(15,27,45,.08);padding-top:20px;color:#5B6B84;font-size:11px;line-height:1.7}
-@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:360px;margin:auto}}
+html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:340px;margin:24px auto 40px;padding:0 14px}.heroArt .floatCard{position:static;display:inline-block;margin:6px 6px 0 0;animation:none}.heroArt .fc1,.heroArt .fc2{top:auto;left:auto;right:auto;bottom:auto}}
 /* ---- FAQ (paketler sayfası) ---- */
 .faqItem{border-bottom:1px solid var(--line);padding:16px 0}
 .faqItem summary{cursor:pointer;font-weight:700;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center}
@@ -232,6 +232,18 @@ HOME_HTML = r'''<!doctype html>
 .faqItem summary:after{content:'+';font-size:20px;color:var(--accent)}
 .faqItem[open] summary:after{content:'–'}
 .faqItem p{color:var(--muted);font-size:13.5px;margin:10px 0 0}
+/* ---- Executive Intelligence band (single, deliberate dark boardroom section) ---- */
+.execBand{background:radial-gradient(1200px 500px at 15% -20%, rgba(76,201,240,.10), transparent 60%),linear-gradient(160deg,#0D1B2A 0%,#081426 100%);border-radius:26px;padding:52px;display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:center;overflow:hidden}
+.execEyebrow{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:1.6px;color:#4CC9F0;background:rgba(76,201,240,.12);border:1px solid rgba(76,201,240,.35);padding:6px 12px;border-radius:999px;margin-bottom:16px}
+.execCopy h2{font-family:var(--serif);color:#F8FAFC;font-size:28px;line-height:1.2;margin:0 0 12px;letter-spacing:-.4px}
+.execCopy p{color:#94A3B8;font-size:14px;line-height:1.7;margin:0 0 18px;max-width:44ch}
+.execList{list-style:none;margin:0 0 24px;padding:0;display:flex;flex-direction:column;gap:9px}
+.execList li{color:#C7D2E8;font-size:13px}
+.execList li b{color:#F8FAFC}
+.execCta{display:inline-block;color:#0D1B2A;background:#4CC9F0;font-weight:800;font-size:13.5px;padding:12px 20px;border-radius:11px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+.execCta:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(76,201,240,.35)}
+.execArt{filter:drop-shadow(0 24px 48px rgba(0,0,0,.35))}
+@media(max-width:860px){.execBand{grid-template-columns:1fr;padding:32px 22px}}
 </style></head>
 <body>
 <header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/" class="active">Anasayfa</a><a href="/paketler">Paketler</a><a href="/hakkimizda">Hakkımızda</a><a href="/iletisim">İletişim</a><a href="/uygulama">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div class="navBtns"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
@@ -319,6 +331,70 @@ HOME_HTML = r'''<!doctype html>
 <div class="card" style="padding:18px"><div class="tag" style="margin-bottom:8px">ADIM 3</div><h3 style="margin:0 0 6px;font-size:15px">Kaydet, karşılaştır, paylaş</h3><p class="muted small">Ücretsiz kayıt olup analizi yıl bazında kaydet; sonraki dönemlerle karşılaştır ya da PDF olarak yönetim kuruluna gönder.</p></div>
 </div></section>
 </div>
+
+<div class="secBlock reveal"><section class="execBand hidePrint">
+  <div class="execCopy">
+    <span class="execEyebrow">YÖNETİM KURULU GÖRÜNÜMÜ</span>
+    <h2>Toplantıya girmeden önce gördüğünüz ekran, bu.</h2>
+    <p>Health Score, kâr köprüsü, nakit dönüşüm döngüsü ve risk radarı — tek ekranda, tek bakışta. Excel sekmeleri arasında kaybolmak yok.</p>
+    <ul class="execList">
+      <li><b>Health Score</b> — tek sayıda finansal sağlık özeti</li>
+      <li><b>Kâr Köprüsü</b> — geçen döneme göre neyin kârı artırıp azalttığı</li>
+      <li><b>Nakit Dönüşüm Döngüsü</b> — tahsilat, stok ve ödeme süresi tek grafikte</li>
+      <li><b>Risk Radarı</b> — öncelik sırasına dizilmiş kritik bulgular</li>
+    </ul>
+    <a href="/uygulama?sample=1" class="execCta">Bu Ekranı Kendi Verinizle Görün →</a>
+  </div>
+  <div class="execArt">
+    <svg viewBox="0 0 480 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <defs>
+        <linearGradient id="eg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4CC9F0"/><stop offset="1" stop-color="#1D4ED8"/></linearGradient>
+        <linearGradient id="eg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#15E3B3"/><stop offset="1" stop-color="#0E7C66"/></linearGradient>
+      </defs>
+      <rect x="8" y="8" width="464" height="324" rx="16" fill="#0D1B2A" stroke="#1E3050"/>
+      <circle cx="30" cy="28" r="4" fill="#4CC9F0"/><circle cx="44" cy="28" r="4" fill="#15E3B3"/><circle cx="58" cy="28" r="4" fill="#94A3B8"/>
+      <text x="400" y="32" fill="#7C8FAD" font-family="Inter,sans-serif" font-size="10" text-anchor="end">MONTHLY BUSINESS REVIEW</text>
+      <line x1="20" y1="46" x2="460" y2="46" stroke="#1E3050"/>
+      <!-- KPI tiles -->
+      <g font-family="Inter,sans-serif">
+        <rect x="20" y="58" width="104" height="56" rx="8" fill="#132238" stroke="#20334b"/>
+        <text x="30" y="76" fill="#7C8FAD" font-size="9">HEALTH SCORE</text>
+        <text x="30" y="98" fill="#4CC9F0" font-size="20" font-weight="700">84</text>
+        <rect x="132" y="58" width="104" height="56" rx="8" fill="#132238" stroke="#20334b"/>
+        <text x="142" y="76" fill="#7C8FAD" font-size="9">EBITDA MARJI</text>
+        <text x="142" y="98" fill="#15E3B3" font-size="20" font-weight="700">%18,9</text>
+        <rect x="244" y="58" width="104" height="56" rx="8" fill="#132238" stroke="#20334b"/>
+        <text x="254" y="76" fill="#7C8FAD" font-size="9">NAKİT DÖNGÜSÜ</text>
+        <text x="254" y="98" fill="#FFB020" font-size="20" font-weight="700">38 gün</text>
+        <rect x="356" y="58" width="104" height="56" rx="8" fill="#132238" stroke="#20334b"/>
+        <text x="366" y="76" fill="#7C8FAD" font-size="9">KRİTİK RİSK</text>
+        <text x="366" y="98" fill="#FF6B7A" font-size="20" font-weight="700">3</text>
+      </g>
+      <!-- profit bridge waterfall -->
+      <g>
+        <text x="20" y="135" fill="#7C8FAD" font-family="Inter,sans-serif" font-size="9">KÂR KÖPRÜSÜ</text>
+        <rect x="20" y="145" width="34" height="90" fill="url(#eg1)" rx="3"/>
+        <rect x="62" y="175" width="34" height="60" fill="url(#eg2)" rx="3"/>
+        <rect x="104" y="150" width="34" height="45" fill="#FF6B7A" rx="3" opacity=".85"/>
+        <rect x="146" y="160" width="34" height="75" fill="url(#eg2)" rx="3"/>
+        <rect x="188" y="120" width="34" height="115" fill="url(#eg1)" rx="3"/>
+      </g>
+      <!-- trend line -->
+      <g>
+        <text x="244" y="135" fill="#7C8FAD" font-family="Inter,sans-serif" font-size="9">GELİR TRENDİ</text>
+        <polyline points="244,220 270,200 296,210 322,175 348,185 374,150 400,160 426,130" fill="none" stroke="#4CC9F0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="426" cy="130" r="4" fill="#4CC9F0"/>
+      </g>
+      <line x1="20" y1="250" x2="460" y2="250" stroke="#1E3050"/>
+      <!-- risk radar rows -->
+      <g font-family="Inter,sans-serif" font-size="10.5">
+        <circle cx="28" cy="268" r="4" fill="#FF6B7A"/><text x="40" y="272" fill="#C7D2E8">Tahsilat vadesi 12 gün uzadı — nakit akışı riski</text>
+        <circle cx="28" cy="290" r="4" fill="#FFB020"/><text x="40" y="294" fill="#C7D2E8">Stok devir hızı yavaşlıyor — 3. aydır kötüleşiyor</text>
+        <circle cx="28" cy="312" r="4" fill="#15E3B3"/><text x="40" y="316" fill="#C7D2E8">Brüt marj hedefin üzerinde — sürdürülebilir</text>
+      </g>
+    </svg>
+  </div>
+</section></div>
 
 <div class="secBlock tint reveal"><div class="marketingHead"><h2>Size uygun paketi seçin</h2><p>Üç paket de aynı motoru kullanır, fark kapsam ve süreklilikte.</p></div>
 <div class="pricingGrid">
@@ -598,7 +674,7 @@ PRICING_HTML = r'''<!doctype html>
 .siteFooter ul a{color:#33415C;text-decoration:none;font-size:13px}
 .siteFooter ul a:hover{color:var(--accent)}
 .siteFooter .legal{border-top:1px solid rgba(15,27,45,.08);padding-top:20px;color:#5B6B84;font-size:11px;line-height:1.7}
-@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:360px;margin:auto}}
+html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:340px;margin:24px auto 40px;padding:0 14px}.heroArt .floatCard{position:static;display:inline-block;margin:6px 6px 0 0;animation:none}.heroArt .fc1,.heroArt .fc2{top:auto;left:auto;right:auto;bottom:auto}}
 /* ---- FAQ (paketler sayfası) ---- */
 .faqItem{border-bottom:1px solid var(--line);padding:16px 0}
 .faqItem summary{cursor:pointer;font-weight:700;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center}
@@ -606,6 +682,18 @@ PRICING_HTML = r'''<!doctype html>
 .faqItem summary:after{content:'+';font-size:20px;color:var(--accent)}
 .faqItem[open] summary:after{content:'–'}
 .faqItem p{color:var(--muted);font-size:13.5px;margin:10px 0 0}
+/* ---- Executive Intelligence band (single, deliberate dark boardroom section) ---- */
+.execBand{background:radial-gradient(1200px 500px at 15% -20%, rgba(76,201,240,.10), transparent 60%),linear-gradient(160deg,#0D1B2A 0%,#081426 100%);border-radius:26px;padding:52px;display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:center;overflow:hidden}
+.execEyebrow{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:1.6px;color:#4CC9F0;background:rgba(76,201,240,.12);border:1px solid rgba(76,201,240,.35);padding:6px 12px;border-radius:999px;margin-bottom:16px}
+.execCopy h2{font-family:var(--serif);color:#F8FAFC;font-size:28px;line-height:1.2;margin:0 0 12px;letter-spacing:-.4px}
+.execCopy p{color:#94A3B8;font-size:14px;line-height:1.7;margin:0 0 18px;max-width:44ch}
+.execList{list-style:none;margin:0 0 24px;padding:0;display:flex;flex-direction:column;gap:9px}
+.execList li{color:#C7D2E8;font-size:13px}
+.execList li b{color:#F8FAFC}
+.execCta{display:inline-block;color:#0D1B2A;background:#4CC9F0;font-weight:800;font-size:13.5px;padding:12px 20px;border-radius:11px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+.execCta:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(76,201,240,.35)}
+.execArt{filter:drop-shadow(0 24px 48px rgba(0,0,0,.35))}
+@media(max-width:860px){.execBand{grid-template-columns:1fr;padding:32px 22px}}
 </style></head>
 <body>
 <header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/paketler" class="active">Paketler</a><a href="/hakkimizda">Hakkımızda</a><a href="/iletisim">İletişim</a><a href="/uygulama">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div class="navBtns"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
@@ -913,7 +1001,7 @@ ABOUT_HTML = r'''<!doctype html>
 .siteFooter ul a{color:#33415C;text-decoration:none;font-size:13px}
 .siteFooter ul a:hover{color:var(--accent)}
 .siteFooter .legal{border-top:1px solid rgba(15,27,45,.08);padding-top:20px;color:#5B6B84;font-size:11px;line-height:1.7}
-@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:360px;margin:auto}}
+html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:340px;margin:24px auto 40px;padding:0 14px}.heroArt .floatCard{position:static;display:inline-block;margin:6px 6px 0 0;animation:none}.heroArt .fc1,.heroArt .fc2{top:auto;left:auto;right:auto;bottom:auto}}
 /* ---- FAQ (paketler sayfası) ---- */
 .faqItem{border-bottom:1px solid var(--line);padding:16px 0}
 .faqItem summary{cursor:pointer;font-weight:700;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center}
@@ -921,6 +1009,18 @@ ABOUT_HTML = r'''<!doctype html>
 .faqItem summary:after{content:'+';font-size:20px;color:var(--accent)}
 .faqItem[open] summary:after{content:'–'}
 .faqItem p{color:var(--muted);font-size:13.5px;margin:10px 0 0}
+/* ---- Executive Intelligence band (single, deliberate dark boardroom section) ---- */
+.execBand{background:radial-gradient(1200px 500px at 15% -20%, rgba(76,201,240,.10), transparent 60%),linear-gradient(160deg,#0D1B2A 0%,#081426 100%);border-radius:26px;padding:52px;display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:center;overflow:hidden}
+.execEyebrow{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:1.6px;color:#4CC9F0;background:rgba(76,201,240,.12);border:1px solid rgba(76,201,240,.35);padding:6px 12px;border-radius:999px;margin-bottom:16px}
+.execCopy h2{font-family:var(--serif);color:#F8FAFC;font-size:28px;line-height:1.2;margin:0 0 12px;letter-spacing:-.4px}
+.execCopy p{color:#94A3B8;font-size:14px;line-height:1.7;margin:0 0 18px;max-width:44ch}
+.execList{list-style:none;margin:0 0 24px;padding:0;display:flex;flex-direction:column;gap:9px}
+.execList li{color:#C7D2E8;font-size:13px}
+.execList li b{color:#F8FAFC}
+.execCta{display:inline-block;color:#0D1B2A;background:#4CC9F0;font-weight:800;font-size:13.5px;padding:12px 20px;border-radius:11px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+.execCta:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(76,201,240,.35)}
+.execArt{filter:drop-shadow(0 24px 48px rgba(0,0,0,.35))}
+@media(max-width:860px){.execBand{grid-template-columns:1fr;padding:32px 22px}}
 </style></head>
 <body>
 <header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/paketler">Paketler</a><a href="/hakkimizda" class="active">Hakkımızda</a><a href="/iletisim">İletişim</a><a href="/uygulama">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div class="navBtns"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
@@ -928,7 +1028,17 @@ ABOUT_HTML = r'''<!doctype html>
 <div class="pageHead reveal in"><span class="eyebrow">Hakkımızda</span><h1>Muhasebe raporu değil, yönetim kararı üretiyoruz</h1><p>Finans ekiplerinin saatlerce harcadığı "rakamları toparlama" işini otomatikleştirip, zamanı asıl değerin katıldığı yere — yorum ve karara — taşıyoruz.</p></div>
 <div class="secBlock reveal"><section id="about" class="marketingSection hidePrint"><div class="aboutGrid">
 <div><span class="badge" style="margin-bottom:14px;display:inline-block">Hakkımızda</span><h2 style="font-family:var(--serif);font-size:30px;margin:6px 0 12px;letter-spacing:-.5px">Muhasebe raporu değil, yönetim kararı üretiyoruz</h2><p class="muted" style="font-size:14px;line-height:1.7">Digital Finance Business Partner, finans ekiplerinin saatlerce harcadığı "rakamları toparlama" işini otomatikleştirip, gerçek zamanı yönetime asıl değeri kattığı yere — yorum ve karara — taşımak için kuruldu. Motor önce deterministik olarak hesaplar, sonra yorumlar; yapay zekâ yalnızca isteğe bağlı, ayrı etiketlenmiş bir ek katmandır, asla ham rakamların yerine geçmez.</p><div class="aboutStats"><div class="st"><b>8+</b><span>Analiz motoru</span></div><div class="st"><b>%100</b><span>Deterministik hesap</span></div><div class="st"><b>0</b><span>Kalıcı veri saklama</span></div></div></div>
-<div class="card" style="padding:26px"><h3 style="margin:0 0 12px">Neye inanıyoruz</h3><ul style="margin:0;padding-left:18px;color:#33415C;font-size:13.5px;line-height:2">
+<div class="card" style="padding:26px">
+<svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;margin-bottom:16px">
+  <rect x="120" y="6" width="80" height="30" rx="7" fill="#EAF0FF" stroke="#C9D8F5"/><text x="160" y="25" text-anchor="middle" fill="#1D4ED8" font-family="Inter,sans-serif" font-size="10.5" font-weight="700">ROE %22</text>
+  <line x1="140" y1="36" x2="70" y2="60" stroke="#C9D2DE"/><line x1="180" y1="36" x2="250" y2="60" stroke="#C9D2DE"/>
+  <rect x="30" y="62" width="80" height="28" rx="6" fill="#F0F3F8" stroke="#E4E8EF"/><text x="70" y="80" text-anchor="middle" fill="#33415C" font-family="Inter,sans-serif" font-size="9.5">Net Marj</text>
+  <rect x="210" y="62" width="80" height="28" rx="6" fill="#F0F3F8" stroke="#E4E8EF"/><text x="250" y="80" text-anchor="middle" fill="#33415C" font-family="Inter,sans-serif" font-size="9.5">Kaldıraç</text>
+  <line x1="55" y1="90" x2="35" y2="112" stroke="#E4E8EF"/><line x1="85" y1="90" x2="105" y2="112" stroke="#E4E8EF"/>
+  <rect x="8" y="114" width="60" height="26" rx="6" fill="#FFFFFF" stroke="#E4E8EF"/><text x="38" y="131" text-anchor="middle" fill="#5B6B84" font-family="Inter,sans-serif" font-size="8.5">Brüt Marj</text>
+  <rect x="80" y="114" width="60" height="26" rx="6" fill="#FFFFFF" stroke="#E4E8EF"/><text x="110" y="131" text-anchor="middle" fill="#5B6B84" font-family="Inter,sans-serif" font-size="8.5">Aktif Devir</text>
+</svg>
+<h3 style="margin:0 0 12px">Neye inanıyoruz</h3><ul style="margin:0;padding-left:18px;color:#33415C;font-size:13.5px;line-height:2">
 <li>Karar destek, robotik rapor üretiminden farklıdır.</li>
 <li>Önce hesap, sonra yorum — sıra hiç değişmez.</li>
 <li>Veri sizindir; hesap açmadan sunucuda kalıcı tutulmaz.</li>
@@ -1212,7 +1322,7 @@ CONTACT_HTML = r'''<!doctype html>
 .siteFooter ul a{color:#33415C;text-decoration:none;font-size:13px}
 .siteFooter ul a:hover{color:var(--accent)}
 .siteFooter .legal{border-top:1px solid rgba(15,27,45,.08);padding-top:20px;color:#5B6B84;font-size:11px;line-height:1.7}
-@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:360px;margin:auto}}
+html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:340px;margin:24px auto 40px;padding:0 14px}.heroArt .floatCard{position:static;display:inline-block;margin:6px 6px 0 0;animation:none}.heroArt .fc1,.heroArt .fc2{top:auto;left:auto;right:auto;bottom:auto}}
 /* ---- FAQ (paketler sayfası) ---- */
 .faqItem{border-bottom:1px solid var(--line);padding:16px 0}
 .faqItem summary{cursor:pointer;font-weight:700;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center}
@@ -1220,6 +1330,18 @@ CONTACT_HTML = r'''<!doctype html>
 .faqItem summary:after{content:'+';font-size:20px;color:var(--accent)}
 .faqItem[open] summary:after{content:'–'}
 .faqItem p{color:var(--muted);font-size:13.5px;margin:10px 0 0}
+/* ---- Executive Intelligence band (single, deliberate dark boardroom section) ---- */
+.execBand{background:radial-gradient(1200px 500px at 15% -20%, rgba(76,201,240,.10), transparent 60%),linear-gradient(160deg,#0D1B2A 0%,#081426 100%);border-radius:26px;padding:52px;display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:center;overflow:hidden}
+.execEyebrow{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:1.6px;color:#4CC9F0;background:rgba(76,201,240,.12);border:1px solid rgba(76,201,240,.35);padding:6px 12px;border-radius:999px;margin-bottom:16px}
+.execCopy h2{font-family:var(--serif);color:#F8FAFC;font-size:28px;line-height:1.2;margin:0 0 12px;letter-spacing:-.4px}
+.execCopy p{color:#94A3B8;font-size:14px;line-height:1.7;margin:0 0 18px;max-width:44ch}
+.execList{list-style:none;margin:0 0 24px;padding:0;display:flex;flex-direction:column;gap:9px}
+.execList li{color:#C7D2E8;font-size:13px}
+.execList li b{color:#F8FAFC}
+.execCta{display:inline-block;color:#0D1B2A;background:#4CC9F0;font-weight:800;font-size:13.5px;padding:12px 20px;border-radius:11px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+.execCta:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(76,201,240,.35)}
+.execArt{filter:drop-shadow(0 24px 48px rgba(0,0,0,.35))}
+@media(max-width:860px){.execBand{grid-template-columns:1fr;padding:32px 22px}}
 </style></head>
 <body>
 <header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/paketler">Paketler</a><a href="/hakkimizda">Hakkımızda</a><a href="/iletisim" class="active">İletişim</a><a href="/uygulama">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div class="navBtns"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
@@ -1510,7 +1632,7 @@ APP_HTML = r'''<!doctype html>
 .siteFooter ul a{color:#33415C;text-decoration:none;font-size:13px}
 .siteFooter ul a:hover{color:var(--accent)}
 .siteFooter .legal{border-top:1px solid rgba(15,27,45,.08);padding-top:20px;color:#5B6B84;font-size:11px;line-height:1.7}
-@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:360px;margin:auto}}
+html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:340px;margin:24px auto 40px;padding:0 14px}.heroArt .floatCard{position:static;display:inline-block;margin:6px 6px 0 0;animation:none}.heroArt .fc1,.heroArt .fc2{top:auto;left:auto;right:auto;bottom:auto}}
 /* ---- FAQ (paketler sayfası) ---- */
 .faqItem{border-bottom:1px solid var(--line);padding:16px 0}
 .faqItem summary{cursor:pointer;font-weight:700;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center}
@@ -1518,6 +1640,18 @@ APP_HTML = r'''<!doctype html>
 .faqItem summary:after{content:'+';font-size:20px;color:var(--accent)}
 .faqItem[open] summary:after{content:'–'}
 .faqItem p{color:var(--muted);font-size:13.5px;margin:10px 0 0}
+/* ---- Executive Intelligence band (single, deliberate dark boardroom section) ---- */
+.execBand{background:radial-gradient(1200px 500px at 15% -20%, rgba(76,201,240,.10), transparent 60%),linear-gradient(160deg,#0D1B2A 0%,#081426 100%);border-radius:26px;padding:52px;display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:center;overflow:hidden}
+.execEyebrow{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:1.6px;color:#4CC9F0;background:rgba(76,201,240,.12);border:1px solid rgba(76,201,240,.35);padding:6px 12px;border-radius:999px;margin-bottom:16px}
+.execCopy h2{font-family:var(--serif);color:#F8FAFC;font-size:28px;line-height:1.2;margin:0 0 12px;letter-spacing:-.4px}
+.execCopy p{color:#94A3B8;font-size:14px;line-height:1.7;margin:0 0 18px;max-width:44ch}
+.execList{list-style:none;margin:0 0 24px;padding:0;display:flex;flex-direction:column;gap:9px}
+.execList li{color:#C7D2E8;font-size:13px}
+.execList li b{color:#F8FAFC}
+.execCta{display:inline-block;color:#0D1B2A;background:#4CC9F0;font-weight:800;font-size:13.5px;padding:12px 20px;border-radius:11px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+.execCta:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(76,201,240,.35)}
+.execArt{filter:drop-shadow(0 24px 48px rgba(0,0,0,.35))}
+@media(max-width:860px){.execBand{grid-template-columns:1fr;padding:32px 22px}}
 </style></head>
 <body>
 <header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/paketler">Paketler</a><a href="/hakkimizda">Hakkımızda</a><a href="/iletisim">İletişim</a><a href="/uygulama" class="active">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="secondary">Kayıt Ol</button></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header><div id="authModalOverlay" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.55);display:flex;align-items:center;justify-content:center;z-index:100">
