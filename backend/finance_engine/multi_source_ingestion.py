@@ -74,6 +74,31 @@ def _looks_like_statement_layout(df: pd.DataFrame) -> bool:
     return best_hits >= 4 and best_ratio >= 0.12
 
 
+def _resolve_sheet_layout(v: pd.DataFrame) -> pd.DataFrame:
+    """Decide whether a raw (headerless-read) sheet has a real header row or is a
+    genuinely headerless accounting-statement export.
+
+    BUGFIX: previously this checked _looks_like_statement_layout() FIRST and only
+    fell back to _promote_header() when it returned False. That heuristic just
+    counts 3-digit values in the 100-799 range anywhere in a column — with no
+    check that a real header row is absent. Any ordinary operational sheet whose
+    quantity/amount/ID column happens to sit mostly in that numeric range (a very
+    common coincidence, e.g. a "Miktar"/"Quantity" column) was misidentified as a
+    headerless statement export, so its real header row (Müşteri/Ürün/Tarih/...)
+    was discarded and columns fell back to bare 0/1/2/3/... positions — silently
+    breaking Sales/AR/AP/Inventory Intelligence and PVM for that file.
+    A genuine header row is strong, direct evidence the sheet is NOT headerless,
+    so detecting one now takes priority; the statement-layout heuristic is only
+    consulted when no confident header row is found.
+    """
+    promoted_df, meta = _promote_header(v)
+    if meta.get('mode') == 'header_promoted' and meta.get('header_score', 0) >= 6:
+        return promoted_df
+    if _looks_like_statement_layout(v):
+        return v.copy()
+    return promoted_df
+
+
 def _read_one(content:bytes, filename:str)->dict[str,pd.DataFrame]:
     ext=filename.lower().rsplit('.',1)[-1] if '.' in filename else ''
     bio=io.BytesIO(content)
@@ -89,13 +114,13 @@ def _read_one(content:bytes, filename:str)->dict[str,pd.DataFrame]:
         raw=pd.read_excel(bio,sheet_name=None,header=None,engine='openpyxl');
         out={}
         for k,v in raw.items():
-            out[str(k)] = v.copy() if _looks_like_statement_layout(v) else _promote_header(v)[0]
+            out[str(k)] = _resolve_sheet_layout(v)
         return out
     if ext=='xls':
         try: raw=pd.read_excel(bio,sheet_name=None,header=None,engine='xlrd')
         except ImportError as exc: raise ValueError('Legacy .xls dosyası için xlrd>=2.0.1 gerekir.') from exc
         except Exception as exc: raise ValueError(f'.xls dosyası okunamadı: {exc}') from exc
-        return {str(k):(v.copy() if _looks_like_statement_layout(v) else _promote_header(v)[0]) for k,v in raw.items()}
+        return {str(k):_resolve_sheet_layout(v) for k,v in raw.items()}
     raise ValueError('Yalnızca CSV, XLSX, XLSM ve XLS destekleniyor.')
 
 def ingest_sources(files:list[tuple[str,bytes]], finance_processor=None, max_mb:float=15.0)->dict[str,Any]:

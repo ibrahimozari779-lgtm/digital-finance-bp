@@ -714,7 +714,18 @@ def merge_workbook_statement_sheets(sheets: dict[str,pd.DataFrame]):
         if raw is None or raw.empty:
             continue
         role=classify_sheet(sname, raw)
-        det=detect_special_layout(raw)
+        # BUGFIX: detect_special_layout() runs its own generic "3-digit code
+        # somewhere after row 5" heuristic and used to fire on ANY normal,
+        # cleanly-headered trial balance with more than ~5 accounts before it
+        # (i.e. almost every real mizan) — silently dropping the first few
+        # accounts (typically Kasa/Bankalar/Alıcılar/Stoklar) and mis-signing
+        # the rest via build_special_trial_balance's statement-style
+        # sign conventions. That parser is only correct for the specific
+        # real-world "Balance Sheet / Aktif" statement export it was written
+        # for. Gate it behind is_special_financial_statement_layout() so a
+        # standard Hesap Kodu/Hesap Adı/Borç/Alacak mizan always goes through
+        # the correct direct-mapping / standard-header path below instead.
+        det=detect_special_layout(raw) if is_special_financial_statement_layout(raw) else None
         if det:
             try:
                 tb, meta=build_special_trial_balance(raw, det)

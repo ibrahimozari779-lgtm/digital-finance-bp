@@ -28,6 +28,18 @@ ALIASES = {
     'last_movement': {'last movement','last movement date','son hareket','son hareket tarihi','last transaction','son işlem tarihi','son islem tarihi'},
     'balance': {'balance','bakiye','closing balance','donem sonu bakiye','dönem sonu bakiye','closing'},
     'account_code': {'account code','hesap kodu','hesap no','hesap numarası','hesap numarasi','account number','gl account','hesap'},
+    # BUGFIX: classify_dataframe() below calls _best_column(cols,'debit_balance') /
+    # 'credit_balance' / 'debit_turnover' / 'credit_turnover' when deciding whether a
+    # sheet inside a multi-file Data Hub upload is a full trial balance ("finance"
+    # role). Those four keys were never defined in ALIASES, so ALIAS_NORM[field]
+    # raised a bare KeyError and crashed the ENTIRE Data Hub / multi-source analysis
+    # any time it tried to classify a sheet with an account_code column — i.e. any
+    # multi-file upload that included a mizan sheet. Aliases mirror app.py's
+    # FIELD_ALIASES so both detectors agree on the same column names.
+    'debit_balance': {'borc bakiye','borç bakiye','borc bakiyesi','borç bakiyesi','donem borc bakiye','dönem borç bakiye','debit balance','debit closing balance'},
+    'credit_balance': {'alacak bakiye','alacak bakiyesi','donem alacak bakiye','dönem alacak bakiye','credit balance','credit closing balance'},
+    'debit_turnover': {'borc','borç','debit','borc hareket','borç hareket','borc toplami','borç toplamı','debit turnover'},
+    'credit_turnover': {'alacak','credit','alacak hareket','alacak toplami','alacak toplamı','credit turnover'},
 }
 
 CONTAINS_HINTS = {
