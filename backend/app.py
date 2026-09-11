@@ -660,7 +660,18 @@ _SAMPLE_FILES = {
     'mizan': ('sample_mizan.xlsx', 'Örnek Mizan (Genel)'),
     'mizan_prior': ('sample_mizan_period1.xlsx', 'Örnek Mizan (Önceki Dönem)'),
     'three_sheet': ('sample_three_sheet_financials.xlsx', 'Örnek 3 Tablo (Bilanço + Gelir Tablosu)'),
+    # Data Hub demo set — a matching mizan + AR/AP aging + inventory + sales ledger
+    # so the multi-source engines (AR/AP intelligence, inventory, PVM/sales-driven
+    # profit bridge) actually have data to run against in the one-click demo.
+    'hub_mizan': ('demo_data/sample_mizan_2025_donem2.xlsx', 'Data Hub — Mizan'),
+    'hub_mizan_prior': ('demo_data/sample_mizan_2024_donem1.xlsx', 'Data Hub — Mizan (Önceki Dönem)'),
+    'ar_aging': ('demo_data/sample_ar_aging.xlsx', 'Data Hub — AR Yaşlandırma'),
+    'ap_aging': ('demo_data/sample_ap_aging.xlsx', 'Data Hub — AP Yaşlandırma'),
+    'inventory': ('demo_data/sample_inventory.xlsx', 'Data Hub — Stok'),
+    'sales_ledger': ('demo_data/sample_sales_ledger.xlsx', 'Data Hub — Satış Defteri'),
 }
+# The set of keys fetched together for the one-click "Data Hub'ı örnekle dene" demo.
+DATA_HUB_SAMPLE_KEYS = ['hub_mizan', 'ar_aging', 'ap_aging', 'inventory', 'sales_ledger']
 
 @app.get('/api/sample/{key}')
 def get_sample(key: str):
@@ -679,7 +690,8 @@ def get_sample(key: str):
 
 @app.get('/api/sample')
 def list_samples() -> dict[str, Any]:
-    return {'samples': [{'key': k, 'filename': v[0], 'label': v[1]} for k, v in _SAMPLE_FILES.items()]}
+    return {'samples': [{'key': k, 'filename': v[0], 'label': v[1]} for k, v in _SAMPLE_FILES.items()],
+            'data_hub_demo_keys': DATA_HUB_SAMPLE_KEYS}
 
 
 def classify_sheet(sname: str, raw: pd.DataFrame) -> str:
