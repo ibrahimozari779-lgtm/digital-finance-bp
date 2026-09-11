@@ -620,11 +620,27 @@ def quality_checks(source_df:pd.DataFrame,mapping:dict[str,Any],tb:pd.DataFrame,
         elif chk["status"]=="warning": score-=7
     return {"score":max(0,score),"checks":checks}
 
-from frontend_template import HTML as _HTML_TEMPLATE
-HTML = _HTML_TEMPLATE.replace("__APP_VERSION__", APP_VERSION)
+from frontend_template import HOME_HTML as _HOME_T, PRICING_HTML as _PRICING_T, ABOUT_HTML as _ABOUT_T, CONTACT_HTML as _CONTACT_T, APP_HTML as _APP_T
+HOME_PAGE = _HOME_T.replace("__APP_VERSION__", APP_VERSION)
+PRICING_PAGE = _PRICING_T.replace("__APP_VERSION__", APP_VERSION)
+ABOUT_PAGE = _ABOUT_T.replace("__APP_VERSION__", APP_VERSION)
+CONTACT_PAGE = _CONTACT_T.replace("__APP_VERSION__", APP_VERSION)
+HTML = _APP_T.replace("__APP_VERSION__", APP_VERSION)  # the analysis app itself
 
 @app.get('/',response_class=HTMLResponse)
-def home()->str:return HTML
+def home()->str:return HOME_PAGE
+
+@app.get('/paketler',response_class=HTMLResponse)
+def pricing_page()->str:return PRICING_PAGE
+
+@app.get('/hakkimizda',response_class=HTMLResponse)
+def about_page()->str:return ABOUT_PAGE
+
+@app.get('/iletisim',response_class=HTMLResponse)
+def contact_page()->str:return CONTACT_PAGE
+
+@app.get('/uygulama',response_class=HTMLResponse)
+def app_page()->str:return HTML
 
 @app.get('/api/health')
 def health()->dict[str,str]:return {'status':'ok','service':'digital-finance-bp','version':APP_VERSION}

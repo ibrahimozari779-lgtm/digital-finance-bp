@@ -1,27 +1,12 @@
-"""Premium CFO dashboard. No external chart library required.
+"""Digital Finance Business Partner — multi-page marketing site + app.
 
-v2 revision notes (in response to reviewer feedback on the first reordering):
-- Data Quality and Data Hub Intelligence (source registry / reconciliation)
-  moved to the very bottom as a technical appendix; they are not part of the
-  WHAT/SO WHAT/WHY/NOW WHAT/WHAT IF/AI CFO decision narrative itself.
-- Profit Quality gets a real written narrative (quality score explained in
-  plain language + the exact finance-cost-burden sentence, which used to be
-  silently dropped into `cross_references` and never rendered at all).
-- Leverage & Liquidity no longer repeats one full finding-card per rule
-  (L001/L002/D004/D006/Q001...); it is now a single synthesized paragraph -
-  full detail with recommendations still lives in Priority Risks / Now What.
-- Management Actions with an overlapping KPI focus (e.g. two different AR
-  collection actions) are grouped into one card instead of shown twice.
-- New Cash Flow Bridge card (uses the existing but previously unrendered
-  cash_bridge_engine output) next to the P&L / Balance Sheet.
-- Sales Intelligence trimmed; a data-grounded "Kritik Müşteriler" panel
-  (built from the AR aging engine's own top_overdue_parties) replaces the
-  generic metric wall, framed as a cash-impact-if-collected story.
-- Hero adds a "which question are you trying to answer" selector that
-  scrolls/highlights the relevant section once the analysis has run.
+Pages: HOME_HTML (/), PRICING_HTML (/paketler), ABOUT_HTML (/hakkimizda),
+CONTACT_HTML (/iletisim), APP_HTML (/uygulama, the actual analysis tool).
+All share one nav/footer/CSS design system assembled in build scripts.
 """
-HTML = r'''<!doctype html>
-<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Digital Finance Business Partner</title>
+
+HOME_HTML = r'''<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Digital Finance Business Partner | Finansal Karar Destek Platformu</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#07111f;--panel:#0d1a2b;--panel2:#101f33;--line:#20334b;--text:#edf4ff;--muted:#91a4bd;--accent:#6ee7d8;--accent2:#8aa7ff;--red:#ff6b7a;--amber:#ffc86b;--green:#6ee7a8;--shadow:0 18px 60px rgba(0,0,0,.22);--serif:'Fraunces',ui-serif,Georgia,serif}
@@ -182,10 +167,1195 @@ HTML = r'''<!doctype html>
   #dashboard{display:block!important}
   .abar{display:none!important}
 }
+
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:dfbpFadeOut .28s ease both}
+::view-transition-new(root){animation:dfbpFadeIn .32s ease both}
+@keyframes dfbpFadeOut{to{opacity:0;transform:translateY(-6px)}}
+@keyframes dfbpFadeIn{from{opacity:0;transform:translateY(8px)}}
+.topNav{display:flex;gap:26px;align-items:center}
+.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.topNav a:hover{color:var(--text)}
+.topNav a.active{color:var(--accent);border-color:var(--accent)}
+.top.scrolled{box-shadow:0 12px 30px rgba(0,0,0,.28)}
+.navBtns{display:flex;gap:10px;align-items:center}
+.navBtns a.secondary,.navBtns a.primary{text-decoration:none;display:inline-flex;align-items:center;font-weight:700}
+.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
+@media(max-width:920px){
+  .topNav{position:fixed;top:74px;left:0;right:0;background:#0a1728;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
+  .topNav.open{max-height:280px;padding:14px 22px}
+  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .navToggle{display:inline-flex}
+}
+.badge.v{white-space:nowrap}
+/* ---- Marketing hero (separate from app hero) ---- */
+.mHero{padding:56px 0 30px;display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center}
+.mHero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);background:#0e2433;border:1px solid #1f4258;padding:7px 14px;border-radius:999px;margin-bottom:18px}
+.mHero h1{font-family:var(--serif);font-weight:600;font-size:50px;line-height:1.08;margin:0 0 18px;letter-spacing:-1px}
+.mHero h1 span{color:var(--accent)}
+.mHero p.lead{color:var(--muted);font-size:16px;max-width:560px;line-height:1.65;margin:0 0 26px}
+.mHero .ctaRow{display:flex;gap:12px;flex-wrap:wrap}
+.mHero .ctaRow a{text-decoration:none}
+.mHero .miniTrust{display:flex;gap:18px;flex-wrap:wrap;margin-top:28px}
+.mHero .miniTrust span{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.mHero .miniTrust svg{color:var(--accent)}
+.heroArt{position:relative}
+.heroArt .floatCard{position:absolute;background:linear-gradient(145deg,rgba(16,31,51,.97),rgba(10,23,39,.97));border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:14px 16px;font-size:11.5px;color:#c6d3e2;animation:dfbpFloat 5s ease-in-out infinite}
+.heroArt .floatCard b{display:block;font-size:16px;color:var(--accent);font-family:var(--serif)}
+.heroArt .fc1{top:-10px;left:-10px;animation-delay:0s}
+.heroArt .fc2{bottom:6px;right:-14px;animation-delay:1.2s}
+@keyframes dfbpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+/* ---- Alternating content blocks (fixes the "iç içe" cramped look) ---- */
+.secBlock{padding:58px 0}
+.secBlock.tint{background:linear-gradient(180deg,rgba(16,31,51,.55),rgba(10,23,39,.15));border-radius:32px;margin:0 -10px}
+.secBlock+.secBlock{border-top:1px solid rgba(255,255,255,.05)}
+.pageHead{padding:54px 0 10px;text-align:center}
+.pageHead .eyebrow{display:inline-flex;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);background:#0e2433;border:1px solid #1f4258;padding:7px 14px;border-radius:999px;margin-bottom:16px}
+.pageHead h1{font-family:var(--serif);font-size:38px;margin:0 0 12px;letter-spacing:-.6px}
+.pageHead p{color:var(--muted);max-width:600px;margin:0 auto;font-size:14.5px}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.reveal.in{opacity:1;transform:none}
+/* ---- Rich footer ---- */
+.siteFooter{border-top:1px solid var(--line);margin-top:40px;padding:46px 0 26px}
+.siteFooter .cols{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:28px;margin-bottom:30px}
+.siteFooter h4{font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:0 0 14px}
+.siteFooter .brandCol p{color:var(--muted);font-size:12.5px;max-width:280px;line-height:1.6}
+.siteFooter ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.siteFooter ul a{color:#c6d3e2;text-decoration:none;font-size:13px}
+.siteFooter ul a:hover{color:var(--accent)}
+.siteFooter .legal{border-top:1px solid rgba(255,255,255,.06);padding-top:20px;color:#647890;font-size:11px;line-height:1.7}
+@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:360px;margin:auto}}
+/* ---- FAQ (paketler sayfası) ---- */
+.faqItem{border-bottom:1px solid var(--line);padding:16px 0}
+.faqItem summary{cursor:pointer;font-weight:700;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faqItem summary::-webkit-details-marker{display:none}
+.faqItem summary:after{content:'+';font-size:20px;color:var(--accent)}
+.faqItem[open] summary:after{content:'–'}
+.faqItem p{color:var(--muted);font-size:13.5px;margin:10px 0 0}
 </style></head>
 <body>
-<header class="top"><div class="wrap brand"><div><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></div><div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap"><nav class="topNav hidePrint"><a href="#howTo">Nasıl Çalışır</a><a href="#pricing">Paketler</a><a href="#about">Hakkımızda</a><a href="#contact">İletişim</a></nav><span class="badge">Finance Core v__APP_VERSION__ · WHAT-WHY-SOWHAT Flow</span><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="secondary">Kayıt Ol</button></div></div></div></header>
-<div id="authModalOverlay" class="hidden" style="position:fixed;inset:0;background:rgba(4,9,16,.72);display:flex;align-items:center;justify-content:center;z-index:100">
+<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/" class="active">Anasayfa</a><a href="/paketler">Paketler</a><a href="/hakkimizda">Hakkımızda</a><a href="/iletisim">İletişim</a><a href="/uygulama">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div class="navBtns"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+<main class="wrap">
+<section class="mHero">
+  <div class="reveal in">
+    <span class="eyebrow">Finance Business Partner Platformu</span>
+    <h1>Rakamları değil, <span>kararları</span> görün.</h1>
+    <p class="lead">Finansal ve operasyonel verilerinizi yükleyin; sistem finansal tabloları kurar, riskleri önceliklendirir, kök nedenleri açıklar ve yönetilebilir fırsatları gösterir. Muhasebe robotu değil, yönetim kurulu diliyle konuşan bir karar destek katmanı.</p>
+    <div class="ctaRow"><a href="/uygulama" class="primary" style="padding:13px 22px;border-radius:12px">Uygulamayı Ücretsiz Dene</a><a href="/paketler" class="secondary" style="padding:13px 22px;border-radius:12px">Paketleri İncele</a></div>
+    <div class="miniTrust">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Önce hesap, sonra yorum</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>KVKK uyumlu, kalıcı saklama yok</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg>33 analiz motoru</span>
+    </div>
+  </div>
+  <div class="heroArt reveal in">
+    <svg viewBox="0 0 420 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;position:relative;z-index:1">
+<defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6ee7d8"/><stop offset="1" stop-color="#8aa7ff"/></linearGradient>
+<linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101f33"/><stop offset="1" stop-color="#0a1727"/></linearGradient></defs>
+<rect x="18" y="30" width="384" height="300" rx="22" fill="url(#g2)" stroke="#20334b"/>
+<circle cx="52" cy="58" r="5" fill="#ff8290"/><circle cx="70" cy="58" r="5" fill="#ffc86b"/><circle cx="88" cy="58" r="5" fill="#6ee7a8"/>
+<g stroke="#20334b"><line x1="40" y1="90" x2="380" y2="90"/></g>
+<g>
+<rect x="46" y="180" width="26" height="90" rx="4" fill="url(#g1)" opacity=".85"/>
+<rect x="82" y="150" width="26" height="120" rx="4" fill="url(#g1)" opacity=".7"/>
+<rect x="118" y="200" width="26" height="70" rx="4" fill="url(#g1)" opacity=".55"/>
+<rect x="154" y="130" width="26" height="140" rx="4" fill="url(#g1)"/>
+</g>
+<polyline points="210,240 240,190 270,210 300,150 330,170 360,120" fill="none" stroke="#8aa7ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="360" cy="120" r="6" fill="#6ee7d8"/>
+<g fill="#c6d3e2" font-family="Inter,sans-serif" font-size="11">
+<text x="46" y="292">What</text><text x="82" y="292">Why</text><text x="118" y="292">So What</text><text x="154" y="292">Now What</text>
+</g>
+<rect x="210" y="110" width="150" height="18" rx="9" fill="#0e2433" stroke="#1f4258"/>
+<text x="220" y="123" fill="#6ee7d8" font-family="Inter,sans-serif" font-size="10" font-weight="700">FINANCIAL HEALTH 84</text>
+</svg>
+    <div class="floatCard fc1"><b>%84</b>Financial Health</div>
+    <div class="floatCard fc2"><b>&lt;2 dk</b>Yüklemeden rapora</div>
+  </div>
+</section>
+
+<div class="secBlock reveal"><section class="statsStrip hidePrint">
+<div class="stat"><b>33</b><span>Deterministik analiz motoru — kâr köprüsü, DuPont, senaryo, kök-neden</span></div>
+<div class="stat"><b>5</b><span>Adımlı karar akışı: What → Why → So What → Now What → What If</span></div>
+<div class="stat"><b>&lt;2 dk</b><span>Dosya yüklemeden yönetim raporuna geçen süre</span></div>
+<div class="stat"><b>0₺</b><span>Örnek veriyle deneme — kayıt olmadan, kredi kartı istemeden</span></div>
+</section>
+<section id="whyUs" class="flowStep hidePrint" style="margin-top:8px"><div class="flowLabel"><span class="n">★</span>Neden Digital Finance Business Partner?<p>Bir Excel şablonu değil, karar destek katmanı</p></div>
+<div class="grid4">
+<div class="card whyCard"><div class="icoWrap"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div><h3 style="margin:0 0 6px;font-size:15px">Kural tabanlı, kanıtlanabilir</h3><p class="muted small">Her rakam, kaynağına kadar izlenebilir bir hesaplamadan gelir. AI yorumu isteğe bağlı ve her zaman ayrı etiketlenir — "kara kutu" bir skor değil.</p></div>
+<div class="card whyCard"><div class="icoWrap"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div><h3 style="margin:0 0 6px;font-size:15px">Dakikalar içinde sonuç</h3><p class="muted small">Mizanınızı yükleyin, 33 analiz motoru bilanço, gelir tablosu, kök-neden ve senaryo analizini otomatik kurar — muhasebeci beklemeden.</p></div>
+<div class="card whyCard"><div class="icoWrap"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg></div><h3 style="margin:0 0 6px;font-size:15px">Yönetim kurulu diliyle</h3><p class="muted small">Sadece rakam değil; "ne oldu, neden oldu, maliyeti ne, ne yapılmalı" akışıyla direkt karar destek raporu — bankaya, ortağa, yönetim kuruluna gösterilebilir.</p></div>
+<div class="card whyCard"><div class="icoWrap"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><h3 style="margin:0 0 6px;font-size:15px">Verileriniz size ait</h3><p class="muted small">Yüklediğiniz dosyalar yalnızca analiz üretmek için işlenir; hesap açmadan sunucuda kalıcı saklanmaz. Kayıt olursanız geçmişiniz sadece sizin erişiminizde tutulur.</p></div>
+</div></section>
+<section id="howTo" class="flowStep hidePrint"><div class="flowLabel alt"><span class="n">?</span>Nasıl Kullanılır<p>3 adımda finansal sağlık raporu</p></div>
+<div class="grid3">
+<div class="card" style="padding:18px"><div class="tag" style="margin-bottom:8px">ADIM 1</div><h3 style="margin:0 0 6px;font-size:15px">Dosyanı yükle (ya da örnekle dene)</h3><p class="muted small">Mizan/Excel dosyanı "Tek dönem" sekmesine sürükle. Dosyan yoksa yukarıdaki "Örnekle dene" butonuyla anında gerçek bir raporu gör.</p></div>
+<div class="card" style="padding:18px"><div class="tag" style="margin-bottom:8px">ADIM 2</div><h3 style="margin:0 0 6px;font-size:15px">Raporu incele</h3><p class="muted small">Health Score, kök-neden bulguları, senaryo anlatıları ve yönetim aksiyonları otomatik oluşur. İstersen AI CFO'dan ek yorum veya soru-cevap iste.</p></div>
+<div class="card" style="padding:18px"><div class="tag" style="margin-bottom:8px">ADIM 3</div><h3 style="margin:0 0 6px;font-size:15px">Kaydet, karşılaştır, paylaş</h3><p class="muted small">Ücretsiz kayıt olup analizi yıl bazında kaydet; sonraki dönemlerle karşılaştır ya da PDF olarak yönetim kuruluna gönder.</p></div>
+</div></section>
+</div>
+
+<div class="secBlock tint reveal"><div class="marketingHead"><h2>Size uygun paketi seçin</h2><p>Üç paket de aynı motoru kullanır, fark kapsam ve süreklilikte.</p></div>
+<div class="pricingGrid">
+<div class="card priceCard"><div class="plan">Başlangıç</div><h3>Starter</h3><div class="amt">₺0<span> /örnek analiz</span></div><div class="desc">Sistemi görmek isteyen ekipler için.</div><a href="/uygulama" class="secondary" style="width:100%;text-align:center;text-decoration:none;display:block;margin-top:auto">Ücretsiz Dene</a></div>
+<div class="card priceCard featured"><div class="badgeTop">En Çok Tercih Edilen</div><div class="plan">Büyüyen Ekipler</div><h3>Professional</h3><div class="amt">₺2.490<span> /ay</span></div><div class="desc">Düzenli yönetim raporu üreten finans ekipleri için.</div><a href="/uygulama?auth=register" class="primary" style="width:100%;text-align:center;text-decoration:none;display:block;margin-top:auto">Kayıt Ol</a></div>
+<div class="card priceCard"><div class="plan">Kurumsal</div><h3>Enterprise</h3><div class="amt">Teklif ile<span> /özel</span></div><div class="desc">Çoklu şirket/bölüm yapısı olan kurumlar için.</div><a href="/iletisim" class="secondary" style="width:100%;text-align:center;text-decoration:none;display:block;margin-top:auto">Bize Ulaşın</a></div>
+</div>
+<div style="text-align:center;margin-top:22px"><a href="/paketler" class="secondary" style="text-decoration:none;padding:11px 20px;border-radius:11px;display:inline-block">Tüm paket detaylarını gör →</a></div>
+</div>
+
+<div class="secBlock reveal"><section class="ctaBanner hidePrint"><div><h3>Finansal sağlığınızı şimdi görün</h3><p>Dosya yüklemeden, kayıt olmadan — örnek veriyle tam bir yönetim raporunun nasıl göründüğünü 2 dakikada deneyin.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a href="/uygulama" class="primary" style="text-decoration:none;padding:12px 20px;border-radius:11px">Örnekle Dene</a><a href="/uygulama?auth=register" class="secondary" style="text-decoration:none;padding:12px 20px;border-radius:11px">Ücretsiz Kayıt Ol</a></div></section></div>
+</main>
+<div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • deterministic finance layer + optional Gemini interpretation • Financial facts are calculated before AI interpretation.<br><span style="opacity:.85">Bu rapor otomatik/deterministik hesaplamalara ve (etkinleştirildiyse) yapay zekâ yorumuna dayanır; muhasebe, denetim, vergi, hukuki veya yatırım tavsiyesi değildir ve resmi mali tablo/beyanname yerine geçmez. Nihai kararlar için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca bu analizi üretmek için işlenir; sunucu tarafında kalıcı olarak saklanmaz. KVKK kapsamındaki veri işleme hakkında bilgi için [Aydınlatma Metni] bağlantısını inceleyin.</span></div></div></div>
+<script>
+document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('mainNav')?.classList.toggle('open'));
+window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.toggle('scrolled',window.scrollY>8)});
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return;}
+  const io=new IntersectionObserver((entries)=>{entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{threshold:.12});
+  els.forEach(e=>io.observe(e));
+})();
+</script>
+</body></html>'''
+
+PRICING_HTML = r'''<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Paketler | Digital Finance Business Partner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07111f;--panel:#0d1a2b;--panel2:#101f33;--line:#20334b;--text:#edf4ff;--muted:#91a4bd;--accent:#6ee7d8;--accent2:#8aa7ff;--red:#ff6b7a;--amber:#ffc86b;--green:#6ee7a8;--shadow:0 18px 60px rgba(0,0,0,.22);--serif:'Fraunces',ui-serif,Georgia,serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0,#142945 0,#07111f 42%,#050c16 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}button,input,select{font:inherit}.wrap{max-width:1440px;margin:auto;padding:0 28px}.top{padding:26px 0 18px;border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;background:rgba(7,17,31,.9);backdrop-filter:blur(18px);z-index:10}.brand{display:flex;align-items:center;justify-content:space-between;gap:20px}.brand h1{margin:0;font-size:25px;letter-spacing:-.6px}.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}.badge{padding:6px 10px;border:1px solid #28435f;border-radius:999px;color:var(--accent);font-size:12px;white-space:nowrap}.hero{padding:34px 0 24px;display:grid;grid-template-columns:1.45fr .55fr;gap:18px}.heroCard,.card{background:linear-gradient(145deg,rgba(16,31,51,.96),rgba(10,23,39,.96));border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.heroCard{padding:28px}.heroTitle{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1.08;margin:0 0 14px;letter-spacing:-.5px}.heroText{color:var(--muted);max-width:780px}.framework{display:flex;flex-wrap:wrap;gap:8px 10px;margin:16px 0 2px;padding:0}.framework span{font-size:11.5px;color:#c6d3e2;background:#0b1a2b;border:1px solid var(--line);border-radius:999px;padding:6px 11px}.framework span b{color:var(--accent);font-weight:800}
+.qsel{margin-top:18px}.qsel .qtitle{font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:700}.qsel .qrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.qsel button{border:1px solid #2c4863;background:#0b1a2b;color:#c6d3e2;border-radius:12px;padding:10px 12px;font-size:12.5px;cursor:pointer;text-align:left;line-height:1.3}.qsel button:hover{border-color:#3d648a}.qsel button.active{border-color:var(--accent);color:var(--accent);background:#0e2433}
+.upload{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}.file{border:1px dashed #39536f;padding:12px;border-radius:12px;background:#091727;max-width:100%}.select,button{border:1px solid #31506f;border-radius:11px;padding:11px 14px;background:#0b192b;color:var(--text)}button.primary{background:linear-gradient(135deg,#4bd9ca,#718cff);border:0;color:#06101b;font-weight:800;cursor:pointer}button.secondary{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}.scoreCard{padding:25px;display:flex;flex-direction:column;justify-content:center}.scoreRing{width:170px;height:170px;border-radius:50%;margin:auto;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--score)*1%),#183047 0);position:relative}.scoreRing:after{content:"";position:absolute;inset:12px;border-radius:50%;background:#0a1829}.scoreNum{position:relative;z-index:1;text-align:center}.scoreNum strong{display:block;font-size:48px;line-height:1}.scoreNum span{color:var(--muted);font-size:12px}.status{margin:15px auto 0;padding:7px 12px;border-radius:999px;background:#132b3b;color:var(--accent);font-size:12px;font-weight:700}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:22px;margin:0 0 16px;transition:outline .2s}.metric{padding:17px;border:1px solid var(--line);border-radius:15px;background:rgba(6,16,28,.42)}.metric .label{color:var(--muted);font-size:12px}.metric .value{font-size:25px;font-weight:800;margin-top:5px;letter-spacing:-.5px}.metric .sub{font-size:11px;color:var(--muted);margin-top:5px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:17px}.sectionHead h2{margin:0;font-size:18px}.sectionHead p{margin:0;color:var(--muted);font-size:12px}.flowStep{margin:36px 0 14px;padding-top:6px;border-top:1px solid rgba(255,255,255,.07)}.flowStep:first-child{margin-top:0;border-top:0;padding-top:0}.flowLabel{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin:0 0 4px}.flowLabel .n{width:22px;height:22px;border-radius:50%;background:#132b3b;color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:11px}.flowLabel p{margin:0;color:var(--muted);font-size:12.5px;font-weight:500;text-transform:none;letter-spacing:0}.flowLabel.alt{color:var(--accent2)}.flowLabel.alt .n{color:var(--accent2)}.flowSub{color:var(--muted);font-size:12.5px;margin:2px 0 16px 32px}.insight{border:1px solid var(--line);border-radius:15px;padding:16px;background:#0a1727}.insight.critical{border-color:#67303b}.insight.high{border-color:#6b4930}.insight.medium{border-color:#4a4527}.insight.positive{border-color:#285a4d}.insight h3{margin:0 0 5px;font-size:14px}.insight p{margin:6px 0;color:#c6d3e2;font-size:13px}.insight ul{margin:6px 0;padding-left:18px;color:#c6d3e2;font-size:13px}.tag{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;background:#17283c;color:#a9bdd5}.tag.critical{background:#351722;color:#ff8b98}.tag.high{background:#3a2919;color:#ffc66e}.tag.medium{background:#312c19;color:#f4d276}.tag.positive{background:#17372f;color:#7ee7b1}.riskRow,.actionRow{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.06)}.rank{font-size:18px;font-weight:900;color:#7086a0}.riskScore{font-size:12px;color:var(--muted)}.bar{height:7px;background:#162a40;border-radius:99px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}.waterfall{display:flex;align-items:flex-end;gap:7px;height:190px;padding:20px 5px 0;border-bottom:1px solid var(--line)}.wf{flex:1;display:flex;flex-direction:column;justify-content:end;height:100%;min-width:0}.wf .col{border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#83a4ff,#506fd0);min-height:3px}.wf.neg .col{background:linear-gradient(180deg,#ff8290,#9d3e54)}.wf .lab{font-size:10px;color:var(--muted);text-align:center;margin-top:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wf .num{font-size:9px;text-align:center;color:#c8d5e5;margin-bottom:4px}.scenario{padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#0d1d31,#091525)}.scenario h3{margin:0 0 6px;font-size:15px}.scenario .big{font-size:24px;font-weight:900;color:var(--accent)}.scenario p{color:var(--muted);font-size:11px;margin:6px 0}.muted{color:var(--muted)}.small{font-size:11px}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.06);text-align:right}th:first-child,td:first-child{text-align:left}th{color:#7f95af;font-weight:600}.notice{padding:12px 14px;border-radius:12px;background:#0b1a2b;border:1px solid var(--line);color:#a9b9cb;font-size:12px}.error{color:#ff9aa5;background:#321923;border:1px solid #64313e;padding:12px;border-radius:12px;margin:15px 0}.hidden{display:none!important}.footer{padding:25px 0 50px;color:#647890;font-size:11px;text-align:center}.tabs{display:flex;gap:8px;margin-top:16px}.tab{padding:8px 12px;border-radius:999px;background:#0b192a;border:1px solid var(--line);color:#9db0c7;cursor:pointer}.tab.active{background:#17364a;color:var(--accent);border-color:#2d5b6b}.tabPanel{display:none}.tabPanel.active{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.hidePrint{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chip{font-size:11.5px;background:#0b1a2b;border:1px solid var(--line);border-radius:999px;padding:6px 11px;color:#c6d3e2}.chip b{color:var(--accent)}
+.abar{height:9px;background:#162a40;border-radius:99px;overflow:hidden;margin-top:6px}.abar i{display:block;height:100%;background:linear-gradient(90deg,#8aa7ff,#ff8290);border-radius:99px}
+.custRow{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12.5px}
+.highlight-target{outline:2px solid var(--accent);outline-offset:6px}
+/* --- Marketing surface additions --- */
+.topNav{display:flex;gap:18px}
+.topNav a{color:var(--muted);font-size:13px;text-decoration:none;font-weight:600}
+.topNav a:hover{color:var(--accent)}
+.marketingSection{padding:60px 0}
+.marketingHead{text-align:center;max-width:640px;margin:0 auto 34px}
+.marketingHead h2{font-family:var(--serif);font-size:32px;margin:0 0 10px;letter-spacing:-.5px}
+.marketingHead p{color:var(--muted);margin:0;font-size:14.5px}
+.pricingGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.priceCard{display:flex;flex-direction:column;padding:28px 24px;position:relative}
+.priceCard.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}
+.priceCard .plan{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);font-weight:800;margin-bottom:8px}
+.priceCard h3{margin:0 0 6px;font-size:22px;font-family:var(--serif)}
+.priceCard .amt{font-size:34px;font-weight:900;margin:8px 0 4px}
+.priceCard .amt span{font-size:13px;color:var(--muted);font-weight:500}
+.priceCard .desc{color:var(--muted);font-size:13px;margin-bottom:18px}
+.priceCard ul{list-style:none;margin:0 0 22px;padding:0;flex:1;display:flex;flex-direction:column;gap:10px}
+.priceCard ul li{font-size:13px;color:#c6d3e2;display:flex;gap:8px;align-items:flex-start}
+.priceCard ul li svg{flex:none;margin-top:2px;color:var(--accent)}
+.priceCard .badgeTop{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#06101b;font-size:10.5px;font-weight:800;padding:4px 12px;border-radius:999px;letter-spacing:.5px}
+.aboutGrid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
+.aboutStats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.aboutStats .st{padding:16px;border:1px solid var(--line);border-radius:14px;text-align:center;background:rgba(6,16,28,.42)}
+.aboutStats .st b{display:block;font-size:24px;color:var(--accent);font-family:var(--serif)}
+.aboutStats .st span{font-size:11px;color:var(--muted)}
+.contactGrid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.contactCard{padding:26px}
+.contactRow{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.contactRow .item{display:flex;gap:10px;align-items:center;font-size:13px;color:#c6d3e2}
+.contactRow .item svg{color:var(--accent);flex:none}
+@media(max-width:860px){.pricingGrid,.aboutGrid,.contactGrid{grid-template-columns:1fr}.topNav{display:none}}
+.trustBar{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08)}
+.trustBar .item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.trustBar .item svg{flex:none;color:var(--accent)}
+.heroPreview{position:relative;padding:22px;overflow:hidden}
+.heroPreview .pvLabel{font-size:11px;color:var(--muted);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.heroPreview .pvLabel span.dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;margin-right:6px;box-shadow:0 0 0 3px rgba(110,231,168,.18)}
+.pvRing{width:112px;height:112px;border-radius:50%;margin:2px auto 14px;display:grid;place-items:center;background:conic-gradient(var(--accent) 0 78%,#182c42 78% 100%);position:relative}
+.pvRing:after{content:"";position:absolute;inset:9px;border-radius:50%;background:#0a1728}
+.pvRing b{position:relative;font-family:var(--serif);font-size:26px;z-index:1}
+.pvRow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px}
+.pvRow .n{color:var(--text);font-weight:700}
+.pvRow .n.up{color:var(--green)}.pvRow .n.down{color:var(--red)}
+.pvBars{display:flex;align-items:flex-end;gap:5px;height:54px;margin-top:14px}
+.pvBars i{flex:1;background:linear-gradient(180deg,var(--accent2),#4a63b8);border-radius:3px 3px 1px 1px;display:block}
+.statsStrip{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:6px 0 0;padding:26px 0}
+.statsStrip .stat b{font-family:var(--serif);font-size:36px;font-weight:600;color:var(--text);display:block;letter-spacing:-.5px}
+.statsStrip .stat span{font-size:12.5px;color:var(--muted);display:block;margin-top:4px;max-width:20ch}
+.whyCard{padding:20px;position:relative}
+.whyCard .icoWrap{width:40px;height:40px;border-radius:11px;background:#0e2433;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--accent)}
+.ctaBanner{margin:44px 0 8px;padding:38px 32px;border-radius:22px;background:linear-gradient(135deg,#0e2433 0%,#0b1a2c 55%,#091524 100%);border:1px solid #234260;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.ctaBanner h3{font-family:var(--serif);font-weight:600;font-size:26px;margin:0 0 6px;letter-spacing:-.3px}
+.ctaBanner p{margin:0;color:var(--muted);font-size:13.5px;max-width:52ch}
+@media(max-width:1000px){.statsStrip{grid-template-columns:repeat(2,1fr)}.heroTitle{font-size:34px}}
+@media(max-width:1000px){.hero{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.grid3,.grid2{grid-template-columns:1fr}.wrap{padding:0 15px}.heroTitle{font-size:31px}.flowSub{margin-left:0}.qsel .qrow{grid-template-columns:1fr}}
+@media print{
+  *,*::before,*::after{box-sizing:border-box!important}
+  @page{size:A4 portrait;margin:18mm 16mm 18mm 16mm}
+  html,body{background:#fff!important;color:#0d1b2a!important;font-family:'Segoe UI',Arial,sans-serif!important;font-size:10pt!important;line-height:1.45!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+
+  /* ── Hide all interactive elements ─────────────────────────────── */
+  .hero,.upload,.hidePrint,.tabs,.tabPanel,.chips,.qsel,.tab,.footer,.heroPreview,.trustBar,.statsStrip,.ctaBanner,
+  button,input,select,textarea,.secondary,.primary,
+  #sampleBtn,#aiBtn,#printBtn,#jsonBtn,#aiAskBtn,
+  #aiBox,#aiCustomBox,#aiCustomPrompt,#methodNote,
+  .interactiveScenarioCard,#interactiveScenarioCard{display:none!important}
+
+  /* ── Layout: full-width single column ──────────────────────────── */
+  .wrap{max-width:none!important;padding:0!important;margin:0!important}
+  .top{display:none!important}
+
+  /* ── Cover Banner ───────────────────────────────────────────────── */
+  #printCover{display:block!important;border-bottom:3px solid #1a73e8;padding-bottom:12px;margin-bottom:20px}
+  #printCover h1{font-size:20pt!important;font-weight:800;color:#0d1b2a;margin:0 0 4px}
+  #printCover .sub{font-size:9pt;color:#4a6fa5}
+
+  /* ── Cards ──────────────────────────────────────────────────────── */
+  .card{box-shadow:none!important;background:#fff!important;border:1px solid #c8d6e8!important;border-radius:6px!important;margin-bottom:10px!important;padding:10px 12px!important;page-break-inside:avoid!important}
+  .heroCard{box-shadow:none!important;background:#fff!important;border:1px solid #c8d6e8!important;padding:10px!important}
+
+  /* ── Flow steps ─────────────────────────────────────────────────── */
+  .flowStep{margin:14px 0 6px!important;padding-top:4px!important;page-break-inside:avoid!important}
+  .flowLabel{background:none!important;border-left:4px solid #1a73e8!important;padding-left:10px!important;color:#0d1b2a!important;margin-bottom:6px!important}
+  .flowLabel .n{background:#1a73e8!important;color:#fff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .flowSub{color:#555!important;font-size:8.5pt!important;margin-bottom:6px!important}
+
+  /* ── Metrics / KPIs ─────────────────────────────────────────────── */
+  .metric{background:#f4f7fc!important;border:1px solid #d4dff0!important;border-radius:6px!important;padding:8px!important;color:#0d1b2a!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .metric .label{font-size:7.5pt!important;color:#4a6fa5!important;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  .metric .value{font-size:14pt!important;font-weight:800;color:#0d1b2a!important}
+  .metric .sub{font-size:7.5pt!important;color:#666!important}
+  .grid2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .grid3{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:8px!important}
+  .grid4{display:grid!important;grid-template-columns:1fr 1fr 1fr 1fr!important;gap:8px!important}
+
+  /* ── Health score ring ──────────────────────────────────────────── */
+  .scoreCard{display:flex!important;align-items:center!important;gap:20px!important;padding:10px 14px!important}
+  .scoreRing{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .scoreRing::after{background:#fff!important}
+
+  /* ── Section headings ───────────────────────────────────────────── */
+  .sectionHead{border-bottom:1px solid #d4dff0!important;margin-bottom:8px!important;padding-bottom:6px!important}
+  .sectionHead h2{font-size:10pt!important;color:#1a73e8!important;font-weight:800;margin:0}
+  .sectionHead p{font-size:8pt!important;color:#555!important;margin:2px 0 0}
+  h1,h2,h3{page-break-after:avoid!important;color:#0d1b2a!important}
+  h3{font-size:9.5pt!important}
+
+  /* ── Risk & action rows ─────────────────────────────────────────── */
+  .riskRow,.actionRow{border:1px solid #e4e8ef!important;border-radius:5px!important;margin-bottom:5px!important;padding:6px 8px!important;page-break-inside:avoid!important;background:#fafbfd!important}
+  .rank{background:#e8f0fe!important;color:#1a73e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .bar{display:none!important}
+
+  /* ── Tags / badges ──────────────────────────────────────────────── */
+  .tag{border:1px solid #888!important;color:#333!important;background:#f0f0f0!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;font-size:7pt!important}
+  .badge{border:1px solid #1a73e8!important;color:#1a73e8!important;font-size:7.5pt!important}
+
+  /* ── Insights / alerts ──────────────────────────────────────────── */
+  .insight{border-left:4px solid #1a73e8!important;background:#f0f7ff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;border-radius:4px!important;padding:7px 9px!important;margin-bottom:6px!important;page-break-inside:avoid!important}
+  .insight.high,.insight.critical{border-left-color:#c62828!important;background:#fff5f5!important}
+  .insight.positive{border-left-color:#2e7d32!important;background:#f1fdf3!important}
+  .notice{background:#f8faff!important;border:1px solid #d0dff5!important;padding:7px 9px!important;border-radius:4px!important;font-size:8.5pt!important;color:#333!important}
+
+  /* ── Waterfall chart ────────────────────────────────────────────── */
+  .waterfall{display:flex!important;align-items:flex-end!important;gap:4px!important;height:100px!important;padding:4px 0!important}
+  .wf .col{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .wf .num{font-size:6.5pt!important;color:#333!important}
+  .wf .lab{font-size:6pt!important;color:#444!important}
+
+  /* ── Tables ─────────────────────────────────────────────────────── */
+  .tableWrap{overflow:visible!important}
+  table{border-collapse:collapse!important;width:100%!important;font-size:8pt!important}
+  th{background:#e8f0fe!important;color:#1a73e8!important;font-weight:700;padding:4px 6px!important;border:1px solid #c8d6e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  td{padding:4px 6px!important;border:1px solid #e4e8ef!important}
+  tr:nth-child(even) td{background:#f8faff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+
+  /* ── Page breaks ─────────────────────────────────────────────────  */
+  .flowStep:nth-child(3){page-break-before:always!important}
+  .flowStep:nth-child(6){page-break-before:always!important}
+
+  /* ── Misc ────────────────────────────────────────────────────────── */
+  .muted{color:#555!important}
+  .small{font-size:7.5pt!important}
+  a{color:#1a73e8!important;text-decoration:none!important}
+  .scenario{border:1px solid #c8d6e8!important;border-radius:5px!important;padding:8px!important;page-break-inside:avoid!important}
+  .scenario .big{font-size:14pt!important;font-weight:800;color:#1a73e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .custRow,.wf{page-break-inside:avoid!important}
+  .hidden{display:none!important}
+  #dashboard{display:block!important}
+  .abar{display:none!important}
+}
+
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:dfbpFadeOut .28s ease both}
+::view-transition-new(root){animation:dfbpFadeIn .32s ease both}
+@keyframes dfbpFadeOut{to{opacity:0;transform:translateY(-6px)}}
+@keyframes dfbpFadeIn{from{opacity:0;transform:translateY(8px)}}
+.topNav{display:flex;gap:26px;align-items:center}
+.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.topNav a:hover{color:var(--text)}
+.topNav a.active{color:var(--accent);border-color:var(--accent)}
+.top.scrolled{box-shadow:0 12px 30px rgba(0,0,0,.28)}
+.navBtns{display:flex;gap:10px;align-items:center}
+.navBtns a.secondary,.navBtns a.primary{text-decoration:none;display:inline-flex;align-items:center;font-weight:700}
+.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
+@media(max-width:920px){
+  .topNav{position:fixed;top:74px;left:0;right:0;background:#0a1728;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
+  .topNav.open{max-height:280px;padding:14px 22px}
+  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .navToggle{display:inline-flex}
+}
+.badge.v{white-space:nowrap}
+/* ---- Marketing hero (separate from app hero) ---- */
+.mHero{padding:56px 0 30px;display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center}
+.mHero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);background:#0e2433;border:1px solid #1f4258;padding:7px 14px;border-radius:999px;margin-bottom:18px}
+.mHero h1{font-family:var(--serif);font-weight:600;font-size:50px;line-height:1.08;margin:0 0 18px;letter-spacing:-1px}
+.mHero h1 span{color:var(--accent)}
+.mHero p.lead{color:var(--muted);font-size:16px;max-width:560px;line-height:1.65;margin:0 0 26px}
+.mHero .ctaRow{display:flex;gap:12px;flex-wrap:wrap}
+.mHero .ctaRow a{text-decoration:none}
+.mHero .miniTrust{display:flex;gap:18px;flex-wrap:wrap;margin-top:28px}
+.mHero .miniTrust span{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.mHero .miniTrust svg{color:var(--accent)}
+.heroArt{position:relative}
+.heroArt .floatCard{position:absolute;background:linear-gradient(145deg,rgba(16,31,51,.97),rgba(10,23,39,.97));border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:14px 16px;font-size:11.5px;color:#c6d3e2;animation:dfbpFloat 5s ease-in-out infinite}
+.heroArt .floatCard b{display:block;font-size:16px;color:var(--accent);font-family:var(--serif)}
+.heroArt .fc1{top:-10px;left:-10px;animation-delay:0s}
+.heroArt .fc2{bottom:6px;right:-14px;animation-delay:1.2s}
+@keyframes dfbpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+/* ---- Alternating content blocks (fixes the "iç içe" cramped look) ---- */
+.secBlock{padding:58px 0}
+.secBlock.tint{background:linear-gradient(180deg,rgba(16,31,51,.55),rgba(10,23,39,.15));border-radius:32px;margin:0 -10px}
+.secBlock+.secBlock{border-top:1px solid rgba(255,255,255,.05)}
+.pageHead{padding:54px 0 10px;text-align:center}
+.pageHead .eyebrow{display:inline-flex;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);background:#0e2433;border:1px solid #1f4258;padding:7px 14px;border-radius:999px;margin-bottom:16px}
+.pageHead h1{font-family:var(--serif);font-size:38px;margin:0 0 12px;letter-spacing:-.6px}
+.pageHead p{color:var(--muted);max-width:600px;margin:0 auto;font-size:14.5px}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.reveal.in{opacity:1;transform:none}
+/* ---- Rich footer ---- */
+.siteFooter{border-top:1px solid var(--line);margin-top:40px;padding:46px 0 26px}
+.siteFooter .cols{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:28px;margin-bottom:30px}
+.siteFooter h4{font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:0 0 14px}
+.siteFooter .brandCol p{color:var(--muted);font-size:12.5px;max-width:280px;line-height:1.6}
+.siteFooter ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.siteFooter ul a{color:#c6d3e2;text-decoration:none;font-size:13px}
+.siteFooter ul a:hover{color:var(--accent)}
+.siteFooter .legal{border-top:1px solid rgba(255,255,255,.06);padding-top:20px;color:#647890;font-size:11px;line-height:1.7}
+@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:360px;margin:auto}}
+/* ---- FAQ (paketler sayfası) ---- */
+.faqItem{border-bottom:1px solid var(--line);padding:16px 0}
+.faqItem summary{cursor:pointer;font-weight:700;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faqItem summary::-webkit-details-marker{display:none}
+.faqItem summary:after{content:'+';font-size:20px;color:var(--accent)}
+.faqItem[open] summary:after{content:'–'}
+.faqItem p{color:var(--muted);font-size:13.5px;margin:10px 0 0}
+</style></head>
+<body>
+<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/paketler" class="active">Paketler</a><a href="/hakkimizda">Hakkımızda</a><a href="/iletisim">İletişim</a><a href="/uygulama">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div class="navBtns"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+<main class="wrap">
+<div class="pageHead reveal in"><span class="eyebrow">Paketler</span><h1>Size uygun paketi seçin</h1><p>Tek seferlik bir örnek raporla mı başlamak istiyorsunuz, yoksa ekibinizin her ay düzenli kullandığı bir karar destek katmanı mı arıyorsunuz — üç paket de aynı motoru kullanır, fark kapsam ve süreklilikte.</p></div>
+<div class="secBlock reveal"><section class="marketingSection hidePrint">
+<div class="pricingGrid">
+<div class="card priceCard"><div class="plan">Başlangıç</div><h3>Starter</h3><div class="amt">₺0<span> /örnek analiz</span></div><div class="desc">Sistemi görmek isteyen, henüz dosya yüklemeyen ekipler için.</div><ul>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Örnek veriyle tam rapor denemesi</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>What / So What / Why / Now What akışı</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Kayıt gerekmez, tarayıcıda kalır</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Tek dönem, kaydetme yok</li>
+</ul><button class="secondary" style="width:100%" onclick="window.location.href='/uygulama'">Ücretsiz Dene</button></div>
+<div class="card priceCard featured"><div class="badgeTop">En Çok Tercih Edilen</div><div class="plan">Büyüyen Ekipler</div><h3>Professional</h3><div class="amt">₺2.490<span> /ay</span></div><div class="desc">Kendi verinizi düzenli yükleyip yönetim raporu üretmek isteyen finans ekipleri için.</div><ul>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Sınırsız dosya yükleme ve analiz</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Çok dönemli trend ve karşılaştırma</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Geçmiş analizleri kaydetme ve karşılaştırma</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Data Hub: kaynak bazlı mutabakat</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Opsiyonel AI CFO yorumu (Gemini)</li>
+</ul><button class="primary" style="width:100%" onclick="window.location.href='/uygulama?auth=register'">Kayıt Ol</button></div>
+<div class="card priceCard"><div class="plan">Kurumsal</div><h3>Enterprise</h3><div class="amt">Teklif ile<span> /özel</span></div><div class="desc">Çoklu şirket/bölüm yapısı, özel entegrasyon veya danışmanlık desteği isteyen kurumlar için.</div><ul>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Professional'daki her şey</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Çoklu kullanıcı ve şirket/bölüm yönetimi</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Özel kural/eşik seti (sektörünüze göre)</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Öncelikli destek ve kurulum danışmanlığı</li>
+</ul><button class="secondary" style="width:100%" onclick="window.location.href='/iletisim'">Bize Ulaşın</button></div>
+</div></section>
+
+</div>
+
+<div class="secBlock reveal"><div class="marketingHead"><h2>Sık Sorulan Sorular</h2></div>
+<div style="max-width:720px;margin:auto">
+<details class="faqItem" open><summary>Verilerim güvende mi?</summary><p>Yüklediğiniz dosyalar yalnızca analiz üretmek için işlenir; hesap açmadan sunucuda kalıcı saklanmaz. Kayıt olursanız geçmişiniz yalnızca sizin erişiminizde tutulur.</p></details>
+<details class="faqItem"><summary>Paket değiştirebilir miyim?</summary><p>Evet, ihtiyacınız değiştikçe paketler arasında geçiş yapabilirsiniz; mevcut analiz geçmişiniz korunur.</p></details>
+<details class="faqItem"><summary>AI yorumu zorunlu mu?</summary><p>Hayır. Tüm rakamlar önce deterministik olarak hesaplanır; AI CFO yorumu tamamen isteğe bağlı, ayrı etiketlenmiş bir ek katmandır.</p></details>
+<details class="faqItem"><summary>Kurumsal pakette neler özelleşiyor?</summary><p>Çoklu kullanıcı/şirket yönetimi, sektörünüze özel kural ve eşik setleri, öncelikli destek ve kurulum danışmanlığı Enterprise pakette yer alır.</p></details>
+</div></div>
+
+<div class="secBlock tint reveal"><section class="ctaBanner hidePrint"><div><h3>Hangi paketin size uygun olduğundan emin değil misiniz?</h3><p>2 dakikalık bir örnek analizle sistemi görün, sonra karar verin.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a href="/uygulama" class="primary" style="text-decoration:none;padding:12px 20px;border-radius:11px">Örnekle Dene</a><a href="/iletisim" class="secondary" style="text-decoration:none;padding:12px 20px;border-radius:11px">Kurumsal Teklif Al</a></div></section></div>
+</main>
+<div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • deterministic finance layer + optional Gemini interpretation • Financial facts are calculated before AI interpretation.<br><span style="opacity:.85">Bu rapor otomatik/deterministik hesaplamalara ve (etkinleştirildiyse) yapay zekâ yorumuna dayanır; muhasebe, denetim, vergi, hukuki veya yatırım tavsiyesi değildir ve resmi mali tablo/beyanname yerine geçmez. Nihai kararlar için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca bu analizi üretmek için işlenir; sunucu tarafında kalıcı olarak saklanmaz. KVKK kapsamındaki veri işleme hakkında bilgi için [Aydınlatma Metni] bağlantısını inceleyin.</span></div></div></div>
+<script>
+document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('mainNav')?.classList.toggle('open'));
+window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.toggle('scrolled',window.scrollY>8)});
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return;}
+  const io=new IntersectionObserver((entries)=>{entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{threshold:.12});
+  els.forEach(e=>io.observe(e));
+})();
+</script>
+</body></html>'''
+
+ABOUT_HTML = r'''<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hakkımızda | Digital Finance Business Partner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07111f;--panel:#0d1a2b;--panel2:#101f33;--line:#20334b;--text:#edf4ff;--muted:#91a4bd;--accent:#6ee7d8;--accent2:#8aa7ff;--red:#ff6b7a;--amber:#ffc86b;--green:#6ee7a8;--shadow:0 18px 60px rgba(0,0,0,.22);--serif:'Fraunces',ui-serif,Georgia,serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0,#142945 0,#07111f 42%,#050c16 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}button,input,select{font:inherit}.wrap{max-width:1440px;margin:auto;padding:0 28px}.top{padding:26px 0 18px;border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;background:rgba(7,17,31,.9);backdrop-filter:blur(18px);z-index:10}.brand{display:flex;align-items:center;justify-content:space-between;gap:20px}.brand h1{margin:0;font-size:25px;letter-spacing:-.6px}.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}.badge{padding:6px 10px;border:1px solid #28435f;border-radius:999px;color:var(--accent);font-size:12px;white-space:nowrap}.hero{padding:34px 0 24px;display:grid;grid-template-columns:1.45fr .55fr;gap:18px}.heroCard,.card{background:linear-gradient(145deg,rgba(16,31,51,.96),rgba(10,23,39,.96));border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.heroCard{padding:28px}.heroTitle{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1.08;margin:0 0 14px;letter-spacing:-.5px}.heroText{color:var(--muted);max-width:780px}.framework{display:flex;flex-wrap:wrap;gap:8px 10px;margin:16px 0 2px;padding:0}.framework span{font-size:11.5px;color:#c6d3e2;background:#0b1a2b;border:1px solid var(--line);border-radius:999px;padding:6px 11px}.framework span b{color:var(--accent);font-weight:800}
+.qsel{margin-top:18px}.qsel .qtitle{font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:700}.qsel .qrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.qsel button{border:1px solid #2c4863;background:#0b1a2b;color:#c6d3e2;border-radius:12px;padding:10px 12px;font-size:12.5px;cursor:pointer;text-align:left;line-height:1.3}.qsel button:hover{border-color:#3d648a}.qsel button.active{border-color:var(--accent);color:var(--accent);background:#0e2433}
+.upload{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}.file{border:1px dashed #39536f;padding:12px;border-radius:12px;background:#091727;max-width:100%}.select,button{border:1px solid #31506f;border-radius:11px;padding:11px 14px;background:#0b192b;color:var(--text)}button.primary{background:linear-gradient(135deg,#4bd9ca,#718cff);border:0;color:#06101b;font-weight:800;cursor:pointer}button.secondary{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}.scoreCard{padding:25px;display:flex;flex-direction:column;justify-content:center}.scoreRing{width:170px;height:170px;border-radius:50%;margin:auto;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--score)*1%),#183047 0);position:relative}.scoreRing:after{content:"";position:absolute;inset:12px;border-radius:50%;background:#0a1829}.scoreNum{position:relative;z-index:1;text-align:center}.scoreNum strong{display:block;font-size:48px;line-height:1}.scoreNum span{color:var(--muted);font-size:12px}.status{margin:15px auto 0;padding:7px 12px;border-radius:999px;background:#132b3b;color:var(--accent);font-size:12px;font-weight:700}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:22px;margin:0 0 16px;transition:outline .2s}.metric{padding:17px;border:1px solid var(--line);border-radius:15px;background:rgba(6,16,28,.42)}.metric .label{color:var(--muted);font-size:12px}.metric .value{font-size:25px;font-weight:800;margin-top:5px;letter-spacing:-.5px}.metric .sub{font-size:11px;color:var(--muted);margin-top:5px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:17px}.sectionHead h2{margin:0;font-size:18px}.sectionHead p{margin:0;color:var(--muted);font-size:12px}.flowStep{margin:36px 0 14px;padding-top:6px;border-top:1px solid rgba(255,255,255,.07)}.flowStep:first-child{margin-top:0;border-top:0;padding-top:0}.flowLabel{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin:0 0 4px}.flowLabel .n{width:22px;height:22px;border-radius:50%;background:#132b3b;color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:11px}.flowLabel p{margin:0;color:var(--muted);font-size:12.5px;font-weight:500;text-transform:none;letter-spacing:0}.flowLabel.alt{color:var(--accent2)}.flowLabel.alt .n{color:var(--accent2)}.flowSub{color:var(--muted);font-size:12.5px;margin:2px 0 16px 32px}.insight{border:1px solid var(--line);border-radius:15px;padding:16px;background:#0a1727}.insight.critical{border-color:#67303b}.insight.high{border-color:#6b4930}.insight.medium{border-color:#4a4527}.insight.positive{border-color:#285a4d}.insight h3{margin:0 0 5px;font-size:14px}.insight p{margin:6px 0;color:#c6d3e2;font-size:13px}.insight ul{margin:6px 0;padding-left:18px;color:#c6d3e2;font-size:13px}.tag{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;background:#17283c;color:#a9bdd5}.tag.critical{background:#351722;color:#ff8b98}.tag.high{background:#3a2919;color:#ffc66e}.tag.medium{background:#312c19;color:#f4d276}.tag.positive{background:#17372f;color:#7ee7b1}.riskRow,.actionRow{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.06)}.rank{font-size:18px;font-weight:900;color:#7086a0}.riskScore{font-size:12px;color:var(--muted)}.bar{height:7px;background:#162a40;border-radius:99px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}.waterfall{display:flex;align-items:flex-end;gap:7px;height:190px;padding:20px 5px 0;border-bottom:1px solid var(--line)}.wf{flex:1;display:flex;flex-direction:column;justify-content:end;height:100%;min-width:0}.wf .col{border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#83a4ff,#506fd0);min-height:3px}.wf.neg .col{background:linear-gradient(180deg,#ff8290,#9d3e54)}.wf .lab{font-size:10px;color:var(--muted);text-align:center;margin-top:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wf .num{font-size:9px;text-align:center;color:#c8d5e5;margin-bottom:4px}.scenario{padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#0d1d31,#091525)}.scenario h3{margin:0 0 6px;font-size:15px}.scenario .big{font-size:24px;font-weight:900;color:var(--accent)}.scenario p{color:var(--muted);font-size:11px;margin:6px 0}.muted{color:var(--muted)}.small{font-size:11px}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.06);text-align:right}th:first-child,td:first-child{text-align:left}th{color:#7f95af;font-weight:600}.notice{padding:12px 14px;border-radius:12px;background:#0b1a2b;border:1px solid var(--line);color:#a9b9cb;font-size:12px}.error{color:#ff9aa5;background:#321923;border:1px solid #64313e;padding:12px;border-radius:12px;margin:15px 0}.hidden{display:none!important}.footer{padding:25px 0 50px;color:#647890;font-size:11px;text-align:center}.tabs{display:flex;gap:8px;margin-top:16px}.tab{padding:8px 12px;border-radius:999px;background:#0b192a;border:1px solid var(--line);color:#9db0c7;cursor:pointer}.tab.active{background:#17364a;color:var(--accent);border-color:#2d5b6b}.tabPanel{display:none}.tabPanel.active{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.hidePrint{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chip{font-size:11.5px;background:#0b1a2b;border:1px solid var(--line);border-radius:999px;padding:6px 11px;color:#c6d3e2}.chip b{color:var(--accent)}
+.abar{height:9px;background:#162a40;border-radius:99px;overflow:hidden;margin-top:6px}.abar i{display:block;height:100%;background:linear-gradient(90deg,#8aa7ff,#ff8290);border-radius:99px}
+.custRow{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12.5px}
+.highlight-target{outline:2px solid var(--accent);outline-offset:6px}
+/* --- Marketing surface additions --- */
+.topNav{display:flex;gap:18px}
+.topNav a{color:var(--muted);font-size:13px;text-decoration:none;font-weight:600}
+.topNav a:hover{color:var(--accent)}
+.marketingSection{padding:60px 0}
+.marketingHead{text-align:center;max-width:640px;margin:0 auto 34px}
+.marketingHead h2{font-family:var(--serif);font-size:32px;margin:0 0 10px;letter-spacing:-.5px}
+.marketingHead p{color:var(--muted);margin:0;font-size:14.5px}
+.pricingGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.priceCard{display:flex;flex-direction:column;padding:28px 24px;position:relative}
+.priceCard.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}
+.priceCard .plan{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);font-weight:800;margin-bottom:8px}
+.priceCard h3{margin:0 0 6px;font-size:22px;font-family:var(--serif)}
+.priceCard .amt{font-size:34px;font-weight:900;margin:8px 0 4px}
+.priceCard .amt span{font-size:13px;color:var(--muted);font-weight:500}
+.priceCard .desc{color:var(--muted);font-size:13px;margin-bottom:18px}
+.priceCard ul{list-style:none;margin:0 0 22px;padding:0;flex:1;display:flex;flex-direction:column;gap:10px}
+.priceCard ul li{font-size:13px;color:#c6d3e2;display:flex;gap:8px;align-items:flex-start}
+.priceCard ul li svg{flex:none;margin-top:2px;color:var(--accent)}
+.priceCard .badgeTop{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#06101b;font-size:10.5px;font-weight:800;padding:4px 12px;border-radius:999px;letter-spacing:.5px}
+.aboutGrid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
+.aboutStats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.aboutStats .st{padding:16px;border:1px solid var(--line);border-radius:14px;text-align:center;background:rgba(6,16,28,.42)}
+.aboutStats .st b{display:block;font-size:24px;color:var(--accent);font-family:var(--serif)}
+.aboutStats .st span{font-size:11px;color:var(--muted)}
+.contactGrid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.contactCard{padding:26px}
+.contactRow{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.contactRow .item{display:flex;gap:10px;align-items:center;font-size:13px;color:#c6d3e2}
+.contactRow .item svg{color:var(--accent);flex:none}
+@media(max-width:860px){.pricingGrid,.aboutGrid,.contactGrid{grid-template-columns:1fr}.topNav{display:none}}
+.trustBar{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08)}
+.trustBar .item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.trustBar .item svg{flex:none;color:var(--accent)}
+.heroPreview{position:relative;padding:22px;overflow:hidden}
+.heroPreview .pvLabel{font-size:11px;color:var(--muted);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.heroPreview .pvLabel span.dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;margin-right:6px;box-shadow:0 0 0 3px rgba(110,231,168,.18)}
+.pvRing{width:112px;height:112px;border-radius:50%;margin:2px auto 14px;display:grid;place-items:center;background:conic-gradient(var(--accent) 0 78%,#182c42 78% 100%);position:relative}
+.pvRing:after{content:"";position:absolute;inset:9px;border-radius:50%;background:#0a1728}
+.pvRing b{position:relative;font-family:var(--serif);font-size:26px;z-index:1}
+.pvRow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px}
+.pvRow .n{color:var(--text);font-weight:700}
+.pvRow .n.up{color:var(--green)}.pvRow .n.down{color:var(--red)}
+.pvBars{display:flex;align-items:flex-end;gap:5px;height:54px;margin-top:14px}
+.pvBars i{flex:1;background:linear-gradient(180deg,var(--accent2),#4a63b8);border-radius:3px 3px 1px 1px;display:block}
+.statsStrip{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:6px 0 0;padding:26px 0}
+.statsStrip .stat b{font-family:var(--serif);font-size:36px;font-weight:600;color:var(--text);display:block;letter-spacing:-.5px}
+.statsStrip .stat span{font-size:12.5px;color:var(--muted);display:block;margin-top:4px;max-width:20ch}
+.whyCard{padding:20px;position:relative}
+.whyCard .icoWrap{width:40px;height:40px;border-radius:11px;background:#0e2433;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--accent)}
+.ctaBanner{margin:44px 0 8px;padding:38px 32px;border-radius:22px;background:linear-gradient(135deg,#0e2433 0%,#0b1a2c 55%,#091524 100%);border:1px solid #234260;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.ctaBanner h3{font-family:var(--serif);font-weight:600;font-size:26px;margin:0 0 6px;letter-spacing:-.3px}
+.ctaBanner p{margin:0;color:var(--muted);font-size:13.5px;max-width:52ch}
+@media(max-width:1000px){.statsStrip{grid-template-columns:repeat(2,1fr)}.heroTitle{font-size:34px}}
+@media(max-width:1000px){.hero{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.grid3,.grid2{grid-template-columns:1fr}.wrap{padding:0 15px}.heroTitle{font-size:31px}.flowSub{margin-left:0}.qsel .qrow{grid-template-columns:1fr}}
+@media print{
+  *,*::before,*::after{box-sizing:border-box!important}
+  @page{size:A4 portrait;margin:18mm 16mm 18mm 16mm}
+  html,body{background:#fff!important;color:#0d1b2a!important;font-family:'Segoe UI',Arial,sans-serif!important;font-size:10pt!important;line-height:1.45!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+
+  /* ── Hide all interactive elements ─────────────────────────────── */
+  .hero,.upload,.hidePrint,.tabs,.tabPanel,.chips,.qsel,.tab,.footer,.heroPreview,.trustBar,.statsStrip,.ctaBanner,
+  button,input,select,textarea,.secondary,.primary,
+  #sampleBtn,#aiBtn,#printBtn,#jsonBtn,#aiAskBtn,
+  #aiBox,#aiCustomBox,#aiCustomPrompt,#methodNote,
+  .interactiveScenarioCard,#interactiveScenarioCard{display:none!important}
+
+  /* ── Layout: full-width single column ──────────────────────────── */
+  .wrap{max-width:none!important;padding:0!important;margin:0!important}
+  .top{display:none!important}
+
+  /* ── Cover Banner ───────────────────────────────────────────────── */
+  #printCover{display:block!important;border-bottom:3px solid #1a73e8;padding-bottom:12px;margin-bottom:20px}
+  #printCover h1{font-size:20pt!important;font-weight:800;color:#0d1b2a;margin:0 0 4px}
+  #printCover .sub{font-size:9pt;color:#4a6fa5}
+
+  /* ── Cards ──────────────────────────────────────────────────────── */
+  .card{box-shadow:none!important;background:#fff!important;border:1px solid #c8d6e8!important;border-radius:6px!important;margin-bottom:10px!important;padding:10px 12px!important;page-break-inside:avoid!important}
+  .heroCard{box-shadow:none!important;background:#fff!important;border:1px solid #c8d6e8!important;padding:10px!important}
+
+  /* ── Flow steps ─────────────────────────────────────────────────── */
+  .flowStep{margin:14px 0 6px!important;padding-top:4px!important;page-break-inside:avoid!important}
+  .flowLabel{background:none!important;border-left:4px solid #1a73e8!important;padding-left:10px!important;color:#0d1b2a!important;margin-bottom:6px!important}
+  .flowLabel .n{background:#1a73e8!important;color:#fff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .flowSub{color:#555!important;font-size:8.5pt!important;margin-bottom:6px!important}
+
+  /* ── Metrics / KPIs ─────────────────────────────────────────────── */
+  .metric{background:#f4f7fc!important;border:1px solid #d4dff0!important;border-radius:6px!important;padding:8px!important;color:#0d1b2a!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .metric .label{font-size:7.5pt!important;color:#4a6fa5!important;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  .metric .value{font-size:14pt!important;font-weight:800;color:#0d1b2a!important}
+  .metric .sub{font-size:7.5pt!important;color:#666!important}
+  .grid2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .grid3{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:8px!important}
+  .grid4{display:grid!important;grid-template-columns:1fr 1fr 1fr 1fr!important;gap:8px!important}
+
+  /* ── Health score ring ──────────────────────────────────────────── */
+  .scoreCard{display:flex!important;align-items:center!important;gap:20px!important;padding:10px 14px!important}
+  .scoreRing{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .scoreRing::after{background:#fff!important}
+
+  /* ── Section headings ───────────────────────────────────────────── */
+  .sectionHead{border-bottom:1px solid #d4dff0!important;margin-bottom:8px!important;padding-bottom:6px!important}
+  .sectionHead h2{font-size:10pt!important;color:#1a73e8!important;font-weight:800;margin:0}
+  .sectionHead p{font-size:8pt!important;color:#555!important;margin:2px 0 0}
+  h1,h2,h3{page-break-after:avoid!important;color:#0d1b2a!important}
+  h3{font-size:9.5pt!important}
+
+  /* ── Risk & action rows ─────────────────────────────────────────── */
+  .riskRow,.actionRow{border:1px solid #e4e8ef!important;border-radius:5px!important;margin-bottom:5px!important;padding:6px 8px!important;page-break-inside:avoid!important;background:#fafbfd!important}
+  .rank{background:#e8f0fe!important;color:#1a73e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .bar{display:none!important}
+
+  /* ── Tags / badges ──────────────────────────────────────────────── */
+  .tag{border:1px solid #888!important;color:#333!important;background:#f0f0f0!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;font-size:7pt!important}
+  .badge{border:1px solid #1a73e8!important;color:#1a73e8!important;font-size:7.5pt!important}
+
+  /* ── Insights / alerts ──────────────────────────────────────────── */
+  .insight{border-left:4px solid #1a73e8!important;background:#f0f7ff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;border-radius:4px!important;padding:7px 9px!important;margin-bottom:6px!important;page-break-inside:avoid!important}
+  .insight.high,.insight.critical{border-left-color:#c62828!important;background:#fff5f5!important}
+  .insight.positive{border-left-color:#2e7d32!important;background:#f1fdf3!important}
+  .notice{background:#f8faff!important;border:1px solid #d0dff5!important;padding:7px 9px!important;border-radius:4px!important;font-size:8.5pt!important;color:#333!important}
+
+  /* ── Waterfall chart ────────────────────────────────────────────── */
+  .waterfall{display:flex!important;align-items:flex-end!important;gap:4px!important;height:100px!important;padding:4px 0!important}
+  .wf .col{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .wf .num{font-size:6.5pt!important;color:#333!important}
+  .wf .lab{font-size:6pt!important;color:#444!important}
+
+  /* ── Tables ─────────────────────────────────────────────────────── */
+  .tableWrap{overflow:visible!important}
+  table{border-collapse:collapse!important;width:100%!important;font-size:8pt!important}
+  th{background:#e8f0fe!important;color:#1a73e8!important;font-weight:700;padding:4px 6px!important;border:1px solid #c8d6e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  td{padding:4px 6px!important;border:1px solid #e4e8ef!important}
+  tr:nth-child(even) td{background:#f8faff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+
+  /* ── Page breaks ─────────────────────────────────────────────────  */
+  .flowStep:nth-child(3){page-break-before:always!important}
+  .flowStep:nth-child(6){page-break-before:always!important}
+
+  /* ── Misc ────────────────────────────────────────────────────────── */
+  .muted{color:#555!important}
+  .small{font-size:7.5pt!important}
+  a{color:#1a73e8!important;text-decoration:none!important}
+  .scenario{border:1px solid #c8d6e8!important;border-radius:5px!important;padding:8px!important;page-break-inside:avoid!important}
+  .scenario .big{font-size:14pt!important;font-weight:800;color:#1a73e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .custRow,.wf{page-break-inside:avoid!important}
+  .hidden{display:none!important}
+  #dashboard{display:block!important}
+  .abar{display:none!important}
+}
+
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:dfbpFadeOut .28s ease both}
+::view-transition-new(root){animation:dfbpFadeIn .32s ease both}
+@keyframes dfbpFadeOut{to{opacity:0;transform:translateY(-6px)}}
+@keyframes dfbpFadeIn{from{opacity:0;transform:translateY(8px)}}
+.topNav{display:flex;gap:26px;align-items:center}
+.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.topNav a:hover{color:var(--text)}
+.topNav a.active{color:var(--accent);border-color:var(--accent)}
+.top.scrolled{box-shadow:0 12px 30px rgba(0,0,0,.28)}
+.navBtns{display:flex;gap:10px;align-items:center}
+.navBtns a.secondary,.navBtns a.primary{text-decoration:none;display:inline-flex;align-items:center;font-weight:700}
+.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
+@media(max-width:920px){
+  .topNav{position:fixed;top:74px;left:0;right:0;background:#0a1728;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
+  .topNav.open{max-height:280px;padding:14px 22px}
+  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .navToggle{display:inline-flex}
+}
+.badge.v{white-space:nowrap}
+/* ---- Marketing hero (separate from app hero) ---- */
+.mHero{padding:56px 0 30px;display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center}
+.mHero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);background:#0e2433;border:1px solid #1f4258;padding:7px 14px;border-radius:999px;margin-bottom:18px}
+.mHero h1{font-family:var(--serif);font-weight:600;font-size:50px;line-height:1.08;margin:0 0 18px;letter-spacing:-1px}
+.mHero h1 span{color:var(--accent)}
+.mHero p.lead{color:var(--muted);font-size:16px;max-width:560px;line-height:1.65;margin:0 0 26px}
+.mHero .ctaRow{display:flex;gap:12px;flex-wrap:wrap}
+.mHero .ctaRow a{text-decoration:none}
+.mHero .miniTrust{display:flex;gap:18px;flex-wrap:wrap;margin-top:28px}
+.mHero .miniTrust span{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.mHero .miniTrust svg{color:var(--accent)}
+.heroArt{position:relative}
+.heroArt .floatCard{position:absolute;background:linear-gradient(145deg,rgba(16,31,51,.97),rgba(10,23,39,.97));border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:14px 16px;font-size:11.5px;color:#c6d3e2;animation:dfbpFloat 5s ease-in-out infinite}
+.heroArt .floatCard b{display:block;font-size:16px;color:var(--accent);font-family:var(--serif)}
+.heroArt .fc1{top:-10px;left:-10px;animation-delay:0s}
+.heroArt .fc2{bottom:6px;right:-14px;animation-delay:1.2s}
+@keyframes dfbpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+/* ---- Alternating content blocks (fixes the "iç içe" cramped look) ---- */
+.secBlock{padding:58px 0}
+.secBlock.tint{background:linear-gradient(180deg,rgba(16,31,51,.55),rgba(10,23,39,.15));border-radius:32px;margin:0 -10px}
+.secBlock+.secBlock{border-top:1px solid rgba(255,255,255,.05)}
+.pageHead{padding:54px 0 10px;text-align:center}
+.pageHead .eyebrow{display:inline-flex;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);background:#0e2433;border:1px solid #1f4258;padding:7px 14px;border-radius:999px;margin-bottom:16px}
+.pageHead h1{font-family:var(--serif);font-size:38px;margin:0 0 12px;letter-spacing:-.6px}
+.pageHead p{color:var(--muted);max-width:600px;margin:0 auto;font-size:14.5px}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.reveal.in{opacity:1;transform:none}
+/* ---- Rich footer ---- */
+.siteFooter{border-top:1px solid var(--line);margin-top:40px;padding:46px 0 26px}
+.siteFooter .cols{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:28px;margin-bottom:30px}
+.siteFooter h4{font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:0 0 14px}
+.siteFooter .brandCol p{color:var(--muted);font-size:12.5px;max-width:280px;line-height:1.6}
+.siteFooter ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.siteFooter ul a{color:#c6d3e2;text-decoration:none;font-size:13px}
+.siteFooter ul a:hover{color:var(--accent)}
+.siteFooter .legal{border-top:1px solid rgba(255,255,255,.06);padding-top:20px;color:#647890;font-size:11px;line-height:1.7}
+@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:360px;margin:auto}}
+/* ---- FAQ (paketler sayfası) ---- */
+.faqItem{border-bottom:1px solid var(--line);padding:16px 0}
+.faqItem summary{cursor:pointer;font-weight:700;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faqItem summary::-webkit-details-marker{display:none}
+.faqItem summary:after{content:'+';font-size:20px;color:var(--accent)}
+.faqItem[open] summary:after{content:'–'}
+.faqItem p{color:var(--muted);font-size:13.5px;margin:10px 0 0}
+</style></head>
+<body>
+<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/paketler">Paketler</a><a href="/hakkimizda" class="active">Hakkımızda</a><a href="/iletisim">İletişim</a><a href="/uygulama">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div class="navBtns"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+<main class="wrap">
+<div class="pageHead reveal in"><span class="eyebrow">Hakkımızda</span><h1>Muhasebe raporu değil, yönetim kararı üretiyoruz</h1><p>Finans ekiplerinin saatlerce harcadığı "rakamları toparlama" işini otomatikleştirip, zamanı asıl değerin katıldığı yere — yorum ve karara — taşıyoruz.</p></div>
+<div class="secBlock reveal"><section id="about" class="marketingSection hidePrint"><div class="aboutGrid">
+<div><span class="badge" style="margin-bottom:14px;display:inline-block">Hakkımızda</span><h2 style="font-family:var(--serif);font-size:30px;margin:6px 0 12px;letter-spacing:-.5px">Muhasebe raporu değil, yönetim kararı üretiyoruz</h2><p class="muted" style="font-size:14px;line-height:1.7">Digital Finance Business Partner, finans ekiplerinin saatlerce harcadığı "rakamları toparlama" işini otomatikleştirip, gerçek zamanı yönetime asıl değeri kattığı yere — yorum ve karara — taşımak için kuruldu. Motor önce deterministik olarak hesaplar, sonra yorumlar; yapay zekâ yalnızca isteğe bağlı, ayrı etiketlenmiş bir ek katmandır, asla ham rakamların yerine geçmez.</p><div class="aboutStats"><div class="st"><b>8+</b><span>Analiz motoru</span></div><div class="st"><b>%100</b><span>Deterministik hesap</span></div><div class="st"><b>0</b><span>Kalıcı veri saklama</span></div></div></div>
+<div class="card" style="padding:26px"><h3 style="margin:0 0 12px">Neye inanıyoruz</h3><ul style="margin:0;padding-left:18px;color:#c6d3e2;font-size:13.5px;line-height:2">
+<li>Karar destek, robotik rapor üretiminden farklıdır.</li>
+<li>Önce hesap, sonra yorum — sıra hiç değişmez.</li>
+<li>Veri sizindir; hesap açmadan sunucuda kalıcı tutulmaz.</li>
+<li>Yapay zekâ yorumu, doğrulanmış rakamların yerine değil, üstüne konur.</li>
+</ul></div>
+</div></section>
+
+</div>
+<div class="secBlock tint reveal"><div class="marketingHead"><h2>Nasıl çalışıyoruz</h2></div>
+<div class="grid3">
+<div class="card" style="padding:22px"><div class="tag" style="margin-bottom:8px">01</div><h3 style="margin:0 0 6px;font-size:15px">Önce hesap</h3><p class="muted small">Her rakam, kaynağına kadar izlenebilir deterministik bir hesaplamadan gelir. Yorum, hesaptan sonra gelir — asla önce değil.</p></div>
+<div class="card" style="padding:22px"><div class="tag" style="margin-bottom:8px">02</div><h3 style="margin:0 0 6px;font-size:15px">Sonra yorum</h3><p class="muted small">33 analiz motoru bulguları önceliklendirir, kök nedeni açıklar; isteğe bağlı AI katmanı bunun üstüne, ayrı etiketlenmiş bir yorum ekler.</p></div>
+<div class="card" style="padding:22px"><div class="tag" style="margin-bottom:8px">03</div><h3 style="margin:0 0 6px;font-size:15px">Sonunda aksiyon</h3><p class="muted small">Çıktı, bir Excel tablosu değil; sahibi ve KPI'sı belli, yönetim kurulunda okunabilecek somut aksiyon listesidir.</p></div>
+</div></div>
+<div class="secBlock reveal"><section class="ctaBanner hidePrint"><div><h3>Bizi tanımak ister misiniz?</h3><p>Ekibinizle birlikte 15 dakikalık bir demo planlayabiliriz.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a href="/iletisim" class="primary" style="text-decoration:none;padding:12px 20px;border-radius:11px">İletişime Geç</a></div></section></div>
+</main>
+<div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • deterministic finance layer + optional Gemini interpretation • Financial facts are calculated before AI interpretation.<br><span style="opacity:.85">Bu rapor otomatik/deterministik hesaplamalara ve (etkinleştirildiyse) yapay zekâ yorumuna dayanır; muhasebe, denetim, vergi, hukuki veya yatırım tavsiyesi değildir ve resmi mali tablo/beyanname yerine geçmez. Nihai kararlar için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca bu analizi üretmek için işlenir; sunucu tarafında kalıcı olarak saklanmaz. KVKK kapsamındaki veri işleme hakkında bilgi için [Aydınlatma Metni] bağlantısını inceleyin.</span></div></div></div>
+<script>
+document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('mainNav')?.classList.toggle('open'));
+window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.toggle('scrolled',window.scrollY>8)});
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return;}
+  const io=new IntersectionObserver((entries)=>{entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{threshold:.12});
+  els.forEach(e=>io.observe(e));
+})();
+</script>
+</body></html>'''
+
+CONTACT_HTML = r'''<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>İletişim | Digital Finance Business Partner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07111f;--panel:#0d1a2b;--panel2:#101f33;--line:#20334b;--text:#edf4ff;--muted:#91a4bd;--accent:#6ee7d8;--accent2:#8aa7ff;--red:#ff6b7a;--amber:#ffc86b;--green:#6ee7a8;--shadow:0 18px 60px rgba(0,0,0,.22);--serif:'Fraunces',ui-serif,Georgia,serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0,#142945 0,#07111f 42%,#050c16 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}button,input,select{font:inherit}.wrap{max-width:1440px;margin:auto;padding:0 28px}.top{padding:26px 0 18px;border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;background:rgba(7,17,31,.9);backdrop-filter:blur(18px);z-index:10}.brand{display:flex;align-items:center;justify-content:space-between;gap:20px}.brand h1{margin:0;font-size:25px;letter-spacing:-.6px}.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}.badge{padding:6px 10px;border:1px solid #28435f;border-radius:999px;color:var(--accent);font-size:12px;white-space:nowrap}.hero{padding:34px 0 24px;display:grid;grid-template-columns:1.45fr .55fr;gap:18px}.heroCard,.card{background:linear-gradient(145deg,rgba(16,31,51,.96),rgba(10,23,39,.96));border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.heroCard{padding:28px}.heroTitle{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1.08;margin:0 0 14px;letter-spacing:-.5px}.heroText{color:var(--muted);max-width:780px}.framework{display:flex;flex-wrap:wrap;gap:8px 10px;margin:16px 0 2px;padding:0}.framework span{font-size:11.5px;color:#c6d3e2;background:#0b1a2b;border:1px solid var(--line);border-radius:999px;padding:6px 11px}.framework span b{color:var(--accent);font-weight:800}
+.qsel{margin-top:18px}.qsel .qtitle{font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:700}.qsel .qrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.qsel button{border:1px solid #2c4863;background:#0b1a2b;color:#c6d3e2;border-radius:12px;padding:10px 12px;font-size:12.5px;cursor:pointer;text-align:left;line-height:1.3}.qsel button:hover{border-color:#3d648a}.qsel button.active{border-color:var(--accent);color:var(--accent);background:#0e2433}
+.upload{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}.file{border:1px dashed #39536f;padding:12px;border-radius:12px;background:#091727;max-width:100%}.select,button{border:1px solid #31506f;border-radius:11px;padding:11px 14px;background:#0b192b;color:var(--text)}button.primary{background:linear-gradient(135deg,#4bd9ca,#718cff);border:0;color:#06101b;font-weight:800;cursor:pointer}button.secondary{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}.scoreCard{padding:25px;display:flex;flex-direction:column;justify-content:center}.scoreRing{width:170px;height:170px;border-radius:50%;margin:auto;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--score)*1%),#183047 0);position:relative}.scoreRing:after{content:"";position:absolute;inset:12px;border-radius:50%;background:#0a1829}.scoreNum{position:relative;z-index:1;text-align:center}.scoreNum strong{display:block;font-size:48px;line-height:1}.scoreNum span{color:var(--muted);font-size:12px}.status{margin:15px auto 0;padding:7px 12px;border-radius:999px;background:#132b3b;color:var(--accent);font-size:12px;font-weight:700}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:22px;margin:0 0 16px;transition:outline .2s}.metric{padding:17px;border:1px solid var(--line);border-radius:15px;background:rgba(6,16,28,.42)}.metric .label{color:var(--muted);font-size:12px}.metric .value{font-size:25px;font-weight:800;margin-top:5px;letter-spacing:-.5px}.metric .sub{font-size:11px;color:var(--muted);margin-top:5px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:17px}.sectionHead h2{margin:0;font-size:18px}.sectionHead p{margin:0;color:var(--muted);font-size:12px}.flowStep{margin:36px 0 14px;padding-top:6px;border-top:1px solid rgba(255,255,255,.07)}.flowStep:first-child{margin-top:0;border-top:0;padding-top:0}.flowLabel{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin:0 0 4px}.flowLabel .n{width:22px;height:22px;border-radius:50%;background:#132b3b;color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:11px}.flowLabel p{margin:0;color:var(--muted);font-size:12.5px;font-weight:500;text-transform:none;letter-spacing:0}.flowLabel.alt{color:var(--accent2)}.flowLabel.alt .n{color:var(--accent2)}.flowSub{color:var(--muted);font-size:12.5px;margin:2px 0 16px 32px}.insight{border:1px solid var(--line);border-radius:15px;padding:16px;background:#0a1727}.insight.critical{border-color:#67303b}.insight.high{border-color:#6b4930}.insight.medium{border-color:#4a4527}.insight.positive{border-color:#285a4d}.insight h3{margin:0 0 5px;font-size:14px}.insight p{margin:6px 0;color:#c6d3e2;font-size:13px}.insight ul{margin:6px 0;padding-left:18px;color:#c6d3e2;font-size:13px}.tag{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;background:#17283c;color:#a9bdd5}.tag.critical{background:#351722;color:#ff8b98}.tag.high{background:#3a2919;color:#ffc66e}.tag.medium{background:#312c19;color:#f4d276}.tag.positive{background:#17372f;color:#7ee7b1}.riskRow,.actionRow{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.06)}.rank{font-size:18px;font-weight:900;color:#7086a0}.riskScore{font-size:12px;color:var(--muted)}.bar{height:7px;background:#162a40;border-radius:99px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}.waterfall{display:flex;align-items:flex-end;gap:7px;height:190px;padding:20px 5px 0;border-bottom:1px solid var(--line)}.wf{flex:1;display:flex;flex-direction:column;justify-content:end;height:100%;min-width:0}.wf .col{border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#83a4ff,#506fd0);min-height:3px}.wf.neg .col{background:linear-gradient(180deg,#ff8290,#9d3e54)}.wf .lab{font-size:10px;color:var(--muted);text-align:center;margin-top:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wf .num{font-size:9px;text-align:center;color:#c8d5e5;margin-bottom:4px}.scenario{padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#0d1d31,#091525)}.scenario h3{margin:0 0 6px;font-size:15px}.scenario .big{font-size:24px;font-weight:900;color:var(--accent)}.scenario p{color:var(--muted);font-size:11px;margin:6px 0}.muted{color:var(--muted)}.small{font-size:11px}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.06);text-align:right}th:first-child,td:first-child{text-align:left}th{color:#7f95af;font-weight:600}.notice{padding:12px 14px;border-radius:12px;background:#0b1a2b;border:1px solid var(--line);color:#a9b9cb;font-size:12px}.error{color:#ff9aa5;background:#321923;border:1px solid #64313e;padding:12px;border-radius:12px;margin:15px 0}.hidden{display:none!important}.footer{padding:25px 0 50px;color:#647890;font-size:11px;text-align:center}.tabs{display:flex;gap:8px;margin-top:16px}.tab{padding:8px 12px;border-radius:999px;background:#0b192a;border:1px solid var(--line);color:#9db0c7;cursor:pointer}.tab.active{background:#17364a;color:var(--accent);border-color:#2d5b6b}.tabPanel{display:none}.tabPanel.active{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.hidePrint{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chip{font-size:11.5px;background:#0b1a2b;border:1px solid var(--line);border-radius:999px;padding:6px 11px;color:#c6d3e2}.chip b{color:var(--accent)}
+.abar{height:9px;background:#162a40;border-radius:99px;overflow:hidden;margin-top:6px}.abar i{display:block;height:100%;background:linear-gradient(90deg,#8aa7ff,#ff8290);border-radius:99px}
+.custRow{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12.5px}
+.highlight-target{outline:2px solid var(--accent);outline-offset:6px}
+/* --- Marketing surface additions --- */
+.topNav{display:flex;gap:18px}
+.topNav a{color:var(--muted);font-size:13px;text-decoration:none;font-weight:600}
+.topNav a:hover{color:var(--accent)}
+.marketingSection{padding:60px 0}
+.marketingHead{text-align:center;max-width:640px;margin:0 auto 34px}
+.marketingHead h2{font-family:var(--serif);font-size:32px;margin:0 0 10px;letter-spacing:-.5px}
+.marketingHead p{color:var(--muted);margin:0;font-size:14.5px}
+.pricingGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.priceCard{display:flex;flex-direction:column;padding:28px 24px;position:relative}
+.priceCard.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}
+.priceCard .plan{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);font-weight:800;margin-bottom:8px}
+.priceCard h3{margin:0 0 6px;font-size:22px;font-family:var(--serif)}
+.priceCard .amt{font-size:34px;font-weight:900;margin:8px 0 4px}
+.priceCard .amt span{font-size:13px;color:var(--muted);font-weight:500}
+.priceCard .desc{color:var(--muted);font-size:13px;margin-bottom:18px}
+.priceCard ul{list-style:none;margin:0 0 22px;padding:0;flex:1;display:flex;flex-direction:column;gap:10px}
+.priceCard ul li{font-size:13px;color:#c6d3e2;display:flex;gap:8px;align-items:flex-start}
+.priceCard ul li svg{flex:none;margin-top:2px;color:var(--accent)}
+.priceCard .badgeTop{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#06101b;font-size:10.5px;font-weight:800;padding:4px 12px;border-radius:999px;letter-spacing:.5px}
+.aboutGrid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
+.aboutStats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.aboutStats .st{padding:16px;border:1px solid var(--line);border-radius:14px;text-align:center;background:rgba(6,16,28,.42)}
+.aboutStats .st b{display:block;font-size:24px;color:var(--accent);font-family:var(--serif)}
+.aboutStats .st span{font-size:11px;color:var(--muted)}
+.contactGrid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.contactCard{padding:26px}
+.contactRow{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.contactRow .item{display:flex;gap:10px;align-items:center;font-size:13px;color:#c6d3e2}
+.contactRow .item svg{color:var(--accent);flex:none}
+@media(max-width:860px){.pricingGrid,.aboutGrid,.contactGrid{grid-template-columns:1fr}.topNav{display:none}}
+.trustBar{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08)}
+.trustBar .item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.trustBar .item svg{flex:none;color:var(--accent)}
+.heroPreview{position:relative;padding:22px;overflow:hidden}
+.heroPreview .pvLabel{font-size:11px;color:var(--muted);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.heroPreview .pvLabel span.dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;margin-right:6px;box-shadow:0 0 0 3px rgba(110,231,168,.18)}
+.pvRing{width:112px;height:112px;border-radius:50%;margin:2px auto 14px;display:grid;place-items:center;background:conic-gradient(var(--accent) 0 78%,#182c42 78% 100%);position:relative}
+.pvRing:after{content:"";position:absolute;inset:9px;border-radius:50%;background:#0a1728}
+.pvRing b{position:relative;font-family:var(--serif);font-size:26px;z-index:1}
+.pvRow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px}
+.pvRow .n{color:var(--text);font-weight:700}
+.pvRow .n.up{color:var(--green)}.pvRow .n.down{color:var(--red)}
+.pvBars{display:flex;align-items:flex-end;gap:5px;height:54px;margin-top:14px}
+.pvBars i{flex:1;background:linear-gradient(180deg,var(--accent2),#4a63b8);border-radius:3px 3px 1px 1px;display:block}
+.statsStrip{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:6px 0 0;padding:26px 0}
+.statsStrip .stat b{font-family:var(--serif);font-size:36px;font-weight:600;color:var(--text);display:block;letter-spacing:-.5px}
+.statsStrip .stat span{font-size:12.5px;color:var(--muted);display:block;margin-top:4px;max-width:20ch}
+.whyCard{padding:20px;position:relative}
+.whyCard .icoWrap{width:40px;height:40px;border-radius:11px;background:#0e2433;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--accent)}
+.ctaBanner{margin:44px 0 8px;padding:38px 32px;border-radius:22px;background:linear-gradient(135deg,#0e2433 0%,#0b1a2c 55%,#091524 100%);border:1px solid #234260;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.ctaBanner h3{font-family:var(--serif);font-weight:600;font-size:26px;margin:0 0 6px;letter-spacing:-.3px}
+.ctaBanner p{margin:0;color:var(--muted);font-size:13.5px;max-width:52ch}
+@media(max-width:1000px){.statsStrip{grid-template-columns:repeat(2,1fr)}.heroTitle{font-size:34px}}
+@media(max-width:1000px){.hero{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.grid3,.grid2{grid-template-columns:1fr}.wrap{padding:0 15px}.heroTitle{font-size:31px}.flowSub{margin-left:0}.qsel .qrow{grid-template-columns:1fr}}
+@media print{
+  *,*::before,*::after{box-sizing:border-box!important}
+  @page{size:A4 portrait;margin:18mm 16mm 18mm 16mm}
+  html,body{background:#fff!important;color:#0d1b2a!important;font-family:'Segoe UI',Arial,sans-serif!important;font-size:10pt!important;line-height:1.45!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+
+  /* ── Hide all interactive elements ─────────────────────────────── */
+  .hero,.upload,.hidePrint,.tabs,.tabPanel,.chips,.qsel,.tab,.footer,.heroPreview,.trustBar,.statsStrip,.ctaBanner,
+  button,input,select,textarea,.secondary,.primary,
+  #sampleBtn,#aiBtn,#printBtn,#jsonBtn,#aiAskBtn,
+  #aiBox,#aiCustomBox,#aiCustomPrompt,#methodNote,
+  .interactiveScenarioCard,#interactiveScenarioCard{display:none!important}
+
+  /* ── Layout: full-width single column ──────────────────────────── */
+  .wrap{max-width:none!important;padding:0!important;margin:0!important}
+  .top{display:none!important}
+
+  /* ── Cover Banner ───────────────────────────────────────────────── */
+  #printCover{display:block!important;border-bottom:3px solid #1a73e8;padding-bottom:12px;margin-bottom:20px}
+  #printCover h1{font-size:20pt!important;font-weight:800;color:#0d1b2a;margin:0 0 4px}
+  #printCover .sub{font-size:9pt;color:#4a6fa5}
+
+  /* ── Cards ──────────────────────────────────────────────────────── */
+  .card{box-shadow:none!important;background:#fff!important;border:1px solid #c8d6e8!important;border-radius:6px!important;margin-bottom:10px!important;padding:10px 12px!important;page-break-inside:avoid!important}
+  .heroCard{box-shadow:none!important;background:#fff!important;border:1px solid #c8d6e8!important;padding:10px!important}
+
+  /* ── Flow steps ─────────────────────────────────────────────────── */
+  .flowStep{margin:14px 0 6px!important;padding-top:4px!important;page-break-inside:avoid!important}
+  .flowLabel{background:none!important;border-left:4px solid #1a73e8!important;padding-left:10px!important;color:#0d1b2a!important;margin-bottom:6px!important}
+  .flowLabel .n{background:#1a73e8!important;color:#fff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .flowSub{color:#555!important;font-size:8.5pt!important;margin-bottom:6px!important}
+
+  /* ── Metrics / KPIs ─────────────────────────────────────────────── */
+  .metric{background:#f4f7fc!important;border:1px solid #d4dff0!important;border-radius:6px!important;padding:8px!important;color:#0d1b2a!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .metric .label{font-size:7.5pt!important;color:#4a6fa5!important;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  .metric .value{font-size:14pt!important;font-weight:800;color:#0d1b2a!important}
+  .metric .sub{font-size:7.5pt!important;color:#666!important}
+  .grid2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .grid3{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:8px!important}
+  .grid4{display:grid!important;grid-template-columns:1fr 1fr 1fr 1fr!important;gap:8px!important}
+
+  /* ── Health score ring ──────────────────────────────────────────── */
+  .scoreCard{display:flex!important;align-items:center!important;gap:20px!important;padding:10px 14px!important}
+  .scoreRing{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .scoreRing::after{background:#fff!important}
+
+  /* ── Section headings ───────────────────────────────────────────── */
+  .sectionHead{border-bottom:1px solid #d4dff0!important;margin-bottom:8px!important;padding-bottom:6px!important}
+  .sectionHead h2{font-size:10pt!important;color:#1a73e8!important;font-weight:800;margin:0}
+  .sectionHead p{font-size:8pt!important;color:#555!important;margin:2px 0 0}
+  h1,h2,h3{page-break-after:avoid!important;color:#0d1b2a!important}
+  h3{font-size:9.5pt!important}
+
+  /* ── Risk & action rows ─────────────────────────────────────────── */
+  .riskRow,.actionRow{border:1px solid #e4e8ef!important;border-radius:5px!important;margin-bottom:5px!important;padding:6px 8px!important;page-break-inside:avoid!important;background:#fafbfd!important}
+  .rank{background:#e8f0fe!important;color:#1a73e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .bar{display:none!important}
+
+  /* ── Tags / badges ──────────────────────────────────────────────── */
+  .tag{border:1px solid #888!important;color:#333!important;background:#f0f0f0!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;font-size:7pt!important}
+  .badge{border:1px solid #1a73e8!important;color:#1a73e8!important;font-size:7.5pt!important}
+
+  /* ── Insights / alerts ──────────────────────────────────────────── */
+  .insight{border-left:4px solid #1a73e8!important;background:#f0f7ff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;border-radius:4px!important;padding:7px 9px!important;margin-bottom:6px!important;page-break-inside:avoid!important}
+  .insight.high,.insight.critical{border-left-color:#c62828!important;background:#fff5f5!important}
+  .insight.positive{border-left-color:#2e7d32!important;background:#f1fdf3!important}
+  .notice{background:#f8faff!important;border:1px solid #d0dff5!important;padding:7px 9px!important;border-radius:4px!important;font-size:8.5pt!important;color:#333!important}
+
+  /* ── Waterfall chart ────────────────────────────────────────────── */
+  .waterfall{display:flex!important;align-items:flex-end!important;gap:4px!important;height:100px!important;padding:4px 0!important}
+  .wf .col{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .wf .num{font-size:6.5pt!important;color:#333!important}
+  .wf .lab{font-size:6pt!important;color:#444!important}
+
+  /* ── Tables ─────────────────────────────────────────────────────── */
+  .tableWrap{overflow:visible!important}
+  table{border-collapse:collapse!important;width:100%!important;font-size:8pt!important}
+  th{background:#e8f0fe!important;color:#1a73e8!important;font-weight:700;padding:4px 6px!important;border:1px solid #c8d6e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  td{padding:4px 6px!important;border:1px solid #e4e8ef!important}
+  tr:nth-child(even) td{background:#f8faff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+
+  /* ── Page breaks ─────────────────────────────────────────────────  */
+  .flowStep:nth-child(3){page-break-before:always!important}
+  .flowStep:nth-child(6){page-break-before:always!important}
+
+  /* ── Misc ────────────────────────────────────────────────────────── */
+  .muted{color:#555!important}
+  .small{font-size:7.5pt!important}
+  a{color:#1a73e8!important;text-decoration:none!important}
+  .scenario{border:1px solid #c8d6e8!important;border-radius:5px!important;padding:8px!important;page-break-inside:avoid!important}
+  .scenario .big{font-size:14pt!important;font-weight:800;color:#1a73e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .custRow,.wf{page-break-inside:avoid!important}
+  .hidden{display:none!important}
+  #dashboard{display:block!important}
+  .abar{display:none!important}
+}
+
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:dfbpFadeOut .28s ease both}
+::view-transition-new(root){animation:dfbpFadeIn .32s ease both}
+@keyframes dfbpFadeOut{to{opacity:0;transform:translateY(-6px)}}
+@keyframes dfbpFadeIn{from{opacity:0;transform:translateY(8px)}}
+.topNav{display:flex;gap:26px;align-items:center}
+.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.topNav a:hover{color:var(--text)}
+.topNav a.active{color:var(--accent);border-color:var(--accent)}
+.top.scrolled{box-shadow:0 12px 30px rgba(0,0,0,.28)}
+.navBtns{display:flex;gap:10px;align-items:center}
+.navBtns a.secondary,.navBtns a.primary{text-decoration:none;display:inline-flex;align-items:center;font-weight:700}
+.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
+@media(max-width:920px){
+  .topNav{position:fixed;top:74px;left:0;right:0;background:#0a1728;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
+  .topNav.open{max-height:280px;padding:14px 22px}
+  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .navToggle{display:inline-flex}
+}
+.badge.v{white-space:nowrap}
+/* ---- Marketing hero (separate from app hero) ---- */
+.mHero{padding:56px 0 30px;display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center}
+.mHero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);background:#0e2433;border:1px solid #1f4258;padding:7px 14px;border-radius:999px;margin-bottom:18px}
+.mHero h1{font-family:var(--serif);font-weight:600;font-size:50px;line-height:1.08;margin:0 0 18px;letter-spacing:-1px}
+.mHero h1 span{color:var(--accent)}
+.mHero p.lead{color:var(--muted);font-size:16px;max-width:560px;line-height:1.65;margin:0 0 26px}
+.mHero .ctaRow{display:flex;gap:12px;flex-wrap:wrap}
+.mHero .ctaRow a{text-decoration:none}
+.mHero .miniTrust{display:flex;gap:18px;flex-wrap:wrap;margin-top:28px}
+.mHero .miniTrust span{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.mHero .miniTrust svg{color:var(--accent)}
+.heroArt{position:relative}
+.heroArt .floatCard{position:absolute;background:linear-gradient(145deg,rgba(16,31,51,.97),rgba(10,23,39,.97));border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:14px 16px;font-size:11.5px;color:#c6d3e2;animation:dfbpFloat 5s ease-in-out infinite}
+.heroArt .floatCard b{display:block;font-size:16px;color:var(--accent);font-family:var(--serif)}
+.heroArt .fc1{top:-10px;left:-10px;animation-delay:0s}
+.heroArt .fc2{bottom:6px;right:-14px;animation-delay:1.2s}
+@keyframes dfbpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+/* ---- Alternating content blocks (fixes the "iç içe" cramped look) ---- */
+.secBlock{padding:58px 0}
+.secBlock.tint{background:linear-gradient(180deg,rgba(16,31,51,.55),rgba(10,23,39,.15));border-radius:32px;margin:0 -10px}
+.secBlock+.secBlock{border-top:1px solid rgba(255,255,255,.05)}
+.pageHead{padding:54px 0 10px;text-align:center}
+.pageHead .eyebrow{display:inline-flex;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);background:#0e2433;border:1px solid #1f4258;padding:7px 14px;border-radius:999px;margin-bottom:16px}
+.pageHead h1{font-family:var(--serif);font-size:38px;margin:0 0 12px;letter-spacing:-.6px}
+.pageHead p{color:var(--muted);max-width:600px;margin:0 auto;font-size:14.5px}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.reveal.in{opacity:1;transform:none}
+/* ---- Rich footer ---- */
+.siteFooter{border-top:1px solid var(--line);margin-top:40px;padding:46px 0 26px}
+.siteFooter .cols{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:28px;margin-bottom:30px}
+.siteFooter h4{font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:0 0 14px}
+.siteFooter .brandCol p{color:var(--muted);font-size:12.5px;max-width:280px;line-height:1.6}
+.siteFooter ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.siteFooter ul a{color:#c6d3e2;text-decoration:none;font-size:13px}
+.siteFooter ul a:hover{color:var(--accent)}
+.siteFooter .legal{border-top:1px solid rgba(255,255,255,.06);padding-top:20px;color:#647890;font-size:11px;line-height:1.7}
+@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:360px;margin:auto}}
+/* ---- FAQ (paketler sayfası) ---- */
+.faqItem{border-bottom:1px solid var(--line);padding:16px 0}
+.faqItem summary{cursor:pointer;font-weight:700;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faqItem summary::-webkit-details-marker{display:none}
+.faqItem summary:after{content:'+';font-size:20px;color:var(--accent)}
+.faqItem[open] summary:after{content:'–'}
+.faqItem p{color:var(--muted);font-size:13.5px;margin:10px 0 0}
+</style></head>
+<body>
+<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/paketler">Paketler</a><a href="/hakkimizda">Hakkımızda</a><a href="/iletisim" class="active">İletişim</a><a href="/uygulama">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div class="navBtns"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+<main class="wrap">
+<div class="pageHead reveal in"><span class="eyebrow">İletişim</span><h1>Konuşalım</h1><p>Paketler, kurumsal teklif veya demo talebi için bize ulaşın; genelde 1 iş günü içinde dönüş yapıyoruz.</p></div>
+<div class="secBlock reveal"><section id="contact" class="marketingSection hidePrint"><div class="marketingHead"><h2>İletişim</h2><p>Paketler, kurumsal teklif veya demo talebi için bize ulaşın.</p></div>
+<div class="contactGrid">
+<div class="card contactCard"><h3 style="margin:0 0 4px">Bize yazın</h3><p class="muted small" style="margin:0 0 4px">Genelde 1 iş günü içinde dönüş yapıyoruz.</p><div class="contactRow">
+<div class="item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>info@digitalfinancebp.com</div>
+<div class="item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+90 (212) 000 00 00</div>
+<div class="item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>İstanbul, Türkiye</div>
+</div></div>
+<div class="card contactCard"><h3 style="margin:0 0 12px">Hızlı mesaj</h3><div style="display:flex;flex-direction:column;gap:10px">
+<input class="select" style="width:100%" type="text" placeholder="Adınız">
+<input class="select" style="width:100%" type="email" placeholder="E-posta">
+<input class="select" style="width:100%" type="text" placeholder="Şirket adı (opsiyonel)">
+<textarea class="select" style="width:100%;min-height:80px;font-family:inherit" placeholder="Mesajınız"></textarea>
+<button class="primary" style="width:100%" onclick="alert('Talebiniz alındı, en kısa sürede dönüş yapacağız.')">Gönder</button>
+</div></div>
+</div></section>
+
+</div>
+</main>
+<div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • deterministic finance layer + optional Gemini interpretation • Financial facts are calculated before AI interpretation.<br><span style="opacity:.85">Bu rapor otomatik/deterministik hesaplamalara ve (etkinleştirildiyse) yapay zekâ yorumuna dayanır; muhasebe, denetim, vergi, hukuki veya yatırım tavsiyesi değildir ve resmi mali tablo/beyanname yerine geçmez. Nihai kararlar için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca bu analizi üretmek için işlenir; sunucu tarafında kalıcı olarak saklanmaz. KVKK kapsamındaki veri işleme hakkında bilgi için [Aydınlatma Metni] bağlantısını inceleyin.</span></div></div></div>
+<script>
+document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('mainNav')?.classList.toggle('open'));
+window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.toggle('scrolled',window.scrollY>8)});
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return;}
+  const io=new IntersectionObserver((entries)=>{entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{threshold:.12});
+  els.forEach(e=>io.observe(e));
+})();
+</script>
+</body></html>'''
+
+APP_HTML = r'''<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Uygulama | Digital Finance Business Partner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07111f;--panel:#0d1a2b;--panel2:#101f33;--line:#20334b;--text:#edf4ff;--muted:#91a4bd;--accent:#6ee7d8;--accent2:#8aa7ff;--red:#ff6b7a;--amber:#ffc86b;--green:#6ee7a8;--shadow:0 18px 60px rgba(0,0,0,.22);--serif:'Fraunces',ui-serif,Georgia,serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0,#142945 0,#07111f 42%,#050c16 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}button,input,select{font:inherit}.wrap{max-width:1440px;margin:auto;padding:0 28px}.top{padding:26px 0 18px;border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;background:rgba(7,17,31,.9);backdrop-filter:blur(18px);z-index:10}.brand{display:flex;align-items:center;justify-content:space-between;gap:20px}.brand h1{margin:0;font-size:25px;letter-spacing:-.6px}.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}.badge{padding:6px 10px;border:1px solid #28435f;border-radius:999px;color:var(--accent);font-size:12px;white-space:nowrap}.hero{padding:34px 0 24px;display:grid;grid-template-columns:1.45fr .55fr;gap:18px}.heroCard,.card{background:linear-gradient(145deg,rgba(16,31,51,.96),rgba(10,23,39,.96));border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.heroCard{padding:28px}.heroTitle{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1.08;margin:0 0 14px;letter-spacing:-.5px}.heroText{color:var(--muted);max-width:780px}.framework{display:flex;flex-wrap:wrap;gap:8px 10px;margin:16px 0 2px;padding:0}.framework span{font-size:11.5px;color:#c6d3e2;background:#0b1a2b;border:1px solid var(--line);border-radius:999px;padding:6px 11px}.framework span b{color:var(--accent);font-weight:800}
+.qsel{margin-top:18px}.qsel .qtitle{font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:700}.qsel .qrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.qsel button{border:1px solid #2c4863;background:#0b1a2b;color:#c6d3e2;border-radius:12px;padding:10px 12px;font-size:12.5px;cursor:pointer;text-align:left;line-height:1.3}.qsel button:hover{border-color:#3d648a}.qsel button.active{border-color:var(--accent);color:var(--accent);background:#0e2433}
+.upload{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}.file{border:1px dashed #39536f;padding:12px;border-radius:12px;background:#091727;max-width:100%}.select,button{border:1px solid #31506f;border-radius:11px;padding:11px 14px;background:#0b192b;color:var(--text)}button.primary{background:linear-gradient(135deg,#4bd9ca,#718cff);border:0;color:#06101b;font-weight:800;cursor:pointer}button.secondary{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}.scoreCard{padding:25px;display:flex;flex-direction:column;justify-content:center}.scoreRing{width:170px;height:170px;border-radius:50%;margin:auto;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--score)*1%),#183047 0);position:relative}.scoreRing:after{content:"";position:absolute;inset:12px;border-radius:50%;background:#0a1829}.scoreNum{position:relative;z-index:1;text-align:center}.scoreNum strong{display:block;font-size:48px;line-height:1}.scoreNum span{color:var(--muted);font-size:12px}.status{margin:15px auto 0;padding:7px 12px;border-radius:999px;background:#132b3b;color:var(--accent);font-size:12px;font-weight:700}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:22px;margin:0 0 16px;transition:outline .2s}.metric{padding:17px;border:1px solid var(--line);border-radius:15px;background:rgba(6,16,28,.42)}.metric .label{color:var(--muted);font-size:12px}.metric .value{font-size:25px;font-weight:800;margin-top:5px;letter-spacing:-.5px}.metric .sub{font-size:11px;color:var(--muted);margin-top:5px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:17px}.sectionHead h2{margin:0;font-size:18px}.sectionHead p{margin:0;color:var(--muted);font-size:12px}.flowStep{margin:36px 0 14px;padding-top:6px;border-top:1px solid rgba(255,255,255,.07)}.flowStep:first-child{margin-top:0;border-top:0;padding-top:0}.flowLabel{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin:0 0 4px}.flowLabel .n{width:22px;height:22px;border-radius:50%;background:#132b3b;color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:11px}.flowLabel p{margin:0;color:var(--muted);font-size:12.5px;font-weight:500;text-transform:none;letter-spacing:0}.flowLabel.alt{color:var(--accent2)}.flowLabel.alt .n{color:var(--accent2)}.flowSub{color:var(--muted);font-size:12.5px;margin:2px 0 16px 32px}.insight{border:1px solid var(--line);border-radius:15px;padding:16px;background:#0a1727}.insight.critical{border-color:#67303b}.insight.high{border-color:#6b4930}.insight.medium{border-color:#4a4527}.insight.positive{border-color:#285a4d}.insight h3{margin:0 0 5px;font-size:14px}.insight p{margin:6px 0;color:#c6d3e2;font-size:13px}.insight ul{margin:6px 0;padding-left:18px;color:#c6d3e2;font-size:13px}.tag{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;background:#17283c;color:#a9bdd5}.tag.critical{background:#351722;color:#ff8b98}.tag.high{background:#3a2919;color:#ffc66e}.tag.medium{background:#312c19;color:#f4d276}.tag.positive{background:#17372f;color:#7ee7b1}.riskRow,.actionRow{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.06)}.rank{font-size:18px;font-weight:900;color:#7086a0}.riskScore{font-size:12px;color:var(--muted)}.bar{height:7px;background:#162a40;border-radius:99px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}.waterfall{display:flex;align-items:flex-end;gap:7px;height:190px;padding:20px 5px 0;border-bottom:1px solid var(--line)}.wf{flex:1;display:flex;flex-direction:column;justify-content:end;height:100%;min-width:0}.wf .col{border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#83a4ff,#506fd0);min-height:3px}.wf.neg .col{background:linear-gradient(180deg,#ff8290,#9d3e54)}.wf .lab{font-size:10px;color:var(--muted);text-align:center;margin-top:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wf .num{font-size:9px;text-align:center;color:#c8d5e5;margin-bottom:4px}.scenario{padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#0d1d31,#091525)}.scenario h3{margin:0 0 6px;font-size:15px}.scenario .big{font-size:24px;font-weight:900;color:var(--accent)}.scenario p{color:var(--muted);font-size:11px;margin:6px 0}.muted{color:var(--muted)}.small{font-size:11px}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.06);text-align:right}th:first-child,td:first-child{text-align:left}th{color:#7f95af;font-weight:600}.notice{padding:12px 14px;border-radius:12px;background:#0b1a2b;border:1px solid var(--line);color:#a9b9cb;font-size:12px}.error{color:#ff9aa5;background:#321923;border:1px solid #64313e;padding:12px;border-radius:12px;margin:15px 0}.hidden{display:none!important}.footer{padding:25px 0 50px;color:#647890;font-size:11px;text-align:center}.tabs{display:flex;gap:8px;margin-top:16px}.tab{padding:8px 12px;border-radius:999px;background:#0b192a;border:1px solid var(--line);color:#9db0c7;cursor:pointer}.tab.active{background:#17364a;color:var(--accent);border-color:#2d5b6b}.tabPanel{display:none}.tabPanel.active{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.hidePrint{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chip{font-size:11.5px;background:#0b1a2b;border:1px solid var(--line);border-radius:999px;padding:6px 11px;color:#c6d3e2}.chip b{color:var(--accent)}
+.abar{height:9px;background:#162a40;border-radius:99px;overflow:hidden;margin-top:6px}.abar i{display:block;height:100%;background:linear-gradient(90deg,#8aa7ff,#ff8290);border-radius:99px}
+.custRow{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12.5px}
+.highlight-target{outline:2px solid var(--accent);outline-offset:6px}
+/* --- Marketing surface additions --- */
+.topNav{display:flex;gap:18px}
+.topNav a{color:var(--muted);font-size:13px;text-decoration:none;font-weight:600}
+.topNav a:hover{color:var(--accent)}
+.marketingSection{padding:60px 0}
+.marketingHead{text-align:center;max-width:640px;margin:0 auto 34px}
+.marketingHead h2{font-family:var(--serif);font-size:32px;margin:0 0 10px;letter-spacing:-.5px}
+.marketingHead p{color:var(--muted);margin:0;font-size:14.5px}
+.pricingGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.priceCard{display:flex;flex-direction:column;padding:28px 24px;position:relative}
+.priceCard.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}
+.priceCard .plan{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);font-weight:800;margin-bottom:8px}
+.priceCard h3{margin:0 0 6px;font-size:22px;font-family:var(--serif)}
+.priceCard .amt{font-size:34px;font-weight:900;margin:8px 0 4px}
+.priceCard .amt span{font-size:13px;color:var(--muted);font-weight:500}
+.priceCard .desc{color:var(--muted);font-size:13px;margin-bottom:18px}
+.priceCard ul{list-style:none;margin:0 0 22px;padding:0;flex:1;display:flex;flex-direction:column;gap:10px}
+.priceCard ul li{font-size:13px;color:#c6d3e2;display:flex;gap:8px;align-items:flex-start}
+.priceCard ul li svg{flex:none;margin-top:2px;color:var(--accent)}
+.priceCard .badgeTop{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#06101b;font-size:10.5px;font-weight:800;padding:4px 12px;border-radius:999px;letter-spacing:.5px}
+.aboutGrid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
+.aboutStats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.aboutStats .st{padding:16px;border:1px solid var(--line);border-radius:14px;text-align:center;background:rgba(6,16,28,.42)}
+.aboutStats .st b{display:block;font-size:24px;color:var(--accent);font-family:var(--serif)}
+.aboutStats .st span{font-size:11px;color:var(--muted)}
+.contactGrid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.contactCard{padding:26px}
+.contactRow{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.contactRow .item{display:flex;gap:10px;align-items:center;font-size:13px;color:#c6d3e2}
+.contactRow .item svg{color:var(--accent);flex:none}
+@media(max-width:860px){.pricingGrid,.aboutGrid,.contactGrid{grid-template-columns:1fr}.topNav{display:none}}
+.trustBar{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08)}
+.trustBar .item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.trustBar .item svg{flex:none;color:var(--accent)}
+.heroPreview{position:relative;padding:22px;overflow:hidden}
+.heroPreview .pvLabel{font-size:11px;color:var(--muted);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.heroPreview .pvLabel span.dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;margin-right:6px;box-shadow:0 0 0 3px rgba(110,231,168,.18)}
+.pvRing{width:112px;height:112px;border-radius:50%;margin:2px auto 14px;display:grid;place-items:center;background:conic-gradient(var(--accent) 0 78%,#182c42 78% 100%);position:relative}
+.pvRing:after{content:"";position:absolute;inset:9px;border-radius:50%;background:#0a1728}
+.pvRing b{position:relative;font-family:var(--serif);font-size:26px;z-index:1}
+.pvRow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px}
+.pvRow .n{color:var(--text);font-weight:700}
+.pvRow .n.up{color:var(--green)}.pvRow .n.down{color:var(--red)}
+.pvBars{display:flex;align-items:flex-end;gap:5px;height:54px;margin-top:14px}
+.pvBars i{flex:1;background:linear-gradient(180deg,var(--accent2),#4a63b8);border-radius:3px 3px 1px 1px;display:block}
+.statsStrip{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:6px 0 0;padding:26px 0}
+.statsStrip .stat b{font-family:var(--serif);font-size:36px;font-weight:600;color:var(--text);display:block;letter-spacing:-.5px}
+.statsStrip .stat span{font-size:12.5px;color:var(--muted);display:block;margin-top:4px;max-width:20ch}
+.whyCard{padding:20px;position:relative}
+.whyCard .icoWrap{width:40px;height:40px;border-radius:11px;background:#0e2433;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--accent)}
+.ctaBanner{margin:44px 0 8px;padding:38px 32px;border-radius:22px;background:linear-gradient(135deg,#0e2433 0%,#0b1a2c 55%,#091524 100%);border:1px solid #234260;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.ctaBanner h3{font-family:var(--serif);font-weight:600;font-size:26px;margin:0 0 6px;letter-spacing:-.3px}
+.ctaBanner p{margin:0;color:var(--muted);font-size:13.5px;max-width:52ch}
+@media(max-width:1000px){.statsStrip{grid-template-columns:repeat(2,1fr)}.heroTitle{font-size:34px}}
+@media(max-width:1000px){.hero{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.grid3,.grid2{grid-template-columns:1fr}.wrap{padding:0 15px}.heroTitle{font-size:31px}.flowSub{margin-left:0}.qsel .qrow{grid-template-columns:1fr}}
+@media print{
+  *,*::before,*::after{box-sizing:border-box!important}
+  @page{size:A4 portrait;margin:18mm 16mm 18mm 16mm}
+  html,body{background:#fff!important;color:#0d1b2a!important;font-family:'Segoe UI',Arial,sans-serif!important;font-size:10pt!important;line-height:1.45!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+
+  /* ── Hide all interactive elements ─────────────────────────────── */
+  .hero,.upload,.hidePrint,.tabs,.tabPanel,.chips,.qsel,.tab,.footer,.heroPreview,.trustBar,.statsStrip,.ctaBanner,
+  button,input,select,textarea,.secondary,.primary,
+  #sampleBtn,#aiBtn,#printBtn,#jsonBtn,#aiAskBtn,
+  #aiBox,#aiCustomBox,#aiCustomPrompt,#methodNote,
+  .interactiveScenarioCard,#interactiveScenarioCard{display:none!important}
+
+  /* ── Layout: full-width single column ──────────────────────────── */
+  .wrap{max-width:none!important;padding:0!important;margin:0!important}
+  .top{display:none!important}
+
+  /* ── Cover Banner ───────────────────────────────────────────────── */
+  #printCover{display:block!important;border-bottom:3px solid #1a73e8;padding-bottom:12px;margin-bottom:20px}
+  #printCover h1{font-size:20pt!important;font-weight:800;color:#0d1b2a;margin:0 0 4px}
+  #printCover .sub{font-size:9pt;color:#4a6fa5}
+
+  /* ── Cards ──────────────────────────────────────────────────────── */
+  .card{box-shadow:none!important;background:#fff!important;border:1px solid #c8d6e8!important;border-radius:6px!important;margin-bottom:10px!important;padding:10px 12px!important;page-break-inside:avoid!important}
+  .heroCard{box-shadow:none!important;background:#fff!important;border:1px solid #c8d6e8!important;padding:10px!important}
+
+  /* ── Flow steps ─────────────────────────────────────────────────── */
+  .flowStep{margin:14px 0 6px!important;padding-top:4px!important;page-break-inside:avoid!important}
+  .flowLabel{background:none!important;border-left:4px solid #1a73e8!important;padding-left:10px!important;color:#0d1b2a!important;margin-bottom:6px!important}
+  .flowLabel .n{background:#1a73e8!important;color:#fff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .flowSub{color:#555!important;font-size:8.5pt!important;margin-bottom:6px!important}
+
+  /* ── Metrics / KPIs ─────────────────────────────────────────────── */
+  .metric{background:#f4f7fc!important;border:1px solid #d4dff0!important;border-radius:6px!important;padding:8px!important;color:#0d1b2a!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .metric .label{font-size:7.5pt!important;color:#4a6fa5!important;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  .metric .value{font-size:14pt!important;font-weight:800;color:#0d1b2a!important}
+  .metric .sub{font-size:7.5pt!important;color:#666!important}
+  .grid2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .grid3{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:8px!important}
+  .grid4{display:grid!important;grid-template-columns:1fr 1fr 1fr 1fr!important;gap:8px!important}
+
+  /* ── Health score ring ──────────────────────────────────────────── */
+  .scoreCard{display:flex!important;align-items:center!important;gap:20px!important;padding:10px 14px!important}
+  .scoreRing{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .scoreRing::after{background:#fff!important}
+
+  /* ── Section headings ───────────────────────────────────────────── */
+  .sectionHead{border-bottom:1px solid #d4dff0!important;margin-bottom:8px!important;padding-bottom:6px!important}
+  .sectionHead h2{font-size:10pt!important;color:#1a73e8!important;font-weight:800;margin:0}
+  .sectionHead p{font-size:8pt!important;color:#555!important;margin:2px 0 0}
+  h1,h2,h3{page-break-after:avoid!important;color:#0d1b2a!important}
+  h3{font-size:9.5pt!important}
+
+  /* ── Risk & action rows ─────────────────────────────────────────── */
+  .riskRow,.actionRow{border:1px solid #e4e8ef!important;border-radius:5px!important;margin-bottom:5px!important;padding:6px 8px!important;page-break-inside:avoid!important;background:#fafbfd!important}
+  .rank{background:#e8f0fe!important;color:#1a73e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .bar{display:none!important}
+
+  /* ── Tags / badges ──────────────────────────────────────────────── */
+  .tag{border:1px solid #888!important;color:#333!important;background:#f0f0f0!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;font-size:7pt!important}
+  .badge{border:1px solid #1a73e8!important;color:#1a73e8!important;font-size:7.5pt!important}
+
+  /* ── Insights / alerts ──────────────────────────────────────────── */
+  .insight{border-left:4px solid #1a73e8!important;background:#f0f7ff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;border-radius:4px!important;padding:7px 9px!important;margin-bottom:6px!important;page-break-inside:avoid!important}
+  .insight.high,.insight.critical{border-left-color:#c62828!important;background:#fff5f5!important}
+  .insight.positive{border-left-color:#2e7d32!important;background:#f1fdf3!important}
+  .notice{background:#f8faff!important;border:1px solid #d0dff5!important;padding:7px 9px!important;border-radius:4px!important;font-size:8.5pt!important;color:#333!important}
+
+  /* ── Waterfall chart ────────────────────────────────────────────── */
+  .waterfall{display:flex!important;align-items:flex-end!important;gap:4px!important;height:100px!important;padding:4px 0!important}
+  .wf .col{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .wf .num{font-size:6.5pt!important;color:#333!important}
+  .wf .lab{font-size:6pt!important;color:#444!important}
+
+  /* ── Tables ─────────────────────────────────────────────────────── */
+  .tableWrap{overflow:visible!important}
+  table{border-collapse:collapse!important;width:100%!important;font-size:8pt!important}
+  th{background:#e8f0fe!important;color:#1a73e8!important;font-weight:700;padding:4px 6px!important;border:1px solid #c8d6e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  td{padding:4px 6px!important;border:1px solid #e4e8ef!important}
+  tr:nth-child(even) td{background:#f8faff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+
+  /* ── Page breaks ─────────────────────────────────────────────────  */
+  .flowStep:nth-child(3){page-break-before:always!important}
+  .flowStep:nth-child(6){page-break-before:always!important}
+
+  /* ── Misc ────────────────────────────────────────────────────────── */
+  .muted{color:#555!important}
+  .small{font-size:7.5pt!important}
+  a{color:#1a73e8!important;text-decoration:none!important}
+  .scenario{border:1px solid #c8d6e8!important;border-radius:5px!important;padding:8px!important;page-break-inside:avoid!important}
+  .scenario .big{font-size:14pt!important;font-weight:800;color:#1a73e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .custRow,.wf{page-break-inside:avoid!important}
+  .hidden{display:none!important}
+  #dashboard{display:block!important}
+  .abar{display:none!important}
+}
+
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:dfbpFadeOut .28s ease both}
+::view-transition-new(root){animation:dfbpFadeIn .32s ease both}
+@keyframes dfbpFadeOut{to{opacity:0;transform:translateY(-6px)}}
+@keyframes dfbpFadeIn{from{opacity:0;transform:translateY(8px)}}
+.topNav{display:flex;gap:26px;align-items:center}
+.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.topNav a:hover{color:var(--text)}
+.topNav a.active{color:var(--accent);border-color:var(--accent)}
+.top.scrolled{box-shadow:0 12px 30px rgba(0,0,0,.28)}
+.navBtns{display:flex;gap:10px;align-items:center}
+.navBtns a.secondary,.navBtns a.primary{text-decoration:none;display:inline-flex;align-items:center;font-weight:700}
+.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
+@media(max-width:920px){
+  .topNav{position:fixed;top:74px;left:0;right:0;background:#0a1728;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
+  .topNav.open{max-height:280px;padding:14px 22px}
+  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .navToggle{display:inline-flex}
+}
+.badge.v{white-space:nowrap}
+/* ---- Marketing hero (separate from app hero) ---- */
+.mHero{padding:56px 0 30px;display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center}
+.mHero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);background:#0e2433;border:1px solid #1f4258;padding:7px 14px;border-radius:999px;margin-bottom:18px}
+.mHero h1{font-family:var(--serif);font-weight:600;font-size:50px;line-height:1.08;margin:0 0 18px;letter-spacing:-1px}
+.mHero h1 span{color:var(--accent)}
+.mHero p.lead{color:var(--muted);font-size:16px;max-width:560px;line-height:1.65;margin:0 0 26px}
+.mHero .ctaRow{display:flex;gap:12px;flex-wrap:wrap}
+.mHero .ctaRow a{text-decoration:none}
+.mHero .miniTrust{display:flex;gap:18px;flex-wrap:wrap;margin-top:28px}
+.mHero .miniTrust span{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.mHero .miniTrust svg{color:var(--accent)}
+.heroArt{position:relative}
+.heroArt .floatCard{position:absolute;background:linear-gradient(145deg,rgba(16,31,51,.97),rgba(10,23,39,.97));border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:14px 16px;font-size:11.5px;color:#c6d3e2;animation:dfbpFloat 5s ease-in-out infinite}
+.heroArt .floatCard b{display:block;font-size:16px;color:var(--accent);font-family:var(--serif)}
+.heroArt .fc1{top:-10px;left:-10px;animation-delay:0s}
+.heroArt .fc2{bottom:6px;right:-14px;animation-delay:1.2s}
+@keyframes dfbpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+/* ---- Alternating content blocks (fixes the "iç içe" cramped look) ---- */
+.secBlock{padding:58px 0}
+.secBlock.tint{background:linear-gradient(180deg,rgba(16,31,51,.55),rgba(10,23,39,.15));border-radius:32px;margin:0 -10px}
+.secBlock+.secBlock{border-top:1px solid rgba(255,255,255,.05)}
+.pageHead{padding:54px 0 10px;text-align:center}
+.pageHead .eyebrow{display:inline-flex;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);background:#0e2433;border:1px solid #1f4258;padding:7px 14px;border-radius:999px;margin-bottom:16px}
+.pageHead h1{font-family:var(--serif);font-size:38px;margin:0 0 12px;letter-spacing:-.6px}
+.pageHead p{color:var(--muted);max-width:600px;margin:0 auto;font-size:14.5px}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.reveal.in{opacity:1;transform:none}
+/* ---- Rich footer ---- */
+.siteFooter{border-top:1px solid var(--line);margin-top:40px;padding:46px 0 26px}
+.siteFooter .cols{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:28px;margin-bottom:30px}
+.siteFooter h4{font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:0 0 14px}
+.siteFooter .brandCol p{color:var(--muted);font-size:12.5px;max-width:280px;line-height:1.6}
+.siteFooter ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.siteFooter ul a{color:#c6d3e2;text-decoration:none;font-size:13px}
+.siteFooter ul a:hover{color:var(--accent)}
+.siteFooter .legal{border-top:1px solid rgba(255,255,255,.06);padding-top:20px;color:#647890;font-size:11px;line-height:1.7}
+@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:360px;margin:auto}}
+/* ---- FAQ (paketler sayfası) ---- */
+.faqItem{border-bottom:1px solid var(--line);padding:16px 0}
+.faqItem summary{cursor:pointer;font-weight:700;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faqItem summary::-webkit-details-marker{display:none}
+.faqItem summary:after{content:'+';font-size:20px;color:var(--accent)}
+.faqItem[open] summary:after{content:'–'}
+.faqItem p{color:var(--muted);font-size:13.5px;margin:10px 0 0}
+</style></head>
+<body>
+<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/paketler">Paketler</a><a href="/hakkimizda">Hakkımızda</a><a href="/iletisim">İletişim</a><a href="/uygulama" class="active">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="secondary">Kayıt Ol</button></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header><div id="authModalOverlay" class="hidden" style="position:fixed;inset:0;background:rgba(4,9,16,.72);display:flex;align-items:center;justify-content:center;z-index:100">
   <div class="card" style="padding:26px;max-width:380px;width:92%">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><h3 id="authModalTitle" style="margin:0">Giriş Yap</h3><button id="authModalClose" class="secondary" style="padding:4px 10px">✕</button></div>
     <div style="display:flex;flex-direction:column;gap:10px">
@@ -198,8 +1368,7 @@ HTML = r'''<!doctype html>
     </div>
   </div>
 </div>
-<main class="wrap">
-<section class="hero"><div class="heroCard"><h2 class="heroTitle">Rakamları değil, <span style="color:var(--accent)">kararları</span> görün.</h2><p class="heroText">Finansal ve operasyonel verilerinizi yükleyin. Sistem finansal tabloları kurar, hesapları doğrular, riskleri önceliklendirir, kök nedenleri açıklar ve yönetilebilir fırsatları gösterir. Muhasebe robotu olmaya çalışmıyor, çünkü dünyada zaten yeterince robotik rapor var.</p><div class="framework"><span><b>WHAT</b> is happening?</span><span><b>WHY</b> is it happening?</span><span><b>SO WHAT</b> is the impact?</span><span><b>NOW WHAT</b> should management do?</span><span><b>WHAT IF</b> we change a key assumption?</span></div>
+<main class="wrap"><section class="hero"><div class="heroCard"><h2 class="heroTitle">Dosyanı yükle, <span style="color:var(--accent)">yönetim raporunu</span> gör.</h2><p class="heroText">Mizan veya finansal tablonuzu yükleyin — sistem hesapları doğrular, riskleri önceliklendirir, kök nedenleri açıklar ve yönetilebilir fırsatları 2 dakikada gösterir.</p><div class="framework"><span><b>WHAT</b> is happening?</span><span><b>WHY</b> is it happening?</span><span><b>SO WHAT</b> is the impact?</span><span><b>NOW WHAT</b> should management do?</span><span><b>WHAT IF</b> we change a key assumption?</span></div>
 <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button id="sampleBtn" class="secondary">📄 Tek dönem örnekle dene</button><button id="sampleTrendBtn" class="secondary">📊 İki dönemli örnekle dene (Trend Demo)</button> <span id="sampleStatus" class="small muted" style="margin-left:8px"></span></div>
 <div class="trustBar hidePrint">
 <div class="item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Önce hesap, sonra yorum — deterministik motor</div>
@@ -225,25 +1394,6 @@ HTML = r'''<!doctype html>
   <button id="saveHistoryBtn" class="primary" style="width:100%;margin-top:8px">💾 Geçmişime Kaydet</button>
   <div id="saveHistoryStatus" class="small muted" style="margin-top:6px"></div>
 </div>
-</div></section>
-<section class="statsStrip hidePrint">
-<div class="stat"><b>33</b><span>Deterministik analiz motoru — kâr köprüsü, DuPont, senaryo, kök-neden</span></div>
-<div class="stat"><b>5</b><span>Adımlı karar akışı: What → Why → So What → Now What → What If</span></div>
-<div class="stat"><b>&lt;2 dk</b><span>Dosya yüklemeden yönetim raporuna geçen süre</span></div>
-<div class="stat"><b>0₺</b><span>Örnek veriyle deneme — kayıt olmadan, kredi kartı istemeden</span></div>
-</section>
-<section id="whyUs" class="flowStep hidePrint" style="margin-top:8px"><div class="flowLabel"><span class="n">★</span>Neden Digital Finance Business Partner?<p>Bir Excel şablonu değil, karar destek katmanı</p></div>
-<div class="grid4">
-<div class="card whyCard"><div class="icoWrap"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div><h3 style="margin:0 0 6px;font-size:15px">Kural tabanlı, kanıtlanabilir</h3><p class="muted small">Her rakam, kaynağına kadar izlenebilir bir hesaplamadan gelir. AI yorumu isteğe bağlı ve her zaman ayrı etiketlenir — "kara kutu" bir skor değil.</p></div>
-<div class="card whyCard"><div class="icoWrap"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div><h3 style="margin:0 0 6px;font-size:15px">Dakikalar içinde sonuç</h3><p class="muted small">Mizanınızı yükleyin, 33 analiz motoru bilanço, gelir tablosu, kök-neden ve senaryo analizini otomatik kurar — muhasebeci beklemeden.</p></div>
-<div class="card whyCard"><div class="icoWrap"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg></div><h3 style="margin:0 0 6px;font-size:15px">Yönetim kurulu diliyle</h3><p class="muted small">Sadece rakam değil; "ne oldu, neden oldu, maliyeti ne, ne yapılmalı" akışıyla direkt karar destek raporu — bankaya, ortağa, yönetim kuruluna gösterilebilir.</p></div>
-<div class="card whyCard"><div class="icoWrap"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><h3 style="margin:0 0 6px;font-size:15px">Verileriniz size ait</h3><p class="muted small">Yüklediğiniz dosyalar yalnızca analiz üretmek için işlenir; hesap açmadan sunucuda kalıcı saklanmaz. Kayıt olursanız geçmişiniz sadece sizin erişiminizde tutulur.</p></div>
-</div></section>
-<section id="howTo" class="flowStep hidePrint"><div class="flowLabel alt"><span class="n">?</span>Nasıl Kullanılır<p>3 adımda finansal sağlık raporu</p></div>
-<div class="grid3">
-<div class="card" style="padding:18px"><div class="tag" style="margin-bottom:8px">ADIM 1</div><h3 style="margin:0 0 6px;font-size:15px">Dosyanı yükle (ya da örnekle dene)</h3><p class="muted small">Mizan/Excel dosyanı "Tek dönem" sekmesine sürükle. Dosyan yoksa yukarıdaki "Örnekle dene" butonuyla anında gerçek bir raporu gör.</p></div>
-<div class="card" style="padding:18px"><div class="tag" style="margin-bottom:8px">ADIM 2</div><h3 style="margin:0 0 6px;font-size:15px">Raporu incele</h3><p class="muted small">Health Score, kök-neden bulguları, senaryo anlatıları ve yönetim aksiyonları otomatik oluşur. İstersen AI CFO'dan ek yorum veya soru-cevap iste.</p></div>
-<div class="card" style="padding:18px"><div class="tag" style="margin-bottom:8px">ADIM 3</div><h3 style="margin:0 0 6px;font-size:15px">Kaydet, karşılaştır, paylaş</h3><p class="muted small">Ücretsiz kayıt olup analizi yıl bazında kaydet; sonraki dönemlerle karşılaştır ya da PDF olarak yönetim kuruluna gönder.</p></div>
 </div></section>
 <section id="historySection" class="flowStep hidePrint"><div class="flowLabel"><span class="n">↺</span>Geçmiş Analizlerim<p>Kaydettiğin analizleri yıla göre gör, iki dönemi karşılaştır</p></div>
 <div class="card" style="padding:20px">
@@ -314,57 +1464,17 @@ HTML = r'''<!doctype html>
 <div class="card" style="margin-top:16px"><div class="sectionHead"><div><h2>Financial Statements</h2><p>Hesaplanan bilanço ve gelir tablosu (kaynak veri)</p></div></div><div class="grid2"><div id="plTable" class="tableWrap"></div><div id="bsTable" class="tableWrap"></div></div></div>
 </section>
 
-<section id="pricing" class="marketingSection hidePrint"><div class="marketingHead"><h2>Size uygun paketi seçin</h2><p>Tek seferlik bir örnek raporla mı başlamak istiyorsunuz, yoksa ekibinizin her ay düzenli kullandığı bir karar destek katmanı mı arıyorsunuz — üç paket de aynı motoru kullanır, fark kapsam ve süreklilikte.</p></div>
-<div class="pricingGrid">
-<div class="card priceCard"><div class="plan">Başlangıç</div><h3>Starter</h3><div class="amt">₺0<span> /örnek analiz</span></div><div class="desc">Sistemi görmek isteyen, henüz dosya yüklemeyen ekipler için.</div><ul>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Örnek veriyle tam rapor denemesi</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>What / So What / Why / Now What akışı</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Kayıt gerekmez, tarayıcıda kalır</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Tek dönem, kaydetme yok</li>
-</ul><button class="secondary" style="width:100%" onclick="document.getElementById('sampleBtn')?.click();document.getElementById('sampleBtn')?.scrollIntoView({behavior:'smooth',block:'center'})">Ücretsiz Dene</button></div>
-<div class="card priceCard featured"><div class="badgeTop">En Çok Tercih Edilen</div><div class="plan">Büyüyen Ekipler</div><h3>Professional</h3><div class="amt">₺2.490<span> /ay</span></div><div class="desc">Kendi verinizi düzenli yükleyip yönetim raporu üretmek isteyen finans ekipleri için.</div><ul>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Sınırsız dosya yükleme ve analiz</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Çok dönemli trend ve karşılaştırma</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Geçmiş analizleri kaydetme ve karşılaştırma</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Data Hub: kaynak bazlı mutabakat</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Opsiyonel AI CFO yorumu (Gemini)</li>
-</ul><button class="primary" style="width:100%" onclick="document.getElementById('registerOpenBtn')?.click()">Kayıt Ol</button></div>
-<div class="card priceCard"><div class="plan">Kurumsal</div><h3>Enterprise</h3><div class="amt">Teklif ile<span> /özel</span></div><div class="desc">Çoklu şirket/bölüm yapısı, özel entegrasyon veya danışmanlık desteği isteyen kurumlar için.</div><ul>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Professional'daki her şey</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Çoklu kullanıcı ve şirket/bölüm yönetimi</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Özel kural/eşik seti (sektörünüze göre)</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Öncelikli destek ve kurulum danışmanlığı</li>
-</ul><button class="secondary" style="width:100%" onclick="document.getElementById('contact')?.scrollIntoView({behavior:'smooth'})">Bize Ulaşın</button></div>
-</div></section>
-
-<section id="about" class="marketingSection hidePrint"><div class="aboutGrid">
-<div><span class="badge" style="margin-bottom:14px;display:inline-block">Hakkımızda</span><h2 style="font-family:var(--serif);font-size:30px;margin:6px 0 12px;letter-spacing:-.5px">Muhasebe raporu değil, yönetim kararı üretiyoruz</h2><p class="muted" style="font-size:14px;line-height:1.7">Digital Finance Business Partner, finans ekiplerinin saatlerce harcadığı "rakamları toparlama" işini otomatikleştirip, gerçek zamanı yönetime asıl değeri kattığı yere — yorum ve karara — taşımak için kuruldu. Motor önce deterministik olarak hesaplar, sonra yorumlar; yapay zekâ yalnızca isteğe bağlı, ayrı etiketlenmiş bir ek katmandır, asla ham rakamların yerine geçmez.</p><div class="aboutStats"><div class="st"><b>8+</b><span>Analiz motoru</span></div><div class="st"><b>%100</b><span>Deterministik hesap</span></div><div class="st"><b>0</b><span>Kalıcı veri saklama</span></div></div></div>
-<div class="card" style="padding:26px"><h3 style="margin:0 0 12px">Neye inanıyoruz</h3><ul style="margin:0;padding-left:18px;color:#c6d3e2;font-size:13.5px;line-height:2">
-<li>Karar destek, robotik rapor üretiminden farklıdır.</li>
-<li>Önce hesap, sonra yorum — sıra hiç değişmez.</li>
-<li>Veri sizindir; hesap açmadan sunucuda kalıcı tutulmaz.</li>
-<li>Yapay zekâ yorumu, doğrulanmış rakamların yerine değil, üstüne konur.</li>
-</ul></div>
-</div></section>
-
-<section id="contact" class="marketingSection hidePrint"><div class="marketingHead"><h2>İletişim</h2><p>Paketler, kurumsal teklif veya demo talebi için bize ulaşın.</p></div>
-<div class="contactGrid">
-<div class="card contactCard"><h3 style="margin:0 0 4px">Bize yazın</h3><p class="muted small" style="margin:0 0 4px">Genelde 1 iş günü içinde dönüş yapıyoruz.</p><div class="contactRow">
-<div class="item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>info@digitalfinancebp.com</div>
-<div class="item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+90 (212) 000 00 00</div>
-<div class="item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>İstanbul, Türkiye</div>
-</div></div>
-<div class="card contactCard"><h3 style="margin:0 0 12px">Hızlı mesaj</h3><div style="display:flex;flex-direction:column;gap:10px">
-<input class="select" style="width:100%" type="text" placeholder="Adınız">
-<input class="select" style="width:100%" type="email" placeholder="E-posta">
-<input class="select" style="width:100%" type="text" placeholder="Şirket adı (opsiyonel)">
-<textarea class="select" style="width:100%;min-height:80px;font-family:inherit" placeholder="Mesajınız"></textarea>
-<button class="primary" style="width:100%" onclick="alert('Talebiniz alındı, en kısa sürede dönüş yapacağız.')">Gönder</button>
-</div></div>
-</div></section>
-
-<section class="ctaBanner hidePrint"><div><h3>Finansal sağlığınızı şimdi görün</h3><p>Dosya yüklemeden, kayıt olmadan — örnek veriyle tam bir yönetim raporunun nasıl göründüğünü 2 dakikada deneyin.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="primary" onclick="document.getElementById('sampleBtn').click();document.getElementById('sampleBtn').scrollIntoView({behavior:'smooth',block:'center'})">Örnekle Dene</button><button class="secondary" onclick="document.getElementById('registerOpenBtn')?.click()">Ücretsiz Kayıt Ol</button></div></section>
-</div><div class="footer">Digital Finance Business Partner • deterministic finance layer + optional Gemini interpretation • Financial facts are calculated before AI interpretation.<br><span style="opacity:.85">Bu rapor otomatik/deterministik hesaplamalara ve (etkinleştirildiyse) yapay zekâ yorumuna dayanır; muhasebe, denetim, vergi, hukuki veya yatırım tavsiyesi değildir ve resmi mali tablo/beyanname yerine geçmez. Nihai kararlar için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca bu analizi üretmek için işlenir; sunucu tarafında kalıcı olarak saklanmaz. KVKK kapsamındaki veri işleme hakkında bilgi için [Aydınlatma Metni] bağlantısını inceleyin.</span></div></main>
+</main><div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • deterministic finance layer + optional Gemini interpretation • Financial facts are calculated before AI interpretation.<br><span style="opacity:.85">Bu rapor otomatik/deterministik hesaplamalara ve (etkinleştirildiyse) yapay zekâ yorumuna dayanır; muhasebe, denetim, vergi, hukuki veya yatırım tavsiyesi değildir ve resmi mali tablo/beyanname yerine geçmez. Nihai kararlar için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca bu analizi üretmek için işlenir; sunucu tarafında kalıcı olarak saklanmaz. KVKK kapsamındaki veri işleme hakkında bilgi için [Aydınlatma Metni] bağlantısını inceleyin.</span></div></div></div>
+<script>
+document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('mainNav')?.classList.toggle('open'));
+window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.toggle('scrolled',window.scrollY>8)});
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return;}
+  const io=new IntersectionObserver((entries)=>{entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{threshold:.12});
+  els.forEach(e=>io.observe(e));
+})();
+</script>
 <script>
 let LAST=null;
 const $=id=>document.getElementById(id);
@@ -929,6 +2039,7 @@ $('authSubmitBtn').onclick=async()=>{
     localStorage.setItem('dfbp_token',AUTH_TOKEN);localStorage.setItem('dfbp_email',AUTH_EMAIL);
     $('authModalOverlay').classList.add('hidden');
     renderAuthArea();
+(function(){const _qp=new URLSearchParams(location.search);const _m=_qp.get('auth');if(_m==='login'||_m==='register'){openAuthModal(_m);}})();
   }catch(e){$('authError').textContent=e.message;$('authError').classList.remove('hidden');}
   finally{$('authSubmitBtn').disabled=false;}
 };
@@ -1030,4 +2141,7 @@ $('historyCompareBtn').onclick=async()=>{
       '<p class="small muted">Not: Bu hızlı karşılaştırma kaydedilen iki Health Score anlık görüntüsünü kıyaslar. Tam bulgu bazlı karşılaştırma için her iki dönemi birlikte "Çok dönem / Trend" sekmesinden yükleyin.</p></div>';
   }catch(e){$('historyCompareResult').innerHTML='<div class="error">'+esc(e.message)+'</div>';}
 };
-</script></body></html>'''
+</script></body></html>
+'''
+
+HTML = APP_HTML  # backward-compat alias for any old import
