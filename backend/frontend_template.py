@@ -677,10 +677,10 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <b id="wfViewerStepTitle" style="font-size:15px;color:#0F172A">Mizan ve Alt Defterlerin Doğrudan İçe Aktarımı</b>
     </div>
     <div style="display:flex;gap:6px" id="wfNavPills">
-      <button type="button" class="tab active" data-wfpill="0" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#1D4ED8;color:#FFFFFF;border:none;border-radius:999px;cursor:pointer">1. Dosya Bırak</button>
-      <button type="button" class="tab" data-wfpill="1" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;cursor:pointer">2. 33 Karar Motoru</button>
-      <button type="button" class="tab" data-wfpill="2" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;cursor:pointer">3. Kök Neden</button>
-      <button type="button" class="tab" data-wfpill="3" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;cursor:pointer">4. Yönetim Aksiyonları</button>
+      <button type="button" class="wfPill active" data-wfpill="0" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#1D4ED8;color:#FFFFFF;border:none;border-radius:999px;cursor:pointer">1. Dosya Bırak</button>
+      <button type="button" class="wfPill" data-wfpill="1" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;cursor:pointer">2. 33 Karar Motoru</button>
+      <button type="button" class="wfPill" data-wfpill="2" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;cursor:pointer">3. Kök Neden</button>
+      <button type="button" class="wfPill" data-wfpill="3" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;cursor:pointer">4. Yönetim Aksiyonları</button>
     </div>
   </div>
   <div id="wfViewerContent">
@@ -4426,7 +4426,16 @@ $('sampleHubBtn').onclick=()=>runDataHubSample();
 })();
 
 function goToTrendTab(){if($('trendTabBtn')) $('trendTabBtn').click();window.scrollTo({top:0,behavior:'smooth'})}
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tabPanel').forEach(x=>x.classList.remove('active'));t.classList.add('active');$(t.dataset.tab).classList.add('active')});
+document.querySelectorAll('.tabs > .tab').forEach(t=>{
+  t.onclick=()=>{
+    if(!t.dataset.tab) return;
+    document.querySelectorAll('.tabs > .tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.tabPanel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    const p=$(t.dataset.tab);
+    if(p) p.classList.add('active');
+  };
+});
 function prepPrint(){
   const cov=$('printCover');
   const pd=$('printDate');
@@ -4881,7 +4890,7 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
           q.icon + ' ' + esc(q.cat) +
         '</span>' +
         '<div class="small muted">Soru ' + (idx+1) + ' / 8</div>' +
-      </div>' +
+      '</div>' +
       '<div class="ceoGrid3">' +
         '<!-- KATMAN 1: TEŞHİS -->' +
         '<div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">' +
