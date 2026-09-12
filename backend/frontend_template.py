@@ -391,9 +391,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <main class="wrap">
 <section class="mHero">
   <div class="reveal in">
-    <div class="livePill"><i></i> YÖNETİCİLER &amp; ŞİRKET SAHİPLERİ İÇİN FİNANSAL KARAR PLATFORMU</div>
-    <h1>"Kâğıt Üzerinde Kâr Görünüyor, Peki Kasada Para Nerede?"<br><span class="gradText">Finansal Verileri Yönetim Kararlarına Dönüştüren Sistem.</span></h1>
-    <p class="lead">Standart muhasebe sadece geçmiş fişleri ve vergi matrahını kaydeder; <b>Digital Finance Business Partner</b> ise şirketin geleceğini kurtaracak stratejik kararları üretir. Mizanınızı veya ERP alt defterlerinizi yükleyin; <b>33 Finansal Karar Motoru</b> 60 saniyede çift taraflı denetimle hesaplasın, kâr sızıntılarını, kilitli nakdi ve yönetimin yarın sabah başlatacağı somut icraat takvimini masaya koysun.</p>
+    <h1>Finansal Verileri Yönetim Kararlarına Dönüştüren Platform.<br><span class="gradText">Rakamların Ötesinde, Şirketinizi Büyüten Karar Destek Sistemi.</span></h1>
+    <p class="lead">Klasik muhasebe geçmiş mali kayıtları ve yasal vergi matrahını raporlar; <b>Digital Finance Business Partner</b> ise şirketin sermaye verimliliğini ve net nakit akışını maksimize eden stratejik yönetim kararlarını üretir. Mizan veya ERP alt defterlerinizi yükleyin; <b>33 Finansal Karar Motoru</b> 60 saniyede çift taraflı denetimle hesaplasın, kâr sızıntılarını, kilitli nakdi ve yönetimin uygulayacağı somut eylem planını masaya koysun.</p>
     <div class="ctaRow">
       <a href="/uygulama?sample=data_hub" class="primary" style="padding:15px 26px;border-radius:14px;font-size:15px;display:inline-flex;align-items:center;gap:10px">🔥 Kayıt Olmadan Canlı Demoyu Başlat <span>(Data Hub)</span></a>
       <a href="/uygulama" class="secondary" style="padding:15px 26px;border-radius:14px;font-size:15px">⚡ Kendi Verinizi Yükleyin →</a>
@@ -664,7 +663,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     <div class="marketingHead">
       <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">3 KATMANLI ÜRÜN MİMARİSİ</span>
       <h2>Patron Muhasebe Raporu Değil; "Kasada Neden Para Yok ve Yarın Ne Yapmalıyım?" Sorusunun Cevabını İster</h2>
-      <p>Muhasebe programları sadece geçmişin dökümünü listeler. Digital Finance Business Partner ise patronun geceleri aklına takılan 8 kritik soruyu; çift taraflı analitik kanıtlar, net TL getirisi ve yarın sabah başlatılacak icraat kararlarıyla anında çözer.</p>
+      <p>Muhasebe programları sadece geçmişin dökümünü listeler. Digital Finance Business Partner ise patronun geceleri aklına takılan 8 kritik soruyu; çift taraflı analitik kanıtlar, net TL getirisi ve uygulanabilir yönetim kararlarıyla anında çözer.</p>
     </div>
 
     <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:22px;padding:26px;box-shadow:0 14px 34px rgba(15,27,45,.06)">
@@ -2160,12 +2159,12 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     <div style="font-size:32px;margin-bottom:12px">⚡</div>
     <h3 style="font-size:18px;font-family:var(--serif);margin:0 0 8px;color:#0F1B2D">Misyonumuz (Her Gün Yaptığımız İş)</h3>
     <div style="color:#047857;font-size:12px;font-weight:700;margin-bottom:10px">Her Şirketin Masasına Bağımsız Bir CFO Aklı Koymak</div>
-    <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Milyonluk danışmanlık faturalarına veya aylar süren ERP projelerine gerek bırakmadan; Türkiye'deki her KOBİ ve işletmenin yüklediği mizanı <b>60 saniyede 33 deterministik karar motoruyla</b> denetlemek, görünmez kâr sızıntılarını kuruşu kuruşuna hesaplamak ve vadesi, sahibi, TL getirisi belli icraat kararlarını doğrudan masaya koymaktır.</p>
+    <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Milyonluk danışmanlık faturalarına veya aylar süren ERP projelerine gerek bırakmadan; Türkiye'deki her KOBİ ve işletmenin yüklediği mizanı <b>60 saniyede 33 deterministik karar motoruyla</b> denetlemek, görünmez kâr sızıntılarını kuruşu kuruşuna hesaplamak ve vadesi, sahibi, TL getirisi belli yönetim kararlarını doğrudan masaya koymaktır.</p>
   </div>
   <div class="card" style="padding:28px;border-top:4px solid #F59E0B;background:#FFFFFF;box-shadow:0 8px 26px rgba(15,27,45,0.05)">
     <div style="font-size:32px;margin-bottom:12px">🎯</div>
     <h3 style="font-size:18px;font-family:var(--serif);margin:0 0 8px;color:#0F1B2D">Vizyonumuz (Hedeflediğimiz Dönüşüm)</h3>
-    <div style="color:#B45309;font-size:12px;font-weight:700;margin-bottom:10px">Sezgisel Yönetimden, "Rakamla Kanıtlanmış İcraat" Standartlarına Geçiş</div>
+    <div style="color:#B45309;font-size:12px;font-weight:700;margin-bottom:10px">Sezgisel Yönetimden, "Rakamla Kanıtlanmış Yönetim" Standartlarına Geçiş</div>
     <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">"Galiba iyi gidiyoruz" veya "Cirosu yüksek müşteri kârlıdır" gibi varsayımlara dayalı yönetim devrini tamamen kapatıp; Türkiye ve bölgede finansal kararların <b>çift taraflı matematik, What-If simülasyonları ve canlı nakit döngüsüyle</b> yönetildiği yeni nesil bir kurumsal finans standardı inşa etmektir.</p>
   </div>
 </div></section></div>
@@ -3722,38 +3721,38 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 <!-- 30 SANİYELİK CEO & PATRON FİNANSAL RÖNTGENİ (EXECUTIVE SNAPSHOT) -->
 <section id="executiveSnapshotSection" class="flowStep" style="margin-bottom:20px">
-  <div style="background:#0F1B2D;border-radius:20px;padding:22px 24px;color:#FFFFFF;box-shadow:0 12px 36px rgba(15,27,45,0.18)">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.12);padding-bottom:12px">
+  <div class="card" style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:18px;padding:22px 24px;box-shadow:0 8px 24px rgba(15,27,45,0.06)">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;border-bottom:1px solid #E2E8F0;padding-bottom:14px">
       <div style="display:flex;align-items:center;gap:10px">
-        <span style="background:#1D4ED8;color:#FFFFFF;font-size:11px;font-weight:800;letter-spacing:1px;padding:4px 10px;border-radius:6px;text-transform:uppercase">⚡ 30 Saniyelik Teşhis</span>
-        <h3 style="margin:0;font-size:17px;font-weight:700;color:#FFFFFF;letter-spacing:-0.3px">CEO Finansal Röntgeni: Durum, Delik ve 1 Numaralı Karar</h3>
+        <span style="background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-size:11px;font-weight:800;letter-spacing:1px;padding:4px 10px;border-radius:6px;text-transform:uppercase">⚡ 30 Saniyelik Teşhis</span>
+        <h3 style="margin:0;font-size:17px;font-weight:700;color:#0F1B2D;letter-spacing:-0.3px">CEO Finansal Röntgeni: Durum, Delik ve 1 Numaralı Karar</h3>
       </div>
-      <div style="font-size:11.5px;color:#94A3B8;display:flex;align-items:center;gap:8px">
+      <div style="font-size:11.5px;color:#64748B;display:flex;align-items:center;gap:8px">
         <span>Deterministik Çift Taraflı Denetim:</span>
-        <span id="snapAuditStatus" style="color:#10B981;font-weight:700;background:rgba(16,185,129,0.15);padding:2px 8px;border-radius:6px">✓ %100 Bilanço Denkliği Doğrulandı</span>
+        <span id="snapAuditStatus" style="color:#16A34A;font-weight:700;background:#DCFCE7;border:1px solid #BBF7D0;padding:2px 8px;border-radius:6px">✓ %100 Bilanço Denkliği Doğrulandı</span>
       </div>
     </div>
     
     <div class="grid3" style="gap:14px">
       <!-- Kart 1: Kâr Kalitesi & Nakit Gerçeği -->
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:16px">
-        <div style="font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:6px">🩺 1. KÂR KALİTESİ &amp; NAKİT GERÇEĞİ</div>
-        <div style="font-size:20px;font-weight:800;color:#F8FAFC;margin-bottom:4px" id="snapProfitQualityVal">-</div>
-        <div style="font-size:12px;color:#CBD5E1;line-height:1.5" id="snapProfitQualityDesc">Kâğıt üzerindeki kâr ile kasaya giren nakit dengesi hesaplanıyor...</div>
+      <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:16px">
+        <div style="font-size:11px;color:#64748B;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:6px">🩺 1. KÂR KALİTESİ &amp; NAKİT GERÇEĞİ</div>
+        <div style="font-size:20px;font-weight:800;color:#0F1B2D;margin-bottom:4px" id="snapProfitQualityVal">-</div>
+        <div style="font-size:12px;color:#475569;line-height:1.5" id="snapProfitQualityDesc">Kâğıt üzerindeki kâr ile kasaya giren nakit dengesi hesaplanıyor...</div>
       </div>
       
       <!-- Kart 2: En Büyük Sermaye Kanaması -->
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:16px">
-        <div style="font-size:11px;color:#FCA5A5;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:6px">🩸 2. EN BÜYÜK SERMAYE KANAMASI</div>
-        <div style="font-size:20px;font-weight:800;color:#F87171;margin-bottom:4px" id="snapCapitalLeakVal">-</div>
-        <div style="font-size:12px;color:#CBD5E1;line-height:1.5" id="snapCapitalLeakDesc">Şirket nakdinin en çok kilitlendiği ana kalem tespit ediliyor...</div>
+      <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:14px;padding:16px">
+        <div style="font-size:11px;color:#DC2626;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:6px">🩸 2. EN BÜYÜK SERMAYE KANAMASI</div>
+        <div style="font-size:20px;font-weight:800;color:#DC2626;margin-bottom:4px" id="snapCapitalLeakVal">-</div>
+        <div style="font-size:12px;color:#7F1D1D;line-height:1.5" id="snapCapitalLeakDesc">Şirket nakdinin en çok kilitlendiği ana kalem tespit ediliyor...</div>
       </div>
       
       <!-- Kart 3: 1 Numaralı Karar & Kasaya Etkisi -->
-      <div style="background:rgba(30,58,138,0.4);border:1px solid #3B82F6;border-radius:14px;padding:16px">
-        <div style="font-size:11px;color:#93C5FD;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:6px">🎯 3. YÖNETİMİN 1 NUMARALI İCRAATI</div>
-        <div style="font-size:20px;font-weight:800;color:#60A5FA;margin-bottom:4px" id="snapTopActionVal">-</div>
-        <div style="font-size:12px;color:#E0F2FE;line-height:1.5" id="snapTopActionDesc">Kasaya sıcak nakit girdisi sağlayacak ilk aksiyon planlanıyor...</div>
+      <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:14px;padding:16px">
+        <div style="font-size:11px;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:6px">🎯 3. YÖNETİMİN 1 NUMARALI KARARI</div>
+        <div style="font-size:20px;font-weight:800;color:#1D4ED8;margin-bottom:4px" id="snapTopActionVal">-</div>
+        <div style="font-size:12px;color:#1E3A8A;line-height:1.5" id="snapTopActionDesc">Kasaya sıcak nakit girdisi sağlayacak ilk aksiyon planlanıyor...</div>
       </div>
     </div>
   </div>
@@ -3991,6 +3990,7 @@ let LAST=null;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const money=v=>v==null?'–':new Intl.NumberFormat('tr-TR',{maximumFractionDigits:0}).format(v)+' TL';
+const fmt=v=>v==null?'–':new Intl.NumberFormat('tr-TR',{maximumFractionDigits:0}).format(v);
 const num=v=>v==null?'–':new Intl.NumberFormat('tr-TR',{maximumFractionDigits:1}).format(v);
 const pct=v=>v==null?'–':num(v)+'%'; const rat=v=>v==null?'–':num(v)+'x';
 const sevRank=s=>({critical:4,high:3,medium:2,low:1,positive:0})[s]??0;
@@ -4876,7 +4876,7 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
   const snapProfitDesc = $('snapProfitQualityDesc');
   if(snapProfitVal && snapProfitDesc){
     if(cb?.available && crp != null){
-      snapProfitVal.innerHTML = (crp < 50 ? '<span style="color:#F87171">%' + num(crp) + '</span>' : '<span style="color:#34D399">%' + num(crp) + '</span>') + ' <span style="font-size:13px;font-weight:500;color:#94A3B8">Nakit Realizasyonu</span>';
+      snapProfitVal.innerHTML = (crp < 50 ? '<span style="color:#DC2626">%' + num(crp) + '</span>' : '<span style="color:#16A34A">%' + num(crp) + '</span>') + ' <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Realizasyonu</span>';
       if(crp <= 0){
         snapProfitDesc.textContent = 'Kâğıt üzerinde ' + money(netIncome) + ' kâr var ancak işletme nakit akışı eksiye (' + money(ocf) + ') düşmüş. Kârın tamamı işletme sermayesinde kilitli.';
       } else if(crp < 80){
@@ -4885,7 +4885,7 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
         snapProfitDesc.textContent = money(netIncome) + ' tutarındaki kârın %' + num(crp) + '\'si kasaya sıcak nakit olarak dönüyor. Kâr kalitesi yüksek.';
       }
     } else {
-      snapProfitVal.innerHTML = money(netIncome) + ' <span style="font-size:13px;font-weight:500;color:#94A3B8">Net Dönem Kârı</span>';
+      snapProfitVal.innerHTML = money(netIncome) + ' <span style="font-size:12px;font-weight:600;color:#64748B">Net Dönem Kârı</span>';
       const rec = Number(bs?.['Accounts receivable']) || Number(k?.receivables) || 0;
       const dso = Number(c?.dso_days) || Number(k?.dso) || 0;
       snapProfitDesc.textContent = 'Müşteri alacaklarında ' + money(rec) + ' kilitli (' + Math.round(dso) + ' gün açık hesap vadesi). Nakit kasada değil alacakta duruyor.';
@@ -4902,11 +4902,11 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
     
     if(rec >= inv && rec > 0){
       const annualFinanceCost = Math.round(rec * 0.45 * (dso / 365));
-      snapLeakVal.innerHTML = money(rec) + ' <span style="font-size:13px;font-weight:500;color:#FCA5A5">Müşteri Alacakları</span>';
+      snapLeakVal.innerHTML = money(rec) + ' <span style="font-size:12px;font-weight:600;color:#DC2626">Müşteri Alacakları</span>';
       snapLeakDesc.textContent = Math.round(dso) + ' günlük açık hesap vadesi. Şirketin müşterileri finanse etme yıllık tahmini faiz yükü: ~' + money(annualFinanceCost) + '.';
     } else if(inv > 0){
       const annualFinanceCost = Math.round(inv * 0.45 * (dio / 365));
-      snapLeakVal.innerHTML = money(inv) + ' <span style="font-size:13px;font-weight:500;color:#FCA5A5">Depodaki Stok</span>';
+      snapLeakVal.innerHTML = money(inv) + ' <span style="font-size:12px;font-weight:600;color:#DC2626">Depodaki Stok</span>';
       snapLeakDesc.textContent = Math.round(dio) + ' günlük stok bekleme süresi. Depoda uyuyan sermayenin yıllık tahmini faiz sızıntısı: ~' + money(annualFinanceCost) + '.';
     } else {
       snapLeakVal.innerHTML = 'Dengeli Sermaye Dağılımı';
@@ -4921,8 +4921,8 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
     const inv = Number(bs?.['Inventories']) || Number(k?.inventory) || 0;
     const rev = Number(pl?.['Net sales']) || 0;
     const cashTarget = Math.round((rec > 0 ? rec * 0.18 : (inv > 0 ? inv * 0.20 : rev * 0.04)) || 500000);
-    snapActionVal.innerHTML = '+₺' + fmt(cashTarget) + ' <span style="font-size:13px;font-weight:500;color:#93C5FD">Kurtarılabilir Nakit</span>';
-    snapActionDesc.textContent = 'Açık hesap vadelerini 15 gün geri çekin; vadeli siparişleri DBS veya %2 peşin iskontoyla hızlandırın. (Termin: İlk 30 Gün • Sorumlu: CFO & Satış Direktörü)';
+    snapActionVal.innerHTML = '+' + money(cashTarget) + ' <span style="font-size:12px;font-weight:600;color:#1D4ED8">Kurtarılabilir Nakit</span>';
+    snapActionDesc.textContent = 'Açık hesap vadelerini 15 gün geri çekin; vadeli siparişleri DBS veya %2 peşin iskontoyla hızlandırın. (Termin: İlk 30 Gün • Sorumlu: Finans & Satış)';
   }
 }
 window.renderExecutiveSnapshot = renderExecutiveSnapshot;
