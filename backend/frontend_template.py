@@ -74,98 +74,96 @@ HOME_HTML = r'''<!doctype html>
 @media(max-width:1000px){.hero{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.grid3,.grid2{grid-template-columns:1fr}.wrap{padding:0 15px}.heroTitle{font-size:31px}.flowSub{margin-left:0}.qsel .qrow{grid-template-columns:1fr}}
 @media print{
   *,*::before,*::after{box-sizing:border-box!important}
-  @page{size:A4 portrait;margin:18mm 16mm 18mm 16mm}
-  html,body{background:#fff!important;color:#0d1b2a!important;font-family:'Segoe UI',Arial,sans-serif!important;font-size:10pt!important;line-height:1.45!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  @page{size:A4 portrait;margin:10mm 12mm 10mm 12mm}
+  html,body{background:#fff!important;color:#0F1B2D!important;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif!important;font-size:8.5pt!important;line-height:1.35!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
 
-  /* ── Hide all interactive elements ─────────────────────────────── */
-  .hero,.upload,.hidePrint,.tabs,.tabPanel,.chips,.qsel,.tab,.footer,.heroPreview,.trustBar,.statsStrip,.ctaBanner,
+  /* ── Hide all interactive & website shell elements ─────────────── */
+  .hero,.upload,.hidePrint,.tabs,.tabPanel,.chips,.qsel,.tab,.footer,.siteFooter,
+  header.top,.top,.topNav,.navBtns,.navToggle,#authArea,#authModalOverlay,
+  .loadingOverlay,.dropZone,#criticalPartiesNotice,#methodNote,
+  .heroPreview,.trustBar,.statsStrip,.ctaBanner,
   button,input,select,textarea,.secondary,.primary,
   #sampleBtn,#aiBtn,#printBtn,#jsonBtn,#aiAskBtn,
-  #aiBox,#aiCustomBox,#aiCustomPrompt,#methodNote,
-  .interactiveScenarioCard,#interactiveScenarioCard{display:none!important}
+  #aiBox,#aiCustomBox,#aiCustomPrompt,#historySection,
+  .interactiveScenarioCard,#interactiveScenarioCard,
+  .abar{display:none!important}
 
   /* ── Layout: full-width single column ──────────────────────────── */
-  .wrap{max-width:none!important;padding:0!important;margin:0!important}
-  .top{display:none!important}
+  .wrap{max-width:none!important;padding:0!important;margin:0!important;width:100%!important}
 
-  /* ── Cover Banner ───────────────────────────────────────────────── */
-  #printCover{display:block!important;border-bottom:3px solid #1a73e8;padding-bottom:12px;margin-bottom:20px}
-  #printCover h1{font-size:20pt!important;font-weight:800;color:#0d1b2a;margin:0 0 4px}
-  #printCover .sub{font-size:9pt;color:#4a6fa5}
+  /* ── Boardroom Cover Header ────────────────────────────────────── */
+  #printCover{display:block!important;page-break-after:avoid!important;break-after:avoid!important;margin-bottom:12px}
+  .printExecutiveFooter{display:flex!important;justify-content:space-between;align-items:center;border-top:1px solid #CBD5E1;padding-top:6px;margin-top:14px;font-size:7pt!important;color:#64748B!important;page-break-inside:avoid!important;break-inside:avoid!important}
 
-  /* ── Cards ──────────────────────────────────────────────────────── */
-  .card{box-shadow:none!important;background:#fff!important;border:1px solid #c8d6e8!important;border-radius:6px!important;margin-bottom:10px!important;padding:10px 12px!important;page-break-inside:avoid!important}
-  .heroCard{box-shadow:none!important;background:#fff!important;border:1px solid #c8d6e8!important;padding:10px!important}
+  /* ── Cards & Containers ────────────────────────────────────────── */
+  .card{box-shadow:none!important;background:#fff!important;border:1px solid #CBD5E1!important;border-radius:6px!important;margin-bottom:8px!important;padding:8px 10px!important;page-break-inside:auto!important;break-inside:auto!important}
+  .heroCard{box-shadow:none!important;background:#fff!important;border:1px solid #CBD5E1!important;padding:8px!important}
 
   /* ── Flow steps ─────────────────────────────────────────────────── */
-  .flowStep{margin:14px 0 6px!important;padding-top:4px!important;page-break-inside:avoid!important}
-  .flowLabel{background:none!important;border-left:4px solid #1a73e8!important;padding-left:10px!important;color:#0d1b2a!important;margin-bottom:6px!important}
-  .flowLabel .n{background:#1a73e8!important;color:#fff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .flowSub{color:#555!important;font-size:8.5pt!important;margin-bottom:6px!important}
+  .flowStep{margin:8px 0 4px!important;padding-top:2px!important;page-break-inside:auto!important;break-inside:auto!important}
+  .flowLabel{background:none!important;border-left:3.5px solid #1D4ED8!important;padding-left:8px!important;color:#0F1B2D!important;margin-bottom:4px!important;font-size:9pt!important;page-break-after:avoid!important;break-after:avoid!important}
+  .flowLabel .n{background:#1D4ED8!important;color:#fff!important;font-size:7.5pt!important;padding:1px 5px!important;border-radius:3px!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .flowSub{color:#64748B!important;font-size:7.5pt!important;margin-bottom:6px!important;line-height:1.25!important;page-break-after:avoid!important;break-after:avoid!important}
 
   /* ── Metrics / KPIs ─────────────────────────────────────────────── */
-  .metric{background:#f4f7fc!important;border:1px solid #d4dff0!important;border-radius:6px!important;padding:8px!important;color:#0d1b2a!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .metric .label{font-size:7.5pt!important;color:#4a6fa5!important;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-  .metric .value{font-size:14pt!important;font-weight:800;color:#0d1b2a!important}
-  .metric .sub{font-size:7.5pt!important;color:#666!important}
-  .grid2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
-  .grid3{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:8px!important}
-  .grid4{display:grid!important;grid-template-columns:1fr 1fr 1fr 1fr!important;gap:8px!important}
+  .metric{background:#F8FAFC!important;border:1px solid #E2E8F0!important;border-radius:5px!important;padding:6px 8px!important;color:#0F1B2D!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;page-break-inside:avoid!important;break-inside:avoid!important}
+  .metric .label{font-size:6.5pt!important;color:#475569!important;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+  .metric .value{font-size:11pt!important;font-weight:800;color:#0F1B2D!important}
+  .metric .sub{font-size:6.5pt!important;color:#64748B!important}
+  .grid2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:6px!important}
+  .grid3{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:6px!important}
+  .grid4{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:6px!important}
 
   /* ── Health score ring ──────────────────────────────────────────── */
-  .scoreCard{display:flex!important;align-items:center!important;gap:20px!important;padding:10px 14px!important}
+  .scoreCard{display:flex!important;align-items:center!important;gap:16px!important;padding:8px 12px!important;page-break-inside:avoid!important;break-inside:avoid!important}
   .scoreRing{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
   .scoreRing::after{background:#fff!important}
 
   /* ── Section headings ───────────────────────────────────────────── */
-  .sectionHead{border-bottom:1px solid #d4dff0!important;margin-bottom:8px!important;padding-bottom:6px!important}
-  .sectionHead h2{font-size:10pt!important;color:#1a73e8!important;font-weight:800;margin:0}
-  .sectionHead p{font-size:8pt!important;color:#555!important;margin:2px 0 0}
-  h1,h2,h3{page-break-after:avoid!important;color:#0d1b2a!important}
-  h3{font-size:9.5pt!important}
+  .sectionHead{border-bottom:1px solid #E2E8F0!important;margin-bottom:6px!important;padding-bottom:4px!important;page-break-after:avoid!important;break-after:avoid!important}
+  .sectionHead h2{font-size:8.5pt!important;color:#1D4ED8!important;font-weight:800;margin:0!important}
+  .sectionHead p{font-size:7pt!important;color:#64748B!important;margin:1px 0 0!important}
+  h1,h2,h3,h4{page-break-after:avoid!important;break-after:avoid!important;color:#0F1B2D!important}
+  h3{font-size:8.5pt!important}
 
-  /* ── Risk & action rows ─────────────────────────────────────────── */
-  .riskRow,.actionRow{border:1px solid #e4e8ef!important;border-radius:5px!important;margin-bottom:5px!important;padding:6px 8px!important;page-break-inside:avoid!important;background:#fafbfd!important}
-  .rank{background:#e8f0fe!important;color:#1a73e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  /* ── Risk & action rows (atomic: keep intact) ───────────────────── */
+  .riskRow,.actionRow{border:1px solid #E2E8F0!important;border-radius:5px!important;margin-bottom:4px!important;padding:5px 7px!important;page-break-inside:avoid!important;break-inside:avoid!important;background:#F8FAFC!important}
+  .rank{background:#EBF3FE!important;color:#1D4ED8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
   .bar{display:none!important}
 
   /* ── Tags / badges ──────────────────────────────────────────────── */
-  .tag{border:1px solid #888!important;color:#333!important;background:#f0f0f0!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;font-size:7pt!important}
-  .badge{border:1px solid #1a73e8!important;color:#1a73e8!important;font-size:7.5pt!important}
+  .tag{border:1px solid #94A3B8!important;color:#1E293B!important;background:#F1F5F9!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;font-size:6.5pt!important}
+  .badge{border:1px solid #1D4ED8!important;color:#1D4ED8!important;font-size:7pt!important}
 
   /* ── Insights / alerts ──────────────────────────────────────────── */
-  .insight{border-left:4px solid #1a73e8!important;background:#f0f7ff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;border-radius:4px!important;padding:7px 9px!important;margin-bottom:6px!important;page-break-inside:avoid!important}
-  .insight.high,.insight.critical{border-left-color:#c62828!important;background:#fff5f5!important}
-  .insight.positive{border-left-color:#2e7d32!important;background:#f1fdf3!important}
-  .notice{background:#f8faff!important;border:1px solid #33415C!important;padding:7px 9px!important;border-radius:4px!important;font-size:8.5pt!important;color:#333!important}
+  .insight{border-left:3.5px solid #1D4ED8!important;background:#EFF6FF!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;border-radius:4px!important;padding:6px 8px!important;margin-bottom:5px!important;page-break-inside:avoid!important;break-inside:avoid!important}
+  .insight.high,.insight.critical{border-left-color:#DC2626!important;background:#FEF2F2!important}
+  .insight.positive{border-left-color:#16A34A!important;background:#F0FDF4!important}
+  .notice{background:#F8FAFC!important;border:1px solid #CBD5E1!important;padding:6px 8px!important;border-radius:4px!important;font-size:7.5pt!important;color:#334155!important;page-break-inside:avoid!important;break-inside:avoid!important}
 
   /* ── Waterfall chart ────────────────────────────────────────────── */
-  .waterfall{display:flex!important;align-items:flex-end!important;gap:4px!important;height:100px!important;padding:4px 0!important}
+  .waterfall{display:flex!important;align-items:flex-end!important;gap:4px!important;height:80px!important;padding:2px 0!important;page-break-inside:avoid!important;break-inside:avoid!important}
   .wf .col{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .wf .num{font-size:6.5pt!important;color:#333!important}
-  .wf .lab{font-size:6pt!important;color:#444!important}
+  .wf .num{font-size:6pt!important;color:#0F1B2D!important;font-weight:700}
+  .wf .lab{font-size:6pt!important;color:#475569!important;white-space:normal!important;max-height:22px;text-align:center;overflow:hidden;line-height:1.1}
 
   /* ── Tables ─────────────────────────────────────────────────────── */
   .tableWrap{overflow:visible!important}
-  table{border-collapse:collapse!important;width:100%!important;font-size:8pt!important}
-  th{background:#e8f0fe!important;color:#1a73e8!important;font-weight:700;padding:4px 6px!important;border:1px solid #c8d6e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  td{padding:4px 6px!important;border:1px solid #e4e8ef!important}
-  tr:nth-child(even) td{background:#f8faff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-
-  /* ── Page breaks ─────────────────────────────────────────────────  */
-  .flowStep:nth-child(3){page-break-before:always!important}
-  .flowStep:nth-child(6){page-break-before:always!important}
+  table{border-collapse:collapse!important;width:100%!important;font-size:7pt!important}
+  th{background:#F1F5F9!important;color:#1E293B!important;font-weight:700;padding:3px 5px!important;border:1px solid #CBD5E1!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  td{padding:3px 5px!important;border:1px solid #E2E8F0!important}
+  tr{page-break-inside:avoid!important;break-inside:avoid!important}
+  tr:nth-child(even) td{background:#F8FAFC!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
 
   /* ── Misc ────────────────────────────────────────────────────────── */
-  .muted{color:#555!important}
-  .small{font-size:7.5pt!important}
-  a{color:#1a73e8!important;text-decoration:none!important}
-  .scenario{border:1px solid #c8d6e8!important;border-radius:5px!important;padding:8px!important;page-break-inside:avoid!important}
-  .scenario .big{font-size:14pt!important;font-weight:800;color:#1a73e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .custRow,.wf{page-break-inside:avoid!important}
+  .muted{color:#64748B!important}
+  .small{font-size:7pt!important}
+  a{color:#1D4ED8!important;text-decoration:none!important}
+  .scenario{border:1px solid #CBD5E1!important;border-radius:5px!important;padding:6px!important;page-break-inside:avoid!important;break-inside:avoid!important}
+  .scenario .big{font-size:11pt!important;font-weight:800;color:#1D4ED8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .custRow,.wf{page-break-inside:avoid!important;break-inside:avoid!important}
   .hidden{display:none!important}
   #dashboard{display:block!important}
-  .abar{display:none!important}
 }
 
 @view-transition{navigation:auto}
@@ -513,6 +511,121 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </div>
 </section></div>
 
+<!-- SECTION: WORKING CAPITAL LEAK & LOCKED CASH CALCULATOR -->
+<div class="secBlock reveal"><section id="calculator" class="marketingSection hidePrint" style="padding-top:0">
+  <div style="background:linear-gradient(145deg,#FFFFFF 0%,#F8FAFC 100%);border:1.5px solid #CBD5E1;border-radius:24px;box-shadow:0 16px 44px rgba(15,27,45,.07);padding:36px">
+    <div style="text-align:center;max-width:700px;margin:0 auto 28px">
+      <span class="workflowBadge" style="background:#EEF4FF;border-color:#BFDBFE;color:#1D4ED8">⚡ 10 SANİYELİK İNTERAKTİF FİNANSAL TEŞHİS</span>
+      <h2 style="font-family:var(--serif);font-size:30px;margin:10px 0 8px;letter-spacing:-.4px;color:#0F1B2D">Görünmez Kâr Sızıntısı &amp; Kilitli Nakit Hesaplayıcı</h2>
+      <p style="color:var(--muted);font-size:14px;margin:0">Cironuzu ve piyasadaki ortalama tahsilat vadenizi belirleyin; müşterilerde duran sermayenizi ve her yıl faize giden gizli kâr kaybınızı anında görün.</p>
+    </div>
+
+    <div class="grid2" style="gap:28px;align-items:center">
+      <!-- Input Controls -->
+      <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:20px;box-shadow:0 2px 8px rgba(0,0,0,.02)">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:8px">
+            <span style="font-weight:700;color:#0F172A">Yıllık Net Ciro (Satış Hacmi)</span>
+            <b id="leakRevDisplay" style="color:#1D4ED8;font-size:15px;font-family:var(--serif)">₺36.000.000</b>
+          </div>
+          <input id="leakRevSlider" type="range" min="5000000" max="250000000" step="1000000" value="36000000" style="width:100%;cursor:pointer">
+          <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#64748B;margin-top:4px">
+            <span>5M ₺</span><span>100M ₺</span><span>250M ₺</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:8px">
+            <span style="font-weight:700;color:#0F172A">Ortalama Müşteri Vadesi (DSO)</span>
+            <b id="leakDsoDisplay" style="color:#1D4ED8;font-size:15px;font-family:var(--serif)">85 Gün</b>
+          </div>
+          <input id="leakDsoSlider" type="range" min="30" max="150" step="1" value="85" style="width:100%;cursor:pointer">
+          <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#64748B;margin-top:4px">
+            <span>30 Gün (Peşin Ağırlıklı)</span><span>90 Gün (Piyasa Ort.)</span><span>150 Gün (Yüksek Risk)</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#0F172A;margin-bottom:8px">Faaliyet Sektörünüz</div>
+          <select id="leakSectorSelect" class="select" style="width:100%;padding:10px 14px;border-radius:10px;font-size:13px">
+            <option value="0.45" selected>Üretim &amp; Sanayi (Yıllık %45 Kredi/Finansman Faizi)</option>
+            <option value="0.48">Toptan &amp; Ticaret (Yıllık %48 Kredi/Finansman Faizi)</option>
+            <option value="0.42">Hizmet &amp; Bilişim (Yıllık %42 Kredi/Finansman Faizi)</option>
+            <option value="0.50">İnşaat &amp; Taahhüt (Yıllık %50 Kredi/Finansman Faizi)</option>
+            <option value="0.44">Perakende &amp; Mağazacılık (Yıllık %44 Kredi/Finansman Faizi)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Output Display Cards -->
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="background:#FFFFFF;border:1.5px solid #FCA5A5;border-radius:16px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#DC2626">🔒 Müşterilerde Kilitli Kalan Nakit</div>
+            <div style="font-size:11px;color:#64748B;margin-top:2px">Tahsil edilene kadar kasada olmayan sermaye</div>
+          </div>
+          <div id="leakLockedCash" style="font-size:22px;font-weight:900;color:#991B1B;font-family:var(--serif)">₺8.383.562</div>
+        </div>
+
+        <div style="background:#FFFFFF;border:1.5px solid #FCD34D;border-radius:16px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#D97706">💸 Görünmez Yıllık Kâr Kaybı (Finansman Yükü)</div>
+            <div style="font-size:11px;color:#64748B;margin-top:2px">Bu nakdi taşımak için katlanılan faiz/finansman maliyeti</div>
+          </div>
+          <div id="leakAnnualCost" style="font-size:22px;font-weight:900;color:#B45309;font-family:var(--serif)">₺3.772.603</div>
+        </div>
+
+        <div style="background:#FFFFFF;border:1.5px solid #86EFAC;border-radius:16px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#16A34A">🚀 15 Gün Erken Tahsilatın Kasaya Katkısı</div>
+            <div style="font-size:11px;color:#64748B;margin-top:2px">Sadece 15 günlük vade disipliniyle açığa çıkacak nakit</div>
+          </div>
+          <div id="leak15DayImpact" style="font-size:22px;font-weight:900;color:#047857;font-family:var(--serif)">+₺1.479.452</div>
+        </div>
+
+        <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:16px;padding:16px 18px;margin-top:2px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+          <div style="font-size:12.5px;color:#1E3A8A;line-height:1.45;flex:1;min-width:240px">
+            <b>Bu simülasyon bir tahmin değildir.</b> Gerçek mizanınızı yükleyerek 120 alıcı, 320 satıcı ve stok yaşlandırmanızdaki gerçek sızıntıyı kuruşu kuruşuna 60 saniyede görün.
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <a href="/uygulama?sample=data_hub" class="primary" style="padding:10px 16px;border-radius:10px;font-size:12.5px;text-decoration:none;white-space:nowrap">🔥 Canlı Demoda İncele</a>
+            <a href="/uygulama" class="secondary" style="padding:10px 16px;border-radius:10px;font-size:12.5px;text-decoration:none;white-space:nowrap">Kendi Mizanını Tara →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Institutional B2B Trust Pillars -->
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:32px;padding-top:24px;border-top:1px solid #E2E8F0">
+      <div style="text-align:center;padding:10px">
+        <div style="font-size:22px;margin-bottom:6px">🏛️</div>
+        <div style="font-size:11.5px;font-weight:700;color:#0F172A">TCMB &amp; BIST Kıyaslama</div>
+        <div style="font-size:10.5px;color:#64748B;margin-top:3px">500+ halka açık şirket ve sektör medyanlarıyla rasyo analizi</div>
+      </div>
+      <div style="text-align:center;padding:10px">
+        <div style="font-size:22px;margin-bottom:6px">🔗</div>
+        <div style="font-size:11.5px;font-weight:700;color:#0F172A">ERP &amp; Muhasebe Uyumu</div>
+        <div style="font-size:10.5px;color:#64748B;margin-top:3px">Logo, Netsis, Mikro, SAP, Zirve, Luca ve Paraşüt mizanları</div>
+      </div>
+      <div style="text-align:center;padding:10px">
+        <div style="font-size:22px;margin-bottom:6px">🛡️</div>
+        <div style="font-size:11.5px;font-weight:700;color:#0F172A">KVKK &amp; RAM-Only Güvenlik</div>
+        <div style="font-size:10.5px;color:#64748B;margin-top:3px">Kalıcı veri saklanmaz; analiz tamamlanınca RAM'den silinir</div>
+      </div>
+      <div style="text-align:center;padding:10px">
+        <div style="font-size:22px;margin-bottom:6px">⚡</div>
+        <div style="font-size:11.5px;font-weight:700;color:#0F172A">33 Deterministik Karar Motoru</div>
+        <div style="font-size:10.5px;color:#64748B;margin-top:3px">Çift taraflı denetim ve kural tabanlı matematiksel kesinlik</div>
+      </div>
+      <div style="text-align:center;padding:10px">
+        <div style="font-size:22px;margin-bottom:6px">📑</div>
+        <div style="font-size:11.5px;font-weight:700;color:#0F172A">Boardroom Executive PDF</div>
+        <div style="font-size:10.5px;color:#64748B;margin-top:3px">Yönetim Kurulu ve bankalara özel sıkıştırılmış C-Level brifing</div>
+      </div>
+    </div>
+  </div>
+</section></div>
+
 <!-- SECTION: 4-STEP WORKFLOW WITH INTERACTIVE PLAYER -->
 <div class="secBlock tint reveal"><section id="workflow" class="marketingSection hidePrint">
 <div class="marketingHead">
@@ -785,6 +898,44 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
     });
   },{threshold:.3});
   jio.observe(document.getElementById('journey'));
+})();
+(function(){
+  const revSlider = document.getElementById('leakRevSlider');
+  const dsoSlider = document.getElementById('leakDsoSlider');
+  const secSelect = document.getElementById('leakSectorSelect');
+  const revDisplay = document.getElementById('leakRevDisplay');
+  const dsoDisplay = document.getElementById('leakDsoDisplay');
+  const lockedCash = document.getElementById('leakLockedCash');
+  const annualCost = document.getElementById('leakAnnualCost');
+  const d15Impact = document.getElementById('leak15DayImpact');
+
+  if(!revSlider || !dsoSlider || !secSelect) return;
+
+  function fmtTL(num){
+    return '₺' + Math.round(num).toLocaleString('tr-TR');
+  }
+
+  function updateLeakCalc(){
+    const rev = parseFloat(revSlider.value) || 36000000;
+    const dso = parseFloat(dsoSlider.value) || 85;
+    const rate = parseFloat(secSelect.value) || 0.45;
+
+    revDisplay.textContent = fmtTL(rev);
+    dsoDisplay.textContent = dso + ' Gün';
+
+    const locked = (rev / 365) * dso;
+    const cost = locked * rate;
+    const rec15 = (rev / 365) * 15;
+
+    lockedCash.textContent = fmtTL(locked);
+    annualCost.textContent = fmtTL(cost);
+    d15Impact.textContent = '+' + fmtTL(rec15);
+  }
+
+  revSlider.addEventListener('input', updateLeakCalc);
+  dsoSlider.addEventListener('input', updateLeakCalc);
+  secSelect.addEventListener('change', updateLeakCalc);
+  updateLeakCalc();
 })();
 </script>
 </body></html>'''
@@ -2473,98 +2624,96 @@ APP_HTML = r'''<!doctype html>
 @media(max-width:1000px){.hero{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.grid3,.grid2{grid-template-columns:1fr}.wrap{padding:0 15px}.heroTitle{font-size:31px}.flowSub{margin-left:0}.qsel .qrow{grid-template-columns:1fr}}
 @media print{
   *,*::before,*::after{box-sizing:border-box!important}
-  @page{size:A4 portrait;margin:18mm 16mm 18mm 16mm}
-  html,body{background:#fff!important;color:#0d1b2a!important;font-family:'Segoe UI',Arial,sans-serif!important;font-size:10pt!important;line-height:1.45!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  @page{size:A4 portrait;margin:10mm 12mm 10mm 12mm}
+  html,body{background:#fff!important;color:#0F1B2D!important;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif!important;font-size:8.5pt!important;line-height:1.35!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
 
-  /* ── Hide all interactive elements ─────────────────────────────── */
-  .hero,.upload,.hidePrint,.tabs,.tabPanel,.chips,.qsel,.tab,.footer,.heroPreview,.trustBar,.statsStrip,.ctaBanner,
+  /* ── Hide all interactive & website shell elements ─────────────── */
+  .hero,.upload,.hidePrint,.tabs,.tabPanel,.chips,.qsel,.tab,.footer,.siteFooter,
+  header.top,.top,.topNav,.navBtns,.navToggle,#authArea,#authModalOverlay,
+  .loadingOverlay,.dropZone,#criticalPartiesNotice,#methodNote,
+  .heroPreview,.trustBar,.statsStrip,.ctaBanner,
   button,input,select,textarea,.secondary,.primary,
   #sampleBtn,#aiBtn,#printBtn,#jsonBtn,#aiAskBtn,
-  #aiBox,#aiCustomBox,#aiCustomPrompt,#methodNote,
-  .interactiveScenarioCard,#interactiveScenarioCard{display:none!important}
+  #aiBox,#aiCustomBox,#aiCustomPrompt,#historySection,
+  .interactiveScenarioCard,#interactiveScenarioCard,
+  .abar{display:none!important}
 
   /* ── Layout: full-width single column ──────────────────────────── */
-  .wrap{max-width:none!important;padding:0!important;margin:0!important}
-  .top{display:none!important}
+  .wrap{max-width:none!important;padding:0!important;margin:0!important;width:100%!important}
 
-  /* ── Cover Banner ───────────────────────────────────────────────── */
-  #printCover{display:block!important;border-bottom:3px solid #1a73e8;padding-bottom:12px;margin-bottom:20px}
-  #printCover h1{font-size:20pt!important;font-weight:800;color:#0d1b2a;margin:0 0 4px}
-  #printCover .sub{font-size:9pt;color:#4a6fa5}
+  /* ── Boardroom Cover Header ────────────────────────────────────── */
+  #printCover{display:block!important;page-break-after:avoid!important;break-after:avoid!important;margin-bottom:12px}
+  .printExecutiveFooter{display:flex!important;justify-content:space-between;align-items:center;border-top:1px solid #CBD5E1;padding-top:6px;margin-top:14px;font-size:7pt!important;color:#64748B!important;page-break-inside:avoid!important;break-inside:avoid!important}
 
-  /* ── Cards ──────────────────────────────────────────────────────── */
-  .card{box-shadow:none!important;background:#fff!important;border:1px solid #c8d6e8!important;border-radius:6px!important;margin-bottom:10px!important;padding:10px 12px!important;page-break-inside:avoid!important}
-  .heroCard{box-shadow:none!important;background:#fff!important;border:1px solid #c8d6e8!important;padding:10px!important}
+  /* ── Cards & Containers ────────────────────────────────────────── */
+  .card{box-shadow:none!important;background:#fff!important;border:1px solid #CBD5E1!important;border-radius:6px!important;margin-bottom:8px!important;padding:8px 10px!important;page-break-inside:auto!important;break-inside:auto!important}
+  .heroCard{box-shadow:none!important;background:#fff!important;border:1px solid #CBD5E1!important;padding:8px!important}
 
   /* ── Flow steps ─────────────────────────────────────────────────── */
-  .flowStep{margin:14px 0 6px!important;padding-top:4px!important;page-break-inside:avoid!important}
-  .flowLabel{background:none!important;border-left:4px solid #1a73e8!important;padding-left:10px!important;color:#0d1b2a!important;margin-bottom:6px!important}
-  .flowLabel .n{background:#1a73e8!important;color:#fff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .flowSub{color:#555!important;font-size:8.5pt!important;margin-bottom:6px!important}
+  .flowStep{margin:8px 0 4px!important;padding-top:2px!important;page-break-inside:auto!important;break-inside:auto!important}
+  .flowLabel{background:none!important;border-left:3.5px solid #1D4ED8!important;padding-left:8px!important;color:#0F1B2D!important;margin-bottom:4px!important;font-size:9pt!important;page-break-after:avoid!important;break-after:avoid!important}
+  .flowLabel .n{background:#1D4ED8!important;color:#fff!important;font-size:7.5pt!important;padding:1px 5px!important;border-radius:3px!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .flowSub{color:#64748B!important;font-size:7.5pt!important;margin-bottom:6px!important;line-height:1.25!important;page-break-after:avoid!important;break-after:avoid!important}
 
   /* ── Metrics / KPIs ─────────────────────────────────────────────── */
-  .metric{background:#f4f7fc!important;border:1px solid #d4dff0!important;border-radius:6px!important;padding:8px!important;color:#0d1b2a!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .metric .label{font-size:7.5pt!important;color:#4a6fa5!important;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-  .metric .value{font-size:14pt!important;font-weight:800;color:#0d1b2a!important}
-  .metric .sub{font-size:7.5pt!important;color:#666!important}
-  .grid2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
-  .grid3{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:8px!important}
-  .grid4{display:grid!important;grid-template-columns:1fr 1fr 1fr 1fr!important;gap:8px!important}
+  .metric{background:#F8FAFC!important;border:1px solid #E2E8F0!important;border-radius:5px!important;padding:6px 8px!important;color:#0F1B2D!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;page-break-inside:avoid!important;break-inside:avoid!important}
+  .metric .label{font-size:6.5pt!important;color:#475569!important;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+  .metric .value{font-size:11pt!important;font-weight:800;color:#0F1B2D!important}
+  .metric .sub{font-size:6.5pt!important;color:#64748B!important}
+  .grid2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:6px!important}
+  .grid3{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:6px!important}
+  .grid4{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:6px!important}
 
   /* ── Health score ring ──────────────────────────────────────────── */
-  .scoreCard{display:flex!important;align-items:center!important;gap:20px!important;padding:10px 14px!important}
+  .scoreCard{display:flex!important;align-items:center!important;gap:16px!important;padding:8px 12px!important;page-break-inside:avoid!important;break-inside:avoid!important}
   .scoreRing{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
   .scoreRing::after{background:#fff!important}
 
   /* ── Section headings ───────────────────────────────────────────── */
-  .sectionHead{border-bottom:1px solid #d4dff0!important;margin-bottom:8px!important;padding-bottom:6px!important}
-  .sectionHead h2{font-size:10pt!important;color:#1a73e8!important;font-weight:800;margin:0}
-  .sectionHead p{font-size:8pt!important;color:#555!important;margin:2px 0 0}
-  h1,h2,h3{page-break-after:avoid!important;color:#0d1b2a!important}
-  h3{font-size:9.5pt!important}
+  .sectionHead{border-bottom:1px solid #E2E8F0!important;margin-bottom:6px!important;padding-bottom:4px!important;page-break-after:avoid!important;break-after:avoid!important}
+  .sectionHead h2{font-size:8.5pt!important;color:#1D4ED8!important;font-weight:800;margin:0!important}
+  .sectionHead p{font-size:7pt!important;color:#64748B!important;margin:1px 0 0!important}
+  h1,h2,h3,h4{page-break-after:avoid!important;break-after:avoid!important;color:#0F1B2D!important}
+  h3{font-size:8.5pt!important}
 
-  /* ── Risk & action rows ─────────────────────────────────────────── */
-  .riskRow,.actionRow{border:1px solid #e4e8ef!important;border-radius:5px!important;margin-bottom:5px!important;padding:6px 8px!important;page-break-inside:avoid!important;background:#fafbfd!important}
-  .rank{background:#e8f0fe!important;color:#1a73e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  /* ── Risk & action rows (atomic: keep intact) ───────────────────── */
+  .riskRow,.actionRow{border:1px solid #E2E8F0!important;border-radius:5px!important;margin-bottom:4px!important;padding:5px 7px!important;page-break-inside:avoid!important;break-inside:avoid!important;background:#F8FAFC!important}
+  .rank{background:#EBF3FE!important;color:#1D4ED8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
   .bar{display:none!important}
 
   /* ── Tags / badges ──────────────────────────────────────────────── */
-  .tag{border:1px solid #888!important;color:#333!important;background:#f0f0f0!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;font-size:7pt!important}
-  .badge{border:1px solid #1a73e8!important;color:#1a73e8!important;font-size:7.5pt!important}
+  .tag{border:1px solid #94A3B8!important;color:#1E293B!important;background:#F1F5F9!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;font-size:6.5pt!important}
+  .badge{border:1px solid #1D4ED8!important;color:#1D4ED8!important;font-size:7pt!important}
 
   /* ── Insights / alerts ──────────────────────────────────────────── */
-  .insight{border-left:4px solid #1a73e8!important;background:#f0f7ff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;border-radius:4px!important;padding:7px 9px!important;margin-bottom:6px!important;page-break-inside:avoid!important}
-  .insight.high,.insight.critical{border-left-color:#c62828!important;background:#fff5f5!important}
-  .insight.positive{border-left-color:#2e7d32!important;background:#f1fdf3!important}
-  .notice{background:#f8faff!important;border:1px solid #33415C!important;padding:7px 9px!important;border-radius:4px!important;font-size:8.5pt!important;color:#333!important}
+  .insight{border-left:3.5px solid #1D4ED8!important;background:#EFF6FF!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;border-radius:4px!important;padding:6px 8px!important;margin-bottom:5px!important;page-break-inside:avoid!important;break-inside:avoid!important}
+  .insight.high,.insight.critical{border-left-color:#DC2626!important;background:#FEF2F2!important}
+  .insight.positive{border-left-color:#16A34A!important;background:#F0FDF4!important}
+  .notice{background:#F8FAFC!important;border:1px solid #CBD5E1!important;padding:6px 8px!important;border-radius:4px!important;font-size:7.5pt!important;color:#334155!important;page-break-inside:avoid!important;break-inside:avoid!important}
 
   /* ── Waterfall chart ────────────────────────────────────────────── */
-  .waterfall{display:flex!important;align-items:flex-end!important;gap:4px!important;height:100px!important;padding:4px 0!important}
+  .waterfall{display:flex!important;align-items:flex-end!important;gap:4px!important;height:80px!important;padding:2px 0!important;page-break-inside:avoid!important;break-inside:avoid!important}
   .wf .col{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .wf .num{font-size:6.5pt!important;color:#333!important}
-  .wf .lab{font-size:6pt!important;color:#444!important}
+  .wf .num{font-size:6pt!important;color:#0F1B2D!important;font-weight:700}
+  .wf .lab{font-size:6pt!important;color:#475569!important;white-space:normal!important;max-height:22px;text-align:center;overflow:hidden;line-height:1.1}
 
   /* ── Tables ─────────────────────────────────────────────────────── */
   .tableWrap{overflow:visible!important}
-  table{border-collapse:collapse!important;width:100%!important;font-size:8pt!important}
-  th{background:#e8f0fe!important;color:#1a73e8!important;font-weight:700;padding:4px 6px!important;border:1px solid #c8d6e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  td{padding:4px 6px!important;border:1px solid #e4e8ef!important}
-  tr:nth-child(even) td{background:#f8faff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-
-  /* ── Page breaks ─────────────────────────────────────────────────  */
-  .flowStep:nth-child(3){page-break-before:always!important}
-  .flowStep:nth-child(6){page-break-before:always!important}
+  table{border-collapse:collapse!important;width:100%!important;font-size:7pt!important}
+  th{background:#F1F5F9!important;color:#1E293B!important;font-weight:700;padding:3px 5px!important;border:1px solid #CBD5E1!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  td{padding:3px 5px!important;border:1px solid #E2E8F0!important}
+  tr{page-break-inside:avoid!important;break-inside:avoid!important}
+  tr:nth-child(even) td{background:#F8FAFC!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
 
   /* ── Misc ────────────────────────────────────────────────────────── */
-  .muted{color:#555!important}
-  .small{font-size:7.5pt!important}
-  a{color:#1a73e8!important;text-decoration:none!important}
-  .scenario{border:1px solid #c8d6e8!important;border-radius:5px!important;padding:8px!important;page-break-inside:avoid!important}
-  .scenario .big{font-size:14pt!important;font-weight:800;color:#1a73e8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .custRow,.wf{page-break-inside:avoid!important}
+  .muted{color:#64748B!important}
+  .small{font-size:7pt!important}
+  a{color:#1D4ED8!important;text-decoration:none!important}
+  .scenario{border:1px solid #CBD5E1!important;border-radius:5px!important;padding:6px!important;page-break-inside:avoid!important;break-inside:avoid!important}
+  .scenario .big{font-size:11pt!important;font-weight:800;color:#1D4ED8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .custRow,.wf{page-break-inside:avoid!important;break-inside:avoid!important}
   .hidden{display:none!important}
   #dashboard{display:block!important}
-  .abar{display:none!important}
 }
 
 @view-transition{navigation:auto}
@@ -2897,7 +3046,18 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     <div id="historyCompareResult" style="margin-top:16px"></div>
   </div>
 </div></section>
-<div id="printCover" style="display:none"><h1>Digital Finance Business Partner</h1><div class="sub">Yönetim Kurulu Brifingi — Finansal Analiz Raporu &nbsp;|&nbsp; <span id="printDate"></span></div></div>
+<div id="printCover" style="display:none">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #1D4ED8;padding-bottom:6px;margin-bottom:12px">
+    <div>
+      <div style="font-size:16pt;font-weight:800;color:#0F1B2D;letter-spacing:-0.5px">Digital Finance Business Partner</div>
+      <div style="font-size:8.5pt;color:#1D4ED8;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px">Yönetim Kurulu &amp; İcra Heyeti Finansal Karar Brifingi</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:8pt;color:#64748B">Rapor Tarihi: <b id="printDate" style="color:#0F1B2D"></b></div>
+      <div style="font-size:7.5pt;color:#DC2626;font-weight:700;margin-top:1px">GİZLİ &bull; ŞİRKET YÖNETİMİNE ÖZEL</div>
+    </div>
+  </div>
+</div>
 <div id="dashboard" class="hidden">
 
 <section class="flowStep"><div class="flowLabel"><span class="n">1</span>What — Finansal Gerçekler<p>Şirkette gerçekte ne oldu</p></div><div class="flowSub">Yorum yok, sadece doğrulanmış rakamlar: kâr köprüsü, kâr kalitesi, borç/likidite yapısı ve nakit köprüsü.</div>
@@ -2953,8 +3113,10 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <section class="flowStep"><div class="flowLabel alt"><span class="n">+</span>Ek B — Trend, İzlenebilirlik & Kaynak Tablolar<p>Çok dönem yüklendiğinde hareketi gösterir; her sayı kaynağına izlenebilir</p></div>
 <div class="card"><div id="trendBlock"></div><div id="trace" class="tableWrap" style="margin-top:15px"></div></div>
 <div class="card" style="margin-top:16px"><div class="sectionHead"><div><h2>Mali Tablolar (3-Statement Financial Core)</h2><p>Hesaplanan Gelir Tablosu (P&amp;L), Bilanço (Balance Sheet) ve Nakit Akış Tablosu (Cash Flow Statement)</p></div></div><div class="grid3"><div id="plTable" class="tableWrap"></div><div id="bsTable" class="tableWrap"></div><div id="cfTable" class="tableWrap"></div></div></div>
-</section>
-
+<div id="printExecutiveNotice" class="printExecutiveFooter" style="display:none">
+  <span>Digital Finance Business Partner &bull; Deterministik Finans Karar Motoru &bull; Gizli &amp; Şirket Yönetimine Özel Brifing</span>
+  <span>Stratejik Rapor Sonu</span>
+</div>
 </main><div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • deterministic finance layer + optional Gemini interpretation • Financial facts are calculated before AI interpretation.<br><span style="opacity:.85">Bu rapor otomatik/deterministik hesaplamalara ve (etkinleştirildiyse) yapay zekâ yorumuna dayanır; muhasebe, denetim, vergi, hukuki veya yatırım tavsiyesi değildir ve resmi mali tablo/beyanname yerine geçmez. Nihai kararlar için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca bu analizi üretmek için işlenir; sunucu tarafında kalıcı olarak saklanmaz. KVKK kapsamındaki veri işleme hakkında bilgi için [Aydınlatma Metni] bağlantısını inceleyin.</span></div></div></div>
 <script>
 document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('mainNav')?.classList.toggle('open'));
@@ -3263,7 +3425,14 @@ function render(d){
   $('profitQuality').innerHTML='<div class="grid2">'+metric('Gross Margin',pct(pq.gross_margin_pct),'')+metric('Operating Margin',pct(pq.operating_margin_pct),'')+metric('Net Margin',pct(pq.net_margin_pct),'')+metric('Finance Cost / Operating Profit',pct(pq.finance_cost_to_operating_profit_pct),'')+'</div>';
   $('profitabilityCommentary').innerHTML=profitabilityNarrative(pl,pq);
   const bm=bp.benchmarking||{};
-  const instRef=bm.institutional_reference||'TCMB Sektör Bilançoları & Borsa İstanbul (BIST) Sektörel Medyan Finansal Rasyoları';
+  let instRef='TCMB Sektör Bilançoları & Borsa İstanbul (BIST) Sektörel Medyan Finansal Rasyoları';
+  if(bm.institutional_reference){
+    if(typeof bm.institutional_reference==='object'){
+      instRef=(bm.institutional_reference.primary_source||'TCMB Sektör Bilançoları')+(bm.institutional_reference.secondary_source?' & '+bm.institutional_reference.secondary_source:'');
+    }else if(typeof bm.institutional_reference==='string'){
+      instRef=bm.institutional_reference;
+    }
+  }
   $('benchmark').innerHTML='<div class="insight positive" style="margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">'
     +'<div><b>🏛️ Kurumsal Kıyaslama Kaynağı:</b> <span class="muted">'+esc(instRef)+'</span></div>'
     +'<div class="small">Sektör: <b>'+esc(bm.sector||'Genel')+'</b> · Konum: <span class="tag '+(bm.overall_score>=70?'positive':bm.overall_score>=50?'medium':'critical')+'">'+esc(bm.overall_label)+' ('+esc(bm.overall_score)+'/100)</span></div>'
@@ -3654,15 +3823,26 @@ $('sampleHubBtn').onclick=()=>runDataHubSample();
 
 function goToTrendTab(){if($('trendTabBtn')) $('trendTabBtn').click();window.scrollTo({top:0,behavior:'smooth'})}
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tabPanel').forEach(x=>x.classList.remove('active'));t.classList.add('active');$(t.dataset.tab).classList.add('active')});
-$('printBtn').onclick=()=>{
+function prepPrint(){
   const cov=$('printCover');
   const pd=$('printDate');
-  if(cov&&pd){
-    pd.textContent=new Date().toLocaleDateString('tr-TR',{year:'numeric',month:'long',day:'numeric'});
-    cov.style.display='';
-  }
-  window.print();
+  const pft=$('printExecutiveNotice');
+  if(pd) pd.textContent=new Date().toLocaleDateString('tr-TR',{year:'numeric',month:'long',day:'numeric'});
+  if(cov) cov.style.display='';
+  if(pft) pft.style.display='';
+}
+function cleanupPrint(){
+  const cov=$('printCover');
+  const pft=$('printExecutiveNotice');
   if(cov) cov.style.display='none';
+  if(pft) pft.style.display='none';
+}
+window.addEventListener('beforeprint',prepPrint);
+window.addEventListener('afterprint',cleanupPrint);
+$('printBtn').onclick=()=>{
+  prepPrint();
+  window.print();
+  cleanupPrint();
 };
 $('jsonBtn').onclick=()=>{if(!LAST)return;const blob=new Blob([JSON.stringify(LAST,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='finance_bp_analysis.json';a.click();URL.revokeObjectURL(a.href)};
 function formatAi(v){if(v==null)return '';if(typeof v==='string')return esc(v);if(typeof v==='object'){if(v.title&&v.description)return '<b>'+esc(v.title)+':</b> '+esc(v.description);if(v.risk&&v.impact)return '<b>'+esc(v.risk)+':</b> '+esc(v.impact);if(v.action&&v.kpi)return '<b>'+esc(v.action)+'</b> (KPI: '+esc(v.kpi)+')';return esc(Object.values(v).map(x=>typeof x==='object'?JSON.stringify(x):x).join(' — '));}return esc(String(v));}
