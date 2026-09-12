@@ -2580,10 +2580,41 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 .secCard .scIco{width:38px;height:38px;border-radius:10px;background:#EAF0FF;color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:13px}
 .secCard h3{margin:0 0 7px;font-size:15px}
 .secCard p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.6}
-@media(max-width:860px){.secGrid{grid-template-columns:1fr}}
+/* ---- Institutional Loading Overlay & Dropzone ---- */
+.loadingOverlay{position:fixed;inset:0;background:rgba(15,27,45,0.78);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:99999;transition:opacity .25s ease}
+.loadingOverlay.hidden{display:none;opacity:0}
+.loadingCard{background:#FFFFFF;border-radius:22px;padding:36px 32px;max-width:460px;width:92%;text-align:center;box-shadow:0 30px 70px rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.25);position:relative}
+.loadingSpinner{width:50px;height:50px;border:4px solid #E2E8F0;border-top-color:var(--accent);border-radius:50%;margin:0 auto 18px;animation:dfbpSpin .8s linear infinite}
+@keyframes dfbpSpin{to{transform:rotate(360deg)}}
+.loadingCard h3{font-size:19px;margin:0 0 6px;color:#0F1B2D;font-family:var(--serif)}
+.loadingCard p{font-size:13px;color:var(--muted);margin:0 0 18px;line-height:1.5}
+.loadingTrack{height:8px;background:#E4E8EF;border-radius:99px;overflow:hidden;margin-bottom:14px}
+.loadingBar{height:100%;width:20%;background:linear-gradient(90deg,var(--accent),#38BDF8);border-radius:99px;transition:width .4s ease}
+.loadingStepTxt{font-size:12px;color:#1E3A8A;font-weight:700;background:#EFF6FF;border:1px solid #DBEAFE;padding:6px 14px;border-radius:999px;display:inline-block}
+
+.dropZone{border:2px dashed #BFDBFE;background:linear-gradient(180deg,#F8FAFF 0%,#EEF4FF 100%);border-radius:16px;padding:24px 18px;text-align:center;cursor:pointer;transition:all .2s ease;margin-bottom:12px}
+.dropZone:hover,.dropZone.dragover{border-color:var(--accent);background:#EBF2FF;transform:scale(1.005)}
+.dropIco{color:var(--accent);margin-bottom:8px}
+.dropText strong{display:block;font-size:14px;color:#0F1B2D;margin-bottom:4px}
+.dropText span{font-size:12px;color:var(--muted)}
+.selectedFilesList{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.filePill{display:inline-flex;align-items:center;gap:8px;background:#FFFFFF;border:1px solid #CBD5E1;border-radius:999px;padding:6px 14px;font-size:12px;color:#1E293B;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
+.filePill b{color:var(--accent)}
+.filePill .pillDel{cursor:pointer;color:#94A3B8;font-weight:bold;font-size:15px;margin-left:4px}
+.filePill .pillDel:hover{color:#EF4444}
+.btnReady{background:linear-gradient(135deg,#1D4ED8 0%,#2563EB 50%,#0284C7 100%) !important;box-shadow:0 4px 18px rgba(37,99,235,0.4) !important;transform:scale(1.01)}
 
 </style></head>
 <body>
+<div id="loadingOverlay" class="loadingOverlay hidden">
+  <div class="loadingCard">
+    <div class="loadingSpinner"></div>
+    <h3 id="loadingTitle">Finansal Veriler İşleniyor</h3>
+    <p id="loadingSubtitle">33 Deterministik Motor Çalıştırılıyor...</p>
+    <div class="loadingTrack"><div id="loadingBar" class="loadingBar"></div></div>
+    <div id="loadingStepTxt" class="loadingStepTxt">Hesap planı ve bakiyeler denetleniyor...</div>
+  </div>
+</div>
 <header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/paketler">Paketler</a><a href="/hakkimizda">Hakkımızda</a><a href="/iletisim">İletişim</a><a href="/uygulama" class="active">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="secondary">Kayıt Ol</button></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header><div id="authModalOverlay" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.55);display:flex;align-items:center;justify-content:center;z-index:100">
   <div class="card" style="padding:26px;max-width:380px;width:92%">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><h3 id="authModalTitle" style="margin:0">Giriş Yap</h3><button id="authModalClose" class="secondary" style="padding:4px 10px">✕</button></div>
@@ -2605,7 +2636,57 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <div class="item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg>33 analiz motoru, tek WHAT→WHY→NOW WHAT akışı</div>
 </div>
 
-<div class="tabs"><button class="tab active" data-tab="single">Tek dönem</button><button class="tab" data-tab="trend" id="trendTabBtn">Çok dönem / Trend</button><button class="tab" data-tab="datahub" id="hubTabBtn">Data Hub / Çoklu Veri</button></div><div id="single" class="tabPanel active"><input id="file" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm" multiple><select id="sector" class="select"><option value="">Genel Sektör</option></select><button id="analyze" class="primary">Analizi çalıştır</button></div><div id="trend" class="tabPanel"><input id="trendFiles" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm" multiple><select id="trendSector" class="select"><option value="">Genel Sektör</option></select><button id="analyzeTrend" class="primary">Trend analizi</button><span class="small muted">Dosyaları eski → yeni sırayla seç.</span></div><div id="datahub" class="tabPanel"><input id="hubFiles" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm" multiple><select id="hubSector" class="select"><option value="">Genel Sektör</option></select><button id="analyzeHub" class="primary">Tüm verileri analiz et</button><span class="small muted">Mizanı ekleyin; satış, AR/AP, stok dosyalarını tek tek veya birlikte yükleyin.</span></div><div id="error" class="error hidden"></div></div><div class="heroCard scoreCard"><div id="scoreRing" class="scoreRing" style="--score:0"><div class="scoreNum"><strong id="score">-</strong><span>Financial Health</span></div></div><div id="healthLabel" class="status">Dosya bekleniyor</div>
+<div class="tabs"><button class="tab active" data-tab="single">Tek Dönem Mizan</button><button class="tab" data-tab="trend" id="trendTabBtn">Çok Dönem / Trend</button><button class="tab" data-tab="datahub" id="hubTabBtn">Data Hub / Çoklu Veri</button></div>
+<div id="single" class="tabPanel active">
+  <div class="dropZone" id="dropZoneSingle">
+    <div class="dropIco"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+    <div class="dropText">
+      <strong>Mizan Dosyanızı Buraya Sürükleyin</strong>
+      <span>veya bilgisayarınızdan seçin (.xlsx, .xls, .csv)</span>
+    </div>
+    <button type="button" class="secondary" style="margin-top:8px;padding:7px 16px;font-size:12.5px;pointer-events:none">📁 Dosya Seç</button>
+  </div>
+  <input id="file" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm" multiple style="display:none">
+  <div id="fileListSingle" class="selectedFilesList"></div>
+  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px">
+    <select id="sector" class="select"><option value="">Genel Sektör</option></select>
+    <button id="analyze" class="primary" style="padding:13px 24px;font-size:14px;border-radius:12px;font-weight:700">🚀 Analizi Çalıştır (33 Motor)</button>
+  </div>
+</div>
+<div id="trend" class="tabPanel">
+  <div class="dropZone" id="dropZoneTrend">
+    <div class="dropIco"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg></div>
+    <div class="dropText">
+      <strong>En Az 2 Dönemlik Mizan Dosyası Sürükleyin</strong>
+      <span>Eski → yeni sırayla karşılaştırılacak (.xlsx, .xls, .csv)</span>
+    </div>
+    <button type="button" class="secondary" style="margin-top:8px;padding:7px 16px;font-size:12.5px;pointer-events:none">📁 2 Dosya Seç</button>
+  </div>
+  <input id="trendFiles" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm" multiple style="display:none">
+  <div id="fileListTrend" class="selectedFilesList"></div>
+  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px">
+    <select id="trendSector" class="select"><option value="">Genel Sektör</option></select>
+    <button id="analyzeTrend" class="primary" style="padding:13px 24px;font-size:14px;border-radius:12px;font-weight:700">🚀 Trend Analizini Başlat (2 Dönem)</button>
+  </div>
+</div>
+<div id="datahub" class="tabPanel">
+  <div class="dropZone" id="dropZoneHub">
+    <div class="dropIco"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+    <div class="dropText">
+      <strong>Mizan + Satış + AR/AP Yaşlandırma + Stok Dosyalarını Yükleyin</strong>
+      <span>Tüm operasyonel defterleri bir arada analiz edin (.xlsx, .xls, .csv)</span>
+    </div>
+    <button type="button" class="secondary" style="margin-top:8px;padding:7px 16px;font-size:12.5px;pointer-events:none">📁 Çoklu Dosya Seç</button>
+  </div>
+  <input id="hubFiles" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm" multiple style="display:none">
+  <div id="fileListHub" class="selectedFilesList"></div>
+  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px">
+    <select id="hubSector" class="select"><option value="">Genel Sektör</option></select>
+    <button id="analyzeHub" class="primary" style="padding:13px 24px;font-size:14px;border-radius:12px;font-weight:700">🚀 Tüm Verileri Analiz Et (Data Hub)</button>
+  </div>
+</div>
+<div id="error" class="error hidden"></div>
+</div><div class="heroCard scoreCard"><div id="scoreRing" class="scoreRing" style="--score:0"><div class="scoreNum"><strong id="score">-</strong><span>Financial Health</span></div></div><div id="healthLabel" class="status">Dosya bekleniyor</div>
 <div id="topFocusCard" class="hidden hidePrint" style="margin-top:14px;border-top:1px solid rgba(15,27,45,.10);padding-top:10px;text-align:left"><div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Öncelikli Odak Konuları</div><div id="topFocusList" style="display:flex;flex-direction:column;gap:6px"></div></div>
 <div id="pvPreview" class="hidePrint" style="margin-top:18px;padding-top:16px;border-top:1px solid rgba(15,27,45,.10);text-align:left">
   <div class="pvLabel"><span><span class="dot"></span>Örnek Rapor Görünümü</span><span>canlı motor</span></div>
@@ -2756,6 +2837,39 @@ function metric(label,value,sub){return '<div class="metric"><div class="label">
 function setRing(v){$('scoreRing').style.setProperty('--score',Math.max(0,Math.min(100,v||0)));$('score').textContent=v==null?'–':Math.round(v)}
 function waterfall(elId,rows){const max=Math.max(...rows.map(x=>Math.abs(x[1]||0)),1);$(elId).innerHTML=rows.map(r=>'<div class="wf '+(r[2]?'neg':'')+'"><div class="num">'+money(r[1]).replace(' TL','')+'</div><div class="col" style="height:'+Math.max(4,Math.abs(r[1]||0)/max*135)+'px"></div><div class="lab">'+esc(r[0])+'</div></div>').join('')}
 
+let _loadTimer = null;
+function startLoading(title, subtitle){
+  const ol = $('loadingOverlay');
+  if(!ol) return;
+  if($('loadingTitle')) $('loadingTitle').textContent = title || 'Finansal Veriler Analiz Ediliyor';
+  if($('loadingSubtitle')) $('loadingSubtitle').textContent = subtitle || '33 Deterministik Motor Çalıştırılıyor...';
+  if($('loadingBar')) $('loadingBar').style.width = '15%';
+  const steps = [
+    '1/4 · Dosya formatı ve Tek Düzen Hesap Planı doğrulanıyor...',
+    '2/4 · Likidite, borçluluk ve kâr kalitesi hesaplanıyor...',
+    '3/4 · Nakit köprüsü (Cash Bridge) ve PVM ayrıştırılıyor...',
+    '4/4 · Kök nedenler, öncelikli riskler ve aksiyonlar üretiliyor...'
+  ];
+  let idx = 0;
+  if($('loadingStepTxt')) $('loadingStepTxt').textContent = steps[0];
+  ol.classList.remove('hidden');
+  clearInterval(_loadTimer);
+  _loadTimer = setInterval(()=>{
+    idx++;
+    if(idx < steps.length){
+      if($('loadingStepTxt')) $('loadingStepTxt').textContent = steps[idx];
+      if($('loadingBar')) $('loadingBar').style.width = ((idx+1)*23) + '%';
+    }
+  }, 450);
+}
+function stopLoading(){
+  clearInterval(_loadTimer);
+  if($('loadingBar')) $('loadingBar').style.width = '100%';
+  setTimeout(()=>{
+    const ol = $('loadingOverlay');
+    if(ol) ol.classList.add('hidden');
+  }, 200);
+}
 
 function findingsByCategory(findings,cats){return (findings||[]).filter(f=>cats.includes(f.category))}
 
@@ -3092,67 +3206,224 @@ function renderHub(ms){
   if(an.product_profitability) renderProductProfitability(an.product_profitability);
   $('criticalCustomersCard').innerHTML=criticalCustomersPanel(an.ar_aging);
   $('criticalSuppliersCard').innerHTML=criticalSuppliersPanel(an.ap_aging);
-  // Sales Intelligence trimmed to what actually informs a decision: pricing
-  // policy (term premium) and product mix. Customer-level detail now lives
-  // in the Kritik Müşteriler panel above, driven by the aging engine instead
-  // of restating outstanding/paid totals that AR Aging already shows.
-  const sales = an.sales || {};
+  // Sales Intelligence
   $('salesIntel').innerHTML='<div class="sectionHead"><div><h2>Sales Intelligence</h2><p>Vade fiyatlaması ve ürün karması</p></div></div>'+(an.sales?'<div class="grid2">'+metric('Vade Primi',pct(sales.term_premium_pct),'Peşin → vadeli fark')+metric('İlk 10 Müşteri Payı',pct(sales.top_10_customer_share_pct),'Concentration')+'</div>'+((sales.product_mix||[]).length?'<div class="insight" style="margin-top:10px"><b>Ürün karması</b><p>'+sales.product_mix.slice(0,7).map(v=>esc(v.name)+': '+money(v.sales)+' ('+pct(v.share_pct)+')').join(' · ')+'</p></div>':'')+(sales.term_premium_pct>15?'<div class="insight high" style="margin-top:10px"><b>Vadeli satış fiyatı peşin fiyattan belirgin yüksek</b><p>Vade primi %'+num(sales.term_premium_pct)+'; finansman maliyeti ve tahsilat riski fiyatlamaya yansıtılıyor mu kontrol edilmeli.</p></div>':''):'<div class="notice">Sales datası yüklenmedi.</div>');
   $('arApIntel').innerHTML='<div class="sectionHead"><div><h2>AR / AP Intelligence</h2><p>Aging, risk yoğunlaşması ve tahsilat/ödeme riski</p></div></div>'+agingBlock('AR','DSO',an.ar_aging)+agingBlock('AP','DPO',an.ap_aging);
   const inv = an.inventory || an.inventory_aging || {};
   const hasInv = !!(an.inventory || an.inventory_aging);
   $('inventoryIntel').innerHTML='<div class="sectionHead"><div><h2>Inventory Intelligence</h2><p>Stok değeri, yaşlanma ve nakit kilitleme sinyalleri</p></div></div>'+(hasInv?'<div class="grid4">'+metric('Inventory Value',money(inv.value),'Stok Defteri')+metric('SKU Sayısı',inv.sku_count??'–','Toplam Kalem')+metric('DIO',inv.dio_days==null?'–':num(inv.dio_days)+' gün','Ortalama Satış Süresi')+metric('180+ Gün Stok',money(inv.stale_180_amount),'Nakit Kilitleyen')+ '</div>'+(inv.findings||[]).map(f=>'<div class="insight '+esc(f.severity)+'" style="margin-top:10px"><b>'+esc(f.title)+'</b><p>'+esc(f.detail)+'</p></div>').join(''):'<div class="notice">Inventory datası yüklenmedi.</div>');
 }
-async function run(url,fd,kind='single'){$('error').classList.add('hidden');$('analyze').disabled=true;$('analyzeTrend').disabled=true;$('analyzeHub').disabled=true;try{const r=await fetch(url,{method:'POST',body:fd});const d=await r.json();if(!r.ok)throw new Error(d.detail||'Analiz başarısız');render(d);if(kind==='hub')renderHub(d.data_hub)}catch(e){$('error').textContent=e.message;$('error').classList.remove('hidden')}finally{$('analyze').disabled=false;$('analyzeTrend').disabled=false;$('analyzeHub').disabled=false}}
-$('analyze').onclick=()=>{const fs=[...$('file').files];if(!fs.length){$('error').textContent='Önce en az bir dosya seç.';$('error').classList.remove('hidden');return}const fd=new FormData();if(fs.length===1){fd.append('file',fs[0]);if($('sector').value)fd.append('sector',$('sector').value);run('/api/mizan/analyze',fd)}else{fs.forEach(f=>fd.append('files',f));if($('sector').value)fd.append('sector',$('sector').value);run('/api/data-hub/analyze',fd,'hub')}};
+
+// ---------------------------------------------------------------------
+// Core Analysis Engine Runner with Institutional Progress & Auto-Scroll
+// ---------------------------------------------------------------------
+async function run(url,fd,kind='single'){
+  $('error').classList.add('hidden');
+  startLoading(
+    kind==='hub'?'Data Hub Analizi Çalıştırılıyor':'Finansal Veriler Analiz Ediliyor',
+    '33 Bağımsız Deterministik Motor Çalıştırılıyor (Hesap Doğrulama, Likidite, Cash Bridge, DuPont)...'
+  );
+  $('analyze').disabled=true;$('analyzeTrend').disabled=true;$('analyzeHub').disabled=true;
+  try{
+    const r=await fetch(url,{method:'POST',body:fd});
+    const d=await r.json();
+    if(!r.ok) throw new Error(d.detail||'Analiz başarısız oldu.');
+    render(d);
+    if(kind==='hub') renderHub(d.data_hub);
+    stopLoading();
+    setTimeout(()=>{
+      const dash=$('dashboard');
+      if(dash){
+        dash.classList.remove('hidden');
+        dash.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    },120);
+  }catch(e){
+    stopLoading();
+    $('error').textContent='Analiz Hatası: ' + e.message;
+    $('error').classList.remove('hidden');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }finally{
+    $('analyze').disabled=false;$('analyzeTrend').disabled=false;$('analyzeHub').disabled=false;
+  }
+}
+
+// ---------------------------------------------------------------------
+// Modern File Drag & Drop & Visual Feedback
+// ---------------------------------------------------------------------
+function formatBytes(bytes){
+  if(!bytes) return '0 B';
+  const k=1024, sizes=['B','KB','MB','GB'];
+  const i=Math.floor(Math.log(bytes)/Math.log(k));
+  return parseFloat((bytes/Math.pow(k,i)).toFixed(1))+' '+sizes[i];
+}
+
+function updateFileList(inputEl, listEl, btnEl, defaultBtnText){
+  const files = [...inputEl.files];
+  if(!files.length){
+    listEl.innerHTML = '';
+    btnEl.textContent = defaultBtnText;
+    btnEl.classList.remove('btnReady');
+    return;
+  }
+  btnEl.classList.add('btnReady');
+  if(files.length === 1){
+    btnEl.textContent = '🚀 1 Dosyayı Analiz Et (33 Motor Hazır)';
+  } else {
+    btnEl.textContent = '🚀 ' + files.length + ' Dosyayı Birlikte Analiz Et (33 Motor)';
+  }
+  listEl.innerHTML = files.map((f, i) => 
+    '<div class="filePill"><b>📄 ' + esc(f.name) + '</b> <span class="muted">(' + formatBytes(f.size) + ')</span>' +
+    '<span class="pillDel" title="Kaldır" onclick="clearFileSelection(\''+inputEl.id+'\','+i+')">×</span></div>'
+  ).join('');
+}
+
+window.clearFileSelection = function(inputId, index){
+  const inp = $(inputId);
+  if(!inp) return;
+  const dt = new DataTransfer();
+  const files = [...inp.files];
+  files.forEach((f, i) => { if(i !== index) dt.items.add(f); });
+  inp.files = dt.files;
+  if(inputId === 'file') updateFileList($('file'), $('fileListSingle'), $('analyze'), '🚀 Analizi Çalıştır (33 Motor)');
+  if(inputId === 'trendFiles') updateFileList($('trendFiles'), $('fileListTrend'), $('analyzeTrend'), '🚀 Trend Analizini Başlat (2 Dönem)');
+  if(inputId === 'hubFiles') updateFileList($('hubFiles'), $('fileListHub'), $('analyzeHub'), '🚀 Tüm Verileri Analiz Et (Data Hub)');
+};
+
+function setupDropZone(dropZoneId, inputId, listId, btnId, defaultBtnText){
+  const dz = $(dropZoneId);
+  const inp = $(inputId);
+  const list = $(listId);
+  const btn = $(btnId);
+  if(!dz || !inp) return;
+
+  dz.onclick = () => inp.click();
+  inp.onchange = () => updateFileList(inp, list, btn, defaultBtnText);
+
+  ['dragenter', 'dragover'].forEach(name => {
+    dz.addEventListener(name, (e) => { e.preventDefault(); e.stopPropagation(); dz.classList.add('dragover'); });
+  });
+  ['dragleave', 'drop'].forEach(name => {
+    dz.addEventListener(name, (e) => { e.preventDefault(); e.stopPropagation(); dz.classList.remove('dragover'); });
+  });
+  dz.addEventListener('drop', (e) => {
+    if(e.dataTransfer && e.dataTransfer.files.length){
+      inp.files = e.dataTransfer.files;
+      updateFileList(inp, list, btn, defaultBtnText);
+    }
+  });
+}
+
+setupDropZone('dropZoneSingle', 'file', 'fileListSingle', 'analyze', '🚀 Analizi Çalıştır (33 Motor)');
+setupDropZone('dropZoneTrend', 'trendFiles', 'fileListTrend', 'analyzeTrend', '🚀 Trend Analizini Başlat (2 Dönem)');
+setupDropZone('dropZoneHub', 'hubFiles', 'fileListHub', 'analyzeHub', '🚀 Tüm Verileri Analiz Et (Data Hub)');
+
+$('analyze').onclick=()=>{
+  const fs=[...$('file').files];
+  if(!fs.length){
+    $('error').textContent='Lütfen analiz etmek için en az bir mizan dosyası seçin veya sürükleyip bırakın.';
+    $('error').classList.remove('hidden');
+    return;
+  }
+  const fd=new FormData();
+  if(fs.length===1){
+    fd.append('file',fs[0]);
+    if($('sector').value) fd.append('sector',$('sector').value);
+    run('/api/mizan/analyze',fd,'single');
+  }else{
+    fs.forEach(f=>fd.append('files',f));
+    if($('sector').value) fd.append('sector',$('sector').value);
+    run('/api/data-hub/analyze',fd,'hub');
+  }
+};
+
+$('analyzeTrend').onclick=()=>{
+  const fs=[...$('trendFiles').files];
+  if(fs.length<2){
+    $('error').textContent='Trend analizi için lütfen en az 2 dönem mizanı seçin (eski → yeni sırayla).';
+    $('error').classList.remove('hidden');
+    return;
+  }
+  const fd=new FormData();
+  fs.forEach(f=>fd.append('files',f));
+  if($('trendSector').value) fd.append('sector',$('trendSector').value);
+  run('/api/mizan/analyze-trend',fd,'trend');
+};
+
+$('analyzeHub').onclick=()=>{
+  const fs=[...$('hubFiles').files];
+  if(fs.length<1){
+    $('error').textContent='Data Hub için en az bir dosya seçin (Mizan, Satış, AR, AP veya Stok).';
+    $('error').classList.remove('hidden');
+    return;
+  }
+  const fd=new FormData();
+  fs.forEach(f=>fd.append('files',f));
+  if($('hubSector').value) fd.append('sector',$('hubSector').value);
+  run('/api/data-hub/analyze',fd,'hub');
+};
+
 $('sampleBtn').onclick=()=>runSample('mizan');
 async function runSample(key){
-  $('sampleBtn').disabled=true;$('sampleStatus').textContent='Örnek veri indiriliyor ve analiz ediliyor…';$('error').classList.add('hidden');
+  if($('sampleBtn')) $('sampleBtn').disabled=true;
+  startLoading('📄 Örnek Mizan Analiz Ediliyor', 'Örnek mizan sunucudan alınıyor, 33 motor çalıştırılıyor...');
+  $('error').classList.add('hidden');
   try{
     const r=await fetch('/api/sample/'+encodeURIComponent(key));
-    if(!r.ok)throw new Error('Örnek veri sunucudan alınamadı.');
+    if(!r.ok) throw new Error('Örnek veri sunucudan alınamadı.');
     const blob=await r.blob();
     const file=new File([blob],key+'.xlsx',{type:blob.type});
     const fd=new FormData();fd.append('file',file);
-    await run('/api/mizan/analyze',fd);
-    $('sampleStatus').textContent='Örnek veri analizi tamamlandı — bu gerçek şirket verisi değildir, gösterim amaçlıdır.';
-    window.scrollTo({top:0,behavior:'smooth'});
-  }catch(e){$('error').textContent=e.message;$('error').classList.remove('hidden');$('sampleStatus').textContent='';}
-  finally{$('sampleBtn').disabled=false;}
+    await run('/api/mizan/analyze',fd,'single');
+    if($('sampleStatus')) $('sampleStatus').innerHTML='<span style="color:#0E7C66;font-weight:700">✓ Örnek mizan analizi tamamlandı — tüm finansal oranlar ve riskler hesaplandı.</span>';
+  }catch(e){
+    stopLoading();
+    $('error').textContent=e.message;$('error').classList.remove('hidden');
+    if($('sampleStatus')) $('sampleStatus').textContent='';
+  }
+  finally{
+    if($('sampleBtn')) $('sampleBtn').disabled=false;
+  }
 }
+
+// One-click Data Hub demo: fetches matching mizan + AR/AP aging + inventory + sales
+const DATA_HUB_SAMPLE_KEYS=['hub_mizan','ar_aging','ap_aging','inventory','sales_ledger'];
+async function runDataHubSample(){
+  if($('sampleHubBtn')) $('sampleHubBtn').disabled=true;
+  startLoading('🔥 Data Hub Canlı Demo Başlatılıyor', '5 Örnek Finansal Dosya Sunucudan Alınıyor (Mizan + AR + AP + Stok + Satış)...');
+  $('error').classList.add('hidden');
+  try{
+    const blobs=await Promise.all(DATA_HUB_SAMPLE_KEYS.map(async key=>{
+      const r=await fetch('/api/sample/'+encodeURIComponent(key));
+      if(!r.ok) throw new Error('Örnek veri sunucudan alınamadı: '+key);
+      const blob=await r.blob();
+      return new File([blob],key+'.xlsx',{type:blob.type});
+    }));
+    if($('hubTabBtn')) $('hubTabBtn').click();
+    const fd=new FormData();blobs.forEach(f=>fd.append('files',f));
+    await run('/api/data-hub/analyze',fd,'hub');
+    if($('sampleStatus')) $('sampleStatus').innerHTML='<span style="color:#0E7C66;font-weight:700">✓ Data Hub Canlı Demo Aktif: Mizan, AR/AP Yaşlandırma, Stok ve Satış birlikte işlendi.</span>';
+  }catch(e){
+    stopLoading();
+    $('error').textContent=e.message;$('error').classList.remove('hidden');
+    if($('sampleStatus')) $('sampleStatus').textContent='';
+  }
+  finally{
+    if($('sampleHubBtn')) $('sampleHubBtn').disabled=false;
+  }
+}
+$('sampleHubBtn').onclick=()=>runDataHubSample();
+
 (function(){
   const _qp=new URLSearchParams(location.search);
   const _s=_qp.get('sample');
   if(_s){
-    if(_s==='data_hub'){ setTimeout(()=>runDataHubSample(),150); }
-    else { const key=(_s==='1')?'mizan':_s; setTimeout(()=>runSample(key),150); }
+    if(_s==='data_hub'){ setTimeout(()=>runDataHubSample(),120); }
+    else { const key=(_s==='1')?'mizan':_s; setTimeout(()=>runSample(key),120); }
   }
 })();
-// One-click Data Hub demo: fetches a matching mizan + AR/AP aging + inventory + sales
-// ledger sample set together and submits them as one multi-file Data Hub analysis,
-// so AR/AP Intelligence, Inventory Intelligence and PVM actually have data to show.
-const DATA_HUB_SAMPLE_KEYS=['hub_mizan','ar_aging','ap_aging','inventory','sales_ledger'];
-async function runDataHubSample(){
-  $('sampleHubBtn').disabled=true;$('sampleStatus').textContent='Data Hub örnek verileri indiriliyor (mizan + AR + AP + stok + satış)…';$('error').classList.add('hidden');
-  try{
-    const blobs=await Promise.all(DATA_HUB_SAMPLE_KEYS.map(async key=>{
-      const r=await fetch('/api/sample/'+encodeURIComponent(key));
-      if(!r.ok)throw new Error('Örnek veri sunucudan alınamadı: '+key);
-      const blob=await r.blob();
-      return new File([blob],key+'.xlsx',{type:blob.type});
-    }));
-    document.querySelector('[data-tab="datahub"]').click();
-    const fd=new FormData();blobs.forEach(f=>fd.append('files',f));
-    await run('/api/data-hub/analyze',fd,'hub');
-    $('sampleStatus').textContent='Data Hub örnek analizi tamamlandı — mizan, AR/AP yaşlandırma, stok ve satış birlikte işlendi. Bu gerçek şirket verisi değildir.';
-    window.scrollTo({top:0,behavior:'smooth'});
-  }catch(e){$('error').textContent=e.message;$('error').classList.remove('hidden');$('sampleStatus').textContent='';}
-  finally{$('sampleHubBtn').disabled=false;}
-}
-$('sampleHubBtn').onclick=()=>runDataHubSample();
-$('analyzeTrend').onclick=()=>{const fs=[...$('trendFiles').files];if(fs.length<2){$('error').textContent='Trend analizi için en az 2 dönem seç.';$('error').classList.remove('hidden');return}const fd=new FormData();fs.forEach(f=>fd.append('files',f));if($('trendSector').value)fd.append('sector',$('trendSector').value);run('/api/mizan/analyze-trend',fd,'trend')};
-$('analyzeHub').onclick=()=>{const fs=[...$('hubFiles').files];if(fs.length<1){$('error').textContent='Data Hub için en az bir dosya seçin. Mizan olmadan da satış / AR / AP / stok verisi analiz edilebilir.';$('error').classList.remove('hidden');return}const fd=new FormData();fs.forEach(f=>fd.append('files',f));if($('hubSector').value)fd.append('sector',$('hubSector').value);run('/api/data-hub/analyze',fd,'hub')};
-function goToTrendTab(){$('trendTabBtn').click();window.scrollTo({top:0,behavior:'smooth'})}
+
+function goToTrendTab(){if($('trendTabBtn')) $('trendTabBtn').click();window.scrollTo({top:0,behavior:'smooth'})}
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tabPanel').forEach(x=>x.classList.remove('active'));t.classList.add('active');$(t.dataset.tab).classList.add('active')});
 $('printBtn').onclick=()=>{
   const cov=$('printCover');
