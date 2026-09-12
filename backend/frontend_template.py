@@ -21,7 +21,7 @@ HOME_HTML = r'''<!doctype html>
 .topNav{display:flex;gap:18px}
 .topNav a{color:var(--muted);font-size:13px;text-decoration:none;font-weight:600}
 .topNav a:hover{color:var(--accent)}
-.marketingSection{padding:60px 0}
+.marketingSection{padding:8px 0 16px}
 .marketingHead{text-align:center;max-width:640px;margin:0 auto 34px}
 .marketingHead h2{font-family:var(--serif);font-size:32px;margin:0 0 10px;letter-spacing:-.5px}
 .marketingHead p{color:var(--muted);margin:0;font-size:14.5px}
@@ -239,7 +239,7 @@ HOME_HTML = r'''<!doctype html>
 .heroArt .fc2{bottom:6px;right:-14px;animation-delay:1.2s}
 @keyframes dfbpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 /* ---- Alternating content blocks (fixes the "iç içe" cramped look) ---- */
-.secBlock{padding:58px 0}
+.secBlock{padding:28px 0}
 .secBlock.tint{background:linear-gradient(180deg,#F8FAFC 0%,#FFFFFF 100%);border:1px solid #E2E8F0;border-radius:26px;margin:0 -10px;box-shadow:0 4px 20px rgba(15,27,45,.03)}
 .pillScrollBtn{width:36px;height:36px;border-radius:50%;background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;cursor:pointer;flex-shrink:0;box-shadow:0 4px 12px rgba(15,27,45,0.08);transition:all .18s ease;user-select:none;z-index:4}
 .pillScrollBtn:hover{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8;transform:scale(1.08);box-shadow:0 6px 16px rgba(29,78,216,0.25)}
@@ -373,17 +373,17 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <body>
 <header class="top"><div class="wrap brand"><div>
   <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:12px">
-    <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
+    <div style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 6-8"/><circle cx="21" cy="5" r="2" fill="#FFFFFF"/>
       </svg>
     </div>
     <div>
-      <div style="font-family:var(--serif);font-size:18.5px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.15;display:flex;align-items:center;gap:6px">
-        Digital Finance <span style="font-size:9.5px;font-weight:800;font-family:Inter,sans-serif;letter-spacing:0.8px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;padding:2px 6px;border-radius:5px">CFO AI</span>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2">
+        Digital Finance Business Partner
       </div>
       <div style="font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px">
-        Business Partner · 33 Karar Motoru
+        Finansal Teşhis &amp; Yönetim Karar Destek Platformu
       </div>
     </div>
   </a>
@@ -391,9 +391,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <main class="wrap">
 <section class="mHero">
   <div class="reveal in">
-    <div class="livePill"><i></i> DİGİTAL FİNANCE BUSİNESS PARTNER — ŞİRKETİNİZ İÇİN KURUMSAL KARAR MOTORU</div>
-    <h1>Şirketiniz İçin Digital Finance Business Partner.<br><span class="gradText">Finansal Verileri İş Kararlarına Dönüştüren Sistem.</span></h1>
-    <p class="lead"><b>"Kâğıt üzerinde kâr görünüyor ama kasada para nerede? Hangi müşteri bize gizli zarar ettiriyor?"</b><br>Standart muhasebe geçmişi gösterir, Digital Finance Business Partner finansal verileri stratejik iş kararlarına dönüştürür. Mizanınızı veya ERP alt defterlerinizi yükleyin; <b>33 Finansal Karar Motoru</b> 60 saniyede çift taraflı denetimle hesaplasın, kök nedenleri ve yönetimin alacağı somut iş kararlarını masaya koysun.</p>
+    <div class="livePill"><i></i> YÖNETİCİLER &amp; ŞİRKET SAHİPLERİ İÇİN FİNANSAL KARAR PLATFORMU</div>
+    <h1>"Kâğıt Üzerinde Kâr Görünüyor, Peki Kasada Para Nerede?"<br><span class="gradText">Finansal Verileri Yönetim Kararlarına Dönüştüren Sistem.</span></h1>
+    <p class="lead">Standart muhasebe sadece geçmiş fişleri ve vergi matrahını kaydeder; <b>Digital Finance Business Partner</b> ise şirketin geleceğini kurtaracak stratejik kararları üretir. Mizanınızı veya ERP alt defterlerinizi yükleyin; <b>33 Finansal Karar Motoru</b> 60 saniyede çift taraflı denetimle hesaplasın, kâr sızıntılarını, kilitli nakdi ve yönetimin yarın sabah başlatacağı somut icraat takvimini masaya koysun.</p>
     <div class="ctaRow">
       <a href="/uygulama?sample=data_hub" class="primary" style="padding:15px 26px;border-radius:14px;font-size:15px;display:inline-flex;align-items:center;gap:10px">🔥 Kayıt Olmadan Canlı Demoyu Başlat <span>(Data Hub)</span></a>
       <a href="/uygulama" class="secondary" style="padding:15px 26px;border-radius:14px;font-size:15px">⚡ Kendi Verinizi Yükleyin →</a>
@@ -1105,6 +1105,10 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </main>
 <div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • deterministic finance layer + optional Gemini interpretation • Financial facts are calculated before AI interpretation.<br><span style="opacity:.85">Bu rapor otomatik/deterministik hesaplamalara ve (etkinleştirildiyse) yapay zekâ yorumuna dayanır; muhasebe, denetim, vergi, hukuki veya yatırım tavsiyesi değildir ve resmi mali tablo/beyanname yerine geçmez. Nihai kararlar için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca bu analizi üretmek için işlenir; sunucu tarafında kalıcı olarak saklanmaz. KVKK kapsamındaki veri işleme hakkında bilgi için [Aydınlatma Metni] bağlantısını inceleyin.</span></div></div></div>
 <script>
+window.scrollPills = function(id, delta){
+  const el = document.getElementById(id);
+  if(el){ el.scrollBy({ left: delta, behavior: 'smooth' }); }
+};
 window.switchLandingCeo = function(lqid){
   document.querySelectorAll('#landingCeoPills .ceoPill').forEach(p => {
     p.classList.toggle('active', p.getAttribute('data-lq') === lqid);
@@ -1308,7 +1312,7 @@ PRICING_HTML = r'''<!doctype html>
 .topNav{display:flex;gap:18px}
 .topNav a{color:var(--muted);font-size:13px;text-decoration:none;font-weight:600}
 .topNav a:hover{color:var(--accent)}
-.marketingSection{padding:60px 0}
+.marketingSection{padding:8px 0 16px}
 .marketingHead{text-align:center;max-width:640px;margin:0 auto 34px}
 .marketingHead h2{font-family:var(--serif);font-size:32px;margin:0 0 10px;letter-spacing:-.5px}
 .marketingHead p{color:var(--muted);margin:0;font-size:14.5px}
@@ -1497,7 +1501,7 @@ PRICING_HTML = r'''<!doctype html>
 .heroArt .fc2{bottom:6px;right:-14px;animation-delay:1.2s}
 @keyframes dfbpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 /* ---- Alternating content blocks (fixes the "iç içe" cramped look) ---- */
-.secBlock{padding:58px 0}
+.secBlock{padding:28px 0}
 .secBlock.tint{background:linear-gradient(180deg,#F8FAFC 0%,#FFFFFF 100%);border:1px solid #E2E8F0;border-radius:26px;margin:0 -10px;box-shadow:0 4px 20px rgba(15,27,45,.03)}
 .pillScrollBtn{width:36px;height:36px;border-radius:50%;background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;cursor:pointer;flex-shrink:0;box-shadow:0 4px 12px rgba(15,27,45,0.08);transition:all .18s ease;user-select:none;z-index:4}
 .pillScrollBtn:hover{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8;transform:scale(1.08);box-shadow:0 6px 16px rgba(29,78,216,0.25)}
@@ -1617,17 +1621,17 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <body>
 <header class="top"><div class="wrap brand"><div>
   <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:12px">
-    <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
+    <div style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 6-8"/><circle cx="21" cy="5" r="2" fill="#FFFFFF"/>
       </svg>
     </div>
     <div>
-      <div style="font-family:var(--serif);font-size:18.5px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.15;display:flex;align-items:center;gap:6px">
-        Digital Finance <span style="font-size:9.5px;font-weight:800;font-family:Inter,sans-serif;letter-spacing:0.8px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;padding:2px 6px;border-radius:5px">CFO AI</span>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2">
+        Digital Finance Business Partner
       </div>
       <div style="font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px">
-        Business Partner · 33 Karar Motoru
+        Finansal Teşhis &amp; Yönetim Karar Destek Platformu
       </div>
     </div>
   </a>
@@ -1792,7 +1796,7 @@ ABOUT_HTML = r'''<!doctype html>
 .topNav{display:flex;gap:18px}
 .topNav a{color:var(--muted);font-size:13px;text-decoration:none;font-weight:600}
 .topNav a:hover{color:var(--accent)}
-.marketingSection{padding:60px 0}
+.marketingSection{padding:8px 0 16px}
 .marketingHead{text-align:center;max-width:640px;margin:0 auto 34px}
 .marketingHead h2{font-family:var(--serif);font-size:32px;margin:0 0 10px;letter-spacing:-.5px}
 .marketingHead p{color:var(--muted);margin:0;font-size:14.5px}
@@ -1981,7 +1985,7 @@ ABOUT_HTML = r'''<!doctype html>
 .heroArt .fc2{bottom:6px;right:-14px;animation-delay:1.2s}
 @keyframes dfbpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 /* ---- Alternating content blocks (fixes the "iç içe" cramped look) ---- */
-.secBlock{padding:58px 0}
+.secBlock{padding:28px 0}
 .secBlock.tint{background:linear-gradient(180deg,#F8FAFC 0%,#FFFFFF 100%);border:1px solid #E2E8F0;border-radius:26px;margin:0 -10px;box-shadow:0 4px 20px rgba(15,27,45,.03)}
 .pillScrollBtn{width:36px;height:36px;border-radius:50%;background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;cursor:pointer;flex-shrink:0;box-shadow:0 4px 12px rgba(15,27,45,0.08);transition:all .18s ease;user-select:none;z-index:4}
 .pillScrollBtn:hover{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8;transform:scale(1.08);box-shadow:0 6px 16px rgba(29,78,216,0.25)}
@@ -2101,17 +2105,17 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <body>
 <header class="top"><div class="wrap brand"><div>
   <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:12px">
-    <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
+    <div style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 6-8"/><circle cx="21" cy="5" r="2" fill="#FFFFFF"/>
       </svg>
     </div>
     <div>
-      <div style="font-family:var(--serif);font-size:18.5px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.15;display:flex;align-items:center;gap:6px">
-        Digital Finance <span style="font-size:9.5px;font-weight:800;font-family:Inter,sans-serif;letter-spacing:0.8px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;padding:2px 6px;border-radius:5px">CFO AI</span>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2">
+        Digital Finance Business Partner
       </div>
       <div style="font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px">
-        Business Partner · 33 Karar Motoru
+        Finansal Teşhis &amp; Yönetim Karar Destek Platformu
       </div>
     </div>
   </a>
@@ -2166,35 +2170,53 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 <div class="secBlock reveal">
   <div class="marketingHead">
-    <span class="workflowBadge">UZMANLIK ALANLARIMIZ</span>
+    <span class="workflowBadge">KURUMSAL UZMANLIK ALANLARIMIZ</span>
     <h2>3 Temel Standart Üzerinde Yükseliyoruz</h2>
-    <p>Geleneksel muhasebe raporlaması ile stratejik CFO liderliği arasındaki farkı teknolojiyle kapatıyoruz.</p>
+    <p>Geleneksel muhasebe raporlaması ile stratejik CFO liderliği arasındaki uçurumu teknolojiyle kapatıyoruz.</p>
   </div>
   <div class="grid3">
-    <div class="card" style="padding:24px">
-      <div style="width:40px;height:40px;border-radius:10px;background:#EFF6FF;color:#1D4ED8;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px">🧮</div>
-      <h3 style="margin:0 0 8px;font-size:16px">1. Deterministik Finansal Matematik</h3>
-      <p class="muted small" style="line-height:1.6">Yapay zekanın sayı tahmin etmesine asla izin vermeyiz. Tüm 33 motor, çift taraflı defter kayıtlarını, nakit akışını ve amortismanları kuruşu kuruşuna deterministik formüllerle doğrular.</p>
+    <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
+      <div style="width:44px;height:44px;border-radius:12px;background:#EFF6FF;color:#1D4ED8;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px">🧮</div>
+      <h3 style="margin:0 0 8px;font-size:16.5px;color:#0F1B2D">1. Deterministik Finansal Modelleme &amp; Çift Taraflı Doğrulama</h3>
+      <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Yapay zekanın sayı veya formül uydurmasına asla izin vermeyiz. Tüm 33 karar motoru; muhasebe tekdüzen hesap planı kuralları, çift taraflı kayıt dengesi, nakit akışı ve çalışma sermayesi modelleri üzerinde kuruşu kuruşuna deterministik matematik çalıştırır.</p>
     </div>
-    <div class="card" style="padding:24px">
-      <div style="width:40px;height:40px;border-radius:10px;background:#ECFDF5;color:#059669;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px">👔</div>
-      <h3 style="margin:0 0 8px;font-size:16px">2. Kıdemli CFO Karar Perspektifi</h3>
-      <p class="muted small" style="line-height:1.6">Patronlar teknik muhasebe jargonu istemez; "Para nerede?", "Hangi müşteri zarar ettiriyor?" ve "Yarın ne yapmalıyım?" sorularının cevabını ister. Sistem her analizi bu 3 soruya bağlar.</p>
+    <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
+      <div style="width:44px;height:44px;border-radius:12px;background:#ECFDF5;color:#059669;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px">👔</div>
+      <h3 style="margin:0 0 8px;font-size:16.5px;color:#0F1B2D">2. Stratejik CFO Karar Perspektifi &amp; Kök Neden Analitiği</h3>
+      <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Raporlarımız statik muhasebe çıktıları değildir; "Kâr nerede kilitlendi?", "Hangi müşteri gizli zarar ettiriyor?" ve "Yarın hangi somut adımı atmalıyız?" sorularını WHAT → WHY → SO WHAT metodolojisiyle yanıtlayan bir icra kurulu pusulasıdır.</p>
     </div>
-    <div class="card" style="padding:24px">
-      <div style="width:40px;height:40px;border-radius:10px;background:#FEF3C7;color:#D97706;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px">🛡️</div>
-      <h3 style="margin:0 0 8px;font-size:16px">3. Sıfır Kalıcı İzsiz Güvenlik</h3>
-      <p class="muted small" style="line-height:1.6">Mali tablolarınız şirketinizin en mahrem varlığıdır. Demo ve ücretsiz oturumlarda verileriniz RAM bellekte işlenir ve oturum kapandığında tamamen yok edilir; asla yapay zeka eğitimine aktarılmaz.</p>
+    <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
+      <div style="width:44px;height:44px;border-radius:12px;background:#FEF3C7;color:#D97706;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px">🛡️</div>
+      <h3 style="margin:0 0 8px;font-size:16.5px;color:#0F1B2D">3. Kurumsal Veri Güvenliği, KVKK &amp; Sıfır Kalıcı İzsiz Bellek</h3>
+      <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Finansal tablolar şirketlerin en mahrem varlığıdır. Sistemimizde verileriniz sabit diske yazılmaz; şifreli geçici bellekte (RAM) işlenir, analiz tarayıcınıza teslim edildiği anda bellekten tamamen imha edilir; yapay zeka eğitimine aktarılmaz.</p>
     </div>
   </div>
 </div>
 
-<div class="secBlock reveal"><div class="marketingHead"><h2>Nasıl Çalışıyoruz?</h2><p>Verinin güvenilirliğinden iş kararlarına giden 3 aşamalı disiplinimiz.</p></div>
-<div class="grid3">
-<div class="card" style="padding:22px"><div class="tag" style="margin-bottom:8px">01</div><h3 style="margin:0 0 6px;font-size:15px">Önce Deterministik Hesap</h3><p class="muted small">Her rakam, tek kuruş sapma olmadan çift taraflı denetimden geçer. Gelir tablosu, bilanço ve alt defterler mizan kurallarıyla doğrulanır. Yorum hesaptan sonra gelir.</p></div>
-<div class="card" style="padding:22px"><div class="tag" style="margin-bottom:8px">02</div><h3 style="margin:0 0 6px;font-size:15px">Kök Neden & Karar Analitiği</h3><p class="muted small">33 finansal karar motoru bulguları önceliklendirir, kârın neden kasaya girmediğini kuruşuna kadar açıklar; isteğe bağlı AI katmanı bunun üstüne ayrı etiketli stratejik not ekler.</p></div>
-<div class="card" style="padding:22px"><div class="tag" style="margin-bottom:8px">03</div><h3 style="margin:0 0 6px;font-size:15px">Yönetim Aksiyonu & Karar Planı</h3><p class="muted small">Sonuç pasif bir rapor değildir; sahibi, takvimi, KPI hedefi ve parasal etkisi (EBITDA & Nakit katkısı) net olarak belirlenmiş yönetim kurulu eylem planıdır.</p></div>
-</div></div>
+<div class="secBlock reveal">
+  <div class="marketingHead">
+    <span class="workflowBadge">ÇALIŞMA DİSİPLİNİMİZ</span>
+    <h2>Veriden Yönetim İcraatına 3 Aşamalı Disiplin</h2>
+    <p>Ham verinin güvenilirliğinden icra kurulunda alınacak kararlara giden deterministik sürecimiz.</p>
+  </div>
+  <div class="grid3">
+    <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
+      <div class="tag positive" style="margin-bottom:10px;font-size:11px;font-weight:800">AŞAMA 01</div>
+      <h3 style="margin:0 0 8px;font-size:16px;color:#0F1B2D">Veri Doğrulama ve Entegrasyonsuz Giriş</h3>
+      <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">ERP veya muhasebe programınızdan aldığınız mizan ve alt defterler (Logo, Netsis, Mikro, Luca, SAP vb.) saniyeler içinde işlenir. Bilanço denkliği ve alt hesap mutabakatları kuruş sapmasız çift taraflı denetimden geçer.</p>
+    </div>
+    <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
+      <div class="tag" style="margin-bottom:10px;font-size:11px;font-weight:800;background:#EFF6FF;color:#1D4ED8">AŞAMA 02</div>
+      <h3 style="margin:0 0 8px;font-size:16px;color:#0F1B2D">33 Karar Motoru &amp; Kâr Sızıntısı Teşhisi</h3>
+      <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Alacak vadelerinden stok devir hızına, tedarikçi vade makasından DuPont özkaynak kârlılık ağacına kadar 33 bağımsız karar motoru çalışarak kârın kasada neden olmadığını kuruşuna kadar ortaya çıkarır.</p>
+    </div>
+    <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
+      <div class="tag" style="margin-bottom:10px;font-size:11px;font-weight:800;background:#FEF3C7;color:#D97706">AŞAMA 03</div>
+      <h3 style="margin:0 0 8px;font-size:16px;color:#0F1B2D">Sahibi, Vadesi ve TL Getirisi Belli İcraat Takvimi</h3>
+      <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Sonuç soyut bir rapor değildir; icra kurulu ve şirket sahipleri için her aksiyonun sorumlusu, teslim vadesi ve kasaya sağlayacağı net nakit/kâr katkısıyla somut bir yönetim kurulu eylem planı oluşturulur.</p>
+    </div>
+  </div>
+</div>
 <div class="secBlock reveal"><section class="ctaBanner hidePrint"><div><h3>Bizi tanımak ister misiniz?</h3><p>Ekibinizle birlikte 15 dakikalık bir canlı demo oturumu planlayabilir veya Data Hub ile anında deneyebilirsiniz.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a href="/uygulama?sample=data_hub" class="primary" style="text-decoration:none;padding:12px 20px;border-radius:11px">🔥 Canlı Demoyu Başlat</a><a href="/iletisim" class="secondary" style="text-decoration:none;padding:12px 20px;border-radius:11px">İletişime Geç</a></div></section></div>
 
 </main>
@@ -2262,7 +2284,7 @@ CONTACT_HTML = r'''<!doctype html>
 .topNav{display:flex;gap:18px}
 .topNav a{color:var(--muted);font-size:13px;text-decoration:none;font-weight:600}
 .topNav a:hover{color:var(--accent)}
-.marketingSection{padding:60px 0}
+.marketingSection{padding:8px 0 16px}
 .marketingHead{text-align:center;max-width:640px;margin:0 auto 34px}
 .marketingHead h2{font-family:var(--serif);font-size:32px;margin:0 0 10px;letter-spacing:-.5px}
 .marketingHead p{color:var(--muted);margin:0;font-size:14.5px}
@@ -2451,7 +2473,7 @@ CONTACT_HTML = r'''<!doctype html>
 .heroArt .fc2{bottom:6px;right:-14px;animation-delay:1.2s}
 @keyframes dfbpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 /* ---- Alternating content blocks (fixes the "iç içe" cramped look) ---- */
-.secBlock{padding:58px 0}
+.secBlock{padding:28px 0}
 .secBlock.tint{background:linear-gradient(180deg,#F8FAFC 0%,#FFFFFF 100%);border:1px solid #E2E8F0;border-radius:26px;margin:0 -10px;box-shadow:0 4px 20px rgba(15,27,45,.03)}
 .pillScrollBtn{width:36px;height:36px;border-radius:50%;background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;cursor:pointer;flex-shrink:0;box-shadow:0 4px 12px rgba(15,27,45,0.08);transition:all .18s ease;user-select:none;z-index:4}
 .pillScrollBtn:hover{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8;transform:scale(1.08);box-shadow:0 6px 16px rgba(29,78,216,0.25)}
@@ -2571,17 +2593,17 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <body>
 <header class="top"><div class="wrap brand"><div>
   <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:12px">
-    <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
+    <div style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 6-8"/><circle cx="21" cy="5" r="2" fill="#FFFFFF"/>
       </svg>
     </div>
     <div>
-      <div style="font-family:var(--serif);font-size:18.5px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.15;display:flex;align-items:center;gap:6px">
-        Digital Finance <span style="font-size:9.5px;font-weight:800;font-family:Inter,sans-serif;letter-spacing:0.8px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;padding:2px 6px;border-radius:5px">CFO AI</span>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2">
+        Digital Finance Business Partner
       </div>
       <div style="font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px">
-        Business Partner · 33 Karar Motoru
+        Finansal Teşhis &amp; Yönetim Karar Destek Platformu
       </div>
     </div>
   </a>
@@ -2701,7 +2723,7 @@ SECURITY_HTML = r'''<!doctype html>
 .topNav{display:flex;gap:18px}
 .topNav a{color:var(--muted);font-size:13px;text-decoration:none;font-weight:600}
 .topNav a:hover{color:var(--accent)}
-.marketingSection{padding:60px 0}
+.marketingSection{padding:8px 0 16px}
 .marketingHead{text-align:center;max-width:640px;margin:0 auto 34px}
 .marketingHead h2{font-family:var(--serif);font-size:32px;margin:0 0 10px;letter-spacing:-.5px}
 .marketingHead p{color:var(--muted);margin:0;font-size:14.5px}
@@ -2890,7 +2912,7 @@ SECURITY_HTML = r'''<!doctype html>
 .heroArt .fc2{bottom:6px;right:-14px;animation-delay:1.2s}
 @keyframes dfbpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 /* ---- Alternating content blocks (fixes the "iç içe" cramped look) ---- */
-.secBlock{padding:58px 0}
+.secBlock{padding:28px 0}
 .secBlock.tint{background:linear-gradient(180deg,#F8FAFC 0%,#FFFFFF 100%);border:1px solid #E2E8F0;border-radius:26px;margin:0 -10px;box-shadow:0 4px 20px rgba(15,27,45,.03)}
 .pillScrollBtn{width:36px;height:36px;border-radius:50%;background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;cursor:pointer;flex-shrink:0;box-shadow:0 4px 12px rgba(15,27,45,0.08);transition:all .18s ease;user-select:none;z-index:4}
 .pillScrollBtn:hover{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8;transform:scale(1.08);box-shadow:0 6px 16px rgba(29,78,216,0.25)}
@@ -3010,17 +3032,17 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <body>
 <header class="top"><div class="wrap brand"><div>
   <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:12px">
-    <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
+    <div style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 6-8"/><circle cx="21" cy="5" r="2" fill="#FFFFFF"/>
       </svg>
     </div>
     <div>
-      <div style="font-family:var(--serif);font-size:18.5px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.15;display:flex;align-items:center;gap:6px">
-        Digital Finance <span style="font-size:9.5px;font-weight:800;font-family:Inter,sans-serif;letter-spacing:0.8px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;padding:2px 6px;border-radius:5px">CFO AI</span>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2">
+        Digital Finance Business Partner
       </div>
       <div style="font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px">
-        Business Partner · 33 Karar Motoru
+        Finansal Teşhis &amp; Yönetim Karar Destek Platformu
       </div>
     </div>
   </a>
@@ -3142,7 +3164,7 @@ APP_HTML = r'''<!doctype html>
 .topNav{display:flex;gap:18px}
 .topNav a{color:var(--muted);font-size:13px;text-decoration:none;font-weight:600}
 .topNav a:hover{color:var(--accent)}
-.marketingSection{padding:60px 0}
+.marketingSection{padding:8px 0 16px}
 .marketingHead{text-align:center;max-width:640px;margin:0 auto 34px}
 .marketingHead h2{font-family:var(--serif);font-size:32px;margin:0 0 10px;letter-spacing:-.5px}
 .marketingHead p{color:var(--muted);margin:0;font-size:14.5px}
@@ -3335,7 +3357,7 @@ APP_HTML = r'''<!doctype html>
 .heroArt .fc2{bottom:6px;right:-14px;animation-delay:1.2s}
 @keyframes dfbpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 /* ---- Alternating content blocks (fixes the "iç içe" cramped look) ---- */
-.secBlock{padding:58px 0}
+.secBlock{padding:28px 0}
 .secBlock.tint{background:linear-gradient(180deg,#F8FAFC 0%,#FFFFFF 100%);border:1px solid #E2E8F0;border-radius:26px;margin:0 -10px;box-shadow:0 4px 20px rgba(15,27,45,.03)}
 .pillScrollBtn{width:36px;height:36px;border-radius:50%;background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;cursor:pointer;flex-shrink:0;box-shadow:0 4px 12px rgba(15,27,45,0.08);transition:all .18s ease;user-select:none;z-index:4}
 .pillScrollBtn:hover{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8;transform:scale(1.08);box-shadow:0 6px 16px rgba(29,78,216,0.25)}
@@ -3499,17 +3521,17 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </div>
 <header class="top"><div class="wrap brand"><div>
   <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:12px">
-    <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
+    <div style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 6-8"/><circle cx="21" cy="5" r="2" fill="#FFFFFF"/>
       </svg>
     </div>
     <div>
-      <div style="font-family:var(--serif);font-size:18.5px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.15;display:flex;align-items:center;gap:6px">
-        Digital Finance <span style="font-size:9.5px;font-weight:800;font-family:Inter,sans-serif;letter-spacing:0.8px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;padding:2px 6px;border-radius:5px">CFO AI</span>
+      <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2">
+        Digital Finance Business Partner
       </div>
       <div style="font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px">
-        Business Partner · 33 Karar Motoru
+        Finansal Teşhis &amp; Yönetim Karar Destek Platformu
       </div>
     </div>
   </a>
@@ -3557,7 +3579,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </div>
 </div>
 
-<main class="wrap"><section class="hero"><div class="heroCard"><h2 class="heroTitle">Finansal Verilerinizi Bırakın, <span style="color:var(--accent)">Şirketinizin Karar Raporunu</span> Alın.</h2><p class="heroText">Mizan veya finansal defterlerinizi yükleyin — 33 karar motoru verilerinizi çift taraflı denetler, kâr sızıntılarını kuruşuna kadar hesaplar, riskleri önceliklendirir ve yarın uygulanacak yönetim kararlarını masaya koyar.</p><div class="framework"><span><b>1. NE OLDU?</b> (Finansal Gerçekler)</span><span><b>2. PARA NEREDE?</b> (Kilitli Nakit &amp; Sızıntı)</span><span><b>3. RİSK &amp; SEKTÖR NE?</b> (Kıyaslama)</span><span><b>4. KİM YAPIYOR?</b> (Müşteri &amp; Stok Zekâsı)</span><span><b>5. NEDEN OLDU?</b> (Kök Neden)</span><span><b>6. NE YAPMALIYIZ?</b> (Yönetim Kararları)</span><span><b>7. SİMÜLE ET</b> (What-If Laboratuvarı)</span></div>
+<main class="wrap"><section class="hero"><div class="heroCard"><h2 class="heroTitle">Mizanınızı Yükleyin, <span style="color:var(--accent)">Şirketinizin Karar Raporunu</span> Alın.</h2><p class="heroText">Mizan veya finansal defterlerinizi yükleyin — 33 karar motoru verilerinizi çift taraflı denetler, kâr sızıntılarını kuruşuna kadar hesaplar, riskleri önceliklendirir ve yarın uygulanacak yönetim kararlarını masaya koyar.</p><div class="framework"><span><b>1. NE OLDU?</b> (Finansal Gerçekler)</span><span><b>2. PARA NEREDE?</b> (Kilitli Nakit &amp; Sızıntı)</span><span><b>3. RİSK &amp; SEKTÖR NE?</b> (Kıyaslama)</span><span><b>4. KİM YAPIYOR?</b> (Müşteri &amp; Stok Zekâsı)</span><span><b>5. NEDEN OLDU?</b> (Kök Neden)</span><span><b>6. NE YAPMALIYIZ?</b> (Yönetim Kararları)</span><span><b>7. SİMÜLE ET</b> (What-If Laboratuvarı)</span></div>
 <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button id="sampleBtn" class="secondary">📄 Tek dönem örnekle dene</button><button id="sampleTrendBtn" class="secondary">📊 İki dönemli örnekle dene (Trend Demo)</button><button id="sampleHubBtn" class="secondary">🗂️ Data Hub örnekle dene (Mizan + AR + AP + Stok + Satış)</button> <span id="sampleStatus" class="small muted" style="margin-left:8px"></span></div>
 <div class="trustBar hidePrint">
 <div class="item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Önce hesap, sonra yorum — deterministik motor</div>
