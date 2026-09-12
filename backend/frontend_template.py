@@ -392,8 +392,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <section class="mHero">
   <div class="reveal in">
     <div class="livePill"><i></i> YÖNETİCİLER &amp; ŞİRKET SAHİPLERİ İÇİN FİNANSAL KARAR PLATFORMU</div>
-    <h1>"Kâğıt Üzerinde Kâr Görünüyor, Peki Kasada Para Nerede?"<br><span class="gradText">Finansal Verileri Yönetim Kararlarına Dönüştüren Sistem.</span></h1>
-    <p class="lead">Standart muhasebe sadece geçmiş fişleri ve vergi matrahını kaydeder; <b>Digital Finance Business Partner</b> ise şirketin geleceğini kurtaracak stratejik kararları üretir. Mizanınızı veya ERP alt defterlerinizi yükleyin; <b>33 Finansal Karar Motoru</b> 60 saniyede çift taraflı denetimle hesaplasın, kâr sızıntılarını, kilitli nakdi ve yönetimin yarın sabah başlatacağı somut icraat takvimini masaya koysun.</p>
+    <h1>Rakamları Değil, Şirketinizi Büyüten Yönetim Kararlarını Masaya Koyun.<br><span class="gradText">Finansal Verileri Stratejik İcraat Gücüne Dönüştüren Karar Platformu.</span></h1>
+    <p class="lead">Klasik muhasebe geçmiş mali kayıtları ve vergi matrahını raporlar; <b>Digital Finance Business Partner</b> ise şirketin sermaye verimliliğini ve net nakit akışını maksimize eden stratejik icraat kararları üretir. Mizan ve alt defter kayıtlarınızı yükleyin; <b>33 Deterministik Karar Motoru</b> 60 saniyede çift yönlü matematiksel denetimle çalışarak işletme sermayesindeki nakit kilitlenmelerini, gizli kâr sızıntılarını ve üst yönetimin uygulamaya alacağı somut eylem planını masanıza koysun.</p>
     <div class="ctaRow">
       <a href="/uygulama?sample=data_hub" class="primary" style="padding:15px 26px;border-radius:14px;font-size:15px;display:inline-flex;align-items:center;gap:10px">🔥 Kayıt Olmadan Canlı Demoyu Başlat <span>(Data Hub)</span></a>
       <a href="/uygulama" class="secondary" style="padding:15px 26px;border-radius:14px;font-size:15px">⚡ Kendi Verinizi Yükleyin →</a>
@@ -2195,25 +2195,25 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 <div class="secBlock reveal">
   <div class="marketingHead">
-    <span class="workflowBadge">ÇALIŞMA DİSİPLİNİMİZ</span>
-    <h2>Veriden Yönetim İcraatına 3 Aşamalı Disiplin</h2>
-    <p>Ham verinin güvenilirliğinden icra kurulunda alınacak kararlara giden deterministik sürecimiz.</p>
+    <span class="workflowBadge">KURUMSAL ÇALIŞMA DİSİPLİNİMİZ</span>
+    <h2>Finansal Ham Veriden Yönetim Kurulu İcraatına: 3 Kademeli Karar Mimarisi</h2>
+    <p>Rakamların arkasındaki operasyonel gerçekleri ortaya çıkaran, varsayımları eleyen ve şirketi doğrudan net nakit üretimine odaklayan kurumsal metodolojimiz.</p>
   </div>
   <div class="grid3">
     <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
-      <div class="tag positive" style="margin-bottom:10px;font-size:11px;font-weight:800">AŞAMA 01</div>
-      <h3 style="margin:0 0 8px;font-size:16px;color:#0F1B2D">Veri Doğrulama ve Entegrasyonsuz Giriş</h3>
-      <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">ERP veya muhasebe programınızdan aldığınız mizan ve alt defterler (Logo, Netsis, Mikro, Luca, SAP vb.) saniyeler içinde işlenir. Bilanço denkliği ve alt hesap mutabakatları kuruş sapmasız çift taraflı denetimden geçer.</p>
+      <div class="tag positive" style="margin-bottom:10px;font-size:11px;font-weight:800">KADEME 01 · GÜVENİLİRLİK</div>
+      <h3 style="margin:0 0 8px;font-size:16px;color:#0F1B2D">Deterministik Veri Bütünlüğü &amp; Çift Yönlü Mutabakat</h3>
+      <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">ERP veya muhasebe sistemlerinden (Logo, Netsis, Mikro, Luca, SAP vb.) aktarılan mizan ve alt defter kayıtları; tekdüzen hesap planı hiyerarşisi, bilanço-gelir tablosu dengesi ve çift taraflı kayıt kurallarına göre kuruş sapmasız denetlenir. Veri güvenilirliği %100 matematiksel olarak doğrulanmadan hiçbir analitik hesaplama başlatılmaz.</p>
     </div>
     <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
-      <div class="tag" style="margin-bottom:10px;font-size:11px;font-weight:800;background:#EFF6FF;color:#1D4ED8">AŞAMA 02</div>
-      <h3 style="margin:0 0 8px;font-size:16px;color:#0F1B2D">33 Karar Motoru &amp; Kâr Sızıntısı Teşhisi</h3>
-      <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Alacak vadelerinden stok devir hızına, tedarikçi vade makasından DuPont özkaynak kârlılık ağacına kadar 33 bağımsız karar motoru çalışarak kârın kasada neden olmadığını kuruşuna kadar ortaya çıkarır.</p>
+      <div class="tag" style="margin-bottom:10px;font-size:11px;font-weight:800;background:#EFF6FF;color:#1D4ED8">KADEME 02 · TEŞHİS</div>
+      <h3 style="margin:0 0 8px;font-size:16px;color:#0F1B2D">33 Finansal Karar Motoru &amp; Çok Boyutlu Kök Neden Teşhisi</h3>
+      <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Doğrulanmış veri; çalışma sermayesi kilitlenmeleri (DSO, DIO, DPO makası), kâr kalitesi, görünmez finansman faiz sızıntıları, DuPont özkaynak kârlılığı ve müşteri bazlı gizli zarar dinamiklerini kuruşu kuruşuna modelleyen 33 karar motoruna beslenir. Sistem sadece "ne oldu"yu değil; paranın nereye kilitlendiğini ve kârın neden eridiğini kanıtlar.</p>
     </div>
     <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
-      <div class="tag" style="margin-bottom:10px;font-size:11px;font-weight:800;background:#FEF3C7;color:#D97706">AŞAMA 03</div>
-      <h3 style="margin:0 0 8px;font-size:16px;color:#0F1B2D">Sahibi, Vadesi ve TL Getirisi Belli İcraat Takvimi</h3>
-      <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Sonuç soyut bir rapor değildir; icra kurulu ve şirket sahipleri için her aksiyonun sorumlusu, teslim vadesi ve kasaya sağlayacağı net nakit/kâr katkısıyla somut bir yönetim kurulu eylem planı oluşturulur.</p>
+      <div class="tag" style="margin-bottom:10px;font-size:11px;font-weight:800;background:#FEF3C7;color:#D97706">KADEME 03 · İCRAAT</div>
+      <h3 style="margin:0 0 8px;font-size:16px;color:#0F1B2D">İcra Kurulu Karar Taslağı, What-If Simülasyonu &amp; Eylem Planı</h3>
+      <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Teşhis edilen her finansal bulgu; <i>"Sorumlusu Kim?"</i>, <i>"Termini Ne Zaman?"</i> ve <i>"Kasaya Kazandıracağı Net TL Tutarı Kaç Lira?"</i> kriterleriyle icraat takvimine bağlanır. What-If senaryolarıyla tahsilat, stok ve marj kararlarının nakit etkisi önceden test edilir; üst yönetimin onayına ölçülebilir bir karar paketi sunulur.</p>
     </div>
   </div>
 </div>
