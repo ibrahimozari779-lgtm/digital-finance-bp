@@ -178,8 +178,43 @@ HOME_HTML = r'''<!doctype html>
 .topNav a:hover{color:var(--text)}
 .topNav a.active{color:var(--accent);border-color:var(--accent)}
 .top.scrolled{box-shadow:0 12px 30px rgba(15,27,45,.10)}
-.navBtns{display:flex;gap:10px;align-items:center}
-.navBtns a.secondary,.navBtns a.primary{text-decoration:none;display:inline-flex;align-items:center;font-weight:700}
+.navBtns,#authArea{display:flex;gap:8px;align-items:center}
+.navBtns a,.navBtns button,#authArea button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  font-weight:700;
+  padding:8px 16px;
+  border-radius:10px;
+  text-decoration:none;
+  transition:all .15s ease;
+  cursor:pointer;
+  line-height:1.2;
+}
+.navBtns a.secondary,.navBtns button.secondary,#authArea button.secondary,#loginOpenBtn{
+  background:#FFFFFF;
+  border:1px solid #CBD5E1;
+  color:#1E293B;
+  box-shadow:0 1px 2px rgba(0,0,0,.03);
+}
+.navBtns a.secondary:hover,.navBtns button.secondary:hover,#authArea button.secondary:hover,#loginOpenBtn:hover{
+  background:#F8FAFC;
+  border-color:#94A3B8;
+  color:#0F172A;
+}
+.navBtns a.primary,.navBtns button.primary,#authArea button.primary,#registerOpenBtn{
+  background:#1D4ED8;
+  border:1px solid #1D4ED8;
+  color:#FFFFFF;
+  box-shadow:0 2px 6px rgba(29,78,216,.25);
+}
+.navBtns a.primary:hover,.navBtns button.primary:hover,#authArea button.primary:hover,#registerOpenBtn:hover{
+  background:#1E40AF;
+  border-color:#1E40AF;
+  box-shadow:0 4px 12px rgba(29,78,216,.35);
+  transform:translateY(-1px);
+}
 .navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
 @media(max-width:920px){
   .topNav{position:fixed;top:74px;left:0;right:0;background:#F7F9FC;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
@@ -244,24 +279,25 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 .execCta:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(76,201,240,.35)}
 .execArt{filter:drop-shadow(0 24px 48px rgba(0,0,0,.35))}
 @media(max-width:860px){.execBand{grid-template-columns:1fr;padding:32px 22px}}
-/* ---- New: live dashboard hero panel ---- */
-.heroDash{background:linear-gradient(160deg,#0D1B2A 0%,#0A1524 100%);border-radius:20px;border:1px solid #1E3050;padding:20px;position:relative;overflow:hidden;box-shadow:0 24px 60px rgba(8,17,32,.35)}
-.heroDash .dHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+/* ---- New: live dashboard hero panel (Executive Light Theme) ---- */
+.heroDash{background:#FFFFFF;border-radius:24px;border:1.5px solid #DCE6F5;padding:24px;position:relative;overflow:hidden;box-shadow:0 20px 45px rgba(15,27,45,.08)}
+.heroDash .dHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #F1F5F9}
 .heroDash .dHead .dots span{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px}
-.heroDash .dHead .live{font-size:10.5px;color:#7FE3B4;display:flex;align-items:center;gap:6px;font-weight:700;letter-spacing:.4px}
-.heroDash .dHead .live i{width:6px;height:6px;border-radius:50%;background:#15E3B3;display:inline-block;box-shadow:0 0 0 3px rgba(21,227,179,.22);animation:dfbpPulse 1.8s ease infinite}
+.heroDash .dHead .live{font-size:11px;color:#059669;display:flex;align-items:center;gap:6px;font-weight:800;letter-spacing:.4px}
+.heroDash .dHead .live i{width:6px;height:6px;border-radius:50%;background:#10B981;display:inline-block;box-shadow:0 0 0 3px rgba(16,185,129,.22);animation:dfbpPulse 1.8s ease infinite}
 @keyframes dfbpPulse{0%,100%{opacity:1}50%{opacity:.35}}
 .dashTabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.dashTabs span{font-size:10px;color:#7C8FAD;background:#101F33;border:1px solid #1E3050;border-radius:999px;padding:5px 10px;transition:all .25s ease}
-.dashTabs span.on{color:#0D1B2A;background:#4CC9F0;border-color:#4CC9F0;font-weight:800}
+.dashTabs span{font-size:11px;color:#64748B;background:#F1F5F9;border:1px solid transparent;border-radius:999px;padding:6px 12px;cursor:pointer;font-weight:600;transition:all .2s ease}
+.dashTabs span:hover{background:#E2E8F0;color:#1E293B}
+.dashTabs span.on{color:#1D4ED8;background:#EFF6FF;border-color:#BFDBFE;font-weight:800}
 .dashPane{display:none;min-height:230px}
-.dashPane.on{display:block;animation:dfbpFadeIn .4s ease both}
-.dashPane .dTitle{color:#7C8FAD;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
-.dashKpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-.dashKpis div{background:#132238;border:1px solid #20334b;border-radius:9px;padding:9px 10px}
-.dashKpis div b{display:block;font-size:16px;color:#F8FAFC;font-family:var(--serif)}
-.dashKpis div span{font-size:9.5px;color:#7C8FAD}
-.heroDash .foot{margin-top:12px;padding-top:12px;border-top:1px solid #1E3050;font-size:10.5px;color:#7C8FAD;display:flex;justify-content:space-between}
+.dashPane.on{display:block;animation:dfbpFadeIn .3s ease both}
+.dashPane .dTitle{color:#0F172A;font-size:11.5px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;font-weight:700}
+.dashKpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.dashKpis div{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:9px 10px;text-align:center}
+.dashKpis div b{display:block;font-size:15px;color:#0F172A;font-family:var(--serif);font-weight:700}
+.dashKpis div span{font-size:10px;color:#64748B}
+.heroDash .foot{margin-top:14px;padding-top:12px;border-top:1px solid #F1F5F9;font-size:11px;color:#64748B;display:flex;justify-content:space-between;font-weight:600}
 /* ---- New: CFO trust strip ---- */
 .trustGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .trustCard{padding:22px}
@@ -321,20 +357,19 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 </style></head>
 <body>
-<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/" class="active">Anasayfa</a><a href="/paketler">Paketler</a><a href="/hakkimizda">Hakkımızda</a><a href="/iletisim">İletişim</a><a href="/guvenlik">Güvenlik</a><a href="/uygulama">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div class="navBtns"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/" class="active">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <section class="mHero">
   <div class="reveal in">
     <div class="livePill"><i></i> DİGİTAL FİNANCE BUSİNESS PARTNER — ŞİRKETİNİZ İÇİN KURUMSAL KARAR MOTORU</div>
-    <h1>Şirketiniz İçin Digital Finance Business Partner.<br><span class="gradText">Finansal Verileri İcra Kararlarına Dönüştüren Sistem.</span></h1>
-    <p class="lead"><b>"Kâğıt üzerinde kâr görünüyor ama kasada para nerede? Hangi müşteri bize gizli zarar ettiriyor?"</b><br>Standart muhasebe geçmişi gösterir, Digital Finance Business Partner finansal verileri icra kararlarına dönüştürür. Mizanınızı veya ERP alt defterlerinizi yükleyin; <b>33 deterministik finans motoru</b> 60 saniyede çift taraflı denetimle hesaplasın, kök nedenleri ve patronun atacağı somut icra adımlarını masaya koysun.</p>
+    <h1>Şirketiniz İçin Digital Finance Business Partner.<br><span class="gradText">Finansal Verileri İş Kararlarına Dönüştüren Sistem.</span></h1>
+    <p class="lead"><b>"Kâğıt üzerinde kâr görünüyor ama kasada para nerede? Hangi müşteri bize gizli zarar ettiriyor?"</b><br>Standart muhasebe geçmişi gösterir, Digital Finance Business Partner finansal verileri stratejik iş kararlarına dönüştürür. Mizanınızı veya ERP alt defterlerinizi yükleyin; <b>33 deterministik finans motoru</b> 60 saniyede çift taraflı denetimle hesaplasın, kök nedenleri ve yönetimin alacağı somut iş kararlarını masaya koysun.</p>
     <div class="ctaRow">
       <a href="/uygulama?sample=data_hub" class="primary" style="padding:15px 26px;border-radius:14px;font-size:15px;display:inline-flex;align-items:center;gap:10px">🔥 Kayıt Olmadan Canlı Demoyu Başlat <span>(Data Hub)</span></a>
       <a href="/uygulama" class="secondary" style="padding:15px 26px;border-radius:14px;font-size:15px">⚡ Kendi Verinizi Yükleyin →</a>
     </div>
     <div class="miniTrust">
       <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>%100 Deterministik Çift Taraflı Denetim</span>
-      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Sıfır Halüsinasyon (Kanıtlanabilir)</span>
       <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>KVKK Uyumlu · Kalıcı Saklama Yok</span>
       <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg>33 Analitik Karar Motoru</span>
     </div>
@@ -342,7 +377,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="heroArt reveal in">
     <div class="heroDash">
       <div class="dHead">
-        <div class="dots"><span style="background:#C22A3E"></span><span style="background:#B4720A"></span><span style="background:#0E7C66"></span></div>
+        <div class="dots"><span style="background:#EF4444"></span><span style="background:#F59E0B"></span><span style="background:#10B981"></span></div>
         <span class="live"><i></i>İNTERAKTİF CANLI ÖNİZLEME</span>
       </div>
       <div class="dashTabs" id="heroDashTabs">
@@ -356,74 +391,80 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
         <div class="dashPane on" data-pane="0">
           <div class="dTitle">Kâr Köprüsü — Satıştan Kasaya Kalan Net Para (Nereye Gitti?)</div>
           <svg viewBox="0 0 320 135" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:135px">
-            <rect x="10" y="20" width="38" height="100" fill="#38BDF8" rx="4"/>
-            <rect x="70" y="45" width="38" height="75" fill="#F43F5E" rx="4" opacity=".9"/>
-            <rect x="130" y="65" width="38" height="55" fill="#FB923C" rx="4" opacity=".9"/>
-            <rect x="190" y="95" width="38" height="25" fill="#A855F7" rx="4" opacity=".9"/>
-            <rect x="250" y="35" width="38" height="85" fill="#10B981" rx="4"/>
-            <text x="29" y="15" fill="#93C5FD" font-size="9" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">10.0M ₺</text>
-            <text x="29" y="130" fill="#94A3B8" font-size="8" text-anchor="middle" font-family="Inter,sans-serif">Satış Ciro</text>
-            <text x="89" y="40" fill="#FDA4AF" font-size="9" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">-6.5M ₺</text>
-            <text x="89" y="130" fill="#94A3B8" font-size="8" text-anchor="middle" font-family="Inter,sans-serif">Maliyet</text>
-            <text x="149" y="60" fill="#FDBA74" font-size="9" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">-2.1M ₺</text>
-            <text x="149" y="130" fill="#94A3B8" font-size="8" text-anchor="middle" font-family="Inter,sans-serif">Faaliyet Gid.</text>
-            <text x="209" y="90" fill="#D8B4FE" font-size="9" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">-400k ₺</text>
-            <text x="209" y="130" fill="#94A3B8" font-size="8" text-anchor="middle" font-family="Inter,sans-serif">Faiz/Vergi</text>
-            <text x="269" y="28" fill="#6EE7B7" font-size="9" font-weight="800" text-anchor="middle" font-family="Inter,sans-serif">+1.0M ₺</text>
-            <text x="269" y="130" fill="#6EE7B7" font-size="8" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">Net Kâr</text>
+            <line x1="0" y1="118" x2="320" y2="118" stroke="#E2E8F0" stroke-width="1"/>
+            <rect x="12" y="22" width="38" height="96" fill="#2563EB" rx="5"/>
+            <rect x="72" y="44" width="38" height="74" fill="#E11D48" rx="5"/>
+            <rect x="132" y="64" width="38" height="54" fill="#F59E0B" rx="5"/>
+            <rect x="192" y="92" width="38" height="26" fill="#8B5CF6" rx="5"/>
+            <rect x="252" y="32" width="38" height="86" fill="#10B981" rx="5"/>
+            <text x="31" y="16" fill="#0F172A" font-size="9.5" font-weight="800" text-anchor="middle" font-family="Inter,sans-serif">10.0M ₺</text>
+            <text x="31" y="130" fill="#64748B" font-size="8.5" text-anchor="middle" font-family="Inter,sans-serif">Satış Ciro</text>
+            <text x="91" y="38" fill="#BE123C" font-size="9.5" font-weight="800" text-anchor="middle" font-family="Inter,sans-serif">-6.5M ₺</text>
+            <text x="91" y="130" fill="#64748B" font-size="8.5" text-anchor="middle" font-family="Inter,sans-serif">Maliyet</text>
+            <text x="151" y="58" fill="#B45309" font-size="9.5" font-weight="800" text-anchor="middle" font-family="Inter,sans-serif">-2.1M ₺</text>
+            <text x="151" y="130" fill="#64748B" font-size="8.5" text-anchor="middle" font-family="Inter,sans-serif">Faaliyet Gid.</text>
+            <text x="211" y="86" fill="#6D28D9" font-size="9.5" font-weight="800" text-anchor="middle" font-family="Inter,sans-serif">-400k ₺</text>
+            <text x="211" y="130" fill="#64748B" font-size="8.5" text-anchor="middle" font-family="Inter,sans-serif">Faiz/Vergi</text>
+            <text x="271" y="26" fill="#047857" font-size="9.5" font-weight="800" text-anchor="middle" font-family="Inter,sans-serif">+1.0M ₺</text>
+            <text x="271" y="130" fill="#047857" font-size="8.5" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">Net Kâr</text>
           </svg>
           <div class="dashKpis"><div><b>%35,0</b><span>Brüt Kâr Marjı</span></div><div><b>₺1.000.000</b><span>Net Dönem Kârı</span></div><div><b>₺3,45M</b><span>Müşteri/Stokta Kilitli</span></div></div>
         </div>
         <div class="dashPane" data-pane="1">
           <div class="dTitle">Sermaye Verimi — Bağlanan Her 100 ₺ Ne Üretiyor? (ROE Ağacı)</div>
           <svg viewBox="0 0 320 135" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:135px">
-            <rect x="110" y="4" width="100" height="28" rx="6" fill="#132238" stroke="#38BDF8" stroke-width="1.5"/><text x="160" y="22" text-anchor="middle" fill="#38BDF8" font-family="Inter,sans-serif" font-size="11" font-weight="800">ROE %25,4</text>
-            <line x1="130" y1="32" x2="60" y2="54" stroke="#2A3F60" stroke-width="1.5"/><line x1="190" y1="32" x2="260" y2="54" stroke="#2A3F60" stroke-width="1.5"/>
-            <rect x="15" y="54" width="90" height="26" rx="6" fill="#132238" stroke="#2A3F60"/><text x="60" y="71" text-anchor="middle" fill="#F8FAFC" font-family="Inter,sans-serif" font-size="9.5" font-weight="600">Net Marj %11,2</text>
-            <rect x="215" y="54" width="90" height="26" rx="6" fill="#132238" stroke="#2A3F60"/><text x="260" y="71" text-anchor="middle" fill="#F8FAFC" font-family="Inter,sans-serif" font-size="9.5" font-weight="600">Kaldıraç 1,36x</text>
-            <line x1="60" y1="80" x2="60" y2="98" stroke="#2A3F60" stroke-width="1.5"/>
-            <rect x="10" y="98" width="100" height="24" rx="6" fill="#0A1524" stroke="#1E3050"/><text x="60" y="114" text-anchor="middle" fill="#94A3B8" font-family="Inter,sans-serif" font-size="8.5">Ciro Hızı: 1,62x / yıl</text>
-            <rect x="160" y="98" width="150" height="24" rx="6" fill="#0E2A22" stroke="#15E3B3"/><text x="235" y="114" text-anchor="middle" fill="#15E3B3" font-family="Inter,sans-serif" font-size="8.5" font-weight="700">100 ₺ Özsermaye = 25,4 ₺ Kâr</text>
+            <rect x="110" y="4" width="100" height="28" rx="7" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5"/><text x="160" y="22" text-anchor="middle" fill="#1D4ED8" font-family="Inter,sans-serif" font-size="11" font-weight="800">ROE %25,4</text>
+            <line x1="130" y1="32" x2="60" y2="54" stroke="#CBD5E1" stroke-width="1.5"/><line x1="190" y1="32" x2="260" y2="54" stroke="#CBD5E1" stroke-width="1.5"/>
+            <rect x="15" y="54" width="90" height="26" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/><text x="60" y="71" text-anchor="middle" fill="#0F172A" font-family="Inter,sans-serif" font-size="9.5" font-weight="600">Net Marj %11,2</text>
+            <rect x="215" y="54" width="90" height="26" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/><text x="260" y="71" text-anchor="middle" fill="#0F172A" font-family="Inter,sans-serif" font-size="9.5" font-weight="600">Kaldıraç 1,36x</text>
+            <line x1="60" y1="80" x2="60" y2="98" stroke="#CBD5E1" stroke-width="1.5"/>
+            <rect x="10" y="98" width="100" height="24" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/><text x="60" y="114" text-anchor="middle" fill="#475569" font-family="Inter,sans-serif" font-size="8.5">Ciro Hızı: 1,62x / yıl</text>
+            <rect x="150" y="98" width="162" height="24" rx="6" fill="#ECFDF5" stroke="#10B981"/><text x="231" y="114" text-anchor="middle" fill="#047857" font-family="Inter,sans-serif" font-size="8.5" font-weight="700">100 ₺ Sermaye = 25,4 ₺ Kâr</text>
           </svg>
           <div class="dashKpis"><div><b>%25,4</b><span>Özsermaye Kârlılığı</span></div><div><b>25,4 ₺</b><span>Her 100 ₺ İçin Getiri</span></div><div><b>1,62x</b><span>Aktif Varlık Hızı</span></div></div>
         </div>
         <div class="dashPane" data-pane="2">
           <div class="dTitle">Nakit Çevrim Süresi — Para Kaç Günde Kasaya Dönüyor?</div>
           <svg viewBox="0 0 320 135" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:135px">
-            <text x="8" y="18" fill="#94A3B8" font-family="Inter,sans-serif" font-size="9">Müşteri Tahsilat Süresi (DSO)</text>
-            <rect x="8" y="24" width="304" height="15" rx="7.5" fill="#101F33"/><rect x="8" y="24" width="180" height="15" rx="7.5" fill="#38BDF8"/><text x="195" y="36" fill="#F8FAFC" font-family="Inter,sans-serif" font-size="9" font-weight="700">80 gün</text>
-            <text x="8" y="58" fill="#94A3B8" font-family="Inter,sans-serif" font-size="9">Depoda Malın Kalma Süresi (DIO)</text>
-            <rect x="8" y="64" width="304" height="15" rx="7.5" fill="#101F33"/><rect x="8" y="64" width="216" height="15" rx="7.5" fill="#10B981"/><text x="230" y="76" fill="#F8FAFC" font-family="Inter,sans-serif" font-size="9" font-weight="700">96 gün</text>
-            <text x="8" y="98" fill="#94A3B8" font-family="Inter,sans-serif" font-size="9">Tedarikçiye Ödeme Vadesi (DPO - Finansman Desteği)</text>
-            <rect x="8" y="104" width="304" height="15" rx="7.5" fill="#101F33"/><rect x="8" y="104" width="95" height="15" rx="7.5" fill="#F59E0B"/><text x="110" y="116" fill="#F8FAFC" font-family="Inter,sans-serif" font-size="9" font-weight="700">-42 gün</text>
+            <text x="8" y="18" fill="#475569" font-family="Inter,sans-serif" font-size="9" font-weight="600">Müşteri Tahsilat Süresi (DSO)</text>
+            <rect x="8" y="24" width="304" height="15" rx="7.5" fill="#F1F5F9"/><rect x="8" y="24" width="180" height="15" rx="7.5" fill="#2563EB"/><text x="195" y="36" fill="#0F172A" font-family="Inter,sans-serif" font-size="9" font-weight="700">80 gün</text>
+            <text x="8" y="58" fill="#475569" font-family="Inter,sans-serif" font-size="9" font-weight="600">Depoda Malın Kalma Süresi (DIO)</text>
+            <rect x="8" y="64" width="304" height="15" rx="7.5" fill="#F1F5F9"/><rect x="8" y="64" width="216" height="15" rx="7.5" fill="#10B981"/><text x="230" y="76" fill="#0F172A" font-family="Inter,sans-serif" font-size="9" font-weight="700">96 gün</text>
+            <text x="8" y="98" fill="#475569" font-family="Inter,sans-serif" font-size="9" font-weight="600">Tedarikçiye Ödeme Vadesi (DPO - Finansman Desteği)</text>
+            <rect x="8" y="104" width="304" height="15" rx="7.5" fill="#F1F5F9"/><rect x="8" y="104" width="95" height="15" rx="7.5" fill="#F59E0B"/><text x="110" y="116" fill="#0F172A" font-family="Inter,sans-serif" font-size="9" font-weight="700">-42 gün</text>
           </svg>
           <div class="dashKpis"><div><b>134 Gün</b><span>Net Nakit Bekleme</span></div><div><b>₺3,45M</b><span>İşletmede Kilitli Nakit</span></div><div><b>+450k ₺</b><span>15 Gün Erken Tahsilat</span></div></div>
         </div>
         <div class="dashPane" data-pane="3">
           <div class="dTitle">Erken Uyarı Radarı — Şirketi Tehdit Eden Gizli Riskler</div>
           <svg viewBox="0 0 320 135" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:135px" font-family="Inter,sans-serif">
-            <circle cx="14" cy="18" r="5" fill="#F43F5E"/><text x="26" y="21" fill="#F8FAFC" font-size="9.5" font-weight="600">Tahsilat gecikmesi (DSO 80 gün) nakit açığı yaratıyor</text>
-            <rect x="250" y="11" width="60" height="14" rx="7" fill="#881337"/><text x="280" y="22" fill="#FDA4AF" font-size="8" font-weight="800" text-anchor="middle">KRİTİK</text>
+            <rect x="4" y="8" width="312" height="26" rx="6" fill="#FEF2F2" stroke="#FEE2E2"/>
+            <circle cx="16" cy="21" r="4" fill="#EF4444"/><text x="28" y="24" fill="#991B1B" font-size="9" font-weight="600">Tahsilat gecikmesi (DSO 80 gün) nakit açığı yaratıyor</text>
+            <rect x="254" y="14" width="54" height="14" rx="7" fill="#DC2626"/><text x="281" y="24.5" fill="#FFFFFF" font-size="7.5" font-weight="800" text-anchor="middle">KRİTİK</text>
             
-            <circle cx="14" cy="48" r="5" fill="#F43F5E"/><text x="26" y="51" fill="#F8FAFC" font-size="9.5" font-weight="600">180+ gün ölü stok: 380.000 ₺ depoda nakit yutuyor</text>
-            <rect x="250" y="41" width="60" height="14" rx="7" fill="#881337"/><text x="280" y="52" fill="#FDA4AF" font-size="8" font-weight="800" text-anchor="middle">KRİTİK</text>
+            <rect x="4" y="38" width="312" height="26" rx="6" fill="#FEF2F2" stroke="#FEE2E2"/>
+            <circle cx="16" cy="51" r="4" fill="#EF4444"/><text x="28" y="54" fill="#991B1B" font-size="9" font-weight="600">180+ gün ölü stok: 380.000 ₺ depoda nakit yutuyor</text>
+            <rect x="254" y="44" width="54" height="14" rx="7" fill="#DC2626"/><text x="281" y="54.5" fill="#FFFFFF" font-size="7.5" font-weight="800" text-anchor="middle">KRİTİK</text>
 
-            <circle cx="14" cy="78" r="5" fill="#F59E0B"/><text x="26" y="81" fill="#F8FAFC" font-size="9.5" font-weight="600">Müşteri yoğunlaşması: İlk 3 müşteri cironun %64'ü</text>
-            <rect x="250" y="71" width="60" height="14" rx="7" fill="#78350F"/><text x="280" y="82" fill="#FCD34D" font-size="8" font-weight="800" text-anchor="middle">YÜKSEK</text>
+            <rect x="4" y="68" width="312" height="26" rx="6" fill="#FFFBEB" stroke="#FEF3C7"/>
+            <circle cx="16" cy="81" r="4" fill="#F59E0B"/><text x="28" y="84" fill="#92400E" font-size="9" font-weight="600">Müşteri yoğunlaşması: İlk 3 müşteri cironun %64'ü</text>
+            <rect x="254" y="74" width="54" height="14" rx="7" fill="#D97706"/><text x="281" y="84.5" fill="#FFFFFF" font-size="7.5" font-weight="800" text-anchor="middle">YÜKSEK</text>
 
-            <circle cx="14" cy="108" r="5" fill="#10B981"/><text x="26" y="111" fill="#F8FAFC" font-size="9.5" font-weight="600">Fiyatlama gücü: Brüt marj sektörün 4 puan üzerinde</text>
-            <rect x="250" y="101" width="60" height="14" rx="7" fill="#064E3B"/><text x="280" y="112" fill="#6EE7B7" font-size="8" font-weight="800" text-anchor="middle">GÜÇLÜ</text>
+            <rect x="4" y="98" width="312" height="26" rx="6" fill="#ECFDF5" stroke="#D1FAE5"/>
+            <circle cx="16" cy="111" r="4" fill="#10B981"/><text x="28" y="114" fill="#065F46" font-size="9" font-weight="600">Fiyatlama gücü: Brüt marj sektörün 4 puan üzerinde</text>
+            <rect x="254" y="104" width="54" height="14" rx="7" fill="#059669"/><text x="281" y="114.5" fill="#FFFFFF" font-size="7.5" font-weight="800" text-anchor="middle">GÜÇLÜ</text>
           </svg>
           <div class="dashKpis"><div><b>2</b><span>Kritik Nakit Riski</span></div><div><b>380.000 ₺</b><span>Kurtarılabilir Ölü Stok</span></div><div><b>8</b><span>Öncelikli Aksiyon</span></div></div>
         </div>
         <div class="dashPane" data-pane="4">
           <div class="dTitle">Canlı Karar Simülatörü — "Fiyatı %3 Artırırsak Kasaya Ne Girer?"</div>
           <svg viewBox="0 0 320 135" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:135px">
-            <polyline points="10,105 60,95 110,98 160,70 210,75 260,45 300,50" fill="none" stroke="#64748B" stroke-width="2" stroke-dasharray="3 3"/>
-            <polyline points="10,105 60,82 110,80 160,46 210,42 260,16 300,12" fill="none" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="300" cy="12" r="4.5" fill="#38BDF8"/><circle cx="300" cy="50" r="4" fill="#64748B"/>
-            <text x="295" y="8" fill="#38BDF8" font-family="Inter,sans-serif" font-size="9" font-weight="700" text-anchor="end">+%3 Fiyat (+324.000 ₺)</text>
-            <text x="295" y="65" fill="#94A3B8" font-family="Inter,sans-serif" font-size="8.5" text-anchor="end">Mevcut Durum</text>
+            <line x1="0" y1="115" x2="320" y2="115" stroke="#E2E8F0" stroke-width="1"/>
+            <polyline points="10,105 60,95 110,98 160,70 210,75 260,45 300,50" fill="none" stroke="#94A3B8" stroke-width="2" stroke-dasharray="4 4"/>
+            <polyline points="10,105 60,82 110,80 160,46 210,42 260,16 300,12" fill="none" stroke="#2563EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="300" cy="12" r="5" fill="#2563EB"/><circle cx="300" cy="50" r="4" fill="#94A3B8"/>
+            <text x="295" y="8" fill="#1D4ED8" font-family="Inter,sans-serif" font-size="9.5" font-weight="800" text-anchor="end">+%3 Fiyat (+324.000 ₺)</text>
+            <text x="295" y="65" fill="#64748B" font-family="Inter,sans-serif" font-size="8.5" text-anchor="end">Mevcut Durum</text>
           </svg>
           <div class="dashKpis"><div><b>+324.000 ₺</b><span>Net Kâr Katkısı</span></div><div><b>+450.000 ₺</b><span>Tahsilatı 15 Gün Çekme</span></div><div><b>+774.000 ₺</b><span>Toplam Serbest Nakit</span></div></div>
         </div>
@@ -476,8 +517,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <div class="secBlock tint reveal"><section id="workflow" class="marketingSection hidePrint">
 <div class="marketingHead">
   <span class="workflowBadge">İNTERAKTİF İŞ AKIŞI MİMARİSİ</span>
-  <h2>Ham Veriden İcra Kararına 4 Adım</h2>
-  <p>Verinizi yüklediğiniz andan yönetim kuruluna sunacağınız aksiyon planına kadar geçen deterministik süreç.</p>
+  <h2>Ham Veriden Yönetim Kararlarına 4 Adım</h2>
+  <p>Verinizi yüklediğiniz andan yönetim kuruluna sunacağınız somut aksiyon planına kadar geçen deterministik süreç.</p>
 </div>
 <div class="workflowGrid" id="wfGrid">
   <div class="workflowCard wfInteractive" data-step="0" style="cursor:pointer;border-top:3px solid var(--accent)">
@@ -488,7 +529,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="workflowCard wfInteractive" data-step="1" style="cursor:pointer">
     <span class="workflowBadge">ADIM 2 · HESAPLAMA</span>
     <h3>33 Deterministik Motor</h3>
-    <p>Bilanço denkliği, gelir tablosu kontrolleri ve alt defter mutabakatları çift taraflı denetimden geçer. Matematik hatasız kurallar çalışır.</p>
+    <p>Bilanço denkliği, gelir tablosu kontrolleri ve alt defter mutabakatları çift taraflı denetimden geçer. Matematiksel kesinlikle kurallar çalışır.</p>
   </div>
   <div class="workflowCard wfInteractive" data-step="2" style="cursor:pointer">
     <span class="workflowBadge">ADIM 3 · ANLATIM</span>
@@ -496,39 +537,39 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     <p>WHAT → WHY → SO WHAT → NOW WHAT → WHAT IF mantığıyla her rakamın kök nedeni, finansal riski ve parasal büyüklüğü açıklanır.</p>
   </div>
   <div class="workflowCard wfInteractive" data-step="3" style="cursor:pointer">
-    <span class="workflowBadge">ADIM 4 · İCRA</span>
+    <span class="workflowBadge">ADIM 4 · İŞ KARARLARI</span>
     <h3>Yönetim Aksiyonları & AI Partner</h3>
-    <p>Sahibi, zamanı ve KPI'sı belli aksiyon planı oluşur. İsteğe bağlı AI Finance Business Partner ile kurul toplantıları için stratejik Q&A yapılır.</p>
+    <p>Sahibi, vadesi ve beklenen TL getirisi belli aksiyon planı oluşur. Stratejik kararlarınız için yapay zeka destekli soru-cevap katmanı hazırdır.</p>
   </div>
 </div>
 
-<!-- Interactive Live Step Viewer -->
-<div id="wfLiveViewer" style="margin-top:20px;background:#0D1B2A;border:1px solid #1E3050;border-radius:20px;padding:24px;color:#F8FAFC;box-shadow:0 18px 40px rgba(15,27,45,.25)">
-  <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1E3050;padding-bottom:14px;margin-bottom:18px;flex-wrap:wrap;gap:10px">
+<!-- Interactive Live Step Viewer (Executive Light Theme) -->
+<div id="wfLiveViewer" style="margin-top:24px;background:#FFFFFF;border:1.5px solid #DCE6F5;border-radius:22px;padding:24px;color:#0F1B2D;box-shadow:0 14px 34px rgba(15,27,45,.06)">
+  <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #F1F5F9;padding-bottom:14px;margin-bottom:18px;flex-wrap:wrap;gap:10px">
     <div style="display:flex;align-items:center;gap:10px">
-      <span id="wfViewerStepTag" class="workflowBadge" style="background:#1E3A8A;border-color:#3B82F6;color:#93C5FD;margin:0">CANLI SİMÜLASYON · ADIM 1</span>
-      <b id="wfViewerStepTitle" style="font-size:15px;color:#F8FAFC">Mizan ve Alt Defterlerin Doğrudan İçe Aktarımı</b>
+      <span id="wfViewerStepTag" class="workflowBadge" style="background:#EFF6FF;border-color:#BFDBFE;color:#1D4ED8;margin:0">CANLI SİMÜLASYON · ADIM 1</span>
+      <b id="wfViewerStepTitle" style="font-size:15px;color:#0F172A">Mizan ve Alt Defterlerin Doğrudan İçe Aktarımı</b>
     </div>
     <div style="display:flex;gap:6px" id="wfNavPills">
-      <button type="button" class="tab active" data-wfpill="0" style="padding:5px 12px;font-size:11px;font-weight:700;background:#38BDF8;color:#0D1B2A;border:none;border-radius:999px;cursor:pointer">1. Dosya Bırak</button>
-      <button type="button" class="tab" data-wfpill="1" style="padding:5px 12px;font-size:11px;font-weight:700;background:#132238;color:#94A3B8;border:1px solid #1E3050;border-radius:999px;cursor:pointer">2. 33 Motor</button>
-      <button type="button" class="tab" data-wfpill="2" style="padding:5px 12px;font-size:11px;font-weight:700;background:#132238;color:#94A3B8;border:1px solid #1E3050;border-radius:999px;cursor:pointer">3. Kök Neden</button>
-      <button type="button" class="tab" data-wfpill="3" style="padding:5px 12px;font-size:11px;font-weight:700;background:#132238;color:#94A3B8;border:1px solid #1E3050;border-radius:999px;cursor:pointer">4. İcra Planı</button>
+      <button type="button" class="tab active" data-wfpill="0" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#1D4ED8;color:#FFFFFF;border:none;border-radius:999px;cursor:pointer">1. Dosya Bırak</button>
+      <button type="button" class="tab" data-wfpill="1" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;cursor:pointer">2. 33 Motor</button>
+      <button type="button" class="tab" data-wfpill="2" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;cursor:pointer">3. Kök Neden</button>
+      <button type="button" class="tab" data-wfpill="3" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;cursor:pointer">4. Yönetim Aksiyonları</button>
     </div>
   </div>
   <div id="wfViewerContent">
     <div style="display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center">
       <div>
-        <p style="color:#C7D2E8;font-size:13.5px;line-height:1.6;margin:0 0 14px">ERP veya muhasebe programınızdan aldığınız standart Excel/CSV mizanınızı ve varsa yaşlandırma/stok alt defterlerinizi tarayıcıya sürükleyin. Kolon eşleme yapay zeka tahminiyle değil, hesap planı kuralları (1xx-7xx) üzerinden deterministik olarak anında tanınır.</p>
+        <p style="color:#334155;font-size:13.5px;line-height:1.6;margin:0 0 14px">ERP veya muhasebe programınızdan aldığınız standart Excel/CSV mizanınızı ve varsa yaşlandırma/stok alt defterlerinizi tarayıcıya sürükleyin. Kolon eşleme yapay zeka tahminiyle değil, hesap planı kuralları (1xx-7xx) üzerinden deterministik olarak anında tanınır.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <span style="background:#132238;border:1px solid #20334b;padding:6px 12px;border-radius:8px;font-size:12px;color:#38BDF8">✓ Luca, Logo, Mikro, Netsis, Zirve uyumlu</span>
-          <span style="background:#132238;border:1px solid #20334b;padding:6px 12px;border-radius:8px;font-size:12px;color:#10B981">✓ Sıfır Kurulum & Sıfır Bekleme</span>
+          <span style="background:#F1F5F9;border:1px solid #CBD5E1;padding:6px 12px;border-radius:8px;font-size:12px;color:#1D4ED8;font-weight:600">✓ Luca, Logo, Mikro, Netsis, Zirve uyumlu</span>
+          <span style="background:#ECFDF5;border:1px solid #A7F3D0;padding:6px 12px;border-radius:8px;font-size:12px;color:#047857;font-weight:600">✓ Sıfır Kurulum & Sıfır Bekleme</span>
         </div>
       </div>
-      <div style="background:#132238;border:1px dashed #38BDF8;border-radius:14px;padding:24px 20px;text-align:center">
+      <div style="background:#F8FAFC;border:2px dashed #93C5FD;border-radius:14px;padding:24px 20px;text-align:center">
         <div style="font-size:32px;margin-bottom:8px">📥</div>
-        <b style="color:#F8FAFC;font-size:13px;display:block">Mizan Dosyanızı Sürükleyin</b>
-        <span style="color:#7C8FAD;font-size:11px">.xlsx, .xls, .csv formatları otomatik taranır</span>
+        <b style="color:#0F172A;font-size:13px;display:block">Mizan Dosyanızı Sürükleyin</b>
+        <span style="color:#64748B;font-size:11px">.xlsx, .xls, .csv formatları otomatik taranır</span>
       </div>
     </div>
   </div>
@@ -559,14 +600,14 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
         <td>❌ Yalnızca geçmiş kayıtları tutar</td>
         <td>❌ Statik formüller, karar mantığı yok</td>
         <td>⚠️ Kişiye bağımlı ve haftalar sürer</td>
-        <td class="featured">✅ Anında 33 motorlu karar analitiği & icra planı</td>
+        <td class="featured">✅ Anında 33 motorlu karar analitiği & yönetim aksiyonları</td>
       </tr>
       <tr>
         <td><b>Hesaplama Hızı</b></td>
         <td>Saatler süren veri filtreleme</td>
         <td>Günler süren formül bağlama</td>
         <td>Haftalar sonra gelen sunumlar</td>
-        <td class="featured">⚡ 60 saniyede hazır yönetim kurulu raporu</td>
+        <td class="featured">⚡ 60 saniyede hazır yönetim raporu</td>
       </tr>
       <tr>
         <td><b>Kök Neden & Senaryo Analitiği</b></td>
@@ -579,83 +620,30 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
         <td><b>Maliyet & Erişilebilirlik</b></td>
         <td>Yüksek lisans ve sunucu maliyeti</td>
         <td>Zaman ve emek kaybı</td>
-        <td>Aylık 80.000+ TL danışmanlık ücreti</td>
-        <td class="featured">💰 Şeffaf ve ilk aydan amorti eden kurumsal SaaS</td>
+        <td>Aylık yüksek danışmanlık ücreti</td>
+        <td class="featured">💰 Şeffaf ve anında amorti eden kurumsal SaaS</td>
       </tr>
       <tr>
         <td><b>Güven & Doğruluk</b></td>
         <td>Kullanıcı girişine bağımlı</td>
         <td>Formül bozulma riski yüksek</td>
         <td>Öznel insan yorumu</td>
-        <td class="featured">🔒 %100 Çift taraflı denetim ve kaynak izleme</td>
+        <td class="featured">🔒 %100 Çift taraflı denetim ve defter izleme</td>
       </tr>
     </tbody>
   </table>
 </div>
 </section></div>
 
-
-<!-- SECTION: SAMPLE DATA LAUNCHER -->
-<div class="secBlock tint reveal"><section id="ornekDene" class="marketingSection hidePrint">
-<div class="marketingHead">
-  <span class="workflowBadge">CANLI DENEYİN</span>
-  <h2>Çıktı nasıl görünüyor, kendiniz görün</h2>
-  <p>Kayıt olmadan, kendi dosyanızı hazırlamadan — hazır altın veri setleriyle gerçek bir KOBİ raporunu 1 tıkla açın.</p>
-</div>
-<div class="grid4">
-<div class="card" style="padding:24px"><div class="tag" style="margin-bottom:12px">Tek Dönem</div><h3 style="margin:0 0 6px;font-size:16px">Genel Mizan</h3><p class="muted small">Standart bir mizan dosyasından P&amp;L, Bilanço, Nakit Akışı ve Yönetici Özeti nasıl çıkarılır, görün.</p><a href="/uygulama?sample=mizan" class="secondary" style="display:block;text-align:center;margin-top:16px;text-decoration:none;padding:10px;border-radius:10px">Raporu Aç</a></div>
-<div class="card" style="padding:24px"><div class="tag" style="margin-bottom:12px">Dönem Karşılaştırma</div><h3 style="margin:0 0 6px;font-size:16px">Önceki Dönem ile Trend</h3><p class="muted small">İki dönemlik mizan karşılaştırmasıyla değişim, sapma ve kök neden analizinin nasıl işlediğini görün.</p><a href="/uygulama?sample=mizan_prior" class="secondary" style="display:block;text-align:center;margin-top:16px;text-decoration:none;padding:10px;border-radius:10px">Raporu Aç</a></div>
-<div class="card" style="padding:24px"><div class="tag" style="margin-bottom:12px">3 Tablo</div><h3 style="margin:0 0 6px;font-size:16px">Bilanço + Gelir Tablosu</h3><p class="muted small">Mizan yerine hazır bilanço ve gelir tablosu ile çalışan şirketler için örnek analiz akışı.</p><a href="/uygulama?sample=three_sheet" class="secondary" style="display:block;text-align:center;margin-top:16px;text-decoration:none;padding:10px;border-radius:10px">Raporu Aç</a></div>
-<div class="card" style="padding:24px;border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)"><div class="tag" style="margin-bottom:12px;background:#DCE6FB;color:var(--accent)">Data Hub ★</div><h3 style="margin:0 0 6px;font-size:16px">Mizan + AR/AP + Stok + Satış</h3><p class="muted small">Mizanla birlikte AR/AP yaşlandırma, stok ve satış defterini tek seferde yükleyip tüm 33 karar motorunun birlikte çalıştığını görün.</p><a href="/uygulama?sample=data_hub" class="primary" style="display:block;text-align:center;margin-top:16px;text-decoration:none;padding:10px;border-radius:10px">🔥 Data Hub Aç</a></div>
-</div>
-<div style="text-align:center;margin-top:26px"><a href="/uygulama?sample=data_hub" class="primary" style="text-decoration:none;padding:14px 24px;border-radius:12px;display:inline-block">Data Hub Örnek Verisiyle Canlı Analizi Başlat</a><p class="muted small" style="margin-top:10px">Sıfır kurulum · Şablon hazırlamanıza gerek yok · 60 saniyede tam yönetim kurulu raporu</p></div>
-</section></div>
-
-<!-- SECTION: SECURITY & TRUST -->
-<div class="secBlock reveal"><section id="security" class="marketingSection hidePrint">
-<div class="marketingHead">
-  <span class="workflowBadge">GÜVENLİK & GİZLİLİK</span>
-  <h2>Banka Düzeyinde Güvenlik ve KVKK Güvencesi</h2>
-  <p>Şirketinizin finansal verileri en mahrem varlığınızdır. Mimarimiz sıfır kalıcı veri prensibiyle inşa edildi.</p>
-</div>
-<div class="grid3">
-  <div class="card" style="padding:24px">
-    <div style="font-size:24px;margin-bottom:10px">🔒</div>
-    <h3 style="margin:0 0 8px;font-size:16px">Sıfır Veri Saklama (Zero Retention)</h3>
-    <p class="muted small">Yüklediğiniz dosyalar yalnızca analiz anında RAM üzerinde işlenir. Hesap açmadan yapılan oturumlarda sunucuda hiçbir mizan veya satış verisi kalıcı olarak tutulmaz.</p>
-  </div>
-  <div class="card" style="padding:24px">
-    <div style="font-size:24px;margin-bottom:10px">🛡️</div>
-    <h3 style="margin:0 0 8px;font-size:16px">TLS 1.3 Banka Şifrelemesi</h3>
-    <p class="muted small">Tüm dosya aktarımları ve API çağrıları 256-bit TLS şifrelemesiyle korunur. Üçüncü tarafların veya harici servislerin verinize erişimi imkânsızdır.</p>
-  </div>
-  <div class="card" style="padding:24px">
-    <div style="font-size:24px;margin-bottom:10px">⚖️</div>
-    <h3 style="margin:0 0 8px;font-size:16px">KVKK & Denetim Güvencesi</h3>
-    <p class="muted small">Müşteri ve çalışan kişisel verileri ayrıştırılır. Üretilen her hesaplama, ilgili mizan hesabına kadar tam denetim iziyle (Traceability) doğrulanır.</p>
-  </div>
-</div>
-</section></div>
-
-<!-- SECTION: PRICING PREVIEW -->
-<div class="secBlock tint reveal"><div class="marketingHead"><h2>Size uygun paketi seçin</h2><p>Tüm paketler aynı 33 deterministik motoru kullanır; fark analiz sıklığı ve geçmiş saklamadadır.</p></div>
-<div class="pricingGrid">
-<div class="card priceCard"><div class="plan">Başlangıç</div><h3>Starter</h3><div class="amt">₺0<span> /örnek analiz</span></div><div class="desc">Sistemi görmek isteyen ekipler için.</div><a href="/uygulama" class="secondary" style="width:100%;text-align:center;text-decoration:none;display:block;margin-top:auto">Ücretsiz Dene</a></div>
-<div class="card priceCard featured"><div class="badgeTop">En Çok Tercih Edilen</div><div class="plan">Büyüyen KOBİ'ler</div><h3>Professional</h3><div class="amt">₺2.490<span> /ay</span></div><div class="desc">Düzenli yönetim raporu üreten finans ekipleri için.</div><a href="/uygulama?auth=register" class="primary" style="width:100%;text-align:center;text-decoration:none;display:block;margin-top:auto">Kayıt Ol</a></div>
-<div class="card priceCard"><div class="plan">Kurumsal</div><h3>Enterprise</h3><div class="amt">Teklif ile<span> /özel</span></div><div class="desc">Çoklu şirket/holding yapısı olan kurumlar için.</div><a href="/iletisim" class="secondary" style="width:100%;text-align:center;text-decoration:none;display:block;margin-top:auto">Bize Ulaşın</a></div>
-</div>
-<div style="text-align:center;margin-top:22px"><a href="/paketler" class="secondary" style="text-decoration:none;padding:11px 20px;border-radius:11px;display:inline-block">Tüm paket detaylarını ve modül kapsamını gör →</a></div>
-</div>
-
-<!-- SECTION: FINAL CTA BANNER -->
-<div class="secBlock reveal"><section class="ctaBanner hidePrint">
+<!-- CLOSING ACTION SECTION -->
+<div class="secBlock reveal"><section class="ctaBanner hidePrint" style="margin-top:10px">
   <div>
-    <h3>Şirketinizin Finansal Sağlığını Şimdi Görün</h3>
-    <p>Dosya yüklemeden, kayıt olmadan — 5 veri kaynaklı altın örnek setle tam bir yönetim kurulu raporunu 60 saniyede deneyin.</p>
+    <h3 style="font-size:24px;margin:0 0 8px;font-family:var(--serif)">Finansal Verilerinizi Stratejik İş Kararlarına Dönüştürün</h3>
+    <p style="margin:0;color:var(--muted);font-size:14px">Entegrasyon gerektirmez. Örnek Data Hub verisiyle veya kendi mizanınızla 60 saniyede karar raporunuzu alın.</p>
   </div>
   <div style="display:flex;gap:12px;flex-wrap:wrap">
-    <a href="/uygulama?sample=data_hub" class="primary" style="text-decoration:none;padding:14px 24px;border-radius:12px;font-size:14.5px">🔥 Canlı Demoyu Başlat</a>
-    <a href="/uygulama" class="secondary" style="text-decoration:none;padding:14px 24px;border-radius:12px;font-size:14.5px">Kendi Dosyanızı Yükleyin</a>
+    <a href="/uygulama?sample=data_hub" class="primary" style="text-decoration:none;padding:13px 22px;border-radius:12px;font-size:14px;font-weight:700">🔥 Canlı Demoyu Başlat</a>
+    <a href="/uygulama" class="secondary" style="text-decoration:none;padding:13px 22px;border-radius:12px;font-size:14px;font-weight:700">Kendi Dosyanızı Yükleyin →</a>
   </div>
 </section></div>
 </main>
@@ -733,22 +721,22 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
     {
       badge: 'CANLI SİMÜLASYON · ADIM 1',
       title: 'Mizan ve Alt Defterlerin Doğrudan İçe Aktarımı',
-      html: '<div style="display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center"><div><p style="color:#C7D2E8;font-size:13.5px;line-height:1.6;margin:0 0 14px">ERP veya muhasebe programınızdan aldığınız standart Excel/CSV mizanınızı ve varsa yaşlandırma/stok alt defterlerinizi tarayıcıya sürükleyin. Kolon eşleme yapay zeka tahminiyle değil, hesap planı kuralları (1xx-7xx) üzerinden deterministik olarak anında tanınır.</p><div style="display:flex;gap:10px;flex-wrap:wrap"><span style="background:#132238;border:1px solid #20334b;padding:6px 12px;border-radius:8px;font-size:12px;color:#38BDF8">✓ Luca, Logo, Mikro, Netsis, Zirve uyumlu</span><span style="background:#132238;border:1px solid #20334b;padding:6px 12px;border-radius:8px;font-size:12px;color:#10B981">✓ Sıfır Kurulum & Sıfır Bekleme</span></div></div><div style="background:#132238;border:1px dashed #38BDF8;border-radius:14px;padding:24px 20px;text-align:center"><div style="font-size:32px;margin-bottom:8px">📥</div><b style="color:#F8FAFC;font-size:13px;display:block">Mizan Dosyanızı Sürükleyin</b><span style="color:#7C8FAD;font-size:11px">.xlsx, .xls, .csv formatları otomatik taranır</span></div></div>'
+      html: '<div style="display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center"><div><p style="color:#334155;font-size:13.5px;line-height:1.6;margin:0 0 14px">ERP veya muhasebe programınızdan aldığınız standart Excel/CSV mizanınızı ve varsa yaşlandırma/stok alt defterlerinizi tarayıcıya sürükleyin. Kolon eşleme yapay zeka tahminiyle değil, hesap planı kuralları (1xx-7xx) üzerinden deterministik olarak anında tanınır.</p><div style="display:flex;gap:10px;flex-wrap:wrap"><span style="background:#F1F5F9;border:1px solid #CBD5E1;padding:6px 12px;border-radius:8px;font-size:12px;color:#1D4ED8;font-weight:600">✓ Luca, Logo, Mikro, Netsis, Zirve uyumlu</span><span style="background:#ECFDF5;border:1px solid #A7F3D0;padding:6px 12px;border-radius:8px;font-size:12px;color:#047857;font-weight:600">✓ Sıfır Kurulum & Sıfır Bekleme</span></div></div><div style="background:#F8FAFC;border:2px dashed #93C5FD;border-radius:14px;padding:24px 20px;text-align:center"><div style="font-size:32px;margin-bottom:8px">📥</div><b style="color:#0F172A;font-size:13px;display:block">Mizan Dosyanızı Sürükleyin</b><span style="color:#64748B;font-size:11px">.xlsx, .xls, .csv formatları otomatik taranır</span></div></div>'
     },
     {
       badge: 'CANLI SİMÜLASYON · ADIM 2',
       title: '33 Deterministik Finans Motoruyla Çift Taraflı Denetim',
-      html: '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div style="background:#132238;border:1px solid #20334b;border-radius:14px;padding:16px"><b style="color:#38BDF8;font-size:13px;display:block;margin-bottom:8px">🔍 Bilanço & Likidite Doğrulaması</b><ul style="margin:0;padding-left:16px;color:#C7D2E8;font-size:12.5px;line-height:1.8"><li>Aktif = Pasif denkliği kontrolü (0.00 TL tolerans)</li><li>Cari Oran, Likidite, Nakit Oranı analizi</li><li>Altman Z-Score İflas Riski motoru</li></ul></div><div style="background:#132238;border:1px solid #20334b;border-radius:14px;padding:16px"><b style="color:#10B981;font-size:13px;display:block;margin-bottom:8px">⚡ Nakit & Kârlılık Çapraz Kontrolleri</b><ul style="margin:0;padding-left:16px;color:#C7D2E8;font-size:12.5px;line-height:1.8"><li>Kârın Nakde Dönüşüm Oranı (Cash Realization)</li><li>Müşteri / Ürün 4-Kadran kârlılık matrisi</li><li>180+ gün ölü stok ve vade aşım tespiti</li></ul></div></div>'
+      html: '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:16px"><b style="color:#1D4ED8;font-size:13px;display:block;margin-bottom:8px">🔍 Bilanço & Likidite Doğrulaması</b><ul style="margin:0;padding-left:16px;color:#334155;font-size:12.5px;line-height:1.8"><li>Aktif = Pasif denkliği kontrolü (0.00 TL tolerans)</li><li>Cari Oran, Likidite, Nakit Oranı analizi</li><li>Altman Z-Score İflas Riski motoru</li></ul></div><div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:16px"><b style="color:#047857;font-size:13px;display:block;margin-bottom:8px">⚡ Nakit & Kârlılık Çapraz Kontrolleri</b><ul style="margin:0;padding-left:16px;color:#334155;font-size:12.5px;line-height:1.8"><li>Kârın Nakde Dönüşüm Oranı (Cash Realization)</li><li>Müşteri / Ürün 4-Kadran kârlılık matrisi</li><li>180+ gün ölü stok ve vade aşım tespiti</li></ul></div></div>'
     },
     {
       badge: 'CANLI SİMÜLASYON · ADIM 3',
       title: 'Kök Neden & Karar Zinciri (WHAT → WHY → SO WHAT)',
-      html: '<div style="background:#132238;border:1px solid #20334b;border-radius:14px;padding:18px"><div style="display:flex;gap:10px;align-items:center;margin-bottom:12px"><span style="background:#DC2626;color:#FFF;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:900">WHAT</span><b style="color:#F8FAFC;font-size:13px">DSO 80 gün ile sektör medyanının (45 gün) 35 gün üzerinde.</b></div><div style="display:flex;gap:10px;align-items:center;margin-bottom:12px"><span style="background:#F59E0B;color:#000;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:900">WHY</span><span style="color:#C7D2E8;font-size:12.5px">En büyük 3 müşteriye yazılı mutabakat olmadan 90+ gün gayriresmi vade tanınmış.</span></div><div style="display:flex;gap:10px;align-items:center"><span style="background:#38BDF8;color:#000;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:900">SO WHAT</span><span style="color:#6EE7B7;font-size:12.5px">Kasada 1.250.000 ₺ likidite kilitlendi; şirket gereksiz yere aylık 65.000 ₺ rotatif kredi faizi ödüyor.</span></div></div>'
+      html: '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:18px"><div style="display:flex;gap:10px;align-items:center;margin-bottom:12px"><span style="background:#EF4444;color:#FFF;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:900">WHAT</span><b style="color:#0F172A;font-size:13px">DSO 80 gün ile sektör medyanının (45 gün) 35 gün üzerinde.</b></div><div style="display:flex;gap:10px;align-items:center;margin-bottom:12px"><span style="background:#F59E0B;color:#FFF;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:900">WHY</span><span style="color:#334155;font-size:12.5px">En büyük 3 müşteriye yazılı mutabakat olmadan 90+ gün gayriresmi vade tanınmış.</span></div><div style="display:flex;gap:10px;align-items:center"><span style="background:#2563EB;color:#FFF;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:900">SO WHAT</span><span style="color:#047857;font-size:12.5px;font-weight:700">Kasada 1.250.000 ₺ likidite kilitlendi; şirket gereksiz yere aylık 65.000 ₺ rotatif kredi faizi ödüyor.</span></div></div>'
     },
     {
       badge: 'CANLI SİMÜLASYON · ADIM 4',
-      title: 'Yönetim Kurulu İcra Eylemleri & Stratejik AI Partner',
-      html: '<div style="display:grid;grid-template-columns:1.2fr .8fr;gap:16px;align-items:center"><div><div style="background:#132238;border-left:4px solid #10B981;border-radius:0 12px 12px 0;padding:12px 16px;margin-bottom:10px"><b style="color:#F8FAFC;font-size:13px;display:block">Aksiyon 1: Müşteri Vade Protokolü ve %2 Erken Ödeme İskontosu</b><span style="color:#94A3B8;font-size:11.5px">Sahibi: Satış Direktörü & CFO · Hedef: 30 Gün · Kurtarılacak Nakit: +620.000 ₺</span></div><div style="background:#132238;border-left:4px solid #38BDF8;border-radius:0 12px 12px 0;padding:12px 16px"><b style="color:#F8FAFC;font-size:13px;display:block">Aksiyon 2: 180+ Gün Ölü Stok Tasfiyesi ve Sipariş Kısıtı</b><span style="color:#94A3B8;font-size:11.5px">Sahibi: Tedarik Zinciri Müdürü · Hedef: 45 Gün · Kurtarılacak Nakit: +380.000 ₺</span></div></div><div style="background:linear-gradient(135deg,#1E3A8A,#172554);border-radius:14px;padding:16px;text-align:center"><div style="font-size:24px;margin-bottom:6px">🤖</div><b style="color:#F8FAFC;font-size:12.5px;display:block;margin-bottom:4px">AI Finance Partner Q&A</b><span style="color:#93C5FD;font-size:11px">Yönetim kurulu veya banka kredi görüşmeleri için stratejik sorularınızı anında yanıtlar.</span></div></div>'
+      title: 'Yönetim Aksiyonları & Somut İş Kararları',
+      html: '<div style="display:grid;grid-template-columns:1.2fr .8fr;gap:16px;align-items:center"><div><div style="background:#F8FAFC;border:1px solid #E2E8F0;border-left:4px solid #10B981;border-radius:0 12px 12px 0;padding:12px 16px;margin-bottom:10px"><b style="color:#0F172A;font-size:13px;display:block">Aksiyon 1: Müşteri Vade Protokolü ve %2 Erken Ödeme İskontosu</b><span style="color:#64748B;font-size:11.5px">Sahibi: Satış Direktörü & Finans · Hedef: 30 Gün · Kurtarılacak Nakit: +620.000 ₺</span></div><div style="background:#F8FAFC;border:1px solid #E2E8F0;border-left:4px solid #2563EB;border-radius:0 12px 12px 0;padding:12px 16px"><b style="color:#0F172A;font-size:13px;display:block">Aksiyon 2: 180+ Gün Ölü Stok Tasfiyesi ve Sipariş Kısıtı</b><span style="color:#64748B;font-size:11.5px">Sahibi: Tedarik Zinciri · Hedef: 45 Gün · Kurtarılacak Nakit: +380.000 ₺</span></div></div><div style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border:1px solid #BFDBFE;border-radius:14px;padding:16px;text-align:center"><div style="font-size:24px;margin-bottom:6px">🤖</div><b style="color:#1D4ED8;font-size:13px;display:block;margin-bottom:4px">Stratejik Karar Asistanı</b><span style="color:#1E3A8A;font-size:11.5px">Yönetim kurulu veya banka görüşmeleriniz için stratejik finansal sorularınızı anında yanıtlar.</span></div></div>'
     }
   ];
 
@@ -760,9 +748,9 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
       c.style.background = i===idx ? '#F8FAFF' : '#FFFFFF';
     });
     pills.forEach((p, i)=>{
-      p.style.background = i===idx ? '#38BDF8' : '#132238';
-      p.style.color = i===idx ? '#0D1B2A' : '#94A3B8';
-      p.style.border = i===idx ? 'none' : '1px solid #1E3050';
+      p.style.background = i===idx ? '#1D4ED8' : '#F1F5F9';
+      p.style.color = i===idx ? '#FFFFFF' : '#64748B';
+      p.style.border = i===idx ? 'none' : '1px solid #E2E8F0';
     });
     const d = stepData[idx];
     if(tagEl) tagEl.textContent = d.badge;
@@ -976,7 +964,11 @@ PRICING_HTML = r'''<!doctype html>
 .topNav a.active{color:var(--accent);border-color:var(--accent)}
 .top.scrolled{box-shadow:0 12px 30px rgba(15,27,45,.10)}
 .navBtns{display:flex;gap:10px;align-items:center}
-.navBtns a.secondary,.navBtns a.primary{text-decoration:none;display:inline-flex;align-items:center;font-weight:700}
+.navBtn{display:inline-flex;align-items:center;justify-content:center;padding:8px 18px;border-radius:10px;font-size:13px;font-weight:700;letter-spacing:-.1px;text-decoration:none;cursor:pointer;transition:all .18s ease;line-height:1.2}
+.navBtn.sec{background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B}
+.navBtn.sec:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
+.navBtn.pri{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
+.navBtn.pri:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
 .navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
 @media(max-width:920px){
   .topNav{position:fixed;top:74px;left:0;right:0;background:#F7F9FC;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
@@ -1055,7 +1047,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 .dashPane.on{display:block;animation:dfbpFadeIn .4s ease both}
 .dashPane .dTitle{color:#7C8FAD;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
 .dashKpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-.dashKpis div{background:#132238;border:1px solid #20334b;border-radius:9px;padding:9px 10px}
+.dashKpis div{background:#132238;border:1px solid #20334b;border-radius:99px;padding:9px 10px}
 .dashKpis div b{display:block;font-size:16px;color:#F8FAFC;font-family:var(--serif)}
 .dashKpis div span{font-size:9.5px;color:#7C8FAD}
 .heroDash .foot{margin-top:12px;padding-top:12px;border-top:1px solid #1E3050;font-size:10.5px;color:#7C8FAD;display:flex;justify-content:space-between}
@@ -1118,18 +1110,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 </style></head>
 <body>
-<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/paketler" class="active">Paketler</a><a href="/hakkimizda">Hakkımızda</a><a href="/iletisim">İletişim</a><a href="/guvenlik">Güvenlik</a><a href="/uygulama">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div class="navBtns"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler" class="active">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">Paketler</span><h1>Şirketiniz İçin Doğru Çözümü Seçin</h1><p>Tek seferlik bir örnek raporla mı başlamak istiyorsunuz, yoksa her ay yönetim kuruluna sunacağınız 33 motorlu karar zekasını mı kurmak istiyorsunuz — tüm paketler aynı deterministik finansal çekirdeği kullanır.</p></div>
-
-<!-- ROI Guarantee Banner -->
-<div style="max-width:860px;margin:0 auto 34px;background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border:1px solid #BFDBFE;border-radius:20px;padding:22px 28px;display:flex;align-items:center;gap:20px;box-shadow:0 10px 26px rgba(29,78,216,.08)">
-  <div style="font-size:36px;flex:none">💎</div>
-  <div>
-    <b style="color:#1D4ED8;font-size:15.5px;display:block;margin-bottom:4px">10x Yatırımın Geri Dönüşü (ROI) Güvencesi</b>
-    <span style="color:#1E3A8A;font-size:13.5px;line-height:1.55">Sistemimiz ilk mizan ve alt defter yüklemesinde ortalama <b>₺350.000+</b> tutarında kilitli işletme sermayesini (vadesi geçmiş alacak & depodaki ölü stok) ve kâr sızıntısını ortaya çıkarır; yıllık abonelik bedelini ilk 30 günde fazlasıyla amorti eder.</span>
-  </div>
-</div>
 
 <div class="secBlock reveal"><section class="marketingSection hidePrint" style="padding-top:0">
 <div class="pricingGrid">
@@ -1139,7 +1122,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Kayıt olmadan anında canlı demo</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Tarayıcıda çalışma (kalıcı saklama yok)</li>
 </ul><button class="secondary" style="width:100%" onclick="window.location.href='/uygulama?sample=data_hub'">🔥 Canlı Demoyu Aç</button></div>
-<div class="card priceCard featured"><div class="badgeTop">En Çok Tercih Edilen</div><div class="plan">Büyüyen Şirketler</div><h3>Professional</h3><div class="amt">₺2.490<span> /ay</span></div><div class="desc">Kendi mizanını ve defterlerini düzenli yükleyip icra kararı üreten yönetimler için.</div><ul>
+<div class="card priceCard featured"><div class="badgeTop">En Çok Tercih Edilen</div><div class="plan">Büyüyen Şirketler</div><h3>Professional</h3><div class="amt">₺2.490<span> /ay</span></div><div class="desc">Kendi mizanını ve defterlerini düzenli yükleyip yönetim kararları üreten şirketler için.</div><ul>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Sınırsız mizan ve alt defter yükleme</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Çok dönemli trend ve Nakit Akış Tablosu</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Geçmiş analizleri kaydetme ve karşılaştırma</li>
@@ -1160,7 +1143,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <div style="max-width:720px;margin:auto">
 <details class="faqItem" open><summary>Verilerim güvende mi?</summary><p>Yüklediğiniz dosyalar yalnızca analiz anında RAM üzerinde işlenir; hesap açmadan yapılan oturumlarda sunucuda kalıcı saklanmaz. Kayıtlı hesaplarda ise verileriniz 256-bit şifrelemeyle yalnızca sizin erişiminizde korunur.</p></details>
 <details class="faqItem"><summary>Hangi muhasebe programlarıyla uyumlu?</summary><p>Sistemimiz Luca, Logo, Mikro, Netsis, Zirve, SAP, Nebim ve benzeri tüm ERP/muhasebe yazılımlarından dışa aktarılan standart mizan ve defter formatlarını otomatik tanır. Entegrasyon bekleme süresi 0'dır.</p></details>
-<details class="faqItem"><summary>Neden bir muhasebe programı yerine Digital Finance Business Partner?</summary><p>Muhasebe programları geçmiş kayıtları tutar (defter tutma). Digital Finance Business Partner ise kârın neden nakde dönüşmediğini, hangi müşterinin zarar ettirdiğini ve nakit akışını kurtarmak için atılacak icra adımlarını belirler.</p></details>
+<details class="faqItem"><summary>Neden bir muhasebe programı yerine Digital Finance Business Partner?</summary><p>Muhasebe programları geçmiş kayıtları tutar (defter tutma). Digital Finance Business Partner ise kârın neden nakde dönüşmediğini, hangi müşterinin zarar ettirdiğini ve nakit akışını kurtarmak için alınacak yönetim kararlarını belirler.</p></details>
 <details class="faqItem"><summary>AI Finance Partner yorumu zorunlu mu?</summary><p>Hayır. Tüm 33 motor çift taraflı matematik ve finans denetimi kurallarıyla deterministik hesaplar. Yapay zeka yalnızca yönetim kurulu veya banka görüşmeleriniz için stratejik metin asistanlığı yapar; rakam asla uydurulmaz.</p></details>
 </div></div>
 
@@ -1389,7 +1372,11 @@ ABOUT_HTML = r'''<!doctype html>
 .topNav a.active{color:var(--accent);border-color:var(--accent)}
 .top.scrolled{box-shadow:0 12px 30px rgba(15,27,45,.10)}
 .navBtns{display:flex;gap:10px;align-items:center}
-.navBtns a.secondary,.navBtns a.primary{text-decoration:none;display:inline-flex;align-items:center;font-weight:700}
+.navBtn{display:inline-flex;align-items:center;justify-content:center;padding:8px 18px;border-radius:10px;font-size:13px;font-weight:700;letter-spacing:-.1px;text-decoration:none;cursor:pointer;transition:all .18s ease;line-height:1.2}
+.navBtn.sec{background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B}
+.navBtn.sec:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
+.navBtn.pri{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
+.navBtn.pri:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
 .navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
 @media(max-width:920px){
   .topNav{position:fixed;top:74px;left:0;right:0;background:#F7F9FC;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
@@ -1531,23 +1518,19 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 </style></head>
 <body>
-<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/paketler">Paketler</a><a href="/hakkimizda" class="active">Hakkımızda</a><a href="/iletisim">İletişim</a><a href="/guvenlik">Güvenlik</a><a href="/uygulama">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div class="navBtns"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda" class="active">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
-<div class="pageHead reveal in"><span class="eyebrow">Hakkımızda</span><h1>Muhasebe Raporu Değil, Yönetim İcra Kararı Üretiyoruz</h1><p>Finans ekiplerinin ve şirket sahiplerinin saatlerce harcadığı "rakamları toparlama ve mutabakat" işini sıfıra indirip, zamanı asıl değerin üretildiği yere — stratejik icra kararına — taşıyoruz.</p></div>
+<div class="pageHead reveal in"><span class="eyebrow">Hakkımızda</span><h1>Muhasebe Raporu Değil, Stratejik İş Kararları Üretiyoruz</h1><p>Finans ekiplerinin ve şirket sahiplerinin saatlerce harcadığı "rakamları toparlama ve mutabakat" işini sıfıra indirip, zamanı asıl değerin üretildiği yere — stratejik iş ve yönetim kararlarına — taşıyoruz.</p></div>
 
 <div class="secBlock reveal"><section id="about" class="marketingSection hidePrint" style="padding-top:0"><div class="aboutGrid">
-<div><span class="badge" style="margin-bottom:14px;display:inline-block">Kurumsal Değer Önerimiz</span><h2 style="font-family:var(--serif);font-size:30px;margin:6px 0 12px;letter-spacing:-.5px">Finansal Verileri İş Kararlarına Dönüştüren Sistem</h2><p class="muted" style="font-size:14.5px;line-height:1.7">Digital Finance Business Partner, finansal verileri statik bir defter kaydı olmaktan çıkarıp şirketin geleceğini yöneten bir karar motoruna dönüştürmek amacıyla kuruldu. Sistem önce <b>33 deterministik finans motoruyla</b> çift taraflı denetim yapar; rakamları doğrular, kârın nerede nakde dönüşmediğini saptar ve somut icra planı üretir. Yapay zeka yalnızca üstte ayrı etiketlenmiş stratejik bir yorum katmanıdır; rakamlar asla halüsinasyona bırakılmaz.</p><div class="aboutStats"><div class="st"><b>33</b><span>Analitik Motor</span></div><div class="st"><b>%100</b><span>Deterministik Denetim</span></div><div class="st"><b>0</b><span>Kalıcı Veri Saklama</span></div></div></div>
+<div><span class="badge" style="margin-bottom:14px;display:inline-block">Kurumsal Değer Önerimiz</span><h2 style="font-family:var(--serif);font-size:30px;margin:6px 0 12px;letter-spacing:-.5px">Finansal Verileri İş Kararlarına Dönüştüren Sistem</h2><p class="muted" style="font-size:14.5px;line-height:1.7">Digital Finance Business Partner, finansal verileri statik bir defter kaydı olmaktan çıkarıp şirketin geleceğini yöneten bir karar motoruna dönüştürmek amacıyla kuruldu. Sistem önce <b>33 deterministik finans motoruyla</b> çift taraflı denetim yapar; rakamları doğrular, kârın nerede nakde dönüşmediğini saptar ve somut yönetim kararları ile aksiyon planları üretir. Yapay zeka yalnızca üstte ayrı etiketlenmiş stratejik bir yorum katmanıdır; rakamlar asla halüsinasyona bırakılmaz.</p><div class="aboutStats"><div class="st"><b>33</b><span>Analitik Motor</span></div><div class="st"><b>%100</b><span>Deterministik Denetim</span></div><div class="st"><b>0</b><span>Kalıcı Veri Saklama</span></div></div></div>
 <div class="card" style="padding:26px">
-<svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;margin-bottom:16px">
-  <rect x="120" y="6" width="80" height="30" rx="7" fill="#EAF0FF" stroke="#C9D8F5"/><text x="160" y="25" text-anchor="middle" fill="#1D4ED8" font-family="Inter,sans-serif" font-size="10.5" font-weight="700">ROE %25,4</text>
-  <line x1="140" y1="36" x2="70" y2="60" stroke="#C9D2DE"/><line x1="180" y1="36" x2="250" y2="60" stroke="#C9D2DE"/>
-  <rect x="30" y="62" width="80" height="28" rx="6" fill="#F0F3F8" stroke="#E4E8EF"/><text x="70" y="80" text-anchor="middle" fill="#33415C" font-family="Inter,sans-serif" font-size="9.5">Net Marj %11,2</text>
-  <rect x="210" y="62" width="80" height="28" rx="6" fill="#F0F3F8" stroke="#E4E8EF"/><text x="250" y="80" text-anchor="middle" fill="#33415C" font-family="Inter,sans-serif" font-size="9.5">Kaldıraç 1,36x</text>
-  <line x1="55" y1="90" x2="35" y2="112" stroke="#E4E8EF"/><line x1="85" y1="90" x2="105" y2="112" stroke="#E4E8EF"/>
-  <rect x="8" y="114" width="60" height="26" rx="6" fill="#FFFFFF" stroke="#E4E8EF"/><text x="38" y="131" text-anchor="middle" fill="#5B6B84" font-family="Inter,sans-serif" font-size="8.5">Brüt Marj</text>
-  <rect x="80" y="114" width="60" height="26" rx="6" fill="#FFFFFF" stroke="#E4E8EF"/><text x="110" y="131" text-anchor="middle" fill="#5B6B84" font-family="Inter,sans-serif" font-size="8.5">Aktif Devir</text>
-</svg>
-<h3 style="margin:0 0 12px">Temel İlkelerimiz</h3><ul style="margin:0;padding-left:18px;color:#33415C;font-size:13.5px;line-height:2">
+<div style="display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1px solid #BFDBFE;color:var(--accent);font-size:11.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:16px">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+  Bağımsız Karar Destek Prensibi
+</div>
+<h3 style="margin:0 0 12px;font-family:var(--serif);font-size:20px;color:#0F1B2D">Temel İlkelerimiz</h3>
+<ul style="margin:0;padding-left:18px;color:#33415C;font-size:13.5px;line-height:2">
 <li>Karar destek, robotik veya kuru rapor üretiminden çok farklıdır.</li>
 <li><b>Önce hesap, sonra yorum</b> — sıra asla değişmez.</li>
 <li>Veri sizindir; oturum RAM'de işlenir, sunucuda kalıcı depolanmaz.</li>
@@ -1572,21 +1555,21 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="card" style="padding:28px;border-top:4px solid #10B981">
     <div style="font-size:32px;margin-bottom:12px">🚀</div>
     <h3 style="font-size:18px;font-family:var(--serif);margin:0 0 10px;color:#0F1B2D">Misyonumuz</h3>
-    <p style="color:#5B6B84;font-size:13.5px;line-height:1.65;margin:0">Her şirketin, aylar süren ERP projelerine veya yüz binlerce liralık danışmanlık bütçelerine ihtiyaç duymadan; <b>60 saniye içinde</b> kıdemli bir CFO derinliğinde çift taraflı denetlenmiş icra kararlarına ve nakit köprüsüne ulaşmasını sağlamaktır.</p>
+    <p style="color:#5B6B84;font-size:13.5px;line-height:1.65;margin:0">Her şirketin, aylar süren ERP projelerine veya yüz binlerce liralık danışmanlık bütçelerine ihtiyaç duymadan; <b>60 saniye içinde</b> kıdemli bir CFO derinliğinde çift taraflı denetlenmiş yönetim kararlarına ve nakit köprüsüne ulaşmasını sağlamaktır.</p>
   </div>
   <div class="card" style="padding:28px;border-top:4px solid #F59E0B">
     <div style="font-size:32px;margin-bottom:12px">🔭</div>
     <h3 style="font-size:18px;font-family:var(--serif);margin:0 0 10px;color:#0F1B2D">Vizyonumuz</h3>
-    <p style="color:#5B6B84;font-size:13.5px;line-height:1.65;margin:0">Kurumsal finans kararlarının hislerle, varsayımlarla ya da 45 gün sonra gelen bilanço çıktılarıyla değil; <b>deterministik motorlar, anlık What-If simülasyonları ve canlı icra planlarıyla</b> yönetildiği yeni nesil bir kurumsal finans standardı inşa etmektir.</p>
+    <p style="color:#5B6B84;font-size:13.5px;line-height:1.65;margin:0">Kurumsal finans kararlarının hislerle, varsayımlarla ya da 45 gün sonra gelen bilanço çıktılarıyla değil; <b>deterministik motorlar, anlık What-If simülasyonları ve canlı yönetim aksiyonlarıyla</b> yönetildiği yeni nesil bir kurumsal finans standardı inşa etmektir.</p>
   </div>
 </div>
 </section></div>
 
-<div class="secBlock reveal"><div class="marketingHead"><h2>Nasıl Çalışıyoruz?</h2><p>Verinin güvenilirliğinden icra kararına giden 3 aşamalı disiplinimiz.</p></div>
+<div class="secBlock reveal"><div class="marketingHead"><h2>Nasıl Çalışıyoruz?</h2><p>Verinin güvenilirliğinden iş kararlarına giden 3 aşamalı disiplinimiz.</p></div>
 <div class="grid3">
 <div class="card" style="padding:22px"><div class="tag" style="margin-bottom:8px">01</div><h3 style="margin:0 0 6px;font-size:15px">Önce Deterministik Hesap</h3><p class="muted small">Her rakam, tek kuruş sapma olmadan çift taraflı denetimden geçer. Gelir tablosu, bilanço ve alt defterler mizan kurallarıyla doğrulanır. Yorum hesaptan sonra gelir.</p></div>
 <div class="card" style="padding:22px"><div class="tag" style="margin-bottom:8px">02</div><h3 style="margin:0 0 6px;font-size:15px">Kök Neden & Karar Analitiği</h3><p class="muted small">33 analitik motor bulguları önceliklendirir, kârın neden kasaya girmediğini kuruşuna kadar açıklar; isteğe bağlı AI katmanı bunun üstüne ayrı etiketli stratejik not ekler.</p></div>
-<div class="card" style="padding:22px"><div class="tag" style="margin-bottom:8px">03</div><h3 style="margin:0 0 6px;font-size:15px">Yönetim Aksiyonu & İcra</h3><p class="muted small">Sonuç pasif bir rapor değildir; sahibi, takvimi, KPI hedefi ve parasal etkisi (EBITDA & Nakit katkısı) net olarak belirlenmiş yönetim kurulu eylem planıdır.</p></div>
+<div class="card" style="padding:22px"><div class="tag" style="margin-bottom:8px">03</div><h3 style="margin:0 0 6px;font-size:15px">Yönetim Aksiyonu & Karar Planı</h3><p class="muted small">Sonuç pasif bir rapor değildir; sahibi, takvimi, KPI hedefi ve parasal etkisi (EBITDA & Nakit katkısı) net olarak belirlenmiş yönetim kurulu eylem planıdır.</p></div>
 </div></div>
 <div class="secBlock reveal"><section class="ctaBanner hidePrint"><div><h3>Bizi tanımak ister misiniz?</h3><p>Ekibinizle birlikte 15 dakikalık bir canlı demo oturumu planlayabilir veya Data Hub ile anında deneyebilirsiniz.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a href="/uygulama?sample=data_hub" class="primary" style="text-decoration:none;padding:12px 20px;border-radius:11px">🔥 Canlı Demoyu Başlat</a><a href="/iletisim" class="secondary" style="text-decoration:none;padding:12px 20px;border-radius:11px">İletişime Geç</a></div></section></div>
 
@@ -1813,7 +1796,11 @@ CONTACT_HTML = r'''<!doctype html>
 .topNav a.active{color:var(--accent);border-color:var(--accent)}
 .top.scrolled{box-shadow:0 12px 30px rgba(15,27,45,.10)}
 .navBtns{display:flex;gap:10px;align-items:center}
-.navBtns a.secondary,.navBtns a.primary{text-decoration:none;display:inline-flex;align-items:center;font-weight:700}
+.navBtn{display:inline-flex;align-items:center;justify-content:center;padding:8px 18px;border-radius:10px;font-size:13px;font-weight:700;letter-spacing:-.1px;text-decoration:none;cursor:pointer;transition:all .18s ease;line-height:1.2}
+.navBtn.sec{background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B}
+.navBtn.sec:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
+.navBtn.pri{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
+.navBtn.pri:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
 .navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
 @media(max-width:920px){
   .topNav{position:fixed;top:74px;left:0;right:0;background:#F7F9FC;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
@@ -1955,7 +1942,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 </style></head>
 <body>
-<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/paketler">Paketler</a><a href="/hakkimizda">Hakkımızda</a><a href="/iletisim" class="active">İletişim</a><a href="/guvenlik">Güvenlik</a><a href="/uygulama">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div class="navBtns"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim" class="active">İletişim</a></nav><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">İletişim</span><h1>Konuşalım</h1><p>Paketler, kurumsal teklif veya demo talebi için bize ulaşın; genelde 1 iş günü içinde dönüş yapıyoruz.</p></div>
 <div class="secBlock reveal"><section id="contact" class="marketingSection hidePrint"><div class="marketingHead"><h2>İletişim</h2><p>Paketler, kurumsal teklif veya demo talebi için bize ulaşın.</p></div>
@@ -2198,7 +2185,11 @@ SECURITY_HTML = r'''<!doctype html>
 .topNav a.active{color:var(--accent);border-color:var(--accent)}
 .top.scrolled{box-shadow:0 12px 30px rgba(15,27,45,.10)}
 .navBtns{display:flex;gap:10px;align-items:center}
-.navBtns a.secondary,.navBtns a.primary{text-decoration:none;display:inline-flex;align-items:center;font-weight:700}
+.navBtn{display:inline-flex;align-items:center;justify-content:center;padding:8px 18px;border-radius:10px;font-size:13px;font-weight:700;letter-spacing:-.1px;text-decoration:none;cursor:pointer;transition:all .18s ease;line-height:1.2}
+.navBtn.sec{background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B}
+.navBtn.sec:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
+.navBtn.pri{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
+.navBtn.pri:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
 .navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
 @media(max-width:920px){
   .topNav{position:fixed;top:74px;left:0;right:0;background:#F7F9FC;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
@@ -2340,7 +2331,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 </style></head>
 <body>
-<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/paketler">Paketler</a><a href="/hakkimizda">Hakkımızda</a><a href="/iletisim">İletişim</a><a href="/guvenlik" class="active">Güvenlik</a><a href="/uygulama">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div class="navBtns"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik" class="active">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">Security &amp; Governance</span><h1>Kurumsal veri güvenliği ve AI yönetişimi</h1><p>Finans ekipleri güvenlik sayfasına, düşündüğünüzden çok daha fazla bakıyor. Verinizin nasıl işlendiğini, nerede durduğunu ve AI katmanının nasıl sınırlandığını burada tam olarak görebilirsiniz.</p></div>
 
@@ -2587,7 +2578,17 @@ APP_HTML = r'''<!doctype html>
 .topNav a.active{color:var(--accent);border-color:var(--accent)}
 .top.scrolled{box-shadow:0 12px 30px rgba(15,27,45,.10)}
 .navBtns{display:flex;gap:10px;align-items:center}
-.navBtns a.secondary,.navBtns a.primary{text-decoration:none;display:inline-flex;align-items:center;font-weight:700}
+.navBtn{display:inline-flex;align-items:center;justify-content:center;padding:8px 18px;border-radius:10px;font-size:13px;font-weight:700;letter-spacing:-.1px;text-decoration:none;cursor:pointer;transition:all .18s ease;line-height:1.2}
+.navBtn.sec{background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B}
+.navBtn.sec:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
+.navBtn.pri{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
+.navBtn.pri:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
+#authArea{display:flex;gap:10px;align-items:center}
+#authArea button{padding:8px 18px;border-radius:10px;font-size:13px;font-weight:700;line-height:1.2;cursor:pointer;transition:all .18s ease}
+#authArea button.secondary{background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B}
+#authArea button.secondary:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
+#authArea button.primary{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
+#authArea button.primary:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
 .navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
 @media(max-width:920px){
   .topNav{position:fixed;top:74px;left:0;right:0;background:#F7F9FC;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
@@ -2760,7 +2761,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     <div id="loadingStepTxt" class="loadingStepTxt">Hesap planı ve bakiyeler denetleniyor...</div>
   </div>
 </div>
-<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/paketler">Paketler</a><a href="/hakkimizda">Hakkımızda</a><a href="/iletisim">İletişim</a><a href="/guvenlik">Güvenlik</a><a href="/uygulama" class="active">Uygulama</a></nav><span class="badge v">Finance Core v__APP_VERSION__</span><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="primary">Ücretsiz Kayıt Ol</button></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+<header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama" class="active">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="primary">Ücretsiz Kayıt Ol</button></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <div id="authModalOverlay" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.65);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px">
   <div class="card" style="background:#FFFFFF;border:1px solid #DCE6F5;border-radius:24px;box-shadow:0 24px 70px rgba(15,27,45,.25);max-width:420px;width:100%;padding:28px;position:relative;overflow:hidden">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
