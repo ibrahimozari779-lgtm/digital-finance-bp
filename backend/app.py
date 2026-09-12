@@ -662,7 +662,10 @@ SECURITY_PAGE = _SECURITY_T.replace("__APP_VERSION__", APP_VERSION)
 HTML = _APP_T.replace("__APP_VERSION__", APP_VERSION)  # the analysis app itself
 
 @app.get('/',response_class=HTMLResponse)
-def home()->str:return HOME_PAGE
+def home()->str:return HTML
+
+@app.get('/tanitim',response_class=HTMLResponse)
+def landing_page()->str:return HOME_PAGE
 
 @app.get('/paketler',response_class=HTMLResponse)
 def pricing_page()->str:return PRICING_PAGE
