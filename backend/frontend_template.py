@@ -391,7 +391,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <main class="wrap">
 <section class="mHero">
   <div class="reveal in">
-    <h1>Finansal Verileri Yönetim Kararlarına Dönüştüren Platform.<br><span class="gradText">Rakamların Ötesinde, Şirketinizi Büyüten Karar Destek Sistemi.</span></h1>
+    <h1>Finansal Verileri Yönetim Kararlarına Dönüştüren<br><span class="gradText">Karar Destek Sistemi</span></h1>
     <p class="lead">Klasik muhasebe geçmiş mali kayıtları ve yasal vergi matrahını raporlar; <b>Digital Finance Business Partner</b> ise şirketin sermaye verimliliğini ve net nakit akışını maksimize eden stratejik yönetim kararlarını üretir. Mizan veya ERP alt defterlerinizi yükleyin; <b>33 Finansal Karar Motoru</b> 60 saniyede çift taraflı denetimle hesaplasın, kâr sızıntılarını, kilitli nakdi ve yönetimin uygulayacağı somut eylem planını masaya koysun.</p>
     <div class="ctaRow">
       <a href="/uygulama?sample=data_hub" class="primary" style="padding:15px 26px;border-radius:14px;font-size:15px;display:inline-flex;align-items:center;gap:10px">🔥 Kayıt Olmadan Canlı Demoyu Başlat <span>(Data Hub)</span></a>
@@ -3583,7 +3583,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </div>
 </div>
 
-<main class="wrap"><section class="hero"><div class="heroCard"><h2 class="heroTitle">Mizanınızı Yükleyin, <span style="color:var(--accent)">Şirketinizin Karar Raporunu</span> Alın.</h2><p class="heroText">Mizan veya finansal defterlerinizi yükleyin — 33 karar motoru verilerinizi çift taraflı denetler, kâr sızıntılarını kuruşuna kadar hesaplar, riskleri önceliklendirir ve yarın uygulanacak yönetim kararlarını masaya koyar.</p><div class="framework"><span><b>1. NE OLDU?</b> (Finansal Gerçekler)</span><span><b>2. PARA NEREDE?</b> (Kilitli Nakit &amp; Sızıntı)</span><span><b>3. RİSK &amp; SEKTÖR NE?</b> (Kıyaslama)</span><span><b>4. KİM YAPIYOR?</b> (Müşteri &amp; Stok Zekâsı)</span><span><b>5. NEDEN OLDU?</b> (Kök Neden)</span><span><b>6. NE YAPMALIYIZ?</b> (Yönetim Kararları)</span><span><b>7. SİMÜLE ET</b> (What-If Laboratuvarı)</span></div>
+<main class="wrap"><section class="hero"><div class="heroCard"><h2 class="heroTitle">Mizanınızı Yükleyin, <span style="color:var(--accent)">Şirketinizin Yönetim Raporunu</span> Alın.</h2><p class="heroText">Mizan veya finansal defterlerinizi yükleyin — 33 karar motoru verilerinizi çift taraflı denetler, kâr sızıntılarını kuruşuna kadar hesaplar, riskleri önceliklendirir ve yarın uygulanacak yönetim kararlarını masaya koyar.</p><div class="framework"><span><b>1. NE OLDU?</b> (Finansal Gerçekler)</span><span><b>2. PARA NEREDE?</b> (Kilitli Nakit &amp; Sızıntı)</span><span><b>3. RİSK &amp; SEKTÖR NE?</b> (Kıyaslama)</span><span><b>4. KİM YAPIYOR?</b> (Müşteri &amp; Stok Zekâsı)</span><span><b>5. NEDEN OLDU?</b> (Kök Neden)</span><span><b>6. NE YAPMALIYIZ?</b> (Yönetim Kararları)</span><span><b>7. SİMÜLE ET</b> (Senaryo Simülatörü)</span></div>
 <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button id="sampleBtn" class="secondary">📄 Tek dönem örnekle dene</button><button id="sampleTrendBtn" class="secondary">📊 İki dönemli örnekle dene (Trend Demo)</button><button id="sampleHubBtn" class="secondary">🗂️ Data Hub örnekle dene (Mizan + AR + AP + Stok + Satış)</button> <span id="sampleStatus" class="small muted" style="margin-left:8px"></span></div>
 <div class="trustBar hidePrint">
 <div class="item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Önce hesap, sonra yorum — deterministik motor</div>
@@ -3725,7 +3725,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;border-bottom:1px solid #E2E8F0;padding-bottom:14px">
       <div style="display:flex;align-items:center;gap:10px">
         <span style="background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-size:11px;font-weight:800;letter-spacing:1px;padding:4px 10px;border-radius:6px;text-transform:uppercase">⚡ 30 Saniyelik Teşhis</span>
-        <h3 style="margin:0;font-size:17px;font-weight:700;color:#0F1B2D;letter-spacing:-0.3px">CEO Finansal Röntgeni: Durum, Delik ve 1 Numaralı Karar</h3>
+        <h3 style="margin:0;font-size:17px;font-weight:700;color:#0F1B2D;letter-spacing:-0.3px">Şirket Yönetim Özeti: Kâr Durumu, Kilitli Para ve Öncelikli Karar</h3>
       </div>
       <div style="font-size:11.5px;color:#64748B;display:flex;align-items:center;gap:8px">
         <span>Deterministik Çift Taraflı Denetim:</span>
@@ -3734,23 +3734,23 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     </div>
     
     <div class="grid3" style="gap:14px">
-      <!-- Kart 1: Kâr Kalitesi & Nakit Gerçeği -->
+      <!-- Kart 1: Kâr Durumu ve Kasaya Giren Nakit -->
       <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:16px">
-        <div style="font-size:11px;color:#64748B;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:6px">🩺 1. KÂR KALİTESİ &amp; NAKİT GERÇEĞİ</div>
+        <div style="font-size:11px;color:#64748B;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:6px">🩺 1. KÂR DURUMU VE KASAYA GİREN NAKİT</div>
         <div style="font-size:20px;font-weight:800;color:#0F1B2D;margin-bottom:4px" id="snapProfitQualityVal">-</div>
         <div style="font-size:12px;color:#475569;line-height:1.5" id="snapProfitQualityDesc">Kâğıt üzerindeki kâr ile kasaya giren nakit dengesi hesaplanıyor...</div>
       </div>
       
-      <!-- Kart 2: En Büyük Sermaye Kanaması -->
-      <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:14px;padding:16px">
-        <div style="font-size:11px;color:#DC2626;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:6px">🩸 2. EN BÜYÜK SERMAYE KANAMASI</div>
-        <div style="font-size:20px;font-weight:800;color:#DC2626;margin-bottom:4px" id="snapCapitalLeakVal">-</div>
-        <div style="font-size:12px;color:#7F1D1D;line-height:1.5" id="snapCapitalLeakDesc">Şirket nakdinin en çok kilitlendiği ana kalem tespit ediliyor...</div>
+      <!-- Kart 2: Şirketin Parasının Kilitlendiği Yer -->
+      <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:14px;padding:16px">
+        <div style="font-size:11px;color:#B45309;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:6px">💼 2. ŞİRKETİN PARASININ KİLİTLENDİĞİ YER</div>
+        <div style="font-size:20px;font-weight:800;color:#B45309;margin-bottom:4px" id="snapCapitalLeakVal">-</div>
+        <div style="font-size:12px;color:#92400E;line-height:1.5" id="snapCapitalLeakDesc">Şirket parasının en çok kilitlendiği ana kalem tespit ediliyor...</div>
       </div>
       
-      <!-- Kart 3: 1 Numaralı Karar & Kasaya Etkisi -->
+      <!-- Kart 3: Alınacak 1 Numaralı Yönetim Kararı -->
       <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:14px;padding:16px">
-        <div style="font-size:11px;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:6px">🎯 3. YÖNETİMİN 1 NUMARALI KARARI</div>
+        <div style="font-size:11px;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:6px">🎯 3. ALINACAK 1 NUMARALI YÖNETİM KARARI</div>
         <div style="font-size:20px;font-weight:800;color:#1D4ED8;margin-bottom:4px" id="snapTopActionVal">-</div>
         <div style="font-size:12px;color:#1E3A8A;line-height:1.5" id="snapTopActionDesc">Kasaya sıcak nakit girdisi sağlayacak ilk aksiyon planlanıyor...</div>
       </div>
@@ -3764,13 +3764,13 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;border-bottom:1.5px solid #E2E8F0;padding-bottom:18px;margin-bottom:20px">
       <div>
         <div style="display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1px solid #BFDBFE;padding:4px 12px;border-radius:999px;color:#1D4ED8;font-size:11px;font-weight:800;letter-spacing:.5px;margin-bottom:8px">
-          👔 CEO &amp; İCRA KURULU FİNANSAL TEŞHİS MASASI
+          💼 YÖNETİM KARAR MASASI
         </div>
         <h2 style="font-family:var(--serif);font-size:24px;color:#0F1B2D;margin:0 0 6px;letter-spacing:-.5px">
-          Finansal Gerçeklerden Yönetim İcraatına: 8 Kritik Patron Sorusu
+          Finansal Gerçeklerden Yönetim Kararlarına: 8 Kritik Yönetim Sorusu
         </h2>
         <p class="muted" style="margin:0;font-size:13.5px;max-width:880px;line-height:1.6">
-          Patron muhasebe raporu değil; <i>"Kasada neden para yok ve yarın ne yapmalıyım?"</i> sorusunun cevabını ister. Yüklediğiniz mizan ve defterlerden <b>33 Finansal Karar Motorunun</b> ürettiği anlık 3 katmanlı teşhis, kurtarılabilir kâr ve aksiyonlar:
+          Şirket yönetimi muhasebe evrakı değil; <i>"Kasada neden para yok ve yarın ne yapmalıyız?"</i> sorusunun cevabını arar. Yüklediğiniz mizan ve defterlerden <b>33 Finansal Karar Motorunun</b> ürettiği anlık 3 katmanlı teşhis, serbest kalacak nakit ve somut aksiyonlar:
         </p>
       </div>
       <div style="text-align:right">
@@ -3797,7 +3797,24 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <div id="comparativeCard" class="card hidden" style="margin-top:16px"><div class="sectionHead"><div><h2>Dönemsel Trend Karşılaştırması</h2><p>Yüklenen dönemler arasındaki değişim, büyüme yönü ve yönetim için anlamı</p></div></div><div id="comparativeCards" class="grid3" style="margin-top:4px"></div><div id="comparativeFindings" style="margin-top:14px"></div><div id="comparativeTable" class="tableWrap" style="margin-top:14px"></div></div>
 <section style="margin-top:16px"><div id="profitQualityCard" class="card"><div class="sectionHead"><div><h2>Kâr Köprüsü &amp; Kâr Kalitesi</h2><p>Net satıştan net kâra giden yol ve bu kârın ne kadarının operasyonel olduğu</p></div></div><div class="grid2"><div><div class="small muted" style="margin-bottom:8px">Kâr Köprüsü</div><div id="waterfall" class="waterfall"></div></div><div><div class="small muted" style="margin-bottom:8px">Kâr Kalitesi Analizi</div><div id="profitQuality"></div></div></div><div id="profitabilityCommentary" style="margin-top:14px"></div></div></section>
 <div class="grid2" style="margin-top:16px"><div id="leverageCard" class="card"><div class="sectionHead"><div><h2>Borç Yapısı &amp; Likidite</h2><p>Bilançonun taşıdığı finansal borç baskısı ve kısa vadeli ödeme gücü</p></div></div><div id="liquidity" class="grid2"></div><div id="leverageCommentary" style="margin-top:14px"></div></div><div class="card"><div class="sectionHead"><div><h2>Nakit Çevrim Süresi (İşletme Sermayesi)</h2><p>Cebinizden çıkan paranın tahsilatla geri kasaya dönme süresi</p></div></div><div id="workingCapital"></div></div></div>
-<div class="grid2" style="margin-top:16px"><div id="cashFlowCard" class="card"><div class="sectionHead"><div><h2>Nakit Akış Köprüsü</h2><p>Dönem başı nakitten dönem sonu nakde giden gerçek para hareketi</p></div></div><div id="cashFlow"></div></div><div id="cashRealizationCard" class="card"><div class="sectionHead"><div><h2>Kâr Nakde Dönüşüyor mu?</h2><p>Defterdeki net kârın ne kadarı fiilen kasaya nakit olarak giriyor?</p></div></div><div id="cashRealization"></div></div></div>
+<div id="unifiedCashBridgeCard" class="card" style="margin-top:16px">
+  <div class="sectionHead">
+    <div>
+      <h2>Nakit Akış Köprüsü ve Kârın Nakde Dönüşüm Analizi</h2>
+      <p>Dönem başından dönem sonuna nakit hareketi ve defterdeki kârın kasaya fiilen ne kadar girdiği</p>
+    </div>
+  </div>
+  <div class="grid2" style="gap:20px;align-items:start">
+    <div id="cashFlowCard">
+      <div class="small muted" style="font-weight:700;margin-bottom:8px">Nakit Akış Köprüsü (Şelale)</div>
+      <div id="cashFlow"></div>
+    </div>
+    <div id="cashRealizationCard">
+      <div class="small muted" style="font-weight:700;margin-bottom:8px">Kârın Nakde Dönüşüm Oranı</div>
+      <div id="cashRealization"></div>
+    </div>
+  </div>
+</div>
 </section>
 
 <section class="flowStep"><div class="flowLabel"><span class="n">2</span>Para Nerede? — Görünmez Kâr Sızıntısı &amp; Kilitli Nakit Teşhisi<p>Kâğıt üzerinde kâr var ama para kasada nerede duruyor?</p></div><div class="flowSub">Müşteri vadelerinde (120 Alıcılar) ve depodaki stokta (150-153) kilitlenen sermaye ve her yıl ödenen gizli finansman faiz sızıntısı.</div>
@@ -3905,7 +3922,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <div id="productProfitabilityCard" class="card hidden" style="margin-top:14px"><div class="sectionHead"><div><h2>Ürün &amp; Portföy Kârlılığı</h2><p>Hangi ürünler brüt kârı sırtlıyor, hangi ürünler depoda sermaye kilitliyor?</p></div></div><div id="productProfitabilityTable" class="tableWrap"></div></div>
 <div id="criticalCustomersCard" style="margin-top:14px"></div>
 <div id="criticalSuppliersCard" style="margin-top:14px"></div>
-<div class="grid2" style="margin-top:14px"><div id="salesIntel"></div><div id="arApIntel"></div></div><div id="inventoryIntel" style="margin-top:14px"></div>
+<div id="salesIntel" style="margin-top:14px"></div>
+<div id="arApIntel" style="margin-top:14px"></div>
+<div id="inventoryIntel" style="margin-top:14px"></div>
 </section>
 
 <section class="flowStep"><div class="flowLabel"><span class="n">5</span>Kök Neden &amp; Karar Hikâyeleri (Neden Oldu?)<p>Bulguların arkasındaki nedensellik zinciri ve finansal maliyeti</p></div><div class="flowSub">Bulgu → Kanıt → Olası Kök Neden → Alınacak Karar. Tek tek okunabilir yönetim hikâyeleri.</div>
@@ -4014,12 +4033,12 @@ function renderCashFlowTable(cb, pl, bs){
     +'<tr style="background:#F0F4FA"><td colspan="2"><b>I. İŞLETME FAALİYETLERİNDEN NAKİT AKIŞI</b></td></tr>'
     +'<tr><td style="padding-left:14px">Net Dönem Kârı</td><td><b>'+money(cb.net_profit)+'</b></td></tr>'
     +'<tr><td style="padding-left:14px">Faaliyet Dışı Düzeltmeler (Finansman/Vergi)</td><td><b>'+money(cb.non_operating_addback)+'</b></td></tr>'
-    +'<tr><td style="padding-left:14px">Faaliyet Kârı (EBIT Proxy)</td><td><b>'+money(cb.operating_profit)+'</b></td></tr>'
+    +'<tr><td style="padding-left:14px">Faaliyet Kârı (FVÖK)</td><td><b>'+money(cb.operating_profit)+'</b></td></tr>'
     +'<tr><td style="padding-left:14px;color:var(--muted)">Δ Ticari Alacak Değişimi (Müşteri)</td><td style="color:'+(wcc.receivables_effect<0?'var(--red)':'var(--green)')+'"><b>'+money(wcc.receivables_effect)+'</b></td></tr>'
     +'<tr><td style="padding-left:14px;color:var(--muted)">Δ Stok Değişimi (Depo Kilidi)</td><td style="color:'+(wcc.inventory_effect<0?'var(--red)':'var(--green)')+'"><b>'+money(wcc.inventory_effect)+'</b></td></tr>'
     +'<tr><td style="padding-left:14px;color:var(--muted)">Δ Ticari Borç Değişimi (Tedarikçi)</td><td style="color:'+(wcc.payables_effect<0?'var(--red)':'var(--green)')+'"><b>'+money(wcc.payables_effect)+'</b></td></tr>'
     +'<tr style="font-weight:700"><td>İşletme Sermayesi Net Etkisi</td><td style="color:'+(cb.working_capital_effect<0?'var(--red)':'var(--green)')+'"><b>'+money(cb.working_capital_effect)+'</b></td></tr>'
-    +'<tr style="background:#EAF0FF;font-weight:800"><td>İşletme Faaliyetleri Nakit Akışı (OCF Proxy)</td><td style="color:'+(cb.operating_cash_flow_proxy<0?'var(--red)':'var(--green)')+'"><b>'+money(cb.operating_cash_flow_proxy)+'</b></td></tr>'
+    +'<tr style="background:#EAF0FF;font-weight:800"><td>İşletme Faaliyetleri Nakit Akışı (Esas Faaliyet)</td><td style="color:'+(cb.operating_cash_flow_proxy<0?'var(--red)':'var(--green)')+'"><b>'+money(cb.operating_cash_flow_proxy)+'</b></td></tr>'
     +'<tr style="background:#F0F4FA"><td colspan="2"><b>II. FİNANSMAN &amp; DİĞER HAREKETLER</b></td></tr>'
     +'<tr><td style="padding-left:14px">Finansal Borç Değişimi (Net Kredi/İtfa)</td><td><b>'+money(cb.debt_change)+'</b></td></tr>'
     +'<tr><td style="padding-left:14px">Yatırım, Vergi &amp; Diğer Düzeltmeler</td><td><b>'+money(cb.unexplained_cash_change)+'</b></td></tr>'
@@ -4208,16 +4227,16 @@ function render(d){
   $('mSales').textContent=money(pl['Net sales']);$('mOp').textContent=money(pl['Operating profit']);$('mNet').textContent=money(pl['Net profit']);$('mDebt').textContent=money(k.net_debt);
   renderDuPont(bp.dupont_analysis||{});
   renderComparative(bp.trend_analysis||{});
-  waterfall('waterfall',[['Net satış',pl['Net sales'],false],['COGS',-pl['COGS'],true],['Brüt kâr',pl['Gross profit'],false],['Faaliyet gideri',-pl['Operating expenses'],true],['Faaliyet kârı',pl['Operating profit'],false],['Finansman',-pl['Finance costs'],true],['Vergi',-pl['Tax expense'],true],['Net kâr',pl['Net profit'],false]]);
+  waterfall('waterfall',[['Net satış',pl['Net sales'],false],['Satılan Malın Maliyeti (SMM)',-pl['COGS'],true],['Brüt kâr',pl['Gross profit'],false],['Faaliyet gideri',-pl['Operating expenses'],true],['Faaliyet kârı',pl['Operating profit'],false],['Finansman',-pl['Finance costs'],true],['Vergi',-pl['Tax expense'],true],['Net kâr',pl['Net profit'],false]]);
   const pq=bp.profit_quality_engine||{};
-  $('liquidity').innerHTML=[['Cari Oran (Current Ratio)',rat(k.current_ratio),'1.5 - 2.0 ideal seviye'],['Nakit Oran (Cash Ratio)',rat(k.cash_ratio),'hazır nakit / kısa vadeli borç'],['Kaldıraç (Borç / Özkaynak)',rat(k.debt_to_equity),'düşük olması güvenlidir'],['Borç / Aktif Oranı',pct(bp.derived_metrics?.debt_to_assets_pct),'finansman yoğunluğu']].map(x=>metric(x[0],x[1],x[2])).join('');
+  $('liquidity').innerHTML=[['Cari Oran (Dönen Varlık / Borç)',rat(k.current_ratio),'1.5 - 2.0 ideal seviye'],['Nakit Oran (Hazır Değer / Borç)',rat(k.cash_ratio),'hazır nakit / kısa vadeli borç'],['Kaldıraç (Borç / Özkaynak)',rat(k.debt_to_equity),'düşük olması güvenlidir'],['Borç / Aktif Oranı',pct(bp.derived_metrics?.debt_to_assets_pct),'finansman yoğunluğu']].map(x=>metric(x[0],x[1],x[2])).join('');
   $('leverageCommentary').innerHTML=leverageNarrative(bp.findings);
   $('cccMetric').textContent=c.cash_conversion_cycle_days==null?'–':num(c.cash_conversion_cycle_days);$('workingCapital').innerHTML='<div class="grid4">'+[['DSO (Tahsilat Vadesi)',c.dso_days],['DIO (Stokta Kalma)',c.dio_days],['DPO (Tedarikçi Vadesi)',c.dpo_days],['CCC (Nakit Çevrim)',c.cash_conversion_cycle_days]].map(x=>metric(x[0],x[1]==null?'–':num(x[1])+' gün','')).join('')+'</div><div style="margin-top:12px">'+workingCapitalNarrative(c)+'</div>';
 
   const cb=bp.cash_bridge_engine||{};
   if(cb.available){
     $('cashFlow').innerHTML='<div id="cashFlowWf" class="waterfall"></div><div class="notice" style="margin-top:12px">Nakit değişimi: '+money(cb.cash_change)+'. '+esc(cb.note||'')+'</div>';
-    waterfall('cashFlowWf',[['Açılış Nakit',cb.opening_cash,false],['Faaliyet Kârı',cb.operating_profit,false],['Alacak Etkisi',cb.working_capital_components.receivables_effect,cb.working_capital_components.receivables_effect<0],['Stok Etkisi',cb.working_capital_components.inventory_effect,cb.working_capital_components.inventory_effect<0],['Borç(AP) Etkisi',cb.working_capital_components.payables_effect,cb.working_capital_components.payables_effect<0],['Finansal Borç Δ',cb.debt_change,cb.debt_change<0],['Açıklanmayan',cb.unexplained_cash_change,cb.unexplained_cash_change<0],['Kapanış Nakit',cb.closing_cash,false]]);
+    waterfall('cashFlowWf',[['Açılış Nakit',cb.opening_cash,false],['Faaliyet Kârı',cb.operating_profit,false],['Alacak Etkisi',cb.working_capital_components.receivables_effect,cb.working_capital_components.receivables_effect<0],['Stok Etkisi',cb.working_capital_components.inventory_effect,cb.working_capital_components.inventory_effect<0],['Tedarikçi Borç Etkisi',cb.working_capital_components.payables_effect,cb.working_capital_components.payables_effect<0],['Finansal Borç Δ',cb.debt_change,cb.debt_change<0],['Açıklanmayan',cb.unexplained_cash_change,cb.unexplained_cash_change<0],['Kapanış Nakit',cb.closing_cash,false]]);
   } else {
     const wp=cb.working_capital_proxy||{};
     $('cashFlow').innerHTML='<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:14px;margin-bottom:12px"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px"><div style="display:flex;align-items:center;gap:6px"><span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:700">ℹ️ Tek Dönem Mizan</span><span style="font-size:12.5px;font-weight:700;color:#0F1B2D">Cari Bağlı İşletme Sermayesi Dökümü</span></div><button class="secondary hidePrint" style="padding:4px 10px;font-size:11px;border-radius:6px" onclick="goToTrendTab()">📊 2. Dönemi Ekle</button></div><div class="small muted" style="line-height:1.5">Tek dönem analizinde açılış bilançosu bulunmadığından nakit köprüsü yerine cari işletme sermayesi kilitlenmeleri listelenmiştir. Gerçek nakit köprüsü için Trend sekmesini kullanabilirsiniz.</div></div><div class="grid3">'+metric('Alacaklar (Müşteride)',money(wp.receivables),'Bağlı İşletme Sermayesi')+metric('Stoklar (Depoda)',money(wp.inventory),'Bağlı İşletme Sermayesi')+metric('Borçlar (Tedarikçi)',money(wp.payables),'Sağlanan Tedarikçi Finansmanı')+'</div>';
@@ -4237,10 +4256,10 @@ function render(d){
     } else {
       crExpl='Net kâr '+money(cb.net_profit)+'; işletme nakdi '+money(cb.operating_cash_flow_proxy)+'. Kâr büyük ölçüde ('+pct(crp)+') nakde dönüşüyor; işletme sermayesi kâr üzerinde ek bir nakit baskısı yaratmıyor.';
     }
-    $('cashRealization').innerHTML='<div class="metric" style="margin-bottom:12px"><div class="label">Kâr Nakde Dönüşüm Oranı (Cash Realization)</div><div class="value" style="color:'+(crp<=0?'var(--red)':crp<80?'var(--amber)':'var(--green)')+'">'+pct(crp)+'</div><div class="sub">Net Kâr → İşletme Nakit Akışı Dönüşüm Verimi</div></div><div id="crWf" class="waterfall"></div><div class="insight '+crTier+'" style="margin-top:12px"><p>'+crExpl+'</p></div>';
-    waterfall('crWf',[['Net Kâr',cb.net_profit,false],['Faaliyet Dışı/Vergi Farkı',cb.non_operating_addback,cb.non_operating_addback<0],['Alacak Etkisi',cb.working_capital_components.receivables_effect,cb.working_capital_components.receivables_effect<0],['Stok Etkisi',cb.working_capital_components.inventory_effect,cb.working_capital_components.inventory_effect<0],['Borç(AP) Etkisi',cb.working_capital_components.payables_effect,cb.working_capital_components.payables_effect<0],['İşletme Nakdi (proxy)',cb.operating_cash_flow_proxy,false]]);
+    $('cashRealization').innerHTML='<div class="metric" style="margin-bottom:12px"><div class="label">Kârın Nakde Dönüşüm Oranı</div><div class="value" style="color:'+(crp<=0?'var(--red)':crp<80?'var(--amber)':'var(--green)')+'">'+pct(crp)+'</div><div class="sub">Net Kâr → İşletme Nakit Akışı Dönüşüm Verimi</div></div><div id="crWf" class="waterfall"></div><div class="insight '+crTier+'" style="margin-top:12px"><p>'+crExpl+'</p></div>';
+    waterfall('crWf',[['Net Kâr',cb.net_profit,false],['Faaliyet Dışı/Vergi Farkı',cb.non_operating_addback,cb.non_operating_addback<0],['Alacak Etkisi',cb.working_capital_components.receivables_effect,cb.working_capital_components.receivables_effect<0],['Stok Etkisi',cb.working_capital_components.inventory_effect,cb.working_capital_components.inventory_effect<0],['Tedarikçi Borç Etkisi',cb.working_capital_components.payables_effect,cb.working_capital_components.payables_effect<0],['İşletme Faaliyet Nakdi',cb.operating_cash_flow_proxy,false]]);
   } else {
-    $('cashRealization').innerHTML='<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px;text-align:center"><div style="display:inline-flex;align-items:center;gap:6px;background:#EFF6FF;color:#1D4ED8;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:8px">ℹ️ Tek Dönem Modu Aktif</div><div style="font-size:13.5px;font-weight:700;color:#0F1B2D;margin-bottom:4px">Kârın Nakde Dönüşüm Oranı (Cash Realization)</div><p class="muted small" style="margin:0 auto 12px;max-width:440px">Tek dönem mizandan net kâr ve likidite tam hesaplanmıştır. Net kârın ne kadarının kasaya nakit aktığını (şelale grafiğini) görmek için iki dönemli karşılaştırma önerilir.</p><button class="secondary hidePrint" style="padding:7px 16px;font-size:12px;border-radius:8px" onclick="runDataHubSample()">⚡ Canlı 2 Dönemli Trend Demosunu Çalıştır</button></div>';
+    $('cashRealization').innerHTML='<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px;text-align:center"><div style="display:inline-flex;align-items:center;gap:6px;background:#EFF6FF;color:#1D4ED8;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:8px">ℹ️ Tek Dönem Modu Aktif</div><div style="font-size:13.5px;font-weight:700;color:#0F1B2D;margin-bottom:4px">Kârın Nakde Dönüşüm Oranı</div><p class="muted small" style="margin:0 auto 12px;max-width:440px">Tek dönem mizandan net kâr ve likidite tam hesaplanmıştır. Net kârın ne kadarının kasaya nakit aktığını (şelale grafiğini) görmek için iki dönemli karşılaştırma önerilir.</p><button class="secondary hidePrint" style="padding:7px 16px;font-size:12px;border-radius:8px" onclick="runDataHubSample()">⚡ Canlı 2 Dönemli Trend Demosunu Çalıştır</button></div>';
   }
   renderResourceAllocation(bp.resource_allocation_engine);
   renderWorkingCapitalLeak(bp, pl, bs, k, c, d);
@@ -4346,7 +4365,8 @@ function render(d){
 // AR / AP Intelligence — full aging-engine output rendered with visual bars
 // (bucket share, overdue share) instead of plain text-only rows.
 function agingBlock(title,due,data){
-  if(!data) return '<div class="notice">'+esc(title)+' verisi yüklenmedi.</div>';
+  const titleLabel = title==='AR'?'Müşteri Alacak Yaşlandırma Analizi (120 Hesabı & Vade Dağılımı)':'Tedarikçi Borç Yaşlandırma Analizi (320 Hesabı & Ödeme Takvimi)';
+  if(!data) return '<div class="notice">'+esc(titleLabel)+' yüklenmedi.</div>';
   const buckets=(data.aging_buckets||[]).filter(b=>b.amount);
   const bucketRows=buckets.length?'<div style="margin-top:10px">'+buckets.map(b=>'<div style="margin-top:8px"><div class="small" style="display:flex;justify-content:space-between"><span>'+esc(b.bucket)+'</span><span>'+money(b.amount)+' · '+pct(b.pct_of_outstanding)+'</span></div><div class="abar"><i style="width:'+Math.min(100,b.pct_of_outstanding||0)+'%"></i></div></div>').join('')+'</div>':'';
   const overduePct=data.overdue_pct||0;
@@ -4355,10 +4375,10 @@ function agingBlock(title,due,data){
   const topOverdueRows=topOverdue.length?'<div class="small" style="margin-top:10px"><b>En çok geciken '+(title==='AR'?'müşteriler':'tedarikçiler')+':</b> '+topOverdue.map(p=>esc(p.name)+' ('+money(p.amount)+(p.avg_days_overdue!=null?', ort. '+num(p.avg_days_overdue)+' gün':'')+')').join(' · ')+'</div>':'';
   const riskTierTag=data.risk_tier?'<span class="tag '+(data.risk_tier==='Kritik'?'critical':data.risk_tier==='Yüksek'?'high':data.risk_tier==='Orta'?'medium':'positive')+'">'+esc(data.risk_tier)+'</span>':'';
   const partyWord=title==='AR'?'müşteri':'tedarikçi';
+  const dueLabel = due==='DSO'?'Ortalama Tahsilat Süresi (DSO)':'Ortalama Ödeme Süresi (DPO)';
   const concTxt=data.concentration_80pct_party_count!=null?' · Toplamın %80\u0027ine <b>'+data.concentration_80pct_party_count+'</b> '+partyWord+' denk geliyor ('+esc(data.party_count??'–')+' '+partyWord+'\u0027nin %'+num(data.concentration_80pct_share_of_parties_pct)+'\u0027i)':'';
   const anomalyBlock=(data.data_anomalies&&data.data_anomalies.length)?'<p class="small" style="margin-top:8px;color:#9a6b00">⚠ Veri uyarısı: '+data.data_anomalies.map(esc).join(' · ')+'</p>':'';
-  const titleLabel = title==='AR'?'Alacak Yaşlandırma (AR)':'Borç Yaşlandırma (AP)';
-  return '<div class="insight" style="margin-top:10px"><b>'+esc(titleLabel)+'</b> '+riskTierTag+'<p>Toplam Bakiye: '+money(data.outstanding)+' · Vadesi Geçen: '+money(data.overdue)+' · '+esc(due)+': '+(data[due==='DSO'?'dso_days':'dpo_days']==null?'–':num(data[due==='DSO'?'dso_days':'dpo_days'])+' gün')+'</p>'+overdueBar+'<p class="small muted" style="margin-top:8px">Ağırlıklı ort. gecikme: '+(data.weighted_average_overdue_days==null?'–':num(data.weighted_average_overdue_days)+' gün')+' · Beklenen tahsilat/ödeme riski: '+money(data.collection_risk_estimate)+' ('+pct(data.collection_risk_estimate_pct_of_outstanding)+') · İlk 10 taraf payı: '+pct(data.top_10_share_pct)+' ('+(data.party_count??'–')+' '+partyWord+')'+concTxt+'</p>'+anomalyBlock+bucketRows+topOverdueRows+'</div>'
+  return '<div class="insight" style="margin-top:10px;background:#FFFFFF;border:1px solid #E2E8F0;border-radius:12px;padding:16px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><b>'+esc(titleLabel)+'</b> '+riskTierTag+'</div><p>Toplam Bakiye: <b>'+money(data.outstanding)+'</b> · Vadesi Geçen: <b style="color:#DC2626">'+money(data.overdue)+'</b> · '+esc(dueLabel)+': <b>'+(data[due==='DSO'?'dso_days':'dpo_days']==null?'–':num(data[due==='DSO'?'dso_days':'dpo_days'])+' gün')+'</b></p>'+overdueBar+'<p class="small muted" style="margin-top:8px">Ağırlıklı ort. gecikme: '+(data.weighted_average_overdue_days==null?'–':num(data.weighted_average_overdue_days)+' gün')+' · Beklenen risk tutarı: '+money(data.collection_risk_estimate)+' ('+pct(data.collection_risk_estimate_pct_of_outstanding)+') · İlk 10 '+partyWord+' payı: '+pct(data.top_10_share_pct)+' ('+(data.party_count??'–')+' '+partyWord+')'+concTxt+'</p>'+anomalyBlock+bucketRows+topOverdueRows+'</div>'
 }
 
 // "Kritik Müşteriler" — replaces the old flat Sales Intelligence metric wall.
@@ -4373,7 +4393,7 @@ function criticalCustomersPanel(arData){
   const t10=arData.top_10_share_pct;
   const concTag=t10==null?'':(t10>=30?'<span class="tag critical" style="margin-left:6px">Yüksek Yoğunlaşma</span>':t10>=10?'<span class="tag medium" style="margin-left:6px">Orta Yoğunlaşma</span>':'<span class="tag positive" style="margin-left:6px">Dağınık Alacak Tabanı — Düşük Risk</span>');
   const concNote=(t10!=null&&t10<10)?'<p class="small muted" style="margin-top:4px">İlk 10 müşteri toplam alacağın yalnızca %'+num(t10)+'\u0027ini oluşturuyor; bu, tek bir müşteri kaybının nakit akışını ciddi şekilde etkilemeyeceği sağlıklı/dağınık bir alacak tabanına işaret eder.</p>':'';
-  return '<div class="card"><div class="sectionHead"><div><h2>Kritik Müşteriler'+concTag+'</h2><p>Tahsilat önceliklendirmesi ve olası nakit etkisi</p></div></div><div class="notice" style="margin-bottom:6px">Bu '+top.length+' müşteriden tahsilat sağlanırsa yaklaşık <b>'+money(totalImpact)+'</b> nakit serbestleşir (toplam AR overdue riskinin '+pct(arData.outstanding?totalImpact/arData.outstanding*100:null)+'\u0027i).</div>'+rows+concLine+concNote+'</div>';
+  return '<div class="card"><div class="sectionHead"><div><h2>Kritik Müşteriler'+concTag+'</h2><p>Tahsilat önceliklendirmesi ve olası nakit etkisi</p></div></div><div class="notice" style="margin-bottom:6px">Bu '+top.length+' müşteriden tahsilat sağlanırsa yaklaşık <b>'+money(totalImpact)+'</b> nakit serbestleşir (toplam vadesi geçen alacak riskinin '+pct(arData.outstanding?totalImpact/arData.outstanding*100:null)+'\u0027i).</div>'+rows+concLine+concNote+'</div>';
 }
 
 // "Kritik Tedarikçiler" — AR tarafındaki Kritik Müşteriler panelinin AP
@@ -4385,7 +4405,7 @@ function criticalSuppliersPanel(apData){
   const totalImpact=top.reduce((s,p)=>s+(p.amount||0),0);
   const rows=top.map((p,i)=>'<div class="custRow"><div>#'+(i+1)+' '+esc(p.name)+'</div><div>'+money(p.amount)+'</div><div class="muted">'+(p.avg_days_overdue!=null?'ort. '+num(p.avg_days_overdue)+' gün gecikme':'')+'</div></div>').join('');
   const concLine=apData.concentration_80pct_party_count!=null?'<p class="small muted" style="margin-top:6px">Toplam AP bakiyesinin %80\u0027i sadece <b>'+apData.concentration_80pct_party_count+'</b> tedarikçide toplanıyor ('+(apData.party_count??'–')+' tedarikçinin %'+num(apData.concentration_80pct_share_of_parties_pct)+'\u0027i).</p>':'';
-  return '<div class="card"><div class="sectionHead"><div><h2>Kritik Tedarikçiler</h2><p>Ödeme önceliklendirmesi ve tedarik ilişkisi riski</p></div></div><div class="notice" style="margin-bottom:6px">Bu '+top.length+' tedarikçiye geciken <b>'+money(totalImpact)+'</b> tutarındaki ödeme, ilişki/tedarik kesintisi riski taşıyor (toplam AP overdue riskinin '+pct(apData.outstanding?totalImpact/apData.outstanding*100:null)+'\u0027i).</div>'+rows+concLine+'</div>';
+  return '<div class="card"><div class="sectionHead"><div><h2>Kritik Tedarikçiler</h2><p>Ödeme önceliklendirmesi ve tedarik ilişkisi riski</p></div></div><div class="notice" style="margin-bottom:6px">Bu '+top.length+' tedarikçiye geciken <b>'+money(totalImpact)+'</b> tutarındaki ödeme, ilişki/tedarik kesintisi riski taşıyor (toplam vadesi geçen borç riskinin '+pct(apData.outstanding?totalImpact/apData.outstanding*100:null)+'\u0027i).</div>'+rows+concLine+'</div>';
 }
 
 function renderHub(ms){
@@ -4394,22 +4414,22 @@ function renderHub(ms){
   const sm=ms.summary||{};
   const errorRows=(ms.errors||[]).map(e=>'<div class="notice" style="margin-top:8px"><b>Dosya hatası:</b> '+esc(e.file||'')+' · '+esc(e.error||'')+'</div>').join('');
   const fileRows=(ms.files||[]).map(f=>{const rs=(f.roles||[]).map(r=>r.role+' ('+Math.round((r.confidence||0)*100)+'%)').join(', ');return '<tr><td>'+esc(f.filename)+'</td><td>'+esc(rs||'unknown')+'</td><td>'+esc(f.roles?.[0]?.rows||'–')+'</td></tr>'}).join('');
-  if($('hubSources')) $('hubSources').innerHTML='<div class="sectionHead"><div><h2>Source Registry</h2><p>Dosyaların içerik bazlı sınıflandırılması</p></div></div>'+(fileRows?'<div class="tableWrap"><table><thead><tr><th>Dosya</th><th>Rol</th><th>Satır</th></tr></thead><tbody>'+fileRows+'</tbody></table></div>':'<div class="notice">Kaynak bulunamadı.</div>')+errorRows;
-  const labels=[['Sales',sm.sales_loaded?'Loaded':'Not loaded',''],['AR Aging',sm.ar_aging_loaded?'Loaded':'Not loaded',''],['AP Aging',sm.ap_aging_loaded?'Loaded':'Not loaded',''],['Inventory',sm.inventory_loaded?'Loaded':'Not loaded','']];
+  if($('hubSources')) $('hubSources').innerHTML='<div class="sectionHead"><div><h2>Yüklenen Veri Kaynakları Kaydı</h2><p>Dosyaların içerik bazlı sınıflandırılması</p></div></div>'+(fileRows?'<div class="tableWrap"><table><thead><tr><th>Dosya</th><th>Rol</th><th>Satır</th></tr></thead><tbody>'+fileRows+'</tbody></table></div>':'<div class="notice">Kaynak bulunamadı.</div>')+errorRows;
+  const labels=[['Satış Defteri',sm.sales_loaded?'Yüklendi':'Yüklenmedi',''],['Alacak Yaşlandırma',sm.ar_aging_loaded?'Yüklendi':'Yüklenmedi',''],['Borç Yaşlandırma',sm.ap_aging_loaded?'Yüklendi':'Yüklenmedi',''],['Stok Defteri',sm.inventory_loaded?'Yüklendi':'Yüklenmedi','']];
   $('hubSummary').innerHTML=labels.map(x=>metric(x[0],x[1],x[2])).join('');
   const checks=ms.reconciliation?.checks||[];
-  $('hubReconciliation').innerHTML='<div class="sectionHead"><div><h2>Source Reconciliation</h2><p>GL ile operasyonel dosya arasındaki farklar</p></div></div>'+(checks.length?'<div class="tableWrap"><table><thead><tr><th>Kontrol</th><th>GL</th><th>Source</th><th>Difference</th><th>Status</th></tr></thead><tbody>'+checks.map(c=>'<tr><td>'+esc(c.name)+'</td><td>'+money(c.gl_value)+'</td><td>'+money(c.source_value)+'</td><td>'+money(c.difference)+'</td><td>'+esc(c.status)+'</td></tr>').join('')+'</tbody></table></div>':'<div class="notice">Mutabakat için yeterli veri yok.</div>');
+  $('hubReconciliation').innerHTML='<div class="sectionHead"><div><h2>Veri Mutabakat Kontrolleri</h2><p>Büyük Defter (Mizan) ile operasyonel detay raporları arasındaki farklar</p></div></div>'+(checks.length?'<div class="tableWrap"><table><thead><tr><th>Kontrol</th><th>Mizan Değeri</th><th>Detay Rapor Değeri</th><th>Fark</th><th>Durum</th></tr></thead><tbody>'+checks.map(c=>'<tr><td>'+esc(c.name)+'</td><td>'+money(c.gl_value)+'</td><td>'+money(c.source_value)+'</td><td>'+money(c.difference)+'</td><td>'+esc(c.status)+'</td></tr>').join('')+'</tbody></table></div>':'<div class="notice">Mutabakat için yeterli veri yok.</div>');
   const an=ms.analysis||{}; const sales=an.sales||{};
   if(sales.pvm_analysis && sales.pvm_analysis.available) {
     $('pvmIntel').classList.remove('hidden');
     const p=sales.pvm_analysis;
     const wfId = 'pvmWf';
-    $('pvmIntel').innerHTML='<div class="sectionHead"><div><h2>Price-Volume-Mix (PVM) Analizi</h2><p>Ciro değişiminin kök nedenleri: Fiyat mı, Hacim mi, Karma mı?</p></div></div>'
+    $('pvmIntel').innerHTML='<div class="sectionHead"><div><h2>Fiyat-Hacim-Karma (PVM) Analizi</h2><p>Ciro değişiminin kök nedenleri: Fiyat mı, Hacim mi, Ürün Karması mı?</p></div></div>'
       +'<div class="grid4" style="margin-bottom:16px">'
       +metric('Dönem 1 Ciro', money(p.revenue_1), p.period_1)
       +metric('Dönem 2 Ciro', money(p.revenue_2), p.period_2)
       +metric('Ciro Değişimi', money(p.revenue_delta), '')
-      +metric('En Büyük Etken', Math.abs(p.total_price_effect)>Math.abs(p.total_volume_effect)?'Fiyat (Price)':'Hacim (Volume)', '')
+      +metric('En Büyük Etken', Math.abs(p.total_price_effect)>Math.abs(p.total_volume_effect)?'Fiyat Değişimi':'Hacim Değişimi', '')
       +'</div><div id="'+wfId+'" class="waterfall"></div>'
       +'<div class="tableWrap" style="margin-top:16px"><table><thead><tr><th>Ürün</th><th>Değişim</th><th>Fiyat Etkisi</th><th>Hacim Etkisi</th><th>Karma Etkisi</th></tr></thead><tbody>'
       +(p.product_level||[]).map(r=>'<tr><td>'+esc(r.product)+'</td><td>'+money(r.delta)+'</td><td>'+money(r.price_effect)+'</td><td>'+money(r.volume_effect)+'</td><td>'+money(r.mix_effect)+'</td></tr>').join('')
@@ -4432,12 +4452,14 @@ function renderHub(ms){
   if(an.product_profitability) renderProductProfitability(an.product_profitability);
   $('criticalCustomersCard').innerHTML=criticalCustomersPanel(an.ar_aging);
   $('criticalSuppliersCard').innerHTML=criticalSuppliersPanel(an.ap_aging);
-  // Sales Intelligence
-  $('salesIntel').innerHTML='<div class="sectionHead"><div><h2>Sales Intelligence</h2><p>Vade fiyatlaması ve ürün karması</p></div></div>'+(an.sales?'<div class="grid2">'+metric('Vade Primi',pct(sales.term_premium_pct),'Peşin → vadeli fark')+metric('İlk 10 Müşteri Payı',pct(sales.top_10_customer_share_pct),'Concentration')+'</div>'+((sales.product_mix||[]).length?'<div class="insight" style="margin-top:10px"><b>Ürün karması</b><p>'+sales.product_mix.slice(0,7).map(v=>esc(v.name)+': '+money(v.sales)+' ('+pct(v.share_pct)+')').join(' · ')+'</p></div>':'')+(sales.term_premium_pct>15?'<div class="insight high" style="margin-top:10px"><b>Vadeli satış fiyatı peşin fiyattan belirgin yüksek</b><p>Vade primi %'+num(sales.term_premium_pct)+'; finansman maliyeti ve tahsilat riski fiyatlamaya yansıtılıyor mu kontrol edilmeli.</p></div>':''):'<div class="notice">Sales datası yüklenmedi.</div>');
-  $('arApIntel').innerHTML='<div class="sectionHead"><div><h2>AR / AP Intelligence</h2><p>Aging, risk yoğunlaşması ve tahsilat/ödeme riski</p></div></div>'+agingBlock('AR','DSO',an.ar_aging)+agingBlock('AP','DPO',an.ap_aging);
+  // Sales Intelligence — Standalone Card
+  $('salesIntel').innerHTML='<div class="card"><div class="sectionHead"><div><h2>Satış Zekâsı (Müşteri &amp; Ürün Kârlılığı)</h2><p>Vade fiyatlaması, ciro yoğunlaşması ve ürün satış karması</p></div></div>'+(an.sales?'<div class="grid2">'+metric('Vade Primi',pct(sales.term_premium_pct),'Peşin → vadeli fiyat farkı')+metric('İlk 10 Müşteri Payı',pct(sales.top_10_customer_share_pct),'Müşteri Yoğunlaşması')+'</div>'+((sales.product_mix||[]).length?'<div class="insight" style="margin-top:10px"><b>Ürün Satış Karması</b><p>'+sales.product_mix.slice(0,7).map(v=>esc(v.name)+': '+money(v.sales)+' ('+pct(v.share_pct)+')').join(' · ')+'</p></div>':'')+(sales.term_premium_pct>15?'<div class="insight high" style="margin-top:10px"><b>Vadeli satış fiyatı peşin fiyattan belirgin yüksek</b><p>Vade primi %'+num(sales.term_premium_pct)+'; finansman maliyeti ve tahsilat riski fiyatlamaya yansıtılıyor mu kontrol edilmeli.</p></div>':''):'<div class="notice">Satış detay verisi yüklenmedi.</div>')+'</div>';
+  // AR / AP Intelligence — Stacked Vertically
+  $('arApIntel').innerHTML='<div class="card"><div class="sectionHead"><div><h2>Alacak ve Borç Yaşlandırma Analizi</h2><p>Müşteri alacak vadeleri (120 Hesabı) ve tedarikçi ödeme takvimi (320 Hesabı) alt alta dökümü</p></div></div><div style="display:flex;flex-direction:column;gap:14px">'+agingBlock('AR','DSO',an.ar_aging)+agingBlock('AP','DPO',an.ap_aging)+'</div></div>';
   const inv = an.inventory || an.inventory_aging || {};
   const hasInv = !!(an.inventory || an.inventory_aging);
-  $('inventoryIntel').innerHTML='<div class="sectionHead"><div><h2>Inventory Intelligence</h2><p>Stok değeri, yaşlanma ve nakit kilitleme sinyalleri</p></div></div>'+(hasInv?'<div class="grid4">'+metric('Inventory Value',money(inv.value),'Stok Defteri')+metric('SKU Sayısı',inv.sku_count??'–','Toplam Kalem')+metric('DIO',inv.dio_days==null?'–':num(inv.dio_days)+' gün','Ortalama Satış Süresi')+metric('180+ Gün Stok',money(inv.stale_180_amount),'Nakit Kilitleyen')+ '</div>'+(inv.findings||[]).map(f=>'<div class="insight '+esc(f.severity)+'" style="margin-top:10px"><b>'+esc(f.title)+'</b><p>'+esc(f.detail)+'</p></div>').join(''):'<div class="notice">Inventory datası yüklenmedi.</div>');
+  // Inventory Intelligence — Standalone Card
+  $('inventoryIntel').innerHTML='<div class="card"><div class="sectionHead"><div><h2>Stok Zekâsı (Ölü Stok &amp; Devir Hızı)</h2><p>Stok değeri, ortalama rafta kalma süresi ve nakit kilitleyen atıl ürünler</p></div></div>'+(hasInv?'<div class="grid4">'+metric('Toplam Stok Değeri',money(inv.value),'Mizan / Stok Defteri')+metric('Ürün (SKU) Sayısı',inv.sku_count??'–','Toplam Kalem')+metric('Stok Devir Süresi (DIO)',inv.dio_days==null?'–':num(inv.dio_days)+' gün','Ortalama Satış Süresi')+metric('180+ Gün Atıl Stok',money(inv.stale_180_amount),'Kasayı Kilitleyen Nakit')+ '</div>'+(inv.findings||[]).map(f=>'<div class="insight '+esc(f.severity)+'" style="margin-top:10px"><b>'+esc(f.title)+'</b><p>'+esc(f.detail)+'</p></div>').join(''):'<div class="notice">Stok detay defteri yüklenmedi.</div>')+'</div>';
 }
 
 // ---------------------------------------------------------------------
@@ -4447,7 +4469,7 @@ async function run(url,fd,kind='single'){
   $('error').classList.add('hidden');
   startLoading(
     kind==='hub'?'Data Hub Analizi Çalıştırılıyor':'Finansal Veriler Analiz Ediliyor',
-    '33 Finansal Karar Motoru Çalıştırılıyor (Hesap Doğrulama, Likidite, Cash Bridge, DuPont)...'
+    '33 Finansal Karar Motoru Çalıştırılıyor (Hesap Doğrulama, Likidite, Nakit Köprüsü, Kârlılık Ağacı)...'
   );
   $('analyze').disabled=true;$('analyzeTrend').disabled=true;$('analyzeHub').disabled=true;
   try{
@@ -5069,8 +5091,8 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
       l2_metrics: [
         { label: 'Depodaki Bağlı Sermaye', val: money(invVal), note: '150-158 hesapları' },
         { label: 'Stokta Kalma Süresi (DIO)', val: num(dio) + ' gün', note: 'Depo bekleme süresi' },
-        { label: 'Yıllık Stok Faiz Yükü', val: money(invVal * 0.45), note: '%45 faiz proxy' },
-        { label: 'Satışların Maliyeti (COGS)', val: money(cogs), note: 'Yıllık maliyet akışı' }
+        { label: 'Yıllık Stok Faiz Yükü', val: money(invVal * 0.45), note: '%45 tahmini finansman maliyeti' },
+        { label: 'Satılan Malın Maliyeti (SMM)', val: money(cogs), note: 'Yıllık maliyet akışı' }
       ],
       l3_action: '90 günden uzun süredir hareket görmeyen ölü stokları paket (bundle) veya toptan iskontoyla derhal nakde çevirin. Satınalma siparişlerini haftalık satış hızına bağlayın.',
       l3_cash: '+' + money(dailyCogs * 18),
@@ -5097,10 +5119,10 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
       l3_action: '3 Kaldıraçlı Çalışma Sermayesi Programı başlatın: Satış ekibinin primini ciroya değil "kasaya giren tahsilata" endeksleyin.',
       l3_cash: '+' + money(dailySales * 15 + dailyCogs * 25),
       l3_profit: '+' + money((dailySales * 15 + dailyCogs * 25) * 0.45) + ' / yıl',
-      l3_owner: 'İcra Kurulu & Genel Müdür',
-      l3_due: 'Hemen Devrede',
+      l3_owner: 'Genel Müdür & İcra Kurulu',
+      l3_due: '15 Gün',
       targetStep: 'workingCapitalLeakEngineCard',
-      targetStepName: 'Adım 2: 4 Kaldıraçlı Kâr & Nakit Simülatörü'
+      targetStepName: 'Adım 2: Görünmez Kâr Sızıntısı & Kilitli Nakit Teşhisi'
     },
     {
       id: 'q5',
@@ -5111,8 +5133,8 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
       l1_title: 'Giderler Cirodan Daha Hızlı Büyüyor, Enflasyon Kâr Marjını Kemiriyor',
       l1_desc: 'Ciro büyümesine rağmen kârın yerinde saymasının temel nedeni: Artan hammadde/lojistik ve genel yönetim giderlerinin satış fiyatlarına gecikmeli yansıtılması ve kontrolsüz faaliyet gideri (OpEx) artışıdır.',
       l2_metrics: [
-        { label: 'Brüt Kâr Marjı', val: pct(pl?.['Gross margin'] || (sales>0?(sales-cogs)/sales*100:32)), note: 'Satış - COGS marjı' },
-        { label: 'Faaliyet Kâr Marjı (EBIT)', val: pct(pl?.['Operating margin'] || (sales>0?opProfit/sales*100:12)), note: 'Operasyonel kâr marjı' },
+        { label: 'Brüt Kâr Marjı', val: pct(pl?.['Gross margin'] || (sales>0?(sales-cogs)/sales*100:32)), note: 'Satış - SMM marjı' },
+        { label: 'Faaliyet Kâr Marjı (FVÖK)', val: pct(pl?.['Operating margin'] || (sales>0?opProfit/sales*100:12)), note: 'Operasyonel kâr marjı' },
         { label: 'Net Dönem Marjı', val: pct(pl?.['Net margin'] || (sales>0?netProfit/sales*100:6)), note: 'Nihai kâr oranı' },
         { label: 'Ciro Başına Faaliyet Gideri', val: pct(pl?.['Operating expenses'] && sales>0 ? Math.abs(pl['Operating expenses'])/sales*100 : 21), note: 'OpEx / Satış oranı' }
       ],
@@ -5363,7 +5385,7 @@ function renderProductProfitability(pp){
   ).join('');
 
   let html = '<div class="tableWrap"><table><thead><tr>' +
-    '<th style="text-align:left">Ürün / SKU</th><th>Ciro</th><th>Maliyet (COGS)</th><th>Brüt Marj %</th><th>Kâra Katkı %</th>' +
+    '<th style="text-align:left">Ürün / SKU</th><th>Ciro</th><th>Satılan Malın Maliyeti (SMM)</th><th>Brüt Marj %</th><th>Kâra Katkı %</th>' +
     '</tr></thead><tbody>' + rows + '</tbody></table></div>';
 
   if(tied.length){
