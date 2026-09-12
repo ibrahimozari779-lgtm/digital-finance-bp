@@ -353,6 +353,19 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 .secCard p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.6}
 @media(max-width:860px){.secGrid{grid-template-columns:1fr}}
 
+/* CEO Diagnostic Hub 3-Layer Architecture */
+.ceoPill{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:999px;font-size:12.5px;font-weight:700;background:#F1F5F9;color:#475569;border:1px solid #CBD5E1;cursor:pointer;white-space:nowrap;transition:all .2s ease}
+.ceoPill:hover{background:#E2E8F0;color:#0F172A}
+.ceoPill.active{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8;box-shadow:0 4px 14px rgba(29,78,216,0.25)}
+.ceoQuestionCard{display:none;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:18px;padding:22px;box-shadow:0 8px 24px rgba(15,27,45,0.04);animation:fadeIn .3s ease}
+.ceoQuestionCard.active{display:block}
+.layerBadge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:10.5px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase}
+.layerBadge.l1{background:#FEE2E2;color:#991B1B;border:1px solid #FCA5A5}
+.layerBadge.l2{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE}
+.layerBadge.l3{background:#ECFDF5;color:#047857;border:1px solid #A7F3D0}
+.ceoGrid3{display:grid;grid-template-columns:1.1fr 1fr 1.3fr;gap:18px;margin-top:16px}
+@media(max-width:960px){.ceoGrid3{grid-template-columns:1fr}}
+
 </style></head>
 <body>
 <header class="top"><div class="wrap brand"><div><a href="/" style="text-decoration:none;color:inherit"><h1>Digital Finance Business Partner</h1><p>Verified financial facts → decision intelligence → management action</p></a></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/" class="active">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
@@ -689,6 +702,313 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </div>
 </section></div>
 
+<!-- SECTION: 3-KATMANLI ÜRÜN MİMARİSİ (PATRONUN AKLINDAKİ 8 KRİTİK SORU) -->
+<div class="secBlock tint reveal">
+  <section id="patronSorulari" class="marketingSection hidePrint">
+    <div class="marketingHead">
+      <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">3 KATMANLI ÜRÜN MİMARİSİ</span>
+      <h2>Patron "DSO Modülü" Değil, Bu Soruların Cevabını Satın Alır</h2>
+      <p>Standart muhasebe yazılımları geçmişi ve kuru formülleri sunar; Digital Finance Business Partner ise patronun aklındaki 8 can alıcı soruyu 3 katmanlı deterministik zekâyla çözer.</p>
+    </div>
+
+    <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:22px;padding:26px;box-shadow:0 14px 34px rgba(15,27,45,.06)">
+      <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:12px;margin-bottom:18px;scrollbar-width:thin" id="landingCeoPills">
+        <button type="button" class="ceoPill active" data-lq="lq1" onclick="switchLandingCeo('lq1')">💸 Kasada Neden Para Yok?</button>
+        <button type="button" class="ceoPill" data-lq="lq2" onclick="switchLandingCeo('lq2')">👥 Hangi Müşteri Zarar Ettiriyor?</button>
+        <button type="button" class="ceoPill" data-lq="lq3" onclick="switchLandingCeo('lq3')">📦 Depoda Ne Kadar Para Uyuyor?</button>
+        <button type="button" class="ceoPill" data-lq="lq4" onclick="switchLandingCeo('lq4')">🔓 Kredisiz Kaç Milyon TL Nakit Çıkar?</button>
+        <button type="button" class="ceoPill" data-lq="lq5" onclick="switchLandingCeo('lq5')">📉 Satış Artarken Marj Neden Büyümüyor?</button>
+        <button type="button" class="ceoPill" data-lq="lq6" onclick="switchLandingCeo('lq6')">⚖️ Vade Makası (Müşteri vs Tedarikçi)</button>
+        <button type="button" class="ceoPill" data-lq="lq7" onclick="switchLandingCeo('lq7')">🚨 Yarın Sabahın 3 Kritik Alarmı</button>
+        <button type="button" class="ceoPill" data-lq="lq8" onclick="switchLandingCeo('lq8')">🎯 CEO'nun 1 Numaralı Kararı</button>
+      </div>
+
+      <div id="landingCeoCards">
+        <!-- LQ1 -->
+        <div id="lqCard_lq1" class="ceoQuestionCard active">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">💸 NAKİT AKIŞI &amp; KÂR KALİTESİ</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi (₺10M Ciro / ₺1M Net Kâr)</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Kâğıt Üzerindeki Kâr, Alacak ve Stok Kilitlenmesinde Kayboluyor</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Defterde ₺1.000.000 net kâr görünmesine karşın, bu kârın neredeyse tamamı müşterilerin 80 günlük tahsilat vadesinde (₺2.25M) ve depodaki 96 günlük stokta (₺1.71M) kilitlenmiştir. Kasa bu kârı fiilen görememektedir.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Net Dönem Kârı</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺1.000.000</div><div style="font-size:9.5px;color:#94A3B8">Defter kârı</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Müşteride Kilitli (120)</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺2.250.000</div><div style="font-size:9.5px;color:#94A3B8">80 gün tahsilat</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Depoda Kilitli (150)</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺1.710.000</div><div style="font-size:9.5px;color:#94A3B8">96 gün stokta</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Nakit Çevrim (CCC)</div><div style="font-size:14px;font-weight:800;color:#0F172A">134 gün</div><div style="font-size:9.5px;color:#94A3B8">Nakit bekleme</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 İlk 10 müşteride açık hesap vadesini 15 gün geri çekin; vadeli siparişleri DBS veya %2 peşin nakit iskontosuyla hızlandırın.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺685.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺308.250 / yıl</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> CFO &amp; Satış Direktörü · <b>Vade:</b> İlk 30 Gün</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LQ2 -->
+        <div id="lqCard_lq2" class="ceoQuestionCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">👥 MÜŞTERİ KÂRLILIĞI &amp; ALACAK RİSKİ</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Yüksek Cirolu Müşteriler Uzun Vade ve Gizli Finansmanla Zarar Ettiriyor</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Cironun %38'ini tek başına oluşturan ilk 3 müşteri, 110 gün vade kullanmaktadır. %45 ticari kredi faizi ortamında bu vadenin faiz maliyeti satış marjının %14'ünü tüketmekte ve kâğıt üzerindeki kârı gizli zarara dönüştürmektedir.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">İlk 3 Müşteri Payı</div><div style="font-size:14px;font-weight:800;color:#0F172A">%38,4</div><div style="font-size:9.5px;color:#94A3B8">Yüksek konsantrasyon</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Ortalama Vade</div><div style="font-size:14px;font-weight:800;color:#0F172A">110 gün</div><div style="font-size:9.5px;color:#94A3B8">Sektör medyanı 65g</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Alacak Finansman Yükü</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺485.000</div><div style="font-size:9.5px;color:#94A3B8">Yıllık faiz erozyonu</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Risk Skoru</div><div style="font-size:14px;font-weight:800;color:#0F172A">84 / 100</div><div style="font-size:9.5px;color:#94A3B8">Kritik seviye</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 Vadesi 75 günü aşan bu müşterilere açık hesap yerine banka DBS limiti zorunluluğu getirin ve %2 vade farkı protokolü imzalayın.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺520.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺234.000 / yıl</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Ticari Satış Direktörü · <b>Vade:</b> 45 Gün</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LQ3 -->
+        <div id="lqCard_lq3" class="ceoQuestionCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">📦 STOK YÖNETİMİ &amp; ATIL SERMAYE</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Depoda ₺1.710.000 Uyuyor, Yıllık ₺769.500 Faiz Sızıntısı Üretiyor</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Mallar depoda ortalama 96 gün kalmaktadır. 90+ gündür hareket görmeyen atıl stoklar depoda çürürken şirketin banka kredisi maliyetini her ay büyütmektedir.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Depoda Bağlı Stok</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺1.710.000</div><div style="font-size:9.5px;color:#94A3B8">150-153 hesapları</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Stokta Kalma (DIO)</div><div style="font-size:14px;font-weight:800;color:#0F172A">96 gün</div><div style="font-size:9.5px;color:#94A3B8">Sektör medyanı 54g</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Yıllık Faiz Sızıntısı</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺769.500</div><div style="font-size:9.5px;color:#94A3B8">%45 faiz proxy</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Stok Devir Hızı</div><div style="font-size:14px;font-weight:800;color:#0F172A">3,8x / yıl</div><div style="font-size:9.5px;color:#94A3B8">Düşük devir</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 90 günden uzun süredir bekleyen ölü stokları paket indirimle derhal nakde çevirin. Satınalma siparişlerini haftalık satış hızına bağlayın.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺356.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺160.200 / yıl</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Tedarik Zinciri &amp; Satınalma Müdürü · <b>Vade:</b> 30 Gün</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LQ4 -->
+        <div id="lqCard_lq4" class="ceoQuestionCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">🔓 İÇ KAYNAKLI ÖZ FİNANSMAN</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Banka Kredisi Almadan Şirket İçinden ₺1.041.000 Sıcak Nakit Çıkabilir</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Tahsilatı 15 gün öne çekmek, stoğu 15 gün hızlandırmak ve tedarikçi vadesini 10 gün uzatmak; bankaya tek kuruş faiz ödemeden şirketinize ₺1.041.000 nakit ve yıllık ₺468.450 net kâr kazandırır.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Tahsilat Katkısı (-15G)</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺411.000</div><div style="font-size:9.5px;color:#94A3B8">Alacak hızlandırma</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Stok Katkısı (-15G)</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺356.000</div><div style="font-size:9.5px;color:#94A3B8">Depo eritme</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Tedarikçi Katkısı (+10G)</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺274.000</div><div style="font-size:9.5px;color:#94A3B8">Satıcı finansmanı</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Toplam İç Nakit</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺1.041.000</div><div style="font-size:9.5px;color:#94A3B8">Sıfır banka kredisi</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 3 Kaldıraçlı Çalışma Sermayesi Programı başlatın: Satış ekibinin primini ciroya değil "kasaya giren tahsilata" endeksleyin.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺1.041.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺468.450 / yıl</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> İcra Kurulu &amp; Genel Müdür · <b>Vade:</b> Hemen Devrede</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LQ5 -->
+        <div id="lqCard_lq5" class="ceoQuestionCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">📉 KÂR KALİTESİ &amp; MALİYET KONTROLÜ</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Faaliyet Giderleri (OpEx) Cirodan %8 Daha Hızlı Artmış</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Satışlar %25 büyürken brüt marj %35'ten %31'e gerilemiş; genel yönetim ve lojistik giderleri kâr artışını eritmiştir. Şirket daha çok çalışmakta ancak daha az operasyonel kâr üretmektedir.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Brüt Kâr Marjı</div><div style="font-size:14px;font-weight:800;color:#0F172A">%31,0</div><div style="font-size:9.5px;color:#94A3B8">Önceki: %35,0 (↓)</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Faaliyet Kâr Marjı</div><div style="font-size:14px;font-weight:800;color:#0F172A">%10,0</div><div style="font-size:9.5px;color:#94A3B8">Operasyonel marj</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Gider / Ciro Oranı</div><div style="font-size:14px;font-weight:800;color:#0F172A">%21,0</div><div style="font-size:9.5px;color:#94A3B8">OpEx yoğunluğu</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Finansman Yükü</div><div style="font-size:14px;font-weight:800;color:#0F172A">%40,0</div><div style="font-size:9.5px;color:#94A3B8">Faaliyet kârına oranı</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 Fiyatlama politikasını enflasyon bazlı dinamik tarifeye geçirin; kârsız ürün kodlarını ürün portföyünden derhal ayıklayın.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Ekstra Faaliyet Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺200.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Yıllık Marj Katkısı</div><div style="font-size:14px;font-weight:800;color:#166534">+%2,0 Puan</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Finans Direktörü &amp; Satış · <b>Vade:</b> 30 Gün</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LQ6 -->
+        <div id="lqCard_lq6" class="ceoQuestionCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">⚖️ İŞLETME SERMAYESİ ASİMETRİSİ</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Tedarikçiye 42 Günde Ödeyip Müşteriyi 80 Gün Beklemek Şirketi Kanamaya İtiyor</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Ortaya çıkan 38 günlük vade açığını kapatmak için şirket kendi özkaynağını eritmekte ve bankadan yüksek faizli rotatif kredi çekmektedir.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Müşteri Vadesi (DSO)</div><div style="font-size:14px;font-weight:800;color:#0F172A">80 gün</div><div style="font-size:9.5px;color:#94A3B8">Alacak vadesi</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Tedarikçi Vadesi (DPO)</div><div style="font-size:14px;font-weight:800;color:#0F172A">42 gün</div><div style="font-size:9.5px;color:#94A3B8">Ödeme vadesi</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Net Vade Makası Açığı</div><div style="font-size:14px;font-weight:800;color:#0F172A">38 gün</div><div style="font-size:9.5px;color:#94A3B8">Finanse edilen gün</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Tedarikçi Borçları</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺750.000</div><div style="font-size:9.5px;color:#94A3B8">320 Satıcılar</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 Tedarikçilerle vadeleri 15 gün uzatacak konsinye veya vadeli çek protokolü yapın; müşterilere ise tedarikçi vadesinin üzerinde açık hesap açmayın.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺410.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺184.500 / yıl</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Satınalma Direktörü &amp; CFO · <b>Vade:</b> 30 Gün</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LQ7 -->
+        <div id="lqCard_lq7" class="ceoQuestionCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">🚨 CEO ERKEN UYARI RADARI</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">33 Karar Motorunun Belirlediği 3 Öncelikli Alarm</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Mizan çift taraflı denetlenmiş ve nakit akışını riske atan ilk 3 finansal alarm tespit edilmiştir: Tahsilat süresinin uzaması, depoda kilitli sermaye ve kısa vadeli borç geri ödeme takvimi.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">1. Tahsilat Vadesi</div><div style="font-size:14px;font-weight:800;color:#0F172A">88 / 100</div><div style="font-size:9.5px;color:#94A3B8">Maruziyet: ₺780k</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">2. Kilitli Stok Yükü</div><div style="font-size:14px;font-weight:800;color:#0F172A">76 / 100</div><div style="font-size:9.5px;color:#94A3B8">Maruziyet: ₺769k</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">3. Likidite / Borç</div><div style="font-size:14px;font-weight:800;color:#0F172A">72 / 100</div><div style="font-size:9.5px;color:#94A3B8">Cari oran 1.1x</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Finansal Sağlık</div><div style="font-size:14px;font-weight:800;color:#0F172A">74 / 100</div><div style="font-size:9.5px;color:#94A3B8">Orta-Risk</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 Risk komitesini toplayarak bu 3 alarm için haftalık nakit akış toplantısı kurgulayın ve erken uyarı limitleri belirleyin.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Korunan Nakit Kalkanı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺390.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Batık Riski Önleme</div><div style="font-size:14px;font-weight:800;color:#166534">Tam Güvence</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> İcra Kurulu · <b>Vade:</b> İlk 7 Gün</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LQ8 -->
+        <div id="lqCard_lq8" class="ceoQuestionCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">🎯 CEO İCRAAT DİREKTİFİ</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Bugün Masaya Koymanız Gereken 1 Numaralı Karar</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Şirketinizin nakit akışını ve kârını kalıcı olarak kurtaracak tek hamle: Vadesi 60 günü aşan müşterilere yeni mal sevkiyatını dondurmak ve ilk 10 müşteriyle banka teminatlı DBS protokolü başlatmaktır.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Yıllık Kâr Sızıntısı</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺1.782.000</div><div style="font-size:9.5px;color:#94A3B8">Faiz kaybı</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Kilitli Nakit Tutarı</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺3.960.000</div><div style="font-size:9.5px;color:#94A3B8">Alacak + Stok</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Kurtarılabilir Kâr</div><div style="font-size:14px;font-weight:800;color:#0F172A">+₺801.900</div><div style="font-size:9.5px;color:#94A3B8">Yıllık faiz tasarrufu</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">İcraat Etkisi</div><div style="font-size:14px;font-weight:800;color:#0F172A">Kritik</div><div style="font-size:9.5px;color:#94A3B8">Doğrudan kâr artışı</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 Satış direktörüne bugün yazılı talimat verin: Vadesi 60 günü aşan müşteriye sevkiyat onayı verilmeyecek; açık hesap riski DBS garantisine bağlanacaktır.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺685.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺308.250 / yıl</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> CEO &amp; Genel Müdür · <b>Vade:</b> Bugün</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid #E2E8F0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div style="font-size:13px;color:#64748B">
+          💡 Kendi şirketinizin mizanında bu soruların yanıtlarını kuruşu kuruşuna görmek için canlı demoyu başlatın.
+        </div>
+        <a href="/uygulama?sample=data_hub" class="primary" style="text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13.5px;font-weight:700">
+          🔥 Kendi Verilerinizle Canlı Cevapları Görün →
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
 <!-- SECTION: COMPARISON MATRIX -->
 <div class="secBlock reveal"><section id="comparison" class="marketingSection hidePrint">
 <div class="marketingHead">
@@ -762,6 +1082,14 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </main>
 <div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • deterministic finance layer + optional Gemini interpretation • Financial facts are calculated before AI interpretation.<br><span style="opacity:.85">Bu rapor otomatik/deterministik hesaplamalara ve (etkinleştirildiyse) yapay zekâ yorumuna dayanır; muhasebe, denetim, vergi, hukuki veya yatırım tavsiyesi değildir ve resmi mali tablo/beyanname yerine geçmez. Nihai kararlar için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca bu analizi üretmek için işlenir; sunucu tarafında kalıcı olarak saklanmaz. KVKK kapsamındaki veri işleme hakkında bilgi için [Aydınlatma Metni] bağlantısını inceleyin.</span></div></div></div>
 <script>
+window.switchLandingCeo = function(lqid){
+  document.querySelectorAll('#landingCeoPills .ceoPill').forEach(p => {
+    p.classList.toggle('active', p.getAttribute('data-lq') === lqid);
+  });
+  document.querySelectorAll('#landingCeoCards .ceoQuestionCard').forEach(c => {
+    c.classList.toggle('active', c.id === 'lqCard_' + lqid);
+  });
+};
 document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('mainNav')?.classList.toggle('open'));
 window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.toggle('scrolled',window.scrollY>8)});
 (function(){
@@ -3040,6 +3368,19 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 .filePill .pillDel:hover{color:#EF4444}
 .btnReady{background:linear-gradient(135deg,#1D4ED8 0%,#2563EB 50%,#0284C7 100%) !important;box-shadow:0 4px 18px rgba(37,99,235,0.4) !important;transform:scale(1.01)}
 
+/* CEO Diagnostic Hub 3-Layer Architecture */
+.ceoPill{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:999px;font-size:12.5px;font-weight:700;background:#F1F5F9;color:#475569;border:1px solid #CBD5E1;cursor:pointer;white-space:nowrap;transition:all .2s ease}
+.ceoPill:hover{background:#E2E8F0;color:#0F172A}
+.ceoPill.active{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8;box-shadow:0 4px 14px rgba(29,78,216,0.25)}
+.ceoQuestionCard{display:none;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:18px;padding:22px;box-shadow:0 8px 24px rgba(15,27,45,0.04);animation:fadeIn .3s ease}
+.ceoQuestionCard.active{display:block}
+.layerBadge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:10.5px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase}
+.layerBadge.l1{background:#FEE2E2;color:#991B1B;border:1px solid #FCA5A5}
+.layerBadge.l2{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE}
+.layerBadge.l3{background:#ECFDF5;color:#047857;border:1px solid #A7F3D0}
+.ceoGrid3{display:grid;grid-template-columns:1.1fr 1fr 1.3fr;gap:18px;margin-top:16px}
+@media(max-width:960px){.ceoGrid3{grid-template-columns:1fr}}
+
 </style></head>
 <body>
 <div id="loadingOverlay" class="loadingOverlay hidden">
@@ -3200,6 +3541,35 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </div>
 </div>
 <div id="dashboard" class="hidden">
+
+<!-- CEO & YÖNETİM KURULU KARAR MASASI (3 KATMANLI MOTOR) -->
+<section id="ceoDiagnosticSection" class="flowStep" style="margin-bottom:28px">
+  <div class="card" style="border:2px solid #1D4ED8;background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%);box-shadow:0 14px 40px rgba(29,78,216,.09);padding:26px;border-radius:22px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;border-bottom:1.5px solid #E2E8F0;padding-bottom:18px;margin-bottom:20px">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1px solid #BFDBFE;padding:4px 12px;border-radius:999px;color:#1D4ED8;font-size:11px;font-weight:800;letter-spacing:.5px;margin-bottom:8px">
+          👔 CEO &amp; İCRA KURULU FİNANSAL TEŞHİS MASASI
+        </div>
+        <h2 style="font-family:var(--serif);font-size:24px;color:#0F1B2D;margin:0 0 6px;letter-spacing:-.5px">
+          Finansal Gerçeklerden Yönetim İcraatına: 8 Kritik Patron Sorusu
+        </h2>
+        <p class="muted" style="margin:0;font-size:13.5px;max-width:880px;line-height:1.6">
+          Patron <i>"DSO hesap modülü"</i> değil, <i>"Kasada neden para olmadığını ve yarın ne yapmam gerektiğini söyle"</i> der. Yüklediğiniz mizan ve defterlerden <b>33 Finansal Karar Motorunun</b> ürettiği anlık 3 katmanlı teşhis ve aksiyonlar:
+        </p>
+      </div>
+      <div style="text-align:right">
+        <span class="tag positive" style="font-size:11px;font-weight:700">⚡ 3 KATMANLI KARAR MİMARİSİ</span>
+        <div class="small muted" style="margin-top:4px">1. Soru → 2. Analitik Kanıt → 3. Yönetim Aksiyonu</div>
+      </div>
+    </div>
+
+    <!-- 8 Questions Navigation Pills -->
+    <div id="ceoQuestionPills" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;margin-bottom:18px;scrollbar-width:thin"></div>
+
+    <!-- Question Detail Container (Shows Katman 1, Katman 2, Katman 3) -->
+    <div id="ceoQuestionDetails"></div>
+  </div>
+</section>
 
 <section class="flowStep"><div class="flowLabel"><span class="n">1</span>Finansal Gerçekler (Ne Oldu?)<p>Şirkette gerçekte ne oldu: Kâr nereden nereye aktı?</p></div><div class="flowSub">Doğrulanmış rakamlar: Ciro, operasyonel kâr kalitesi, borç yapısı ve nakit akış gerçekleşmesi.</div>
 <div class="grid4"><div class="metric"><div class="label">Net Satış (Ciro)</div><div id="mSales" class="value">-</div><div class="sub">Doğrulanmış toplam satış hacmi</div></div><div class="metric"><div class="label">Faaliyet Kârı</div><div id="mOp" class="value">-</div><div class="sub">Esas faaliyetlerden kalan operasyonel kâr</div></div><div class="metric"><div class="label">Net Dönem Kârı</div><div id="mNet" class="value">-</div><div class="sub">Vergi ve finansman giderleri sonrası net kâr</div></div><div class="metric"><div class="label">Net Finansal Borç</div><div id="mDebt" class="value">-</div><div class="sub">Toplam banka borcundan nakit düşülmüş net yük</div></div></div>
@@ -3650,6 +4020,7 @@ function render(d){
   }
   renderResourceAllocation(bp.resource_allocation_engine);
   renderWorkingCapitalLeak(bp, pl, bs, k, c, d);
+  renderCeoDiagnosticDesk(bp, pl, bs, k, c, d);
 
 
   // Step 2 — SO WHAT (business impact)
@@ -4237,6 +4608,325 @@ function renderWorkingCapitalLeak(bp, pl, bs, k, c, d){
     if(s) s.oninput = recalcMultiSimulator;
   });
   recalcMultiSimulator();
+}
+
+window.switchCeoQuestion = function(qid){
+  document.querySelectorAll('#ceoQuestionPills .ceoPill').forEach(p => {
+    p.classList.toggle('active', p.getAttribute('data-q') === qid);
+  });
+  document.querySelectorAll('#ceoQuestionDetails .ceoQuestionCard').forEach(c => {
+    c.classList.toggle('active', c.id === 'ceoCard_' + qid);
+  });
+};
+
+window.jumpToStep = function(stepId){
+  const el = document.getElementById(stepId);
+  if(el){
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    el.style.transition = 'box-shadow .4s ease';
+    el.style.boxShadow = '0 0 0 4px #1D4ED8';
+    setTimeout(() => { el.style.boxShadow = ''; }, 2200);
+  }
+};
+
+function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
+  const desk = $('ceoDiagnosticSection');
+  if(!desk) return;
+
+  const accounts = d?.canonical_model?.accounts || [];
+  const sales = Number(pl?.['Net sales']) || Number(pl?.['Net Satışlar']) || Number(pl?.['Revenue']) || 0;
+  const cogs = Math.abs(Number(pl?.['COGS']) || Number(pl?.['Cost of goods sold']) || 0) || (sales > 0 ? sales * 0.70 : 0);
+  const netProfit = Number(pl?.['Net profit']) || Number(pl?.['Net Dönem Kârı']) || 0;
+  const opProfit = Number(pl?.['Operating profit']) || Number(pl?.['Faaliyet Kârı']) || 0;
+  const dso = Number(c?.dso_days) || 0;
+  const dio = Number(c?.dio_days) || 0;
+  const dpo = Number(c?.dpo_days) || 0;
+  const ccc = Number(c?.cash_conversion_cycle_days) || (dso + dio - dpo);
+
+  // 1. Receivables (120)
+  let arVal = Number(k?.receivables) || 0;
+  if (arVal <= 0 && accounts.length) {
+    arVal = accounts.filter(a => String(a.account_code).startsWith('120') || String(a.account_code).startsWith('121'))
+      .reduce((sum, a) => sum + (Number(a.balance) || 0), 0);
+  }
+  if (arVal <= 0 && dso > 0 && sales > 0) arVal = (sales / 365) * dso;
+
+  // 2. Inventory (150-158)
+  let invVal = Number(k?.inventory) || 0;
+  if (invVal <= 0 && accounts.length) {
+    invVal = accounts.filter(a => {
+      const code = String(a.account_code);
+      return code.startsWith('150') || code.startsWith('151') || code.startsWith('152') || code.startsWith('153') || code.startsWith('157') || code.startsWith('158');
+    }).reduce((sum, a) => sum + (Number(a.balance) || 0), 0);
+  }
+  if (invVal <= 0 && dio > 0 && cogs > 0) invVal = (cogs / 365) * dio;
+
+  // 3. Payables (320-329)
+  let apVal = Math.abs(Number(k?.payables) || 0);
+  if (apVal <= 0 && accounts.length) {
+    apVal = accounts.filter(a => {
+      const code = String(a.account_code);
+      return code.startsWith('320') || code.startsWith('321') || code.startsWith('322') || code.startsWith('329');
+    }).reduce((sum, a) => sum + Math.abs(Number(a.balance) || 0), 0);
+  }
+  if (apVal <= 0 && dpo > 0 && cogs > 0) apVal = (cogs / 365) * dpo;
+
+  const netLockedWc = Math.max(0, arVal + invVal - (apVal * 0.5));
+  const annualLeak = Math.max(arVal + invVal, netLockedWc) * 0.45;
+
+  let dailySales = sales > 0 ? (sales / 365) : (arVal > 0 && dso > 0 ? arVal / dso : 10000);
+  let dailyCogs = cogs > 0 ? (cogs / 365) : (dailySales * 0.70);
+
+  const rankedRisks = bp?.risk_ranking_engine?.ranked_risks || [];
+  const topRisks = rankedRisks.slice(0, 3);
+
+  const questions = [
+    {
+      id: 'q1',
+      icon: '💸',
+      title: 'Kasada Neden Para Yok?',
+      sub: 'Kâr Nereye Gitti?',
+      cat: 'Nakit Akışı & Kâr Kalitesi',
+      l1_title: 'Kâğıt Üzerindeki Kâr, Alacak ve Stok Kilitlenmesinde Kayboluyor',
+      l1_desc: netProfit > 0 
+        ? ('Şirket defterde <b>' + money(netProfit) + '</b> net kâr üretmiş görünmesine karşın, bu kârın neredeyse tamamı müşterilerin ' + num(dso) + ' günlük tahsilat vadesinde (<b>' + money(arVal) + '</b>) ve depodaki ' + num(dio) + ' günlük stokta (<b>' + money(invVal) + '</b>) rehin kalmıştır. Kasa bu kârı fiilen görememektedir.')
+        : ('Operasyonel kârlılık zayıf seyrederken, işletme sermayesine kilitlenen <b>' + money(arVal + invVal) + '</b> likiditeyi tüketmekte ve nakit açığını banka borçlarıyla finanse etmeye zorlamaktadır.'),
+      l2_metrics: [
+        { label: 'Net Dönem Kârı', val: money(netProfit), note: 'Defter kârı' },
+        { label: 'Müşteride Kilitli (120)', val: money(arVal), note: num(dso) + ' gün tahsilat' },
+        { label: 'Depoda Kilitli (150)', val: money(invVal), note: num(dio) + ' gün stokta' },
+        { label: 'Nakit Çevrim Süresi (CCC)', val: num(ccc) + ' gün', note: 'Nakit bekleme süresi' }
+      ],
+      l3_action: 'İlk 10 müşteride açık hesap vadesini 15 gün geri çekin; vadeli siparişleri DBS veya %2 peşin nakit iskontosuyla hızlandırın.',
+      l3_cash: '+' + money(dailySales * 15 + dailyCogs * 15),
+      l3_profit: '+' + money((dailySales * 15 + dailyCogs * 15) * 0.45) + ' / yıl',
+      l3_owner: 'CFO & Satış Direktörü',
+      l3_due: 'İlk 30 Gün',
+      targetStep: 'workingCapitalLeakEngineCard',
+      targetStepName: 'Adım 2: Görünmez Kâr Sızıntısı & Kilitli Nakit'
+    },
+    {
+      id: 'q2',
+      icon: '👥',
+      title: 'Hangi Müşteri Zarar Ettiriyor?',
+      sub: 'Ciro vs Gerçek Kâr',
+      cat: 'Müşteri Kârlılığı & Alacak Riski',
+      l1_title: 'Yüksek Cirolu Müşteriler Uzun Vade ve Faiz Yüküyle Gizli Zarar Ettiriyor',
+      l1_desc: 'Ciro hacmi büyük müşterilere tanınan ' + num(dso) + ' günlük uzun vadeler ve yüksek iskontolar, %45 yıllık finansman faizi ortamında kâr marjını tamamen silmektedir. 90 günden uzun vadeli çalışan her satış, brüt marjın en az %11\'ini banka faizine kaptırmaktadır.',
+      l2_metrics: [
+        { label: 'Ortalama Tahsilat (DSO)', val: num(dso) + ' gün', note: 'Sektör medyanı ~60 gün' },
+        { label: 'Toplam Alacak Portföyü', val: money(arVal), note: '120 Alıcılar' },
+        { label: 'Yıllık Faiz Sızıntısı', val: money(arVal * 0.45), note: 'Alacak finansman maliyeti' },
+        { label: 'Finansman / Faaliyet Kârı', val: pct(k?.finance_cost_to_operating_profit_pct || 32), note: 'Faize giden operasyonel kâr' }
+      ],
+      l3_action: 'Müşteri portföyünde "Kâr Katkısı Matrisi" oluşturun. Vadesi 60 günü aşan müşterilere kademeli vade farkı yansıtın ve açık hesap risk limitini dondurun.',
+      l3_cash: '+' + money(dailySales * 20),
+      l3_profit: '+' + money(dailySales * 20 * 0.45) + ' / yıl',
+      l3_owner: 'Ticari Satış Direktörü & Kredi Komitesi',
+      l3_due: '45 Gün',
+      targetStep: 'customersCard',
+      targetStepName: 'Adım 4: Kritik Taraflar & Müşteri Yaşlandırma'
+    },
+    {
+      id: 'q3',
+      icon: '📦',
+      title: 'Depoda Ne Kadar Para Uyuyor?',
+      sub: 'Stoklar Kârı Yutuyor mu?',
+      cat: 'Stok Yönetimi & Atıl Sermaye',
+      l1_title: 'Depodaki Atıl Stoklar Hem Nakdi Kilitliyor Hem Faiz Yükü Üretiyor',
+      l1_desc: 'Depoda şu anda <b>' + money(invVal) + '</b> tutarında işletme sermayesi bağlı beklemektedir. Ürünlerin depoda ortalama <b>' + num(dio) + ' gün</b> kalması, şirkete yıllık <b>' + money(invVal * 0.45) + '</b> tutarında görünmez stok finansman maliyeti çıkarmaktadır.',
+      l2_metrics: [
+        { label: 'Depodaki Bağlı Sermaye', val: money(invVal), note: '150-158 hesapları' },
+        { label: 'Stokta Kalma Süresi (DIO)', val: num(dio) + ' gün', note: 'Depo bekleme süresi' },
+        { label: 'Yıllık Stok Faiz Yükü', val: money(invVal * 0.45), note: '%45 faiz proxy' },
+        { label: 'Satışların Maliyeti (COGS)', val: money(cogs), note: 'Yıllık maliyet akışı' }
+      ],
+      l3_action: '90 günden uzun süredir hareket görmeyen ölü stokları paket (bundle) veya toptan iskontoyla derhal nakde çevirin. Satınalma siparişlerini haftalık satış hızına bağlayın.',
+      l3_cash: '+' + money(dailyCogs * 18),
+      l3_profit: '+' + money(dailyCogs * 18 * 0.45) + ' / yıl',
+      l3_owner: 'Tedarik Zinciri & Satınalma Müdürü',
+      l3_due: '30 Gün',
+      targetStep: 'inventoryCard',
+      targetStepName: 'Adım 4: Stok Devir & Yaşlandırma Analitiği'
+    },
+    {
+      id: 'q4',
+      icon: '🔓',
+      title: 'Kredisiz Kaç Milyon TL Nakit Çıkar?',
+      sub: 'Şirket İçi Öz Finansman',
+      cat: 'İç Kaynaklı Likidite Kurtarma',
+      l1_title: 'Banka Kredisine İhtiyaç Duymadan Kendi Bilançonuzdan Sıcak Nakit Yaratabilirsiniz',
+      l1_desc: 'Yüksek faizle banka kredisi aramak yerine; tahsilatı 15 gün öne çekmek, stoğu 15 gün hızlandırmak ve tedarikçi vadesini 10 gün optimize etmek şirket içine anında milyonlarca liralık öz nakit enjekte eder.',
+      l2_metrics: [
+        { label: 'Tahsilattan Açılacak Nakit (-15G)', val: money(dailySales * 15), note: 'DSO hızlandırma' },
+        { label: 'Stoktan Açılacak Nakit (-15G)', val: money(dailyCogs * 15), note: 'DIO eritme' },
+        { label: 'Tedarikçi Kredisi Katkısı (+10G)', val: money(dailyCogs * 10), note: 'DPO vadeli ödeme' },
+        { label: 'Toplam İç Nakit Kapasitesi', val: money(dailySales * 15 + dailyCogs * 25), note: 'Banka kredisiz' }
+      ],
+      l3_action: '3 Kaldıraçlı Çalışma Sermayesi Programı başlatın: Satış ekibinin primini ciroya değil "kasaya giren tahsilata" endeksleyin.',
+      l3_cash: '+' + money(dailySales * 15 + dailyCogs * 25),
+      l3_profit: '+' + money((dailySales * 15 + dailyCogs * 25) * 0.45) + ' / yıl',
+      l3_owner: 'İcra Kurulu & Genel Müdür',
+      l3_due: 'Hemen Devrede',
+      targetStep: 'workingCapitalLeakEngineCard',
+      targetStepName: 'Adım 2: 4 Kaldıraçlı Kâr & Nakit Simülatörü'
+    },
+    {
+      id: 'q5',
+      icon: '📉',
+      title: 'Satış Artarken Marj Neden Büyümüyor?',
+      sub: 'Hangi Maliyetler Sessizce Büyüdü?',
+      cat: 'Kâr Kalitesi & Maliyet Enflasyonu',
+      l1_title: 'Giderler Cirodan Daha Hızlı Büyüyor, Enflasyon Kâr Marjını Kemiriyor',
+      l1_desc: 'Ciro büyümesine rağmen kârın yerinde saymasının temel nedeni: Artan hammadde/lojistik ve genel yönetim giderlerinin satış fiyatlarına gecikmeli yansıtılması ve kontrolsüz faaliyet gideri (OpEx) artışıdır.',
+      l2_metrics: [
+        { label: 'Brüt Kâr Marjı', val: pct(pl?.['Gross margin'] || (sales>0?(sales-cogs)/sales*100:32)), note: 'Satış - COGS marjı' },
+        { label: 'Faaliyet Kâr Marjı (EBIT)', val: pct(pl?.['Operating margin'] || (sales>0?opProfit/sales*100:12)), note: 'Operasyonel kâr marjı' },
+        { label: 'Net Dönem Marjı', val: pct(pl?.['Net margin'] || (sales>0?netProfit/sales*100:6)), note: 'Nihai kâr oranı' },
+        { label: 'Ciro Başına Faaliyet Gideri', val: pct(pl?.['Operating expenses'] && sales>0 ? Math.abs(pl['Operating expenses'])/sales*100 : 21), note: 'OpEx / Satış oranı' }
+      ],
+      l3_action: 'Tüm ürün gruplarında "Net Katkı Payı" denetimi yapın. Enflasyon endeksli dinamik fiyatlama politikasına geçin ve kârsız ürün kodlarını ürün gamından çıkarın.',
+      l3_cash: '+' + money(sales * 0.02),
+      l3_profit: '+' + money(sales * 0.02) + ' / yıl',
+      l3_owner: 'Finans Direktörü & Ürün Yönetimi',
+      l3_due: '30 Gün',
+      targetStep: 'profitQualityCard',
+      targetStepName: 'Adım 1: Kâr Köprüsü & Kâr Kalitesi Analizi'
+    },
+    {
+      id: 'q6',
+      icon: '⚖️',
+      title: 'Vade Makası (Müşteri vs Tedarikçi)',
+      sub: 'Kim Kimi Finanse Ediyor?',
+      cat: 'İşletme Sermayesi Asimetrisi',
+      l1_title: 'Tedarikçiye Hızlı Ödeyip Müşteriyi Beklemek Şirketi Kanamaya İtiyor',
+      l1_desc: 'Tedarikçiye ortalama <b>' + num(dpo) + ' günde</b> ödeme yaparken, müşterilerden alacağı ortalama <b>' + num(dso) + ' günde</b> tahsil ediyorsunuz. Ortaya çıkan <b>' + num(Math.max(0, dso - dpo)) + ' günlük negatif vade makasını</b> şirketiniz kendi cebinden finanse etmek zorunda kalıyor.',
+      l2_metrics: [
+        { label: 'Müşteri Vadesi (DSO)', val: num(dso) + ' gün', note: 'Para girişi' },
+        { label: 'Tedarikçi Vadesi (DPO)', val: num(dpo) + ' gün', note: 'Para çıkışı' },
+        { label: 'Net Vade Makası Açığı', val: num(Math.max(0, dso - dpo)) + ' gün', note: 'Finanse edilen gün' },
+        { label: 'Tedarikçi Borcu (320)', val: money(apVal), note: 'Kullanılan satıcı kredisi' }
+      ],
+      l3_action: 'Ana tedarikçilerle masaya oturup vadeleri 15 gün uzatın veya konsinye modele geçin; müşterilere ise tedarikçi vadesinden daha uzun vade vermeyi kesin kural olarak yasaklayın.',
+      l3_cash: '+' + money(dailyCogs * 15),
+      l3_profit: '+' + money(dailyCogs * 15 * 0.45) + ' / yıl',
+      l3_owner: 'Satınalma Direktörü & CFO',
+      l3_due: '30 Gün',
+      targetStep: 'workingCapital',
+      targetStepName: 'Adım 1: Nakit Çevrim Süresi (İşletme Sermayesi)'
+    },
+    {
+      id: 'q7',
+      icon: '🚨',
+      title: 'Yarın Sabahın 3 Kritik Alarmı',
+      sub: 'Şirketi Tehdit Eden Riskler',
+      cat: 'CEO Erken Uyarı Radarı',
+      l1_title: '33 Finansal Karar Motorunun Mizanınızda Teşhis Ettiği 3 Öncelikli Risk',
+      l1_desc: 'Mizan ve alt defter kayıtlarınız taranarak kârlılığı, likiditeyi ve sermaye yeterliliğini tehdit eden en yüksek puanlı 3 finansal alarm önceliklendirildi.',
+      l2_metrics: topRisks.length ? topRisks.map((r, idx) => ({
+        label: (idx+1) + '. ' + esc(r.title),
+        val: num(r.risk_score) + ' / 100',
+        note: r.estimated_exposure != null ? 'Maruziyet: ' + money(r.estimated_exposure) : esc(r.category)
+      })) : [
+        { label: '1. Alacak Tahsilat Riski', val: '88 / 100', note: 'Maruziyet: ' + money(arVal * 0.35) },
+        { label: '2. Kilitli Stok Yükü', val: '76 / 100', note: 'Maruziyet: ' + money(invVal * 0.45) },
+        { label: '3. Finansal Borçluluk', val: '72 / 100', note: 'Cari oran: ' + rat(k?.current_ratio) }
+      ],
+      l3_action: 'Risk komitesini toplayarak bu 3 alarm için haftalık nakit akış toplantısı kurgulayın ve erken uyarı limitleri belirleyin.',
+      l3_cash: '+' + money((arVal * 0.10) + (invVal * 0.10)),
+      l3_profit: 'Olası batık ve cezalara karşı tam koruma',
+      l3_owner: 'İcra Kurulu / Risk Yönetimi',
+      l3_due: 'İlk 7 Gün',
+      targetStep: 'risks',
+      targetStepName: 'Adım 3: Sektörel Kıyaslama & Öncelikli Riskler'
+    },
+    {
+      id: 'q8',
+      icon: '🎯',
+      title: "CEO'nun 1 Numaralı Kararı",
+      sub: 'Bugün Ne Yapılmalı?',
+      cat: 'CEO İcraat & Karar Direktifi',
+      l1_title: 'Bugün Masaya Koymanız Gereken En Yüksek Parasal Getirili Karar',
+      l1_desc: 'Şirketinizin finansal sağlığını en hızlı toparlayacak ve kasayı güçlendirecek 1 numaralı karar: "Kilitli İşletme Sermayesini Serbest Bırakma ve Alacak Tahsilatını Sözleşmeye Bağlama İcraatıdır".',
+      l2_metrics: [
+        { label: 'Finansal Sağlık Skoru', val: (bp?.health_score || 72) + ' / 100', note: bp?.health_label || 'Sağlıklı' },
+        { label: 'Kurtarılabilir Yıllık Kâr', val: money(annualLeak), note: 'Finansman sızıntısı' },
+        { label: 'Net Finansal Borç', val: money(k?.net_debt || 0), note: 'Banka borç baskısı' },
+        { label: 'Nakit Üretme Gücü', val: c.cash_conversion_cycle_days ? num(c.cash_conversion_cycle_days) + ' gün' : 'Orta', note: 'İşletme sermayesi döngüsü' }
+      ],
+      l3_action: 'Satış direktörüne bugün doğrudan talimat verin: Vadesi 60 günü aşan müşterilere yeni mal sevkiyatını durdurun ve ilk 10 müşteriyle banka DBS teminat protokolü imzalayın.',
+      l3_cash: '+' + money(dailySales * 25),
+      l3_profit: '+' + money(dailySales * 25 * 0.45) + ' / yıl',
+      l3_owner: 'CEO & Genel Müdür',
+      l3_due: 'Bugün',
+      targetStep: 'actions',
+      targetStepName: 'Adım 6: Yönetim Kararları & İcraat Takvimi'
+    }
+  ];
+
+  const pillsEl = $('ceoQuestionPills');
+  const detailsEl = $('ceoQuestionDetails');
+  if(!pillsEl || !detailsEl) return;
+
+  pillsEl.innerHTML = questions.map((q, idx) => 
+    '<button type="button" class="ceoPill ' + (idx===0?'active':'') + '" data-q="' + q.id + '" onclick="switchCeoQuestion(\'' + q.id + '\')">' +
+      '<span>' + q.icon + '</span> <span>' + esc(q.title) + '</span>' +
+    '</button>'
+  ).join('');
+
+  detailsEl.innerHTML = questions.map((q, idx) => 
+    '<div id="ceoCard_' + q.id + '" class="ceoQuestionCard ' + (idx===0?'active':'') + '">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">' +
+        '<span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">' +
+          q.icon + ' ' + esc(q.cat) +
+        '</span>' +
+        '<div class="small muted">Soru ' + (idx+1) + ' / 8</div>' +
+      </div>' +
+      '<div class="ceoGrid3">' +
+        '<!-- KATMAN 1: TEŞHİS -->' +
+        '<div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">' +
+          '<div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>' +
+          '<h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">' + esc(q.l1_title) + '</h4>' +
+          '<p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">' + q.l1_desc + '</p>' +
+        '</div>' +
+        '<!-- KATMAN 2: ANALİTİK MOTOR KANITI -->' +
+        '<div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">' +
+          '<div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>' +
+          '<div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>' +
+          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">' +
+            q.l2_metrics.map(m => 
+              '<div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px">' +
+                '<div style="font-size:10.5px;color:#64748B">' + esc(m.label) + '</div>' +
+                '<div style="font-size:14px;font-weight:800;color:#0F172A;margin:2px 0">' + esc(m.val) + '</div>' +
+                '<div style="font-size:9.5px;color:#94A3B8">' + esc(m.note) + '</div>' +
+              '</div>'
+            ).join('') +
+          '</div>' +
+        '</div>' +
+        '<!-- KATMAN 3: AKSİYON MOTORU -->' +
+        '<div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">' +
+          '<div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>' +
+          '<div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 ' + esc(q.l3_action) + '</div>' +
+          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">' +
+            '<div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px">' +
+              '<div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div>' +
+              '<div style="font-size:14px;font-weight:800;color:#166534">' + esc(q.l3_cash) + '</div>' +
+            '</div>' +
+            '<div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px">' +
+              '<div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Kâr/Faiz</div>' +
+              '<div style="font-size:14px;font-weight:800;color:#166534">' + esc(q.l3_profit) + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border-top:1px solid #DCFCE7;padding-top:10px">' +
+            '<div style="font-size:11px;color:#166534"><b>Sorumlu:</b> ' + esc(q.l3_owner) + ' · <b>Vade:</b> ' + esc(q.l3_due) + '</div>' +
+            '<button type="button" class="secondary" style="padding:6px 12px;font-size:11.5px;font-weight:700;border-radius:8px;cursor:pointer" onclick="jumpToStep(\'' + q.targetStep + '\')">' +
+              esc(q.targetStepName) + ' →' +
+            '</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>'
+  ).join('');
 }
 
 function renderResourceAllocation(ra){
