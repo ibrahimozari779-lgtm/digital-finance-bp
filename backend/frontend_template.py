@@ -325,9 +325,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <main class="wrap">
 <section class="mHero">
   <div class="reveal in">
-    <div class="livePill"><i></i> CANLI CFO FİNANS ZEKA PLATFORMU — KOBİ'LER İÇİN KURUMSAL KARAR MOTORU</div>
-    <h1>KOBİ'niz İçin Kıdemli CFO Zekâsı.<br><span class="gradText">Önce Hesaplar, Sonra Yorumlar.</span></h1>
-    <p class="lead"><b>"Kâğıt üzerinde kâr görünüyor ama kasada para nerede? Hangi müşteri bize gizli zarar ettiriyor?"</b><br>Standart muhasebe geçmişi gösterir, Digital Finance Business Partner geleceği planlar. Mizanınızı veya ERP alt defterlerinizi yükleyin; <b>33 deterministik finans motoru</b> 60 saniyede çift taraflı denetimle hesaplasın, kök nedenleri ve patronun atacağı somut adımları çıkarsın.</p>
+    <div class="livePill"><i></i> DİGİTAL FİNANCE BUSİNESS PARTNER — KOBİ'LER İÇİN KURUMSAL KARAR MOTORU</div>
+    <h1>KOBİ'niz İçin Digital Finance Business Partner.<br><span class="gradText">Finansal Verileri İş Kararlarına Dönüştüren Sistem.</span></h1>
+    <p class="lead"><b>"Kâğıt üzerinde kâr görünüyor ama kasada para nerede? Hangi müşteri bize gizli zarar ettiriyor?"</b><br>Standart muhasebe geçmişi gösterir, Digital Finance Business Partner finansal verileri icra kararlarına dönüştürür. Mizanınızı veya ERP alt defterlerinizi yükleyin; <b>33 deterministik finans motoru</b> 60 saniyede çift taraflı denetimle hesaplasın, kök nedenleri ve patronun atacağı somut icra adımlarını çıkarsın.</p>
     <div class="ctaRow">
       <a href="/uygulama?sample=data_hub" class="primary" style="padding:15px 26px;border-radius:14px;font-size:15px;display:inline-flex;align-items:center;gap:10px">🔥 Kayıt Olmadan Canlı Demoyu Başlat <span>(Data Hub)</span></a>
       <a href="/uygulama" class="secondary" style="padding:15px 26px;border-radius:14px;font-size:15px">⚡ Kendi Verinizi Yükleyin →</a>
@@ -488,8 +488,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </div>
   <div class="workflowCard">
     <span class="workflowBadge">ADIM 4 · İCRA</span>
-    <h3>Yönetim Aksiyonları & AI CFO</h3>
-    <p>Sahibi, zamanı ve KPI'sı belli aksiyon planı oluşur. İsteğe bağlı AI CFO ile kurul toplantıları veya kredi talepleri için stratejik Q&A yapılır.</p>
+    <h3>Yönetim Aksiyonları & AI Finance Partner</h3>
+    <p>Sahibi, zamanı ve KPI'sı belli aksiyon planı oluşur. İsteğe bağlı AI Finance Business Partner ile kurul toplantıları veya kredi talepleri için stratejik Q&A yapılır.</p>
   </div>
 </div>
 </section></div>
@@ -508,7 +508,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
         <th>Kriter</th>
         <th>Klasik Muhasebe / ERP</th>
         <th>Excel Şablonları</th>
-        <th>Dış Finans Danışmanı / CFO</th>
+        <th>Geleneksel Finans Danışmanı</th>
         <th class="featured">Digital Finance Business Partner</th>
       </tr>
     </thead>
@@ -1028,7 +1028,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Çok dönemli trend ve karşılaştırma</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Geçmiş analizleri kaydetme ve karşılaştırma</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Data Hub: kaynak bazlı mutabakat</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Opsiyonel AI CFO yorumu (Gemini)</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Opsiyonel AI Finance Partner yorumu (Gemini)</li>
 </ul><button class="primary" style="width:100%" onclick="window.location.href='/uygulama?auth=register'">Kayıt Ol</button></div>
 <div class="card priceCard"><div class="plan">Kurumsal</div><h3>Enterprise</h3><div class="amt">Teklif ile<span> /özel</span></div><div class="desc">Çoklu şirket/bölüm yapısı, özel entegrasyon veya danışmanlık desteği isteyen kurumlar için.</div><ul>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Professional'daki her şey</li>
@@ -1044,7 +1044,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <div style="max-width:720px;margin:auto">
 <details class="faqItem" open><summary>Verilerim güvende mi?</summary><p>Yüklediğiniz dosyalar yalnızca analiz üretmek için işlenir; hesap açmadan sunucuda kalıcı saklanmaz. Kayıt olursanız geçmişiniz yalnızca sizin erişiminizde tutulur.</p></details>
 <details class="faqItem"><summary>Paket değiştirebilir miyim?</summary><p>Evet, ihtiyacınız değiştikçe paketler arasında geçiş yapabilirsiniz; mevcut analiz geçmişiniz korunur.</p></details>
-<details class="faqItem"><summary>AI yorumu zorunlu mu?</summary><p>Hayır. Tüm rakamlar önce deterministik olarak hesaplanır; AI CFO yorumu tamamen isteğe bağlı, ayrı etiketlenmiş bir ek katmandır.</p></details>
+<details class="faqItem"><summary>AI yorumu zorunlu mu?</summary><p>Hayır. Tüm rakamlar önce deterministik olarak hesaplanır; AI Finance Business Partner yorumu tamamen isteğe bağlı, ayrı etiketlenmiş bir ek katmandır.</p></details>
 <details class="faqItem"><summary>Kurumsal pakette neler özelleşiyor?</summary><p>Çoklu kullanıcı/şirket yönetimi, sektörünüze özel kural ve eşik setleri, öncelikli destek ve kurulum danışmanlığı Enterprise pakette yer alır.</p></details>
 </div></div>
 
@@ -2764,8 +2764,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <div id="interactiveScenarioCard" class="card" style="margin-top:16px"><div class="sectionHead"><div><h2>İnteraktif Senaryo Laboratuvarı &amp; Nakit Simülatörü</h2><p>Sürgüleri hareket ettirerek serbest kalacak nakdi ve kâr etkisini anında simüle edin</p></div></div><div class="grid2"><div style="display:flex;flex-direction:column;gap:14px"><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Alacak Tahsilatını Hızlandır (DSO Azaltma)</span><b id="sliderDsoVal" style="color:var(--accent)">0 gün</b></div><input id="sliderDso" type="range" min="0" max="60" value="0" step="1" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Brüt Kâr Marjı Artışı (Fiyatlama / Maliyet)</span><b id="sliderMarginVal" style="color:var(--accent)">+0.0%</b></div><input id="sliderMargin" type="range" min="0" max="5.0" value="0" step="0.1" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Faaliyet Gideri (OpEx) Tasarrufu</span><b id="sliderOpexVal" style="color:var(--accent)">0%</b></div><input id="sliderOpex" type="range" min="0" max="15" value="0" step="1" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Borç Ödeme / İtfa (Nakit ile)</span><b id="sliderDebtVal" style="color:var(--accent)">0%</b></div><input id="sliderDebt" type="range" min="0" max="40" value="0" step="5" style="width:100%;cursor:pointer"></div></div><div style="background:rgba(15,27,45,.6);border:1px solid var(--line);border-radius:15px;padding:18px;display:flex;flex-direction:column;justify-content:center;gap:12px"><div style="font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:1px">Simüle Edilen Bütünleşik Etki</div><div class="grid2"><div class="metric" style="background:#EAF0FF"><div class="label">Tahmini Serbest Kalan Nakit</div><div id="simCashImpact" class="value" style="color:var(--green)">0 TL</div><div class="sub">Likiditeye anlık katkı</div></div><div class="metric" style="background:#EAF0FF"><div class="label">Tahmini Ek Faaliyet Kârı</div><div id="simProfitImpact" class="value" style="color:var(--accent)">0 TL</div><div class="sub">Yıllık P&amp;L etkisi</div></div></div><div id="simSummaryText" class="small muted" style="line-height:1.5;margin-top:4px">Sürgüleri hareket ettirerek yönetim senaryonuzu belirleyin.</div></div></div></div>
 </section>
 
-<section class="flowStep"><div class="flowLabel"><span class="n">8</span>Yönetici Özeti — Deterministik CFO Anlatısı<span class="tag" style="margin-left:8px;background:#eef2ff;color:#3b4b8a">Kural Tabanlı · AI Değil</span><p>Yukarıdaki her şeyin tek paragrafta özeti</p></div><div class="flowSub">Önce hesaplanır, sonra yorumlanır: bu bölüm yeni bir rakam üretmez, yukarıdaki bulguları sabit kurallarla bir araya getirir ve yöneticinin bu raporla ne yapması gerektiğini söyler. Aşağıdaki "AI CFO yorumunu üret" butonu ise <b>isteğe bağlı</b> olarak bu doğrulanmış rakamları büyük dil modeline (Gemini) göndererek ek, serbest-metin bir yorum üretir — bu iki katman ayrı ayrı etiketlenmiştir, birbirine karıştırılmaz.</div>
-<div class="card"><div id="exec" class="insight"></div><div id="execChips" class="chips"></div><div id="execDecision" style="margin-top:14px"></div><div style="margin-top:14px"><button id="aiBtn" class="secondary hidePrint">✨ AI CFO yorumunu üret (opsiyonel, LLM)</button> <button id="printBtn" class="secondary hidePrint">Raporu yazdır / PDF</button> <button id="jsonBtn" class="secondary hidePrint">JSON indir</button></div><div id="aiBox" class="notice hidden" style="margin-top:12px"></div><div id="methodNote" class="notice" style="margin-top:12px"></div><div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(15,27,45,.10)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="font-size:18px">💬</span><b style="font-size:14px">AI CFO'ya Özel Soru Sor (Stratejik Q&amp;A)</b><span class="tag" style="background:#EAF0FF;color:var(--accent)">Gemini 3.6 Flash Doğrulanmış</span></div><div style="display:flex;gap:10px;align-items:center"><input id="aiCustomPrompt" type="text" placeholder="Örn: Nakit neden oluşmuyor?" style="flex:1;background:#FFFFFF;border:1px solid #D7DEE8;color:#0F1B2D;border-radius:10px;padding:10px 14px;font-size:13px"><button id="aiAskBtn" class="primary hidePrint" style="white-space:nowrap;padding:10px 18px">Soruyu Yanıtla ⚡</button></div><div class="chips hidePrint" style="margin-top:10px"><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Nakit neden oluşmuyor?')">💸 Nakit neden oluşmuyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Kâr neden düşüyor?')">📉 Kâr neden düşüyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Borç neden artıyor?')">📈 Borç neden artıyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Kâr gerçekten nakde dönüşüyor mu?')">🔄 Kâr gerçekten nakde dönüşüyor mu?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Hangi müşteriler risk yaratıyor?')">⚠️ Hangi müşteriler risk yaratıyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Hangi tedarikçiler kritik?')">🏭 Hangi tedarikçiler kritik?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Stok neden şişiyor?')">📦 Stok neden şişiyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Büyüme neden kâra dönüşmüyor?')">🚀 Büyüme neden kâra dönüşmüyor?</span></div><div id="aiCustomBox" class="notice hidden" style="margin-top:14px"></div></div></div>
+<section class="flowStep"><div class="flowLabel"><span class="n">8</span>Yönetici Özeti — Deterministik Finance Business Partner Anlatısı<span class="tag" style="margin-left:8px;background:#eef2ff;color:#3b4b8a">Kural Tabanlı · AI Değil</span><p>Yukarıdaki her şeyin tek paragrafta özeti</p></div><div class="flowSub">Önce hesaplanır, sonra yorumlanır: bu bölüm yeni bir rakam üretmez, yukarıdaki bulguları sabit kurallarla bir araya getirir ve yöneticinin bu raporla ne yapması gerektiğini söyler. Aşağıdaki "AI Finance Partner yorumunu üret" butonu ise <b>isteğe bağlı</b> olarak bu doğrulanmış rakamları büyük dil modeline (Gemini) göndererek ek, serbest-metin bir yorum üretir — bu iki katman ayrı ayrı etiketlenmiştir, birbirine karıştırılmaz.</div>
+<div class="card"><div id="exec" class="insight"></div><div id="execChips" class="chips"></div><div id="execDecision" style="margin-top:14px"></div><div style="margin-top:14px"><button id="aiBtn" class="secondary hidePrint">✨ AI Finance Partner yorumunu üret (opsiyonel, LLM)</button> <button id="printBtn" class="secondary hidePrint">Raporu yazdır / PDF</button> <button id="jsonBtn" class="secondary hidePrint">JSON indir</button></div><div id="aiBox" class="notice hidden" style="margin-top:12px"></div><div id="methodNote" class="notice" style="margin-top:12px"></div><div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(15,27,45,.10)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="font-size:18px">💬</span><b style="font-size:14px">AI Finance Business Partner'a Özel Soru Sor (Stratejik Q&amp;A)</b><span class="tag" style="background:#EAF0FF;color:var(--accent)">Gemini 3.6 Flash Doğrulanmış</span></div><div style="display:flex;gap:10px;align-items:center"><input id="aiCustomPrompt" type="text" placeholder="Örn: Nakit neden oluşmuyor?" style="flex:1;background:#FFFFFF;border:1px solid #D7DEE8;color:#0F1B2D;border-radius:10px;padding:10px 14px;font-size:13px"><button id="aiAskBtn" class="primary hidePrint" style="white-space:nowrap;padding:10px 18px">Soruyu Yanıtla ⚡</button></div><div class="chips hidePrint" style="margin-top:10px"><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Nakit neden oluşmuyor?')">💸 Nakit neden oluşmuyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Kâr neden düşüyor?')">📉 Kâr neden düşüyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Borç neden artıyor?')">📈 Borç neden artıyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Kâr gerçekten nakde dönüşüyor mu?')">🔄 Kâr gerçekten nakde dönüşüyor mu?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Hangi müşteriler risk yaratıyor?')">⚠️ Hangi müşteriler risk yaratıyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Hangi tedarikçiler kritik?')">🏭 Hangi tedarikçiler kritik?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Stok neden şişiyor?')">📦 Stok neden şişiyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Büyüme neden kâra dönüşmüyor?')">🚀 Büyüme neden kâra dönüşmüyor?</span></div><div id="aiCustomBox" class="notice hidden" style="margin-top:14px"></div></div></div>
 </section>
 
 <section class="flowStep"><div class="flowLabel alt"><span class="n">+</span>Ek A — Kaynak Verisi & Veri Kalitesi<p>Analizin dayandığı verinin doğrulanma düzeyi ve dosya bazlı kırılım</p></div>
@@ -3029,11 +3029,19 @@ function render(d){
   // dönemde neden hesaplanamadığını açıkça söyler, sessizce boş bırakmaz.
   if(cb.available && cb.cash_realization_pct!=null){
     const crp=cb.cash_realization_pct;
-    const crTier=crp>=80?'positive':crp>=50?'medium':'high';
-    $('cashRealization').innerHTML='<div class="metric" style="margin-bottom:12px"><div class="label">Net Kâr → İşletme Nakdi</div><div class="value">'+pct(crp)+'</div><div class="sub">Net kârın işletme nakdine dönüşen kısmı</div></div><div id="crWf" class="waterfall"></div><div class="insight '+crTier+'" style="margin-top:12px"><p>Net kâr '+money(cb.net_profit)+'; alacak/stok/borç (AP) hareketleri dahil edildiğinde işletme nakdi (proxy) '+money(cb.operating_cash_flow_proxy)+' oluyor — yani defter kârının yaklaşık <b>%'+num(crp)+'\u0027i</b> gerçekten kasaya giriyor. '+(crp<80?'Aradaki fark alacak tahsilatında, stokta veya tedarikçi ödemelerinde bağlı; "Working Capital" ve "AR/AP Intelligence" bölümleriyle birlikte okunmalı.':'Kâr büyük ölçüde nakde dönüşüyor; işletme sermayesi kâr üzerinde ek bir baskı yaratmıyor.')+'</p></div>';
+    const crTier=crp>=80?'positive':crp>=50?'medium':crp>=0?'high':'critical';
+    let crExpl='';
+    if(crp<=0){
+      crExpl='⚠️ <b>Kâğıt üzerinde '+money(cb.net_profit)+' net kâr görünmesine rağmen, işletme nakit akışı '+money(cb.operating_cash_flow_proxy)+' negatiftir.</b> Net kârın tamamı ve fazlası alacaklarda ('+money(cb.working_capital_components?.receivables_effect)+') ve stokta ('+money(cb.working_capital_components?.inventory_effect)+') kilitlenmiştir. Kasa bu kârı görememiştir; acil tahsilat hızlandırma ve ölü stok eritme aksiyonu şarttır.';
+    } else if(crp<80){
+      crExpl='Net kâr '+money(cb.net_profit)+'; alacak/stok/borç hareketleri dahil edildiğinde işletme nakdi '+money(cb.operating_cash_flow_proxy)+' oluyor — yani defter kârının yaklaşık <b>%'+num(crp)+'\u0027i</b> fiilen kasaya giriyor. Kalan tutar alacak tahsilatında veya depodaki stokta bağlıdır.';
+    } else {
+      crExpl='Net kâr '+money(cb.net_profit)+'; işletme nakdi '+money(cb.operating_cash_flow_proxy)+'. Kâr büyük ölçüde ('+pct(crp)+') nakde dönüşüyor; işletme sermayesi kâr üzerinde ek bir nakit baskısı yaratmıyor.';
+    }
+    $('cashRealization').innerHTML='<div class="metric" style="margin-bottom:12px"><div class="label">Kâr Nakde Dönüşüm Oranı (Cash Realization)</div><div class="value" style="color:'+(crp<=0?'var(--red)':crp<80?'var(--amber)':'var(--green)')+'">'+pct(crp)+'</div><div class="sub">Net Kâr → İşletme Nakit Akışı Dönüşüm Verimi</div></div><div id="crWf" class="waterfall"></div><div class="insight '+crTier+'" style="margin-top:12px"><p>'+crExpl+'</p></div>';
     waterfall('crWf',[['Net Kâr',cb.net_profit,false],['Faaliyet Dışı/Vergi Farkı',cb.non_operating_addback,cb.non_operating_addback<0],['Alacak Etkisi',cb.working_capital_components.receivables_effect,cb.working_capital_components.receivables_effect<0],['Stok Etkisi',cb.working_capital_components.inventory_effect,cb.working_capital_components.inventory_effect<0],['Borç(AP) Etkisi',cb.working_capital_components.payables_effect,cb.working_capital_components.payables_effect<0],['İşletme Nakdi (proxy)',cb.operating_cash_flow_proxy,false]]);
   } else {
-    $('cashRealization').innerHTML='<div class="notice">Bu köprü için en az iki dönem (Trend sekmesi) gerekir — tek dönemlik bir mizandan "kâr nakde döndü mü" sorusu güvenilir şekilde cevaplanamaz. Trend analizini çalıştırdığınızda net kârın ne kadarının işletme nakdine dönüştüğü burada hesaplanır.</div>';
+    $('cashRealization').innerHTML='<div class="notice">Bu köprü için en az iki dönem (Trend sekmesi veya Data Hub 2 dönem mizan) gerekir — tek dönemlik bir mizandan "kâr nakde döndü mü" sorusu güvenilir şekilde hesaplanamaz. <button class="secondary hidePrint" style="margin-left:8px" onclick="runDataHubSample()">Canlı 2 Dönemli Data Hub Demosunu Çalıştır ⚡</button></div>';
   }
   renderResourceAllocation(bp.resource_allocation_engine);
 
@@ -3386,11 +3394,11 @@ async function runSample(key){
   }
 }
 
-// One-click Data Hub demo: fetches matching mizan + AR/AP aging + inventory + sales
-const DATA_HUB_SAMPLE_KEYS=['hub_mizan','ar_aging','ap_aging','inventory','sales_ledger'];
+// One-click Data Hub demo: fetches matching 2 periods mizan + AR/AP aging + inventory + sales
+const DATA_HUB_SAMPLE_KEYS=['hub_mizan_prior','hub_mizan','ar_aging','ap_aging','inventory','sales_ledger'];
 async function runDataHubSample(){
   if($('sampleHubBtn')) $('sampleHubBtn').disabled=true;
-  startLoading('🔥 Data Hub Canlı Demo Başlatılıyor', '5 Örnek Finansal Dosya Sunucudan Alınıyor (Mizan + AR + AP + Stok + Satış)...');
+  startLoading('🔥 Data Hub Canlı Demo Başlatılıyor', '6 Örnek Finansal Dosya Sunucudan Alınıyor (2 Dönem Mizan + AR + AP + Stok + Satış)...');
   $('error').classList.add('hidden');
   try{
     const blobs=await Promise.all(DATA_HUB_SAMPLE_KEYS.map(async key=>{
@@ -3402,7 +3410,7 @@ async function runDataHubSample(){
     if($('hubTabBtn')) $('hubTabBtn').click();
     const fd=new FormData();blobs.forEach(f=>fd.append('files',f));
     await run('/api/data-hub/analyze',fd,'hub');
-    if($('sampleStatus')) $('sampleStatus').innerHTML='<span style="color:#0E7C66;font-weight:700">✓ Data Hub Canlı Demo Aktif: Mizan, AR/AP Yaşlandırma, Stok ve Satış birlikte işlendi.</span>';
+    if($('sampleStatus')) $('sampleStatus').innerHTML='<span style="color:#0E7C66;font-weight:700">✓ Data Hub Canlı Demo Aktif: 2 Dönem Mizan, AR/AP Yaşlandırma, Stok ve Satış birlikte işlendi.</span>';
   }catch(e){
     stopLoading();
     $('error').textContent=e.message;$('error').classList.remove('hidden');
@@ -3437,7 +3445,7 @@ $('printBtn').onclick=()=>{
 };
 $('jsonBtn').onclick=()=>{if(!LAST)return;const blob=new Blob([JSON.stringify(LAST,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='finance_bp_analysis.json';a.click();URL.revokeObjectURL(a.href)};
 function formatAi(v){if(v==null)return '';if(typeof v==='string')return esc(v);if(typeof v==='object'){if(v.title&&v.description)return '<b>'+esc(v.title)+':</b> '+esc(v.description);if(v.risk&&v.impact)return '<b>'+esc(v.risk)+':</b> '+esc(v.impact);if(v.action&&v.kpi)return '<b>'+esc(v.action)+'</b> (KPI: '+esc(v.kpi)+')';return esc(Object.values(v).map(x=>typeof x==='object'?JSON.stringify(x):x).join(' — '));}return esc(String(v));}
-$('aiBtn').onclick=async()=>{if(!LAST){$('aiBox').classList.remove('hidden');$('aiBox').textContent='Lütfen önce bir mizan veya finansal tablo analiz edin.';return;}$('aiBtn').disabled=true;$('aiBox').classList.remove('hidden');let sec=0;$('aiBox').textContent='⏳ AI CFO yorumu hazırlanıyor (0 sn)...';const timer=setInterval(()=>{sec++;$('aiBox').textContent='⏳ AI CFO yorumu hazırlanıyor ('+sec+' sn)...';},1000);try{const r=await fetch('/api/ai/cfo-narrative',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({analysis:LAST})});clearInterval(timer);const d=await r.json();if(!d.available){$('aiBox').textContent=d.reason||'AI yapılandırılmamış.';return;}const x=d.response||{};const exec=Array.isArray(x.executive_message)?x.executive_message.map(m=>'<p style="margin:6px 0">'+formatAi(m)+'</p>').join(''):'<p style="margin:6px 0">'+esc(x.executive_message||'')+'</p>';const risks=(x.key_risks||[]).length?'<div style="margin-top:12px;font-weight:700;color:#b3261e">⚠️ Kritik Riskler:</div>'+(x.key_risks||[]).map(v=>'<div style="margin:4px 0">• '+formatAi(v)+'</div>').join(''):'';const acts=(x.actions||[]).length?'<div style="margin-top:12px;font-weight:700;color:#137333">🎯 Yönetim Aksiyonları:</div>'+(x.actions||[]).map(v=>'<div style="margin:4px 0">→ '+formatAi(v)+'</div>').join(''):'';const qs=(x.management_questions||[]).length?'<div style="margin-top:12px;font-weight:700;color:#1a73e8">❓ Yönetim Soruları:</div>'+(x.management_questions||[]).map(v=>'<div style="margin:4px 0">? '+formatAi(v)+'</div>').join(''):'';$('aiBox').innerHTML='<b style="font-size:15px">AI CFO View</b>'+exec+risks+acts+qs+'<div class="small muted" style="margin-top:10px">Model: '+esc(d.model)+(d.note?' ('+esc(d.note)+')':'')+' ('+sec+' sn)</div>';}catch(e){clearInterval(timer);$('aiBox').textContent='AI isteği başarısız: '+e.message;}finally{clearInterval(timer);$('aiBtn').disabled=false;}};
+$('aiBtn').onclick=async()=>{if(!LAST){$('aiBox').classList.remove('hidden');$('aiBox').textContent='Lütfen önce bir mizan veya finansal tablo analiz edin.';return;}$('aiBtn').disabled=true;$('aiBox').classList.remove('hidden');let sec=0;$('aiBox').textContent='⏳ AI Finance Partner yorumu hazırlanıyor (0 sn)...';const timer=setInterval(()=>{sec++;$('aiBox').textContent='⏳ AI Finance Partner yorumu hazırlanıyor ('+sec+' sn)...';},1000);try{const r=await fetch('/api/ai/cfo-narrative',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({analysis:LAST})});clearInterval(timer);const d=await r.json();if(!d.available){$('aiBox').textContent=d.reason||'AI yapılandırılmamış.';return;}const x=d.response||{};const exec=Array.isArray(x.executive_message)?x.executive_message.map(m=>'<p style="margin:6px 0">'+formatAi(m)+'</p>').join(''):'<p style="margin:6px 0">'+esc(x.executive_message||'')+'</p>';const risks=(x.key_risks||[]).length?'<div style="margin-top:12px;font-weight:700;color:#b3261e">⚠️ Kritik Riskler:</div>'+(x.key_risks||[]).map(v=>'<div style="margin:4px 0">• '+formatAi(v)+'</div>').join(''):'';const acts=(x.actions||[]).length?'<div style="margin-top:12px;font-weight:700;color:#137333">🎯 Yönetim Aksiyonları:</div>'+(x.actions||[]).map(v=>'<div style="margin:4px 0">→ '+formatAi(v)+'</div>').join(''):'';const qs=(x.management_questions||[]).length?'<div style="margin-top:12px;font-weight:700;color:#1a73e8">❓ Yönetim Soruları:</div>'+(x.management_questions||[]).map(v=>'<div style="margin:4px 0">? '+formatAi(v)+'</div>').join(''):'';$('aiBox').innerHTML='<b style="font-size:15px">AI Finance Partner View</b>'+exec+risks+acts+qs+'<div class="small muted" style="margin-top:10px">Model: '+esc(d.model)+(d.note?' ('+esc(d.note)+')':'')+' ('+sec+' sn)</div>';}catch(e){clearInterval(timer);$('aiBox').textContent='AI isteği başarısız: '+e.message;}finally{clearInterval(timer);$('aiBtn').disabled=false;}};
 function renderDuPont(dp){
   if(!dp||dp.roe_pct==null){if($('dupontCard'))$('dupontCard').classList.add('hidden');return;}
   $('dupontCard').classList.remove('hidden');
@@ -3527,6 +3535,12 @@ function renderCustomerProfitabilityMatrix(cp){
   if(!cp || cp.status !== 'PASS'){ card.classList.add('hidden'); return; }
   card.classList.remove('hidden');
 
+  const q = cp.quadrants || {};
+  const stars = cp.stars || q.q1_stars || [];
+  const volumeChasers = cp.volume_chasers || q.q2_high_volume_low_margin || [];
+  const nicheProfit = cp.niche_profit || q.q3_profitable_niche || [];
+  const lowValue = cp.low_value || q.q4_low_value || [];
+
   function quadBox(title, tag, tagClass, desc, items){
     const list = (items||[]).slice(0, 4);
     return '<div class="insight" style="padding:14px;background:#FFFFFF;border:1.5px solid var(--line);border-radius:14px">' +
@@ -3535,24 +3549,27 @@ function renderCustomerProfitabilityMatrix(cp){
         '<span class="tag ' + tagClass + '">' + esc(tag) + '</span>' +
       '</div>' +
       '<p class="small muted" style="margin:0 0 10px">' + esc(desc) + '</p>' +
-      (list.length ? list.map(c => 
-        '<div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:5px 0;border-bottom:1px solid rgba(15,27,45,0.05)">' +
-          '<span>' + esc(c.customer) + '</span>' +
-          '<span><b>' + money(c.revenue) + '</b> <span class="muted">(%' + num(c.gross_margin_pct) + ' marj' + (c.ar_overdue_risk ? ' · <span style="color:var(--red)">Vade Riski</span>' : '') + ')</span></span>' +
-        '</div>'
-      ).join('') : '<div class="small muted">Bu grupta müşteri bulunmuyor.</div>') +
+      (list.length ? list.map(c => {
+        const cName = c.customer || c.name || 'Müşteri';
+        const cRev = c.revenue != null ? c.revenue : c.sales;
+        const cRisk = c.ar_overdue_risk || (c.overdue_days > 0);
+        return '<div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:5px 0;border-bottom:1px solid rgba(15,27,45,0.05)">' +
+          '<span>' + esc(cName) + '</span>' +
+          '<span><b>' + money(cRev) + '</b> <span class="muted">(%' + num(c.gross_margin_pct) + ' marj' + (cRisk ? ' · <span style="color:var(--red)">Vade Riski</span>' : '') + ')</span></span>' +
+        '</div>';
+      }).join('') : '<div class="small muted">Bu grupta müşteri bulunmuyor.</div>') +
     '</div>';
   }
 
   $('customerMatrixGrid').innerHTML = 
-    quadBox('🌟 Yıldızlar (Stars)', 'Yüksek Ciro & Yüksek Kâr', 'positive', 'En değerli müşteriler. Özel ilişki yönetimi ve sadakat stratejisi uygulanmalı.', cp.stars) +
-    quadBox('⚠️ Hacim Var, Kâr Yok', 'Yüksek Ciro & Düşük Kâr', 'high', 'Ciro yüksek fakat brüt kâr zayıf. Fiyat artışı veya iskonto sınırlaması şart.', cp.volume_chasers) +
-    quadBox('💎 Kârlı Niş (Niche)', 'Düşük Ciro & Yüksek Kâr', 'medium', 'Marjı yüksek fakat hacmi küçük. Büyüme ve satış odaklanması gereken grup.', cp.niche_profit) +
-    quadBox('🛑 Düşük Değer / Kayıp Riski', 'Düşük Ciro & Düşük Kâr', 'critical', 'Zaman ve sermaye tüketen müşteriler. Standart vadeli ödeme disiplini şart.', cp.low_value);
+    quadBox('🌟 Yıldızlar (Stars)', 'Yüksek Ciro & Yüksek Kâr', 'positive', 'En değerli müşteriler. Özel ilişki yönetimi ve sadakat stratejisi uygulanmalı.', stars) +
+    quadBox('⚠️ Hacim Var, Kâr Yok', 'Yüksek Ciro & Düşük Kâr', 'high', 'Ciro yüksek fakat brüt kâr zayıf. Fiyat artışı veya iskonto sınırlaması şart.', volumeChasers) +
+    quadBox('💎 Kârlı Niş (Niche)', 'Düşük Ciro & Yüksek Kâr', 'medium', 'Marjı yüksek fakat hacmi küçük. Büyüme ve satış odaklanması gereken grup.', nicheProfit) +
+    quadBox('🛑 Düşük Değer / Kayıp Riski', 'Düşük Ciro & Düşük Kâr', 'critical', 'Zaman ve sermaye tüketen müşteriler. Standart vadeli ödeme disiplini şart.', lowValue);
 
   if(cp.findings && cp.findings.length){
     $('customerMatrixFindings').innerHTML = '<div class="notice" style="margin-top:10px">' +
-      cp.findings.map(f => '<div><b>' + esc(f.title) + ':</b> ' + esc(f.detail) + ' <span class="muted">(' + esc(f.action) + ')</span></div>').join('') +
+      cp.findings.map(f => '<div><b>' + esc(f.title) + ':</b> ' + esc(f.detail) + ' <span class="muted">(' + esc(f.recommendation || f.action || '') + ')</span></div>').join('') +
     '</div>';
   }
 }
@@ -3649,14 +3666,14 @@ $('aiAskBtn').onclick=async()=>{
   const q=($('aiCustomPrompt').value||'').trim();
   if(!q){
     $('aiCustomBox').classList.remove('hidden');
-    $('aiCustomBox').textContent='Lütfen AI CFO\'ya sormak istediğiniz soruyu yazın veya yukarıdaki hazır başlıklardan birine tıklayın.';
+    $('aiCustomBox').textContent='Lütfen sormak istediğiniz soruyu yazın veya yukarıdaki hazır başlıklardan birine tıklayın.';
     return;
   }
   $('aiAskBtn').disabled=true;
   $('aiCustomBox').classList.remove('hidden');
   let sec=0;
-  $('aiCustomBox').textContent='⏳ AI CFO sorunuzu analiz ediyor (0 sn)...';
-  const timer=setInterval(()=>{sec++;$('aiCustomBox').textContent='⏳ AI CFO sorunuzu analiz ediyor ('+sec+' sn)...';},1000);
+  $('aiCustomBox').textContent='⏳ AI Finance Partner sorunuzu analiz ediyor (0 sn)...';
+  const timer=setInterval(()=>{sec++;$('aiCustomBox').textContent='⏳ AI Finance Partner sorunuzu analiz ediyor ('+sec+' sn)...';},1000);
   try{
     const r=await fetch('/api/ai/cfo-narrative',{
       method:'POST',
@@ -3674,7 +3691,7 @@ $('aiAskBtn').onclick=async()=>{
     const risks=(x.key_risks||[]).length?'<div style="margin-top:12px;font-weight:700;color:#b3261e">⚠️ İlgili Risk Faktörleri:</div>'+(x.key_risks||[]).map(v=>'<div style="margin:4px 0">• '+formatAi(v)+'</div>').join(''):'';
     const acts=(x.actions||[]).length?'<div style="margin-top:12px;font-weight:700;color:#137333">🎯 Stratejik Aksiyon Önerileri:</div>'+(x.actions||[]).map(v=>'<div style="margin:4px 0">→ '+formatAi(v)+'</div>').join(''):'';
     const qs=(x.management_questions||[]).length?'<div style="margin-top:12px;font-weight:700;color:#1a73e8">❓ Karşı Tarafa / Yönetime Yöneltilecek Sorular:</div>'+(x.management_questions||[]).map(v=>'<div style="margin:4px 0">? '+formatAi(v)+'</div>').join(''):'';
-    $('aiCustomBox').innerHTML='<div style="border-bottom:1px solid rgba(15,27,45,.12);padding-bottom:8px;margin-bottom:8px"><b style="color:var(--accent)">Soru:</b> <i>"'+esc(q)+'"</i></div><b style="font-size:15px">AI CFO Stratejik Değerlendirmesi</b>'+exec+risks+acts+qs+'<div class="small muted" style="margin-top:10px">Model: '+esc(d.model)+' ('+sec+' sn)</div>';
+    $('aiCustomBox').innerHTML='<div style="border-bottom:1px solid rgba(15,27,45,.12);padding-bottom:8px;margin-bottom:8px"><b style="color:var(--accent)">Soru:</b> <i>"'+esc(q)+'"</i></div><b style="font-size:15px">AI Finance Business Partner Stratejik Değerlendirmesi</b>'+exec+risks+acts+qs+'<div class="small muted" style="margin-top:10px">Model: '+esc(d.model)+' ('+sec+' sn)</div>';
   }catch(e){
     clearInterval(timer);
     $('aiCustomBox').textContent='AI isteği başarısız: '+e.message;

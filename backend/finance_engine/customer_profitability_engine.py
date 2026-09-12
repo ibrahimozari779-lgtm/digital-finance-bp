@@ -160,6 +160,10 @@ def build_customer_profitability_analysis(
         'status': 'PASS',
         'company_average_gross_margin_pct': round(company_margin_pct, 1),
         'customer_count': len(processed),
+        'stars': q1,
+        'volume_chasers': q2,
+        'niche_profit': q3,
+        'low_value': q4,
         'quadrants': {
             'q1_stars': q1,
             'q2_high_volume_low_margin': q2,

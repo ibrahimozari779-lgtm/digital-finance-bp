@@ -183,7 +183,7 @@ def test_ai_narrative_is_always_labeled_separately_from_deterministic_summary():
         "the deterministic executive summary must always carry an explicit "
         "'rule-based, not AI' badge next to it"
     )
-    assert "AI CFO yorumunu üret" in src, (
+    assert ("AI Finance Partner yorumunu üret" in src or "AI CFO yorumunu üret" in src), (
         "the optional LLM narrative must remain an explicit opt-in action, "
         "not something rendered inline as if it were the deterministic summary"
     )

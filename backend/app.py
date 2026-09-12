@@ -704,7 +704,7 @@ _SAMPLE_FILES = {
     'sales_ledger': ('demo_data/sample_sales_ledger.xlsx', 'Data Hub — Satış Defteri'),
 }
 # The set of keys fetched together for the one-click "Data Hub'ı örnekle dene" demo.
-DATA_HUB_SAMPLE_KEYS = ['hub_mizan', 'ar_aging', 'ap_aging', 'inventory', 'sales_ledger']
+DATA_HUB_SAMPLE_KEYS = ['hub_mizan_prior', 'hub_mizan', 'ar_aging', 'ap_aging', 'inventory', 'sales_ledger']
 
 @app.get('/api/sample/{key}')
 def get_sample(key: str):
@@ -1026,41 +1026,98 @@ async def analyze_mizan_trend(
 async def _analyze_data_hub_raw(raw_files:list[tuple[str,bytes]], sector:str|None=None) -> dict[str,Any]:
     """Core multi-source orchestration shared by API entry points."""
     from finance_engine.multi_source_ingestion import ingest_sources
-    inspected=ingest_sources(raw_files, _process_workbook, max_mb=MAX_UPLOAD_BYTES/1024/1024)
-    finance_files=[s for s in inspected.get('files',[]) if any(r.get('role')=='finance' for r in s.get('roles',[]) if isinstance(r,dict))]
-    finance_name=None; finance_result=None
-    for fn,content in raw_files:
-        if any(s.get('filename')==fn and any(r.get('role')=='finance' for r in s.get('roles',[])) for s in inspected.get('files',[])):
+    inspected = ingest_sources(raw_files, _process_workbook, max_mb=MAX_UPLOAD_BYTES/1024/1024)
+
+    # Ingest and classify all finance/mizan workbooks so multi-period trends and
+    # the Cash Bridge (Net profit -> Working Capital drag -> Cash) work out of the box.
+    finance_entries = []
+    for fn, content in raw_files:
+        if any(s.get('filename') == fn and any(r.get('role') == 'finance' for r in s.get('roles', [])) for s in inspected.get('files', [])):
             try:
-                finance_result=_process_workbook(content,fn); finance_name=fn; break
+                r = _process_workbook(content, fn)
+                finance_entries.append({'filename': fn, 'content': content, 'result': r})
             except Exception:
                 pass
-    if finance_result:
-        statements=finance_result['statements']; quality=finance_result['quality'];
-        bp=build_finance_business_partner_analysis(statements,quality,sector=sector)
-        base_resp={'filename':finance_name,'source':{'mode':finance_result['mode'],'sheet_count':len(finance_result['sheet_meta']),'sheets':finance_result['sheet_meta']},'quality':quality,'statements':statements,'business_partner':bp,'account_count':int(finance_result['tb'].account_code.nunique()),'rows':int(len(finance_result['tb'])),'canonical_model':_canonical_model(statements,finance_result['tb']),'top_accounts_by_abs_balance':finance_result['top']}
-        optional=[x for x in raw_files if x[0]!=finance_name or x[1]!=next((b for n,b in raw_files if n==finance_name),None)]
+
+    if finance_entries:
+        def _fin_sort_key(entry):
+            meta = entry['result']['statements'].get('period_metadata') or {}
+            end = str(meta.get('period_end') or '')
+            start = str(meta.get('period_start') or '')
+            fn = entry['filename'].lower()
+            years = re.findall(r'(?<!\d)(20\d{2})(?!\d)', fn)
+            year_val = int(years[-1]) if years else 0
+            is_prior = 0 if any(w in fn for w in ['prior', 'onceki', 'önceki', 'donem1', 'dönem1', 'period1']) else 1
+            return (end, start, year_val, is_prior)
+
+        sorted_fin = sorted(finance_entries, key=_fin_sort_key)
+        current_entry = sorted_fin[-1]
+        prior_entries = sorted_fin[:-1]
+        previous_periods = [{'label': p['filename'], 'statements': p['result']['statements']} for p in prior_entries] if prior_entries else None
+
+        finance_name = current_entry['filename']
+        finance_result = current_entry['result']
+        statements = finance_result['statements']
+        quality = finance_result['quality']
+        bp = build_finance_business_partner_analysis(statements, quality, sector=sector, previous_periods=previous_periods)
+        base_resp = {
+            'filename': finance_name,
+            'source': {'mode': finance_result['mode'], 'sheet_count': len(finance_result['sheet_meta']), 'sheets': finance_result['sheet_meta']},
+            'quality': quality,
+            'statements': statements,
+            'business_partner': bp,
+            'account_count': int(finance_result['tb'].account_code.nunique()),
+            'rows': int(len(finance_result['tb'])),
+            'canonical_model': _canonical_model(statements, finance_result['tb']),
+            'top_accounts_by_abs_balance': finance_result['top'],
+        }
+        if prior_entries:
+            base_resp['period_filenames'] = [e['filename'] for e in sorted_fin]
+        finance_filenames = {e['filename'] for e in sorted_fin}
+        optional = [x for x in raw_files if x[0] not in finance_filenames]
     else:
-        statements={}; optional=raw_files; base_resp={'filename':None,'source':{'mode':'operational_only'},'quality':{'score':None,'status':'Operational source only'},'statements':{},'business_partner':{}}
-    ms=build_multi_source_intelligence(optional,_process_workbook,statements,max_mb=MAX_UPLOAD_BYTES/1024/1024)
+        previous_periods = None
+        statements = {}
+        optional = raw_files
+        base_resp = {
+            'filename': None,
+            'source': {'mode': 'operational_only'},
+            'quality': {'score': None, 'status': 'Operational source only'},
+            'statements': {},
+            'business_partner': {},
+        }
+
+    ms = build_multi_source_intelligence(optional, _process_workbook, statements, max_mb=MAX_UPLOAD_BYTES/1024/1024)
     # FIX (customer-trust bug): fold cross-source reconciliation warnings into
     # the headline Data Quality Score instead of showing a contradictory
     # "100/100 Trusted" badge next to unresolved GL vs. Sales/AR/AP warnings.
     if base_resp.get('quality', {}).get('advanced'):
-        base_resp['quality']['advanced']=apply_cross_source_reconciliation(base_resp['quality']['advanced'], ms.get('reconciliation'))
-    # Re-run the deterministic BP interpretation with cross-source evidence so
-    # root cause, gaps and actions can use Sales/AR/AP/Inventory facts.
+        base_resp['quality']['advanced'] = apply_cross_source_reconciliation(base_resp['quality']['advanced'], ms.get('reconciliation'))
+    # Re-run the deterministic BP interpretation with cross-source evidence and previous periods so
+    # root cause, gaps, actions, cash bridge, and PVM can use both operational and multi-period facts.
     if base_resp.get('business_partner') is not None:
-        base_resp['business_partner']=build_finance_business_partner_analysis(statements, quality, sector=sector, data_hub=ms)
+        base_resp['business_partner'] = build_finance_business_partner_analysis(
+            statements, quality, sector=sector, previous_periods=previous_periods, data_hub=ms
+        )
     if base_resp.get('business_partner') is not None:
-        cross=[]
-        for f in ms.get('findings',[]): cross.append({'code':'MS-'+str(len(cross)+1).zfill(3),'category':'Multi-Source','severity':f.get('severity','medium'),'title':f.get('title','Cross-source finding'),'evidence':[f.get('detail','')],'interpretation':f.get('detail',''),'recommendation':'İlgili operasyonel kaynağı ve GL mutabakatını inceleyin.','confidence':'medium'})
-        base_resp['business_partner']['multi_source_findings']=cross
-    base_resp.update({'data_hub':ms,'available_sectors':list(SECTOR_BANDS.keys()),'data_hub_errors':ms.get('errors',[])})
-    base_resp['ar_aging']=ms.get('analysis',{}).get('ar_aging')
-    base_resp['ap_aging']=ms.get('analysis',{}).get('ap_aging')
-    base_resp['sales_analysis']=ms.get('analysis',{}).get('sales')
-    base_resp['inventory_aging']=ms.get('analysis',{}).get('inventory')
+        cross = []
+        for f in ms.get('findings', []):
+            cross.append({
+                'code': 'MS-' + str(len(cross) + 1).zfill(3),
+                'category': 'Multi-Source',
+                'severity': f.get('severity', 'medium'),
+                'title': f.get('title', 'Cross-source finding'),
+                'evidence': [f.get('detail', '')],
+                'interpretation': f.get('detail', ''),
+                'recommendation': 'İlgili operasyonel kaynağı ve GL mutabakatını inceleyin.',
+                'confidence': 'medium',
+            })
+        base_resp['business_partner']['multi_source_findings'] = cross
+    base_resp.update({'data_hub': ms, 'available_sectors': list(SECTOR_BANDS.keys()), 'data_hub_errors': ms.get('errors', [])})
+    base_resp['ar_aging'] = ms.get('analysis', {}).get('ar_aging')
+    base_resp['ap_aging'] = ms.get('analysis', {}).get('ap_aging')
+    base_resp['sales_analysis'] = ms.get('analysis', {}).get('sales')
+    base_resp['inventory_aging'] = ms.get('analysis', {}).get('inventory')
     return base_resp
 
 @app.post('/api/data-hub/analyze')
