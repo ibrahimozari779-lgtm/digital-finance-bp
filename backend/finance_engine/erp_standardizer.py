@@ -1,0 +1,247 @@
+from __future__ import annotations
+
+import io
+import re
+from typing import Any
+import pandas as pd
+
+from .data_classifier import classify_dataframe, norm, ALIAS_NORM, _best_column
+from .multi_source_ingestion import _read_one
+
+
+# ---------------------------------------------------------------------------
+# Supported ERP Signatures & Recognition Heuristics
+# ---------------------------------------------------------------------------
+ERP_PROFILES: dict[str, dict[str, Any]] = {
+    "logo": {
+        "name": "Logo (Tiger / Go / Wings)",
+        "badge": "Logo Tiger/Go",
+        "keywords": {"hesap_kodu", "hesap_adi", "borc_bakiye", "alacak_bakiye", "ch_kodu", "cari_kodu", "fis_no", "fatura_no"},
+        "exact_headers": {"hesap kodu", "hesap aciklamasi", "borc bakiye", "alacak bakiye", "ch kodu", "cari kod", "tutar (tl)"},
+    },
+    "mikro": {
+        "name": "Mikro Yazılım (Fly / Jump / V16)",
+        "badge": "Mikro Fly/Jump",
+        "keywords": {"hesap_no", "hesap_ismi", "borc_toplam", "alacak_toplam", "borc_bakiye", "alacak_bakiye", "sorumluluk_merkezi"},
+        "exact_headers": {"hesap no", "hesap ismi", "borc toplam", "alacak toplam", "borc bakiye", "alacak bakiye", "sorumluluk merkezi"},
+    },
+    "netsis": {
+        "name": "Netsis (Entegre / Enterprise)",
+        "badge": "Netsis Enterprise",
+        "keywords": {"hesap_kodu", "hesap_adi", "b_bakiye", "a_bakiye", "bakiye", "cari_kodu", "sube_kodu"},
+        "exact_headers": {"hesap_kodu", "hesap_adi", "b_bakiye", "a_bakiye", "bakiye", "cari_kodu"},
+    },
+    "luca": {
+        "name": "Luca TÜRMOB",
+        "badge": "Luca TÜRMOB",
+        "keywords": {"borc_tutari", "alacak_tutari", "borc_kalan", "alacak_kalan", "luca", "turmob"},
+        "exact_headers": {"hesap kodu", "hesap adi", "borc tutari", "alacak tutari", "borc kalan", "alacak kalan"},
+    },
+    "zirve": {
+        "name": "Zirve Müşavir / Finans",
+        "badge": "Zirve Müşavir",
+        "keywords": {"kodu", "adi", "b_bakiye", "a_bakiye", "borc", "alacak"},
+        "exact_headers": {"kodu", "adi", "borc", "alacak", "b-bakiye", "a-bakiye"},
+    },
+    "sap": {
+        "name": "SAP (S/4HANA & ECC)",
+        "badge": "SAP S/4HANA",
+        "keywords": {"gl_account", "account_long_text", "accumulated_balance", "doc_date", "posting_date", "company_code"},
+        "exact_headers": {"g/l account", "account long text", "debit", "credit", "accumulated balance", "doc. date", "posting date"},
+    },
+}
+
+
+# ---------------------------------------------------------------------------
+# Canonical Target Schemas with Field Labels & Required Flags
+# ---------------------------------------------------------------------------
+CANONICAL_SCHEMAS: dict[str, dict[str, Any]] = {
+    "finance": {
+        "label": "Mizan (Büyük Defter)",
+        "description": "Hesap planı (TDHP), borç/alacak hareketleri ve bakiye dökümü",
+        "fields": {
+            "account_code": {"label": "Hesap Kodu (TDHP)", "required": True, "type": "string"},
+            "account_name": {"label": "Hesap Adı / Açıklama", "required": False, "type": "string"},
+            "debit_balance": {"label": "Borç Bakiye", "required": False, "type": "number"},
+            "credit_balance": {"label": "Alacak Bakiye", "required": False, "type": "number"},
+            "balance": {"label": "Net Bakiye", "required": False, "type": "number"},
+            "debit_turnover": {"label": "Borç Hareketi", "required": False, "type": "number"},
+            "credit_turnover": {"label": "Alacak Hareketi", "required": False, "type": "number"},
+        },
+    },
+    "sales": {
+        "label": "Satış Faturaları / Satış Dökümü",
+        "description": "Fatura detayları, müşteri adları, satılan ürünler ve ciro",
+        "fields": {
+            "date": {"label": "Fatura Tarihi", "required": False, "type": "date"},
+            "invoice": {"label": "Fatura / Belge No", "required": False, "type": "string"},
+            "customer": {"label": "Müşteri / Cari Adı", "required": True, "type": "string"},
+            "product": {"label": "Ürün Adı / SKU", "required": False, "type": "string"},
+            "quantity": {"label": "Satış Miktarı", "required": False, "type": "number"},
+            "net_sales": {"label": "Net Satış Tutarı", "required": True, "type": "number"},
+            "cost": {"label": "Satış Maliyeti (SMM)", "required": False, "type": "number"},
+            "term_price": {"label": "Vadeli Satış Tutarı", "required": False, "type": "number"},
+            "cash_price": {"label": "Peşin Satış Tutarı", "required": False, "type": "number"},
+        },
+    },
+    "ar_aging": {
+        "label": "Müşteri Alacak Yaşlandırma (120)",
+        "description": "Müşteri vadeleri, açık hesaplar ve geciken tahsilat takvimi",
+        "fields": {
+            "customer": {"label": "Müşteri / Cari Adı", "required": True, "type": "string"},
+            "outstanding": {"label": "Açık / Kalan Bakiye", "required": True, "type": "number"},
+            "due_date": {"label": "Vade Tarihi", "required": False, "type": "date"},
+            "amount": {"label": "Toplam Fatura Tutarı", "required": False, "type": "number"},
+            "paid": {"label": "Tahsil Edilen Tutar", "required": False, "type": "number"},
+        },
+    },
+    "ap_aging": {
+        "label": "Tedarikçi Borç Yaşlandırma (320)",
+        "description": "Tedarikçi borçları, ödeme vadeleri ve açık hesaplar",
+        "fields": {
+            "vendor": {"label": "Tedarikçi / Satıcı Adı", "required": True, "type": "string"},
+            "outstanding": {"label": "Kalan Borç Tutarı", "required": True, "type": "number"},
+            "due_date": {"label": "Ödeme Vadesi", "required": False, "type": "date"},
+            "amount": {"label": "Toplam Belge Tutarı", "required": False, "type": "number"},
+        },
+    },
+    "inventory": {
+        "label": "Stok Envanteri & Defteri",
+        "description": "Depodaki ürünler, miktarlar ve bağlı sermaye tutarı",
+        "fields": {
+            "product": {"label": "Ürün Adı / Malzeme", "required": True, "type": "string"},
+            "amount": {"label": "Toplam Stok Değeri", "required": False, "type": "number"},
+            "quantity": {"label": "Depo Miktarı", "required": False, "type": "number"},
+            "unit_cost": {"label": "Birim Maliyet", "required": False, "type": "number"},
+            "warehouse": {"label": "Depo / Lokasyon", "required": False, "type": "string"},
+            "last_movement": {"label": "Son Hareket Tarihi", "required": False, "type": "date"},
+        },
+    },
+}
+
+
+def detect_erp_signature(columns: list[str], sample_text: str = "", filename: str = "") -> tuple[str, str, float]:
+    """Identify the originating ERP / accounting software with a confidence score."""
+    fn_lower = filename.lower()
+    raw_headers = {str(c).strip().lower() for c in columns}
+    norm_headers = {norm(c).replace(" ", "_") for c in columns}
+    combined_text = (sample_text + " " + " ".join(columns) + " " + filename).lower()
+
+    scores: dict[str, float] = {}
+
+    for erp_key, prof in ERP_PROFILES.items():
+        score = 0.0
+        # 1. Exact header matches
+        exact_hits = len(raw_headers.intersection(prof["exact_headers"]))
+        if exact_hits >= 3:
+            score += 0.55 + min(0.35, exact_hits * 0.1)
+        elif exact_hits >= 1:
+            score += 0.25
+
+        # 2. Normalized keyword matches
+        keyword_hits = len(norm_headers.intersection(prof["keywords"]))
+        if keyword_hits >= 3:
+            score += 0.35 + min(0.20, keyword_hits * 0.05)
+        elif keyword_hits >= 1:
+            score += 0.15
+
+        # 3. Text & metadata markers (e.g. "TÜRMOB", "LOGO TIGER", "MIKRO YAZILIM")
+        if erp_key in fn_lower or erp_key in combined_text:
+            score += 0.20
+        if erp_key == "luca" and ("turmob" in combined_text or "türmob" in combined_text):
+            score += 0.30
+
+        scores[erp_key] = min(0.99, score)
+
+    best_erp, best_score = max(scores.items(), key=lambda x: x[1])
+    if best_score >= 0.50:
+        prof = ERP_PROFILES[best_erp]
+        return best_erp, prof["badge"], round(best_score, 2)
+
+    return "generic", "Standart Excel / CSV", 0.85
+
+
+def inspect_file_structure(content: bytes, filename: str) -> dict[str, Any]:
+    """Rapid pre-flight inspector (<80ms):
+
+    Determines ERP origin, classifies role, auto-maps columns to canonical
+    schema, and produces sample preview rows for the UI Smart Auto-Mapper.
+    """
+    try:
+        sheets = _read_one(content, filename)
+    except Exception as exc:
+        return {
+            "status": "error",
+            "filename": filename,
+            "error": str(exc),
+        }
+
+    inspected_sheets = []
+    sample_text = content[:4096].decode("utf-8", errors="ignore")
+
+    for sname, df in sheets.items():
+        if df is None or df.empty:
+            continue
+
+        raw_cols = [str(c) for c in df.columns if not str(c).startswith("_")]
+        role, role_conf, mapping = classify_dataframe(df, filename, sname)
+
+        erp_key, erp_badge, erp_conf = detect_erp_signature(raw_cols, sample_text, filename)
+
+        schema = CANONICAL_SCHEMAS.get(role, CANONICAL_SCHEMAS["finance"])
+        fields_def = schema["fields"]
+
+        # Build column mapping details
+        mapped_details = []
+        unmapped_required = []
+
+        for canonical_key, f_meta in fields_def.items():
+            matched_col = mapping.get(canonical_key)
+            if matched_col and matched_col in raw_cols:
+                mapped_details.append({
+                    "canonical_field": canonical_key,
+                    "canonical_label": f_meta["label"],
+                    "source_column": matched_col,
+                    "is_required": f_meta["required"],
+                    "type": f_meta["type"],
+                    "confidence": round(role_conf, 2),
+                })
+            elif f_meta["required"]:
+                unmapped_required.append({
+                    "canonical_field": canonical_key,
+                    "canonical_label": f_meta["label"],
+                    "is_required": True,
+                })
+
+        # Produce first 4 rows for visual preview
+        preview_sample = df.head(4).fillna("").to_dict(orient="records")
+        preview_rows = []
+        for r in preview_sample:
+            clean_r = {str(k): (str(v)[:40] if pd.notna(v) else "") for k, v in r.items() if not str(k).startswith("_")}
+            preview_rows.append(clean_r)
+
+        inspected_sheets.append({
+            "sheet_name": sname,
+            "detected_erp": erp_key,
+            "erp_badge": erp_badge,
+            "erp_confidence": erp_conf,
+            "role": role,
+            "role_label": schema["label"],
+            "role_description": schema["description"],
+            "confidence": round(role_conf, 2),
+            "total_rows": int(len(df)),
+            "columns": raw_cols,
+            "mapped_fields": mapped_details,
+            "unmapped_required": unmapped_required,
+            "is_ready": len(unmapped_required) == 0,
+            "preview_rows": preview_rows,
+        })
+
+    primary_sheet = inspected_sheets[0] if inspected_sheets else None
+
+    return {
+        "status": "success",
+        "filename": filename,
+        "primary": primary_sheet,
+        "sheets": inspected_sheets,
+    }

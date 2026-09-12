@@ -4506,6 +4506,9 @@ function formatBytes(bytes){
   return parseFloat((bytes/Math.pow(k,i)).toFixed(1))+' '+sizes[i];
 }
 
+window._inspectedFilesMap = window._inspectedFilesMap || {};
+window._inspectingFilesMap = window._inspectingFilesMap || {};
+
 function updateFileList(inputEl, listEl, btnEl, defaultBtnText){
   const files = [...inputEl.files];
   if(!files.length){
@@ -4520,11 +4523,234 @@ function updateFileList(inputEl, listEl, btnEl, defaultBtnText){
   } else {
     btnEl.textContent = '🚀 ' + files.length + ' Dosyayı Birlikte Analiz Et (33 Karar Motoru)';
   }
-  listEl.innerHTML = files.map((f, i) => 
-    '<div class="filePill"><b>📄 ' + esc(f.name) + '</b> <span class="muted">(' + formatBytes(f.size) + ')</span>' +
-    '<span class="pillDel" title="Kaldır" onclick="clearFileSelection(\''+inputEl.id+'\','+i+')">×</span></div>'
-  ).join('');
+
+  listEl.innerHTML = files.map((f, i) => {
+    const inspected = window._inspectedFilesMap[f.name];
+    const isInspecting = window._inspectingFilesMap[f.name];
+    let badgeHtml = '';
+    if(inspected){
+      const erpBadge = inspected.erp_badge || 'Standart Format';
+      const roleLabel = inspected.role_label || 'Mizan';
+      const confPct = Math.round((inspected.erp_confidence || inspected.confidence || 0.8) * 100);
+      const mappedCount = (inspected.mapped_columns || []).length;
+      badgeHtml = '<span class="tag positive" style="font-size:11px;font-weight:700;margin-left:6px;padding:2px 8px;border-radius:6px;background:rgba(16,185,129,0.12);color:#059669;border:1px solid rgba(16,185,129,0.25)">🏷️ ' + esc(erpBadge) + ' (%' + confPct + ')</span>' +
+        '<span class="tag" style="font-size:11px;font-weight:600;margin-left:4px;padding:2px 6px;border-radius:6px;background:rgba(37,99,235,0.08);color:#2563EB">📋 ' + esc(roleLabel) + '</span>' +
+        '<button type="button" class="btnGhost" data-fn="' + esc(f.name) + '" style="padding:2px 8px;font-size:11px;margin-left:6px;cursor:pointer;border:1px solid #CBD5E1;border-radius:6px;background:#F8FAFC;font-weight:600;color:#0F1B2D" onclick="openErpMappingModal(this.getAttribute(\'data-fn\'))">🔍 Sütunları Gör (' + mappedCount + ' Alan)</button>';
+    } else if(isInspecting) {
+      badgeHtml = '<span style="font-size:11px;color:#64748B;margin-left:6px;font-weight:500">⏳ Format taranıyor...</span>';
+    } else {
+      badgeHtml = '<span style="font-size:11px;color:#64748B;margin-left:6px;font-weight:500">⏳ Taranıyor...</span>';
+    }
+
+    return '<div class="filePill" style="display:inline-flex;align-items:center;flex-wrap:wrap;gap:4px">' +
+      '<b>📄 ' + esc(f.name) + '</b> <span class="muted">(' + formatBytes(f.size) + ')</span>' +
+      badgeHtml +
+      '<span class="pillDel" title="Kaldır" onclick="clearFileSelection(\''+inputEl.id+'\','+i+')">×</span>' +
+      '</div>';
+  }).join('');
+
+  const toInspect = files.filter(f => !window._inspectedFilesMap[f.name] && !window._inspectingFilesMap[f.name]);
+  if(toInspect.length > 0){
+    const fd = new FormData();
+    toInspect.forEach(f => {
+      window._inspectingFilesMap[f.name] = true;
+      fd.append('files', f);
+    });
+    fetch('/api/inspect', { method: 'POST', body: fd })
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if(data && data.files){
+          data.files.forEach(res => {
+            if(res && res.filename){
+              window._inspectedFilesMap[res.filename] = res.primary || res;
+            }
+          });
+        }
+      })
+      .catch(err => {
+        console.warn('Inspect error:', err);
+      })
+      .finally(() => {
+        toInspect.forEach(f => { delete window._inspectingFilesMap[f.name]; });
+        const cur = [...inputEl.files];
+        if(cur.length){
+          updateFileList(inputEl, listEl, btnEl, defaultBtnText);
+        }
+      });
+  }
 }
+
+window.openErpMappingModal = function(filename){
+  const info = window._inspectedFilesMap && window._inspectedFilesMap[filename];
+  if(!info){
+    alert('Bu dosyanın önizleme bilgisi henüz yüklenemedi veya dosya bulunamadı.');
+    return;
+  }
+  let m = document.getElementById('erpMappingModal');
+  if(!m){
+    m = document.createElement('div');
+    m.id = 'erpMappingModal';
+    document.body.appendChild(m);
+  }
+  m.style.cssText = 'position:fixed;inset:0;background:rgba(15,27,45,0.72);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);';
+
+  const rawCols = info.raw_columns || [];
+  const mappedCols = info.mapped_columns || [];
+  const previewRows = info.preview_rows || [];
+  const unmappedReq = info.unmapped_required || [];
+  const erpBadge = info.erp_badge || 'Standart Format';
+  const roleLabel = info.role_label || 'Finansal Tablo';
+  const confPct = Math.round((info.erp_confidence || info.confidence || 0.8) * 100);
+
+  let mappingRowsHtml = '';
+  if(mappedCols.length === 0 && unmappedReq.length === 0){
+    mappingRowsHtml = '<tr><td colspan="4" style="text-align:center;color:#64748B;padding:16px">Eşleşen sütun bilgisi bulunamadı.</td></tr>';
+  } else {
+    mappedCols.forEach(mc => {
+      const isReq = mc.is_required ? '<span style="color:#DC2626;font-weight:700;font-size:11px">* Zorunlu</span>' : '<span style="color:#64748B;font-size:11px">Opsiyonel</span>';
+      let selectOptions = '<option value="">-- Eşleşme Yok --</option>';
+      rawCols.forEach(rc => {
+        const isSel = (rc === mc.source_column) ? 'selected' : '';
+        selectOptions += '<option value="' + esc(rc) + '" ' + isSel + '>' + esc(rc) + '</option>';
+      });
+      mappingRowsHtml += '<tr style="border-bottom:1px solid #F1F5F9">' +
+        '<td style="padding:10px 12px;font-weight:600;color:#0F1B2D;font-size:12.5px">' + esc(mc.canonical_label) + ' <span style="font-size:11px;color:#64748B">(' + esc(mc.canonical_field) + ')</span></td>' +
+        '<td style="padding:10px 12px">' + isReq + '</td>' +
+        '<td style="padding:10px 12px">' +
+          '<select style="width:100%;padding:6px 10px;border-radius:8px;border:1px solid #CBD5E1;font-size:12px;background:#FFFFFF;color:#0F1B2D" onchange="updateCustomMapping(\'' + esc(filename) + '\', \'' + esc(mc.canonical_field) + '\', this.value)">' +
+            selectOptions +
+          '</select>' +
+        '</td>' +
+        '<td style="padding:10px 12px"><span class="tag positive" style="font-size:11px;font-weight:700">✅ Eşleşti</span></td>' +
+        '</tr>';
+    });
+    unmappedReq.forEach(ur => {
+      let selectOptions = '<option value="" selected>-- Lütfen Seçin --</option>';
+      rawCols.forEach(rc => {
+        selectOptions += '<option value="' + esc(rc) + '">' + esc(rc) + '</option>';
+      });
+      mappingRowsHtml += '<tr style="border-bottom:1px solid #FEE2E2;background:#FFF5F5">' +
+        '<td style="padding:10px 12px;font-weight:600;color:#991B1B;font-size:12.5px">' + esc(ur.canonical_label) + ' <span style="font-size:11px;color:#DC2626">(' + esc(ur.canonical_field) + ')</span></td>' +
+        '<td style="padding:10px 12px"><span style="color:#DC2626;font-weight:700;font-size:11px">* Zorunlu</span></td>' +
+        '<td style="padding:10px 12px">' +
+          '<select style="width:100%;padding:6px 10px;border-radius:8px;border:1px solid #F87171;font-size:12px;background:#FFFFFF;color:#0F1B2D" onchange="updateCustomMapping(\'' + esc(filename) + '\', \'' + esc(ur.canonical_field) + '\', this.value)">' +
+            selectOptions +
+          '</select>' +
+        '</td>' +
+        '<td style="padding:10px 12px"><span class="tag" style="font-size:11px;font-weight:700;background:#FEE2E2;color:#DC2626">⚠️ Seçilmedi</span></td>' +
+        '</tr>';
+    });
+  }
+
+  let previewTableHtml = '';
+  if(previewRows.length && rawCols.length){
+    const ths = rawCols.slice(0, 8).map(c => '<th style="padding:8px 10px;background:#F8FAFC;font-size:11.5px;color:#475569;border-bottom:1px solid #E2E8F0;text-align:left;white-space:nowrap">' + esc(c) + '</th>').join('');
+    const trs = previewRows.map(r => {
+      const tds = rawCols.slice(0, 8).map(c => '<td style="padding:7px 10px;font-size:11.5px;color:#1E293B;border-bottom:1px solid #F1F5F9;white-space:nowrap;font-family:monospace">' + esc(r[c] !== undefined ? r[c] : '') + '</td>').join('');
+      return '<tr>' + tds + '</tr>';
+    }).join('');
+    previewTableHtml = '<div style="overflow-x:auto;max-height:180px;border:1px solid #E2E8F0;border-radius:8px;margin-top:8px"><table style="width:100%;border-collapse:collapse;text-align:left"><thead><tr>' + ths + '</tr></thead><tbody>' + trs + '</tbody></table></div>';
+  } else {
+    previewTableHtml = '<div style="font-size:12px;color:#64748B;padding:8px">Önizleme verisi mevcut değil.</div>';
+  }
+
+  m.innerHTML = '<div style="background:#FFFFFF;border-radius:18px;max-width:820px;width:100%;max-height:90vh;overflow-y:auto;padding:26px;box-shadow:0 25px 60px rgba(0,0,0,0.3);position:relative;border:1px solid #E2E8F0">' +
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid #E2E8F0;padding-bottom:12px">' +
+      '<div>' +
+        '<div style="display:flex;align-items:center;gap:8px">' +
+          '<span style="font-size:22px">🛠️</span>' +
+          '<h3 style="margin:0;font-size:18px;color:#0F1B2D;font-weight:700">Akıllı ERP Sütun Eşleme Sihirbazı</h3>' +
+        '</div>' +
+        '<div style="font-size:12px;color:#64748B;margin-top:4px">Dosya: <b>' + esc(filename) + '</b></div>' +
+      '</div>' +
+      '<button type="button" onclick="closeErpMappingModal()" style="border:none;background:transparent;font-size:24px;cursor:pointer;color:#94A3B8;padding:4px 8px;border-radius:6px;line-height:1">×</button>' +
+    '</div>' +
+
+    '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:16px">' +
+      '<div style="background:#F8FAFC;padding:10px 14px;border-radius:10px;border:1px solid #E2E8F0">' +
+        '<div style="font-size:11px;color:#64748B;font-weight:600">TESPİT EDİLEN ERP</div>' +
+        '<div style="font-size:14px;font-weight:700;color:#059669;margin-top:2px">🏷️ ' + esc(erpBadge) + '</div>' +
+        '<div style="font-size:10.5px;color:#64748B">Güven: %' + confPct + '</div>' +
+      '</div>' +
+      '<div style="background:#F8FAFC;padding:10px 14px;border-radius:10px;border:1px solid #E2E8F0">' +
+        '<div style="font-size:11px;color:#64748B;font-weight:600">STANDART VERİ ROLÜ</div>' +
+        '<div style="font-size:14px;font-weight:700;color:#2563EB;margin-top:2px">📋 ' + esc(roleLabel) + '</div>' +
+        '<div style="font-size:10.5px;color:#64748B">' + esc(info.sheet_name || 'Sayfa') + '</div>' +
+      '</div>' +
+      '<div style="background:#F8FAFC;padding:10px 14px;border-radius:10px;border:1px solid #E2E8F0">' +
+        '<div style="font-size:11px;color:#64748B;font-weight:600">EŞLEŞEN SÜTUNLAR</div>' +
+        '<div style="font-size:14px;font-weight:700;color:#0F1B2D;margin-top:2px">🎯 ' + mappedCols.length + ' / ' + (mappedCols.length + unmappedReq.length) + ' Alan</div>' +
+        '<div style="font-size:10.5px;color:#059669;font-weight:600">' + (unmappedReq.length === 0 ? 'Tüm Zorunlu Alanlar Tam' : '⚠️ ' + unmappedReq.length + ' Alan Eksik') + '</div>' +
+      '</div>' +
+      '<div style="background:#F8FAFC;padding:10px 14px;border-radius:10px;border:1px solid #E2E8F0">' +
+        '<div style="font-size:11px;color:#64748B;font-weight:600">HAM VERİ SÜTUNLARI</div>' +
+        '<div style="font-size:14px;font-weight:700;color:#0F1B2D;margin-top:2px">📊 ' + rawCols.length + ' Sütun</div>' +
+        '<div style="font-size:10.5px;color:#64748B">' + previewRows.length + ' Örnek Satır</div>' +
+      '</div>' +
+    '</div>' +
+
+    '<div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:#1E40AF;line-height:1.4">' +
+      '💡 <b>Akıllı Eşleme Motoru:</b> ERP sisteminizden aldığınız rapor başlıkları otomatik olarak standart finansal modelimize eşleştirilmiştir. Değiştirmek istediğiniz sütun eşleşmesi varsa aşağıdan güncelleyebilirsiniz.' +
+    '</div>' +
+
+    '<div style="margin-bottom:18px">' +
+      '<h4 style="margin:0 0 8px 0;font-size:13px;color:#0F1B2D;font-weight:700">📌 Sütun Eşleme Tablosu</h4>' +
+      '<div style="border:1px solid #E2E8F0;border-radius:8px;overflow:hidden">' +
+        '<table style="width:100%;border-collapse:collapse;font-size:12px;text-align:left">' +
+          '<thead>' +
+            '<tr style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;color:#475569">' +
+              '<th style="padding:8px 12px;font-weight:600">Standart Model Alanı</th>' +
+              '<th style="padding:8px 12px;font-weight:600;width:90px">Gereksinim</th>' +
+              '<th style="padding:8px 12px;font-weight:600">Dosyanızdaki Sütun</th>' +
+              '<th style="padding:8px 12px;font-weight:600;width:90px">Durum</th>' +
+            '</tr>' +
+          '</thead>' +
+          '<tbody>' + mappingRowsHtml + '</tbody>' +
+        '</table>' +
+      '</div>' +
+    '</div>' +
+
+    '<div style="margin-bottom:20px">' +
+      '<h4 style="margin:0 0 6px 0;font-size:13px;color:#0F1B2D;font-weight:700">👀 Dosyadan Ham Veri Önizleme (İlk ' + previewRows.length + ' Satır)</h4>' +
+      previewTableHtml +
+    '</div>' +
+
+    '<div style="display:flex;justify-content:flex-end;gap:10px;padding-top:14px;border-top:1px solid #E2E8F0">' +
+      '<button type="button" class="primary" style="padding:10px 24px;font-size:13px;font-weight:700;border-radius:10px;cursor:pointer" onclick="closeErpMappingModal()">✅ Eşleştirmeyi Onayla ve Kapat</button>' +
+    '</div>' +
+  '</div>';
+};
+
+window.closeErpMappingModal = function(){
+  const m = document.getElementById('erpMappingModal');
+  if(m){ m.remove(); }
+};
+
+window.updateCustomMapping = function(filename, canonicalField, selectedSourceCol){
+  const info = window._inspectedFilesMap && window._inspectedFilesMap[filename];
+  if(!info) return;
+  if(!info.custom_mapping) info.custom_mapping = {};
+  info.custom_mapping[canonicalField] = selectedSourceCol;
+  let found = false;
+  if(info.mapped_columns){
+    info.mapped_columns.forEach(mc => {
+      if(mc.canonical_field === canonicalField){
+        mc.source_column = selectedSourceCol;
+        found = true;
+      }
+    });
+  }
+  if(!found && selectedSourceCol){
+    info.mapped_columns = info.mapped_columns || [];
+    info.mapped_columns.push({
+      canonical_field: canonicalField,
+      canonical_label: canonicalField,
+      source_column: selectedSourceCol,
+      is_required: false,
+      confidence: 1.0
+    });
+  }
+};
 
 window.clearFileSelection = function(inputId, index){
   const inp = $(inputId);

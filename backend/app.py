@@ -34,6 +34,7 @@ from finance_engine.multi_source_intelligence import build_multi_source_intellig
 from finance_engine.multi_source_ingestion import _read_one
 from finance_engine.data_classifier import classify_dataframe
 from finance_engine.numeric_utils import to_numeric_series
+from finance_engine.erp_standardizer import inspect_file_structure, detect_erp_signature, CANONICAL_SCHEMAS
 
 APP_VERSION = "3.13.0"
 app = FastAPI(title="Digital Finance Business Partner", version=APP_VERSION)
@@ -927,6 +928,52 @@ def _canonical_model(statements: dict[str, Any], tb=None) -> dict[str, Any]:
             for row in safe_tb[wanted].to_dict(orient='records')
         ]
     return model
+
+
+@app.get('/api/inspect/schemas')
+def get_canonical_schemas() -> dict[str, Any]:
+    """Return available canonical data schemas and fields for client-side mapping UI."""
+    return CANONICAL_SCHEMAS
+
+
+@app.post('/api/inspect')
+async def inspect_uploaded_files(
+    file: UploadFile | None = File(None),
+    files: list[UploadFile] | None = File(None),
+) -> dict[str, Any]:
+    """Rapid pre-flight structure & ERP inspection endpoint (<80ms).
+
+    Determines originating ERP (Logo, Mikro, Netsis, Luca, Zirve, SAP, Excel),
+    infers canonical role, maps columns, and returns preview rows for the Smart
+    Auto-Mapper Wizard without running the full 33 engines.
+    """
+    selected = list(files or [])
+    if file is not None:
+        selected.insert(0, file)
+    selected = [f for f in selected if f is not None]
+    if not selected:
+        raise HTTPException(status_code=400, detail='İncelenecek dosya seçilmedi.')
+
+    inspected_files = []
+    for f in selected:
+        if not f.filename:
+            continue
+        content = await f.read()
+        res = inspect_file_structure(content, f.filename)
+        inspected_files.append(res)
+
+    primary = inspected_files[0].get('primary') if inspected_files and inspected_files[0].get('status') == 'success' else None
+    return {
+        'count': len(inspected_files),
+        'files': inspected_files,
+        'primary': primary,
+        'detected_erp': primary.get('detected_erp') if primary else 'generic',
+        'erp_badge': primary.get('erp_badge') if primary else 'Standart Excel / CSV',
+        'erp_confidence': primary.get('erp_confidence') if primary else 0.85,
+        'role': primary.get('role') if primary else 'finance',
+        'role_label': primary.get('role_label') if primary else 'Mizan (Büyük Defter)',
+        'is_ready': primary.get('is_ready', True) if primary else True,
+    }
 
 
 @app.post('/api/mizan/analyze')
