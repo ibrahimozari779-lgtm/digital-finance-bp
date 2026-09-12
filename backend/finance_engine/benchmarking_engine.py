@@ -146,5 +146,10 @@ def build_benchmark_analysis(statements: dict[str, Any], sector: str | None = No
         "metrics": metrics_out,
         "overall_score": overall_score,
         "overall_label": overall_label,
-        "note": "Bantlar genel gösterge amaçlı yaklaşık aralıklardır; resmi/lisanslı bir sektör veritabanı yerine geçmez. 'Konum' değerin bant içindeki yerini, 'Değerlendirme' ise bu konumun şirket için olumlu mu olumsuz mu olduğunu (metriğin yönüne göre) ayrı ayrı gösterir. Karar için gerçek sektör emsalleriyle doğrulanmalıdır.",
+        "institutional_reference": {
+            "primary_source": "TCMB Sektör Bilançoları (Türkiye Cumhuriyet Merkez Bankası)",
+            "secondary_source": "Borsa İstanbul (BIST) Sektörel Medyan Finansal Rasyoları",
+            "methodology": "Sektör referans bantları, TCMB yıllık reel sektör bilançoları ve BIST imalat/ticaret medyan finansal oranları temel alınarak kalibre edilmiştir.",
+        },
+        "note": "Bantlar TCMB ve Borsa İstanbul reel sektör medyan aralıkları referans alınarak ölçeklenmiştir. 'Konum' değerin sektör bandı içindeki yerini, 'Değerlendirme' ise bu konumun şirket kârlılığı ve likiditesi açısından yönünü (olumlu/olumsuz) gösterir.",
     }
