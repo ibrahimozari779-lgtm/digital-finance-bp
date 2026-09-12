@@ -89,7 +89,7 @@ def build_trend_analysis(
             "reason": "Trend analizi için en az bir önceki döneme ait finansal tablo verisi gereklidir. Şu an yalnızca tek dönem yüklendi.",
         }
 
-    timeline = [{"label": p["label"], "statements": p["statements"]} for p in previous_periods]
+    timeline = [{"label": p.get("label") or p.get("period_label") or p.get("filename") or f"Dönem {i+1}", "statements": p["statements"]} for i, p in enumerate(previous_periods)]
     timeline.append({"label": current_label, "statements": current_statements})
 
     amount_series = {key: [] for key, *_ in _METRIC_DEFS}

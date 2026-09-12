@@ -13,10 +13,13 @@ import pandas as pd
 try:
     from dotenv import load_dotenv
     from pathlib import Path
-    load_dotenv()
-    load_dotenv(Path(__file__).resolve().parent / '.env')
-    load_dotenv(Path(__file__).resolve().parent.parent / '.env')
-except ImportError:
+    _b_env = Path(__file__).resolve().parent / '.env'
+    if _b_env.is_file():
+        load_dotenv(_b_env)
+    _r_env = Path(__file__).resolve().parent.parent / '.env'
+    if _r_env.is_file():
+        load_dotenv(_r_env)
+except Exception:
     pass
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
@@ -1096,7 +1099,10 @@ def config() -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 import json as _json
 from pydantic import BaseModel as _BaseModel
-from sqlalchemy.orm import Session as _Session
+try:
+    from sqlalchemy.orm import Session as _Session
+except ImportError:
+    _Session = Any
 from db import init_db as _init_db, get_db as _get_db, User as _User, AnalysisRecord as _AnalysisRecord
 from auth import hash_password as _hash_password, verify_password as _verify_password, create_token as _create_token, get_current_user as _get_current_user
 from fastapi import Depends as _Depends

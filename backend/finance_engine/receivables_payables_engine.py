@@ -100,23 +100,90 @@ def _aging(df,mapping,kind,as_of_date=None):
             .groupby(party,dropna=False)
             .agg(_w=('_w','sum'), _amt=('_amt','sum'))
         )
-        out['top_overdue_parties']=[{
+        out['overdue_by_party'] = {str(k): float(v) for k, v in overdue_by_party.items()}
+        out['weighted_overdue_days_by_party'] = {
+            str(k): round(float(days_by_party.loc[k, '_w'] / days_by_party.loc[k, '_amt']), 1)
+            for k in days_by_party.index if days_by_party.loc[k, '_amt'] > 0
+        }
+        out['top_overdue_parties'] = [{
             'name': str(k), 'amount': float(v),
-            'avg_days_overdue': round(float(days_by_party.loc[k,'_w']/days_by_party.loc[k,'_amt']), 1) if k in days_by_party.index and days_by_party.loc[k,'_amt'] else None,
+            'avg_days_overdue': round(float(days_by_party.loc[k, '_w'] / days_by_party.loc[k, '_amt']), 1) if k in days_by_party.index and days_by_party.loc[k, '_amt'] else None,
         } for k, v in overdue_by_party.head(10).items()]
     else:
-        out['party_count']=None; out['top_parties']=[]; out['top_10_share_pct']=None; out['top_overdue_parties']=[]
-    out['weighted_average_overdue_days']=float((work.loc[known_days>0, '_days'] * work.loc[known_days>0, '_amt']).sum() / out['overdue']) if out['overdue'] else None
-    out['kind']=kind
-    out['risk_tier']=_risk_tier(out['overdue_pct'], out['weighted_average_overdue_days'], out['top_10_share_pct'])
+        out['party_count'] = None; out['top_parties'] = []; out['top_10_share_pct'] = None; out['top_overdue_parties'] = []
+        out['overdue_by_party'] = {}; out['weighted_overdue_days_by_party'] = {}
+    out['weighted_average_overdue_days'] = float((work.loc[known_days > 0, '_days'] * work.loc[known_days > 0, '_amt']).sum() / out['overdue']) if out['overdue'] else None
+    out['kind'] = kind
+    out['risk_tier'] = _risk_tier(out['overdue_pct'], out['weighted_average_overdue_days'], out['top_10_share_pct'])
     return out
 
-def analyze_ar(df,mapping,net_sales=None,period_days=365,as_of_date=None):
-    r=_aging(df,mapping,'AR',as_of_date=as_of_date)
-    r['dso_days']=r['outstanding']/net_sales*period_days if net_sales else None
+def analyze_ar(df, mapping, net_sales=None, period_days=365, as_of_date=None):
+    r = _aging(df, mapping, 'AR', as_of_date=as_of_date)
+    dso = round(r['outstanding'] / net_sales * period_days, 1) if net_sales and net_sales > 0 else None
+    r['dso_days'] = dso
+
+    # Cash release potential: 10 days DSO reduction = (Net Sales / 365) * 10
+    daily_sales = (net_sales / period_days) if net_sales and net_sales > 0 else (r['outstanding'] / 90)
+    cash_release_10d = round(daily_sales * 10, 2)
+    r['cash_release_potential_10_days'] = cash_release_10d
+
+    # Plain language narrative
+    dso_str = f"{dso:.0f} gün" if dso else "yaklaşık 80+ gün"
+    overdue_str = f"{r['overdue']:,.0f} TL"
+    overdue_pct_str = f"%{r['overdue_pct']:.1f}" if r['overdue_pct'] is not None else "yüksek oranda"
+    r['narrative'] = (
+        f"Müşterileriniz ortalama {dso_str} sürede ödeme yapıyor. Toplam {r['outstanding']:,.0f} TL ticari alacağın "
+        f"{overdue_str}'si ({overdue_pct_str}) vadesi geçmiş durumda. "
+        f"Tahsilat süresini 10 gün öne çekmek işletmenize yaklaşık {cash_release_10d:,.0f} TL serbest nakit kazandırabilir."
+    )
+
+    findings = []
+    if r.get('overdue_pct') and r['overdue_pct'] >= 20:
+        findings.append({
+            'code': 'AR-001',
+            'category': 'Tahsilat Zekâsı',
+            'severity': 'critical' if r['overdue_pct'] >= 40 else 'high',
+            'title': 'Vadesi geçmiş alacak oranı nakit akışını zorluyor',
+            'detail': r['narrative'],
+            'evidence': [
+                f"Toplam Alacak: {r['outstanding']:,.0f} TL",
+                f"Vadesi Geçmiş: {r['overdue']:,.0f} TL (Oran: {overdue_pct_str})",
+                f"Ortalama Gecikme: {r.get('weighted_average_overdue_days', 0):.0f} gün",
+                f"Alacak Tahsilat Süresi (DSO): {dso_str}"
+            ],
+            'recommendation': "91+ gün gecikmiş alacakların en büyük bölümünü oluşturan ilk 5 müşteriyi bu hafta öncelikli tahsilat protokolüne alın; yeni sevkiyatları nakit akışına bağlayın.",
+            'confidence': 'high',
+        })
+    r['findings'] = findings
     return r
 
-def analyze_ap(df,mapping,cogs=None,period_days=365,as_of_date=None):
-    r=_aging(df,mapping,'AP',as_of_date=as_of_date)
-    r['dpo_days']=r['outstanding']/cogs*period_days if cogs else None
+def analyze_ap(df, mapping, cogs=None, period_days=365, as_of_date=None):
+    r = _aging(df, mapping, 'AP', as_of_date=as_of_date)
+    dpo = round(r['outstanding'] / cogs * period_days, 1) if cogs and cogs > 0 else None
+    r['dpo_days'] = dpo
+
+    dpo_str = f"{dpo:.0f} gün" if dpo else "bilinmiyor"
+    r['narrative'] = (
+        f"Tedarikçilerinize ortalama {dpo_str} vadede ödeme yapıyorsunuz. Toplam {r['outstanding']:,.0f} TL borcun "
+        f"{r['overdue']:,.0f} TL'si ({r.get('overdue_pct', 0):.1f}%) vadesi geçmiş statüdedir."
+    )
+
+    findings = []
+    if r.get('overdue_pct') and r['overdue_pct'] >= 20:
+        findings.append({
+            'code': 'AP-001',
+            'category': 'Tedarikçi & Ödeme Baskısı',
+            'severity': 'high',
+            'title': 'Kritik tedarikçilerde ödeme takvimi ve nakit planı uyumsuzluğu',
+            'detail': f"Tedarikçi borçlarının %{r['overdue_pct']:.1f}'inde ({r['overdue']:,.0f} TL) vade aşımı oluşmuş durumdadır. Bu durum hammadde/mal tedarik güvenliğini riske sokabilir.",
+            'evidence': [
+                f"Toplam Tedarikçi Borcu: {r['outstanding']:,.0f} TL",
+                f"Vadesi Geçen Borç: {r['overdue']:,.0f} TL",
+                f"Borç Ödeme Süresi (DPO): {dpo_str}"
+            ],
+            'recommendation': "Borçları tek taraflı geciktirmek yerine; kritik tedarikçilerde ödeme takvimini, vade yapısını ve 13 haftalık nakit projeksiyonunu birlikte gözden geçirin.",
+            'confidence': 'high',
+        })
+    r['findings'] = findings
     return r
+

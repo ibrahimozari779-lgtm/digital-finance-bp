@@ -99,54 +99,107 @@ def _resolve_sheet_layout(v: pd.DataFrame) -> pd.DataFrame:
     return promoted_df
 
 
-def _read_one(content:bytes, filename:str)->dict[str,pd.DataFrame]:
-    ext=filename.lower().rsplit('.',1)[-1] if '.' in filename else ''
-    bio=io.BytesIO(content)
-    if ext=='csv':
-        last=None
-        for enc,kwargs in [('utf-8-sig',{'sep':';'}),('cp1254',{'sep':';'}),('utf-8',{})]:
+def _read_text_table(content: bytes, default_sep: str | None = None) -> pd.DataFrame:
+    # Detect best delimiter and encoding
+    sample = content[:8192]
+    encodings = ['utf-8-sig', 'cp1254', 'utf-8', 'iso-8859-9', 'latin-1']
+    sample_text = ""
+    chosen_enc = 'utf-8'
+    for enc in encodings:
+        try:
+            sample_text = sample.decode(enc)
+            chosen_enc = enc
+            break
+        except Exception:
+            continue
+
+    delimiters = [default_sep] if default_sep else [';', '\t', ',', '|']
+    best_delim = ';'
+    if default_sep:
+        best_delim = default_sep
+    elif sample_text:
+        lines = [line for line in sample_text.splitlines() if line.strip()][:10]
+        if lines:
+            counts = {d: sum(line.count(d) for line in lines) for d in [';', '\t', ',', '|']}
+            best_delim = max(counts, key=counts.get)
+            if counts[best_delim] == 0:
+                best_delim = ';'
+
+    bio = io.BytesIO(content)
+    last_exc = None
+    for enc in [chosen_enc] + [e for e in encodings if e != chosen_enc]:
+        for sep in [best_delim] + [d for d in delimiters if d != best_delim]:
             try:
-                bio.seek(0); raw=pd.read_csv(bio,header=None,encoding=enc,**kwargs); last=None; break
-            except Exception as exc: last=exc
-        if last is not None: raise ValueError(f'CSV okunamadı: {last}')
-        df,meta=_promote_header(raw); return {'CSV':df}
-    if ext in {'xlsx','xlsm'}:
-        raw=pd.read_excel(bio,sheet_name=None,header=None,engine='openpyxl');
-        out={}
-        for k,v in raw.items():
+                bio.seek(0)
+                raw = pd.read_csv(bio, header=None, encoding=enc, sep=sep, engine='python', on_bad_lines='skip')
+                if raw is not None and not raw.empty and raw.shape[1] >= 2:
+                    return raw
+            except Exception as exc:
+                last_exc = exc
+    if last_exc is not None:
+        raise ValueError(f'Metin/CSV dosyası okunamadı: {last_exc}')
+    raise ValueError('Dosya boş veya geçerli bir tablo içermiyor.')
+
+
+def _read_one(content: bytes, filename: str) -> dict[str, pd.DataFrame]:
+    ext = filename.lower().rsplit('.', 1)[-1] if '.' in filename else ''
+    bio = io.BytesIO(content)
+    if ext == 'tsv':
+        raw = _read_text_table(content, default_sep='\t')
+        df, meta = _promote_header(raw)
+        return {'TSV': df}
+    if ext in {'csv', 'txt'}:
+        raw = _read_text_table(content)
+        df, meta = _promote_header(raw)
+        return {'Table': df}
+    if ext in {'xlsx', 'xlsm'}:
+        raw = pd.read_excel(bio, sheet_name=None, header=None, engine='openpyxl')
+        out = {}
+        for k, v in raw.items():
             out[str(k)] = _resolve_sheet_layout(v)
         return out
-    if ext=='xls':
-        try: raw=pd.read_excel(bio,sheet_name=None,header=None,engine='xlrd')
-        except ImportError as exc: raise ValueError('Legacy .xls dosyası için xlrd>=2.0.1 gerekir.') from exc
-        except Exception as exc: raise ValueError(f'.xls dosyası okunamadı: {exc}') from exc
-        return {str(k):_resolve_sheet_layout(v) for k,v in raw.items()}
-    raise ValueError('Yalnızca CSV, XLSX, XLSM ve XLS destekleniyor.')
+    if ext == 'xls':
+        try:
+            raw = pd.read_excel(bio, sheet_name=None, header=None, engine='xlrd')
+        except ImportError as exc:
+            raise ValueError('Legacy .xls dosyası için xlrd>=2.0.1 gerekir.') from exc
+        except Exception as exc:
+            raise ValueError(f'.xls dosyası okunamadı: {exc}') from exc
+        return {str(k): _resolve_sheet_layout(v) for k, v in raw.items()}
+    raise ValueError(f'Desteklenmeyen dosya formatı ({ext}). Yalnızca XLSX, XLSM, XLS, CSV, TSV ve TXT desteklenir.')
 
-def ingest_sources(files:list[tuple[str,bytes]], finance_processor=None, max_mb:float=15.0)->dict[str,Any]:
-    sources=[]; errors=[]; file_results=[]
-    for filename,content in files:
-        if len(content)>max_mb*1024*1024:
-            errors.append({'file':filename,'error':f'{max_mb:g} MB limitini aşıyor.'}); continue
-        try: sheets=_read_one(content,filename)
-        except Exception as e: errors.append({'file':filename,'error':str(e)}); continue
-        file_roles=[]
-        for sheet,df in sheets.items():
-            if df is None or df.empty: continue
-            if len(df)>MAX_ROWS: df=df.head(MAX_ROWS).copy()
-            role,conf,mapping=classify_dataframe(df,filename,sheet)
+
+def ingest_sources(files: list[tuple[str, bytes]], finance_processor=None, max_mb: float = 15.0) -> dict[str, Any]:
+    sources = []; errors = []; file_results = []
+    for filename, content in files:
+        if len(content) > max_mb * 1024 * 1024:
+            errors.append({'file': filename, 'error': f'{max_mb:g} MB limitini aşıyor.'})
+            continue
+        try:
+            sheets = _read_one(content, filename)
+        except Exception as e:
+            errors.append({'file': filename, 'error': str(e)})
+            continue
+        file_roles = []
+        for sheet, df in sheets.items():
+            if df is None or df.empty:
+                continue
+            if len(df) > MAX_ROWS:
+                df = df.head(MAX_ROWS).copy()
+            role, conf, mapping = classify_dataframe(df, filename, sheet)
             mapping = dict(mapping)
             mapping['_rows_loaded'] = int(len(df))
             mapping['_columns_loaded'] = int(len(df.columns))
-            mapping['_header_mode'] = next((s.get('mode') for s in []), None)
-            # A sales file with both sales and collection fields is intentionally sales-primary.
-            roles=[x for x in mapping.get('_role_candidates','').split('|') if x]
-            if role!='unknown' and role not in roles: roles.insert(0,role)
-            file_roles.append({'sheet':sheet,'role':role,'roles':roles,'confidence':conf,'rows':len(df),'mapping':mapping})
-            # Primary role only prevents accidental double counting. The sales engine itself exposes
-            # collection/AR fields when present in the same source.
-            if role!='unknown': sources.append({'filename':filename,'sheet':sheet,'role':role,'confidence':conf,'rows':len(df),'mapping':mapping,'df':df})
-        if not file_roles: errors.append({'file':filename,'error':'Okunabilir tablo bulunamadı.'})
-        elif all(x['role']=='unknown' for x in file_roles): errors.append({'file':filename,'error':'Dosya okundu ancak veri tipi otomatik sınıflandırılamadı. Kolon başlıklarını kontrol edin.'})
-        file_results.append({'filename':filename,'roles':file_roles})
-    return {'sources':sources,'files':file_results,'finance_candidates':[s for s in sources if s['role']=='finance'],'errors':errors}
+            roles = [x for x in mapping.get('_role_candidates', '').split('|') if x]
+            if role != 'unknown' and role not in roles:
+                roles.insert(0, role)
+            file_roles.append({'sheet': sheet, 'role': role, 'roles': roles, 'confidence': conf, 'rows': len(df), 'mapping': mapping})
+            if role != 'unknown':
+                sources.append({'filename': filename, 'sheet': sheet, 'role': role, 'confidence': conf, 'rows': len(df), 'mapping': mapping, 'df': df})
+        if not file_roles:
+            errors.append({'file': filename, 'error': 'Okunabilir tablo bulunamadı.'})
+        elif all(x['role'] == 'unknown' for x in file_roles):
+            errors.append({'file': filename, 'error': 'Dosya okundu ancak veri tipi otomatik sınıflandırılamadı. Kolon başlıklarını kontrol edin.'})
+        file_results.append({'filename': filename, 'roles': file_roles})
+    return {'sources': sources, 'files': file_results, 'finance_candidates': [s for s in sources if s['role'] == 'finance'], 'errors': errors}
+

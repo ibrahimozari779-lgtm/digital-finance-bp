@@ -4,7 +4,7 @@ import pandas as pd
 
 def build_pvm_analysis(sales_df: pd.DataFrame, period_col: str, product_col: str, qty_col: str, revenue_col: str) -> dict[str, Any]:
     if not all(c in sales_df.columns for c in [period_col, product_col, qty_col, revenue_col]):
-        return {"available": False, "reason": f"Eksik sütunlar. PVM için '{period_col}', '{product_col}', '{qty_col}', '{revenue_col}' gereklidir."}
+        return {"available": False, "status": "DATA_MISSING_EXPECTED", "reason": f"Eksik sütunlar. PVM için '{period_col}', '{product_col}', '{qty_col}', '{revenue_col}' gereklidir."}
 
     work = sales_df.copy()
     work.loc[:, qty_col] = pd.to_numeric(work[qty_col], errors='coerce').fillna(0)
@@ -12,7 +12,8 @@ def build_pvm_analysis(sales_df: pd.DataFrame, period_col: str, product_col: str
 
     periods = sorted([p for p in work[period_col].unique() if pd.notna(p)])
     if len(periods) < 2:
-        return {"available": False, "reason": "PVM hesaplaması için en az 2 farklı dönem (period) verisi gereklidir."}
+        return {"available": False, "status": "DATA_MISSING_EXPECTED", "reason": "PVM hesaplaması için en az 2 farklı dönem (period) verisi gereklidir."}
+
 
     per1, per2 = periods[-2], periods[-1]
 

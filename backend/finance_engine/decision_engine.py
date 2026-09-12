@@ -21,6 +21,8 @@ from .finding_registry import build_finding_registry
 from .strategy_playbook import build_strategy_playbook
 from .narrative_engine import build_narrative_engine
 from .dupont_engine import build_dupont_analysis
+from .profit_improvement_engine import build_profit_improvement_analysis
+from .resource_allocation_engine import build_resource_allocation_analysis
 
 
 def _safe_div(a: float | None, b: float | None) -> float | None:
@@ -376,6 +378,13 @@ def build_finance_business_partner_analysis(
     # New: DuPont 3 and 5-stage value driver tree decomposition
     dupont = build_dupont_analysis(statements)
 
+    # New: Profit Improvement Sensitivity and Resource Allocation ("Para Nerede?")
+    profit_improvement = build_profit_improvement_analysis(statements, (data_hub or {}).get("analysis_sales"))
+    resource_allocation = build_resource_allocation_analysis(statements, data_hub)
+    cust_prof = (data_hub or {}).get("customer_profitability") or {"status": "DATA_MISSING_EXPECTED", "reason": "Müşteri kârlılığı analizi için Satış Defteri (Sales Ledger) yüklenmedi."}
+    prod_prof = (data_hub or {}).get("product_profitability") or {"status": "DATA_MISSING_EXPECTED", "reason": "Ürün kârlılığı analizi için Satış Defteri (Sales Ledger) yüklenmedi."}
+    pricing_opp = (data_hub or {}).get("pricing_opportunity") or {"status": "DATA_MISSING_EXPECTED", "reason": "Fiyatlama fırsat analizi için Satış Defteri (Sales Ledger) yüklenmedi."}
+
     return {
         "engine_version": "2.0",
         "health_score": health_score,
@@ -402,7 +411,7 @@ def build_finance_business_partner_analysis(
         "actions": actions,
         "executive_summary": executive_summary["text"],
         "methodology_note": "Skor ve kurallar genel finansal eşiklere dayanır; resmi sektör benchmarkı değildir. Trend analizi çok dönemli veri, gerçek DSO/DPO/DIO ise açılış bakiyesi/subledger verisi gerektirir; bu motorlar mevcut verinin izin verdiği ölçüde çalışır ve sınırlarını açıkça belirtir.",
-        # New: the 8 requested capabilities, each as its own explicit section.
+        # Explicit Decision Engines
         "root_cause_engine": root_cause,
         "business_impact_engine": business_impact,
         "executive_summary_engine": executive_summary,
@@ -416,27 +425,15 @@ def build_finance_business_partner_analysis(
         "management_actions": management_actions,
         "calculation_audit": calculation_audit,
         "scenario_engine": {"scenarios": scenarios},
-        # Report-facing gap list: exact statement-level duplicates of an
-        # existing Findings entry are folded out here (see finding_registry
-        # for the fold-in record). Callers who need the raw, un-consolidated
-        # output of build_gap_detection() (e.g. tests) call it directly.
         "gap_detection_engine": gap_detection_for_report,
         "operational_finance_engine": operational_finance,
-        # New: single, de-duplicated, cross-engine finding list. This is the
-        # canonical CFO-facing view; every other *_engine section above is
-        # still returned for traceability/backward compatibility, but the
-        # report layer should render from finding_registry.master_findings
-        # instead of re-listing findings/gaps/risks separately.
         "finding_registry": finding_registry,
-        # New: single, ranked, de-duplicated view of Opportunity Engine +
-        # Scenario Lab (see strategy_playbook.py docstring for why these two
-        # were showing the same six commercial levers twice). Report layer
-        # should render from here instead of the separate "opportunities"
-        # list and "scenario_engine.scenarios" list.
         "strategy_playbook": strategy_playbook,
-        # New: multi-scenario Financial Storytelling Engine — see
-        # narrative_engine.py module docstring for scope/limits.
         "narrative_engine": narrative_engine,
-        # New: DuPont 3 and 5-stage value driver tree decomposition
         "dupont_analysis": dupont,
+        "profit_improvement_engine": profit_improvement,
+        "resource_allocation_engine": resource_allocation,
+        "customer_profitability_engine": cust_prof,
+        "product_profitability_engine": prod_prof,
+        "pricing_opportunity_engine": pricing_opp,
     }

@@ -18,45 +18,79 @@ def analyze_sales(df:pd.DataFrame,mapping:dict[str,str])->dict[str,Any]:
     for key in ['net_sales','gross_sales','cash_price','term_price','discount','quantity','cost','amount','paid','outstanding']:
         if col(key): work.loc[:, f'_{key}']=_num(work[col(key)]); numeric_cols.append(f'_{key}')
     if col('date'): work['_date']=safe_dates(work[col('date')])
-    # When a wide sales export has no single sales amount column, detect product-value columns.
-    excluded={col(k) for k in ('customer','date','due_date','payment_date','paid','outstanding','cash_price','term_price','net_sales','gross_sales','discount','quantity','amount','currency') if col(k)}
-    product_value_cols=[]
+    # Strictly exclude any non-sales or operational columns from product value columns:
+    blocked_exact = {
+        'miktar', 'quantity', 'qty', 'adet', 'maliyet', 'cost', 'cogs', 'iskonto', 'discount', 'indirim',
+        'birim', 'unit', 'fiyat', 'price', 'rate', 'oran', 'yuzde', 'percent', 'weighted', 'date', 'tarih',
+        'id', 'no', 'kod', 'code', 'bakiye', 'balance', 'amount', 'tutar', 'paid', 'odenen', 'outstanding',
+        'overdue', 'vade', 'odeme', 'payment', 'customer', 'musteri', 'ciftci', 'cari', 'region', 'il',
+        'ilce', 'depo', 'warehouse', 'status', 'durum', 'kdv', 'tax', 'currency', 'para', 'doviz'
+    }
+    excluded = {col(k) for k in ('customer','date','due_date','payment_date','paid','outstanding','cash_price','term_price','net_sales','gross_sales','discount','quantity','unit_cost','cost','amount','currency','status','warehouse') if col(k)}
+    product_value_cols = []
     for c in work.columns:
-        nc=norm(c)
-        if c in excluded or str(c).startswith('_') or str(c).startswith('Unnamed_'): continue
-        tokens=set(nc.split())
-        blocked_exact={'weighted','date','tarih','id','bakiye','balance','amount','tutar','price','fiyat','paid','odenen','outstanding','overdue','vade','odeme','payment','customer','musteri','ciftci','region','il','ilce'}
-        if tokens & blocked_exact: continue
-        if any(x in nc for x in ('weighted due','weighted actual','outstanding balance','customer id')): continue
-        s=_num(work[c])
-        if s.notna().mean()>0.85 and float(s.abs().sum())>0 and not pd.api.types.is_datetime64_any_dtype(work[c]):
+        nc = norm(c)
+        if c in excluded or str(c).startswith('_') or str(c).startswith('Unnamed_'):
+            continue
+        tokens = set(nc.split())
+        if tokens & blocked_exact:
+            continue
+        if any(x in nc for x in ('weighted due', 'weighted actual', 'outstanding balance', 'customer id', 'birim fiyat', 'satis miktari', 'iskonto tutari', 'maliyet tutari')):
+            continue
+        s = _num(work[c])
+        if s.notna().mean() > 0.85 and float(s.abs().sum()) > 0 and not pd.api.types.is_datetime64_any_dtype(work[c]):
             product_value_cols.append(str(c))
-    term=float(work['_term_price'].sum()) if '_term_price' in work else None
-    cash=float(work['_cash_price'].sum()) if '_cash_price' in work else None
-    net=float(work['_net_sales'].sum()) if '_net_sales' in work else term if term is not None else float(work['_amount'].sum()) if '_amount' in work else None
-    if net is None and product_value_cols: net=float(sum(_num(work[c]).sum() for c in product_value_cols))
-    product_total=float(sum(_num(work[c]).sum() for c in product_value_cols)) if product_value_cols else None
-    gross=float(work['_gross_sales'].sum()) if '_gross_sales' in work else term if term is not None else product_total if product_total is not None else net
-    discount=float(work['_discount'].sum()) if '_discount' in work else None
-    cost=float(work['_cost'].sum()) if '_cost' in work else None
-    paid=float(work['_paid'].sum()) if '_paid' in work else None
-    outstanding=float(work['_outstanding'].sum()) if '_outstanding' in work else None
-    result={
-        'rows':len(work),'net_sales':net,'gross_sales':gross,'cash_price_total':cash,'term_price_total':term,
-        'term_premium':(term-cash if term is not None and cash is not None else None),
-        'term_premium_pct':((term/cash-1)*100 if term is not None and cash else None),
-        'product_value_total':product_total,'product_value_columns':product_value_cols,
-        'discounts':discount,'cogs':cost,'paid_total':paid,'outstanding_total':outstanding,
-        'collection_rate_pct':None,
-        'collection_metric_note':'Ödenen Tutar ile Açık Bakiye satır bazında bağımsız dönemleri temsil ediyor olabileceğinden doğrudan tahsilat oranı olarak yorumlanmaz.',
-        'gross_margin':((net-cost)/net if net and cost is not None else None),
+
+    term = float(work['_term_price'].sum()) if '_term_price' in work else None
+    cash = float(work['_cash_price'].sum()) if '_cash_price' in work else None
+    gross = float(work['_gross_sales'].sum()) if '_gross_sales' in work else None
+    discount = float(work['_discount'].sum()) if '_discount' in work else None
+
+    # Economically sound Net Sales priority:
+    # 1. Explicit net_sales
+    # 2. Gross sales minus discount (if both exist)
+    # 3. amount
+    # 4. term_price or cash_price
+    # 5. Sum of genuine wide product category columns (only if nothing else exists)
+    if '_net_sales' in work:
+        net = float(work['_net_sales'].sum())
+    elif gross is not None and discount is not None:
+        net = gross - discount
+    elif '_amount' in work:
+        net = float(work['_amount'].sum())
+    elif term is not None:
+        net = term
+    elif cash is not None:
+        net = cash
+    elif product_value_cols:
+        net = float(sum(_num(work[c]).sum() for c in product_value_cols))
+    else:
+        net = None
+
+    product_total = float(sum(_num(work[c]).sum() for c in product_value_cols)) if product_value_cols else None
+    if gross is None:
+        gross = (net + discount) if (net is not None and discount is not None) else net
+
+    cost = float(work['_cost'].sum()) if '_cost' in work else None
+    paid = float(work['_paid'].sum()) if '_paid' in work else None
+    outstanding = float(work['_outstanding'].sum()) if '_outstanding' in work else None
+    result = {
+        'rows': len(work), 'net_sales': net, 'gross_sales': gross, 'cash_price_total': cash, 'term_price_total': term,
+        'term_premium': (term - cash if term is not None and cash is not None else None),
+        'term_premium_pct': ((term / cash - 1) * 100 if term is not None and cash else None),
+        'product_value_total': product_total, 'product_value_columns': product_value_cols,
+        'discounts': discount, 'cogs': cost, 'paid_total': paid, 'outstanding_total': outstanding,
+        'collection_rate_pct': None,
+        'collection_metric_note': 'Ödenen Tutar ile Açık Bakiye satır bazında bağımsız dönemleri temsil ediyor olabileceğinden doğrudan tahsilat oranı olarak yorumlanmaz.',
+        'gross_margin': ((net - cost) / net if net and cost is not None else None),
     }
     if col('customer') and net is not None:
-        base='_term_price' if '_term_price' in work else '_net_sales' if '_net_sales' in work else '_amount'
+        base = '_net_sales' if '_net_sales' in work else '_amount' if '_amount' in work else '_term_price'
         if base in work:
-            grp=work.groupby(col('customer'),dropna=False)[base].sum().sort_values(ascending=False)
-            result['customer_count']=int(len(grp)); result['top_customers']=[{'name':str(k),'sales':float(v)} for k,v in grp.head(10).items()]
-            result['top_10_customer_share_pct']=float(grp.head(10).sum()/net*100) if net else None
+            grp = work.groupby(col('customer'), dropna=False)[base].sum().sort_values(ascending=False)
+            result['customer_count'] = int(len(grp))
+            result['top_customers'] = [{'name': str(k), 'sales': float(v)} for k, v in grp.head(10).items()]
+            result['top_10_customer_share_pct'] = float(grp.head(10).sum() / net * 100) if net else None
             if cost is not None:
                 cost_grp=work.groupby(col('customer'),dropna=False)['_cost'].sum()
                 customer_profit=[]

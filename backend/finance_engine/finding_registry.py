@@ -253,6 +253,8 @@ def build_finding_registry(
             source_engines.append("action_engine")
 
         source_engines_unique = sorted(set(source_engines))
+        exposure_val = (impact_by_finding.get(code) or {}).get("estimated_exposure")
+        action_owner = linked_action.get("owner", "Finans / Genel Müdür") if linked_action else "Genel Müdür"
         master_findings.append({
             "id": code,
             "title": f.get("title"),
@@ -263,7 +265,7 @@ def build_finding_registry(
             "interpretation": f.get("interpretation"),
             "recommendation": f.get("recommendation"),
             "root_cause": f.get("root_cause"),
-            "estimated_exposure": (impact_by_finding.get(code) or {}).get("estimated_exposure"),
+            "estimated_exposure": exposure_val,
             "risk_score": (risk_entry_by_finding.get(code) or {}).get("risk_score"),
             "risk_tier": (risk_entry_by_finding.get(code) or {}).get("risk_tier"),
             "linked_opportunities": linked_opps,
@@ -273,12 +275,18 @@ def build_finding_registry(
             ),
             "source_engines": source_engines_unique,
             "also_reported_as": also_reported_as,
+            # Standardized Master Decision Contract (WHAT -> WHY -> SO WHAT -> NOW WHAT):
+            "what_happened": f.get("title") + (" — " + f["interpretation"] if f.get("interpretation") else ""),
+            "why": f.get("root_cause") or "İlgili finansal ve operasyonel kalemlerdeki dengesizlikten kaynaklanmaktadır.",
+            "business_impact": f"Yaklaşık {exposure_val:,.0f} TL tutarında potansiyel finansal risk/maruziyet." if exposure_val else "Şirketin kârlılık ve nakit dengesi üzerinde doğrudan baskı oluşturmaktadır.",
+            "recommended_action": f.get("recommendation") or (linked_action.get("title") if linked_action else ""),
+            "action_owner": action_owner,
+            "kpi": linked_action.get("kpi", "İyileşme Oranı") if linked_action else "Nakit ve Kâr İyileşmesi",
+            "deadline": linked_action.get("deadline", "30 gün") if linked_action else "30-45 gün",
         })
 
     # 2) Genuinely new findings from Gap Detection (operational evidence with
     #    no statement-level twin) are added as first-class registry entries
-    #    in their own right - they are not duplicates, so they must not be
-    #    dropped.
     for g in all_gaps:
         code = g.get("code")
         if code in duplicate_gap_codes:
@@ -287,11 +295,8 @@ def build_finding_registry(
         linked_action = _linked_action(code, management_actions)
         if linked_action:
             gap_source_engines.append("action_engine")
-        # Gaps carry an operational theme, not one of the statement-level
-        # categories opportunities are keyed on, so opportunity linking is
-        # intentionally skipped here - forcing a match by theme string would
-        # create false-positive links (e.g. GAP-SALES-01 has no matching
-        # commercial lever in the Opportunity Engine today).
+        exposure_val = g.get("estimated_impact")
+        action_owner = linked_action.get("owner", "Operasyon / Finans") if linked_action else "Operasyon"
         master_findings.append({
             "id": code,
             "title": g.get("title"),
@@ -302,7 +307,7 @@ def build_finding_registry(
             "interpretation": g.get("why_it_matters"),
             "recommendation": g.get("recommended_action"),
             "root_cause": None,
-            "estimated_exposure": g.get("estimated_impact"),
+            "estimated_exposure": exposure_val,
             "risk_score": None,
             "risk_tier": None,
             "linked_opportunities": [],
@@ -312,6 +317,13 @@ def build_finding_registry(
             ),
             "source_engines": sorted(set(gap_source_engines)),
             "also_reported_as": [],
+            "what_happened": g.get("title") + (" — " + g["why_it_matters"] if g.get("why_it_matters") else ""),
+            "why": "Operasyonel veri ile mali tablolar arasındaki açık / sapma.",
+            "business_impact": f"Yaklaşık {exposure_val:,.0f} TL operasyonel finansal etki." if isinstance(exposure_val, (int, float)) else str(exposure_val or "Operasyonel verimlilik ve nakit kaybı."),
+            "recommended_action": g.get("recommended_action", ""),
+            "action_owner": action_owner,
+            "kpi": linked_action.get("kpi", "Operasyonel İyileşme") if linked_action else "Süreç Disiplini",
+            "deadline": linked_action.get("deadline", "30 gün") if linked_action else "30 gün",
         })
 
     severity_rank = {"critical": 4, "high": 3, "medium": 2, "low": 1, "positive": 0}
