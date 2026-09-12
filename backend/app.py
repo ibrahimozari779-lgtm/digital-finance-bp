@@ -32,7 +32,7 @@ from finance_engine.multi_source_ingestion import _read_one
 from finance_engine.data_classifier import classify_dataframe
 from finance_engine.numeric_utils import to_numeric_series
 
-APP_VERSION = "3.12.0"
+APP_VERSION = "3.13.0"
 app = FastAPI(title="Digital Finance Business Partner", version=APP_VERSION)
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
@@ -80,8 +80,25 @@ TOTAL_LABELS = {"toplam", "genel toplam", "grand total", "total", "ara toplam", 
 
 
 def normalize(text: Any) -> str:
-    s = str(text).replace("\n", " ").replace("\r", " ").strip().lower()
-    s = s.translate(str.maketrans({"ı":"i","ş":"s","ğ":"g","ü":"u","ö":"o","ç":"c","İ":"i","Ş":"s","Ğ":"g","Ü":"u","Ö":"o","Ç":"c"}))
+    # BUGFIX: Python's str.lower() turns the Turkish capital dotted "İ" into
+    # "i" + a combining dot-above (U+0307) rather than plain ASCII "i" — a
+    # two-character sequence. The old code lowercased *before* translating,
+    # so by the time the Turkish-character map ran, "İ" no longer existed in
+    # the string (it was already "i" + combining dot) and the map never
+    # fired. The regex below then stripped that combining dot as a
+    # non-alphanumeric character, inserting a stray space in the middle of
+    # the word — e.g. "İskonto Tutarı" -> "i skonto tutari" instead of
+    # "iskonto tutari". That silently broke alias/keyword matching for every
+    # Turkish word starting with İ (İskonto, İstanbul, İşlem, İnşaat,
+    # İhracat, ...), which is why columns/sheets/entities using those words
+    # were dropped from analysis. Fix: translate Turkish letters (both cases)
+    # to ASCII *before* calling .lower(), so combining marks never appear.
+    s = str(text).replace("\n", " ").replace("\r", " ").strip()
+    s = s.translate(str.maketrans({
+        "ı": "i", "İ": "i", "I": "i", "ş": "s", "Ş": "s", "ğ": "g", "Ğ": "g",
+        "ü": "u", "Ü": "u", "ö": "o", "Ö": "o", "ç": "c", "Ç": "c",
+    }))
+    s = s.lower()
     return re.sub(r"[^a-z0-9]+", " ", s).strip()
 
 
@@ -207,9 +224,22 @@ def is_special_financial_statement_layout(raw: pd.DataFrame) -> bool:
     # Detect layouts like the uploaded real-world file: title rows, code in a detail column,
     # statement amount in a later column, and English/Turkish statement headers such as B&S vs Sales Data.
     texts = " ".join(normalize(x) for x in raw.iloc[:12].fillna("").astype(str).values.ravel())
-    return ("balance sheet" in texts or "bilanco" in texts) and (
-        "assets" in texts or "aktif" in texts or "b s vs sales data" in texts
+    is_balance_sheet = ("balance sheet" in texts or "bilanco" in texts) and (
+        "assets" in texts or "aktif" in texts or "liabilities" in texts or "pasif" in texts
+        or "kaynaklar" in texts or "b s vs sales data" in texts
     )
+    # BUGFIX: this gate only ever recognized balance-sheet-style sheets, so a
+    # same-format INCOME STATEMENT sheet (title rows + account code column +
+    # a later amount column — exactly the same physical layout, just P&L
+    # accounts instead of balance sheet accounts) never reached
+    # detect_special_layout() at all and was silently dropped with
+    # mode="ignored_or_unrecognized", rows=0 — e.g. Net Sales/Gross Profit/
+    # Operating Profit all came out as 0 even though the sheet had real data.
+    # Recognize the income-statement variant of the same layout too.
+    is_income_statement = ("income statement" in texts or "gelir tablosu" in texts or "kar zarar" in texts) and (
+        "net sales" in texts or "net satislar" in texts or "gross sales" in texts or "brut satislar" in texts
+    )
+    return is_balance_sheet or is_income_statement
 
 
 def detect_special_layout(raw: pd.DataFrame) -> tuple[int, int, int, int] | None:

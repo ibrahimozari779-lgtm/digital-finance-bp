@@ -57,8 +57,18 @@ CONTAINS_HINTS = {
 }
 
 def norm(x: Any) -> str:
-    s=str(x).strip().lower()
-    s=s.translate(str.maketrans({'ı':'i','ş':'s','ğ':'g','ü':'u','ö':'o','ç':'c'}))
+    # BUGFIX: same Turkish-İ casefolding bug as app.py's normalize() — see the
+    # detailed note there. Translating Turkish letters (upper + lower) to
+    # ASCII *before* lower() avoids the stray combining-dot-above character
+    # that Python's default .lower() produces for capital "İ", which used to
+    # silently break alias matching for any header/word starting with İ
+    # (İskonto, İstanbul, İşlem, İnşaat, İhracat, ...).
+    s=str(x).strip()
+    s=s.translate(str.maketrans({
+        'ı':'i','İ':'i','I':'i','ş':'s','Ş':'s','ğ':'g','Ğ':'g',
+        'ü':'u','Ü':'u','ö':'o','Ö':'o','ç':'c','Ç':'c',
+    }))
+    s=s.lower()
     return re.sub(r'[^a-z0-9]+',' ',s).strip()
 
 ALIAS_NORM={k:{norm(v) for v in vals} for k,vals in ALIASES.items()}
