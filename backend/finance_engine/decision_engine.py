@@ -384,6 +384,8 @@ def build_finance_business_partner_analysis(
     cust_prof = (data_hub or {}).get("customer_profitability") or {"status": "DATA_MISSING_EXPECTED", "reason": "Müşteri kârlılığı analizi için Satış Defteri (Sales Ledger) yüklenmedi."}
     prod_prof = (data_hub or {}).get("product_profitability") or {"status": "DATA_MISSING_EXPECTED", "reason": "Ürün kârlılığı analizi için Satış Defteri (Sales Ledger) yüklenmedi."}
     pricing_opp = (data_hub or {}).get("pricing_opportunity") or {"status": "DATA_MISSING_EXPECTED", "reason": "Fiyatlama fırsat analizi için Satış Defteri (Sales Ledger) yüklenmedi."}
+    from .tax_strategy_engine import build_tax_strategy_analysis
+    tax_strategy = build_tax_strategy_analysis(statements, data_hub)
 
     return {
         "engine_version": "2.0",
@@ -436,4 +438,5 @@ def build_finance_business_partner_analysis(
         "customer_profitability_engine": cust_prof,
         "product_profitability_engine": prod_prof,
         "pricing_opportunity_engine": pricing_opp,
+        "tax_strategy_engine": tax_strategy,
     }

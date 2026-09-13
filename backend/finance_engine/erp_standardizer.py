@@ -49,6 +49,42 @@ ERP_PROFILES: dict[str, dict[str, Any]] = {
         "keywords": {"gl_account", "account_long_text", "accumulated_balance", "doc_date", "posting_date", "company_code"},
         "exact_headers": {"g/l account", "account long text", "debit", "credit", "accumulated balance", "doc. date", "posting date"},
     },
+    "datev": {
+        "name": "DATEV (Kanzlei-Rechnungswesen / Unternehmen online)",
+        "badge": "DATEV SKR03/04",
+        "keywords": {"konto", "kontobezeichnung", "soll", "haben", "saldo", "belegfeld_1", "buchungstext", "debitoren", "kreditoren"},
+        "exact_headers": {"konto", "kontobezeichnung", "soll", "haben", "saldo", "datum", "belegfeld 1", "buchungstext"},
+    },
+    "pennylane": {
+        "name": "Pennylane / Cegid / Sage France",
+        "badge": "Pennylane / PCG",
+        "keywords": {"compte", "libelle_compte", "debit", "credit", "solde_debiteur", "solde_crediteur", "numero_de_piece"},
+        "exact_headers": {"compte", "libelle compte", "debit", "credit", "solde", "date piece"},
+    },
+    "holded": {
+        "name": "Holded / A3ERP / Contasol (España)",
+        "badge": "Holded / PGC",
+        "keywords": {"cuenta", "descripcion", "debe", "haber", "saldo_deudor", "saldo_acreedor", "n_asiento"},
+        "exact_headers": {"cuenta", "descripcion", "debe", "haber", "saldo", "fecha"},
+    },
+    "exact_online": {
+        "name": "Exact Online / Twinfield (Nederland & Benelux)",
+        "badge": "Exact Online / RGS",
+        "keywords": {"rekening", "rekeningomschrijving", "debet", "credit", "saldo", "factuurnummer", "relatie"},
+        "exact_headers": {"rekening", "omschrijving", "debet", "credit", "saldo", "datum"},
+    },
+    "zucchetti": {
+        "name": "Zucchetti / TeamSystem (Italia)",
+        "badge": "Zucchetti / Civile",
+        "keywords": {"codice_conto", "descrizione", "dare", "avere", "saldo", "data_registrazione"},
+        "exact_headers": {"conto", "descrizione", "dare", "avere", "saldo"},
+    },
+    "xero": {
+        "name": "Xero / QuickBooks Online (UK / Global IFRS)",
+        "badge": "Xero / QBO IFRS",
+        "keywords": {"account_code", "account_name", "debit", "credit", "net_balance", "invoice_date", "contact_name"},
+        "exact_headers": {"account code", "account name", "debit", "credit", "balance", "net"},
+    },
 }
 
 
@@ -219,11 +255,32 @@ def inspect_file_structure(content: bytes, filename: str) -> dict[str, Any]:
             clean_r = {str(k): (str(v)[:40] if pd.notna(v) and str(v) != "NaT" else "") for k, v in r.items() if not str(k).startswith("_")}
             preview_rows.append(clean_r)
 
+        # Check European standard if role == 'finance'
+        coa_info = None
+        if role == "finance":
+            try:
+                from .european_accounting_standardizer import detect_coa_standard
+                code_col = mapping.get("account_code")
+                name_col = mapping.get("account_name")
+                sample_codes = [str(x) for x in df[code_col].dropna().head(50)] if code_col and code_col in df.columns else []
+                sample_names = [str(x) for x in df[name_col].dropna().head(50)] if name_col and name_col in df.columns else []
+                std_code, std_meta, std_conf = detect_coa_standard(sample_codes, sample_names, filename)
+                coa_info = {
+                    "standard": std_code,
+                    "standard_name": std_meta["name"],
+                    "flag": std_meta["country_flag"],
+                    "confidence": std_conf,
+                    "is_european": std_code != "TR_TDHP",
+                }
+            except Exception:
+                pass
+
         inspected_sheets.append({
             "sheet_name": sname,
             "detected_erp": erp_key,
             "erp_badge": erp_badge,
             "erp_confidence": erp_conf,
+            "coa_standard": coa_info,
             "role": role,
             "role_label": schema["label"],
             "role_description": schema["description"],

@@ -3539,7 +3539,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       </div>
     </div>
   </a>
-</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama" class="active">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="primary">Ücretsiz Kayıt Ol</button></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama" class="active">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div style="display:flex;align-items:center;gap:6px" class="hidePrint"><select id="currencySwitch" onchange="setCurrency(this.value)" class="select" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Para Birimi"><option value="TRY">₺ TRY</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select><select id="langSwitch" onchange="setLanguage(this.value)" class="select" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="primary">Ücretsiz Kayıt Ol</button></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <div id="authModalOverlay" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.65);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px">
   <div class="card" style="background:#FFFFFF;border:1px solid #DCE6F5;border-radius:24px;box-shadow:0 24px 70px rgba(15,27,45,.25);max-width:420px;width:100%;padding:28px;position:relative;overflow:hidden">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
@@ -3610,7 +3610,11 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <span class="tag" style="background:#F1F5F9;font-size:11px">Luca</span>
       <span class="tag" style="background:#F1F5F9;font-size:11px">Zirve</span>
       <span class="tag" style="background:#F1F5F9;font-size:11px">SAP</span>
-      <span class="tag" style="background:#F1F5F9;font-size:11px">Dia</span>
+      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:11px">🇩🇪 DATEV (SKR03/04)</span>
+      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:11px">🇫🇷 Pennylane / PCG</span>
+      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:11px">🇪🇸 Holded / PGC</span>
+      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:11px">🇳🇱 Exact Online</span>
+      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:11px">🇬🇧 Xero / IFRS</span>
       <span class="tag" style="background:#F1F5F9;font-size:11px">Excel / CSV</span>
     </div>
     <button type="button" onclick="downloadSampleMizan()" class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px">📥 Standart Mizan Şablonu İndir (.csv)</button>
@@ -3909,6 +3913,18 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </div>
 
 <div id="resourceAllocationCard" class="card hidden" style="margin-top:16px"><div class="sectionHead"><div><h2>Sermaye Dağılımı ve Nakit Sıkışması (Para Nerede?)</h2><p>Şirketin bağladığı toplam sermaye nerede duruyor: Kasada mı, alacakta mı, stokta mı?</p></div></div><div id="resourceAllocationMetrics" class="grid4"></div><div id="resourceAllocationBar" style="margin-top:16px"></div><div id="resourceAllocationNarrative" style="margin-top:14px"></div></div>
+
+<div id="taxStrategyCard" class="card hidden" style="margin-top:16px;border:1.5px solid #A7F3D0;background:linear-gradient(145deg,#FFFFFF 0%,#F0FDF4 100%)">
+  <div class="sectionHead">
+    <div>
+      <h2 style="font-size:16px;color:#047857">🏛️ Vergisel Yönetim Avantajları &amp; Yasal Nakit Tasarrufu</h2>
+      <p>Şirketin finansal tablolarından (mizan) türetilmiş yasal vergi kalkanları, KKEG optimizasyonu ve nakit tasarrufları</p>
+    </div>
+    <span class="tag positive" style="font-weight:800;font-size:11px">VUK &amp; KVK UYUMLU KALKANLAR</span>
+  </div>
+  <div id="taxStrategyMetrics" class="grid3" style="margin-top:12px"></div>
+  <div id="taxStrategyItems" style="margin-top:14px;display:flex;flex-direction:column;gap:12px"></div>
+</div>
 </section>
 
 <section class="flowStep"><div class="flowLabel"><span class="n">3</span>Sektörel Kıyaslama &amp; Öncelikli Riskler (Bize Maliyeti Ne?)<p>Sektör ortalamalarına göre neredeyiz ve acil ele alınması gereken riskler</p></div><div class="flowSub">TCMB Sektör Bilançoları &amp; Borsa İstanbul (BIST) 500+ şirket verisiyle kıyaslama ve skorlanmış riskler.</div>
@@ -3927,9 +3943,18 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <div id="inventoryIntel" style="margin-top:14px"></div>
 </section>
 
-<section class="flowStep"><div class="flowLabel"><span class="n">5</span>Kök Neden &amp; Karar Hikâyeleri (Neden Oldu?)<p>Bulguların arkasındaki nedensellik zinciri ve finansal maliyeti</p></div><div class="flowSub">Bulgu → Kanıt → Olası Kök Neden → Alınacak Karar. Tek tek okunabilir yönetim hikâyeleri.</div>
-<div id="rootCauseCard" class="card"><div id="rootCause"></div></div>
-<div id="narrativeStories" style="margin-top:16px"></div>
+<section class="flowStep"><div class="flowLabel"><span class="n">5</span>Kök Neden &amp; Yönetim Hikâyeleri (Neden Oldu &amp; Ne Yapılmalı?)<p>Bulguların arkasındaki 5 adımlı nedensellik zinciri, parasal sızıntı maliyeti ve icraat kararları</p></div><div class="flowSub">Belirti (Ne Oldu?) ➔ Kanıt (Rakamlar) ➔ Kök Neden (Tetikleyici) ➔ Parasal Sızıntı (Maliyet) ➔ Yönetim Kararı &amp; İcraat</div>
+<div id="rootCauseCard" class="card" style="padding:22px;border:1.5px solid #CBD5E1">
+  <div class="sectionHead">
+    <div>
+      <h2 style="font-size:16px;color:#0F1B2D">🧠 Bütünleşik Kök Neden &amp; Karar Hikâyeleri</h2>
+      <p>Mizan ve operasyonel defterlerdeki finansal sapmaların arkasındaki gerçek iş süreçleri ve alınacak aksiyonlar</p>
+    </div>
+    <span class="tag" style="background:#EEF2FF;color:#3B4B8A;font-weight:700;font-size:11px">5 ADIMLI NEDENSELLİK ZİNCİRİ</span>
+  </div>
+  <div id="rootCause" style="margin-top:14px;display:flex;flex-direction:column;gap:16px"></div>
+</div>
+<div id="narrativeStories" style="display:none"></div>
 </section>
 
 <section class="flowStep"><div class="flowLabel"><span class="n">6</span>Yönetim Kararları &amp; Aksiyon Takvimi (Şimdi Ne Yapmalı?)<p>Yönetimin masaya koyup uygulayacağı somut kararlar</p></div><div class="flowSub">Karar maddesi → Sahibi → Termini → Takip Edilecek KPI. Her aksiyon maddesi ayrı bir takip numarasına sahiptir.</div>
@@ -3938,7 +3963,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 <section class="flowStep"><div class="flowLabel"><span class="n">7</span>Varsayımı Değiştirirsek Ne Olur? (Canlı Senaryo Simülatörü)<p>Fiyatı artırırsak, tahsilatı çekersek veya gideri kıssak kasaya ne girer?</p></div><div class="flowSub">Formüllü fırsatlar kataloğu ve anlık duyarlılık simülatörü.</div>
 <div class="card"><div id="opportunities" class="grid3"></div></div>
-<div id="interactiveScenarioCard" class="card" style="margin-top:16px"><div class="sectionHead"><div><h2>İnteraktif Senaryo Laboratuvarı &amp; Nakit Simülatörü</h2><p>Önerilen senaryoları seçin veya sürgüleri hareket ettirerek serbest kalacak nakdi ve kâr etkisini anında canlı görün</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px" onclick="applyScenarioPreset(10,15,2.0,5)">💡 Önerilen Temkinli Senaryo</button><button class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px" onclick="applyScenarioPreset(20,25,4.0,10)">🚀 Agresif İyileştirme</button><button class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px" onclick="applyScenarioPreset(0,0,0,0)">🔄 Sıfırla (Mevcut Durum)</button></div></div><div class="grid2"><div style="display:flex;flex-direction:column;gap:14px"><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Alacak Tahsilatını Hızlandır (DSO Azaltma)</span><b id="sliderDsoVal" style="color:var(--accent)">0 gün</b></div><input id="sliderDso" type="range" min="0" max="60" value="0" step="1" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Stok Bekleme Süresini Kısalt (DIO Azaltma / Atıl Stok Eritme)</span><b id="sliderDioVal" style="color:var(--accent)">0 gün</b></div><input id="sliderDio" type="range" min="0" max="60" value="0" step="1" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Satış Fiyatı / Brüt Marj İyileştirmesi</span><b id="sliderMarginVal" style="color:var(--accent)">+0.0%</b></div><input id="sliderMargin" type="range" min="0" max="10.0" value="0" step="0.5" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Faaliyet Gideri (OpEx) Tasarrufu</span><b id="sliderOpexVal" style="color:var(--accent)">0%</b></div><input id="sliderOpex" type="range" min="0" max="25" value="0" step="1" style="width:100%;cursor:pointer"></div></div><div style="background:rgba(15,27,45,.6);border:1px solid var(--line);border-radius:15px;padding:18px;display:flex;flex-direction:column;justify-content:center;gap:12px"><div style="font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:1px">Simüle Edilen Canlı Yönetim Etkisi</div><div class="grid2"><div class="metric" style="background:#EAF0FF"><div class="label">Kasaya Giren Serbest Nakit</div><div id="simCashImpact" class="value" style="color:var(--green)">0 TL</div><div class="sub">Tahsilat + Stok nakdi</div></div><div class="metric" style="background:#EAF0FF"><div class="label">Ek Yıllık Faaliyet Kârı</div><div id="simProfitImpact" class="value" style="color:var(--accent)">0 TL</div><div class="sub">Fiyat + OpEx tasarrufu</div></div><div class="metric" style="background:#EAF0FF"><div class="label">Simüle Net Kâr Marjı</div><div id="simMarginImpact" class="value" style="color:var(--accent)">–</div><div class="sub">Kârlılık tabanı etkisi</div></div><div class="metric" style="background:#EAF0FF"><div class="label">Nakit Çevrim Süresi (CCC)</div><div id="simCccImpact" class="value" style="color:var(--green)">–</div><div class="sub">Çalışma sermayesi çevrimi</div></div></div><div id="simSummaryText" class="small muted" style="line-height:1.5;margin-top:4px">Sürgüleri hareket ettirerek veya yukarıdaki hazır senaryolara tıklayarak şirketin kazanımlarını test edin.</div></div></div></div>
+<div id="interactiveScenarioCard" class="card" style="margin-top:16px"><div class="sectionHead"><div><h2>İnteraktif Senaryo Laboratuvarı &amp; Nakit Simülatörü</h2><p>Önerilen senaryoları seçin veya sürgüleri hareket ettirerek serbest kalacak nakdi ve kâr etkisini anında canlı görün</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px" onclick="applyScenarioPreset(10,15,2.0,5)">💡 Önerilen Temkinli Senaryo</button><button class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px" onclick="applyScenarioPreset(20,25,4.0,10)">🚀 Agresif İyileştirme</button><button class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px" onclick="applyScenarioPreset(0,0,0,0)">🔄 Sıfırla (Mevcut Durum)</button></div></div><div class="grid2"><div style="display:flex;flex-direction:column;gap:14px"><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Alacak Tahsilatını Hızlandır (DSO Azaltma)</span><b id="sliderDsoVal" style="color:var(--accent)">0 gün</b></div><input id="sliderDso" type="range" min="0" max="60" value="0" step="1" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Stok Bekleme Süresini Kısalt (DIO Azaltma / Atıl Stok Eritme)</span><b id="sliderDioVal" style="color:var(--accent)">0 gün</b></div><input id="sliderDio" type="range" min="0" max="60" value="0" step="1" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Satış Fiyatı / Brüt Marj İyileştirmesi</span><b id="sliderMarginVal" style="color:var(--accent)">+0.0%</b></div><input id="sliderMargin" type="range" min="0" max="10.0" value="0" step="0.5" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Faaliyet Gideri (OpEx) Tasarrufu</span><b id="sliderOpexVal" style="color:var(--accent)">0%</b></div><input id="sliderOpex" type="range" min="0" max="25" value="0" step="1" style="width:100%;cursor:pointer"></div></div><div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:center;gap:14px;box-shadow:0 4px 12px rgba(15,27,45,0.04)"><div style="font-size:12.5px;color:#0F172A;font-weight:800;text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:6px"><span>⚡</span><span>Simüle Edilen Canlı Yönetim Etkisi</span></div><div class="grid2" style="gap:10px"><div class="metric" style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px 14px"><div class="label" style="color:#475569;font-weight:700">Kasaya Giren Serbest Nakit</div><div id="simCashImpact" class="value" style="color:#0E7C66;font-size:19px;font-weight:800">0 TL</div><div class="sub" style="color:#64748B">Tahsilat + Stok nakdi</div></div><div class="metric" style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px 14px"><div class="label" style="color:#475569;font-weight:700">Ek Yıllık Faaliyet Kârı</div><div id="simProfitImpact" class="value" style="color:#1D4ED8;font-size:19px;font-weight:800">0 TL</div><div class="sub" style="color:#64748B">Fiyat + OpEx tasarrufu</div></div><div class="metric" style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px 14px"><div class="label" style="color:#475569;font-weight:700">Simüle Net Kâr Marjı</div><div id="simMarginImpact" class="value" style="color:#1D4ED8;font-size:19px;font-weight:800">–</div><div class="sub" style="color:#64748B">Kârlılık tabanı etkisi</div></div><div class="metric" style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px 14px"><div class="label" style="color:#475569;font-weight:700">Nakit Çevrim Süresi (CCC)</div><div id="simCccImpact" class="value" style="color:#0E7C66;font-size:19px;font-weight:800">–</div><div class="sub" style="color:#64748B">Çalışma sermayesi çevrimi</div></div></div><div id="simSummaryText" style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px 14px;font-size:12.5px;color:#0F172A;font-weight:500;line-height:1.6">Sürgüleri hareket ettirerek veya yukarıdaki hazır senaryolara tıklayarak şirketin kazanımlarını test edin.</div></div></div></div>
 </section>
 
 <section class="flowStep"><div class="flowLabel"><span class="n">8</span>Yönetici Özeti &amp; AI Finance Business Partner (Karar Brifingi)<span class="tag" style="margin-left:8px;background:#eef2ff;color:#3b4b8a">Kural Tabanlı · AI Değil</span><p>Tüm analizin tek paragrafta özeti ve stratejik soru-cevap</p></div><div class="flowSub">Önce matematiksel kurallarla hesaplanır, sonra yorumlanır. Yöneticinin bu raporla hangi stratejik adımı atması gerektiği açıkça belirtilir.</div>
@@ -4008,7 +4033,49 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
 let LAST=null;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-const money=v=>v==null?'–':new Intl.NumberFormat('tr-TR',{maximumFractionDigits:0}).format(v)+' TL';
+window._activeCurrency = 'TRY';
+window._currencyRates = { TRY: 1.0, EUR: 0.024, GBP: 0.020, USD: 0.026 };
+window._currencySymbols = { TRY: ' TL', EUR: ' €', GBP: ' £', USD: ' $' };
+window._currencyLocales = { TRY: 'tr-TR', EUR: 'de-DE', GBP: 'en-GB', USD: 'en-US' };
+
+function setCurrency(cur){
+  window._activeCurrency = cur;
+  if(window._updateSim) window._updateSim();
+  if(LAST) render(LAST);
+}
+
+const money=v=>{
+  if(v==null) return '–';
+  const cur=window._activeCurrency||'TRY';
+  const rate=window._currencyRates[cur]||1.0;
+  const loc=window._currencyLocales[cur]||'tr-TR';
+  const converted=cur==='TRY'?v:(v*rate);
+  const formatted=new Intl.NumberFormat(loc,{maximumFractionDigits:0}).format(converted);
+  if(cur==='USD') return '$'+formatted;
+  if(cur==='GBP') return '£'+formatted;
+  if(cur==='EUR') return formatted+' €';
+  return formatted+' TL';
+};
+
+window._activeLang = 'tr';
+const I18N = {
+  tr: { singleTab: 'Tek Dönem Mizan', trendTab: 'Çok Dönem / Trend', hubTab: 'Data Hub / Çoklu Veri', analyzeBtn: 'Mizanı Analiz Et' },
+  en: { singleTab: 'Single Period Trial Balance', trendTab: 'Multi-Period / Trend', hubTab: 'Data Hub / Multi-Source', analyzeBtn: 'Analyze Statements' },
+  de: { singleTab: 'Einperiodige Summen- & Saldenliste', trendTab: 'Mehrperioden / Trend', hubTab: 'Data Hub / Multi-Source', analyzeBtn: 'Daten analysieren' },
+  fr: { singleTab: 'Balance Générale Période Unique', trendTab: 'Multi-Périodes / Tendance', hubTab: 'Data Hub / Multi-Sources', analyzeBtn: 'Analyser la balance' },
+  es: { singleTab: 'Balance de Sumas y Saldos Único', trendTab: 'Multi-Periodo / Tendencia', hubTab: 'Data Hub / Multi-Fuente', analyzeBtn: 'Analizar balance' },
+  it: { singleTab: 'Bilancio di Verifica Singolo', trendTab: 'Multi-Periodo / Trend', hubTab: 'Data Hub / Multi-Fonte', analyzeBtn: 'Analizza bilancio' },
+  nl: { singleTab: 'Enkelvoudige Kolommenbalans', trendTab: 'Meerdere Perioden / Trend', hubTab: 'Data Hub / Multi-Bron', analyzeBtn: 'Balans analyseren' }
+};
+function setLanguage(lang){
+  window._activeLang = lang;
+  const dict = I18N[lang] || I18N.tr;
+  if($('singleTabBtn')) $('singleTabBtn').textContent = dict.singleTab;
+  if($('trendTabBtn')) $('trendTabBtn').textContent = dict.trendTab;
+  if($('hubTabBtn')) $('hubTabBtn').textContent = dict.hubTab;
+  if($('analyzeSingle')) $('analyzeSingle').textContent = '🚀 ' + dict.analyzeBtn;
+  if(LAST) render(LAST);
+}
 const fmt=v=>v==null?'–':new Intl.NumberFormat('tr-TR',{maximumFractionDigits:0}).format(v);
 const num=v=>v==null?'–':new Intl.NumberFormat('tr-TR',{maximumFractionDigits:1}).format(v);
 const pct=v=>v==null?'–':num(v)+'%'; const rat=v=>v==null?'–':num(v)+'x';
@@ -4262,6 +4329,7 @@ function render(d){
     $('cashRealization').innerHTML='<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px;text-align:center"><div style="display:inline-flex;align-items:center;gap:6px;background:#EFF6FF;color:#1D4ED8;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:8px">ℹ️ Tek Dönem Modu Aktif</div><div style="font-size:13.5px;font-weight:700;color:#0F1B2D;margin-bottom:4px">Kârın Nakde Dönüşüm Oranı</div><p class="muted small" style="margin:0 auto 12px;max-width:440px">Tek dönem mizandan net kâr ve likidite tam hesaplanmıştır. Net kârın ne kadarının kasaya nakit aktığını (şelale grafiğini) görmek için iki dönemli karşılaştırma önerilir.</p><button class="secondary hidePrint" style="padding:7px 16px;font-size:12px;border-radius:8px" onclick="runDataHubSample()">⚡ Canlı 2 Dönemli Trend Demosunu Çalıştır</button></div>';
   }
   renderResourceAllocation(bp.resource_allocation_engine);
+  if(bp.tax_strategy_engine) renderTaxStrategy(bp.tax_strategy_engine);
   renderWorkingCapitalLeak(bp, pl, bs, k, c, d);
   renderCeoDiagnosticDesk(bp, pl, bs, k, c, d);
 
@@ -4287,24 +4355,8 @@ function render(d){
     +(bm.metrics||[]).map(m=>'<tr><td><b>'+esc(m.label)+'</b></td><td>'+esc(m.value)+'</td><td>'+esc(m.band_low)+' / <b>'+esc(m.band_mid)+'</b> / '+esc(m.band_high)+'</td><td><span class="tag '+(m.favorability==='favorable'?'positive':m.favorability==='unfavorable'?'critical':'medium')+'">'+esc(m.favorability)+'</span></td></tr>').join('')
     +'</tbody></table></div>';
 
-  // Step 3 — WHY (root cause; carries the "missing evidence" angle itself)
-  const rc=bp.root_cause_engine||{};$('rootCause').innerHTML=(rc.causal_chains||[]).map(c=>{const ev=(c.evidence||[]).map(esc).join(' · ');const miss=(c.required_additional_evidence||[]).map(esc).join(' · ');const acts=(c.recommended_actions||[]).map(esc).join(' · ');return '<div class="insight" style="margin-bottom:10px"><h3>'+esc(c.title)+'</h3><div class="small muted">Ana Tetikleyici: '+esc(c.primary_driver||'–')+' · '+esc(c.causal_status||'yüksek ihtimalli etken')+'</div><p><b>Etki Zinciri:</b> '+(c.chain||[]).map(esc).join(' → ')+'</p>'+(ev?'<div class="small"><b>Doğrulanan Kanıt:</b> '+ev+'</div>':'')+(miss?'<div class="small muted" style="margin-top:5px"><b>Eksik Kanıt:</b> '+miss+'</div>':'')+(c.financial_impact?'<div class="small" style="margin-top:5px"><b>Finansal Risk / Maruziyet:</b> '+esc(c.financial_impact)+'</div>':'')+(acts?'<div class="small" style="margin-top:5px"><b>Önerilen Aksiyon:</b> '+acts+'</div>':'')+'</div>'}).join('')||'<div class="notice">Yeterli kök neden kanıtı yok.</div>';
-
-  // Step 6b — Narrative Engine: one card per independently-triggered
-  // scenario (risk or positive), each already-computed-number-only.
-  const ne=bp.narrative_engine||{};
-  const sevClass={critical:'critical',high:'high',medium:'medium',positive:'positive'};
-  $('narrativeStories').innerHTML=(ne.stories&&ne.stories.length)?ne.stories.map(s=>
-    '<div class="insight '+esc(sevClass[s.severity]||'medium')+'" style="margin-bottom:10px">'
-    +'<div class="small muted">'+esc(s.category)+' · '+esc(s.severity)+'</div>'
-    +'<h3>'+esc(s.title)+'</h3>'
-    +'<p><b>Ne oldu?</b> '+esc(s.ne_oldu)+'</p>'
-    +'<p><b>Neden?</b> '+esc(s.neden)+'</p>'
-    +'<p><b>Bana maliyeti ne?</b> '+esc(s.maliyet)+'</p>'
-    +'<p><b>Ne yapmam lazım?</b></p><ul>'+(s.ne_yapmali||[]).map(a=>'<li>'+esc(a)+'</li>').join('')+'</ul>'
-    +(s.data_gap?'<div class="small muted" style="margin-top:6px">⚠ '+esc(s.data_gap)+'</div>':'')
-    +'</div>'
-  ).join(''):'<div class="notice">Bu dönemde eşik aşan bir senaryo tetiklenmedi.</div>';
+  // Step 3 & Step 6b — Unified 5-Step Causality Pipeline (Belirti ➔ Kanıt ➔ Kök Neden ➔ Sızıntı ➔ İcraat)
+  renderUnifiedRootCauseSection(bp.root_cause_engine, bp.narrative_engine);
 
   // NOW WHAT (management actions). Actions that share a KPI/theme still get
   // grouped so context (owner/KPI/impact) isn't repeated per line, but every
@@ -5724,6 +5776,32 @@ function renderCustomerProfitabilityMatrix(cp){
   const volumeChasers = cp.volume_chasers || q.q2_high_volume_low_margin || [];
   const nicheProfit = cp.niche_profit || q.q3_profitable_niche || [];
   const lowValue = cp.low_value || q.q4_low_value || [];
+  const lossMaking = cp.loss_making_customers || [];
+
+  let lossHtml = '';
+  if(lossMaking.length){
+    const totalLoss = Math.abs(lossMaking.reduce((acc, c) => acc + (c.gross_profit || 0), 0));
+    lossHtml = '<div style="background:#FEF2F2;border:1.5px solid #FCA5A5;border-radius:14px;padding:14px 16px;margin-bottom:14px">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px">' +
+        '<div style="display:flex;align-items:center;gap:8px">' +
+          '<span style="font-size:18px">🛑</span>' +
+          '<b style="color:#991B1B;font-size:13.5px">Negatif Brüt Kâr Üreten Zarar Ettiren Müşteriler (' + lossMaking.length + ' Cari)</b>' +
+        '</div>' +
+        '<span class="tag critical" style="font-weight:800">Toplam Zarar: ' + money(totalLoss) + '</span>' +
+      '</div>' +
+      '<div style="font-size:12px;color:#7F1D1D;margin-bottom:10px">Bu müşterilere yapılan teslimatlarda maliyet satış fiyatını aşmaktadır. Vadeli sevkiyat derhal durdurulmalı veya peşin liste fiyatına geçilmelidir.</div>' +
+      '<div class="tableWrap"><table><thead><tr><th style="text-align:left">Müşteri / Cari Adı</th><th>Net Satış</th><th>Maliyet (SMM)</th><th>Brüt Zarar</th><th>Brüt Marj %</th><th>Tahsilat / Vade Riski</th></tr></thead><tbody>' +
+      lossMaking.map(c => '<tr style="background:#FFF5F5">' +
+        '<td style="text-align:left"><b>' + esc(c.name || c.customer) + '</b></td>' +
+        '<td>' + money(c.sales != null ? c.sales : c.revenue) + '</td>' +
+        '<td>' + money(c.cogs) + '</td>' +
+        '<td style="color:#DC2626;font-weight:800">' + money(c.gross_profit) + '</td>' +
+        '<td style="color:#DC2626;font-weight:800">%' + num(c.gross_margin_pct) + '</td>' +
+        '<td><span class="tag ' + esc(c.collection_color || 'critical') + '">' + esc(c.collection_health || 'Vade Riski') + '</span></td>' +
+      '</tr>').join('') +
+      '</tbody></table></div>' +
+    '</div>';
+  }
 
   function quadBox(title, tag, tagClass, desc, items){
     const list = (items||[]).slice(0, 4);
@@ -5751,11 +5829,13 @@ function renderCustomerProfitabilityMatrix(cp){
     quadBox('💎 Kârlı Niş (Niche)', 'Düşük Ciro & Yüksek Kâr', 'medium', 'Marjı yüksek fakat hacmi küçük. Büyüme ve satış odaklanması gereken grup.', nicheProfit) +
     quadBox('🛑 Düşük Değer / Kayıp Riski', 'Düşük Ciro & Düşük Kâr', 'critical', 'Zaman ve sermaye tüketen müşteriler. Standart vadeli ödeme disiplini şart.', lowValue);
 
+  let findingsHtml = '';
   if(cp.findings && cp.findings.length){
-    $('customerMatrixFindings').innerHTML = '<div class="notice" style="margin-top:10px">' +
+    findingsHtml = '<div class="notice" style="margin-top:10px">' +
       cp.findings.map(f => '<div><b>' + esc(f.title) + ':</b> ' + esc(f.detail) + ' <span class="muted">(' + esc(f.recommendation || f.action || '') + ')</span></div>').join('') +
     '</div>';
   }
+  $('customerMatrixFindings').innerHTML = lossHtml + findingsHtml;
 }
 
 function renderProductProfitability(pp){
@@ -5764,30 +5844,218 @@ function renderProductProfitability(pp){
   if(!pp || pp.status !== 'PASS'){ card.classList.add('hidden'); return; }
   card.classList.remove('hidden');
 
-  const top = (pp.top_profitable_products || []).slice(0, 8);
+  const lossMaking = pp.loss_making_products || [];
+  const prods = (pp.products || pp.top_profitable_products || []).slice(0, 10);
   const tied = (pp.tied_inventory_products || []).slice(0, 5);
 
-  let rows = top.map(p => 
-    '<tr>' +
-      '<td style="text-align:left"><b>' + esc(p.sku) + '</b></td>' +
-      '<td>' + money(p.revenue) + '</td>' +
-      '<td>' + money(p.cogs) + '</td>' +
-      '<td><b>%' + num(p.gross_margin_pct) + '</b></td>' +
-      '<td>%' + num(p.share_of_profit_pct) + '</td>' +
-    '</tr>'
-  ).join('');
+  let html = '';
 
-  let html = '<div class="tableWrap"><table><thead><tr>' +
-    '<th style="text-align:left">Ürün / SKU</th><th>Ciro</th><th>Satılan Malın Maliyeti (SMM)</th><th>Brüt Marj %</th><th>Kâra Katkı %</th>' +
+  if(lossMaking.length){
+    const totalLoss = Math.abs(lossMaking.reduce((acc, p) => acc + (p.gross_profit || 0), 0));
+    html += '<div style="background:#FEF2F2;border:1.5px solid #FCA5A5;border-radius:14px;padding:14px 16px;margin-bottom:14px">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px">' +
+        '<div style="display:flex;align-items:center;gap:8px">' +
+          '<span style="font-size:18px">🛑</span>' +
+          '<b style="color:#991B1B;font-size:13.5px">Negatif Marjlı / Zarar Ettiren Ürünler (' + lossMaking.length + ' Kalem)</b>' +
+        '</div>' +
+        '<span class="tag critical" style="font-weight:800">Toplam Brüt Zarar: ' + money(totalLoss) + '</span>' +
+      '</div>' +
+      '<div style="font-size:12px;color:#7F1D1D;margin-bottom:10px">Bu ürünlerin birim satış fiyatı üretim/tedarik maliyetini (SMM) karşılamamakta ve şirketin brüt kârını eritmektedir.</div>' +
+      '<div class="tableWrap"><table><thead><tr><th style="text-align:left">Ürün Adı / SKU</th><th>Net Satış</th><th>Maliyet (SMM)</th><th>Brüt Zarar</th><th>Brüt Marj %</th><th>Kategori</th></tr></thead><tbody>' +
+      lossMaking.map(p => '<tr style="background:#FFF5F5">' +
+        '<td style="text-align:left"><b>' + esc(p.name || p.sku) + '</b></td>' +
+        '<td>' + money(p.sales != null ? p.sales : p.revenue) + '</td>' +
+        '<td>' + money(p.cogs) + '</td>' +
+        '<td style="color:#DC2626;font-weight:800">' + money(p.gross_profit) + '</td>' +
+        '<td style="color:#DC2626;font-weight:800">%' + num(p.gross_margin_pct) + '</td>' +
+        '<td><span class="tag critical">' + esc(p.category || 'Zararlı') + '</span></td>' +
+      '</tr>').join('') +
+      '</tbody></table></div>' +
+    '</div>';
+  }
+
+  let rows = prods.map(p => {
+    const isLoss = (p.gross_profit < 0 || p.gross_margin_pct < 0);
+    const catClass = isLoss ? 'critical' : (p.category === 'Lokomotif Kârlı' ? 'positive' : 'medium');
+    return '<tr>' +
+      '<td style="text-align:left"><b>' + esc(p.name || p.sku) + '</b></td>' +
+      '<td>' + money(p.sales != null ? p.sales : p.revenue) + '</td>' +
+      '<td>' + money(p.cogs) + '</td>' +
+      '<td style="color:' + (isLoss ? 'var(--red)' : '#0F172A') + '"><b>' + money(p.gross_profit) + '</b></td>' +
+      '<td style="color:' + (isLoss ? 'var(--red)' : '#0F172A') + '"><b>%' + num(p.gross_margin_pct) + '</b></td>' +
+      '<td>%' + num(p.profit_share_pct != null ? p.profit_share_pct : p.share_of_profit_pct) + '</td>' +
+      '<td><span class="tag ' + catClass + '">' + esc(p.category || '–') + '</span></td>' +
+    '</tr>';
+  }).join('');
+
+  html += '<div class="tableWrap"><table><thead><tr>' +
+    '<th style="text-align:left">Ürün / SKU</th><th>Ciro</th><th>Satılan Malın Maliyeti (SMM)</th><th>Brüt Kâr/Zarar</th><th>Brüt Marj %</th><th>Kâra Katkı %</th><th>Kategori</th>' +
     '</tr></thead><tbody>' + rows + '</tbody></table></div>';
 
   if(tied.length){
     html += '<div class="notice" style="margin-top:12px"><b>Depoda En Çok Sermaye Bağlayan Ürünler:</b> ' +
-      tied.map(t => esc(t.sku) + ' (' + money(t.inventory_tied_capital) + ')').join(' · ') +
+      tied.map(t => esc(t.name || t.sku) + ' (' + money(t.inventory_tied_value != null ? t.inventory_tied_value : t.inventory_tied_capital) + ')').join(' · ') +
     '</div>';
   }
 
   $('productProfitabilityTable').innerHTML = html;
+}
+
+function renderTaxStrategy(ts){
+  const card = $('taxStrategyCard');
+  if(!card) return;
+  if(!ts || ts.status !== 'PASS' || !ts.strategies || !ts.strategies.length){
+    card.classList.add('hidden');
+    return;
+  }
+  card.classList.remove('hidden');
+
+  const totalSaving = ts.total_estimated_tax_saving != null ? ts.total_estimated_tax_saving : (ts.total_potential_tax_cash_saving_tl || 0);
+  const taxShield = ts.total_tax_shield_deduction_tl != null ? ts.total_tax_shield_deduction_tl : (totalSaving * 4.0);
+  const stratCount = ts.strategy_count || ts.strategies.length;
+
+  $('taxStrategyMetrics').innerHTML = 
+    metric('Toplam Potansiyel Vergi & Nakit Tasarrufu', money(totalSaving), 'Yasal Kalkanlar & KKEG Optimizasyonu') +
+    metric('Doğrudan Vergi Matrahı Kalkanı', money(taxShield), 'İndirilebilir Gider / Karşılık Matrahı') +
+    metric('Uygulanabilir Vergi Stratejisi', stratCount + ' Yasal Strateji', 'Şirketin Mevcut Rakamlarına Özel');
+
+  $('taxStrategyItems').innerHTML = ts.strategies.map(s => {
+    const isCritical = s.severity === 'critical';
+    const borderColor = isCritical ? '#FCA5A5' : '#CBD5E1';
+    const bg = isCritical ? '#FEF2F2' : '#FFFFFF';
+    const saving = s.potential_saving != null ? s.potential_saving : (s.potential_tax_saving_tl || 0);
+    const lawRef = s.legal_basis || s.law_ref || 'VUK / KVK';
+    const detail = s.current_state || s.detail || '';
+    const savingBadge = (saving > 0)
+      ? '<span class="tag positive" style="font-weight:800;font-size:12px">⚡ ' + money(saving) + ' Net Vergi Tasarrufu</span>'
+      : '<span class="tag medium" style="font-weight:700;font-size:12px">🛡️ Yasal Matrah Kalkanı</span>';
+
+    return '<div class="insight" style="background:' + bg + ';border:1.5px solid ' + borderColor + ';border-radius:14px;padding:16px">' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:8px">' +
+        '<div>' +
+          '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">' +
+            '<span class="tag" style="background:#0F172A;color:#FFFFFF;font-weight:800;font-size:10.5px">' + esc(lawRef) + '</span>' +
+            '<span class="tag ' + esc(s.severity) + '">' + esc(s.category) + '</span>' +
+          '</div>' +
+          '<h3 style="margin:4px 0 0;font-size:15px;color:#0F172A">' + esc(s.title) + '</h3>' +
+        '</div>' +
+        '<div>' + savingBadge + '</div>' +
+      '</div>' +
+      '<p style="margin:0 0 10px;font-size:12.5px;line-height:1.55;color:#334155">' + esc(detail) + '</p>' +
+      (s.calculations && s.calculations.length ? ('<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 12px;font-size:12px;margin-bottom:10px">' +
+        '<b style="color:#0F172A">📊 Şirketinizin Rakamlarıyla Hesaplama:</b>' +
+        '<ul style="margin:6px 0 0;padding-left:18px;color:#475569">' +
+          s.calculations.map(c => '<li>' + esc(c) + '</li>').join('') +
+        '</ul>' +
+      '</div>') : '') +
+      '<div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#047857;background:#ECFDF5;padding:8px 12px;border-radius:8px;border:1px solid #A7F3D0">' +
+        '<span style="font-size:15px">🎯</span>' +
+        '<span><b>Önerilen Vergi Yönetimi Aksiyonu:</b> ' + esc(s.action) + '</span>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function renderUnifiedRootCauseSection(rc, ne){
+  const container = $('rootCause');
+  if(!container) return;
+
+  const chains = (rc && rc.causal_chains) ? rc.causal_chains : [];
+  const stories = (ne && ne.stories) ? ne.stories : [];
+
+  if(!chains.length && !stories.length){
+    container.innerHTML = '<div class="notice">Bu dönemde eşik aşan belirgin bir kök neden veya sızıntı zinciri tespit edilmedi.</div>';
+    return;
+  }
+
+  let items = [];
+
+  stories.forEach(s => {
+    items.push({
+      category: s.category || 'Finansal Teşhis',
+      severity: s.severity || 'medium',
+      title: s.title,
+      symptom: s.ne_oldu,
+      evidence: [s.ne_oldu],
+      root_cause: s.neden,
+      financial_leak: s.maliyet,
+      actions: s.ne_yapmali || [],
+      data_gap: s.data_gap,
+      driver: 'Operasyonel / Finansal Süreç'
+    });
+  });
+
+  chains.forEach(c => {
+    const exists = items.some(it => (it.title || '').toLowerCase() === (c.title || '').toLowerCase());
+    if(!exists){
+      items.push({
+        category: c.category || 'Nedensellik Zinciri',
+        severity: c.causal_status === 'yüksek ihtimalli etken' ? 'high' : 'medium',
+        title: c.title,
+        symptom: (c.chain && c.chain.length) ? c.chain[0] : c.title,
+        evidence: c.evidence || [],
+        root_cause: c.primary_driver || (c.chain && c.chain.length > 1 ? c.chain[1] : 'Süreç darboğazı'),
+        financial_leak: c.financial_impact || 'Bağlı sermaye ve kâr marjı baskısı',
+        actions: c.recommended_actions || [],
+        data_gap: (c.required_additional_evidence || []).join(' · '),
+        driver: c.primary_driver || '–'
+      });
+    }
+  });
+
+  const sevColors = {
+    critical: { bg: '#FEF2F2', border: '#FCA5A5', tag: 'critical', text: '#991B1B' },
+    high: { bg: '#FFFBEB', border: '#FCD34D', tag: 'high', text: '#92400E' },
+    medium: { bg: '#EFF6FF', border: '#93C5FD', tag: 'medium', text: '#1E40AF' },
+    positive: { bg: '#ECFDF5', border: '#A7F3D0', tag: 'positive', text: '#065F46' }
+  };
+
+  container.innerHTML = items.map((item, idx) => {
+    const sc = sevColors[item.severity] || sevColors.medium;
+    return '<div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:18px 20px;box-shadow:0 4px 14px rgba(15,27,45,0.03)">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;border-bottom:1px solid #E2E8F0;padding-bottom:10px">' +
+        '<div style="display:flex;align-items:center;gap:8px">' +
+          '<span style="background:#0F172A;color:#FFF;font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:6px">KÖK NEDEN #' + (idx + 1) + '</span>' +
+          '<h3 style="margin:0;font-size:15px;color:#0F172A">' + esc(item.title) + '</h3>' +
+        '</div>' +
+        '<div style="display:flex;align-items:center;gap:6px">' +
+          '<span class="tag" style="background:#F1F5F9;font-size:11px">' + esc(item.category) + '</span>' +
+          '<span class="tag ' + sc.tag + '">' + esc(item.severity) + '</span>' +
+        '</div>' +
+      '</div>' +
+
+      '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:12px">' +
+        '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px">' +
+          '<div style="font-size:10.5px;font-weight:800;color:#64748B;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">🔍 1. Belirti (Ne Oldu?)</div>' +
+          '<div style="font-size:12px;color:#0F172A;font-weight:600;line-height:1.4">' + esc(item.symptom) + '</div>' +
+        '</div>' +
+
+        '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px">' +
+          '<div style="font-size:10.5px;font-weight:800;color:#64748B;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">📊 2. Sayısal Kanıt</div>' +
+          '<div style="font-size:11.5px;color:#334155;line-height:1.4">' + (item.evidence.length ? item.evidence.map(esc).join('<br>') : '–') + '</div>' +
+        '</div>' +
+
+        '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px">' +
+          '<div style="font-size:10.5px;font-weight:800;color:#64748B;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">⚙️ 3. Kök Neden (Tetikleyici)</div>' +
+          '<div style="font-size:12px;color:#1D4ED8;font-weight:700;line-height:1.4">' + esc(item.root_cause) + '</div>' +
+        '</div>' +
+
+        '<div style="background:' + sc.bg + ';border:1px solid ' + sc.border + ';border-radius:10px;padding:10px">' +
+          '<div style="font-size:10.5px;font-weight:800;color:' + sc.text + ';text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">💸 4. Parasal Sızıntı</div>' +
+          '<div style="font-size:12.5px;color:' + sc.text + ';font-weight:800;line-height:1.4">' + esc(item.financial_leak) + '</div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:10px 14px">' +
+        '<div style="font-size:11.5px;font-weight:800;color:#166534;margin-bottom:4px">🎯 5. Yönetim Kararı &amp; İcraat:</div>' +
+        '<ul style="margin:0;padding-left:18px;font-size:12px;color:#14532D;line-height:1.5">' +
+          (item.actions.length ? item.actions.map(a => '<li>' + esc(a) + '</li>').join('') : '<li>Sözleşme şartlarını ve operasyonel iş akışını güncelleyin.</li>') +
+        '</ul>' +
+      '</div>' +
+
+      (item.data_gap ? '<div class="small muted" style="margin-top:8px;font-size:11px">⚠️ <b>Ek Kanıt İhtiyacı:</b> ' + esc(item.data_gap) + '</div>' : '') +
+    '</div>';
+  }).join('');
 }
 
 function applyScenarioPreset(dso, dio, margin, opex){

@@ -34,3 +34,7 @@ def test_operational_finance_and_ai_critic_are_evidence_aware():
     assert operational['cash_release_proxy']==70
     critic=critique_ai_response({'message':'Observed 40 TL and 999 TL'}, {'overdue':40})
     assert critic['status']=='review_required'
+
+
+
+
