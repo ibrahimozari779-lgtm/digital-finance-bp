@@ -715,7 +715,11 @@ def health()->dict[str,str]:return {'status':'ok','service':'digital-finance-bp'
 # full WHAT-WHY-SOWHAT-NOWWHAT flow, which matters far more for a sales demo
 # than for day-to-day use.
 import os as _os
+from fastapi.staticfiles import StaticFiles
 _PROJECT_ROOT = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+_STATIC_DIR = _os.path.join(_PROJECT_ROOT, 'static')
+if _os.path.exists(_STATIC_DIR):
+    app.mount('/static', StaticFiles(directory=_STATIC_DIR), name='static')
 _SAMPLE_FILES = {
     'mizan': ('sample_mizan.xlsx', 'Örnek Mizan (Genel)'),
     'mizan_prior': ('sample_mizan_period1.xlsx', 'Örnek Mizan (Önceki Dönem)'),

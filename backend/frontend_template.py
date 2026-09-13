@@ -563,6 +563,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="cash">
     <div>
       <span class="kobiTag cash">💵 1. KÂR &amp; NAKİT ÇELİŞKİSİ</span>
+      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+        <img src="/static/ads/kobi_1_kar_vs_kasa.jpg" alt="1. Kâr ve Nakit Çelişkisi" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+      </div>
       <div class="kobiTitle">"Muhasebeciniz 'Bu Ay Kârdayız' Diyor, Ama Siz Ay Sonu Maaşları Nasıl Ödeyeceğinizi Düşünüyorsunuz."</div>
       <div class="kobiDesc">Defterde kâr çıkması, kasada nakit olduğu anlamına gelmez. Satışı yapmışsınız ama parayı müşteriden alamamışsınız; malı üretip depoya yığmışsınız. Kârınız buharlaşmadı; müşterinin açık hesabında ve depodaki kolilerde kilitli kaldı.</div>
       <div class="kobiMetrics">
@@ -585,6 +588,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="cash">
     <div>
       <span class="kobiTag cash">💵 2. AÇIK HESAP &amp; TERSİNE BANKACILIK</span>
+      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+        <img src="/static/ads/kobi_2_acik_hesap.jpg" alt="2. Açık Hesap ve Tersine Bankacılık" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+      </div>
       <div class="kobiTitle">"Siz Mal mı Satıyorsunuz, Yoksa Müşterilerinize Faizsiz Kredi Dağıtan Banka mısınız?"</div>
       <div class="kobiDesc">Siz bankadan %50 faizle kredi çekip hammadde alıyorsunuz, işçilik ödüyorsunuz; müşteriniz ise malı alıp 90 gün sonra ödüyor! Kendi özkaynağınızla başkalarının ticaretini finanse ediyorsunuz.</div>
       <div class="kobiMetrics">
@@ -607,6 +613,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="profit">
     <div>
       <span class="kobiTag profit">📊 3. ÖLÜ STOK MEZARLIĞI</span>
+      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+        <img src="/static/ads/kobi_3_olu_stok.jpg" alt="3. Ölü Stok Mezarlığı" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+      </div>
       <div class="kobiTitle">"Deponuz Ağzına Kadar Mal Dolu Diye Zenginleştiğinizi mi Sanıyorsunuz?"</div>
       <div class="kobiDesc">6 aydır rafta bekleyen o kumaş, o profil, o yedek parça depoda durdukça değer kazanmıyor; her gün banka kredinizin faizini yiyor. Depodaki atıl malı görmezden gelmek, her ay deste deste parayı çöpe atmaktır.</div>
       <div class="kobiMetrics">
@@ -629,6 +638,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="mgmt">
     <div>
       <span class="kobiTag mgmt">🏛️ 4. MİZAN ÇİLESİ VS. KARAR MASASI</span>
+      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+        <img src="/static/ads/kobi_4_mizan_vs_karar.jpg" alt="4. Mizan Çilesi vs Karar Masası" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+      </div>
       <div class="kobiTitle">"Muhasebeciniz Size Çıkacak Vergiyi Söyler; Parayı Nereden Bulacağınızı Söylemez."</div>
       <div class="kobiDesc">Mali müşavirin işi devlete vergi beyannamesi vermektir. Ancak önünüze konan 500 satırlık mizan tablosundan "Yarın hangi müşteriye mal çıkışını durdurmalıyım?", "Hangi maliyet canımı yakıyor?" sorularının yanıtı çıkmaz.</div>
       <div class="kobiMetrics">
@@ -651,6 +663,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="cash">
     <div>
       <span class="kobiTag cash">💵 5. CİRO ALDANMASI &amp; KASA GERÇEĞİ</span>
+      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+        <img src="/static/ads/kobi_5_ciro_aldanmasi.jpg" alt="5. Ciro Aldanması ve Kasa Gerçeği" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+      </div>
       <div class="kobiTitle">"50 Milyon Ciro Yapıp Ay Sonu Çek Öderken Ter Döken Patronlardan mısınız?"</div>
       <div class="kobiDesc">Ciro gösteriştir, kâr akıl işidir, kasadaki nakit ise gerçeğin ta kendisidir. Cironuz ikiye katlanıyor ama borcunuz da aynı hızla katlanıyorsa büyümüyorsunuz; sadece daha büyük bir riskin altına giriyorsunuz.</div>
       <div class="kobiMetrics">
@@ -673,6 +688,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="mgmt">
     <div>
       <span class="kobiTag mgmt">🏛️ 6. MÜŞTERİ REHİNESİ &amp; KONSANTRASYON</span>
+      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+        <img src="/static/ads/kobi_6_musteri_rehinesi.jpg" alt="6. Müşteri Rehinesi ve Konsantrasyon" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+      </div>
       <div class="kobiTitle">"Cironuzun Yarısını Tek Bir Müşteriye Yapıyorsanız; Patron Siz Değilsiniz, O Müşteridir."</div>
       <div class="kobiDesc">Büyük müşteriyle çalışmak iyidir ama bütün yumurtaları aynı sepete koymak felakettir. O müşteri yarın "Vadeyi 4 aya çıkarıyorum" dediğinde veya ödemeyi geciktirdiğinde şirketin dayanacak kaç günlük can suyu var?</div>
       <div class="kobiMetrics">
@@ -695,6 +713,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="profit">
     <div>
       <span class="kobiTag profit">📊 7. FİYATLAMA GÜCÜ &amp; MARJ KORUMA</span>
+      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+        <img src="/static/ads/kobi_7_fiyat_gucu.jpg" alt="7. Fiyatlama Gücü ve Marj Koruma" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+      </div>
       <div class="kobiTitle">"Fiyatlarınıza Sadece %3 Zam Yapsanız Kasaya Kaç Yüz Bin Lira Kalır, Hiç Hesapladınız mı?"</div>
       <div class="kobiDesc">"Müşteri kaçar" korkusuyla maliyet artışlarını fiyata yansıtmamak şirketin özkaynağını eritir. Kontrolsüz iskontolar ve plansız vadeler, ciro artarken kârı sıfırlayan ana sızıntıdır.</div>
       <div class="kobiMetrics">
@@ -717,6 +738,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="cash">
     <div>
       <span class="kobiTag cash">💵 8. KREDİ KAPANINDAN ÇIKIŞ</span>
+      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+        <img src="/static/ads/kobi_8_kredi_kapani.jpg" alt="8. Kredi Kapanından Çıkış" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+      </div>
       <div class="kobiTitle">"Faizlerin %50 Olduğu Yerde, Şirketi Banka Kredisiyle Döndüremezsiniz."</div>
       <div class="kobiDesc">Kasada nakit sıkışınca ilk refleks bankaya koşup kredi çekmektir. Ama içerideki para kaçağını kapatmadan kredi çekmek, sadece bankalara çalışmaktır. Çözüm yeni borç değil; içerideki kilitli parayı kurtarmaktır.</div>
       <div class="kobiMetrics">
@@ -739,6 +763,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="mgmt">
     <div>
       <span class="kobiTag mgmt">🏛️ 9. ORTAKLAR MASASINDA FİKİR BİRLİĞİ</span>
+      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+        <img src="/static/ads/kobi_9_ortaklar_masasi.jpg" alt="9. Ortaklar Masasında Fikir Birliği" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+      </div>
       <div class="kobiTitle">"Her Ay Ortaklarınızla 'İşler İyiydi de Bu Para Nereye Gitti' Kavgası Yapmaktan Bıkmadınız mı?"</div>
       <div class="kobiDesc">Ortaklar arasındaki en büyük gerginlik rakamların farklı yorumlanmasıdır. Biri "Satış ekibi rekor kırdı" der, diğeri "Kasa boş, tedarikçiyi ödeyemiyoruz" der. Suçlu aramak yerine tek bir gerçeğin etrafında toplanın.</div>
       <div class="kobiMetrics">
@@ -761,6 +788,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="profit">
     <div>
       <span class="kobiTag profit">📊 10. CFO ZEKA ARBİTRAJI</span>
+      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+        <img src="/static/ads/kobi_10_cfo_arbitraji.jpg" alt="10. CFO Zeka Arbitrajı" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+      </div>
       <div class="kobiTitle">"Büyük Holdingler Her Ay Milyonluk Finans Kadrolarıyla Şirket Yönetiyor. Siz Hâlâ Hissiyatla mı Karar Veriyorsunuz?"</div>
       <div class="kobiDesc">Aylık 150-200 bin TL maaşla Finans Direktörü (CFO) tutmak KOBİ ölçeğinde zordur. Ancak rekabet etmek için holdinglerin sahip olduğu finansal denetime ve karar gücüne ihtiyacınız var.</div>
       <div class="kobiMetrics">
