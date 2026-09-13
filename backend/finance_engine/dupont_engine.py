@@ -39,7 +39,9 @@ def build_dupont_analysis(statements: dict[str, Any]) -> dict[str, Any]:
     elif roe_pct > 25.0:
         diagnosis.append("Yüksek özkaynak kârlılığı (ROE) sergileniyor.")
 
-    if equity_multiplier > 4.0:
+    if total_equity <= 0:
+        diagnosis.append("Negatif özkaynak / borca batıklık riski: Kaldıraç çarpanı ve ROE matematiksel olarak tanımsızdır (TTK 376 riski).")
+    elif equity_multiplier > 4.0:
         diagnosis.append(f"Finansal kaldıraç çarpanı {equity_multiplier:.2f}x ile yüksek; kârlılık borçlanma üzerinden kaldıraçlanıyor, risk yüksek.")
     elif equity_multiplier < 1.5:
         diagnosis.append(f"Muhafazakar sermaye yapısı ({equity_multiplier:.2f}x kaldıraç çarpanı); borçlanma kapasitesi mevcut.")

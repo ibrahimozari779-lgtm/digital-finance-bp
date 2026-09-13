@@ -114,12 +114,19 @@ def build_finance_business_partner_analysis(
         liquidity_points += _score_band(cash_ratio, [(0.50, 10), (0.30, 8), (0.15, 5), (0.05, 2)], 0)
 
     leverage_points = 0.0
-    if debt_to_equity is not None:
+    if total_equity is not None and total_equity <= 0:
+        # Technical insolvency / negative equity: no positive leverage points
+        leverage_points += 0.0
+    elif debt_to_equity is not None and debt_to_equity >= 0:
         if debt_to_equity <= 1.0: leverage_points += 12
         elif debt_to_equity <= 2.0: leverage_points += 9
         elif debt_to_equity <= 3.0: leverage_points += 6
         elif debt_to_equity <= 5.0: leverage_points += 3
-    if finance_cost_to_op is not None:
+
+    if operating_profit is not None and operating_profit <= 0 and finance_costs is not None and finance_costs > 0:
+        # Operating loss with finance costs: no leverage points
+        pass
+    elif finance_cost_to_op is not None and finance_cost_to_op >= 0:
         if finance_cost_to_op <= 0.20: leverage_points += 13
         elif finance_cost_to_op <= 0.35: leverage_points += 10
         elif finance_cost_to_op <= 0.50: leverage_points += 6
@@ -165,7 +172,15 @@ def build_finance_business_partner_analysis(
         add_finding("P003", "Kârlılık", "medium", "Brüt marj sınırlı", [f"Gross margin %{gross_margin:.1f}"], "Maliyet veya fiyatlama baskısı faaliyet kârlılığı için düşük tampon bırakıyor.", "Fiyatlama, indirimler ve satış maliyetini müşteri/ürün bazında analiz et.")
 
     # Financing pressure
-    if finance_cost_to_op is not None:
+    if operating_profit is not None and operating_profit <= 0 and finance_costs is not None and finance_costs > 0:
+        add_finding(
+            "L001", "Borçluluk", "critical",
+            "Faaliyet zararı & finansman gider yükü",
+            [f"Operating profit {operating_profit:,.0f} TL", f"Finance costs {finance_costs:,.0f} TL"],
+            "Şirket ana faaliyetlerinden kâr üretemezken finansman gideri taşımaktadır; faiz karşılama kapasitesi negatiftir.",
+            "Borç servisi doğrudan nakit ve sermaye tüketmektedir; acil borç yapılandırması ve faaliyet kârlılığı restorasyonu gerekir.",
+        )
+    elif finance_cost_to_op is not None and finance_cost_to_op >= 0:
         pct = finance_cost_to_op * 100
         if finance_cost_to_op > 0.60:
             sev = "critical"
@@ -183,7 +198,15 @@ def build_finance_business_partner_analysis(
             "Borç kompozisyonu, faiz oranları, vade yapısı ve işletme sermayesi finansman ihtiyacını gözden geçir." if sev != "positive" else "Mevcut finansman disiplinini koru.",
         )
 
-    if debt_to_equity is not None:
+    if total_equity is not None and total_equity <= 0:
+        add_finding(
+            "L002", "Borçluluk", "critical",
+            "Negatif Özkaynak / Borca Batıklık Riski (TTK 376)",
+            [f"Equity {total_equity:,.0f} TL", f"Financial debt {financial_debt:,.0f} TL" if financial_debt is not None else ""],
+            "Şirket özkaynakları negatife düşmüştür; borç/özkaynak oranı matematiksel olarak tanımsızdır ve teknik iflas riski bulunmaktadır.",
+            "TTK 376 kapsamında genel kurul çağrısı, sermaye tamamlama veya sermaye artırımı önlemleri acilen değerlendirilmelidir.",
+        )
+    elif debt_to_equity is not None and debt_to_equity >= 0:
         if debt_to_equity > 5:
             sev = "critical"
         elif debt_to_equity > 3:

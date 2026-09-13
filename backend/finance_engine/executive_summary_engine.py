@@ -447,7 +447,10 @@ def build_executive_summary(
 
     if root_cause.get("primary_margin_driver"):
         drv = root_cause["primary_margin_driver"]
-        parts.append(f"Marjı en çok baskılayan kalem: {drv['label'].lower()} (satışların %{abs(drv['pct_of_sales']):.1f}'i).")
+        if drv.get("pct_of_sales") is not None:
+            parts.append(f"Marjı en çok baskılayan kalem: {drv['label'].lower()} (satışların %{abs(drv['pct_of_sales']):.1f}'i).")
+        else:
+            parts.append(f"Marjı en çok baskılayan kalem: {drv['label'].lower()}.")
 
     if opportunities_sorted:
         top_opp = opportunities_sorted[0]
