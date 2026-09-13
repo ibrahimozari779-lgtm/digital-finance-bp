@@ -120,9 +120,26 @@ def build_root_cause_analysis(statements: dict[str, Any], findings: list[dict[st
                 "Tek başına brüt marj veya OPEX oranı eşik dışı değil; birleşik etki olası",
             ]
             driver = "Brüt marj + OPEX bileşimi"
+
+        rc_p_evidence: list[str] = []
+        if gross_margin_pct is not None:
+            rc_p_evidence.append(f"Brüt Kâr Marjı: %{gross_margin_pct:.1f}")
+        if opex and net_sales:
+            rc_p_evidence.append(f"Faaliyet Gideri / Ciro: %{(opex / net_sales * 100):.1f}")
+        if operating_margin_pct is not None:
+            rc_p_evidence.append(f"Faaliyet Kâr Marjı: %{operating_margin_pct:.1f}")
+        if operating_profit is not None:
+            rc_p_evidence.append(f"Faaliyet Kârı: {operating_profit:,.0f} TL")
+
         causal_chains.append({
             "code": "RC-P", "title": "Faaliyet Kârlılığı Kök Nedeni",
             "chain": chain, "primary_driver": driver,
+            "evidence": rc_p_evidence,
+            "financial_impact": f"Faaliyet kârı erimesi (~{abs(opex):,.0f} TL gider yükü)",
+            "recommended_actions": [
+                "Ürün bazlı kârlılık kırılımını çıkarıp negatif marjlı ürünleri fiyatlayın",
+                "Faaliyet giderlerinde (770/760) tasarruf bütçesi belirleyin",
+            ],
             "related_findings": ["P001", "P002", "P003"],
             "causal_status": "likely_driver",
             "required_additional_evidence": ["product/customer margin", "pricing and discount data", "cost breakdown"],
@@ -138,9 +155,27 @@ def build_root_cause_analysis(statements: dict[str, Any], findings: list[dict[st
         if debt_to_equity is not None and debt_to_equity > 2:
             chain.append("Borç/özkaynak oranı yüksek, kaldıraç sınırlı özkaynakla destekleniyor")
         chain.append("Finansman giderleri faaliyet kârının önemli bölümünü tüketiyor")
+
+        rc_l_evidence: list[str] = []
+        if finance_costs is not None:
+            rc_l_evidence.append(f"Finansman Gideri: {finance_costs:,.0f} TL")
+        if finance_cost_to_op is not None:
+            rc_l_evidence.append(f"Finansman Gideri / Faaliyet Kârı: %{(finance_cost_to_op * 100):.1f}")
+        if debt_to_equity is not None:
+            rc_l_evidence.append(f"Borç / Özkaynak (Kaldıraç): {debt_to_equity:.2f}x")
+        fin_debt = float(k.get("financial_debt") or 0.0)
+        if fin_debt > 0:
+            rc_l_evidence.append(f"Toplam Finansal Borç: {fin_debt:,.0f} TL")
+
         causal_chains.append({
             "code": "RC-L", "title": "Finansman Baskısı Kök Nedeni",
             "chain": chain, "primary_driver": "Finansal kaldıraç (borç seviyesi)",
+            "evidence": rc_l_evidence,
+            "financial_impact": f"Yıllık {finance_costs:,.0f} TL nakit faiz sızıntısı",
+            "recommended_actions": [
+                "Kredi vadelerini yeniden yapılandırın ve yüksek faizli rotatifleri kapatın",
+                "Nakit sermaye artırımı (KVK 10/1-ı) ile faiz indiriminden faydalanın",
+            ],
             "related_findings": ["L001", "L002", "D004", "D005", "D006", "D007"],
             "causal_status": "likely_driver",
             "required_additional_evidence": ["debt maturity schedule", "interest rates by facility", "currency mix", "cash flow forecast"],
@@ -158,9 +193,26 @@ def build_root_cause_analysis(statements: dict[str, Any], findings: list[dict[st
             chain.append("Açık, ek borçlanma ile kapatılıyor olabilir (borç/özkaynak yüksek)")
         else:
             chain.append("Nakde dönüşüm süresi uzuyor, likidite tamponu daralabilir")
+
+        rc_w_evidence: list[str] = []
+        rec_val = float(k.get("receivables") or 0.0)
+        if rec_val > 0:
+            rc_w_evidence.append(f"Müşteri Alacakları (120): {rec_val:,.0f} TL")
+        if receivables_to_sales is not None:
+            rc_w_evidence.append(f"Alacak / Satış Oranı: %{(receivables_to_sales * 100):.1f}")
+        dso_val = k.get("dso")
+        if dso_val is not None:
+            rc_w_evidence.append(f"Ortalama Tahsilat Vadesi (DSO): {round(float(dso_val))} gün")
+
         causal_chains.append({
             "code": "RC-W", "title": "İşletme Sermayesi Kök Nedeni",
             "chain": chain, "primary_driver": "Alacak tahsilat hızı",
+            "evidence": rc_w_evidence,
+            "financial_impact": f"Müşteri vadelerinde kilitli {rec_val:,.0f} TL sermaye",
+            "recommended_actions": [
+                "Vadesi geçen alacaklar için DBS / teminat protokolü uygulayın",
+                "Erken ödeme yapan müşterilere peşin iskontosu sunarak nakdi çekin",
+            ],
             "related_findings": ["W001", "WC004"],
             "causal_status": "hypothesis",
             "required_additional_evidence": ["AR aging", "customer concentration", "payment terms", "collection history"],
