@@ -224,25 +224,44 @@ def detect_mapping(columns: list[str]) -> dict[str, dict[str, Any]]:
     return result
 
 
-def is_special_financial_statement_layout(raw: pd.DataFrame) -> bool:
+def safe_extract_texts(raw: pd.DataFrame, max_rows: int = 15) -> str:
+    """Safely extracts text tokens from first N rows without crashing on datetimes."""
+    tokens = []
+    sample = raw.iloc[:max_rows]
+    for row in sample.itertuples(index=False, name=None):
+        for val in row:
+            if val is not None and not (isinstance(val, float) and pd.isna(val)):
+                s = str(val).strip()
+                if s and s != "nan" and s != "NaT":
+                    tokens.append(normalize(s))
+    return " ".join(tokens)
+
+
+def is_special_financial_statement_layout(raw: pd.DataFrame, sname: str = "") -> bool:
     # Detect layouts like the uploaded real-world file: title rows, code in a detail column,
     # statement amount in a later column, and English/Turkish statement headers such as B&S vs Sales Data.
-    texts = " ".join(normalize(x) for x in raw.iloc[:12].fillna("").astype(str).values.ravel())
-    is_balance_sheet = ("balance sheet" in texts or "bilanco" in texts) and (
+    texts = safe_extract_texts(raw, 12)
+    ns = normalize(sname)
+    tokens = set(ns.split())
+
+    is_bs_name = (
+        "bs asset" in ns or "bs assets" in ns
+        or "bs liab" in ns or "bs liabilities" in ns
+        or "balance sheet" in ns or "bilanco" in ns
+        or ("bs" in tokens and any(k in tokens for k in ["asset", "assets", "liab", "liabilities"]))
+    )
+    is_pl_name = (
+        "pl" in tokens or "p l" in ns or "p&l" in ns
+        or "income statement" in ns or "gelir tablosu" in ns or "kar zarar" in ns
+    )
+
+    is_balance_sheet = is_bs_name or (("balance sheet" in texts or "bilanco" in texts) and (
         "assets" in texts or "aktif" in texts or "liabilities" in texts or "pasif" in texts
         or "kaynaklar" in texts or "b s vs sales data" in texts
-    )
-    # BUGFIX: this gate only ever recognized balance-sheet-style sheets, so a
-    # same-format INCOME STATEMENT sheet (title rows + account code column +
-    # a later amount column — exactly the same physical layout, just P&L
-    # accounts instead of balance sheet accounts) never reached
-    # detect_special_layout() at all and was silently dropped with
-    # mode="ignored_or_unrecognized", rows=0 — e.g. Net Sales/Gross Profit/
-    # Operating Profit all came out as 0 even though the sheet had real data.
-    # Recognize the income-statement variant of the same layout too.
-    is_income_statement = ("income statement" in texts or "gelir tablosu" in texts or "kar zarar" in texts) and (
+    ))
+    is_income_statement = is_pl_name or (("income statement" in texts or "gelir tablosu" in texts or "kar zarar" in texts) and (
         "net sales" in texts or "net satislar" in texts or "gross sales" in texts or "brut satislar" in texts
-    )
+    ))
     return is_balance_sheet or is_income_statement
 
 
@@ -729,31 +748,66 @@ def list_samples() -> dict[str, Any]:
 
 
 def classify_sheet(sname: str, raw: pd.DataFrame) -> str:
-    ns=normalize(sname)
-    texts=" ".join(normalize(x) for x in raw.iloc[:15].fillna("").astype(str).values.ravel())
-    if any(k in ns for k in ["income statement","income","p&l","profit","gelir tablosu","kar zarar","kar zarar tablosu"]):
+    ns = normalize(sname)
+    tokens = set(ns.split())
+    texts = safe_extract_texts(raw, 15)
+
+    # 1. Operational Subledgers (Sales, Aging, Inventory, Notes)
+    if any(k in ns for k in ["sales", "satis", "satış", "fatura", "musteri", "customer", "pivot", "profitability", "profit analyze"]):
+        return "sales"
+    if any(k in ns for k in ["aging", "yaslandirma", "yaşlandırma"]):
+        return "aging"
+    if any(k in ns for k in ["inventory", "stok"]):
+        return "inventory"
+    if any(k in ns for k in ["kontrol", "notlar", "notes", "summary", "ozet", "özet", "q1", "q2", "task"]):
+        return "notes_or_other"
+
+    # 2. Financial Statements: Profit & Loss (P&L, Gelir Tablosu)
+    if (
+        "pl" in tokens
+        or "p l" in ns
+        or "p&l" in ns
+        or any(k in ns for k in ["income statement", "income", "gelir tablosu", "kar zarar", "gelir tab"])
+        or "income statement" in texts
+        or "gelir tablosu" in texts
+        or "gross sales" in texts
+    ):
         return "profit_and_loss"
-    if any(k in ns for k in ["liabilit","equity","pasif","kaynak"]):
+
+    # 3. Financial Statements: Balance Sheet Liabilities / Equity (Pasif, Kaynaklar)
+    if (
+        "bs liab" in ns
+        or "bs liabilities" in ns
+        or any(k in ns for k in ["liabilit", "equity", "pasif", "kaynak", "ozkaynak", "özkaynak"])
+        or "liabilities" in texts
+        or "pasif" in texts
+        or "short term liabilities" in texts
+        or "financial liabilities" in texts
+    ):
         return "liabilities_equity"
-    if any(k in ns for k in ["asset","aktif","varlik","varlık"]):
+
+    # 4. Financial Statements: Balance Sheet Assets (Aktif, Varlıklar)
+    if (
+        "bs asset" in ns
+        or "bs assets" in ns
+        or any(k in ns for k in ["asset", "aktif", "varlik", "varlık"])
+        or "current assets" in texts
+        or "donen varliklar" in texts
+        or "dönen varlıklar" in texts
+    ):
         return "assets"
-    if "income statement" in texts or "gelir tablosu" in texts or "gross sales" in texts:
-        return "profit_and_loss"
-    if "liabilities" in texts or "pasif" in texts or "financial liabilities" in texts:
-        return "liabilities_equity"
-    if "current assets" in texts or "donen varliklar" in texts or "dönen varlıklar" in texts:
-        return "assets"
+
     # Fallback from dominant account groups.
-    counts={"assets":0,"liabilities_equity":0,"profit_and_loss":0}
+    counts = {"assets": 0, "liabilities_equity": 0, "profit_and_loss": 0}
     for col in range(raw.shape[1]):
-        for r in range(min(len(raw),250)):
-            d=account_digits(raw.iat[r,col])
-            if len(d)==3:
-                c=int(d)
-                if 100<=c<=299: counts["assets"]+=1
-                elif 300<=c<=599: counts["liabilities_equity"]+=1
-                elif 600<=c<=799: counts["profit_and_loss"]+=1
-    return max(counts,key=counts.get) if max(counts.values()) else "unknown"
+        for r in range(min(len(raw), 250)):
+            d = account_digits(raw.iat[r, col])
+            if len(d) == 3:
+                c = int(d)
+                if 100 <= c <= 299: counts["assets"] += 1
+                elif 300 <= c <= 599: counts["liabilities_equity"] += 1
+                elif 600 <= c <= 799: counts["profit_and_loss"] += 1
+    return max(counts, key=counts.get) if max(counts.values()) else "unknown"
 
 
 def merge_workbook_statement_sheets(sheets: dict[str,pd.DataFrame]):
@@ -763,19 +817,13 @@ def merge_workbook_statement_sheets(sheets: dict[str,pd.DataFrame]):
     for sname, raw in sheets.items():
         if raw is None or raw.empty:
             continue
-        role=classify_sheet(sname, raw)
-        # BUGFIX: detect_special_layout() runs its own generic "3-digit code
-        # somewhere after row 5" heuristic and used to fire on ANY normal,
-        # cleanly-headered trial balance with more than ~5 accounts before it
-        # (i.e. almost every real mizan) — silently dropping the first few
-        # accounts (typically Kasa/Bankalar/Alıcılar/Stoklar) and mis-signing
-        # the rest via build_special_trial_balance's statement-style
-        # sign conventions. That parser is only correct for the specific
-        # real-world "Balance Sheet / Aktif" statement export it was written
-        # for. Gate it behind is_special_financial_statement_layout() so a
-        # standard Hesap Kodu/Hesap Adı/Borç/Alacak mizan always goes through
-        # the correct direct-mapping / standard-header path below instead.
-        det=detect_special_layout(raw) if is_special_financial_statement_layout(raw) else None
+        role = classify_sheet(sname, raw)
+        # Skip operational sheets (sales, customer tables, aging, notes) from being parsed as trial balance
+        if role in ("sales", "aging", "inventory", "notes_or_other"):
+            sheet_meta.append({"sheet": sname, "role": role, "mode": f"operational_{role}_sheet", "rows": int(len(raw))})
+            continue
+
+        det = detect_special_layout(raw) if is_special_financial_statement_layout(raw, sname) else None
         if det:
             try:
                 tb, meta=build_special_trial_balance(raw, det)
@@ -791,12 +839,6 @@ def merge_workbook_statement_sheets(sheets: dict[str,pd.DataFrame]):
         # Universal Reader v4: ingestion (multi_source_ingestion._read_one) already
         # promotes a detected header row into real column names before this function
         # ever sees the sheet (e.g. columns literally named "Hesap Kodu", "Borç Bakiye").
-        # The two checks below this comment were written for still-headerless data and
-        # scan for a header *row* inside the values, so a sheet that was already
-        # correctly header-promoted upstream fell through both of them untouched and
-        # produced a false "hesap kodu/finansal tutar yapısı bulunamadı" error even
-        # though the account codes and amounts were sitting right there in named
-        # columns. Try mapping the sheet's own columns directly first.
         direct_mp = detect_mapping([str(c) for c in raw.columns])
         if "account_code" in direct_mp:
             try:
@@ -824,10 +866,7 @@ def merge_workbook_statement_sheets(sheets: dict[str,pd.DataFrame]):
                 parsed.append(tb)
                 sheet_meta.append({"sheet":sname,"role":role,"mode":"standard_mizan","rows":int(len(tb)),"header_row":header_row+1,"code_column":mp["account_code"]["source_column"],"amount_column":mp.get("balance",mp.get("debit_balance",{})).get("source_column") if isinstance(mp.get("balance",mp.get("debit_balance",{})),dict) else None})
                 continue
-        # Final fallback: headerless account exports. These frequently occur in
-        # ERP dumps where the first row is already data and there are no literal
-        # headers such as "Hesap Kodu" / "Bakiye". Infer the account-code and
-        # amount structure from TDHP-like codes and numeric density.
+        # Final fallback: headerless account exports.
         try:
             inferred = infer_headerless_financial_table(raw)
         except Exception:
@@ -835,13 +874,14 @@ def merge_workbook_statement_sheets(sheets: dict[str,pd.DataFrame]):
         if inferred is not None:
             inferred_df, inferred_meta = inferred
             try:
-                tb,_src = prepare_trial_balance(inferred_df, {
-                    "account_code":{"source_column":"account_code","confidence":100},
-                    "account_name":{"source_column":"account_name","confidence":100}
-                } if "account_name" in inferred_df.columns else {
-                    "account_code":{"source_column":"account_code","confidence":100},
-                    "balance":{"source_column":"balance","confidence":100}
-                })
+                mp = {"account_code": {"source_column": "account_code", "confidence": 100}}
+                if "balance" in inferred_df.columns:
+                    mp["balance"] = {"source_column": "balance", "confidence": 100}
+                elif "debit_balance" in inferred_df.columns:
+                    mp["debit_balance"] = {"source_column": "debit_balance", "confidence": 100}
+                if "account_name" in inferred_df.columns:
+                    mp["account_name"] = {"source_column": "account_name", "confidence": 100}
+                tb,_src = prepare_trial_balance(inferred_df, mp)
                 tb["source_sheet"] = sname
                 tb["source_role"] = role
                 parsed.append(tb)
@@ -859,7 +899,13 @@ def merge_workbook_statement_sheets(sheets: dict[str,pd.DataFrame]):
     tb, duplicate_findings = canonicalize_transactions(tb)
     all_findings.extend(duplicate_findings)
     tb.attrs["source_controls"]={"reconciliation_findings":all_findings}
-    workbook_mode = "single_sheet" if len(sheet_meta) == 1 else "multi_sheet"
+    has_separate_statements = any(s.get("role") in ("assets", "liabilities_equity", "profit_and_loss") for s in sheet_meta if s.get("rows", 0) > 0)
+    if has_separate_statements:
+        workbook_mode = "multi_statement_financial_workbook"
+    elif len(parsed) > 1:
+        workbook_mode = "multi_sheet"
+    else:
+        workbook_mode = "single_sheet"
     return tb, sheet_meta, workbook_mode, all_findings, sheet_meta
 
 MAX_UPLOAD_BYTES = 15 * 1024 * 1024
@@ -936,6 +982,10 @@ def get_canonical_schemas() -> dict[str, Any]:
     return CANONICAL_SCHEMAS
 
 
+def _is_upload_file(f: Any) -> bool:
+    return f is not None and hasattr(f, 'filename') and hasattr(f, 'read') and bool(getattr(f, 'filename', None))
+
+
 @app.post('/api/inspect')
 async def inspect_uploaded_files(
     file: UploadFile | None = File(None),
@@ -947,10 +997,13 @@ async def inspect_uploaded_files(
     infers canonical role, maps columns, and returns preview rows for the Smart
     Auto-Mapper Wizard without running the full 33 engines.
     """
-    selected = list(files or [])
-    if file is not None:
+    selected = []
+    if isinstance(files, list):
+        selected.extend([f for f in files if _is_upload_file(f)])
+    elif _is_upload_file(files):
+        selected.append(files)
+    if _is_upload_file(file):
         selected.insert(0, file)
-    selected = [f for f in selected if f is not None]
     if not selected:
         raise HTTPException(status_code=400, detail='İncelenecek dosya seçilmedi.')
 
@@ -984,10 +1037,13 @@ async def analyze_mizan(
 ) -> dict[str, Any]:
     # Backward compatible: old clients can still send `file`; multi-file clients
     # are automatically routed to Data Hub instead of receiving a 422.
-    selected = list(files or [])
-    if file is not None:
+    selected = []
+    if isinstance(files, list):
+        selected.extend([f for f in files if _is_upload_file(f)])
+    elif _is_upload_file(files):
+        selected.append(files)
+    if _is_upload_file(file):
         selected.insert(0, file)
-    selected=[f for f in selected if f is not None]
     if len(selected) == 0:
         raise HTTPException(status_code=400, detail='En az bir dosya seçin.')
     if len(selected) > 1:

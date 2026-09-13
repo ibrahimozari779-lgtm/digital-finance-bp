@@ -14,7 +14,8 @@ def infer_period(filename: str, sheets: dict[str, Any] | None = None) -> dict[st
         try:
             for name, df in sheets.items():
                 if df is not None and not df.empty:
-                    text += ' ' + str(name).lower() + ' ' + ' '.join(str(x).lower() for x in df.iloc[:5].fillna('').values.ravel())
+                    tokens = [str(x).lower() for x in df.iloc[:5].to_numpy().ravel() if x is not None and not (isinstance(x, float) and x != x)]
+                    text += ' ' + str(name).lower() + ' ' + ' '.join(tokens)
         except Exception:
             pass
     years = [int(y) for y in re.findall(r'(?<!\d)(20\d{2})(?!\d)', text)]

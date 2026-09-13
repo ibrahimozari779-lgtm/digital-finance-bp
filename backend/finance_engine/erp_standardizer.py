@@ -213,11 +213,10 @@ def inspect_file_structure(content: bytes, filename: str) -> dict[str, Any]:
                     "is_required": True,
                 })
 
-        # Produce first 4 rows for visual preview
-        preview_sample = df.head(4).fillna("").to_dict(orient="records")
+        # Produce first 4 rows for visual preview safely
         preview_rows = []
-        for r in preview_sample:
-            clean_r = {str(k): (str(v)[:40] if pd.notna(v) else "") for k, v in r.items() if not str(k).startswith("_")}
+        for r in df.head(4).to_dict(orient="records"):
+            clean_r = {str(k): (str(v)[:40] if pd.notna(v) and str(v) != "NaT" else "") for k, v in r.items() if not str(k).startswith("_")}
             preview_rows.append(clean_r)
 
         inspected_sheets.append({
@@ -237,11 +236,43 @@ def inspect_file_structure(content: bytes, filename: str) -> dict[str, Any]:
             "preview_rows": preview_rows,
         })
 
-    primary_sheet = inspected_sheets[0] if inspected_sheets else None
+    # Multi-statement workbook intelligence (e.g. separate BS Asset, BS Liab, and P&L sheets)
+    has_assets = any(s["role"] == "assets" or any(k in s["sheet_name"].lower() for k in ["asset", "aktif"]) for s in inspected_sheets)
+    has_liab = any(s["role"] == "liabilities_equity" or any(k in s["sheet_name"].lower() for k in ["liab", "pasif", "equity"]) for s in inspected_sheets)
+    has_pnl = any(s["role"] == "profit_and_loss" or any(k in s["sheet_name"].lower() for k in ["income", "gelir", "p&l", "pl"]) for s in inspected_sheets)
+
+    # Sort sheets: valid financial/operational sheets before unknown notes
+    ranked_sheets = sorted(
+        inspected_sheets,
+        key=lambda s: (
+            1 if s["role"] in ("finance", "assets", "liabilities_equity", "profit_and_loss") else (0.8 if s["role"] != "unknown" else 0),
+            len(s.get("mapped_fields", [])),
+            s.get("total_rows", 0)
+        ),
+        reverse=True
+    )
+    primary_sheet = ranked_sheets[0] if ranked_sheets else None
+
+    if has_assets and (has_liab or has_pnl) and primary_sheet:
+        primary_sheet = {
+            **primary_sheet,
+            "detected_erp": "multi_statement",
+            "erp_badge": "Çoklu Finansal Tablo (Bilanço & P&L)",
+            "erp_confidence": 0.98,
+            "role": "finance",
+            "role_label": "Bilanço (Aktif/Pasif) & Gelir Tablosu",
+            "is_multi_statement": True,
+            "statement_summary": {
+                "has_assets": has_assets,
+                "has_liabilities": has_liab,
+                "has_pnl": has_pnl,
+            }
+        }
 
     return {
         "status": "success",
         "filename": filename,
         "primary": primary_sheet,
         "sheets": inspected_sheets,
+        "is_multi_statement": has_assets and (has_liab or has_pnl),
     }
