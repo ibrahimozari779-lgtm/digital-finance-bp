@@ -3756,6 +3756,20 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   .accordionHeader{padding:8px 12px!important;border-bottom:none!important;background:#F8FAFC!important}
   .accordionToggleIcon{display:none!important}
   .accordionBody{display:block!important;padding:12px!important}
+  body.boardDeckPrintMode * { visibility: hidden !important; }
+  body.boardDeckPrintMode #boardDeckModal,
+  body.boardDeckPrintMode #boardDeckModal * { visibility: visible !important; }
+  body.boardDeckPrintMode #boardDeckModal {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+  body.boardDeckPrintMode #boardDeckModal .hidePrint { display: none !important; }
 }
 </style></head>
 <body>
@@ -3830,23 +3844,26 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 <main class="wrap"><section class="hero"><div class="heroCard"><h2 class="heroTitle">Mizanınızı Yükleyin, <span style="color:var(--accent)">Şirketinizin Yönetim Raporunu</span> Alın.</h2><p class="heroText">Mizan veya finansal defterlerinizi yükleyin — 33 karar motoru verilerinizi çift taraflı denetler, kâr sızıntılarını kuruşuna kadar hesaplar, riskleri önceliklendirir ve yarın uygulanacak yönetim kararlarını masaya koyar.</p><div class="framework"><span><b>1. NE OLDU?</b> (Finansal Gerçekler)</span><span><b>2. PARA NEREDE?</b> (Kilitli Nakit &amp; Sızıntı)</span><span><b>3. RİSK &amp; SEKTÖR NE?</b> (Kıyaslama)</span><span><b>4. KİM YAPIYOR?</b> (Müşteri &amp; Stok Zekâsı)</span><span><b>5. NEDEN OLDU?</b> (Kök Neden)</span><span><b>6. NE YAPMALIYIZ?</b> (Yönetim Kararları)</span><span><b>7. SİMÜLE ET</b> (Senaryo Simülatörü)</span></div>
 <div class="cfoDemoHeroBanner hidePrint" style="margin-top:16px;margin-bottom:14px;background:linear-gradient(135deg, rgba(29,78,216,0.06) 0%, rgba(14,124,102,0.06) 100%);border:1.5px solid rgba(29,78,216,0.22);border-radius:14px;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px">
-  <div style="max-width:580px">
+  <div style="max-width:520px">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
       <span style="background:#1D4ED8;color:#fff;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;letter-spacing:0.5px">CFO CANLI DEMO</span>
       <span style="font-weight:700;font-size:14.5px;color:#0F1B2D">Dosya Yüklemeden Platformu Canlı İnceleyin</span>
     </div>
-    <div style="font-size:12.5px;color:#475569;line-height:1.5">Gerçek kurumsal 2 dönemlik veri setiyle 33 analitik karar motorunu, nakit akış köprüsünü, DuPont kârlılık ayrıştırmasını ve TTK 376 erken uyarılarını hemen test edin.</div>
+    <div style="font-size:12.5px;color:#475569;line-height:1.5">Gerçek kurumsal veri setleriyle 33 analitik karar motorunu, nakit akış köprüsünü, DuPont kârlılık ayrıştırmasını ve yönetim aksiyonlarını anında test edin.</div>
   </div>
   <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-    <button id="quickDemoBtn" type="button" onclick="document.getElementById('sampleTrendBtn')?document.getElementById('sampleTrendBtn').click():runSample('sample_trend')" style="background:linear-gradient(135deg,#1D4ED8,#0E7C66);color:#fff;border:none;padding:11px 20px;border-radius:11px;font-weight:800;font-size:13.5px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 14px rgba(29,78,216,0.28);transition:transform 0.15s ease">
-      🚀 1-Tıkla Yönetici Raporunu Başlat (Trend Demo)
+    <button id="sampleTrendBtn" type="button" class="primary" style="background:linear-gradient(135deg,#1D4ED8,#0E7C66);color:#fff;border:none;padding:10px 18px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(29,78,216,0.25)">
+      🚀 1-Tıkla Trend Demosu (2 Dönem)
     </button>
-    <button id="quickHubBtn" type="button" onclick="document.getElementById('sampleHubBtn')?document.getElementById('sampleHubBtn').click():runDataHubSample()" style="background:#FFFFFF;color:#1D4ED8;border:1.5px solid #CBD5E1;padding:10px 16px;border-radius:11px;font-weight:700;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
-      🗂️ 6 Dosyalı Data Hub Demo
+    <button id="sampleBtn" type="button" class="secondary" style="background:#FFFFFF;color:#0F1B2D;border:1.5px solid #CBD5E1;padding:9px 14px;border-radius:10px;font-weight:700;font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+      📄 Tek Dönem Mizan
     </button>
+    <button id="sampleHubBtn" type="button" class="secondary" style="background:#FFFFFF;color:#1D4ED8;border:1.5px solid #CBD5E1;padding:9px 14px;border-radius:10px;font-weight:700;font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+      🗂️ 6-Dosyalı Data Hub
+    </button>
+    <span id="sampleStatus" class="small muted" style="margin-left:4px"></span>
   </div>
 </div>
-<div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button id="sampleBtn" class="secondary">📄 Tek dönem örnekle dene</button><button id="sampleTrendBtn" class="secondary">📊 İki dönemli örnekle dene (Trend Demo)</button><button id="sampleHubBtn" class="secondary">🗂️ Data Hub örnekle dene (Mizan + AR + AP + Stok + Satış)</button> <span id="sampleStatus" class="small muted" style="margin-left:8px"></span></div>
 <div class="trustBar hidePrint">
 <div class="item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Önce hesap, sonra yorum — deterministik motor</div>
 <div class="item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>KVKK Uyumlu · RAM-Only Geçici Bellek (Kalıcı Saklama Yok)</div>
@@ -4727,6 +4744,25 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </div>
 </section>
 
+<!-- Board One-Pager Executive Modal -->
+<div id="boardDeckModal" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;overflow-y:auto">
+  <div style="background:#FFFFFF;border-radius:18px;max-width:960px;width:100%;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 25px 60px rgba(0,0,0,0.3);overflow:hidden">
+    <div class="hidePrint" style="display:flex;justify-content:space-between;align-items:center;padding:14px 22px;border-bottom:1px solid #E2E8F0;background:#F8FAFC">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:20px">📑</span>
+        <div>
+          <h3 style="margin:0;font-size:15px;color:#0F1B2D;font-weight:800">Yönetim Kurulu Finansal Karar Özeti (Executive Board Deck)</h3>
+          <p style="margin:0;font-size:11.5px;color:#64748B">C-Level ve Yönetim Kurulu sunumları için tek sayfalık özet görünüm</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button id="printBoardDeckBtn" type="button" class="primary" style="padding:7px 14px;border-radius:8px;font-size:12.5px;font-weight:700">🖨️ Yazdır / PDF</button>
+        <button id="closeBoardDeckBtn" type="button" style="background:none;border:none;font-size:22px;color:#64748B;cursor:pointer;padding:4px 8px">✕</button>
+      </div>
+    </div>
+    <div id="boardDeckContent" style="padding:22px;overflow-y:auto;flex:1"></div>
+  </div>
+</div>
 </main><div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
 <script>
 window.showKvkkModal=function(){var m=document.getElementById('kvkkModal');if(!m){m=document.createElement('div');m.id='kvkkModal';m.style.cssText='position:fixed;inset:0;background:rgba(15,27,45,0.7);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);';m.innerHTML='<div style="background:#FFFFFF;border-radius:18px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,0.3);position:relative;border:1px solid #E2E8F0"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid #E2E8F0;padding-bottom:12px"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:20px">🔒</span><h3 style="margin:0;font-size:18px;color:#0F1B2D;font-family:sans-serif;font-weight:700">Veri Güvenliği, RAM-Only İşleme ve KVKK Taahhüdü</h3></div><button class="kvkkClose" style="background:#F1F5F9;border:0;border-radius:50%;width:30px;height:30px;cursor:pointer;font-weight:bold;font-size:16px">✕</button></div><div style="font-size:13px;line-height:1.7;color:#33415C;display:flex;flex-direction:column;gap:12px"><div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:12px;color:#166534"><b>🛡️ Sıfır Disk Depolama (RAM-Only):</b> Yüklediğiniz mizan, muavin defteri veya operasyonel raporlar sunucunun kalıcı depolama birimlerine (HDD/SSD/Veritabanı) kaydedilmez. Tüm matematiksel hesaplamalar ve çift taraflı denetim anlık bellek (RAM) üzerinde icra edilir ve analiz tamamlandığında oturumla birlikte tamamen silinir.</div><p><b>1. Veri İzolasyonu &amp; Model Eğitimi Yasağı:</b> Şirketiniz tarafından paylaşılan hiçbir finansal veri, ciro, müşteri adı veya bilanço kalemi üçüncü şahıslara verilmez, satılmaz ve genel yapay zekâ modellerinin eğitimi için havuzlara aktarılmaz.</p><p><b>2. 256-Bit TLS Şifreleme:</b> Tarayıcınız ile platform arasındaki tüm veri akışı bankacılık standardında 256-bit SSL/TLS tüneli üzerinden şifrelenir.</p><p><b>3. 6698 Sayılı KVKK Uyumluluğu:</b> Şirket yetkililerine ait iletişim bilgileri ve ticari sırlar yalnızca talep edilen analizlerin üretilmesi amacıyla işlenir; yasal yükümlülükler haricinde hiçbir tarafla paylaşılmaz.</p><p><b>4. Kurumsal Gizlilik Sözleşmesi (NDA):</b> Kurumsal entegrasyon veya holding düzeyinde çalışmalarda şirketinizle karşılıklı Kurumsal NDA akdedilir.</p></div><div style="margin-top:20px;text-align:right"><button class="kvkkClose primary" style="padding:9px 20px;border-radius:10px;font-size:13px;background:#1D4ED8;color:#fff;border:0;cursor:pointer;font-weight:700">Anladım ve Kabul Ediyorum</button></div></div>';m.addEventListener('click',function(e){if(e.target===m||e.target.classList.contains('kvkkClose'))m.style.display='none';});document.body.appendChild(m);}m.style.display='flex';};
@@ -5170,17 +5206,17 @@ function render(d){
   // dönüştüğünü gösteren köprü. cash_bridge_engine 2 dönem gerektirir; tek
   // dönemde neden hesaplanamadığını açıkça söyler, sessizce boş bırakmaz.
   if(cb.available && cb.cash_realization_pct!=null){
-    const crp=cb.cash_realization_pct;
-    const crTier=crp>=80?'positive':crp>=50?'medium':crp>=0?'high':'critical';
+    const crp=Math.max(0, Math.min(100, Math.round(cb.cash_realization_pct)));
+    const crTier=(crp>=80 && cb.operating_cash_flow_proxy>0)?'positive':(crp>=50 && cb.operating_cash_flow_proxy>0)?'medium':crp>0?'high':'critical';
     let crExpl='';
-    if(crp<=0){
-      crExpl='⚠️ <b>Kâğıt üzerinde '+money(cb.net_profit)+' net kâr görünmesine rağmen, işletme nakit akışı '+money(cb.operating_cash_flow_proxy)+' negatiftir.</b> Net kârın tamamı ve fazlası alacaklarda ('+money(cb.working_capital_components?.receivables_effect)+') ve stokta ('+money(cb.working_capital_components?.inventory_effect)+') kilitlenmiştir. Kasa bu kârı görememiştir; acil tahsilat hızlandırma ve ölü stok eritme aksiyonu şarttır.';
+    if(crp<=0 || cb.operating_cash_flow_proxy<=0){
+      crExpl='⚠️ <b>Kâğıt üzerinde '+money(cb.net_profit)+' net kâr görünmesine rağmen, işletme nakit akışı '+money(cb.operating_cash_flow_proxy)+' negatiftir (%0 nakit gerçekleşmesi).</b> Net kârın tamamı ve fazlası alacaklarda ('+money(cb.working_capital_components?.receivables_effect)+') ve stokta ('+money(cb.working_capital_components?.inventory_effect)+') kilitlenmiştir. Kasa bu kârı görememiştir; acil tahsilat hızlandırma ve ölü stok eritme aksiyonu şarttır.';
     } else if(crp<80){
-      crExpl='Net kâr '+money(cb.net_profit)+'; alacak/stok/borç hareketleri dahil edildiğinde işletme nakdi '+money(cb.operating_cash_flow_proxy)+' oluyor — yani defter kârının yaklaşık <b>%'+num(crp)+'\u0027i</b> fiilen kasaya giriyor. Kalan tutar alacak tahsilatında veya depodaki stokta bağlıdır.';
+      crExpl='Faaliyet kârı '+money(cb.operating_profit)+', net kâr '+money(cb.net_profit)+'; alacak/stok/borç hareketleri dahil edildiğinde işletme nakdi '+money(cb.operating_cash_flow_proxy)+' oluyor — yani defter kârının yaklaşık <b>%'+crp+'\u0027i</b> fiilen kasaya giriyor. Kalan tutar alacak tahsilatında veya depodaki stokta bağlıdır.';
     } else {
-      crExpl='Net kâr '+money(cb.net_profit)+'; işletme nakdi '+money(cb.operating_cash_flow_proxy)+'. Kâr büyük ölçüde ('+pct(crp)+') nakde dönüşüyor; işletme sermayesi kâr üzerinde ek bir nakit baskısı yaratmıyor.';
+      crExpl='Net kâr '+money(cb.net_profit)+'; işletme nakdi '+money(cb.operating_cash_flow_proxy)+'. Kâr büyük ölçüde (%'+crp+') nakde dönüşüyor; işletme sermayesi kâr üzerinde ek bir nakit baskısı yaratmıyor.';
     }
-    $('cashRealization').innerHTML='<div class="metric" style="margin-bottom:12px"><div class="label">Kârın Nakde Dönüşüm Oranı</div><div class="value" style="color:'+(crp<=0?'var(--red)':crp<80?'var(--amber)':'var(--green)')+'">'+pct(crp)+'</div><div class="sub">Net Kâr → İşletme Nakit Akışı Dönüşüm Verimi</div></div><div id="crWf" class="waterfall"></div><div class="insight '+crTier+'" style="margin-top:12px"><p>'+crExpl+'</p></div>';
+    $('cashRealization').innerHTML='<div class="metric" style="margin-bottom:12px"><div class="label">Kârın Nakde Dönüşüm Oranı</div><div class="value" style="color:'+(crp<=0?'var(--red)':crp<80?'var(--amber)':'var(--green)')+'">%'+crp+'</div><div class="sub">Net Kâr → İşletme Nakit Akışı Dönüşüm Verimi</div></div><div id="crWf" class="waterfall"></div><div class="insight '+crTier+'" style="margin-top:12px"><p>'+crExpl+'</p></div>';
     waterfall('crWf',[['Net Kâr',cb.net_profit,false],['Faaliyet Dışı/Vergi Farkı',cb.non_operating_addback,cb.non_operating_addback<0],['Alacak Etkisi',cb.working_capital_components.receivables_effect,cb.working_capital_components.receivables_effect<0],['Stok Etkisi',cb.working_capital_components.inventory_effect,cb.working_capital_components.inventory_effect<0],['Tedarikçi Borç Etkisi',cb.working_capital_components.payables_effect,cb.working_capital_components.payables_effect<0],['İşletme Faaliyet Nakdi',cb.operating_cash_flow_proxy,false]]);
   } else {
     $('cashRealization').innerHTML='<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px;text-align:center"><div style="display:inline-flex;align-items:center;gap:6px;background:#EFF6FF;color:#1D4ED8;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:8px">ℹ️ Tek Dönem Modu Aktif</div><div style="font-size:13.5px;font-weight:700;color:#0F1B2D;margin-bottom:4px">Kârın Nakde Dönüşüm Oranı</div><p class="muted small" style="margin:0 auto 12px;max-width:440px">Tek dönem mizandan net kâr ve likidite tam hesaplanmıştır. Net kârın ne kadarının kasaya nakit aktığını (şelale grafiğini) görmek için iki dönemli karşılaştırma önerilir.</p><button class="secondary hidePrint" style="padding:7px 16px;font-size:12px;border-radius:8px" onclick="runDataHubSample()">⚡ Canlı 2 Dönemli Trend Demosunu Çalıştır</button></div>';
@@ -6317,13 +6353,16 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
   const snapProfitDesc = $('snapProfitQualityDesc');
   if(snapProfitVal && snapProfitDesc){
     if(cb?.available && crp != null){
-      snapProfitVal.innerHTML = (crp < 50 ? '<span style="color:#DC2626">%' + num(crp) + '</span>' : '<span style="color:#16A34A">%' + num(crp) + '</span>') + ' <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Realizasyonu</span>';
-      if(crp <= 0){
-        snapProfitDesc.textContent = 'Kâğıt üzerinde ' + money(netIncome) + ' kâr var ancak işletme nakit akışı eksiye (' + money(ocf) + ') düşmüş. Kârın tamamı işletme sermayesinde kilitli.';
-      } else if(crp < 80){
-        snapProfitDesc.textContent = 'Defterdeki her 100 TL kârın yalnızca ' + num(crp) + ' TL\'si fiilen kasaya giriyor; kalan tutar müşteri alacakları ve depodaki stokta bağlı.';
+      const crpDisplay = Math.max(0, Math.min(100, Math.round(crp)));
+      if(crp <= 0 || (ocf != null && ocf <= 0)){
+        snapProfitVal.innerHTML = '<span style="color:#DC2626">%0</span> <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Realizasyonu (Kilitli)</span>';
+        snapProfitDesc.textContent = 'Kâğıt üzerinde ' + money(netIncome) + ' kâr var ancak işletme nakit akışı eksiye (' + money(ocf) + ') düşmüş. Kârın tamamı alacak ve stokta kilitli.';
+      } else if(crpDisplay < 50){
+        snapProfitVal.innerHTML = '<span style="color:#DC2626">%' + crpDisplay + '</span> <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Realizasyonu</span>';
+        snapProfitDesc.textContent = 'Defterdeki her 100 TL kârın yalnızca ' + crpDisplay + ' TL\'si fiilen kasaya giriyor; kalan tutar müşteri alacakları ve depodaki stokta bağlı.';
       } else {
-        snapProfitDesc.textContent = money(netIncome) + ' tutarındaki kârın %' + num(crp) + '\'si kasaya sıcak nakit olarak dönüyor. Kâr kalitesi yüksek.';
+        snapProfitVal.innerHTML = '<span style="color:#16A34A">%' + crpDisplay + '</span> <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Realizasyonu</span>';
+        snapProfitDesc.textContent = money(netIncome) + ' tutarındaki kârın %' + crpDisplay + '\'si kasaya sıcak nakit olarak dönüyor. Kâr kalitesi yüksek.';
       }
     } else {
       snapProfitVal.innerHTML = money(netIncome) + ' <span style="font-size:12px;font-weight:600;color:#64748B">Net Dönem Kârı</span>';
