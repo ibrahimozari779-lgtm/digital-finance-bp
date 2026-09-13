@@ -376,6 +376,7 @@ def build_finance_business_partner_analysis(
         root_cause, business_impact, ccc, trend, benchmark,
         management_actions=management_actions, cash_bridge=cash_bridge,
         risk_ranking=risk_ranking, statements=statements,
+        data_hub=data_hub,
     )
     scenarios = build_scenarios(statements)
 

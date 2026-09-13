@@ -419,17 +419,31 @@ def build_executive_summary(
     cash_bridge: dict[str, Any] | None = None,
     risk_ranking: dict[str, Any] | None = None,
     statements: dict[str, Any] | None = None,
+    data_hub: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Executive Summary Engine.
 
-    Synthesizes every other engine's output into a short narrative plus a
-    bullet list of key points, using only facts already calculated
-    elsewhere - no figure is invented here.
+    Synthesizes every other engine's output into a grounded narrative plus a
+    bullet list of key points, using the actual financial statements and facts
+    already calculated across engines - no figure is invented here.
     """
     top_risks = [x for x in findings_sorted if x["severity"] in {"critical", "high", "medium"}][:3]
     positives = [x for x in findings_sorted if x["severity"] == "positive"][:2]
 
-    parts = [f"Finansal sağlık skoru {health_score:.0f}/100 ({health_label})."]
+    pl = (statements or {}).get("profit_and_loss", {}) or {}
+    k = (statements or {}).get("kpis", {}) or {}
+    net_sales = float(pl.get("Net sales") or pl.get("Net Satışlar") or pl.get("Revenue") or 0.0)
+    op_profit = float(pl.get("Operating profit") or pl.get("Faaliyet Kârı") or 0.0)
+    net_profit = float(pl.get("Net profit") or pl.get("Net Dönem Kârı") or 0.0)
+    op_margin = float(k.get("operating_margin_pct") or (op_profit / net_sales * 100 if net_sales else 0.0))
+    net_margin = float(k.get("net_margin_pct") or (net_profit / net_sales * 100 if net_sales else 0.0))
+
+    parts = []
+    if net_sales > 0:
+        parts.append(
+            f"Şirket, incelenen dönemde {net_sales:,.0f} TL net satış hacmi üzerinden %{op_margin:.1f} ({op_profit:,.0f} TL) faaliyet kârı ve %{net_margin:.1f} ({net_profit:,.0f} TL) net dönem kârı üretmiştir."
+        )
+    parts.append(f"Finansal sağlık skoru {health_score:.0f}/100 ({health_label}).")
 
     if positives:
         parts.append("Güçlü taraf: " + positives[0]["title"].lower() + ".")
@@ -456,8 +470,19 @@ def build_executive_summary(
         top_opp = opportunities_sorted[0]
         parts.append(f"En yüksek ilk senaryo fırsatı: {top_opp['title'].lower()}, yaklaşık {top_opp['estimated_impact']:,.0f} TL.")
 
-    if ccc.get("available"):
-        parts.append(f"Nakit dönüşüm süresi yaklaşık {ccc['cash_conversion_cycle_days']:.0f} gün ({ccc['rating'].lower()}).")
+    if ccc.get("available") and ccc.get("cash_conversion_cycle_days") is not None:
+        dso = ccc.get("dso_days")
+        dio = ccc.get("dio_days")
+        dpo = ccc.get("dpo_days")
+        ccc_val = ccc["cash_conversion_cycle_days"]
+        tied = ccc.get("estimated_cash_tied_up")
+        tied_txt = f" ve işletme sermayesinde ~{tied:,.0f} TL nakit bağlı kalmaktadır" if (tied and tied > 0) else ""
+        if dso is not None and dio is not None and dpo is not None:
+            parts.append(
+                f"Nakit çevrim süresi (CCC) net {ccc_val:.0f} gün olup (tahsilat vadesi DSO: {dso:.0f} gün, stokta kalma DIO: {dio:.0f} gün, tedarikçi vadesi DPO: {dpo:.0f} gün){tied_txt}."
+            )
+        else:
+            parts.append(f"Nakit çevrim süresi (CCC) {ccc_val:.0f} gün seviyesindedir{tied_txt}.")
 
     if trend.get("available"):
         nm_dir = trend["metric_trends"].get("net_margin_pct", {}).get("latest_direction")
@@ -468,6 +493,20 @@ def build_executive_summary(
 
     if benchmark.get("overall_score") is not None:
         parts.append(f"{benchmark['sector']} sektör göstergeleriyle kıyaslandığında genel konum: {benchmark['overall_label'].lower()}.")
+
+    if data_hub:
+        ar = data_hub.get("analysis_ar") or {}
+        inv = data_hub.get("analysis_inventory") or {}
+        sales_an = data_hub.get("analysis_sales") or {}
+        hub_details = []
+        if ar.get("overdue_pct") and ar["overdue_pct"] > 5:
+            hub_details.append(f"müşteri alacaklarının %{ar['overdue_pct']:.0f}'inin vadesi geçmiş ({ar.get('overdue', 0):,.0f} TL)")
+        if inv.get("slow_moving_pct") and inv["slow_moving_pct"] > 5:
+            hub_details.append(f"stokların %{inv['slow_moving_pct']:.0f}'i yavaş hareket eden grupta")
+        if sales_an.get("top_10_share_pct") and sales_an["top_10_share_pct"] > 40:
+            hub_details.append(f"ciro %{sales_an['top_10_share_pct']:.0f} oranında ilk 10 müşteride yoğunlaşmış")
+        if hub_details:
+            parts.append("Alt defter detayında: " + "; ".join(hub_details) + ".")
 
     if cash_bridge and cash_bridge.get("available") and cash_bridge.get("cash_realization_pct") is not None:
         crp = cash_bridge["cash_realization_pct"]
@@ -513,12 +552,14 @@ def build_executive_summary(
     key_points = [
         f"Sağlık skoru: {health_score:.0f}/100 — {health_label}",
     ]
+    if net_sales > 0:
+        key_points.insert(0, f"Net Satış: {net_sales:,.0f} TL · Net Kâr: %{net_margin:.1f} ({net_profit:,.0f} TL)")
     if top_risks:
         key_points.append(f"En kritik risk: {top_risks[0]['title']}")
     if opportunities_sorted:
         key_points.append(f"En büyük fırsat: {opportunities_sorted[0]['title']} (~{opportunities_sorted[0]['estimated_impact']:,.0f} TL)")
-    if ccc.get("available"):
-        key_points.append(f"Nakit dönüşüm süresi: {ccc['cash_conversion_cycle_days']:.0f} gün")
+    if ccc.get("available") and ccc.get("cash_conversion_cycle_days") is not None:
+        key_points.append(f"Nakit çevrim süresi (CCC): {ccc['cash_conversion_cycle_days']:.0f} gün")
     if trend.get("available"):
         key_points.append(f"Trend: {trend['periods_analyzed']} dönem karşılaştırıldı")
     else:

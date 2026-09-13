@@ -5122,15 +5122,17 @@ function profitabilityNarrative(pl,pq){
 // only figures already computed by cash_conversion_engine.
 function workingCapitalNarrative(c){
   if(!c||c.cash_conversion_cycle_days==null) return '<div class="notice">Nakit dönüşüm süresi hesaplanamadı — DSO/DIO/DPO için yeterli veri yok.</div>';
-  const ccc=c.cash_conversion_cycle_days;
+  const ccc=Math.round(Number(c.cash_conversion_cycle_days));
   const tier=ccc<=30?'positive':ccc<=75?'medium':'high';
-  // Each candidate's own contribution to CCC length: DSO/DIO lengthen it directly,
-  // a *low* DPO lengthens it (little supplier financing), so compare on that basis.
   const candidates=[['DSO','Alacak tahsilat süresi',c.dso_days,c.dso_days],['DIO','Stokta bekleme süresi',c.dio_days,c.dio_days],['DPO','Tedarikçiye ödeme süresinin kısalığı',c.dpo_days,c.dpo_days==null?null:-c.dpo_days]].filter(x=>x[2]!=null);
   const worst=candidates.length?candidates.reduce((a,b)=>b[3]>a[3]?b:a):null;
-  let bits=['<b>Nakit dönüşüm süresi '+num(ccc)+' gün.</b> Bu, şirketin mal/hizmet için ödeme yaptığı andan müşteriden tahsilat yapana kadar geçen — ve bu sürede finansmanının şirketin kendi kaynaklarından veya kredi hattından karşılandığı — gün sayısı.'];
-  if(worst) bits.push('Bu süreyi en çok '+esc(worst[1]).toLowerCase()+' ('+worst[0]+': '+num(worst[2])+' gün) uzatıyor; kısaltmak için ilk bakılacak yer burası.');
-  bits.push(ccc<=30?'Bu bant düşük — işletme sermayesi nakit üzerinde ek bir baskı yaratmıyor.':ccc<=75?'Bu bant orta seviyede; tahsilat/stok/ödeme koşullarından biri iyileştirilirse nakit serbest kalır.':'Bu bant yüksek; işletme sermayesi önemli miktarda nakdi bağlıyor ve kısa vadeli likidite üzerinde baskı oluşturuyor.');
+  const ratingTxt = c.rating ? ' (' + esc(c.rating) + ')' : '';
+  let bits=['<b>Nakit çevrim süresi (CCC) net '+ccc+' gün' + ratingTxt + '.</b> Bu, şirketin hammadde/hizmet ödemesinden müşteriden tahsilata kadar nakdin bağlı kaldığı net döngüdür.'];
+  if(worst) bits.push('Bu döngüyü en çok '+esc(worst[1]).toLowerCase()+' ('+worst[0]+': '+Math.round(Number(worst[2]))+' gün) uzatıyor; kısaltmak için ilk odaklanılacak alan burasıdır.');
+  if(c.estimated_cash_tied_up && c.estimated_cash_tied_up > 0){
+    bits.push('Bu döngü nedeniyle işletme sermayesinde bağlı kalan tahmini nakit: <b>' + money(c.estimated_cash_tied_up) + '</b>.');
+  }
+  bits.push(ccc<=30?'Bu seviye düşüktür; işletme sermayesi nakit akışı üzerinde ilave finansman baskısı yaratmamaktadır.':ccc<=75?'Bu seviye orta düzeydedir; tahsilat veya stok yönetimi hızlandırılırsa kasaya ilave sıcak nakit serbest kalır.':'Bu seviye uzundur; işletme sermayesi önemli tutarda nakdi kilitlemekte ve kredi ihtiyacını artırmaktadır.');
   return '<div class="insight '+tier+'"><p>'+bits.join(' ')+'</p>'+(c.note?'<p class="small muted" style="margin-top:6px">'+esc(c.note)+'</p>':'')+(c.inventory_flag?'<p class="small muted" style="margin-top:4px">'+esc(c.inventory_flag)+'</p>':'')+'</div>';
 }
 
@@ -5329,9 +5331,9 @@ function render(d){
   // the manager do with this" block, built from the same management actions
   // shown in "Now What" (no new numbers invented here, just the decision
   // implication stated plainly instead of left for the reader to infer).
-  $('exec').innerHTML='<h3>'+esc(bp.executive_summary)+'</h3>';
+  $('exec').innerHTML='<div style="font-size:14px;line-height:1.65;color:#1E293B"><strong style="color:#0F172A;font-size:15px;display:inline-block;margin-bottom:6px">📋 Finansal Teşhis &amp; Yönetici Karar Brifingi:</strong><br>' + esc(bp.executive_summary) + '</div>';
   const topRisk=rr[0], topOpp=opps[0];
-  const chips=[['Sağlık Skoru',bp.health_score+'/100'],['CCC',c.cash_conversion_cycle_days==null?'–':num(c.cash_conversion_cycle_days)+' gün'],(cb.available&&cb.cash_realization_pct!=null)?['Kâr → Nakit',pct(cb.cash_realization_pct)]:null,topRisk?['En Kritik Risk',topRisk.title]:null,topOpp?['En Büyük Fırsat',topOpp.title+' ('+money(topOpp.estimated_impact)+')']:null,['Sektör Konumu',bm.overall_label||'–']].filter(Boolean);
+  const chips=[['Sağlık Skoru',Math.round(bp.health_score)+'/100'],['Nakit Çevrim (CCC)',c.cash_conversion_cycle_days==null?'–':Math.round(Number(c.cash_conversion_cycle_days))+' gün'],(cb.available&&cb.cash_realization_pct!=null)?['Kâr → Nakit',pct(cb.cash_realization_pct)]:null,topRisk?['En Kritik Risk',topRisk.title]:null,topOpp?['En Büyük Fırsat',topOpp.title+' ('+money(topOpp.estimated_impact)+')']:null,['Sektör Konumu',bm.overall_label||'–']].filter(Boolean);
   $('execChips').innerHTML=chips.map(x=>'<span class="chip">'+esc(x[0])+': <b>'+esc(x[1])+'</b></span>').join('');
   const esum=bp.executive_summary_engine||{};
   const dpoints=esum.decision_points||[];
@@ -6533,12 +6535,26 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
   const snapActionVal = $('snapTopActionVal');
   const snapActionDesc = $('snapTopActionDesc');
   if(snapActionVal && snapActionDesc){
-    const rec = Number(bs?.['Accounts receivable']) || Number(k?.receivables) || 0;
-    const inv = Number(bs?.['Inventories']) || Number(k?.inventory) || 0;
-    const rev = Number(pl?.['Net sales']) || 0;
-    const cashTarget = Math.round((rec > 0 ? rec * 0.18 : (inv > 0 ? inv * 0.20 : rev * 0.04)) || 500000);
-    snapActionVal.innerHTML = '+' + money(cashTarget) + ' <span style="font-size:12px;font-weight:600;color:#1D4ED8">Kurtarılabilir Nakit</span>';
-    snapActionDesc.textContent = 'Açık hesap vadelerini 15 gün geri çekin; vadeli siparişleri DBS veya %2 peşin iskontoyla hızlandırın. (Termin: İlk 30 Gün • Sorumlu: Finans & Satış)';
+    const topAction = (bp?.management_actions && bp.management_actions.length) ? bp.management_actions[0] : null;
+    const topOpp = (bp?.opportunity_engine?.opportunities && bp.opportunity_engine.opportunities.length) ? bp.opportunity_engine.opportunities[0] : null;
+
+    if(topOpp && topOpp.estimated_impact > 0){
+      snapActionVal.innerHTML = '+' + money(topOpp.estimated_impact) + ' <span style="font-size:12px;font-weight:600;color:#1D4ED8">Nakit / Kâr Potansiyeli</span>';
+    } else {
+      const rec = Number(bs?.['Accounts receivable']) || Number(k?.receivables) || 0;
+      const inv = Number(bs?.['Inventories']) || Number(k?.inventory) || 0;
+      const fallbackTarget = Math.round((rec * 0.10 + inv * 0.10) || 100000);
+      snapActionVal.innerHTML = '+' + money(fallbackTarget) + ' <span style="font-size:12px;font-weight:600;color:#1D4ED8">Kurtarılabilir Nakit</span>';
+    }
+
+    if(topAction){
+      const actTitle = topAction.action || topAction.title || '';
+      const actDue = topAction.time_horizon || 'İlk 30 Gün';
+      const actOwner = topAction.owner || 'CFO / Finans';
+      snapActionDesc.textContent = actTitle + ' (Termin: ' + actDue + ' • Sorumlu: ' + actOwner + ')';
+    } else {
+      snapActionDesc.textContent = 'İşletme sermayesi döngüsünü optimize edin ve nakit akışını haftalık takip protokolüne bağlayın.';
+    }
   }
 }
 window.renderExecutiveSnapshot = renderExecutiveSnapshot;
@@ -6793,19 +6809,29 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
       title: "CEO'nun 1 Numaralı Kararı",
       sub: 'Bugün Ne Yapılmalı?',
       cat: 'CEO İcraat & Karar Direktifi',
-      l1_title: 'Bugün Masaya Koymanız Gereken En Yüksek Parasal Getirili Karar',
-      l1_desc: 'Şirketinizin finansal sağlığını en hızlı toparlayacak ve kasayı güçlendirecek 1 numaralı karar: "Kilitli İşletme Sermayesini Serbest Bırakma ve Alacak Tahsilatını Sözleşmeye Bağlama İcraatıdır".',
+      l1_title: (bp?.management_actions && bp.management_actions.length) 
+        ? ('Öncelikli Yönetim İcraatı: ' + esc(bp.management_actions[0].decision_theme || 'Finansal Karar'))
+        : 'Bugün Masaya Koymanız Gereken 1 Numaralı Karar',
+      l1_desc: (bp?.management_actions && bp.management_actions.length)
+        ? ('Şirket bilançosunda ve kârlılığında en acil etki yaratacak 1 numaralı karar: <b>"' + esc(bp.management_actions[0].action || bp.management_actions[0].title) + '"</b> (Takip Edilecek KPI: ' + esc(bp.management_actions[0].kpi || 'Nakit & Kârlılık') + ').')
+        : 'Şirketinizin finansal sağlığını en hızlı toparlayacak 1 numaralı karar: Kilitli işletme sermayesini serbest bırakma ve borç maliyetini düşürme icraatıdır.',
       l2_metrics: [
-        { label: 'Finansal Sağlık Skoru', val: (bp?.health_score || 72) + ' / 100', note: bp?.health_label || 'Sağlıklı' },
-        { label: 'Kurtarılabilir Yıllık Kâr', val: money(annualLeak), note: 'Finansman sızıntısı' },
+        { label: 'Finansal Sağlık Skoru', val: (bp?.health_score != null ? Math.round(bp.health_score) : 70) + ' / 100', note: bp?.health_label || 'Dengeli' },
+        { label: 'Potansiyel Finansal Etki', val: (bp?.opportunity_engine?.opportunities && bp.opportunity_engine.opportunities.length) ? ('+' + money(bp.opportunity_engine.opportunities[0].estimated_impact)) : money(annualLeak), note: (bp?.opportunity_engine?.opportunities && bp.opportunity_engine.opportunities.length) ? esc(bp.opportunity_engine.opportunities[0].title) : 'Kurtarılabilir nakit' },
         { label: 'Net Finansal Borç', val: money(k?.net_debt || 0), note: 'Banka borç baskısı' },
-        { label: 'Nakit Üretme Gücü', val: c.cash_conversion_cycle_days ? num(c.cash_conversion_cycle_days) + ' gün' : 'Orta', note: 'İşletme sermayesi döngüsü' }
+        { label: 'Nakit Çevrim Süresi (CCC)', val: c.cash_conversion_cycle_days != null ? Math.round(Number(c.cash_conversion_cycle_days)) + ' gün' : '–', note: c.rating ? ('Derecelendirme: ' + esc(c.rating)) : 'İşletme sermayesi döngüsü' }
       ],
-      l3_action: 'Satış direktörüne bugün doğrudan talimat verin: Vadesi 60 günü aşan müşterilere yeni mal sevkiyatını durdurun ve ilk 10 müşteriyle banka DBS teminat protokolü imzalayın.',
-      l3_cash: '+' + money(dailySales * 25),
-      l3_profit: '+' + money(dailySales * 25 * 0.45) + ' / yıl',
-      l3_owner: 'CEO & Genel Müdür',
-      l3_due: 'Bugün',
+      l3_action: (bp?.management_actions && bp.management_actions.length)
+        ? esc(bp.management_actions[0].action || bp.management_actions[0].title)
+        : 'İşletme sermayesi döngüsünü optimize edin ve riskli vadeleri sözleşmeye bağlayın.',
+      l3_cash: (bp?.opportunity_engine?.opportunities && bp.opportunity_engine.opportunities.length)
+        ? ('+' + money(bp.opportunity_engine.opportunities[0].estimated_impact))
+        : ('+' + money(dailySales * 15)),
+      l3_profit: (bp?.management_actions && bp.management_actions[0]?.expected_financial_impact)
+        ? ('~' + money(bp.management_actions[0].expected_financial_impact) + ' beklenen etki')
+        : ((bp?.opportunity_engine?.opportunities && bp.opportunity_engine.opportunities.length) ? ('~' + money(bp.opportunity_engine.opportunities[0].estimated_impact) + ' / dönem') : 'Bilanço rahatlaması'),
+      l3_owner: (bp?.management_actions && bp.management_actions.length) ? (bp.management_actions[0].owner || 'CEO & CFO') : 'CEO & CFO',
+      l3_due: (bp?.management_actions && bp.management_actions.length) ? (bp.management_actions[0].time_horizon || 'İlk 30 Gün') : 'İlk 30 Gün',
       targetStep: 'actions',
       targetStepName: 'Adım 6: Yönetim Kararları & İcraat Takvimi'
     }

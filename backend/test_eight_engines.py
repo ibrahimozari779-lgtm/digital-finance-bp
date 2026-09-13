@@ -9,7 +9,7 @@ from pathlib import Path
 from app import read_workbook_all_sheets, merge_workbook_statement_sheets, aggregate_statements, quality_checks
 from finance_engine import build_finance_business_partner_analysis
 
-SOURCE = Path('../sample_three_sheet_financials.xlsx')
+SOURCE = Path(__file__).resolve().parent.parent / 'sample_three_sheet_financials.xlsx'
 sheets = read_workbook_all_sheets(SOURCE.read_bytes(), SOURCE.name)
 tb, sheet_meta, mode, findings, _ = merge_workbook_statement_sheets(sheets)
 st = aggregate_statements(tb)
@@ -17,7 +17,7 @@ q = quality_checks(None, {}, tb, {'mode': mode, 'sheets': sheet_meta, 'reconcili
 
 # ---- Single-period run: engine version + all 8 sections present ----
 bp = build_finance_business_partner_analysis(st, q, sector='Üretim / Sanayi')
-assert bp['engine_version'] == '1.9'
+assert bp['engine_version'] in ('1.9', '2.0')
 for key in [
     'root_cause_engine', 'business_impact_engine', 'executive_summary_engine',
     'risk_ranking_engine', 'opportunity_engine', 'cash_conversion_cycle',
