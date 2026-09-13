@@ -349,6 +349,27 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 .compareTable td.featured{background:#F8FAFF;font-weight:600;color:#0F1B2D}
 @media(max-width:860px){.dilemmaGrid,.workflowGrid{grid-template-columns:1fr}.compareTableWrap{overflow-x:auto}}
 
+.kobiPills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:18px auto 26px}
+.kobiPill{padding:9px 18px;border-radius:999px;font-size:12.5px;font-weight:700;border:1.5px solid #CBD5E1;background:#FFFFFF;color:#475569;cursor:pointer;transition:all .2s ease}
+.kobiPill:hover{border-color:#1D4ED8;color:#1D4ED8;background:#EFF6FF}
+.kobiPill.active{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8;box-shadow:0 4px 14px rgba(29,78,216,.25)}
+.kobiGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.kobiCard{background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:20px;padding:24px;box-shadow:0 6px 20px rgba(15,27,45,.04);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;display:flex;flex-direction:column;justify-content:space-between}
+.kobiCard:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(15,27,45,.08);border-color:#CBD5E1}
+.kobiTag{display:inline-block;padding:4px 10px;border-radius:6px;font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin-bottom:12px;width:fit-content}
+.kobiTag.cash{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE}
+.kobiTag.profit{background:#FEF3C7;color:#B45309;border:1px solid #FDE68A}
+.kobiTag.mgmt{background:#F3E8FF;color:#7E22CE;border:1px solid #E9D5FF}
+.kobiTitle{font-size:15.5px;font-weight:800;color:#0F1B2D;line-height:1.4;margin-bottom:10px}
+.kobiDesc{font-size:12.5px;color:#475569;line-height:1.55;margin-bottom:14px}
+.kobiMetrics{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:12px 14px;margin-bottom:14px;display:flex;flex-direction:column;gap:6px;font-size:12px}
+.kobiMetricRow{display:flex;justify-content:space-between;align-items:center}
+.kobiPrescription{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:12px 14px;font-size:12px;color:#14532D;line-height:1.45;margin-bottom:16px}
+.kobiPrescription b{color:#166534;display:block;margin-bottom:3px;font-weight:800}
+.kobiCta{display:inline-flex;align-items:center;justify-content:space-between;font-size:12.5px;font-weight:800;color:#1D4ED8;text-decoration:none;padding:10px 14px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;transition:all .15s ease}
+.kobiCta:hover{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8}
+@media(max-width:900px){.kobiGrid{grid-template-columns:1fr}}
+
 .secGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .secCard{padding:22px}
 .secCard .scIco{width:38px;height:38px;border-radius:10px;background:#EAF0FF;color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:13px}
@@ -522,43 +543,261 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </div>
 </section>
 
-<!-- SECTION: 4 EXECUTIVE DILEMMAS -->
-<div class="secBlock reveal"><section id="dilemmas" class="marketingSection hidePrint" style="padding-top:0">
+<!-- SECTION: 10 KOBİ PATRON VİTRİNİ -->
+<div class="secBlock reveal"><section id="kobiShowcase" class="marketingSection hidePrint" style="padding-top:0">
 <div class="marketingHead">
-  <span class="workflowBadge">YÖNETİCİLER & ŞİRKET SAHİPLERİ İÇİN</span>
-  <h2>Patronların Her Gece Düşündüğü 4 Büyük Finansal Çıkmaz</h2>
-  <p>Muhasebe programınız geçmiş fişleri kaydeder ancak bu sorulara cevap veremez. Digital Finance Business Partner bu kararları yönetmek için geliştirildi.</p>
-</div>
-<div class="dilemmaGrid">
-  <div class="dilemmaCard">
-    <div class="dilemmaQ"><span>SORU 1</span> "Kâğıt üzerinde kâr görünüyor ama kasada para nerede?"</div>
-    <div class="dilemmaA">
-      <b>DFBP Çözümü: Sermaye Dağılım Metresi & Nakit Köprüsü</b>
-      Net kârınızın ne kadarının kasaya nakit olarak girdiği, ne kadarının müşterideki açık vadeli hesaplarda veya depodaki ölü stokta kilitlendiği TL kuruşuna kadar ayrıştırılır.
-    </div>
-  </div>
-  <div class="dilemmaCard">
-    <div class="dilemmaQ"><span>SORU 2</span> "Cirosu en yüksek müşterim bana gerçekten para kazandırıyor mu?"</div>
-    <div class="dilemmaA">
-      <b>DFBP Çözümü: 4-Kadran Müşteri Kârlılık Matrisi</b>
-      Vade aşımı, iskonto ve işletme finansman maliyeti hesaba katılarak "Görünürde dev ciro yapan ama nakit yutan" müşteriler tespit edilir ve fiyatlama aksiyonuna bağlanır.
-    </div>
-  </div>
-  <div class="dilemmaCard">
-    <div class="dilemmaQ"><span>SORU 3</span> "Depodaki stok nakdimi ne kadar boğuyor?"</div>
-    <div class="dilemmaA">
-      <b>DFBP Çözümü: Stok Yaşlandırma & Ölü Stok Tespiti (DIO)</b>
-      180+ gündür satılmayan atıl stokların değeri hesaplanır; depodaki bağlı sermayeyi nakde çevirecek tasfiye, kampanya ve sipariş kısıtları önerilir.
-    </div>
-  </div>
-  <div class="dilemmaCard">
-    <div class="dilemmaQ"><span>SORU 4</span> "Fiyatlarımızı %3 artırsak veya vadeyi 15 gün çeksek nakit ne olur?"</div>
-    <div class="dilemmaA">
-      <b>DFBP Çözümü: Canlı What-If Senaryo Laboratuvarı</b>
-      Hissiyata gerek kalmadan doğrudan gerçek bilançonuz üzerinden formüllü simülasyon yapılır; kâr, nakit ve borç üzerindeki anlık duyarlılık patronun masasına konur.
-    </div>
+  <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">🎯 KOBİ PATRONLARI &amp; ŞİRKET ORTAKLARI İÇİN</span>
+  <h2 style="margin-top:10px">Patronun Masasındaki 10 Gerçek Kriz &amp; 60 Saniyelik Çözüm</h2>
+  <p>Muhasebe programınız geçmiş fişleri kaydeder; Digital Finance BP ise şirketi kâr eden ve nakit üreten bir makineye dönüştürür. İşte patronların en çok yaşadığı 10 çıkmaz ve somut reçetesi:</p>
+  
+  <div class="kobiPills">
+    <button type="button" class="kobiPill active" onclick="filterKobiShowcase('all', this)">🔥 Tümü (10)</button>
+    <button type="button" class="kobiPill" onclick="filterKobiShowcase('cash', this)">💵 Nakit &amp; Tahsilat (4)</button>
+    <button type="button" class="kobiPill" onclick="filterKobiShowcase('profit', this)">📊 Kâr, Marj &amp; Stok (3)</button>
+    <button type="button" class="kobiPill" onclick="filterKobiShowcase('mgmt', this)">🏛️ Yönetim &amp; Banka (3)</button>
   </div>
 </div>
+
+<div class="kobiGrid" id="kobiGridCards">
+  <!-- Kart 1 -->
+  <div class="kobiCard" data-category="cash">
+    <div>
+      <span class="kobiTag cash">💵 1. KÂR &amp; NAKİT ÇELİŞKİSİ</span>
+      <div class="kobiTitle">"Muhasebeciniz 'Bu Ay Kârdayız' Diyor, Ama Siz Ay Sonu Maaşları Nasıl Ödeyeceğinizi Düşünüyorsunuz."</div>
+      <div class="kobiDesc">Defterde kâr çıkması, kasada nakit olduğu anlamına gelmez. Satışı yapmışsınız ama parayı müşteriden alamamışsınız; malı üretip depoya yığmışsınız. Kârınız buharlaşmadı; müşterinin açık hesabında ve depodaki kolilerde kilitli kaldı.</div>
+      <div class="kobiMetrics">
+        <div class="kobiMetricRow"><span>Defterdeki Kâr:</span><b style="color:#059669">₺1.850.000 (Kâğıt Üzerinde)</b></div>
+        <div class="kobiMetricRow"><span>Kasadaki Sıcak Nakit:</span><b style="color:#DC2626">₺42.000 (Kritik Alarm)</b></div>
+        <div class="kobiMetricRow"><span>Alacak &amp; Stokta Kilitli:</span><b style="color:#B45309">₺1.808.000 Bağlı Sermaye</b></div>
+      </div>
+      <div class="kobiPrescription">
+        <b>DFBP 60 Saniyelik Reçetesi (Nakit Köprüsü):</b>
+        P&amp;L kârınızın hangi hesaplarda kilitlendiğini kuruşu kuruşuna haritalandırır; kâğıt kârı ile serbest nakit akışı arasındaki sızıntıyı kapatır.
+      </div>
+    </div>
+    <a href="/uygulama?sample=data_hub" class="kobiCta">
+      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
+      <span>→</span>
+    </a>
+  </div>
+
+  <!-- Kart 2 -->
+  <div class="kobiCard" data-category="cash">
+    <div>
+      <span class="kobiTag cash">💵 2. AÇIK HESAP &amp; TERSİNE BANKACILIK</span>
+      <div class="kobiTitle">"Siz Mal mı Satıyorsunuz, Yoksa Müşterilerinize Faizsiz Kredi Dağıtan Banka mısınız?"</div>
+      <div class="kobiDesc">Siz bankadan %50 faizle kredi çekip hammadde alıyorsunuz, işçilik ödüyorsunuz; müşteriniz ise malı alıp 90 gün sonra ödüyor! Kendi özkaynağınızla başkalarının ticaretini finanse ediyorsunuz.</div>
+      <div class="kobiMetrics">
+        <div class="kobiMetricRow"><span>Ortalama Tahsilat Vadeniz:</span><b style="color:#DC2626">88 Gün (Sektör: 60 Gün)</b></div>
+        <div class="kobiMetricRow"><span>Müşteriyi Fonlama Maliyeti:</span><b style="color:#B45309">Yıllık ~₺1.250.000 Gizli Faiz</b></div>
+        <div class="kobiMetricRow"><span>15 Gün Erken Tahsilat Kazancı:</span><b style="color:#1D4ED8">+₺450.000 Sıcak Para</b></div>
+      </div>
+      <div class="kobiPrescription">
+        <b>DFBP 60 Saniyelik Reçetesi (Alacak Yaşlandırma):</b>
+        Alacak portföyünün vadesini tarar; vadesi 60 günü aşan riskli carileri sıralar ve tahsilat hızlandırma protokolünü devreye sokar.
+      </div>
+    </div>
+    <a href="/uygulama?sample=data_hub" class="kobiCta">
+      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
+      <span>→</span>
+    </a>
+  </div>
+
+  <!-- Kart 3 -->
+  <div class="kobiCard" data-category="profit">
+    <div>
+      <span class="kobiTag profit">📊 3. ÖLÜ STOK MEZARLIĞI</span>
+      <div class="kobiTitle">"Deponuz Ağzına Kadar Mal Dolu Diye Zenginleştiğinizi mi Sanıyorsunuz?"</div>
+      <div class="kobiDesc">6 aydır rafta bekleyen o kumaş, o profil, o yedek parça depoda durdukça değer kazanmıyor; her gün banka kredinizin faizini yiyor. Depodaki atıl malı görmezden gelmek, her ay deste deste parayı çöpe atmaktır.</div>
+      <div class="kobiMetrics">
+        <div class="kobiMetricRow"><span>Depodaki Toplam Envanter:</span><b style="color:#0F172A">₺2.400.000</b></div>
+        <div class="kobiMetricRow"><span>180+ Günlük Ölü Stok:</span><b style="color:#DC2626">₺680.000 (Atıl Sermaye)</b></div>
+        <div class="kobiMetricRow"><span>Aylık Gizli Faiz Yükü:</span><b style="color:#B45309">~₺45.000 / Ay Kayıp</b></div>
+      </div>
+      <div class="kobiPrescription">
+        <b>DFBP 60 Saniyelik Reçetesi (Envanter İstihbaratı):</b>
+        Mizan ile depo kayıtlarını eşleştirir; 180+ gündür devretmeyen ölü stokları listeler ve acil nakde dönüşüm reçetesini çıkarır.
+      </div>
+    </div>
+    <a href="/uygulama?sample=data_hub" class="kobiCta">
+      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
+      <span>→</span>
+    </a>
+  </div>
+
+  <!-- Kart 4 -->
+  <div class="kobiCard" data-category="mgmt">
+    <div>
+      <span class="kobiTag mgmt">🏛️ 4. MİZAN ÇİLESİ VS. KARAR MASASI</span>
+      <div class="kobiTitle">"Muhasebeciniz Size Çıkacak Vergiyi Söyler; Parayı Nereden Bulacağınızı Söylemez."</div>
+      <div class="kobiDesc">Mali müşavirin işi devlete vergi beyannamesi vermektir. Ancak önünüze konan 500 satırlık mizan tablosundan "Yarın hangi müşteriye mal çıkışını durdurmalıyım?", "Hangi maliyet canımı yakıyor?" sorularının yanıtı çıkmaz.</div>
+      <div class="kobiMetrics">
+        <div class="kobiMetricRow"><span>Klasik Mizan Tablosu:</span><b style="color:#64748B">500 Satır Hesap (Karar Yok)</b></div>
+        <div class="kobiMetricRow"><span>Digital Finance BP:</span><b style="color:#1D4ED8">1 Sayfalık Board Raporu</b></div>
+        <div class="kobiMetricRow"><span>Yönetimsel Analiz Süresi:</span><b style="color:#059669">Sadece 60 Saniye</b></div>
+      </div>
+      <div class="kobiPrescription">
+        <b>DFBP 60 Saniyelik Reçetesi (1-Sayfalık Yönetim Özeti):</b>
+        33 karar motoru mizanınızı tarar; kâr durumunu, paranın kilitlendiği yeri ve alınacak 1 numaralı icraat kararını tek sayfada masaya koyar.
+      </div>
+    </div>
+    <a href="/uygulama?sample=data_hub" class="kobiCta">
+      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
+      <span>→</span>
+    </a>
+  </div>
+
+  <!-- Kart 5 -->
+  <div class="kobiCard" data-category="cash">
+    <div>
+      <span class="kobiTag cash">💵 5. CİRO ALDANMASI &amp; KASA GERÇEĞİ</span>
+      <div class="kobiTitle">"50 Milyon Ciro Yapıp Ay Sonu Çek Öderken Ter Döken Patronlardan mısınız?"</div>
+      <div class="kobiDesc">Ciro gösteriştir, kâr akıl işidir, kasadaki nakit ise gerçeğin ta kendisidir. Cironuz ikiye katlanıyor ama borcunuz da aynı hızla katlanıyorsa büyümüyorsunuz; sadece daha büyük bir riskin altına giriyorsunuz.</div>
+      <div class="kobiMetrics">
+        <div class="kobiMetricRow"><span>Yıllık Satış Cirosu:</span><b style="color:#059669">₺45.000.000 (Büyüme Görünümü)</b></div>
+        <div class="kobiMetricRow"><span>Banka &amp; Borç Yükü:</span><b style="color:#DC2626">₺18.000.000 (Faiz Baskısı)</b></div>
+        <div class="kobiMetricRow"><span>Kasaya Kalan Net Nakit:</span><b style="color:#DC2626">-₺350.000 (Nakit Açığı)</b></div>
+      </div>
+      <div class="kobiPrescription">
+        <b>DFBP 60 Saniyelik Reçetesi (Nakit Çevrim Motoru):</b>
+        Satıştan tahsilata kadar paranın kaç günde döndüğünü (CCC) hesaplar; cironun nakde dönüşme kabiliyetini ve net kâr kalitesini ölçer.
+      </div>
+    </div>
+    <a href="/uygulama?sample=data_hub" class="kobiCta">
+      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
+      <span>→</span>
+    </a>
+  </div>
+
+  <!-- Kart 6 -->
+  <div class="kobiCard" data-category="mgmt">
+    <div>
+      <span class="kobiTag mgmt">🏛️ 6. MÜŞTERİ REHİNESİ &amp; KONSANTRASYON</span>
+      <div class="kobiTitle">"Cironuzun Yarısını Tek Bir Müşteriye Yapıyorsanız; Patron Siz Değilsiniz, O Müşteridir."</div>
+      <div class="kobiDesc">Büyük müşteriyle çalışmak iyidir ama bütün yumurtaları aynı sepete koymak felakettir. O müşteri yarın "Vadeyi 4 aya çıkarıyorum" dediğinde veya ödemeyi geciktirdiğinde şirketin dayanacak kaç günlük can suyu var?</div>
+      <div class="kobiMetrics">
+        <div class="kobiMetricRow"><span>İlk 3 Müşterinin Payı:</span><b style="color:#DC2626">%64 (Kritik Bağımlılık)</b></div>
+        <div class="kobiMetricRow"><span>Olası Vade Gecikmesi:</span><b style="color:#B45309">-₺1.200.000 Nakit Açığı</b></div>
+        <div class="kobiMetricRow"><span>Dayanıklılık Süresi:</span><b style="color:#DC2626">Yalnızca 22 Gün!</b></div>
+      </div>
+      <div class="kobiPrescription">
+        <b>DFBP 60 Saniyelik Reçetesi (Erken Uyarı Radarı):</b>
+        Müşteri bağımlılığınızı ölçer; olası gecikmelerde şirketin likidite dayanıklılığını test eder ve açık hesap tavan limiti belirler.
+      </div>
+    </div>
+    <a href="/uygulama?sample=data_hub" class="kobiCta">
+      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
+      <span>→</span>
+    </a>
+  </div>
+
+  <!-- Kart 7 -->
+  <div class="kobiCard" data-category="profit">
+    <div>
+      <span class="kobiTag profit">📊 7. FİYATLAMA GÜCÜ &amp; MARJ KORUMA</span>
+      <div class="kobiTitle">"Fiyatlarınıza Sadece %3 Zam Yapsanız Kasaya Kaç Yüz Bin Lira Kalır, Hiç Hesapladınız mı?"</div>
+      <div class="kobiDesc">"Müşteri kaçar" korkusuyla maliyet artışlarını fiyata yansıtmamak şirketin özkaynağını eritir. Kontrolsüz iskontolar ve plansız vadeler, ciro artarken kârı sıfırlayan ana sızıntıdır.</div>
+      <div class="kobiMetrics">
+        <div class="kobiMetricRow"><span>Mevcut Brüt Kâr Marjı:</span><b style="color:#B45309">%22,4 (Enflasyon Baskısı)</b></div>
+        <div class="kobiMetricRow"><span>Fiyatta +%3 Düzeltme:</span><b style="color:#059669">+₺324.000 Net Kâr Katkısı</b></div>
+        <div class="kobiMetricRow"><span>10 Gün Erken Tahsilat:</span><b style="color:#1D4ED8">+₺450.000 Kurtarılan Nakit</b></div>
+      </div>
+      <div class="kobiPrescription">
+        <b>DFBP 60 Saniyelik Reçetesi (What-If Simülatörü):</b>
+        Fiyat artışı, vade kısaltma ve gider tasarrufu sürgülerini hareket ettirerek şirketin anlık kâr ve nakit kazanımını canlı simüle eder.
+      </div>
+    </div>
+    <a href="/uygulama?sample=data_hub" class="kobiCta">
+      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
+      <span>→</span>
+    </a>
+  </div>
+
+  <!-- Kart 8 -->
+  <div class="kobiCard" data-category="cash">
+    <div>
+      <span class="kobiTag cash">💵 8. KREDİ KAPANINDAN ÇIKIŞ</span>
+      <div class="kobiTitle">"Faizlerin %50 Olduğu Yerde, Şirketi Banka Kredisiyle Döndüremezsiniz."</div>
+      <div class="kobiDesc">Kasada nakit sıkışınca ilk refleks bankaya koşup kredi çekmektir. Ama içerideki para kaçağını kapatmadan kredi çekmek, sadece bankalara çalışmaktır. Çözüm yeni borç değil; içerideki kilitli parayı kurtarmaktır.</div>
+      <div class="kobiMetrics">
+        <div class="kobiMetricRow"><span>Bankaya Yıllık Faiz Yükü:</span><b style="color:#DC2626">₺1.850.000 / Yıl</b></div>
+        <div class="kobiMetricRow"><span>İçeride Kilitli Kendi Paranız:</span><b style="color:#059669">₺1.400.000 (Alacak &amp; Stok)</b></div>
+        <div class="kobiMetricRow"><span>Kredi İhtiyacı Tasarrufu:</span><b style="color:#1D4ED8">%40 Daha Az Borçlanma</b></div>
+      </div>
+      <div class="kobiPrescription">
+        <b>DFBP 60 Saniyelik Reçetesi (Kaldıraç &amp; Borç Kapasitesi):</b>
+        Operasyonel kârınızın faizleri kaç kat karşıladığını ölçer; yeni borca girmeden içerideki kilitli nakdi çözerek şirketi rahatlatır.
+      </div>
+    </div>
+    <a href="/uygulama?sample=data_hub" class="kobiCta">
+      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
+      <span>→</span>
+    </a>
+  </div>
+
+  <!-- Kart 9 -->
+  <div class="kobiCard" data-category="mgmt">
+    <div>
+      <span class="kobiTag mgmt">🏛️ 9. ORTAKLAR MASASINDA FİKİR BİRLİĞİ</span>
+      <div class="kobiTitle">"Her Ay Ortaklarınızla 'İşler İyiydi de Bu Para Nereye Gitti' Kavgası Yapmaktan Bıkmadınız mı?"</div>
+      <div class="kobiDesc">Ortaklar arasındaki en büyük gerginlik rakamların farklı yorumlanmasıdır. Biri "Satış ekibi rekor kırdı" der, diğeri "Kasa boş, tedarikçiyi ödeyemiyoruz" der. Suçlu aramak yerine tek bir gerçeğin etrafında toplanın.</div>
+      <div class="kobiMetrics">
+        <div class="kobiMetricRow"><span>1. Teşhis:</span><b style="color:#DC2626">Kârın %62'si Alacak ve Stokta Bağlı</b></div>
+        <div class="kobiMetricRow"><span>2. Öncelikli İcraat:</span><b style="color:#1D4ED8">Vadesi Aşan 3 Müşteriyi Durdur</b></div>
+        <div class="kobiMetricRow"><span>3. Kurtarılabilir Nakit:</span><b style="color:#059669">₺1.100.000 (Haftalık Protokol)</b></div>
+      </div>
+      <div class="kobiPrescription">
+        <b>DFBP 60 Saniyelik Reçetesi (Deterministik Yönetim Masası):</b>
+        Kimsenin tartışamayacağı çift taraflı denetlenmiş verilerle şirketin tek bir yönetim ve eylem gündemi üzerinde uzlaşmasını sağlar.
+      </div>
+    </div>
+    <a href="/uygulama?sample=data_hub" class="kobiCta">
+      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
+      <span>→</span>
+    </a>
+  </div>
+
+  <!-- Kart 10 -->
+  <div class="kobiCard" data-category="profit">
+    <div>
+      <span class="kobiTag profit">📊 10. CFO ZEKA ARBİTRAJI</span>
+      <div class="kobiTitle">"Büyük Holdingler Her Ay Milyonluk Finans Kadrolarıyla Şirket Yönetiyor. Siz Hâlâ Hissiyatla mı Karar Veriyorsunuz?"</div>
+      <div class="kobiDesc">Aylık 150-200 bin TL maaşla Finans Direktörü (CFO) tutmak KOBİ ölçeğinde zordur. Ancak rekabet etmek için holdinglerin sahip olduğu finansal denetime ve karar gücüne ihtiyacınız var.</div>
+      <div class="kobiMetrics">
+        <div class="kobiMetricRow"><span>Holding Finans Kadrosu:</span><b style="color:#64748B">Aylık ₺200.000+ Maliyet</b></div>
+        <div class="kobiMetricRow"><span>Digital Finance BP:</span><b style="color:#1D4ED8">60 Saniyede CFO Masası</b></div>
+        <div class="kobiMetricRow"><span>Karar Gücü:</span><b style="color:#059669">33 Deterministik Analiz Motoru</b></div>
+      </div>
+      <div class="kobiPrescription">
+        <b>DFBP 60 Saniyelik Reçetesi (60 Saniyede Finansal Röntgen):</b>
+        Mizanınızı yükleyin; 33 motor çift taraflı denetimle çalışsın, şirketinizi holding düzeyinde analitik finansal zekayla donatsın.
+      </div>
+    </div>
+    <a href="/uygulama?sample=data_hub" class="kobiCta">
+      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
+      <span>→</span>
+    </a>
+  </div>
+</div>
+
+<script>
+function filterKobiShowcase(category, btn) {
+  var pills = document.querySelectorAll('.kobiPill');
+  for (var i = 0; i < pills.length; i++) {
+    pills[i].classList.remove('active');
+  }
+  if (btn) btn.classList.add('active');
+  var cards = document.querySelectorAll('.kobiCard');
+  for (var j = 0; j < cards.length; j++) {
+    var c = cards[j];
+    if (category === 'all' || c.getAttribute('data-category') === category) {
+      c.style.display = 'flex';
+    } else {
+      c.style.display = 'none';
+    }
+  }
+}
+</script>
 </section></div>
 
 <!-- SECTION: WORKING CAPITAL LEAK & LOCKED CASH CALCULATOR -->
