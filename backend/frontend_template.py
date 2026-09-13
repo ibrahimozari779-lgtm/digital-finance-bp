@@ -387,7 +387,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       </div>
     </div>
   </a>
-</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/" class="active">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/" class="active">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div style="display:flex;align-items:center;gap:6px" class="hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <section class="mHero">
   <div class="reveal in">
@@ -1293,6 +1293,43 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
   updateLeakCalc();
 })();
 </script>
+<script>
+var GLOBAL_I18N = {
+  tr: { navHome: 'Anasayfa', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
+  en: { navHome: 'Home', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
+  de: { navHome: 'Startseite', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
+  fr: { navHome: 'Accueil', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
+  es: { navHome: 'Inicio', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
+  it: { navHome: 'Home', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
+  nl: { navHome: 'Startpagina', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
+};
+function setGlobalLanguage(lang){
+  try { localStorage.setItem('dfbp_lang', lang); } catch(e){}
+  var dict = GLOBAL_I18N[lang] || GLOBAL_I18N.tr;
+  document.querySelectorAll('.globalLangSwitch').forEach(function(s){ s.value = lang; });
+  var nav = document.getElementById('mainNav');
+  if(nav){
+    var links = nav.querySelectorAll('a');
+    if(links.length >= 6){
+      links[0].textContent = dict.navHome;
+      links[1].textContent = dict.navAbout;
+      links[2].textContent = dict.navApp;
+      links[3].textContent = dict.navPricing;
+      links[4].textContent = dict.navSecurity;
+      links[5].textContent = dict.navContact;
+    }
+  }
+  document.querySelectorAll('.navBtn.secondary, .navBtn.sec, #loginOpenBtn').forEach(function(b){ b.textContent = dict.login; });
+  document.querySelectorAll('.navBtn.primary, .navBtn.pri, #registerOpenBtn').forEach(function(b){ b.textContent = dict.register; });
+}
+if(typeof document !== 'undefined' && document.addEventListener){
+  document.addEventListener('DOMContentLoaded', function(){
+    var saved = 'tr';
+    try { saved = localStorage.getItem('dfbp_lang') || 'tr'; } catch(e){}
+    setGlobalLanguage(saved);
+  });
+}
+</script>
 </body></html>'''
 
 
@@ -1635,7 +1672,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       </div>
     </div>
   </a>
-</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler" class="active">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler" class="active">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div style="display:flex;align-items:center;gap:6px" class="hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">Paketler</span><h1>Şirketiniz İçin Doğru Çözümü Seçin</h1><p>Tek seferlik bir örnek raporla mı başlamak istiyorsunuz, yoksa her ay yönetim kuruluna sunacağınız 33 karar motorlu finansal zekayı mı kurmak istiyorsunuz — tüm paketler aynı deterministik finansal çekirdeği kullanır.</p>
   <div style="display:inline-flex;align-items:center;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:999px;padding:4px;margin-top:24px;box-shadow:0 4px 12px rgba(15,27,45,0.05)">
@@ -1778,6 +1815,43 @@ function setBilling(mode){
   });
   document.querySelectorAll('.bar i, .abar i').forEach((i,idx)=>{ i.style.animation = `growWidth .7s ease ${idx*40}ms both`; });
 })();
+</script>
+<script>
+var GLOBAL_I18N = {
+  tr: { navHome: 'Anasayfa', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
+  en: { navHome: 'Home', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
+  de: { navHome: 'Startseite', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
+  fr: { navHome: 'Accueil', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
+  es: { navHome: 'Inicio', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
+  it: { navHome: 'Home', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
+  nl: { navHome: 'Startpagina', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
+};
+function setGlobalLanguage(lang){
+  try { localStorage.setItem('dfbp_lang', lang); } catch(e){}
+  var dict = GLOBAL_I18N[lang] || GLOBAL_I18N.tr;
+  document.querySelectorAll('.globalLangSwitch').forEach(function(s){ s.value = lang; });
+  var nav = document.getElementById('mainNav');
+  if(nav){
+    var links = nav.querySelectorAll('a');
+    if(links.length >= 6){
+      links[0].textContent = dict.navHome;
+      links[1].textContent = dict.navAbout;
+      links[2].textContent = dict.navApp;
+      links[3].textContent = dict.navPricing;
+      links[4].textContent = dict.navSecurity;
+      links[5].textContent = dict.navContact;
+    }
+  }
+  document.querySelectorAll('.navBtn.secondary, .navBtn.sec, #loginOpenBtn').forEach(function(b){ b.textContent = dict.login; });
+  document.querySelectorAll('.navBtn.primary, .navBtn.pri, #registerOpenBtn').forEach(function(b){ b.textContent = dict.register; });
+}
+if(typeof document !== 'undefined' && document.addEventListener){
+  document.addEventListener('DOMContentLoaded', function(){
+    var saved = 'tr';
+    try { saved = localStorage.getItem('dfbp_lang') || 'tr'; } catch(e){}
+    setGlobalLanguage(saved);
+  });
+}
 </script>
 </body></html>'''
 
@@ -2120,7 +2194,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       </div>
     </div>
   </a>
-</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda" class="active">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda" class="active">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div style="display:flex;align-items:center;gap:6px" class="hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">Hakkımızda</span><h1>Muhasebe Raporu Değil, Stratejik İş Kararları Üretiyoruz</h1><p>Finans ekiplerinin ve şirket sahiplerinin saatlerce harcadığı "rakamları toparlama ve mutabakat" işini sıfıra indirip, zamanı asıl değerin üretildiği yere — stratejik iş ve yönetim kararlarına — taşıyoruz.</p></div>
 
@@ -2267,6 +2341,43 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
   });
   document.querySelectorAll('.bar i, .abar i').forEach((i,idx)=>{ i.style.animation = `growWidth .7s ease ${idx*40}ms both`; });
 })();
+</script>
+<script>
+var GLOBAL_I18N = {
+  tr: { navHome: 'Anasayfa', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
+  en: { navHome: 'Home', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
+  de: { navHome: 'Startseite', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
+  fr: { navHome: 'Accueil', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
+  es: { navHome: 'Inicio', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
+  it: { navHome: 'Home', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
+  nl: { navHome: 'Startpagina', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
+};
+function setGlobalLanguage(lang){
+  try { localStorage.setItem('dfbp_lang', lang); } catch(e){}
+  var dict = GLOBAL_I18N[lang] || GLOBAL_I18N.tr;
+  document.querySelectorAll('.globalLangSwitch').forEach(function(s){ s.value = lang; });
+  var nav = document.getElementById('mainNav');
+  if(nav){
+    var links = nav.querySelectorAll('a');
+    if(links.length >= 6){
+      links[0].textContent = dict.navHome;
+      links[1].textContent = dict.navAbout;
+      links[2].textContent = dict.navApp;
+      links[3].textContent = dict.navPricing;
+      links[4].textContent = dict.navSecurity;
+      links[5].textContent = dict.navContact;
+    }
+  }
+  document.querySelectorAll('.navBtn.secondary, .navBtn.sec, #loginOpenBtn').forEach(function(b){ b.textContent = dict.login; });
+  document.querySelectorAll('.navBtn.primary, .navBtn.pri, #registerOpenBtn').forEach(function(b){ b.textContent = dict.register; });
+}
+if(typeof document !== 'undefined' && document.addEventListener){
+  document.addEventListener('DOMContentLoaded', function(){
+    var saved = 'tr';
+    try { saved = localStorage.getItem('dfbp_lang') || 'tr'; } catch(e){}
+    setGlobalLanguage(saved);
+  });
+}
 </script>
 </body></html>'''
 
@@ -2609,7 +2720,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       </div>
     </div>
   </a>
-</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim" class="active">İletişim</a></nav><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim" class="active">İletişim</a></nav><div style="display:flex;align-items:center;gap:6px" class="hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">İletişim</span><h1>Konuşalım</h1><p>Paketler, kurumsal teklif veya demo talebi için bize ulaşın; genelde 1 iş günü içinde dönüş yapıyoruz.</p></div>
 <div class="secBlock reveal"><section id="contact" class="marketingSection hidePrint" style="padding-top:0">
@@ -2707,6 +2818,43 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
   });
   document.querySelectorAll('.bar i, .abar i').forEach((i,idx)=>{ i.style.animation = `growWidth .7s ease ${idx*40}ms both`; });
 })();
+</script>
+<script>
+var GLOBAL_I18N = {
+  tr: { navHome: 'Anasayfa', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
+  en: { navHome: 'Home', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
+  de: { navHome: 'Startseite', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
+  fr: { navHome: 'Accueil', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
+  es: { navHome: 'Inicio', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
+  it: { navHome: 'Home', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
+  nl: { navHome: 'Startpagina', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
+};
+function setGlobalLanguage(lang){
+  try { localStorage.setItem('dfbp_lang', lang); } catch(e){}
+  var dict = GLOBAL_I18N[lang] || GLOBAL_I18N.tr;
+  document.querySelectorAll('.globalLangSwitch').forEach(function(s){ s.value = lang; });
+  var nav = document.getElementById('mainNav');
+  if(nav){
+    var links = nav.querySelectorAll('a');
+    if(links.length >= 6){
+      links[0].textContent = dict.navHome;
+      links[1].textContent = dict.navAbout;
+      links[2].textContent = dict.navApp;
+      links[3].textContent = dict.navPricing;
+      links[4].textContent = dict.navSecurity;
+      links[5].textContent = dict.navContact;
+    }
+  }
+  document.querySelectorAll('.navBtn.secondary, .navBtn.sec, #loginOpenBtn').forEach(function(b){ b.textContent = dict.login; });
+  document.querySelectorAll('.navBtn.primary, .navBtn.pri, #registerOpenBtn').forEach(function(b){ b.textContent = dict.register; });
+}
+if(typeof document !== 'undefined' && document.addEventListener){
+  document.addEventListener('DOMContentLoaded', function(){
+    var saved = 'tr';
+    try { saved = localStorage.getItem('dfbp_lang') || 'tr'; } catch(e){}
+    setGlobalLanguage(saved);
+  });
+}
 </script>
 </body></html>'''
 
@@ -3049,7 +3197,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       </div>
     </div>
   </a>
-</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik" class="active">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik" class="active">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div style="display:flex;align-items:center;gap:6px" class="hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">Security &amp; Governance</span><h1>Kurumsal veri güvenliği ve AI yönetişimi</h1><p>Finans ekipleri güvenlik sayfasına, düşündüğünüzden çok daha fazla bakıyor. Verinizin nasıl işlendiğini, nerede durduğunu ve AI katmanının nasıl sınırlandığını burada tam olarak görebilirsiniz.</p></div>
 
@@ -3149,6 +3297,43 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
   });
   document.querySelectorAll('.bar i, .abar i').forEach((i,idx)=>{ i.style.animation = `growWidth .7s ease ${idx*40}ms both`; });
 })();
+</script>
+<script>
+var GLOBAL_I18N = {
+  tr: { navHome: 'Anasayfa', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
+  en: { navHome: 'Home', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
+  de: { navHome: 'Startseite', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
+  fr: { navHome: 'Accueil', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
+  es: { navHome: 'Inicio', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
+  it: { navHome: 'Home', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
+  nl: { navHome: 'Startpagina', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
+};
+function setGlobalLanguage(lang){
+  try { localStorage.setItem('dfbp_lang', lang); } catch(e){}
+  var dict = GLOBAL_I18N[lang] || GLOBAL_I18N.tr;
+  document.querySelectorAll('.globalLangSwitch').forEach(function(s){ s.value = lang; });
+  var nav = document.getElementById('mainNav');
+  if(nav){
+    var links = nav.querySelectorAll('a');
+    if(links.length >= 6){
+      links[0].textContent = dict.navHome;
+      links[1].textContent = dict.navAbout;
+      links[2].textContent = dict.navApp;
+      links[3].textContent = dict.navPricing;
+      links[4].textContent = dict.navSecurity;
+      links[5].textContent = dict.navContact;
+    }
+  }
+  document.querySelectorAll('.navBtn.secondary, .navBtn.sec, #loginOpenBtn').forEach(function(b){ b.textContent = dict.login; });
+  document.querySelectorAll('.navBtn.primary, .navBtn.pri, #registerOpenBtn').forEach(function(b){ b.textContent = dict.register; });
+}
+if(typeof document !== 'undefined' && document.addEventListener){
+  document.addEventListener('DOMContentLoaded', function(){
+    var saved = 'tr';
+    try { saved = localStorage.getItem('dfbp_lang') || 'tr'; } catch(e){}
+    setGlobalLanguage(saved);
+  });
+}
 </script>
 </body></html>'''
 
@@ -3539,7 +3724,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       </div>
     </div>
   </a>
-</div><div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama" class="active">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div style="display:flex;align-items:center;gap:6px" class="hidePrint"><select id="currencySwitch" onchange="setCurrency(this.value)" class="select" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Para Birimi"><option value="TRY">₺ TRY</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select><select id="langSwitch" onchange="setLanguage(this.value)" class="select" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="primary">Ücretsiz Kayıt Ol</button></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama" class="active">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div style="display:flex;align-items:center;gap:6px" class="hidePrint"><span id="tcmbBadge" style="font-size:11px;font-weight:700;color:#0F172A;background:#ECFDF5;border:1px solid #A7F3D0;padding:3px 9px;border-radius:8px;display:none;white-space:nowrap;margin-right:4px" title="Resmi TCMB Gösterge Alış Kuru"></span><select id="currencySwitch" onchange="setCurrency(this.value)" class="select" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Para Birimi"><option value="TRY">₺ TRY</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select><select id="langSwitch" onchange="setLanguage(this.value)" class="select" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="primary">Ücretsiz Kayıt Ol</button></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <div id="authModalOverlay" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.65);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px">
   <div class="card" style="background:#FFFFFF;border:1px solid #DCE6F5;border-radius:24px;box-shadow:0 24px 70px rgba(15,27,45,.25);max-width:420px;width:100%;padding:28px;position:relative;overflow:hidden">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
@@ -3795,7 +3980,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </div>
 </section>
 
-<section class="flowStep"><div class="flowLabel"><span class="n">1</span>Finansal Gerçekler (Ne Oldu?)<p>Şirkette gerçekte ne oldu: Kâr nereden nereye aktı?</p></div><div class="flowSub">Doğrulanmış rakamlar: Ciro, operasyonel kâr kalitesi, borç yapısı ve nakit akış gerçekleşmesi.</div>
+<section id="flowStep_1" class="flowStep"><div class="flowLabel"><span class="n">1</span>Finansal Gerçekler (Ne Oldu?)<p>Şirkette gerçekte ne oldu: Kâr nereden nereye aktı?</p></div><div class="flowSub">Doğrulanmış rakamlar: Ciro, operasyonel kâr kalitesi, borç yapısı ve nakit akış gerçekleşmesi.</div>
 <div class="grid4"><div class="metric"><div class="label">Net Satış (Ciro)</div><div id="mSales" class="value">-</div><div class="sub">Doğrulanmış toplam satış hacmi</div></div><div class="metric"><div class="label">Faaliyet Kârı</div><div id="mOp" class="value">-</div><div class="sub">Esas faaliyetlerden kalan operasyonel kâr</div></div><div class="metric"><div class="label">Net Dönem Kârı</div><div id="mNet" class="value">-</div><div class="sub">Vergi ve finansman giderleri sonrası net kâr</div></div><div class="metric"><div class="label">Net Finansal Borç</div><div id="mDebt" class="value">-</div><div class="sub">Toplam banka borcundan nakit düşülmüş net yük</div></div></div>
 <div id="dupontCard" class="card hidden" style="margin-top:16px"><div class="sectionHead"><div><h2>Özkaynak Kârlılık Ağacı (ROE Motorları)</h2><p>Hissedarın koyduğu sermayenin getirisini (ROE) belirleyen üç ana motor: Kâr Marjı × Varlık Devir Hızı × Finansal Kaldıraç</p></div></div><div class="grid4"><div class="metric"><div class="label">Özkaynak Kârlılığı (ROE)</div><div id="dupontRoe" class="value">-</div><div class="sub">Hissedar Getirisi</div></div><div class="metric"><div class="label">Net Kâr Marjı</div><div id="dupontMargin" class="value">-</div><div class="sub">Operasyonel Kârlılık Oranı</div></div><div class="metric"><div class="label">Varlık Devir Hızı</div><div id="dupontTurnover" class="value">-</div><div class="sub">Varlıkları Paraya Çevirme Hızı</div></div><div class="metric"><div class="label">Kaldıraç Çarpanı</div><div id="dupontLeverage" class="value">-</div><div class="sub">Varlık / Özkaynak Çarpanı</div></div></div><div id="dupontDiagnosis" class="chips" style="margin-top:12px"></div></div>
 <div id="comparativeCard" class="card hidden" style="margin-top:16px"><div class="sectionHead"><div><h2>Dönemsel Trend Karşılaştırması</h2><p>Yüklenen dönemler arasındaki değişim, büyüme yönü ve yönetim için anlamı</p></div></div><div id="comparativeCards" class="grid3" style="margin-top:4px"></div><div id="comparativeFindings" style="margin-top:14px"></div><div id="comparativeTable" class="tableWrap" style="margin-top:14px"></div></div>
@@ -3821,7 +4006,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </div>
 </section>
 
-<section class="flowStep"><div class="flowLabel"><span class="n">2</span>Para Nerede? — Görünmez Kâr Sızıntısı &amp; Kilitli Nakit Teşhisi<p>Kâğıt üzerinde kâr var ama para kasada nerede duruyor?</p></div><div class="flowSub">Müşteri vadelerinde (120 Alıcılar) ve depodaki stokta (150-153) kilitlenen sermaye ve her yıl ödenen gizli finansman faiz sızıntısı.</div>
+<section id="flowStep_2" class="flowStep"><div class="flowLabel"><span class="n">2</span>Para Nerede? — Görünmez Kâr Sızıntısı &amp; Kilitli Nakit Teşhisi<p>Kâğıt üzerinde kâr var ama para kasada nerede duruyor?</p></div><div class="flowSub">Müşteri vadelerinde (120 Alıcılar) ve depodaki stokta (150-153) kilitlenen sermaye ve her yıl ödenen gizli finansman faiz sızıntısı.</div>
 
 <div id="workingCapitalLeakEngineCard" class="card" style="border:1.5px solid #CBD5E1;background:linear-gradient(145deg,#FFFFFF 0%,#F8FAFC 100%)">
   <div class="sectionHead">
@@ -3927,12 +4112,12 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </div>
 </section>
 
-<section class="flowStep"><div class="flowLabel"><span class="n">3</span>Sektörel Kıyaslama &amp; Öncelikli Riskler (Bize Maliyeti Ne?)<p>Sektör ortalamalarına göre neredeyiz ve acil ele alınması gereken riskler</p></div><div class="flowSub">TCMB Sektör Bilançoları &amp; Borsa İstanbul (BIST) 500+ şirket verisiyle kıyaslama ve skorlanmış riskler.</div>
+<section id="flowStep_3" class="flowStep"><div class="flowLabel"><span class="n">3</span>Sektörel Kıyaslama &amp; Öncelikli Riskler (Bize Maliyeti Ne?)<p>Sektör ortalamalarına göre neredeyiz ve acil ele alınması gereken riskler</p></div><div class="flowSub">TCMB Sektör Bilançoları &amp; Borsa İstanbul (BIST) 500+ şirket verisiyle kıyaslama ve skorlanmış riskler.</div>
 <div class="card"><div class="sectionHead"><div><h2>Sektörel Kıyaslama &amp; Göstergeler (TCMB &amp; BIST)</h2><p>Yön duyarlı, gösterge amaçlı sektör bantları ve şirketin sektöre göre konumu</p></div></div><div id="benchmark"></div></div>
 <div class="card" style="margin-top:16px"><div class="sectionHead"><div><h2>Öncelikli Yönetim Riskleri</h2><p>Finansal maruziyet, risk skoru ve şiddet derecesi birlikte sıralanır</p></div></div><div id="risks"></div></div>
 </section>
 
-<section class="flowStep"><div class="flowLabel"><span class="n">4</span>Kritik Taraflar &amp; Operasyonel İstihbarat (Sızıntıyı Kim Yapıyor?)<p>Hangi müşteri, tedarikçi veya stok kalemi kârı ve nakdi doğrudan etkiliyor?</p></div><div class="flowSub">Nakit ve kâr üzerinde en büyük etkisi olan müşteriler ve stok kalemleri. Çoklu veri yüklendiğinde otomatik detaylanır.</div>
+<section id="flowStep_4" class="flowStep"><div class="flowLabel"><span class="n">4</span>Kritik Taraflar &amp; Operasyonel İstihbarat (Sızıntıyı Kim Yapıyor?)<p>Hangi müşteri, tedarikçi veya stok kalemi kârı ve nakdi doğrudan etkiliyor?</p></div><div class="flowSub">Nakit ve kâr üzerinde en büyük etkisi olan müşteriler ve stok kalemleri. Çoklu veri yüklendiğinde otomatik detaylanır.</div>
 <div id="criticalPartiesNotice" class="notice">Bu bölüm "Data Hub / Çoklu Veri" sekmesinden satış, alacak yaşlandırma veya stok dosyası yüklendiğinde zenginleşir.</div>
 <div id="customerProfitabilityMatrixCard" class="card hidden" style="margin-top:14px"><div class="sectionHead"><div><h2>Müşteri Kârlılık Matrisi (4 Kadran)</h2><p>Hangi müşteriler kâr getiriyor, hangileri ciro yaratıp sermaye tüketiyor?</p></div></div><div id="customerMatrixGrid" class="grid2" style="gap:12px"></div><div id="customerMatrixFindings" style="margin-top:14px"></div></div>
 <div id="productProfitabilityCard" class="card hidden" style="margin-top:14px"><div class="sectionHead"><div><h2>Ürün &amp; Portföy Kârlılığı</h2><p>Hangi ürünler brüt kârı sırtlıyor, hangi ürünler depoda sermaye kilitliyor?</p></div></div><div id="productProfitabilityTable" class="tableWrap"></div></div>
@@ -3943,7 +4128,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <div id="inventoryIntel" style="margin-top:14px"></div>
 </section>
 
-<section class="flowStep"><div class="flowLabel"><span class="n">5</span>Kök Neden &amp; Yönetim Hikâyeleri (Neden Oldu &amp; Ne Yapılmalı?)<p>Bulguların arkasındaki 5 adımlı nedensellik zinciri, parasal sızıntı maliyeti ve icraat kararları</p></div><div class="flowSub">Belirti (Ne Oldu?) ➔ Kanıt (Rakamlar) ➔ Kök Neden (Tetikleyici) ➔ Parasal Sızıntı (Maliyet) ➔ Yönetim Kararı &amp; İcraat</div>
+<section id="flowStep_5" class="flowStep"><div class="flowLabel"><span class="n">5</span>Kök Neden &amp; Yönetim Hikâyeleri (Neden Oldu &amp; Ne Yapılmalı?)<p>Bulguların arkasındaki 5 adımlı nedensellik zinciri, parasal sızıntı maliyeti ve icraat kararları</p></div><div class="flowSub">Belirti (Ne Oldu?) ➔ Kanıt (Rakamlar) ➔ Kök Neden (Tetikleyici) ➔ Parasal Sızıntı (Maliyet) ➔ Yönetim Kararı &amp; İcraat</div>
 <div id="rootCauseCard" class="card" style="padding:22px;border:1.5px solid #CBD5E1">
   <div class="sectionHead">
     <div>
@@ -3957,25 +4142,25 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <div id="narrativeStories" style="display:none"></div>
 </section>
 
-<section class="flowStep"><div class="flowLabel"><span class="n">6</span>Yönetim Kararları &amp; Aksiyon Takvimi (Şimdi Ne Yapmalı?)<p>Yönetimin masaya koyup uygulayacağı somut kararlar</p></div><div class="flowSub">Karar maddesi → Sahibi → Termini → Takip Edilecek KPI. Her aksiyon maddesi ayrı bir takip numarasına sahiptir.</div>
+<section id="flowStep_6" class="flowStep"><div class="flowLabel"><span class="n">6</span>Yönetim Kararları &amp; Aksiyon Takvimi (Şimdi Ne Yapmalı?)<p>Yönetimin masaya koyup uygulayacağı somut kararlar</p></div><div class="flowSub">Karar maddesi → Sahibi → Termini → Takip Edilecek KPI. Her aksiyon maddesi ayrı bir takip numarasına sahiptir.</div>
 <div class="card"><div id="actions"></div></div>
 </section>
 
-<section class="flowStep"><div class="flowLabel"><span class="n">7</span>Varsayımı Değiştirirsek Ne Olur? (Canlı Senaryo Simülatörü)<p>Fiyatı artırırsak, tahsilatı çekersek veya gideri kıssak kasaya ne girer?</p></div><div class="flowSub">Formüllü fırsatlar kataloğu ve anlık duyarlılık simülatörü.</div>
+<section id="flowStep_7" class="flowStep"><div class="flowLabel"><span class="n">7</span>Varsayımı Değiştirirsek Ne Olur? (Canlı Senaryo Simülatörü)<p>Fiyatı artırırsak, tahsilatı çekersek veya gideri kıssak kasaya ne girer?</p></div><div class="flowSub">Formüllü fırsatlar kataloğu ve anlık duyarlılık simülatörü.</div>
 <div class="card"><div id="opportunities" class="grid3"></div></div>
 <div id="interactiveScenarioCard" class="card" style="margin-top:16px"><div class="sectionHead"><div><h2>İnteraktif Senaryo Laboratuvarı &amp; Nakit Simülatörü</h2><p>Önerilen senaryoları seçin veya sürgüleri hareket ettirerek serbest kalacak nakdi ve kâr etkisini anında canlı görün</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px" onclick="applyScenarioPreset(10,15,2.0,5)">💡 Önerilen Temkinli Senaryo</button><button class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px" onclick="applyScenarioPreset(20,25,4.0,10)">🚀 Agresif İyileştirme</button><button class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px" onclick="applyScenarioPreset(0,0,0,0)">🔄 Sıfırla (Mevcut Durum)</button></div></div><div class="grid2"><div style="display:flex;flex-direction:column;gap:14px"><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Alacak Tahsilatını Hızlandır (DSO Azaltma)</span><b id="sliderDsoVal" style="color:var(--accent)">0 gün</b></div><input id="sliderDso" type="range" min="0" max="60" value="0" step="1" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Stok Bekleme Süresini Kısalt (DIO Azaltma / Atıl Stok Eritme)</span><b id="sliderDioVal" style="color:var(--accent)">0 gün</b></div><input id="sliderDio" type="range" min="0" max="60" value="0" step="1" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Satış Fiyatı / Brüt Marj İyileştirmesi</span><b id="sliderMarginVal" style="color:var(--accent)">+0.0%</b></div><input id="sliderMargin" type="range" min="0" max="10.0" value="0" step="0.5" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Faaliyet Gideri (OpEx) Tasarrufu</span><b id="sliderOpexVal" style="color:var(--accent)">0%</b></div><input id="sliderOpex" type="range" min="0" max="25" value="0" step="1" style="width:100%;cursor:pointer"></div></div><div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:center;gap:14px;box-shadow:0 4px 12px rgba(15,27,45,0.04)"><div style="font-size:12.5px;color:#0F172A;font-weight:800;text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:6px"><span>⚡</span><span>Simüle Edilen Canlı Yönetim Etkisi</span></div><div class="grid2" style="gap:10px"><div class="metric" style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px 14px"><div class="label" style="color:#475569;font-weight:700">Kasaya Giren Serbest Nakit</div><div id="simCashImpact" class="value" style="color:#0E7C66;font-size:19px;font-weight:800">0 TL</div><div class="sub" style="color:#64748B">Tahsilat + Stok nakdi</div></div><div class="metric" style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px 14px"><div class="label" style="color:#475569;font-weight:700">Ek Yıllık Faaliyet Kârı</div><div id="simProfitImpact" class="value" style="color:#1D4ED8;font-size:19px;font-weight:800">0 TL</div><div class="sub" style="color:#64748B">Fiyat + OpEx tasarrufu</div></div><div class="metric" style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px 14px"><div class="label" style="color:#475569;font-weight:700">Simüle Net Kâr Marjı</div><div id="simMarginImpact" class="value" style="color:#1D4ED8;font-size:19px;font-weight:800">–</div><div class="sub" style="color:#64748B">Kârlılık tabanı etkisi</div></div><div class="metric" style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px 14px"><div class="label" style="color:#475569;font-weight:700">Nakit Çevrim Süresi (CCC)</div><div id="simCccImpact" class="value" style="color:#0E7C66;font-size:19px;font-weight:800">–</div><div class="sub" style="color:#64748B">Çalışma sermayesi çevrimi</div></div></div><div id="simSummaryText" style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px 14px;font-size:12.5px;color:#0F172A;font-weight:500;line-height:1.6">Sürgüleri hareket ettirerek veya yukarıdaki hazır senaryolara tıklayarak şirketin kazanımlarını test edin.</div></div></div></div>
 </section>
 
-<section class="flowStep"><div class="flowLabel"><span class="n">8</span>Yönetici Özeti &amp; AI Finance Business Partner (Karar Brifingi)<span class="tag" style="margin-left:8px;background:#eef2ff;color:#3b4b8a">Kural Tabanlı · AI Değil</span><p>Tüm analizin tek paragrafta özeti ve stratejik soru-cevap</p></div><div class="flowSub">Önce matematiksel kurallarla hesaplanır, sonra yorumlanır. Yöneticinin bu raporla hangi stratejik adımı atması gerektiği açıkça belirtilir.</div>
+<section id="flowStep_8" class="flowStep"><div class="flowLabel"><span class="n">8</span>Yönetici Özeti &amp; AI Finance Business Partner (Karar Brifingi)<span class="tag" style="margin-left:8px;background:#eef2ff;color:#3b4b8a">Kural Tabanlı · AI Değil</span><p>Tüm analizin tek paragrafta özeti ve stratejik soru-cevap</p></div><div class="flowSub">Önce matematiksel kurallarla hesaplanır, sonra yorumlanır. Yöneticinin bu raporla hangi stratejik adımı atması gerektiği açıkça belirtilir.</div>
 <div class="card"><div id="exec" class="insight"></div><div id="execChips" class="chips"></div><div id="execDecision" style="margin-top:14px"></div><div style="margin-top:14px"><button id="aiBtn" class="secondary hidePrint">✨ AI Finance Partner yorumunu üret (opsiyonel, LLM)</button> <button id="printBtn" class="secondary hidePrint">Raporu yazdır / PDF</button> <button id="jsonBtn" class="secondary hidePrint">JSON indir</button></div><div id="aiBox" class="notice hidden" style="margin-top:12px"></div><div id="methodNote" class="notice" style="margin-top:12px"></div><div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(15,27,45,.10)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="font-size:18px">💬</span><b style="font-size:14px">AI Finance Business Partner'a Özel Soru Sor (Stratejik Q&amp;A)</b><span class="tag" style="background:#EAF0FF;color:var(--accent)">Gemini 3.6 Flash Doğrulanmış</span></div><div style="display:flex;gap:10px;align-items:center"><input id="aiCustomPrompt" type="text" placeholder="Örn: Nakit neden oluşmuyor?" style="flex:1;background:#FFFFFF;border:1px solid #D7DEE8;color:#0F1B2D;border-radius:10px;padding:10px 14px;font-size:13px"><button id="aiAskBtn" class="primary hidePrint" style="white-space:nowrap;padding:10px 18px">Soruyu Yanıtla ⚡</button></div><div class="chips hidePrint" style="margin-top:10px"><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Nakit neden oluşmuyor?')">💸 Nakit neden oluşmuyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Kâr neden düşüyor?')">📉 Kâr neden düşüyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Borç neden artıyor?')">📈 Borç neden artıyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Kâr gerçekten nakde dönüşüyor mu?')">🔄 Kâr gerçekten nakde dönüşüyor mu?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Ciro artarken kâr neden eriyor?')">⚠️ Ciro artarken kâr neden eriyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Maliyetler neden arttı? (Fiyat mı, hammadde mi?)')">🏭 Maliyetler neden arttı?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Hangi vergi avantajları ve teşvik fırsatları var?')">🏛️ Vergi avantajı &amp; KDV optimizasyonu</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Hangi müşteriler risk yaratıyor?')">⚠️ Hangi müşteriler risk yaratıyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Hangi tedarikçiler kritik?')">🏭 Hangi tedarikçiler kritik?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Stok neden şişiyor?')">📦 Stok neden şişiyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Büyüme neden kâra dönüşmüyor?')">🚀 Büyüme neden kâra dönüşmüyor?</span></div><div id="aiCustomBox" class="notice hidden" style="margin-top:14px"></div></div></div>
 </section>
 
-<section class="flowStep"><div class="flowLabel alt"><span class="n">+</span>Ek A — Veri Güvenilirliği &amp; Çift Taraflı Hesaplama Denetimi<p>Analizin dayandığı verinin doğrulanma düzeyi ve dosya bazlı kırılım</p></div>
+<section id="flowStep_ekA" class="flowStep"><div class="flowLabel alt"><span class="n">+</span>Ek A — Veri Güvenilirliği &amp; Çift Taraflı Hesaplama Denetimi<p>Analizin dayandığı verinin doğrulanma düzeyi ve dosya bazlı kırılım</p></div>
 <div class="card"><div class="sectionHead"><div><h2>Veri Kalitesi &amp; Bilanço Denkliği</h2><p>Skorlar ve bulgular, buradaki veri güvenilirliğine dayanır</p></div></div><div class="grid4"><div class="metric"><div class="label">Veri Güvenilirlik Skoru</div><div id="dq" class="value">-</div><div class="sub" id="dqStatus">-</div></div><div class="metric"><div class="label">Çift Taraflı Denetim</div><div id="auditValue" class="value">-</div><div class="sub" id="auditSub">-</div></div><div class="metric"><div class="label">Eşlenemeyen Hesap Sayısı</div><div id="dqUnmapped" class="value">-</div><div class="sub">Eşlenemeyen hesap sayısı</div></div><div class="metric"><div class="label">Nakit Çevrim Süresi</div><div id="cccMetric" class="value">-</div><div class="sub">Gün</div></div></div><div id="dqChecks" class="tableWrap" style="margin-top:16px"></div><div id="dqIssues" style="margin-top:12px"></div><div id="dqNote" class="notice" style="margin-top:12px"></div></div>
 <section id="dataHubCard" class="card hidden"><div class="sectionHead"><div><h2>Çoklu Veri İstihbaratı (Data Hub)</h2><p>Dosya sınıflandırma, kaynak bazlı analiz ve büyük defter mutabakatı</p></div></div><div id="hubSummary" class="grid4"></div><div id="hubSources" class="card" style="margin-top:14px"></div><div id="hubFindings" class="card" style="margin-top:14px"></div><div id="pvmIntel" class="card hidden" style="margin-top:14px"></div><div id="hubReconciliation" class="card" style="margin-top:14px"></div></section>
 </section>
 
-<section class="flowStep"><div class="flowLabel alt"><span class="n">+</span>Ek B — Trend İzleme, İzlenebilirlik &amp; 3 Temel Mali Tablo<p>Çok dönem yüklendiğinde hareketi gösterir; her sayı kaynağına izlenebilir</p></div>
+<section id="flowStep_ekB" class="flowStep"><div class="flowLabel alt"><span class="n">+</span>Ek B — Trend İzleme, İzlenebilirlik &amp; 3 Temel Mali Tablo<p>Çok dönem yüklendiğinde hareketi gösterir; her sayı kaynağına izlenebilir</p></div>
 <div class="card"><div id="trendBlock"></div><div id="trace" class="tableWrap" style="margin-top:15px"></div></div>
 <div class="card" style="margin-top:16px"><div class="sectionHead"><div><h2>3 Temel Mali Tablo (Gelir Tablosu, Bilanço ve Nakit Akış)</h2><p>Doğrulanmış Gelir Tablosu (P&amp;L), Bilanço ve Nakit Akış Tablosu</p></div></div><div class="grid3"><div id="plTable" class="tableWrap"></div><div id="bsTable" class="tableWrap"></div><div id="cfTable" class="tableWrap"></div></div></div>
 <div id="printExecutiveNotice" class="printExecutiveFooter" style="display:none">
@@ -4034,7 +4219,7 @@ let LAST=null;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 window._activeCurrency = 'TRY';
-window._currencyRates = { TRY: 1.0, EUR: 0.024, GBP: 0.020, USD: 0.026 };
+window._currencyRates = { TRY: 1.0, EUR: 1.0 / 38.1250, USD: 1.0 / 36.4520, GBP: 1.0 / 45.6840 };
 window._currencySymbols = { TRY: ' TL', EUR: ' €', GBP: ' £', USD: ' $' };
 window._currencyLocales = { TRY: 'tr-TR', EUR: 'de-DE', GBP: 'en-GB', USD: 'en-US' };
 
@@ -4058,22 +4243,77 @@ const money=v=>{
 };
 
 window._activeLang = 'tr';
-const I18N = {
-  tr: { singleTab: 'Tek Dönem Mizan', trendTab: 'Çok Dönem / Trend', hubTab: 'Data Hub / Çoklu Veri', analyzeBtn: 'Mizanı Analiz Et' },
-  en: { singleTab: 'Single Period Trial Balance', trendTab: 'Multi-Period / Trend', hubTab: 'Data Hub / Multi-Source', analyzeBtn: 'Analyze Statements' },
-  de: { singleTab: 'Einperiodige Summen- & Saldenliste', trendTab: 'Mehrperioden / Trend', hubTab: 'Data Hub / Multi-Source', analyzeBtn: 'Daten analysieren' },
-  fr: { singleTab: 'Balance Générale Période Unique', trendTab: 'Multi-Périodes / Tendance', hubTab: 'Data Hub / Multi-Sources', analyzeBtn: 'Analyser la balance' },
-  es: { singleTab: 'Balance de Sumas y Saldos Único', trendTab: 'Multi-Periodo / Tendencia', hubTab: 'Data Hub / Multi-Fuente', analyzeBtn: 'Analizar balance' },
-  it: { singleTab: 'Bilancio di Verifica Singolo', trendTab: 'Multi-Periodo / Trend', hubTab: 'Data Hub / Multi-Fonte', analyzeBtn: 'Analizza bilancio' },
-  nl: { singleTab: 'Enkelvoudige Kolommenbalans', trendTab: 'Meerdere Perioden / Trend', hubTab: 'Data Hub / Multi-Bron', analyzeBtn: 'Balans analyseren' }
-};
+const I18N_BUNDLE = {"tr": {"singleTab": "Tek Dönem Mizan", "trendTab": "Çok Dönem / Trend", "hubTab": "Data Hub / Çoklu Veri", "analyzeBtn": "Mizanı Analiz Et", "analyzeBtnTrend": "İki Dönemi Analiz Et", "analyzeBtnHub": "Tüm Verileri Analiz Et", "sampleBtn": "📄 Tek dönem örnekle dene", "sampleTrendBtn": "📊 İki dönemli örnekle dene (Trend Demo)", "sampleHubBtn": "🗂️ Data Hub örnekle dene (Mizan + AR + AP + Stok + Satış)", "dropTitle": "Mizan Dosyanızı Buraya Sürükleyin", "dropSub": "veya bilgisayarınızdan seçin (.xlsx, .xls, .csv)", "dropBtn": "📁 Dosya Seç", "downloadTemplate": "📥 Standart Mizan Şablonu İndir (.csv)", "navHome": "Anasayfa", "navAbout": "Hakkımızda", "navApp": "Uygulama", "navPricing": "Paketler", "navSecurity": "Güvenlik", "navContact": "İletişim", "login": "Giriş Yap", "register": "Ücretsiz Kayıt Ol", "s1Title": "Finansal Gerçekler (Ne Oldu?)", "s1Desc": "Şirkette gerçekte ne oldu: Kâr nereden nereye aktı?", "s1Sub": "Doğrulanmış rakamlar: Ciro, operasyonel kâr kalitesi, borç yapısı ve nakit akış gerçekleşmesi.", "s2Title": "Para Nerede? — Görünmez Kâr Sızıntısı & Kilitli Nakit Teşhisi", "s2Desc": "Kâğıt üzerinde kâr var ama para kasada nerede duruyor?", "s2Sub": "Müşteri vadelerinde (120 Alıcılar) ve depodaki stokta (150-153) kilitlenen sermaye ve her yıl ödenen gizli finansman faiz sızıntısı.", "s3Title": "Sektörel Kıyaslama & Öncelikli Riskler (Bize Maliyeti Ne?)", "s3Desc": "Sektör ortalamalarına göre neredeyiz ve acil ele alınması gereken riskler", "s3Sub": "TCMB Sektör Bilançoları & Borsa İstanbul (BIST) 500+ şirket verisiyle kıyaslama ve skorlanmış riskler.", "s4Title": "Kritik Taraflar & Operasyonel İstihbarat (Sızıntıyı Kim Yapıyor?)", "s4Desc": "Hangi müşteri, tedarikçi veya stok kalemi kârı ve nakdi doğrudan etkiliyor?", "s4Sub": "Nakit ve kâr üzerinde en büyük etkisi olan müşteriler ve stok kalemleri. Çoklu veri yüklendiğinde otomatik detaylanır.", "s5Title": "Kök Neden & Yönetim Hikâyeleri (Neden Oldu & Ne Yapılmalı?)", "s5Desc": "Bulguların arkasındaki 5 adımlı nedensellik zinciri, parasal sızıntı maliyeti ve icraat kararları", "s5Sub": "Belirti (Ne Oldu?) ➔ Kanıt (Rakamlar) ➔ Kök Neden (Tetikleyici) ➔ Parasal Sızıntı (Maliyet) ➔ Yönetim Kararı & İcraat", "s6Title": "Yönetim Kararları & Aksiyon Takvimi (Şimdi Ne Yapmalı?)", "s6Desc": "Yönetimin masaya koyup uygulayacağı somut kararlar", "s6Sub": "Karar maddesi → Sahibi → Termini → Takip Edilecek KPI. Her aksiyon maddesi ayrı bir takip numarasına sahiptir.", "s7Title": "Varsayımı Değiştirirsek Ne Olur? (Canlı Senaryo Simülatörü)", "s7Desc": "Fiyatı artırırsak, tahsilatı çekersek veya gideri kıssak kasaya ne girer?", "s7Sub": "Formüllü fırsatlar kataloğu ve anlık duyarlılık simülatörü.", "s8Title": "Yönetici Özeti & AI Finance Business Partner (Karar Brifingi)", "s8Desc": "Tüm analizin tek paragrafta özeti ve stratejik soru-cevap", "s8Sub": "Önce matematiksel kurallarla hesaplanır, sonra yorumlanır. Yöneticinin bu raporla hangi stratejik adımı atması gerektiği açıkça belirtilir.", "sEkATitle": "Ek A — Veri Güvenilirliği & Çift Taraflı Hesaplama Denetimi", "sEkADesc": "Analizin dayandığı verinin doğrulanma düzeyi ve dosya bazlı kırılım", "sEkBTitle": "Ek B — Trend İzleme, İzlenebilirlik & 3 Temel Mali Tablo", "sEkBDesc": "Çok dönem yüklendiğinde hareketi gösterir; her sayı kaynağına izlenebilir", "taxTitle": "🏛️ Vergisel Yönetim Avantajları & Yasal Nakit Tasarrufu", "taxSub": "Şirketin finansal tablolarından (mizan) türetilmiş yasal vergi kalkanları, KKEG optimizasyonu ve nakit tasarrufları", "simHeader": "İnteraktif Senaryo Laboratuvarı & Nakit Simülatörü", "simSub": "Önerilen senaryoları seçin veya sürgüleri hareket ettirerek serbest kalacak nakdi ve kâr etkisini anında canlı görün"}, "en": {"singleTab": "Single Period Trial Balance", "trendTab": "Multi-Period / Trend", "hubTab": "Data Hub / Multi-Source", "analyzeBtn": "Analyze Trial Balance", "analyzeBtnTrend": "Analyze Two Periods", "analyzeBtnHub": "Analyze All Sources", "sampleBtn": "📄 Try Single Period Sample", "sampleTrendBtn": "📊 Try Two-Period Trend Sample", "sampleHubBtn": "🗂️ Try Data Hub Sample (GL + AR + AP + Inventory + Sales)", "dropTitle": "Drag & Drop Your Trial Balance Here", "dropSub": "or choose from computer (.xlsx, .xls, .csv)", "dropBtn": "📁 Select File", "downloadTemplate": "📥 Download Standard Template (.csv)", "navHome": "Home", "navAbout": "About", "navApp": "App", "navPricing": "Pricing", "navSecurity": "Security", "navContact": "Contact", "login": "Log In", "register": "Sign Up Free", "s1Title": "Financial Facts (What Happened?)", "s1Desc": "What actually happened: How profit flowed across statements", "s1Sub": "Verified figures: Revenue, operating profit quality, debt structure, and cash realization.", "s2Title": "Where is Cash? — Hidden Profit Leakage & Trapped Working Capital", "s2Desc": "On paper there is profit, but where is the cash trapped?", "s2Sub": "Capital locked in receivables (AR) and inventory, plus hidden annual debt finance costs.", "s3Title": "Benchmarking & Priority Risks (What Does It Cost Us?)", "s3Desc": "Where we stand relative to industry benchmarks and urgent risks", "s3Sub": "Central Bank Sector Balance Sheets & Stock Exchange 500+ corporate benchmarks.", "s4Title": "Key Counterparties & Operational Intelligence (Who Drives It?)", "s4Desc": "Which customer, supplier, or inventory SKU directly moves profit and cash?", "s4Sub": "Counterparties with the largest cash footprint. Enriched automatically when multi-source files are loaded.", "s5Title": "Root Cause & Management Narratives (Why & What to Do?)", "s5Desc": "5-step causal chain behind findings, financial leakage cost, and decisive execution actions", "s5Sub": "Symptom ➔ Evidence ➔ Root Cause ➔ Financial Leakage ➔ Decision & Action", "s6Title": "Management Action Matrix & Schedule (Now What?)", "s6Desc": "Decisive executive actions ready to execute tomorrow", "s6Sub": "Action item → Owner → Deadline → Target KPI with unique tracking ID.", "s7Title": "What If We Change Assumptions? (Live Scenario Simulator)", "s7Desc": "If we raise prices, shorten DSO, or curb opex, what lands in cash?", "s7Sub": "Formulaic opportunity catalog and instant sensitivity simulator.", "s8Title": "Executive Summary & AI Finance Business Partner (Decision Briefing)", "s8Desc": "Single-paragraph summary of full analysis and strategic Q&A", "s8Sub": "Calculated using deterministic mathematical rules first, then synthesized.", "sEkATitle": "Appendix A — Data Reliability & Double-Entry Audit", "sEkADesc": "Verification level and file-by-file audit of underlying financial data", "sEkBTitle": "Appendix B — Trend Tracking, Traceability & 3 Core Statements", "sEkBDesc": "Shows movement across periods; every number traces back to underlying journal accounts", "taxTitle": "🏛️ Practical Tax Management & Statutory Cash Shields", "taxSub": "Statutory tax shields, disallowed interest reduction, and cash savings derived from statement balances", "simHeader": "Interactive Scenario Lab & Cash Simulator", "simSub": "Choose suggested scenarios or move sliders to see cash liberation and profit impact in real time"}, "de": {"singleTab": "Einperiodige Summen- & Saldenliste", "trendTab": "Mehrperioden / Trend", "hubTab": "Data Hub / Multi-Source", "analyzeBtn": "Saldenliste analysieren", "analyzeBtnTrend": "Zwei Perioden analysieren", "analyzeBtnHub": "Alle Daten analysieren", "sampleBtn": "📄 Einperiodiges Beispiel testen", "sampleTrendBtn": "📊 Zweiperiodigen Trend testen", "sampleHubBtn": "🗂️ Data Hub Beispiel testen", "dropTitle": "Saldenliste hier ablegen", "dropSub": "oder vom Computer auswählen (.xlsx, .xls, .csv)", "dropBtn": "📁 Datei auswählen", "downloadTemplate": "📥 Standard-Vorlage herunterladen (.csv)", "navHome": "Startseite", "navAbout": "Über uns", "navApp": "Anwendung", "navPricing": "Preise", "navSecurity": "Sicherheit", "navContact": "Kontakt", "login": "Anmelden", "register": "Kostenlos Registrieren", "s1Title": "Finanzielle Fakten (Was ist passiert?)", "s1Desc": "Ertragsfluss und Kapitalverwendung im Detail", "s1Sub": "Umsatz, operative Ertragsqualität, Verschuldung und Cashflow.", "s2Title": "Wo ist das Geld? — Gebundenes Kapital & Liquiditätsabfluss", "s2Desc": "Auf dem Papier Gewinn, aber wo steht die Liquidität?", "s2Sub": "In Forderungen und Vorräten gebundenes Betriebskapital.", "s3Title": "Branchenvergleich & Risiken (Was kostet es uns?)", "s3Desc": "Positionierung im Branchenvergleich und Risiken", "s3Sub": "Zentralbank- und Börsenbenchmarks für 500+ Unternehmen.", "s4Title": "Wesentliche Parteien & Operative Intelligenz (Wer verursacht es?)", "s4Desc": "Welche Kunden oder Artikel binden Marge und Cash?", "s4Sub": "Fokus auf Haupttreiber des operativen Kapitals.", "s5Title": "Ursachenanalyse & Management-Berichte (Warum & Was tun?)", "s5Desc": "5-stufige Kausalkette, Schadenshöhe und Managemententscheidungen", "s5Sub": "Symptom ➔ Nachweis ➔ Hauptursache ➔ Finanzieller Verlust ➔ Maßnahme", "s6Title": "Management-Maßnahmen & Umsetzungsplan (Was jetzt?)", "s6Desc": "Konkrete Maßnahmen zur sofortigen Umsetzung", "s6Sub": "Maßnahme → Verantwortlicher → Frist → KPI.", "s7Title": "Was wäre wenn? (Live-Szenario-Simulator)", "s7Desc": "Sensitivitätsanalyse für Preis, Zahlungsziel und Kosten", "s7Sub": "Echtzeit-Berechnung des Liquiditätseffekts.", "s8Title": "Executive Summary & AI Finance Business Partner", "s8Desc": "Gesamtzusammenfassung und Entscheidungsunterstützung", "s8Sub": "Zuerst mathematisch determiniert, dann interpretiert.", "sEkATitle": "Anhang A — Datenqualität & Rechnungslegungsprüfung", "sEkADesc": "Prüfstufe der Quelldaten und Kontenabstimmung", "sEkBTitle": "Anhang B — Trend-Monitoring & 3 Hauptfinanzberichte", "sEkBDesc": "Mehrperioden-Vergleich und lückenlose Kontenrückverfolgung", "taxTitle": "🏛️ Steuerstrategie & Rechtliche Steuersparmodelle", "taxSub": "Gesetzliche Steuerabzüge und Liquiditätsschilde basierend auf der Bilanz", "simHeader": "Interaktiver Szenario-Simulator", "simSub": "Wählen Sie Presets oder bewegen Sie Schieberegler für Cashflow- und Gewinnauswirkungen"}, "fr": {"singleTab": "Balance Générale Période Unique", "trendTab": "Multi-Périodes / Tendance", "hubTab": "Data Hub / Multi-Sources", "analyzeBtn": "Analyser la balance", "analyzeBtnTrend": "Analyser deux périodes", "analyzeBtnHub": "Analyser toutes les sources", "sampleBtn": "📄 Essayer exemple période unique", "sampleTrendBtn": "📊 Essayer exemple tendance", "sampleHubBtn": "🗂️ Essayer Data Hub", "dropTitle": "Déposez votre balance générale ici", "dropSub": "ou sélectionnez depuis votre ordinateur (.xlsx, .xls, .csv)", "dropBtn": "📁 Choisir un fichier", "downloadTemplate": "📥 Télécharger modèle standard (.csv)", "navHome": "Accueil", "navAbout": "À propos", "navApp": "Application", "navPricing": "Tarifs", "navSecurity": "Sécurité", "navContact": "Contact", "login": "Connexion", "register": "Inscription Gratuite", "s1Title": "Faits Financiers (Que s'est-il passé ?)", "s1Desc": "Flux réel du résultat d'exploitation", "s1Sub": "Chiffre d'affaires, marge opérationnelle, endettement et trésorerie nette.", "s2Title": "Où est l'argent ? — Fuites de profit et trésorerie immobilisée", "s2Desc": "Du bénéfice comptable, mais où est la trésorerie ?", "s2Sub": "Capitaux immobilisés dans les créances clients et stocks.", "s3Title": "Analyse Sectorielle & Risques Prioritaires (Quel est le coût ?)", "s3Desc": "Positionnement sectoriel et alertes critiques", "s3Sub": "Données Banque Centrale et marché boursier pour 500+ entreprises.", "s4Title": "Tiers Clés & Renseignement Opérationnel (Qui génère l'impact ?)", "s4Desc": "Quels clients ou références pèsent le plus lourd ?", "s4Sub": "Analyse approfondie des contreparties critiques.", "s5Title": "Causes Profondes & Narration Décisionnelle (Pourquoi & Que faire ?)", "s5Desc": "Chaîne causale en 5 étapes, coût financier et décisions", "s5Sub": "Symptôme ➔ Preuve ➔ Cause Première ➔ Perte Financière ➔ Décision", "s6Title": "Plan d'Action Managérial & Calendrier (Que faire maintenant ?)", "s6Desc": "Feuille de route pour le comité de direction", "s6Sub": "Action → Porteur → Échéance → KPI cible.", "s7Title": "Simulateur de Scénarios en Direct", "s7Desc": "Ajustements de prix, délais et charges en direct", "s7Sub": "Simulateur instantané de sensibilité de trésorerie.", "s8Title": "Synthèse Exécutive & AI Finance Business Partner", "s8Desc": "Synthèse générale et questions-réponses stratégiques", "s8Sub": "Calculé d'abord selon des règles déterministes strictes.", "sEkATitle": "Annexe A — Fiabilité des Données & Contrôle Arithmétique", "sEkADesc": "Niveau de vérification et réconciliation de la balance", "sEkBTitle": "Annexe B — Analyse de Tendance & 3 États Financiers", "sEkBDesc": "Évolution pluriannuelle et traçabilité intégrale", "taxTitle": "🏛️ Stratégie Fiscale & Économies Légales de Trésorerie", "taxSub": "Boucliers fiscaux et optimisation des charges issus du bilan", "simHeader": "Laboratoire de Scénarios Interactif", "simSub": "Ajustez les curseurs pour simuler l'impact immédiat sur la trésorerie"}, "es": {"singleTab": "Balance de Sumas y Saldos Único", "trendTab": "Multi-Periodo / Tendencia", "hubTab": "Data Hub / Multi-Fuente", "analyzeBtn": "Analizar balance", "analyzeBtnTrend": "Analizar dos periodos", "analyzeBtnHub": "Analizar todas las fuentes", "sampleBtn": "📄 Probar ejemplo de un periodo", "sampleTrendBtn": "📊 Probar ejemplo de tendencia", "sampleHubBtn": "🗂️ Probar Data Hub", "dropTitle": "Arrastre su balance aquí", "dropSub": "o elija de su ordenador (.xlsx, .xls, .csv)", "dropBtn": "📁 Seleccionar archivo", "downloadTemplate": "📥 Descargar plantilla estándar (.csv)", "navHome": "Inicio", "navAbout": "Sobre Nosotros", "navApp": "Aplicación", "navPricing": "Precios", "navSecurity": "Seguridad", "navContact": "Contacto", "login": "Iniciar Sesión", "register": "Registro Gratis", "s1Title": "Hechos Financieros (¿Qué Ocurrió?)", "s1Desc": "Flujo real de beneficios y estructura patrimonial", "s1Sub": "Ingresos netos, margen operativo, endeudamiento y tesorería.", "s2Title": "¿Dónde está el dinero? — Fugas de beneficio y caja atrapada", "s2Desc": "Hay beneficio contable, pero ¿dónde está el dinero?", "s2Sub": "Capital inmovilizado en clientes pendientes y almacén.", "s3Title": "Comparativa Sectorial & Riesgos Prioritarios (¿Cuál es el coste?)", "s3Desc": "Posicionamiento sectorial y riesgos urgentes", "s3Sub": "Datos de referencia de Banco Central y bolsas 500+ empresas.", "s4Title": "Contrapartes Clave & Análisis Operativo (¿Quién genera el impacto?)", "s4Desc": "Clientes, proveedores y existencias determinantes", "s4Sub": "Impacto operativo directo en caja y márgenes.", "s5Title": "Causa Raíz & Narrativa de Gestión (¿Por qué y qué hacer?)", "s5Desc": "Cadena causal de 5 pasos, fuga de caja e intervenciones", "s5Sub": "Síntoma ➔ Evidencia ➔ Causa Raíz ➔ Fuga Financiera ➔ Decisión", "s6Title": "Matriz de Acciones de Dirección (¿Qué hacer ahora?)", "s6Desc": "Decisiones listas para ser aplicadas", "s6Sub": "Medida → Responsable → Plazo → KPI objetivo.", "s7Title": "Simulador de Escenarios en Vivo", "s7Desc": "¿Qué ocurre al variar precios, plazos o costes?", "s7Sub": "Simulador instantáneo de impacto en tesorería.", "s8Title": "Resumen Ejecutivo & AI Finance Business Partner", "s8Desc": "Informe condensado para el Consejo de Administración", "s8Sub": "Cálculo matemático determinista antes de la interpretación.", "sEkATitle": "Anexo A — Fiabilidad Contable & Auditoría Doble", "sEkADesc": "Nivel de validación y conciliación contable", "sEkBTitle": "Anexo B — Tendencia Histórica & 3 Estados Financieros", "sEkBDesc": "Seguimiento multi-periodo y trazabilidad total", "taxTitle": "🏛️ Estrategia Fiscal Práctica & Escudos de Caja", "taxSub": "Deducciones fiscales y ahorro de intereses derivados del balance", "simHeader": "Laboratorio de Escenarios Interactivo", "simSub": "Deslice controles para calcular el impacto en tesorería y beneficio"}, "it": {"singleTab": "Bilancio di Verifica Singolo", "trendTab": "Multi-Periodo / Trend", "hubTab": "Data Hub / Multi-Fonte", "analyzeBtn": "Analizza bilancio", "analyzeBtnTrend": "Analizza due periodi", "analyzeBtnHub": "Analizza tutte le fonti", "sampleBtn": "📄 Prova esempio singolo periodo", "sampleTrendBtn": "📊 Prova esempio trend", "sampleHubBtn": "🗂️ Prova Data Hub", "dropTitle": "Trascina qui il tuo bilancio di verifica", "dropSub": "oppure seleziona dal computer (.xlsx, .xls, .csv)", "dropBtn": "📁 Seleziona file", "downloadTemplate": "📥 Scarica modello standard (.csv)", "navHome": "Home", "navAbout": "Chi siamo", "navApp": "Applicazione", "navPricing": "Piani", "navSecurity": "Sicurezza", "navContact": "Contatti", "login": "Accedi", "register": "Registrati Gratis", "s1Title": "Fatti Finanziari (Cosa è successo?)", "s1Desc": "Dinamica economica reale e generazione utile", "s1Sub": "Ricavi netti, qualità del reddito operativo e liquidità.", "s2Title": "Dov'è il denaro? — Fuga di utili e capitale bloccato", "s2Desc": "C'è utile contabile, ma dov'è la cassa reale?", "s2Sub": "Capitale bloccato in crediti commerciali e magazzino.", "s3Title": "Benchmark di Settore & Rischi Prioritari (Quanto ci costa?)", "s3Desc": "Posizionamento rispetto ai concorrenti e rischi", "s3Sub": "Metriche Banca Centrale e Borsa per 500+ imprese.", "s4Title": "Controparti Chiave & Intelligence Operativa (Chi impatta?)", "s4Desc": "Clienti, fornitori e articoli che guidano i risultati", "s4Sub": "Analisi ad alto impatto per il capitale circolante.", "s5Title": "Cause Principali & Storie Decisionali (Perché & Cosa fare?)", "s5Desc": "Sequenza causale a 5 fasi, dispersione e azioni", "s5Sub": "Sintomo ➔ Evidenza ➔ Causa Primaria ➔ Dispersione ➔ Decisione", "s6Title": "Piano di Azione Manageriale & Scadenze (Cosa fare ora?)", "s6Desc": "Decisioni concrete per il management", "s6Sub": "Azione → Responsabile → Termine → KPI.", "s7Title": "Simulatore di Scenari in Tempo Reale", "s7Desc": "Sensibilità su prezzi, termini di incasso e spese", "s7Sub": "Simulatore istantaneo dell'impatto sulla liquidità.", "s8Title": "Sintesi Esecutiva & AI Finance Business Partner", "s8Desc": "Quadro strategico d'insieme per il vertice", "s8Sub": "Regole matematiche certe e sintesi esecutiva.", "sEkATitle": "Allegato A — Affidabilità Dati & Verifica a Partita Doppia", "sEkADesc": "Verifica contabile e riconciliazione delle fonti", "sEkBTitle": "Allegato B — Trend Storico & 3 Bilanci Principali", "sEkBDesc": "Confronto multi-periodo e tracciabilità analitica", "taxTitle": "🏛️ Strategia Fiscale Pratica & Scudi Fiscali Legali", "taxSub": "Ottimizzazione deduzioni e scudi fiscali basati sul bilancio", "simHeader": "Laboratorio Scenari Interattivo", "simSub": "Muovi i cursori per visualizzare immediatamente la liquidità liberata"}, "nl": {"singleTab": "Enkelvoudige Kolommenbalans", "trendTab": "Meerdere Perioden / Trend", "hubTab": "Data Hub / Multi-Bron", "analyzeBtn": "Balans analyseren", "analyzeBtnTrend": "Twee perioden analyseren", "analyzeBtnHub": "Alle bronnen analyseren", "sampleBtn": "📄 Test enkelvoudig voorbeeld", "sampleTrendBtn": "📊 Test trend voorbeeld", "sampleHubBtn": "🗂️ Test Data Hub", "dropTitle": "Sleep uw kolommenbalans hierheen", "dropSub": "of kies vanaf uw computer (.xlsx, .xls, .csv)", "dropBtn": "📁 Bestand kiezen", "downloadTemplate": "📥 Download standaardsjabloon (.csv)", "navHome": "Startpagina", "navAbout": "Over ons", "navApp": "Applicatie", "navPricing": "Tarieven", "navSecurity": "Beveiliging", "navContact": "Contact", "login": "Inloggen", "register": "Gratis Registreren", "s1Title": "Financiële Feiten (Wat is er gebeurd?)", "s1Desc": "Reële kapitaalstromen en winstbestemming", "s1Sub": "Omzet, operationele marge, schuldhefboom en kasstroom.", "s2Title": "Waar is het geld? — Verborgen winstlekkage & vastzittend kapitaal", "s2Desc": "Winst op papier, maar waar is het geld?", "s2Sub": "Kapitaal vast in debiteuren en magazijnvoorraad.", "s3Title": "Sectorvergelijking & Prioritaire Risico's (Wat kost het ons?)", "s3Desc": "Positie ten opzichte van sectorbenchmarks", "s3Sub": "Centrale Bank en beursbenchmarks van 500+ bedrijven.", "s4Title": "Belangrijkste Partijen & Operationele Analyse (Wie veroorzaakt het?)", "s4Desc": "Klanten en artikelen met de grootste invloed", "s4Sub": "Gedetailleerde analyse van werkkapitaal.", "s5Title": "Oorzaakanalyse & Managementverhalen (Waarom & Wat te doen?)", "s5Desc": "Keten in 5 stappen, financiële lekkage en besluiten", "s5Sub": "Symptoom ➔ Bewijs ➔ Oorzaak ➔ Lekkage ➔ Actie", "s6Title": "Management Actieplan & Planning (Wat nu?)", "s6Desc": "Direct uitvoerbare directiebesluiten", "s6Sub": "Actiepunt → Eigenaar → Deadline → KPI.", "s7Title": "Live Scenario Simulator", "s7Desc": "Effect van prijs, debiteurentermijn en kosten", "s7Sub": "Directe berekening van effect op cash en winst.", "s8Title": "Managementsamenvatting & AI Finance Business Partner", "s8Desc": "Eén overzichtelijke directiesamenvatting", "s8Sub": "Deterministisch berekend, daarna strategisch geïnterpreteerd.", "sEkATitle": "Bijlage A — Betrouwbaarheid & Boekhoudkundige Audit", "sEkADesc": "Controle van rekeningschema en balanssluiting", "sEkBTitle": "Bijlage B — Trend-Monitoring & 3 Financiële Overzichten", "sEkBDesc": "Meerperioden-vergelijking en brontraceerbaarheid", "taxTitle": "🏛️ Praktische Belastingoptimalisatie & Cash-voordelen", "taxSub": "Wettelijke aftrekposten en rentebeperking uit de balans", "simHeader": "Interactief Scenario Laboratorium", "simSub": "Verschuif regelaars om het effect op cashflow en winst te zien"}};
+
+function _updateStepHeader(stepId, numStr, title, desc, sub){
+  const el = $(stepId);
+  if(!el) return;
+  const lbl = el.querySelector('.flowLabel');
+  if(lbl) lbl.innerHTML = '<span class="n">' + numStr + '</span>' + esc(title) + '<p>' + esc(desc) + '</p>';
+  const subEl = el.querySelector('.flowSub');
+  if(subEl) subEl.textContent = sub;
+}
+
 function setLanguage(lang){
   window._activeLang = lang;
-  const dict = I18N[lang] || I18N.tr;
+  try { localStorage.setItem('dfbp_lang', lang); } catch(e){}
+  const dict = I18N_BUNDLE[lang] || I18N_BUNDLE.tr;
+  if($('langSwitch')) $('langSwitch').value = lang;
+  document.querySelectorAll('.globalLangSwitch').forEach(function(s){ s.value = lang; });
+
+  const nav = $('mainNav');
+  if(nav){
+    const links = nav.querySelectorAll('a');
+    if(links.length >= 6){
+      links[0].textContent = dict.navHome;
+      links[1].textContent = dict.navAbout;
+      links[2].textContent = dict.navApp;
+      links[3].textContent = dict.navPricing;
+      links[4].textContent = dict.navSecurity;
+      links[5].textContent = dict.navContact;
+    }
+  }
+  if($('loginOpenBtn')) $('loginOpenBtn').textContent = dict.login;
+  if($('registerOpenBtn')) $('registerOpenBtn').textContent = dict.register;
+
   if($('singleTabBtn')) $('singleTabBtn').textContent = dict.singleTab;
   if($('trendTabBtn')) $('trendTabBtn').textContent = dict.trendTab;
   if($('hubTabBtn')) $('hubTabBtn').textContent = dict.hubTab;
   if($('analyzeSingle')) $('analyzeSingle').textContent = '🚀 ' + dict.analyzeBtn;
+  if($('analyzeTrend')) $('analyzeTrend').textContent = '🚀 ' + dict.analyzeBtnTrend;
+  if($('analyzeHub')) $('analyzeHub').textContent = '🚀 ' + dict.analyzeBtnHub;
+  if($('sampleBtn')) $('sampleBtn').textContent = dict.sampleBtn;
+  if($('sampleTrendBtn')) $('sampleTrendBtn').textContent = dict.sampleTrendBtn;
+  if($('sampleHubBtn')) $('sampleHubBtn').textContent = dict.sampleHubBtn;
+
+  const dropStrong = document.querySelector('#dropZoneSingle .dropText strong');
+  if(dropStrong) dropStrong.textContent = dict.dropTitle;
+  const dropSpan = document.querySelector('#dropZoneSingle .dropText span');
+  if(dropSpan) dropSpan.textContent = dict.dropSub;
+  const dropBtn = document.querySelector('#dropZoneSingle button');
+  if(dropBtn) dropBtn.textContent = dict.dropBtn;
+
+  _updateStepHeader('flowStep_1', '1', dict.s1Title, dict.s1Desc, dict.s1Sub);
+  _updateStepHeader('flowStep_2', '2', dict.s2Title, dict.s2Desc, dict.s2Sub);
+  _updateStepHeader('flowStep_3', '3', dict.s3Title, dict.s3Desc, dict.s3Sub);
+  _updateStepHeader('flowStep_4', '4', dict.s4Title, dict.s4Desc, dict.s4Sub);
+  _updateStepHeader('flowStep_5', '5', dict.s5Title, dict.s5Desc, dict.s5Sub);
+  _updateStepHeader('flowStep_6', '6', dict.s6Title, dict.s6Desc, dict.s6Sub);
+  _updateStepHeader('flowStep_7', '7', dict.s7Title, dict.s7Desc, dict.s7Sub);
+  _updateStepHeader('flowStep_8', '8', dict.s8Title, dict.s8Desc, dict.s8Sub);
+  _updateStepHeader('flowStep_ekA', '+', dict.sEkATitle, dict.sEkADesc, '');
+  _updateStepHeader('flowStep_ekB', '+', dict.sEkBTitle, dict.sEkBDesc, '');
+
+  const taxH2 = document.querySelector('#taxStrategyCard .sectionHead h2');
+  if(taxH2) taxH2.textContent = dict.taxTitle;
+  const taxP = document.querySelector('#taxStrategyCard .sectionHead p');
+  if(taxP) taxP.textContent = dict.taxSub;
+
+  const simH2 = document.querySelector('#interactiveScenarioCard .sectionHead h2');
+  if(simH2) simH2.textContent = dict.simHeader;
+  const simP = document.querySelector('#interactiveScenarioCard .sectionHead p');
+  if(simP) simP.textContent = dict.simSub;
+
   if(LAST) render(LAST);
 }
 const fmt=v=>v==null?'–':new Intl.NumberFormat('tr-TR',{maximumFractionDigits:0}).format(v);
@@ -4285,6 +4525,16 @@ function groupActions(acts){
 function render(d){
   LAST=d;$('dashboard').classList.remove('hidden');
   const bp=d.business_partner,pl=d.statements.profit_and_loss,bs=d.statements.balance_sheet,k=d.statements.kpis;
+  const fx = d.fx_rates || (bp && bp.fx_rates);
+  if(fx){
+    window._currencyRates = fx.multipliers || window._currencyRates;
+    window._fxInfo = fx;
+    const tBadge = $('tcmbBadge');
+    if(tBadge){
+      tBadge.textContent = fx.badge_text || '';
+      tBadge.style.display = 'inline-block';
+    }
+  }
   setRing(bp.health_score);$('healthLabel').textContent=bp.health_label;
   renderTopFocusIssues(bp);
   const c=bp.cash_conversion_cycle||{};
@@ -5913,11 +6163,12 @@ function renderTaxStrategy(ts){
   const totalSaving = ts.total_estimated_tax_saving != null ? ts.total_estimated_tax_saving : (ts.total_potential_tax_cash_saving_tl || 0);
   const taxShield = ts.total_tax_shield_deduction_tl != null ? ts.total_tax_shield_deduction_tl : (totalSaving * 4.0);
   const stratCount = ts.strategy_count || ts.strategies.length;
+  const isEn = window._activeLang === 'en';
 
   $('taxStrategyMetrics').innerHTML = 
-    metric('Toplam Potansiyel Vergi & Nakit Tasarrufu', money(totalSaving), 'Yasal Kalkanlar & KKEG Optimizasyonu') +
-    metric('Doğrudan Vergi Matrahı Kalkanı', money(taxShield), 'İndirilebilir Gider / Karşılık Matrahı') +
-    metric('Uygulanabilir Vergi Stratejisi', stratCount + ' Yasal Strateji', 'Şirketin Mevcut Rakamlarına Özel');
+    metric(isEn ? 'Total Potential Tax & Cash Savings' : 'Toplam Potansiyel Vergi & Nakit Tasarrufu', money(totalSaving), isEn ? 'Statutory Shields & Optimization' : 'Yasal Kalkanlar & KKEG Optimizasyonu') +
+    metric(isEn ? 'Direct Tax Base Deduction Shield' : 'Doğrudan Vergi Matrahı Kalkanı', money(taxShield), isEn ? 'Deductible Provision Base' : 'İndirilebilir Gider / Karşılık Matrahı') +
+    metric(isEn ? 'Tailored Statutory Strategies' : 'Uygulanabilir Vergi Stratejisi', stratCount + (isEn ? ' Legal Strategies' : ' Yasal Strateji'), isEn ? 'Tailored to Uploaded Balances' : 'Şirketin Mevcut Rakamlarına Özel');
 
   $('taxStrategyItems').innerHTML = ts.strategies.map(s => {
     const isCritical = s.severity === 'critical';
@@ -5927,8 +6178,31 @@ function renderTaxStrategy(ts){
     const lawRef = s.legal_basis || s.law_ref || 'VUK / KVK';
     const detail = s.current_state || s.detail || '';
     const savingBadge = (saving > 0)
-      ? '<span class="tag positive" style="font-weight:800;font-size:12px">⚡ ' + money(saving) + ' Net Vergi Tasarrufu</span>'
-      : '<span class="tag medium" style="font-weight:700;font-size:12px">🛡️ Yasal Matrah Kalkanı</span>';
+      ? '<span class="tag positive" style="font-weight:800;font-size:12px">⚡ ' + money(saving) + (isEn ? ' Net Tax Saving' : ' Net Vergi Tasarrufu') + '</span>'
+      : '<span class="tag medium" style="font-weight:700;font-size:12px">🛡️ ' + (isEn ? 'Statutory Shield' : 'Yasal Matrah Kalkanı') + '</span>';
+
+    const stepsHtml = (s.calculation_steps && s.calculation_steps.length)
+      ? ('<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 14px;font-size:12px;margin-bottom:10px">' +
+          '<div style="font-weight:800;color:#0F172A;margin-bottom:6px">📊 ' + (isEn ? 'Calculation Steps Tailored to Financials:' : 'Mali Tablolara Özgü Matematiksel Hesaplama Adımları:') + '</div>' +
+          '<div style="display:flex;flex-direction:column;gap:4px">' +
+            s.calculation_steps.map(cs => '<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dashed #E2E8F0"><span style="color:#475569">' + esc(cs.label) + '</span><b style="color:#0F172A">' + esc(cs.value) + '</b></div>').join('') +
+          '</div>' +
+        '</div>')
+      : (s.calculations && s.calculations.length ? ('<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 12px;font-size:12px;margin-bottom:10px">' +
+          '<b style="color:#0F172A">📊 ' + (isEn ? 'Calculation Details:' : 'Şirketinizin Rakamlarıyla Hesaplama:') + '</b>' +
+          '<ul style="margin:6px 0 0;padding-left:18px;color:#475569">' +
+            s.calculations.map(c => '<li>' + esc(c) + '</li>').join('') +
+          '</ul>' +
+        '</div>') : '');
+
+    const debtorsHtml = (s.delinquent_debtors && s.delinquent_debtors.length)
+      ? ('<div style="background:#FEF2F2;border:1px solid #FECDD3;border-radius:10px;padding:10px 14px;font-size:12px;margin-bottom:10px">' +
+          '<div style="font-weight:800;color:#991B1B;margin-bottom:6px">⚠️ ' + (isEn ? 'Identified Overdue Counterparties (VUK 323 Provision Candidates):' : 'VUK 323 Kapsamında Şüpheli Alacak Karşılığı Ayrılabilecek Öncelikli Borçlu Cariler:') + '</div>' +
+          '<div style="display:flex;flex-direction:column;gap:5px">' +
+            s.delinquent_debtors.map(d => '<div style="display:flex;justify-content:space-between;align-items:center;background:#FFFFFF;border:1px solid #FCA5A5;border-radius:6px;padding:5px 8px"><span style="font-weight:700;color:#0F172A">' + esc(d.name) + ' <span class="tag" style="font-size:10px;background:#FEE2E2;color:#991B1B;margin-left:4px">' + esc(d.overdue_days) + '</span></span><span style="color:#475569">' + money(d.overdue_amount) + ' ➔ <b style="color:#047857">⚡ ' + money(d.tax_shield) + ' ' + (isEn ? 'Tax Shield' : 'Vergi Kalkanı') + '</b></span></div>').join('') +
+          '</div>' +
+        '</div>')
+      : '';
 
     return '<div class="insight" style="background:' + bg + ';border:1.5px solid ' + borderColor + ';border-radius:14px;padding:16px">' +
       '<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:8px">' +
@@ -5942,15 +6216,11 @@ function renderTaxStrategy(ts){
         '<div>' + savingBadge + '</div>' +
       '</div>' +
       '<p style="margin:0 0 10px;font-size:12.5px;line-height:1.55;color:#334155">' + esc(detail) + '</p>' +
-      (s.calculations && s.calculations.length ? ('<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 12px;font-size:12px;margin-bottom:10px">' +
-        '<b style="color:#0F172A">📊 Şirketinizin Rakamlarıyla Hesaplama:</b>' +
-        '<ul style="margin:6px 0 0;padding-left:18px;color:#475569">' +
-          s.calculations.map(c => '<li>' + esc(c) + '</li>').join('') +
-        '</ul>' +
-      '</div>') : '') +
+      debtorsHtml +
+      stepsHtml +
       '<div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#047857;background:#ECFDF5;padding:8px 12px;border-radius:8px;border:1px solid #A7F3D0">' +
         '<span style="font-size:15px">🎯</span>' +
-        '<span><b>Önerilen Vergi Yönetimi Aksiyonu:</b> ' + esc(s.action) + '</span>' +
+        '<span><b>' + (isEn ? 'Recommended Tax Action:' : 'Önerilen Vergi Yönetimi Aksiyonu:') + '</b> ' + esc(s.action) + '</span>' +
       '</div>' +
     '</div>';
   }).join('');
@@ -6367,6 +6637,13 @@ $('historyCompareBtn').onclick=async()=>{
       '<p class="small muted">Not: Bu hızlı karşılaştırma kaydedilen iki Health Score anlık görüntüsünü kıyaslar. Tam bulgu bazlı karşılaştırma için her iki dönemi birlikte "Çok dönem / Trend" sekmesinden yükleyin.</p></div>';
   }catch(e){$('historyCompareResult').innerHTML='<div class="error">'+esc(e.message)+'</div>';}
 };
+if(typeof document !== 'undefined' && document.addEventListener){
+  document.addEventListener('DOMContentLoaded', function(){
+    var saved = 'tr';
+    try { saved = localStorage.getItem('dfbp_lang') || 'tr'; } catch(e){}
+    if(typeof setLanguage === 'function') setLanguage(saved);
+  });
+}
 </script></body></html>
 '''
 

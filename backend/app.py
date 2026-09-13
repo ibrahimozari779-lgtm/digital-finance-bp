@@ -1069,6 +1069,7 @@ async def analyze_mizan(
         'quality': quality,
         'statements': statements,
         'business_partner': business_partner,
+        'fx_rates': business_partner.get('fx_rates'),
         'account_count': int(tb.account_code.nunique()),
         'rows': int(len(tb)),
         'canonical_model': _canonical_model(statements, tb),
@@ -1221,6 +1222,7 @@ async def _analyze_data_hub_raw(raw_files:list[tuple[str,bytes]], sector:str|Non
     base_resp['ap_aging'] = ms.get('analysis', {}).get('ap_aging')
     base_resp['sales_analysis'] = ms.get('analysis', {}).get('sales')
     base_resp['inventory_aging'] = ms.get('analysis', {}).get('inventory')
+    base_resp['fx_rates'] = (base_resp.get('business_partner') or {}).get('fx_rates')
     return base_resp
 
 @app.post('/api/data-hub/analyze')
