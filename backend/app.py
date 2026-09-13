@@ -24,7 +24,7 @@ except Exception:
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, Response
 from finance_engine import build_finance_business_partner_analysis, SECTOR_BANDS
 from finance_engine.period_metadata import infer_period
 from finance_engine.data_quality_engine import build_data_quality_report, apply_cross_source_reconciliation
@@ -37,8 +37,15 @@ from finance_engine.numeric_utils import to_numeric_series
 from finance_engine.erp_standardizer import inspect_file_structure, detect_erp_signature, CANONICAL_SCHEMAS
 
 APP_VERSION = "3.13.0"
+
 app = FastAPI(title="Digital Finance Business Partner", version=APP_VERSION)
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+
+@app.get("/favicon.ico", include_in_schema=False)
+def favicon():
+    svg_icon = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1D4ED8"/><stop offset="100%" stop-color="#0E7C66"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#g)"/><path d="M16 48 L16 16 L32 16 C42 16 48 22 48 32 C48 42 42 48 32 48 Z" fill="none" stroke="#FFFFFF" stroke-width="5"/><polyline points="20,40 30,30 38,36 48,22" fill="none" stroke="#38BDF8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="48" cy="22" r="3" fill="#38BDF8"/></svg>'''
+    return Response(content=svg_icon, media_type="image/svg+xml")
+
 
 TDHP_GROUPS = {
     "1": ("Current Assets", "BS_ASSET"),
