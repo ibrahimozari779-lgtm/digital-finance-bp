@@ -47,3 +47,42 @@ def test_scenario_tax_aware_and_debt_proxy_not_zero():
     debt=next(x for x in sc if x['scenario_id']=='S002')
     assert debt['pbt_impact']>0
     assert debt['confidence']=='low'
+
+
+def test_customer_and_product_profitability_segmentation():
+    from finance_engine.customer_profitability_engine import build_customer_profitability_analysis
+    from finance_engine.product_profitability_engine import build_product_profitability_analysis
+
+    sales_data = {
+        'net_sales': 100000.0,
+        'gross_margin': 0.25,
+        'customer_profitability': [
+            {'name': 'Zarar Eden Müşteri A', 'sales': 20000.0, 'cogs': 25000.0, 'gross_profit': -5000.0, 'gross_margin_pct': -25.0},
+            {'name': 'Altın Müşteri B', 'sales': 50000.0, 'cogs': 30000.0, 'gross_profit': 20000.0, 'gross_margin_pct': 40.0},
+            {'name': 'Hacimli Düşük Marj C', 'sales': 30000.0, 'cogs': 27000.0, 'gross_profit': 3000.0, 'gross_margin_pct': 10.0},
+        ],
+        'product_profitability': [
+            {'name': 'Zararlı Ürün X', 'sales': 15000.0, 'cogs': 18000.0, 'gross_profit': -3000.0, 'gross_margin_pct': -20.0},
+            {'name': 'Lokomotif Ürün Y', 'sales': 60000.0, 'cogs': 35000.0, 'gross_profit': 25000.0, 'gross_margin_pct': 41.7},
+        ]
+    }
+    ar_data = {
+        'top_parties': [{'name': 'Altın Müşteri B', 'amount': 10000.0}],
+        'overdue_by_party': {'Altın Müşteri B': 0.0},
+        'weighted_overdue_days_by_party': {'Altın Müşteri B': 0.0}
+    }
+
+    cp = build_customer_profitability_analysis(sales_data, ar_data)
+    assert cp['status'] == 'PASS'
+    assert len(cp['loss_making_customers']) == 1
+    assert cp['loss_making_customers'][0]['name'] == 'Zarar Eden Müşteri A'
+    assert len(cp['high_quality_customers']) >= 1
+    assert any(c['name'] == 'Altın Müşteri B' for c in cp['high_quality_customers'])
+    assert any(f['code'] == 'CP-000' for f in cp['findings'])
+
+    pp = build_product_profitability_analysis(sales_data)
+    assert pp['status'] == 'PASS'
+    assert len(pp['loss_making_products']) == 1
+    assert pp['loss_making_products'][0]['name'] == 'Zararlı Ürün X'
+    assert any(f['code'] == 'PP-000' for f in pp['findings'])
+

@@ -88,10 +88,35 @@ def build_product_profitability_analysis(
             'recommendation': f"{dp['name']} için birim maliyet kırılımı, tedarikçi alım fiyatları ve satış fiyatlama politikası optimize edilerek marj en az 2-3 puan yukarı taşınmalıdır.",
             'confidence': 'high',
         })
+    loss_making_products = [p for p in processed if p['gross_profit'] < 0 or p['gross_margin_pct'] < 0]
+    hero_products = [p for p in processed if p['category'] == 'Lokomotif Kârlı' or (p['gross_margin_pct'] >= company_margin_pct and p['sales_share_pct'] >= 5.0)]
+    hero_products.sort(key=lambda x: x['gross_profit'], reverse=True)
+    low_margin_eroding = [p for p in processed if p['sales_share_pct'] >= 10.0 and p['gross_margin_pct'] < company_margin_pct]
+    tied_inventory_products = sorted([p for p in processed if p['inventory_tied_value'] > 0], key=lambda x: x['inventory_tied_value'], reverse=True)
+
+    if loss_making_products:
+        worst_p = sorted(loss_making_products, key=lambda x: x['gross_profit'])[0]
+        findings.insert(0, {
+            'code': 'PP-000',
+            'category': 'Zarar Ettiren Ürünler',
+            'severity': 'critical',
+            'title': f"{len(loss_making_products)} ürün negatif brüt kârla satılarak sermaye tüketiyor",
+            'detail': f"{worst_p['name']} başta olmak üzere {len(loss_making_products)} ürünün birim satış fiyatı maliyetini (SMM) karşılamamaktadır. Toplam brüt zarar: {abs(sum(p['gross_profit'] for p in loss_making_products)):,.0f} TL.",
+            'evidence': [
+                f"Zarar Ettiren Ürün Sayısı: {len(loss_making_products)}",
+                f"En Zararlı Ürün: {worst_p['name']} ({worst_p['gross_profit']:,.0f} TL zarar, marj %{worst_p['gross_margin_pct']:.1f})"
+            ],
+            'recommendation': f"{worst_p['name']} ve diğer zarar ettiren kalemlerin satış fiyatı acilen güncellenmeli veya tedarik maliyeti düşürülemiyorsa portföyden çıkarılmalıdır.",
+            'confidence': 'high',
+        })
 
     return {
         'status': 'PASS',
         'product_count': len(processed),
         'products': processed,
+        'loss_making_products': loss_making_products,
+        'hero_products': hero_products,
+        'low_margin_eroding_products': low_margin_eroding,
+        'tied_inventory_products': tied_inventory_products,
         'findings': findings,
     }

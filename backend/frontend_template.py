@@ -3938,11 +3938,11 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 <section class="flowStep"><div class="flowLabel"><span class="n">7</span>Varsayımı Değiştirirsek Ne Olur? (Canlı Senaryo Simülatörü)<p>Fiyatı artırırsak, tahsilatı çekersek veya gideri kıssak kasaya ne girer?</p></div><div class="flowSub">Formüllü fırsatlar kataloğu ve anlık duyarlılık simülatörü.</div>
 <div class="card"><div id="opportunities" class="grid3"></div></div>
-<div id="interactiveScenarioCard" class="card" style="margin-top:16px"><div class="sectionHead"><div><h2>İnteraktif Senaryo Laboratuvarı &amp; Nakit Simülatörü</h2><p>Sürgüleri hareket ettirerek serbest kalacak nakdi ve kâr etkisini anında simüle edin</p></div></div><div class="grid2"><div style="display:flex;flex-direction:column;gap:14px"><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Alacak Tahsilatını Hızlandır (DSO Azaltma)</span><b id="sliderDsoVal" style="color:var(--accent)">0 gün</b></div><input id="sliderDso" type="range" min="0" max="60" value="0" step="1" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Brüt Kâr Marjı Artışı (Fiyatlama / Maliyet)</span><b id="sliderMarginVal" style="color:var(--accent)">+0.0%</b></div><input id="sliderMargin" type="range" min="0" max="5.0" value="0" step="0.1" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Faaliyet Gideri (OpEx) Tasarrufu</span><b id="sliderOpexVal" style="color:var(--accent)">0%</b></div><input id="sliderOpex" type="range" min="0" max="15" value="0" step="1" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Borç Ödeme / İtfa (Nakit ile)</span><b id="sliderDebtVal" style="color:var(--accent)">0%</b></div><input id="sliderDebt" type="range" min="0" max="40" value="0" step="5" style="width:100%;cursor:pointer"></div></div><div style="background:rgba(15,27,45,.6);border:1px solid var(--line);border-radius:15px;padding:18px;display:flex;flex-direction:column;justify-content:center;gap:12px"><div style="font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:1px">Simüle Edilen Bütünleşik Etki</div><div class="grid2"><div class="metric" style="background:#EAF0FF"><div class="label">Tahmini Serbest Kalan Nakit</div><div id="simCashImpact" class="value" style="color:var(--green)">0 TL</div><div class="sub">Likiditeye anlık katkı</div></div><div class="metric" style="background:#EAF0FF"><div class="label">Tahmini Ek Faaliyet Kârı</div><div id="simProfitImpact" class="value" style="color:var(--accent)">0 TL</div><div class="sub">Yıllık P&amp;L etkisi</div></div></div><div id="simSummaryText" class="small muted" style="line-height:1.5;margin-top:4px">Sürgüleri hareket ettirerek yönetim senaryonuzu belirleyin.</div></div></div></div>
+<div id="interactiveScenarioCard" class="card" style="margin-top:16px"><div class="sectionHead"><div><h2>İnteraktif Senaryo Laboratuvarı &amp; Nakit Simülatörü</h2><p>Önerilen senaryoları seçin veya sürgüleri hareket ettirerek serbest kalacak nakdi ve kâr etkisini anında canlı görün</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px" onclick="applyScenarioPreset(10,15,2.0,5)">💡 Önerilen Temkinli Senaryo</button><button class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px" onclick="applyScenarioPreset(20,25,4.0,10)">🚀 Agresif İyileştirme</button><button class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px" onclick="applyScenarioPreset(0,0,0,0)">🔄 Sıfırla (Mevcut Durum)</button></div></div><div class="grid2"><div style="display:flex;flex-direction:column;gap:14px"><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Alacak Tahsilatını Hızlandır (DSO Azaltma)</span><b id="sliderDsoVal" style="color:var(--accent)">0 gün</b></div><input id="sliderDso" type="range" min="0" max="60" value="0" step="1" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Stok Bekleme Süresini Kısalt (DIO Azaltma / Atıl Stok Eritme)</span><b id="sliderDioVal" style="color:var(--accent)">0 gün</b></div><input id="sliderDio" type="range" min="0" max="60" value="0" step="1" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Satış Fiyatı / Brüt Marj İyileştirmesi</span><b id="sliderMarginVal" style="color:var(--accent)">+0.0%</b></div><input id="sliderMargin" type="range" min="0" max="10.0" value="0" step="0.5" style="width:100%;cursor:pointer"></div><div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span>Faaliyet Gideri (OpEx) Tasarrufu</span><b id="sliderOpexVal" style="color:var(--accent)">0%</b></div><input id="sliderOpex" type="range" min="0" max="25" value="0" step="1" style="width:100%;cursor:pointer"></div></div><div style="background:rgba(15,27,45,.6);border:1px solid var(--line);border-radius:15px;padding:18px;display:flex;flex-direction:column;justify-content:center;gap:12px"><div style="font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:1px">Simüle Edilen Canlı Yönetim Etkisi</div><div class="grid2"><div class="metric" style="background:#EAF0FF"><div class="label">Kasaya Giren Serbest Nakit</div><div id="simCashImpact" class="value" style="color:var(--green)">0 TL</div><div class="sub">Tahsilat + Stok nakdi</div></div><div class="metric" style="background:#EAF0FF"><div class="label">Ek Yıllık Faaliyet Kârı</div><div id="simProfitImpact" class="value" style="color:var(--accent)">0 TL</div><div class="sub">Fiyat + OpEx tasarrufu</div></div><div class="metric" style="background:#EAF0FF"><div class="label">Simüle Net Kâr Marjı</div><div id="simMarginImpact" class="value" style="color:var(--accent)">–</div><div class="sub">Kârlılık tabanı etkisi</div></div><div class="metric" style="background:#EAF0FF"><div class="label">Nakit Çevrim Süresi (CCC)</div><div id="simCccImpact" class="value" style="color:var(--green)">–</div><div class="sub">Çalışma sermayesi çevrimi</div></div></div><div id="simSummaryText" class="small muted" style="line-height:1.5;margin-top:4px">Sürgüleri hareket ettirerek veya yukarıdaki hazır senaryolara tıklayarak şirketin kazanımlarını test edin.</div></div></div></div>
 </section>
 
 <section class="flowStep"><div class="flowLabel"><span class="n">8</span>Yönetici Özeti &amp; AI Finance Business Partner (Karar Brifingi)<span class="tag" style="margin-left:8px;background:#eef2ff;color:#3b4b8a">Kural Tabanlı · AI Değil</span><p>Tüm analizin tek paragrafta özeti ve stratejik soru-cevap</p></div><div class="flowSub">Önce matematiksel kurallarla hesaplanır, sonra yorumlanır. Yöneticinin bu raporla hangi stratejik adımı atması gerektiği açıkça belirtilir.</div>
-<div class="card"><div id="exec" class="insight"></div><div id="execChips" class="chips"></div><div id="execDecision" style="margin-top:14px"></div><div style="margin-top:14px"><button id="aiBtn" class="secondary hidePrint">✨ AI Finance Partner yorumunu üret (opsiyonel, LLM)</button> <button id="printBtn" class="secondary hidePrint">Raporu yazdır / PDF</button> <button id="jsonBtn" class="secondary hidePrint">JSON indir</button></div><div id="aiBox" class="notice hidden" style="margin-top:12px"></div><div id="methodNote" class="notice" style="margin-top:12px"></div><div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(15,27,45,.10)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="font-size:18px">💬</span><b style="font-size:14px">AI Finance Business Partner'a Özel Soru Sor (Stratejik Q&amp;A)</b><span class="tag" style="background:#EAF0FF;color:var(--accent)">Gemini 3.6 Flash Doğrulanmış</span></div><div style="display:flex;gap:10px;align-items:center"><input id="aiCustomPrompt" type="text" placeholder="Örn: Nakit neden oluşmuyor?" style="flex:1;background:#FFFFFF;border:1px solid #D7DEE8;color:#0F1B2D;border-radius:10px;padding:10px 14px;font-size:13px"><button id="aiAskBtn" class="primary hidePrint" style="white-space:nowrap;padding:10px 18px">Soruyu Yanıtla ⚡</button></div><div class="chips hidePrint" style="margin-top:10px"><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Nakit neden oluşmuyor?')">💸 Nakit neden oluşmuyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Kâr neden düşüyor?')">📉 Kâr neden düşüyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Borç neden artıyor?')">📈 Borç neden artıyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Kâr gerçekten nakde dönüşüyor mu?')">🔄 Kâr gerçekten nakde dönüşüyor mu?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Hangi müşteriler risk yaratıyor?')">⚠️ Hangi müşteriler risk yaratıyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Hangi tedarikçiler kritik?')">🏭 Hangi tedarikçiler kritik?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Stok neden şişiyor?')">📦 Stok neden şişiyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Büyüme neden kâra dönüşmüyor?')">🚀 Büyüme neden kâra dönüşmüyor?</span></div><div id="aiCustomBox" class="notice hidden" style="margin-top:14px"></div></div></div>
+<div class="card"><div id="exec" class="insight"></div><div id="execChips" class="chips"></div><div id="execDecision" style="margin-top:14px"></div><div style="margin-top:14px"><button id="aiBtn" class="secondary hidePrint">✨ AI Finance Partner yorumunu üret (opsiyonel, LLM)</button> <button id="printBtn" class="secondary hidePrint">Raporu yazdır / PDF</button> <button id="jsonBtn" class="secondary hidePrint">JSON indir</button></div><div id="aiBox" class="notice hidden" style="margin-top:12px"></div><div id="methodNote" class="notice" style="margin-top:12px"></div><div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(15,27,45,.10)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="font-size:18px">💬</span><b style="font-size:14px">AI Finance Business Partner'a Özel Soru Sor (Stratejik Q&amp;A)</b><span class="tag" style="background:#EAF0FF;color:var(--accent)">Gemini 3.6 Flash Doğrulanmış</span></div><div style="display:flex;gap:10px;align-items:center"><input id="aiCustomPrompt" type="text" placeholder="Örn: Nakit neden oluşmuyor?" style="flex:1;background:#FFFFFF;border:1px solid #D7DEE8;color:#0F1B2D;border-radius:10px;padding:10px 14px;font-size:13px"><button id="aiAskBtn" class="primary hidePrint" style="white-space:nowrap;padding:10px 18px">Soruyu Yanıtla ⚡</button></div><div class="chips hidePrint" style="margin-top:10px"><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Nakit neden oluşmuyor?')">💸 Nakit neden oluşmuyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Kâr neden düşüyor?')">📉 Kâr neden düşüyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Borç neden artıyor?')">📈 Borç neden artıyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Kâr gerçekten nakde dönüşüyor mu?')">🔄 Kâr gerçekten nakde dönüşüyor mu?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Ciro artarken kâr neden eriyor?')">⚠️ Ciro artarken kâr neden eriyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Maliyetler neden arttı? (Fiyat mı, hammadde mi?)')">🏭 Maliyetler neden arttı?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Hangi vergi avantajları ve teşvik fırsatları var?')">🏛️ Vergi avantajı &amp; KDV optimizasyonu</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Hangi müşteriler risk yaratıyor?')">⚠️ Hangi müşteriler risk yaratıyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Hangi tedarikçiler kritik?')">🏭 Hangi tedarikçiler kritik?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Stok neden şişiyor?')">📦 Stok neden şişiyor?</span><span class="chip" style="cursor:pointer" onclick="setAiPrompt('Büyüme neden kâra dönüşmüyor?')">🚀 Büyüme neden kâra dönüşmüyor?</span></div><div id="aiCustomBox" class="notice hidden" style="margin-top:14px"></div></div></div>
 </section>
 
 <section class="flowStep"><div class="flowLabel alt"><span class="n">+</span>Ek A — Veri Güvenilirliği &amp; Çift Taraflı Hesaplama Denetimi<p>Analizin dayandığı verinin doğrulanma düzeyi ve dosya bazlı kırılım</p></div>
@@ -4408,8 +4408,175 @@ function criticalSuppliersPanel(apData){
   return '<div class="card"><div class="sectionHead"><div><h2>Kritik Tedarikçiler</h2><p>Ödeme önceliklendirmesi ve tedarik ilişkisi riski</p></div></div><div class="notice" style="margin-bottom:6px">Bu '+top.length+' tedarikçiye geciken <b>'+money(totalImpact)+'</b> tutarındaki ödeme, ilişki/tedarik kesintisi riski taşıyor (toplam vadesi geçen borç riskinin '+pct(apData.outstanding?totalImpact/apData.outstanding*100:null)+'\u0027i).</div>'+rows+concLine+'</div>';
 }
 
+function renderSalesIntelligence(sales, custProf, prodProf){
+  if(!sales && (!custProf || custProf.status!=='PASS') && (!prodProf || prodProf.status!=='PASS')){
+    return '<div class="card"><div class="notice">Satış detay verisi yüklenmedi.</div></div>';
+  }
+  const s = sales || {};
+  const cp = custProf || {};
+  const pp = prodProf || {};
+  const avgMargin = cp.company_average_gross_margin_pct ?? (s.gross_margin != null ? s.gross_margin * 100 : null);
+  
+  const lossCust = cp.loss_making_customers || s.loss_making_customers || [];
+  const dilutiveCust = cp.low_margin_dilutive_customers || cp.volume_chasers || [];
+  const goldCust = cp.high_quality_customers || (cp.stars || []).filter(c => (c.overdue_days || 0) === 0);
+  
+  const lossProd = pp.loss_making_products || s.loss_making_products || [];
+  const heroProd = pp.hero_products || (pp.products || []).filter(p => (p.gross_margin_pct || 0) >= (avgMargin || 25)).slice(0, 5);
+
+  let html = '<div class="card">' +
+    '<div class="sectionHead"><div>' +
+      '<h2>Satış Zekâsı: Müşteri &amp; Ürün Kârlılık Masası</h2>' +
+      '<p>Hangi müşteriler ve ürünler doğrudan kâr getiriyor, hangileri şirketin sermayesini tüketiyor?</p>' +
+    '</div></div>';
+
+  // KPI Grid
+  html += '<div class="grid4" style="margin-bottom:16px">' +
+    metric('Vade Primi', s.term_premium_pct != null ? pct(s.term_premium_pct) : '–', 'Peşin → Vadeli Fiyat Farkı') +
+    metric('İlk 10 Müşteri Payı', s.top_10_customer_share_pct != null ? pct(s.top_10_customer_share_pct) : '–', 'Müşteri Yoğunlaşması') +
+    metric('Ortalama Brüt Marj', avgMargin != null ? pct(avgMargin) : '–', 'Şirket Kârlılık Tabanı') +
+    metric('Zarar / Risk Durumu', (lossCust.length + lossProd.length) > 0 ? (lossCust.length + lossProd.length) + ' Kalem' : 'Temiz', (lossCust.length + lossProd.length) > 0 ? 'Negatif Marjlı Kalemler' : 'Doğrudan Zarar Yok') +
+  '</div>';
+
+  // Section 1: Hangi Müşteriler Zarar Ettiriyor?
+  html += '<div style="margin-top:14px;border:1px solid ' + (lossCust.length ? '#FDA4AF' : '#E2E8F0') + ';border-radius:12px;padding:14px;background:' + (lossCust.length ? '#FFF1F2' : '#F8FAFC') + '">' +
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
+      '<div style="display:flex;align-items:center;gap:8px">' +
+        '<span style="font-size:16px">' + (lossCust.length ? '🛑' : '✅') + '</span>' +
+        '<b style="font-size:13.5px;color:' + (lossCust.length ? '#9F1239' : '#0F1B2D') + '">Hangi Müşteriler Zarar Ettiriyor? (Negatif Brüt Kâr &amp; Marj Kanaması)</b>' +
+      '</div>' +
+      '<span class="tag ' + (lossCust.length ? 'critical' : 'positive') + '">' + (lossCust.length ? lossCust.length + ' Zarar Ettiren Müşteri' : 'Zarar Eden Müşteri Yok') + '</span>' +
+    '</div>';
+
+  if(lossCust.length){
+    html += '<p class="small muted" style="margin-bottom:10px;color:#9F1239">Aşağıdaki müşterilere yapılan satış fiyatı doğrudan satılan malın maliyetinin (SMM) altındadır. Her teslimatta şirket nakit ve özkaynak kaybetmektedir.</p>' +
+      '<div class="tableWrap"><table><thead><tr><th>Müşteri</th><th>Net Satış</th><th>Maliyet (SMM)</th><th>Brüt Kâr/Zarar</th><th>Brüt Marj %</th><th>Yönetici Teşhisi &amp; Kararı</th></tr></thead><tbody>' +
+      lossCust.map(c => '<tr>' +
+        '<td><b>' + esc(c.name || c.customer) + '</b></td>' +
+        '<td>' + money(c.sales || c.revenue) + '</td>' +
+        '<td>' + money(c.cogs) + '</td>' +
+        '<td style="color:var(--red);font-weight:700">' + money(c.gross_profit) + '</td>' +
+        '<td style="color:var(--red);font-weight:700">%' + num(c.gross_margin_pct) + '</td>' +
+        '<td class="small" style="color:#9F1239">Satış fiyatı maliyeti karşılamıyor. Fiyat acilen en az maliyetin %15 üstüne çıkarılmalı veya sevkiyat durdurulmalıdır.</td>' +
+      '</tr>').join('') +
+      '</tbody></table></div>';
+  } else {
+    html += '<p class="small muted" style="margin:0">Satış defterinde doğrudan negatif brüt kâr yazan müşteri tespit edilmemiştir. Bütün müşterilerin satış fiyatı birim maliyetinin üzerindedir.</p>';
+  }
+  html += '</div>';
+
+  // Section 2: Kâr Kalitesi Yüksek (Altın) Müşteriler
+  html += '<div style="margin-top:14px;border:1px solid #BBF7D0;border-radius:12px;padding:14px;background:#F0FDF4">' +
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
+      '<div style="display:flex;align-items:center;gap:8px">' +
+        '<span style="font-size:16px">💎</span>' +
+        '<b style="font-size:13.5px;color:#166534">Kâr Kalitesi En Yüksek Müşteriler (Yüksek Marj + Vadesinde Ödeyenler)</b>' +
+      '</div>' +
+      '<span class="tag positive">Altın Müşteri Grubu</span>' +
+    '</div>' +
+    '<p class="small muted" style="margin-bottom:10px;color:#166534">Bu müşteriler hem şirket ortalamasının üzerinde kâr bırakmakta hem de vadesinde ödeme yaparak alacağı kasada nakde dönüştürmektedir.</p>';
+
+  if(goldCust.length){
+    html += '<div class="tableWrap"><table><thead><tr><th>Müşteri</th><th>Net Satış</th><th>Brüt Kâr</th><th>Brüt Marj %</th><th>Tahsilat Durumu</th><th>Yönetici Kararı</th></tr></thead><tbody>' +
+      goldCust.slice(0, 5).map(c => '<tr>' +
+        '<td><b>' + esc(c.name || c.customer) + '</b></td>' +
+        '<td>' + money(c.sales || c.revenue) + '</td>' +
+        '<td style="color:var(--green);font-weight:700">' + money(c.gross_profit) + '</td>' +
+        '<td style="color:var(--green);font-weight:700">%' + num(c.gross_margin_pct) + '</td>' +
+        '<td><span class="tag positive">✓ Vadesinde Ödeniyor</span></td>' +
+        '<td class="small">Kilit müşteri statüsü verilmeli; gereksiz iskonto tavizi verilmeden hacim büyütülmeli.</td>' +
+      '</tr>').join('') +
+      '</tbody></table></div>';
+  } else {
+    html += '<div class="small muted">Yüksek kâr marjlı ve gecikmesiz tahsilat grubunda müşteri verisi kısıtlı.</div>';
+  }
+  html += '</div>';
+
+  // Section 3: Hacimli ama Kârı Aşağı Çeken Müşteriler
+  if(dilutiveCust.length){
+    html += '<div style="margin-top:14px;border:1px solid #FEF08A;border-radius:12px;padding:14px;background:#FEFCE8">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
+        '<div style="display:flex;align-items:center;gap:8px">' +
+          '<span style="font-size:16px">⚠️</span>' +
+          '<b style="font-size:13.5px;color:#854D0E">Hacimli ama Kârı Aşağı Çeken Müşteriler (Ciro Var, Kâr Yok)</b>' +
+        '</div>' +
+        '<span class="tag high">' + dilutiveCust.length + ' Müşteri</span>' +
+      '</div>' +
+      '<p class="small muted" style="margin-bottom:10px;color:#854D0E">Yüksek ciro üreten fakat brüt kâr marjı şirket ortalamasının (%' + num(avgMargin) + ') altında kalarak işletme sermayesini tüketen müşteriler:</p>' +
+      '<div class="tableWrap"><table><thead><tr><th>Müşteri</th><th>Net Satış</th><th>Ciro Payı %</th><th>Brüt Marj %</th><th>Fark (Ortalamaya Göre)</th><th>Yönetici Kararı</th></tr></thead><tbody>' +
+      dilutiveCust.slice(0, 5).map(c => '<tr>' +
+        '<td><b>' + esc(c.name || c.customer) + '</b></td>' +
+        '<td>' + money(c.sales || c.revenue) + '</td>' +
+        '<td>%' + num(c.share_pct) + '</td>' +
+        '<td style="font-weight:700">%' + num(c.gross_margin_pct) + '</td>' +
+        '<td style="color:var(--amber)">-' + num(Math.max(0, (avgMargin||0) - (c.gross_margin_pct||0))) + ' puan</td>' +
+        '<td class="small">Sözleşme yenilemede iskonto %2-3 kısılmalı; vade opsiyonları peşine kaydırılmalı.</td>' +
+      '</tr>').join('') +
+      '</tbody></table></div></div>';
+  }
+
+  // Section 4: Ürün Bazlı Kâr / Zarar & Portföy Kırılımı
+  html += '<div style="margin-top:16px"><div class="sectionHead"><div>' +
+    '<h3>Ürün Bazlı Kârlılık Kırılımı (Lokomotifler vs Zarar Ettiren Kalemler)</h3>' +
+    '<p>Portföydeki hangi ürünler brüt kârı sırtlıyor, hangi ürünler kâr marjını eritiyor?</p>' +
+  '</div></div>';
+
+  html += '<div class="grid2" style="gap:14px;margin-top:10px">' +
+    '<div class="insight" style="background:#FFFFFF;border:1px solid #BBF7D0;border-radius:12px;padding:14px">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
+        '<b>🏆 Lokomotif Kâr Lideri Ürünler (Hero SKUs)</b>' +
+        '<span class="tag positive">Yüksek Kâr</span>' +
+      '</div>' +
+      (heroProd.length ? heroProd.slice(0, 4).map(p => '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(15,27,45,0.05);font-size:12px">' +
+        '<span><b>' + esc(p.name || p.sku) + '</b></span>' +
+        '<span>' + money(p.sales || p.revenue) + ' <span class="muted">(%' + num(p.gross_margin_pct) + ' marj)</span></span>' +
+      '</div>').join('') : '<div class="small muted">Belirgin lider ürün verisi yok.</div>') +
+    '</div>' +
+    '<div class="insight" style="background:#FFFFFF;border:1px solid ' + (lossProd.length ? '#FDA4AF' : '#E2E8F0') + ';border-radius:12px;padding:14px">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
+        '<b>' + (lossProd.length ? '🛑 Zarar Ettiren Ürünler' : '⚠️ Marjı Düşük / Kârı Eriten Ürünler') + '</b>' +
+        '<span class="tag ' + (lossProd.length ? 'critical' : 'high') + '">' + (lossProd.length ? lossProd.length + ' Kalem Zarar' : 'Düşük Marj') + '</span>' +
+      '</div>' +
+      (lossProd.length ? lossProd.slice(0, 4).map(p => '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(15,27,45,0.05);font-size:12px">' +
+        '<span style="color:var(--red)"><b>' + esc(p.name || p.sku) + '</b></span>' +
+        '<span>' + money(p.sales || p.revenue) + ' <b style="color:var(--red)">(' + money(p.gross_profit) + ')</b></span>' +
+      '</div>').join('') :
+      (pp.low_margin_eroding_products || []).slice(0, 4).map(p => '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(15,27,45,0.05);font-size:12px">' +
+        '<span>' + esc(p.name || p.sku) + '</span>' +
+        '<span>' + money(p.sales || p.revenue) + ' <span class="muted">(%' + num(p.gross_margin_pct) + ' marj)</span></span>' +
+      '</div>').join('') || '<div class="small muted">Negatif marjlı veya kârı eriten ürün bulunmadı.</div>') +
+    '</div>' +
+  '</div>';
+
+  if((s.product_mix || []).length){
+    html += '<div class="insight" style="margin-top:12px;padding:12px 16px;background:#F8FAFC">' +
+      '<b>Ürün Satış Karması Dağılımı:</b> ' +
+      s.product_mix.slice(0, 7).map(v => esc(v.name) + ': ' + money(v.sales) + ' (%' + num(v.share_pct) + ')').join(' · ') +
+    '</div>';
+  }
+
+  html += '</div></div>';
+  return html;
+}
+
 function renderHub(ms){
-  if(!ms){$('dataHubCard').classList.add('hidden');return}
+  if(!ms){
+    if($('dataHubCard')) $('dataHubCard').classList.add('hidden');
+    if($('pvmIntel')) $('pvmIntel').classList.add('hidden');
+    if($('customerProfitabilityMatrixCard')) $('customerProfitabilityMatrixCard').classList.add('hidden');
+    if($('productProfitabilityCard')) $('productProfitabilityCard').classList.add('hidden');
+    if($('criticalPartiesNotice')) $('criticalPartiesNotice').classList.remove('hidden');
+    if($('criticalCustomersCard')) $('criticalCustomersCard').innerHTML='';
+    if($('criticalSuppliersCard')) $('criticalSuppliersCard').innerHTML='';
+    if($('salesIntel')) $('salesIntel').innerHTML='';
+    if($('arApIntel')) $('arApIntel').innerHTML='';
+    if($('inventoryIntel')) $('inventoryIntel').innerHTML='';
+    if($('hubSummary')) $('hubSummary').innerHTML='';
+    if($('hubSources')) $('hubSources').innerHTML='';
+    if($('hubFindings')) $('hubFindings').innerHTML='';
+    if($('hubReconciliation')) $('hubReconciliation').innerHTML='';
+    return;
+  }
   $('dataHubCard').classList.remove('hidden');
   const sm=ms.summary||{};
   const errorRows=(ms.errors||[]).map(e=>'<div class="notice" style="margin-top:8px"><b>Dosya hatası:</b> '+esc(e.file||'')+' · '+esc(e.error||'')+'</div>').join('');
@@ -4452,8 +4619,8 @@ function renderHub(ms){
   if(an.product_profitability) renderProductProfitability(an.product_profitability);
   $('criticalCustomersCard').innerHTML=criticalCustomersPanel(an.ar_aging);
   $('criticalSuppliersCard').innerHTML=criticalSuppliersPanel(an.ap_aging);
-  // Sales Intelligence — Standalone Card
-  $('salesIntel').innerHTML='<div class="card"><div class="sectionHead"><div><h2>Satış Zekâsı (Müşteri &amp; Ürün Kârlılığı)</h2><p>Vade fiyatlaması, ciro yoğunlaşması ve ürün satış karması</p></div></div>'+(an.sales?'<div class="grid2">'+metric('Vade Primi',pct(sales.term_premium_pct),'Peşin → vadeli fiyat farkı')+metric('İlk 10 Müşteri Payı',pct(sales.top_10_customer_share_pct),'Müşteri Yoğunlaşması')+'</div>'+((sales.product_mix||[]).length?'<div class="insight" style="margin-top:10px"><b>Ürün Satış Karması</b><p>'+sales.product_mix.slice(0,7).map(v=>esc(v.name)+': '+money(v.sales)+' ('+pct(v.share_pct)+')').join(' · ')+'</p></div>':'')+(sales.term_premium_pct>15?'<div class="insight high" style="margin-top:10px"><b>Vadeli satış fiyatı peşin fiyattan belirgin yüksek</b><p>Vade primi %'+num(sales.term_premium_pct)+'; finansman maliyeti ve tahsilat riski fiyatlamaya yansıtılıyor mu kontrol edilmeli.</p></div>':''):'<div class="notice">Satış detay verisi yüklenmedi.</div>')+'</div>';
+  // Upgraded Sales Intelligence
+  $('salesIntel').innerHTML=renderSalesIntelligence(an.sales, an.customer_profitability, an.product_profitability);
   // AR / AP Intelligence — Stacked Vertically
   $('arApIntel').innerHTML='<div class="card"><div class="sectionHead"><div><h2>Alacak ve Borç Yaşlandırma Analizi</h2><p>Müşteri alacak vadeleri (120 Hesabı) ve tedarikçi ödeme takvimi (320 Hesabı) alt alta dökümü</p></div></div><div style="display:flex;flex-direction:column;gap:14px">'+agingBlock('AR','DSO',an.ar_aging)+agingBlock('AP','DPO',an.ap_aging)+'</div></div>';
   const inv = an.inventory || an.inventory_aging || {};
@@ -4477,7 +4644,7 @@ async function run(url,fd,kind='single'){
     const d=await r.json();
     if(!r.ok) throw new Error(d.detail||'Analiz başarısız oldu.');
     render(d);
-    if(kind==='hub') renderHub(d.data_hub);
+    renderHub(d.data_hub || null);
     stopLoading();
     setTimeout(()=>{
       const dash=$('dashboard');
@@ -5623,47 +5790,66 @@ function renderProductProfitability(pp){
   $('productProfitabilityTable').innerHTML = html;
 }
 
+function applyScenarioPreset(dso, dio, margin, opex){
+  if($('sliderDso')) $('sliderDso').value = dso;
+  if($('sliderDio')) $('sliderDio').value = dio;
+  if($('sliderMargin')) $('sliderMargin').value = margin;
+  if($('sliderOpex')) $('sliderOpex').value = opex;
+  if(window._updateSim) window._updateSim();
+}
+
 function setupInteractiveScenario(d){
   const pl=d.statements?.profit_and_loss||{};
   const k=d.statements?.kpis||{};
+  const bp=d.business_partner||{};
+  const ccc=bp.cash_conversion_cycle||{};
   const sales=Number(pl['Net sales']||0);
+  const cogs=Number(pl['COGS']||0);
   const opex=Number(pl['Operating expenses']||0);
-  const debt=Number(k.financial_debt||0);
-  const fin=Number(pl['Finance costs']||0);
+  const netProfit=Number(pl['Net profit']||0);
+  const curCcc=ccc.cash_conversion_cycle_days;
+  const curMargin=sales>0 ? (netProfit / sales * 100) : 0;
 
   function updateSim(){
     if(!$('sliderDso')) return;
     const dsoDays=Number($('sliderDso').value);
+    const dioDays=Number($('sliderDio')?$('sliderDio').value:0);
     const marginDeltaPct=Number($('sliderMargin').value);
     const opexCutPct=Number($('sliderOpex').value);
-    const debtPayPct=Number($('sliderDebt').value);
 
     $('sliderDsoVal').textContent=dsoDays+' gün';
+    if($('sliderDioVal')) $('sliderDioVal').textContent=dioDays+' gün';
     $('sliderMarginVal').textContent='+'+marginDeltaPct.toFixed(1)+'%';
     $('sliderOpexVal').textContent=opexCutPct+'%';
-    $('sliderDebtVal').textContent=debtPayPct+'%';
 
     const cashFromDso = sales > 0 ? (dsoDays / 365.0) * sales : 0;
+    const cashFromDio = cogs > 0 ? (dioDays / 365.0) * cogs : 0;
+    const totalCashImpact = cashFromDso + cashFromDio;
+
     const profitFromMargin = (marginDeltaPct / 100.0) * sales;
     const profitFromOpex = (opexCutPct / 100.0) * opex;
-    const debtRepaid = (debtPayPct / 100.0) * debt;
-    const interestRate = (debt > 0 && fin > 0) ? (fin / debt) : 0.40;
-    const interestSaved = debtRepaid * interestRate;
-    const totalProfitImpact = profitFromMargin + profitFromOpex + interestSaved;
+    const totalProfitImpact = profitFromMargin + profitFromOpex;
 
-    $('simCashImpact').textContent=(cashFromDso>=0?'+':'')+money(cashFromDso);
+    const newNetProfit = netProfit + totalProfitImpact;
+    const newMargin = sales > 0 ? (newNetProfit / sales * 100) : 0;
+    const newCcc = curCcc != null ? (curCcc - dsoDays - dioDays) : null;
+
+    $('simCashImpact').textContent=(totalCashImpact>=0?'+':'')+money(totalCashImpact);
     $('simProfitImpact').textContent=(totalProfitImpact>=0?'+':'')+money(totalProfitImpact);
+    if($('simMarginImpact')) $('simMarginImpact').textContent='%' + newMargin.toFixed(1) + (marginDeltaPct>0 || opexCutPct>0 ? ' (+' + (newMargin - curMargin).toFixed(1) + 'p)' : '');
+    if($('simCccImpact')) $('simCccImpact').textContent=newCcc!=null ? (Math.round(newCcc) + ' gün' + ((dsoDays+dioDays)>0 ? ' (-' + (dsoDays+dioDays) + 'g)' : '')) : '–';
 
     let narrative=[];
     if(dsoDays>0) narrative.push('Alacakların '+dsoDays+' gün erken tahsili kasaya <b>'+money(cashFromDso)+'</b> nakit girişi sağlar.');
-    if(marginDeltaPct>0) narrative.push('Brüt marjdaki %'+marginDeltaPct.toFixed(1)+' iyileşme faaliyet kârına <b>'+money(profitFromMargin)+'</b> ekler.');
-    if(opexCutPct>0) narrative.push('Faaliyet giderlerindeki %'+opexCutPct+' tasarruf doğrudan PBT\'ye <b>'+money(profitFromOpex)+'</b> yansır.');
-    if(debtPayPct>0) narrative.push('Ödenen '+money(debtRepaid)+' borç sayesinde yıllık tahmini <b>'+money(interestSaved)+'</b> faiz tasarrufu sağlanır.');
+    if(dioDays>0) narrative.push('Stok devrini '+dioDays+' gün hızlandırmak depodan <b>'+money(cashFromDio)+'</b> nakit çözer.');
+    if(marginDeltaPct>0) narrative.push('Fiyat/marj yönetimindeki %'+marginDeltaPct.toFixed(1)+' artış yıllık faaliyet kârına <b>'+money(profitFromMargin)+'</b> ekler.');
+    if(opexCutPct>0) narrative.push('Faaliyet giderlerindeki %'+opexCutPct+' tasarruf doğrudan P&L kârına <b>'+money(profitFromOpex)+'</b> yansır.');
 
-    $('simSummaryText').innerHTML=narrative.length?narrative.join('<br>'):'Sürgüleri hareket ettirerek yönetim senaryonuzu belirleyin.';
+    $('simSummaryText').innerHTML=narrative.length?narrative.join('<br>'):'Sürgüleri hareket ettirerek veya yukarıdaki hazır senaryolara tıklayarak şirketin kazanımlarını test edin.';
   }
 
-  ['sliderDso','sliderMargin','sliderOpex','sliderDebt'].forEach(id=>{
+  window._updateSim = updateSim;
+  ['sliderDso','sliderDio','sliderMargin','sliderOpex'].forEach(id=>{
     const el=$(id); if(el) el.oninput=updateSim;
   });
   updateSim();

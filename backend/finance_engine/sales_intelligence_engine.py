@@ -97,7 +97,8 @@ def analyze_sales(df:pd.DataFrame,mapping:dict[str,str])->dict[str,Any]:
                 for name, sales_value in grp.items():
                     c=float(cost_grp.get(name, 0.0)); gp=float(sales_value)-c
                     customer_profit.append({'name':str(name),'sales':float(sales_value),'cogs':c,'gross_profit':gp,'gross_margin_pct':gp/float(sales_value)*100 if sales_value else None})
-                result['customer_profitability']=sorted(customer_profit,key=lambda x:x['gross_profit'],reverse=True)[:20]
+                result['customer_profitability']=sorted(customer_profit,key=lambda x:x['gross_profit'],reverse=True)
+                result['loss_making_customers']=[c for c in customer_profit if c['gross_profit'] < 0]
     if col('product') and net is not None:
         base='_term_price' if '_term_price' in work else '_net_sales' if '_net_sales' in work else '_amount'
         if base in work:
@@ -110,7 +111,8 @@ def analyze_sales(df:pd.DataFrame,mapping:dict[str,str])->dict[str,Any]:
                 for name, sales_value in grp.items():
                     c=float(cost_grp.get(name, 0.0)); gp=float(sales_value)-c
                     product_profit.append({'name':str(name),'sales':float(sales_value),'cogs':c,'gross_profit':gp,'gross_margin_pct':gp/float(sales_value)*100 if sales_value else None})
-                result['product_profitability']=sorted(product_profit,key=lambda x:x['gross_profit'],reverse=True)[:20]
+                result['product_profitability']=sorted(product_profit,key=lambda x:x['gross_profit'],reverse=True)
+                result['loss_making_products']=[p for p in product_profit if p['gross_profit'] < 0]
     if col('date') and '_date' in work:
         base='_term_price' if '_term_price' in work else '_net_sales' if '_net_sales' in work else '_amount'
         if base in work:

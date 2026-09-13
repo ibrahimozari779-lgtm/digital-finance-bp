@@ -156,6 +156,27 @@ def build_customer_profitability_analysis(
             'confidence': 'high',
         })
 
+    loss_making = [c for c in processed if c['gross_profit'] < 0 or c['gross_margin_pct'] < 0]
+    low_margin_dilutive = [c for c in processed if c['gross_profit'] >= 0 and c['gross_margin_pct'] < max(5.0, company_margin_pct * 0.6)]
+    high_quality = [c for c in processed if c['gross_margin_pct'] >= company_margin_pct and c['ar_overdue'] <= 0 and c['collection_health'] == 'Düzenli']
+    high_quality.sort(key=lambda x: x['gross_profit'], reverse=True)
+
+    if loss_making:
+        worst_loss = sorted(loss_making, key=lambda x: x['gross_profit'])[0]
+        findings.insert(0, {
+            'code': 'CP-000',
+            'category': 'Zarar Ettiren Müşteriler',
+            'severity': 'critical',
+            'title': f"{len(loss_making)} müşteri negatif brüt kâr üreterek doğrudan zarar ettiriyor",
+            'detail': f"{worst_loss['name']} başta olmak üzere {len(loss_making)} müşteriye yapılan satışlar maliyetin (SMM) altında kalmaktadır. Toplam brüt zarar: {abs(sum(c['gross_profit'] for c in loss_making)):,.0f} TL.",
+            'evidence': [
+                f"Zarar Ettiren Müşteri Sayısı: {len(loss_making)}",
+                f"En Çok Zarar Ettiren: {worst_loss['name']} ({worst_loss['gross_profit']:,.0f} TL Brüt Zarar, Marj: %{worst_loss['gross_margin_pct']:.1f})",
+            ],
+            'recommendation': "Bu müşterilerle yapılan satış sözleşmeleri derhal durdurulmalı, taban fiyat uygulanmalı veya peşin liste fiyatına geçilmelidir.",
+            'confidence': 'high',
+        })
+
     return {
         'status': 'PASS',
         'company_average_gross_margin_pct': round(company_margin_pct, 1),
@@ -164,6 +185,9 @@ def build_customer_profitability_analysis(
         'volume_chasers': q2,
         'niche_profit': q3,
         'low_value': q4,
+        'loss_making_customers': loss_making,
+        'low_margin_dilutive_customers': low_margin_dilutive,
+        'high_quality_customers': high_quality,
         'quadrants': {
             'q1_stars': q1,
             'q2_high_volume_low_margin': q2,
