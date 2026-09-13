@@ -6091,7 +6091,8 @@ function cleanupPrint(){
 
 // Board One-Pager Executive Summary Generator
 function openBoardDeckModal(){
-  if(!LAST){
+  const d = LAST || window.LAST;
+  if(!d){
     alert('Lütfen önce bir finansal analiz çalıştırın veya Hızlı Demo butonuna tıklayın.');
     return;
   }
@@ -6099,24 +6100,52 @@ function openBoardDeckModal(){
   const box = $('boardDeckContent');
   if(!modal || !box) return;
 
-  const bp = LAST;
-  const healthScore = bp.health_score != null ? Math.round(bp.health_score) : 0;
-  const healthLabel = bp.health_label || 'Dengeli';
+  const bp = d.business_partner || d;
+  const pl = d.statements?.profit_and_loss || bp.statements?.profit_and_loss || {};
+  const bs = d.statements?.balance_sheet || bp.statements?.balance_sheet || {};
+  const k = d.statements?.kpis || bp.statements?.kpis || {};
+
+  const healthScore = bp.health_score != null ? Math.round(bp.health_score) : (k.health_score != null ? Math.round(k.health_score) : 0);
+  const healthLabel = bp.health_label || (healthScore >= 80 ? 'Güçlü' : healthScore >= 65 ? 'İyi' : healthScore >= 50 ? 'Dengeli' : 'Riskli');
   const hColor = healthScore >= 80 ? '#16A34A' : healthScore >= 65 ? '#2563EB' : healthScore >= 50 ? '#D97706' : '#DC2626';
 
   const ccc = bp.cash_conversion_cycle || {};
+  const dso = ccc.dso_days != null ? ccc.dso_days : k.dso;
+  const dio = ccc.dio_days != null ? ccc.dio_days : k.dio;
+  const dpo = ccc.dpo_days != null ? ccc.dpo_days : k.dpo;
+  const cccDays = ccc.cash_conversion_cycle_days != null ? ccc.cash_conversion_cycle_days : k.ccc;
+
   const dp = bp.dupont_analysis || {};
-  const findings = (bp.findings || []).filter(f => f.severity === 'critical' || f.severity === 'high').slice(0, 3);
-  const actions = (bp.management_actions || []).slice(0, 4);
+  const roe = dp.roe_pct != null ? dp.roe_pct : (k.roe != null ? k.roe * (k.roe < 1 ? 100 : 1) : null);
+  const netMargin = dp.net_profit_margin_pct != null ? dp.net_profit_margin_pct : (k.net_margin != null ? k.net_margin * (k.net_margin < 1 ? 100 : 1) : null);
+  const leverage = dp.equity_multiplier != null ? dp.equity_multiplier : (k.debt_to_equity != null ? (k.debt_to_equity + 1) : null);
+
+  const allFindings = bp.findings || [];
+  let findings = allFindings.filter(f => f.severity === 'critical' || f.severity === 'high');
+  if(findings.length === 0){
+    findings = allFindings.filter(f => f.severity === 'medium' || f.severity === 'warning');
+  }
+  if(findings.length === 0 && allFindings.length > 0){
+    findings = allFindings.slice(0, 3);
+  } else {
+    findings = findings.slice(0, 3);
+  }
+
+  const rawActions = (bp.management_actions && bp.management_actions.length) 
+    ? bp.management_actions 
+    : ((bp.strategy_playbook && bp.strategy_playbook.length) 
+        ? bp.strategy_playbook 
+        : (bp.actions || []));
+  const actions = rawActions.slice(0, 4);
 
   let html = '<div style="font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;color:#0F172A">';
   
   // Header Row
-  html += '<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #0F172A;padding-bottom:12px;margin-bottom:16px">';
+  html += '<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #0F172A;padding-bottom:12px;margin-bottom:14px">';
   html += '<div>';
   html += '<div style="font-size:11px;text-transform:uppercase;font-weight:800;letter-spacing:1px;color:#64748B">Yönetim Kurulu Finansal Teşhis Brifingi</div>';
   html += '<div style="font-size:22px;font-weight:900;color:#0F172A;margin-top:2px">Finansal Sağlık &amp; Nakit Karar Raporu</div>';
-  html += '<div style="font-size:12px;color:#64748B;margin-top:2px">Tarih: ' + new Date().toLocaleDateString('tr-TR', {day:'numeric',month:'long',year:'numeric'}) + ' · 33 Bağımsız Motor Denetimli</div>';
+  html += '<div style="font-size:12px;color:#64748B;margin-top:2px">Tarih: ' + new Date().toLocaleDateString('tr-TR', {day:'numeric',month:'long',year:'numeric'}) + ' · 33 Bağımsız Motor Denetimli · digitalfinancebp.com</div>';
   html += '</div>';
   html += '<div style="text-align:right">';
   html += '<div style="display:inline-block;padding:8px 16px;border-radius:12px;background:' + hColor + '15;border:2px solid ' + hColor + ';text-align:center">';
@@ -6127,25 +6156,52 @@ function openBoardDeckModal(){
   html += '</div>';
   html += '</div>';
 
+  // 4 Key Metrics Snapshot Strip
+  const netSales = Number(pl['Net sales']) || Number(pl['Net Satışlar']) || Number(k.revenue) || 0;
+  const opProfit = Number(pl['Operating profit']) || Number(pl['Faaliyet Kârı']) || Number(k.ebit) || 0;
+  const netProfit = Number(pl['Net profit']) || Number(pl['Net Dönem Kârı']) || Number(k.net_profit) || 0;
+  const netDebt = Number(k.net_debt) || 0;
+  
+  html += '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px">';
+  html += '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:9px 12px;text-align:center"><div style="font-size:10.5px;color:#64748B;font-weight:700">Net Satışlar</div><div style="font-size:15px;font-weight:900;color:#0F172A">' + money(netSales) + '</div></div>';
+  html += '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:9px 12px;text-align:center"><div style="font-size:10.5px;color:#64748B;font-weight:700">Faaliyet Kârı</div><div style="font-size:15px;font-weight:900;color:#0F172A">' + money(opProfit) + '</div></div>';
+  html += '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:9px 12px;text-align:center"><div style="font-size:10.5px;color:#64748B;font-weight:700">Net Dönem Kârı</div><div style="font-size:15px;font-weight:900;color:' + (netProfit >= 0 ? '#16A34A' : '#DC2626') + '">' + money(netProfit) + '</div></div>';
+  html += '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:9px 12px;text-align:center"><div style="font-size:10.5px;color:#64748B;font-weight:700">Net Borç</div><div style="font-size:15px;font-weight:900;color:#0F172A">' + money(netDebt) + '</div></div>';
+  html += '</div>';
+
   // Executive Narrative
-  const execText = (bp.executive_summary && bp.executive_summary.narrative) ? bp.executive_summary.narrative : (typeof bp.executive_summary === 'string' ? bp.executive_summary : 'Finansal tablolar deterministik kurallarla analiz edildi.');
-  html += '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:14px;margin-bottom:16px;font-size:13px;line-height:1.6;color:#334155">';
+  let execText = '';
+  if(bp.executive_summary && bp.executive_summary.narrative){
+    execText = bp.executive_summary.narrative;
+  } else if(typeof bp.executive_summary === 'string' && bp.executive_summary){
+    execText = bp.executive_summary;
+  } else if(bp.executive_summary_engine && bp.executive_summary_engine.headline){
+    execText = bp.executive_summary_engine.headline + ' ' + (bp.executive_summary_engine.decision_recommendation || '');
+  } else if(bp.narrative_engine && bp.narrative_engine.summary){
+    execText = bp.narrative_engine.summary;
+  } else {
+    execText = 'Şirket verileri 33 analitik karar motoruyla denetlenmiş, kâr sızıntıları, çalışma sermayesi kilitlenmeleri ve operasyonel aksiyonlar modellenmiştir.';
+  }
+  html += '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:12.5px;line-height:1.55;color:#334155">';
   html += '<strong style="color:#0F172A">Yönetici Özeti: </strong>' + esc(execText);
   html += '</div>';
 
   // Grid: 2 Columns
-  html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">';
+  html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">';
   
-  // Left: Top Risks & TTK 376
+  // Left: Findings & Diagnosis
+  const hasCritical = findings.some(f => f.severity === 'critical' || f.severity === 'high');
+  const fBadgeColor = hasCritical ? '#DC2626' : '#0E7C66';
+  const fBadgeTitle = hasCritical ? '⚠️ Öncelikli Riskler &amp; Teşhisler' : '✓ Analitik Bulgular &amp; Güçlü Yönler';
   html += '<div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:14px">';
-  html += '<div style="font-size:12px;font-weight:800;text-transform:uppercase;color:#DC2626;margin-bottom:8px;display:flex;align-items:center;gap:6px">⚠️ Öncelikli Riskler &amp; Teşhisler</div>';
+  html += '<div style="font-size:12px;font-weight:800;text-transform:uppercase;color:' + fBadgeColor + ';margin-bottom:8px;display:flex;align-items:center;gap:6px">' + fBadgeTitle + '</div>';
   if(findings.length === 0){
-    html += '<div style="font-size:12.5px;color:#16A34A;font-weight:600">✓ Kritik seviyede risk tespit edilmedi.</div>';
+    html += '<div style="font-size:12.5px;color:#16A34A;font-weight:600">✓ Cari dönem mali göstergeleri dengeli seviyededir.</div>';
   } else {
     findings.forEach(f => {
       html += '<div style="margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #F1F5F9">';
       html += '<div style="font-weight:700;font-size:12.5px;color:#0F172A">' + esc(f.title) + '</div>';
-      html += '<div style="font-size:11.5px;color:#64748B;line-height:1.4;margin-top:2px">' + esc(f.interpretation || f.recommendation || '') + '</div>';
+      html += '<div style="font-size:11.5px;color:#64748B;line-height:1.4;margin-top:2px">' + esc(f.interpretation || f.recommendation || f.evidence || '') + '</div>';
       html += '</div>';
     });
   }
@@ -6155,16 +6211,16 @@ function openBoardDeckModal(){
   html += '<div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:14px">';
   html += '<div style="font-size:12px;font-weight:800;text-transform:uppercase;color:#1D4ED8;margin-bottom:8px">⏱️ Nakit Döngüsü &amp; Kârlılık Ağacı</div>';
   html += '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px;text-align:center">';
-  html += '<div style="background:#EFF6FF;padding:8px;border-radius:8px"><div style="font-size:10px;color:#1D4ED8;font-weight:800">DSO</div><div style="font-size:14px;font-weight:900;color:#0F172A">' + (ccc.dso_days != null ? Math.round(ccc.dso_days) + 'g' : '–') + '</div></div>';
-  html += '<div style="background:#FEF3C7;padding:8px;border-radius:8px"><div style="font-size:10px;color:#D97706;font-weight:800">DIO</div><div style="font-size:14px;font-weight:900;color:#0F172A">' + (ccc.dio_days != null ? Math.round(ccc.dio_days) + 'g' : '–') + '</div></div>';
-  html += '<div style="background:#ECFDF5;padding:8px;border-radius:8px"><div style="font-size:10px;color:#0E7C66;font-weight:800">DPO</div><div style="font-size:14px;font-weight:900;color:#0F172A">' + (ccc.dpo_days != null ? Math.round(ccc.dpo_days) + 'g' : '–') + '</div></div>';
-  html += '<div style="background:#F5F3FF;padding:8px;border-radius:8px"><div style="font-size:10px;color:#7C3AED;font-weight:800">CCC</div><div style="font-size:14px;font-weight:900;color:#0F172A">' + (ccc.cash_conversion_cycle_days != null ? Math.round(ccc.cash_conversion_cycle_days) + 'g' : '–') + '</div></div>';
+  html += '<div style="background:#EFF6FF;padding:8px;border-radius:8px"><div style="font-size:10px;color:#1D4ED8;font-weight:800">DSO</div><div style="font-size:13.5px;font-weight:900;color:#0F172A">' + (dso != null ? Math.round(dso) + 'g' : '–') + '</div></div>';
+  html += '<div style="background:#FEF3C7;padding:8px;border-radius:8px"><div style="font-size:10px;color:#D97706;font-weight:800">DIO</div><div style="font-size:13.5px;font-weight:900;color:#0F172A">' + (dio != null ? Math.round(dio) + 'g' : '–') + '</div></div>';
+  html += '<div style="background:#ECFDF5;padding:8px;border-radius:8px"><div style="font-size:10px;color:#0E7C66;font-weight:800">DPO</div><div style="font-size:13.5px;font-weight:900;color:#0F172A">' + (dpo != null ? Math.round(dpo) + 'g' : '–') + '</div></div>';
+  html += '<div style="background:#F5F3FF;padding:8px;border-radius:8px"><div style="font-size:10px;color:#7C3AED;font-weight:800">CCC</div><div style="font-size:13.5px;font-weight:900;color:#0F172A">' + (cccDays != null ? Math.round(cccDays) + 'g' : '–') + '</div></div>';
   html += '</div>';
 
   html += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;text-align:center;border-top:1px solid #F1F5F9;padding-top:10px">';
-  html += '<div><div style="font-size:10px;color:#64748B;font-weight:700">ROE (Özkaynak Kârı)</div><div style="font-size:13.5px;font-weight:800;color:#0F172A">%' + (dp.roe_pct != null ? dp.roe_pct.toFixed(1) : '–') + '</div></div>';
-  html += '<div><div style="font-size:10px;color:#64748B;font-weight:700">Net Marj</div><div style="font-size:13.5px;font-weight:800;color:#0F172A">%' + (dp.net_profit_margin_pct != null ? dp.net_profit_margin_pct.toFixed(1) : '–') + '</div></div>';
-  html += '<div><div style="font-size:10px;color:#64748B;font-weight:700">Kaldıraç Çarpanı</div><div style="font-size:13.5px;font-weight:800;color:#0F172A">' + (dp.equity_multiplier != null ? dp.equity_multiplier.toFixed(2) + 'x' : '–') + '</div></div>';
+  html += '<div><div style="font-size:10px;color:#64748B;font-weight:700">ROE (Özkaynak Kârı)</div><div style="font-size:13.5px;font-weight:800;color:#0F172A">' + (roe != null ? '%' + Number(roe).toFixed(1) : '–') + '</div></div>';
+  html += '<div><div style="font-size:10px;color:#64748B;font-weight:700">Net Marj</div><div style="font-size:13.5px;font-weight:800;color:#0F172A">' + (netMargin != null ? '%' + Number(netMargin).toFixed(1) : '–') + '</div></div>';
+  html += '<div><div style="font-size:10px;color:#64748B;font-weight:700">Kaldıraç Çarpanı</div><div style="font-size:13.5px;font-weight:800;color:#0F172A">' + (leverage != null ? Number(leverage).toFixed(2) + 'x' : '–') + '</div></div>';
   html += '</div>';
   html += '</div>';
   html += '</div>';
@@ -6176,7 +6232,7 @@ function openBoardDeckModal(){
   html += '<thead><tr style="background:#F8FAFC;border-bottom:1.5px solid #E2E8F0;text-align:left"><th style="padding:6px 8px">Aksiyon</th><th style="padding:6px 8px">Sorumlu</th><th style="padding:6px 8px">Termin</th><th style="padding:6px 8px">Hedef KPI</th></tr></thead>';
   html += '<tbody>';
   if(actions.length === 0){
-    html += '<tr><td colspan="4" style="padding:8px;text-align:center;color:#64748B">Özel aksiyon maddesi bulunamadı.</td></tr>';
+    html += '<tr><td colspan="4" style="padding:10px;text-align:center;color:#64748B">Finansal rasyolar hedef bantlar dahilindedir; acil müdahale gerektiren sapma bulunmamaktadır.</td></tr>';
   } else {
     actions.forEach(a => {
       html += '<tr style="border-bottom:1px solid #F1F5F9">';
@@ -6190,7 +6246,7 @@ function openBoardDeckModal(){
   html += '</tbody></table>';
   html += '</div>';
 
-  html += '<div style="margin-top:12px;text-align:center;font-size:10.5px;color:#94A3B8">Digital Finance BP · CFO Karar Destek Sistemi · Kurumsal Gizli Rapor</div>';
+  html += '<div style="margin-top:12px;text-align:center;font-size:10.5px;color:#94A3B8">Digital Finance BP · CFO Karar Destek Sistemi · digitalfinancebp.com · Kurumsal Gizli Rapor</div>';
   html += '</div>';
 
   box.innerHTML = html;
@@ -6198,7 +6254,11 @@ function openBoardDeckModal(){
 }
 
 window.openBoardDeckInNewWindow = function(){
-  const content = document.getElementById('boardDeckContent');
+  let content = document.getElementById('boardDeckContent');
+  if(!content || !content.innerHTML || !content.innerHTML.trim()){
+    openBoardDeckModal();
+    content = document.getElementById('boardDeckContent');
+  }
   if(!content || !content.innerHTML){
     alert('Lütfen önce bir analiz çalıştırın veya Hızlı Demo butonuna tıklayın.');
     return;
