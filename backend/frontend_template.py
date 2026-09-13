@@ -352,10 +352,24 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 .kobiPills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:18px auto 26px}
 .kobiPill{padding:9px 18px;border-radius:999px;font-size:12.5px;font-weight:700;border:1.5px solid #CBD5E1;background:#FFFFFF;color:#475569;cursor:pointer;transition:all .2s ease}
 .kobiPill:hover{border-color:#1D4ED8;color:#1D4ED8;background:#EFF6FF}
-.kobiPill.active{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8;box-shadow:0 4px 14px rgba(29,78,216,.25)}
-.kobiGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.kobiCard{background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:20px;padding:24px;box-shadow:0 6px 20px rgba(15,27,45,.04);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;display:flex;flex-direction:column;justify-content:space-between}
-.kobiCard:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(15,27,45,.08);border-color:#CBD5E1}
+.kobiSliderWrap{position:relative;margin-top:20px}
+.kobiSliderBar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px;padding:0 4px}
+.kobiSwipeHint{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:#64748B;background:#F8FAFC;border:1px solid #E2E8F0;padding:6px 14px;border-radius:999px}
+.kobiSliderNav{display:flex;align-items:center;gap:10px}
+.kobiSlideBadge{font-size:12px;font-weight:800;color:#1D4ED8;background:#EFF6FF;border:1px solid #DBEAFE;padding:6px 14px;border-radius:999px}
+.kobiNavBtn{width:40px;height:40px;border-radius:50%;border:1.5px solid #CBD5E1;background:#FFFFFF;color:#0F172A;font-size:22px;line-height:1;font-weight:700;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 3px 10px rgba(15,27,45,.06);transition:all .2s ease;user-select:none}
+.kobiNavBtn:hover{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8;box-shadow:0 6px 18px rgba(29,78,216,.28);transform:scale(1.06)}
+.kobiNavBtn:active{transform:scale(0.96)}
+.kobiSliderTrack{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:10px 4px 22px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.kobiSliderTrack::-webkit-scrollbar{display:none}
+.kobiCard{flex:0 0 420px;max-width:420px;scroll-snap-align:start;scroll-snap-stop:normal;background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:20px;padding:24px;box-shadow:0 6px 20px rgba(15,27,45,.04);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;display:flex;flex-direction:column;justify-content:space-between}
+.kobiCard:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(15,27,45,.10);border-color:#93C5FD}
+.kobiCardImgWrap{border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A;position:relative}
+.kobiCardImgWrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+.kobiCard:hover .kobiCardImgWrap img{transform:scale(1.03)}
+.kobiDotsWrap{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:8px}
+.kobiDot{width:8px;height:8px;border-radius:999px;background:#CBD5E1;transition:all .25s ease;cursor:pointer}
+.kobiDot.active{width:26px;background:#1D4ED8;box-shadow:0 2px 8px rgba(29,78,216,.3)}
 .kobiTag{display:inline-block;padding:4px 10px;border-radius:6px;font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin-bottom:12px;width:fit-content}
 .kobiTag.cash{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE}
 .kobiTag.profit{background:#FEF3C7;color:#B45309;border:1px solid #FDE68A}
@@ -368,7 +382,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 .kobiPrescription b{color:#166534;display:block;margin-bottom:3px;font-weight:800}
 .kobiCta{display:inline-flex;align-items:center;justify-content:space-between;font-size:12.5px;font-weight:800;color:#1D4ED8;text-decoration:none;padding:10px 14px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;transition:all .15s ease}
 .kobiCta:hover{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8}
-@media(max-width:900px){.kobiGrid{grid-template-columns:1fr}}
+@media(max-width:900px){.kobiCard{flex:0 0 350px;max-width:350px}}
+@media(max-width:600px){.kobiCard{flex:0 0 86vw;max-width:86vw}.kobiSwipeHint{font-size:11px;padding:5px 10px}}
 
 .secGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .secCard{padding:22px}
@@ -558,12 +573,26 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </div>
 </div>
 
-<div class="kobiGrid" id="kobiGridCards">
+<div class="kobiSliderWrap">
+  <div class="kobiSliderBar">
+    <div class="kobiSwipeHint">
+      <span style="font-size:14px">👈</span>
+      <span>Kartları sağa / sola kaydırarak inceleyin</span>
+      <span style="font-size:14px">👉</span>
+    </div>
+    <div class="kobiSliderNav">
+      <span class="kobiSlideBadge" id="kobiSliderCounter">1 / 10 Teşhis</span>
+      <button type="button" class="kobiNavBtn" onclick="slideKobi(-1)" aria-label="Önceki Teşhis" title="Önceki">‹</button>
+      <button type="button" class="kobiNavBtn" onclick="slideKobi(1)" aria-label="Sonraki Teşhis" title="Sonraki">›</button>
+    </div>
+  </div>
+
+  <div class="kobiSliderTrack" id="kobiSliderTrack">
   <!-- Kart 1 -->
   <div class="kobiCard" data-category="cash">
     <div>
       <span class="kobiTag cash">💵 1. KÂR &amp; NAKİT ÇELİŞKİSİ</span>
-      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+      <div class="kobiCardImgWrap">
         <img src="/static/ads/kobi_1_kar_vs_kasa.jpg" alt="1. Kâr ve Nakit Çelişkisi" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
       </div>
       <div class="kobiTitle">"Muhasebeciniz 'Bu Ay Kârdayız' Diyor, Ama Siz Ay Sonu Maaşları Nasıl Ödeyeceğinizi Düşünüyorsunuz."</div>
@@ -588,7 +617,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="cash">
     <div>
       <span class="kobiTag cash">💵 2. AÇIK HESAP &amp; TERSİNE BANKACILIK</span>
-      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+      <div class="kobiCardImgWrap">
         <img src="/static/ads/kobi_2_acik_hesap.jpg" alt="2. Açık Hesap ve Tersine Bankacılık" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
       </div>
       <div class="kobiTitle">"Siz Mal mı Satıyorsunuz, Yoksa Müşterilerinize Faizsiz Kredi Dağıtan Banka mısınız?"</div>
@@ -613,7 +642,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="profit">
     <div>
       <span class="kobiTag profit">📊 3. ÖLÜ STOK MEZARLIĞI</span>
-      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+      <div class="kobiCardImgWrap">
         <img src="/static/ads/kobi_3_olu_stok.jpg" alt="3. Ölü Stok Mezarlığı" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
       </div>
       <div class="kobiTitle">"Deponuz Ağzına Kadar Mal Dolu Diye Zenginleştiğinizi mi Sanıyorsunuz?"</div>
@@ -638,7 +667,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="mgmt">
     <div>
       <span class="kobiTag mgmt">🏛️ 4. MİZAN ÇİLESİ VS. KARAR MASASI</span>
-      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+      <div class="kobiCardImgWrap">
         <img src="/static/ads/kobi_4_mizan_vs_karar.jpg" alt="4. Mizan Çilesi vs Karar Masası" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
       </div>
       <div class="kobiTitle">"Muhasebeciniz Size Çıkacak Vergiyi Söyler; Parayı Nereden Bulacağınızı Söylemez."</div>
@@ -663,7 +692,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="cash">
     <div>
       <span class="kobiTag cash">💵 5. CİRO ALDANMASI &amp; KASA GERÇEĞİ</span>
-      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+      <div class="kobiCardImgWrap">
         <img src="/static/ads/kobi_5_ciro_aldanmasi.jpg" alt="5. Ciro Aldanması ve Kasa Gerçeği" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
       </div>
       <div class="kobiTitle">"50 Milyon Ciro Yapıp Ay Sonu Çek Öderken Ter Döken Patronlardan mısınız?"</div>
@@ -688,7 +717,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="mgmt">
     <div>
       <span class="kobiTag mgmt">🏛️ 6. MÜŞTERİ REHİNESİ &amp; KONSANTRASYON</span>
-      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+      <div class="kobiCardImgWrap">
         <img src="/static/ads/kobi_6_musteri_rehinesi.jpg" alt="6. Müşteri Rehinesi ve Konsantrasyon" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
       </div>
       <div class="kobiTitle">"Cironuzun Yarısını Tek Bir Müşteriye Yapıyorsanız; Patron Siz Değilsiniz, O Müşteridir."</div>
@@ -713,7 +742,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="profit">
     <div>
       <span class="kobiTag profit">📊 7. FİYATLAMA GÜCÜ &amp; MARJ KORUMA</span>
-      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+      <div class="kobiCardImgWrap">
         <img src="/static/ads/kobi_7_fiyat_gucu.jpg" alt="7. Fiyatlama Gücü ve Marj Koruma" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
       </div>
       <div class="kobiTitle">"Fiyatlarınıza Sadece %3 Zam Yapsanız Kasaya Kaç Yüz Bin Lira Kalır, Hiç Hesapladınız mı?"</div>
@@ -738,7 +767,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="cash">
     <div>
       <span class="kobiTag cash">💵 8. KREDİ KAPANINDAN ÇIKIŞ</span>
-      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+      <div class="kobiCardImgWrap">
         <img src="/static/ads/kobi_8_kredi_kapani.jpg" alt="8. Kredi Kapanından Çıkış" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
       </div>
       <div class="kobiTitle">"Faizlerin %50 Olduğu Yerde, Şirketi Banka Kredisiyle Döndüremezsiniz."</div>
@@ -763,7 +792,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="mgmt">
     <div>
       <span class="kobiTag mgmt">🏛️ 9. ORTAKLAR MASASINDA FİKİR BİRLİĞİ</span>
-      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+      <div class="kobiCardImgWrap">
         <img src="/static/ads/kobi_9_ortaklar_masasi.jpg" alt="9. Ortaklar Masasında Fikir Birliği" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
       </div>
       <div class="kobiTitle">"Her Ay Ortaklarınızla 'İşler İyiydi de Bu Para Nereye Gitti' Kavgası Yapmaktan Bıkmadınız mı?"</div>
@@ -788,7 +817,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiCard" data-category="profit">
     <div>
       <span class="kobiTag profit">📊 10. CFO ZEKA ARBİTRAJI</span>
-      <div style="border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,0.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A">
+      <div class="kobiCardImgWrap">
         <img src="/static/ads/kobi_10_cfo_arbitraji.jpg" alt="10. CFO Zeka Arbitrajı" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
       </div>
       <div class="kobiTitle">"Büyük Holdingler Her Ay Milyonluk Finans Kadrolarıyla Şirket Yönetiyor. Siz Hâlâ Hissiyatla mı Karar Veriyorsunuz?"</div>
@@ -808,15 +837,99 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <span>→</span>
     </a>
   </div>
+  </div>
+  <div class="kobiDotsWrap" id="kobiDotsWrap"></div>
 </div>
 
 <script>
+function slideKobi(direction) {
+  var track = document.getElementById('kobiSliderTrack');
+  if (!track) return;
+  var visibleCards = Array.from(track.querySelectorAll('.kobiCard')).filter(function(c) {
+    return c.style.display !== 'none';
+  });
+  if (!visibleCards.length) return;
+  var cardWidth = visibleCards[0].offsetWidth + 22;
+  track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+}
+
+function initKobiSlider() {
+  var track = document.getElementById('kobiSliderTrack');
+  var dotsWrap = document.getElementById('kobiDotsWrap');
+  var counter = document.getElementById('kobiSliderCounter');
+  if (!track || !dotsWrap) return;
+
+  function getVisibleCards() {
+    return Array.from(track.querySelectorAll('.kobiCard')).filter(function(c) {
+      return c.style.display !== 'none';
+    });
+  }
+
+  function updateDotsAndCounter() {
+    var visible = getVisibleCards();
+    if (!visible.length) {
+      if (counter) counter.textContent = '0 / 0 Teşhis';
+      return;
+    }
+    var trackRect = track.getBoundingClientRect();
+    var activeIdx = 0;
+    var minDiff = Infinity;
+
+    visible.forEach(function(c, idx) {
+      var r = c.getBoundingClientRect();
+      var diff = Math.abs(r.left - trackRect.left);
+      if (diff < minDiff) {
+        minDiff = diff;
+        activeIdx = idx;
+      }
+    });
+
+    if (counter) {
+      counter.textContent = (activeIdx + 1) + ' / ' + visible.length + ' Teşhis';
+    }
+
+    var dots = dotsWrap.querySelectorAll('.kobiDot');
+    dots.forEach(function(dot, idx) {
+      if (idx === activeIdx) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+
+  function rebuildDots() {
+    var visible = getVisibleCards();
+    dotsWrap.innerHTML = '';
+    visible.forEach(function(c, idx) {
+      var dot = document.createElement('div');
+      dot.className = 'kobiDot' + (idx === 0 ? ' active' : '');
+      dot.title = 'Teşhis ' + (idx + 1);
+      dot.onclick = function() {
+        c.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      };
+      dotsWrap.appendChild(dot);
+    });
+    updateDotsAndCounter();
+  }
+
+  var scrollTimer = null;
+  track.addEventListener('scroll', function() {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(updateDotsAndCounter, 50);
+  }, { passive: true });
+
+  window._rebuildKobiSlider = rebuildDots;
+  rebuildDots();
+}
+
 function filterKobiShowcase(category, btn) {
   var pills = document.querySelectorAll('.kobiPill');
   for (var i = 0; i < pills.length; i++) {
     pills[i].classList.remove('active');
   }
   if (btn) btn.classList.add('active');
+
   var cards = document.querySelectorAll('.kobiCard');
   for (var j = 0; j < cards.length; j++) {
     var c = cards[j];
@@ -826,6 +939,20 @@ function filterKobiShowcase(category, btn) {
       c.style.display = 'none';
     }
   }
+
+  var track = document.getElementById('kobiSliderTrack');
+  if (track) {
+    track.scrollTo({ left: 0, behavior: 'smooth' });
+  }
+  if (window._rebuildKobiSlider) {
+    window._rebuildKobiSlider();
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initKobiSlider);
+} else {
+  initKobiSlider();
 }
 </script>
 </section></div>
