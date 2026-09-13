@@ -4099,6 +4099,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
           </div>
         </div>
         
+        <div id="reconciliationTopAlert" style="display:none;margin-bottom:16px"></div>
+
         <div class="grid3" style="gap:14px">
           <!-- Kart 1: Kâr Durumu ve Kasaya Giren Nakit -->
           <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:16px">
@@ -5212,10 +5214,11 @@ function render(d){
   const pq=bp.profit_quality_engine||{};
   $('liquidity').innerHTML=[['Cari Oran (Dönen Varlık / Borç)',rat(k.current_ratio),'1.5 - 2.0 ideal seviye'],['Nakit Oran (Hazır Değer / Borç)',rat(k.cash_ratio),'hazır nakit / kısa vadeli borç'],['Kaldıraç (Borç / Özkaynak)',rat(k.debt_to_equity),'düşük olması güvenlidir'],['Borç / Aktif Oranı',pct(bp.derived_metrics?.debt_to_assets_pct),'finansman yoğunluğu']].map(x=>metric(x[0],x[1],x[2])).join('');
   $('leverageCommentary').innerHTML=leverageNarrative(bp.findings);
+    const daysPeriod = c.days_in_period_assumption || 365;
     const cccCards = [
-    { code: 'DSO', title: 'Tahsilat Vadesi', days: c.dso_days, sub: 'Müşteri açık hesap süresi', color: '#1D4ED8', tip: 'DSO: (Alacaklar / Net Satış) × 365. Müşterilerin ortalama ödeme süresi. Uzaması sermayeyi kilitler.' },
-    { code: 'DIO', title: 'Stokta Kalma', days: c.dio_days, sub: 'Depoda bekleme süresi', color: '#D97706', tip: 'DIO: (Stoklar / SMM) × 365. Depoda ortalama bekleme süresi. Uzaması faiz maliyeti yaratır.' },
-    { code: 'DPO', title: 'Tedarikçi Vadesi', days: c.dpo_days, sub: 'Tedarikçiye ödeme süresi', color: '#0E7C66', tip: 'DPO: (Borçlar / SMM) × 365. Tedarikçiye ödeme süresi. Uzaması bedelsiz işletme finansmanı sağlar.' },
+    { code: 'DSO', title: 'Tahsilat Vadesi', days: c.dso_days, sub: 'Müşteri açık hesap süresi', color: '#1D4ED8', tip: 'DSO: (Alacaklar / Net Satış) × ' + daysPeriod + '. Müşterilerin ortalama ödeme süresi. Uzaması sermayeyi kilitler.' },
+    { code: 'DIO', title: 'Stokta Kalma', days: c.dio_days, sub: 'Depoda bekleme süresi', color: '#D97706', tip: 'DIO: (Stoklar / SMM) × ' + daysPeriod + '. Depoda ortalama bekleme süresi. Uzaması faiz maliyeti yaratır.' },
+    { code: 'DPO', title: 'Tedarikçi Vadesi', days: c.dpo_days, sub: 'Tedarikçiye ödeme süresi', color: '#0E7C66', tip: 'DPO: (Borçlar / SMM) × ' + daysPeriod + '. Tedarikçiye ödeme süresi. Uzaması bedelsiz işletme finansmanı sağlar.' },
     { code: 'CCC', title: 'Nakit Çevrim', days: c.cash_conversion_cycle_days, sub: 'Kasadaki nakdin dönüş hızı', color: '#7C3AED', tip: 'CCC = DSO + DIO - DPO. Hammaddeden tahsilata kadar nakdin bağlı kaldığı net gün sayısıdır.' }
   ];
   $('cccMetric').textContent = c.cash_conversion_cycle_days == null ? '–' : Math.round(Number(c.cash_conversion_cycle_days)) + ' gün';
@@ -6348,6 +6351,7 @@ function renderWorkingCapitalLeak(bp, pl, bs, k, c, d){
   const el = $('workingCapitalLeakEngineCard');
   if(!el) return;
 
+  const daysInYear = Number(c?.days_in_period_assumption) || Number(d?.period_metadata?.period_days) || 365.0;
   const accounts = d?.canonical_model?.accounts || [];
   const sales = Number(pl?.['Net sales']) || Number(pl?.['Net Satışlar']) || Number(pl?.['Revenue']) || 0;
   const dso = Number(c?.dso_days) || 0;
@@ -6362,7 +6366,7 @@ function renderWorkingCapitalLeak(bp, pl, bs, k, c, d){
       .reduce((sum, a) => sum + (Number(a.balance) || 0), 0);
   }
   if (arVal <= 0 && dso > 0 && sales > 0) {
-    arVal = (sales / 365) * dso;
+    arVal = (sales / daysInYear) * dso;
   }
 
   // 2. Inventory (150-158): k.inventory, accounts (150-158), or DIO run-rate
@@ -6377,7 +6381,7 @@ function renderWorkingCapitalLeak(bp, pl, bs, k, c, d){
   }
   const cogs = Math.abs(Number(pl?.['COGS']) || Number(pl?.['Cost of goods sold']) || 0) || (sales > 0 ? sales * 0.70 : 0);
   if (invVal <= 0 && dio > 0 && cogs > 0) {
-    invVal = (cogs / 365) * dio;
+    invVal = (cogs / daysInYear) * dio;
   }
 
   // 3. Payables (320-329): k.payables, accounts (320/321/329), or DPO run-rate
@@ -6391,7 +6395,7 @@ function renderWorkingCapitalLeak(bp, pl, bs, k, c, d){
       .reduce((sum, a) => sum + Math.abs(Number(a.balance) || 0), 0);
   }
   if (apVal <= 0 && dpo > 0 && cogs > 0) {
-    apVal = (cogs / 365) * dpo;
+    apVal = (cogs / daysInYear) * dpo;
   }
 
   // Net working capital locked in CCC & 45% annual financing cost proxy
@@ -6410,8 +6414,8 @@ function renderWorkingCapitalLeak(bp, pl, bs, k, c, d){
   if($('wcLeakCostVal')) $('wcLeakCostVal').textContent = money(annualLeak);
 
   // Daily run-rates for realistic slider math
-  let dailySales = sales > 0 ? (sales / 365) : (arVal > 0 && dso > 0 ? arVal / dso : (arVal > 0 ? arVal / 60 : 10000));
-  let dailyCogs = cogs > 0 ? (cogs / 365) : (dailySales * 0.70);
+  let dailySales = sales > 0 ? (sales / daysInYear) : (arVal > 0 && dso > 0 ? arVal / dso : (arVal > 0 ? arVal / 60 : 10000));
+  let dailyCogs = cogs > 0 ? (cogs / daysInYear) : (dailySales * 0.70);
 
   function recalcMultiSimulator(){
     const dsoDays = parseInt($('wcSliderDso')?.value || 0, 10);
@@ -6482,10 +6486,74 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
   const el = $('executiveSnapshotSection');
   if(!el) return;
   
+  const daysInYear = Number(c?.days_in_period_assumption) || Number(d?.period_metadata?.period_days) || 365.0;
   const netIncome = Number(pl?.['Net profit']) || Number(pl?.['Net Dönem Kârı']) || 0;
   const cb = bp?.cash_bridge_engine || {};
   const ocf = cb?.operating_cash_flow_proxy;
   const crp = cb?.cash_realization_pct;
+
+  // Cross-source Reconciliation & Data Quality Check
+  const recon = d?.data_hub?.reconciliation;
+  const reconChecks = recon?.checks || [];
+  const materialMismatches = reconChecks.filter(chk => chk.status === 'material_difference' || (chk.difference_pct != null && Math.abs(chk.difference_pct) > 5));
+  const arAging = d?.ar_aging || d?.data_hub?.analysis?.ar_aging;
+  const arAgingDso = arAging?.weighted_dso != null ? Number(arAging.weighted_dso) : null;
+  const glDso = Number(c?.dso_days) || 0;
+  const dsoMismatch = (arAgingDso != null && glDso > 0 && Math.abs(arAgingDso - glDso) > 2.0);
+
+  const auditStatusEl = $('snapAuditStatus');
+  if(auditStatusEl){
+    if(materialMismatches.length > 0 || dsoMismatch){
+      auditStatusEl.style.color = '#B45309';
+      auditStatusEl.style.background = '#FEF3C7';
+      auditStatusEl.style.borderColor = '#FCD34D';
+      auditStatusEl.innerHTML = '⚠️ Mizan &amp; Alt Defter Farkı (Caution)';
+    } else {
+      auditStatusEl.style.color = '#16A34A';
+      auditStatusEl.style.background = '#DCFCE7';
+      auditStatusEl.style.borderColor = '#BBF7D0';
+      auditStatusEl.innerHTML = '✓ %100 Bilanço &amp; Defter Denkliği Doğrulandı';
+    }
+  }
+
+  const alertEl = $('reconciliationTopAlert');
+  if(alertEl){
+    if(materialMismatches.length > 0 || dsoMismatch){
+      const itemsHtml = materialMismatches.map(m => {
+        const glStr = '₺' + Math.round(Number(m.gl_value) || 0).toLocaleString('tr-TR');
+        const srcStr = '₺' + Math.round(Number(m.source_value) || 0).toLocaleString('tr-TR');
+        const pctStr = m.difference_pct != null ? '%' + Math.abs(m.difference_pct).toFixed(1) : '';
+        return '<li><b>' + esc(m.name) + ':</b> Genel Mizan ' + glStr + ' vs Alt Defter ' + srcStr + (pctStr ? ' (Fark: ' + pctStr + ')' : '') + '</li>';
+      }).join('');
+
+      let dsoNote = '';
+      if(dsoMismatch){
+        dsoNote = '<div style="margin-top:6px;font-weight:700;color:#92400E">📌 DSO Çift Kaynak Analizi: Genel Mizan DSO: <b>' + glDso.toFixed(1) + ' gün</b> iken, Yaşlandırma Alt Defteri DSO: <b>' + arAgingDso.toFixed(1) + ' gün</b> seviyesindedir.</div>';
+      }
+
+      alertEl.style.display = 'block';
+      alertEl.innerHTML = 
+        '<div style="background:#FFFBEB;border:1.5px solid #F59E0B;border-radius:12px;padding:14px 18px;color:#92400E;box-shadow:0 4px 12px rgba(245,158,11,0.08)">' +
+          '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;font-weight:800;color:#B45309;margin-bottom:6px">' +
+            '<span>⚠️ ÖNEMLİ VERİ MUTABAKAT UYARISI (Data Trust Caution)</span>' +
+            '<span style="background:#FEF3C7;border:1px solid #FDE68A;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700">Veri Güvenilirlik Skoru: Caution</span>' +
+          '</div>' +
+          '<div style="font-size:12px;line-height:1.5">' +
+            'Genel muhasebe mizanı ile sisteme yüklenen operasyonel alt defterler arasında mutabakat farkı mevcuttur:' +
+            '<ul style="margin:6px 0 6px 18px;padding:0">' +
+              itemsHtml +
+            '</ul>' +
+            dsoNote +
+            '<div style="margin-top:6px;color:#78350F;font-size:11.5px">' +
+              '<b>Deterministik Karar Prensibi:</b> Raporun tepe yönetim özetleri ve yasal tabloları Genel Muhasebe (Mizan) kayıtlarını esas almaktadır. Üst yönetim kararları öncesinde muhasebe ile operasyonel alt defter mutabakatının sağlanması tavsiye edilir.' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+    } else {
+      alertEl.style.display = 'none';
+      alertEl.innerHTML = '';
+    }
+  }
   
   const snapProfitVal = $('snapProfitQualityVal');
   const snapProfitDesc = $('snapProfitQualityDesc');
@@ -6519,11 +6587,15 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
     const dio = Number(c?.dio_days) || 0;
     
     if(rec >= inv && rec > 0){
-      const annualFinanceCost = Math.round(rec * 0.45 * (dso / 365));
+      const annualFinanceCost = Math.round(rec * 0.45 * (dso / daysInYear));
       snapLeakVal.innerHTML = money(rec) + ' <span style="font-size:12px;font-weight:600;color:#DC2626">Müşteri Alacakları</span>';
-      snapLeakDesc.textContent = Math.round(dso) + ' günlük açık hesap vadesi. Şirketin müşterileri finanse etme yıllık tahmini faiz yükü: ~' + money(annualFinanceCost) + '.';
+      let extraDsoText = '';
+      if(dsoMismatch){
+        extraDsoText = ' (Alt defter yaşlandırma: ' + arAgingDso.toFixed(1) + ' gün)';
+      }
+      snapLeakDesc.textContent = Math.round(dso) + ' günlük açık hesap vadesi' + extraDsoText + '. Şirketin müşterileri finanse etme yıllık tahmini faiz yükü: ~' + money(annualFinanceCost) + '.';
     } else if(inv > 0){
-      const annualFinanceCost = Math.round(inv * 0.45 * (dio / 365));
+      const annualFinanceCost = Math.round(inv * 0.45 * (dio / daysInYear));
       snapLeakVal.innerHTML = money(inv) + ' <span style="font-size:12px;font-weight:600;color:#DC2626">Depodaki Stok</span>';
       snapLeakDesc.textContent = Math.round(dio) + ' günlük stok bekleme süresi. Depoda uyuyan sermayenin yıllık tahmini faiz sızıntısı: ~' + money(annualFinanceCost) + '.';
     } else {
@@ -6596,6 +6668,7 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
   const desk = $('ceoDiagnosticSection');
   if(!desk) return;
 
+  const daysInYear = Number(c?.days_in_period_assumption) || Number(d?.period_metadata?.period_days) || 365.0;
   const accounts = d?.canonical_model?.accounts || [];
   const sales = Number(pl?.['Net sales']) || Number(pl?.['Net Satışlar']) || Number(pl?.['Revenue']) || 0;
   const cogs = Math.abs(Number(pl?.['COGS']) || Number(pl?.['Cost of goods sold']) || 0) || (sales > 0 ? sales * 0.70 : 0);
@@ -6612,7 +6685,7 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
     arVal = accounts.filter(a => String(a.account_code).startsWith('120') || String(a.account_code).startsWith('121'))
       .reduce((sum, a) => sum + (Number(a.balance) || 0), 0);
   }
-  if (arVal <= 0 && dso > 0 && sales > 0) arVal = (sales / 365) * dso;
+  if (arVal <= 0 && dso > 0 && sales > 0) arVal = (sales / daysInYear) * dso;
 
   // 2. Inventory (150-158)
   let invVal = Number(k?.inventory) || 0;
@@ -6622,7 +6695,7 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
       return code.startsWith('150') || code.startsWith('151') || code.startsWith('152') || code.startsWith('153') || code.startsWith('157') || code.startsWith('158');
     }).reduce((sum, a) => sum + (Number(a.balance) || 0), 0);
   }
-  if (invVal <= 0 && dio > 0 && cogs > 0) invVal = (cogs / 365) * dio;
+  if (invVal <= 0 && dio > 0 && cogs > 0) invVal = (cogs / daysInYear) * dio;
 
   // 3. Payables (320-329)
   let apVal = Math.abs(Number(k?.payables) || 0);
@@ -6632,13 +6705,13 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
       return code.startsWith('320') || code.startsWith('321') || code.startsWith('322') || code.startsWith('329');
     }).reduce((sum, a) => sum + Math.abs(Number(a.balance) || 0), 0);
   }
-  if (apVal <= 0 && dpo > 0 && cogs > 0) apVal = (cogs / 365) * dpo;
+  if (apVal <= 0 && dpo > 0 && cogs > 0) apVal = (cogs / daysInYear) * dpo;
 
   const netLockedWc = Math.max(0, arVal + invVal - (apVal * 0.5));
   const annualLeak = Math.max(arVal + invVal, netLockedWc) * 0.45;
 
-  let dailySales = sales > 0 ? (sales / 365) : (arVal > 0 && dso > 0 ? arVal / dso : 10000);
-  let dailyCogs = cogs > 0 ? (cogs / 365) : (dailySales * 0.70);
+  let dailySales = sales > 0 ? (sales / daysInYear) : (arVal > 0 && dso > 0 ? arVal / dso : 10000);
+  let dailyCogs = cogs > 0 ? (cogs / daysInYear) : (dailySales * 0.70);
 
   const rankedRisks = bp?.risk_ranking_engine?.ranked_risks || [];
   const topRisks = rankedRisks.slice(0, 3);
@@ -7272,6 +7345,7 @@ function setupInteractiveScenario(d){
   const netProfit=Number(pl['Net profit']||0);
   const curCcc=ccc.cash_conversion_cycle_days;
   const curMargin=sales>0 ? (netProfit / sales * 100) : 0;
+  const daysInYear=Number(ccc.days_in_period_assumption) || Number(d?.period_metadata?.period_days) || 365.0;
 
   function updateSim(){
     if(!$('sliderDso')) return;
@@ -7285,8 +7359,8 @@ function setupInteractiveScenario(d){
     $('sliderMarginVal').textContent='+'+marginDeltaPct.toFixed(1)+'%';
     $('sliderOpexVal').textContent=opexCutPct+'%';
 
-    const cashFromDso = sales > 0 ? (dsoDays / 365.0) * sales : 0;
-    const cashFromDio = cogs > 0 ? (dioDays / 365.0) * cogs : 0;
+    const cashFromDso = sales > 0 ? (dsoDays / daysInYear) * sales : 0;
+    const cashFromDio = cogs > 0 ? (dioDays / daysInYear) * cogs : 0;
     const totalCashImpact = cashFromDso + cashFromDio;
 
     const profitFromMargin = (marginDeltaPct / 100.0) * sales;
