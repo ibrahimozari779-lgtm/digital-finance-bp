@@ -378,7 +378,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 .kobiDesc{font-size:12.5px;color:#475569;line-height:1.55;margin-bottom:14px}
 .kobiMetrics{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:12px 14px;margin-bottom:14px;display:flex;flex-direction:column;gap:6px;font-size:12px}
 .kobiMetricRow{display:flex;justify-content:space-between;align-items:center}
-.kobiPrescription{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:12px 14px;font-size:12px;color:#14532D;line-height:1.45;margin-bottom:16px}
+.kobiPrescription{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:12px 14px;font-size:12px;color:#14532D;line-height:1.45;margin-bottom:0}
 .kobiPrescription b{color:#166534;display:block;margin-bottom:3px;font-weight:800}
 .kobiCta{display:inline-flex;align-items:center;justify-content:space-between;font-size:12.5px;font-weight:800;color:#1D4ED8;text-decoration:none;padding:10px 14px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;transition:all .15s ease}
 .kobiCta:hover{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8}
@@ -442,14 +442,14 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 .erpLogoBadge:hover{border-color:#1D4ED8;color:#1D4ED8;transform:translateY(-2px);box-shadow:0 6px 16px rgba(29,78,216,.12)}
 .erpLogoBadge span{font-size:9.5px;color:#64748B;font-weight:600}
 
-/* ---- Mockup Showcase (Dashboard Cockpit & 1-Page Board PDF) ---- */
-.mockupShowcase{margin-top:32px;background:radial-gradient(900px 400px at 50% 0%,rgba(29,78,216,.08),transparent 70%),#0F172A;border:1.5px solid #1E293B;border-radius:24px;padding:32px;color:#F8FAFC;box-shadow:0 24px 60px rgba(15,23,42,.35)}
+/* ---- Mockup Showcase (Dashboard Cockpit & 1-Page Board PDF) - Executive Light Theme ---- */
+.mockupShowcase{margin-top:32px;background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%);border:1.5px solid #CBD5E1;border-radius:24px;padding:32px;color:#0F1B2D;box-shadow:0 14px 36px rgba(15,27,45,.06)}
 .mockupSplit{display:grid;grid-template-columns:1.2fr 0.8fr;gap:24px;align-items:center}
 @media(max-width:960px){.mockupSplit{grid-template-columns:1fr}}
-.mockupScreen{background:#1E293B;border:1.5px solid #334155;border-radius:16px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.4)}
-.mockupScreenHead{background:#0F172A;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #334155}
-.mockupPaper{background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:14px;padding:20px;color:#0F172A;box-shadow:0 16px 40px rgba(0,0,0,.35);font-size:11px}
-.mockupBadge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#60A5FA;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.3);padding:4px 10px;border-radius:999px;margin-bottom:12px}
+.mockupScreen{background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;overflow:hidden;box-shadow:0 12px 30px rgba(15,27,45,.06)}
+.mockupScreenHead{background:#F8FAFC;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E2E8F0}
+.mockupPaper{background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:14px;padding:20px;color:#0F172A;box-shadow:0 12px 30px rgba(15,27,45,.06);font-size:11px}
+.mockupBadge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#1D4ED8;background:#EFF6FF;border:1px solid #BFDBFE;padding:4px 10px;border-radius:999px;margin-bottom:12px}
 
 /* ---- Ghost button styling for secondary CTA ---- */
 .ctaRow a.ghostBtn{background:transparent;border:1.5px solid #CBD5E1;color:#475569;font-weight:700;padding:15px 24px;border-radius:14px;font-size:15px;text-decoration:none;transition:all .2s ease;display:inline-flex;align-items:center;gap:8px}
@@ -609,50 +609,50 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="mockupShowcase">
     <div style="text-align:center;max-width:740px;margin:0 auto 28px">
       <span class="mockupBadge">🖥️ GERÇEK KOKPİT &amp; 📄 1-SAYFALIK BOARD DECK</span>
-      <h2 style="font-family:var(--serif);font-size:30px;color:#FFFFFF;margin:8px 0 10px;letter-spacing:-.4px">Tek Bir Mizan Yükleyin; Hem Canlı Kokpiti Hem de Yönetim Raporunu 60 Saniyede Alın</h2>
-      <p style="color:#94A3B8;font-size:14px;line-height:1.6;margin:0">Mali müşavirinizin hazırladığı mizanı veya ERP alt defterlerinizi tarayıcıya bırakın; platform çift taraflı denetimle anında analitik teşhisi koysun ve Yönetim Kurulu masasına sunulacak tek sayfalık A4 özetinizi üretsin.</p>
+      <h2 style="font-family:var(--serif);font-size:30px;color:#0F1B2D;margin:8px 0 10px;letter-spacing:-.4px">Mizanınızı Yükleyin; Canlı Karar Kokpitini ve 1 Sayfalık Yönetim Raporunu Anında Alın</h2>
+      <p style="color:#64748B;font-size:14px;line-height:1.6;margin:0">Mizan veya ERP alt defterlerinizi tarayıcıya bırakın; platform çift taraflı denetimle anında analitik teşhisi koysun ve Yönetim Kurulu masasına sunulacak tek sayfalık A4 özetinizi üretsin.</p>
     </div>
 
     <div class="mockupSplit">
-      <!-- Sol Panel: Canlı Finansal Karar Kokpiti -->
+      <!-- Sol Panel: Canlı Finansal Karar Kokpiti (Light Executive Style) -->
       <div class="mockupScreen">
         <div class="mockupScreenHead">
           <div style="display:flex;align-items:center;gap:6px">
             <span style="width:10px;height:10px;border-radius:50%;background:#EF4444;display:inline-block"></span>
             <span style="width:10px;height:10px;border-radius:50%;background:#F59E0B;display:inline-block"></span>
             <span style="width:10px;height:10px;border-radius:50%;background:#10B981;display:inline-block"></span>
-            <span style="color:#94A3B8;font-size:11px;font-weight:700;margin-left:8px;font-family:monospace">cockpit.digitalfinancebp.com</span>
+            <span style="color:#64748B;font-size:11px;font-weight:700;margin-left:8px;font-family:monospace">cockpit.digitalfinancebp.com</span>
           </div>
-          <span style="font-size:10px;font-weight:800;color:#10B981;background:rgba(16,185,129,0.15);padding:3px 8px;border-radius:999px;border:1px solid rgba(16,185,129,0.3)">● 33 MOTOR AKTİF</span>
+          <span style="font-size:10px;font-weight:800;color:#047857;background:#ECFDF5;padding:3px 8px;border-radius:999px;border:1px solid #A7F3D0">● 33 MOTOR AKTİF</span>
         </div>
-        <div style="padding:18px;background:#0F172A">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;border-bottom:1px solid #1E293B;padding-bottom:10px">
+        <div style="padding:18px;background:#FFFFFF">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;border-bottom:1px solid #E2E8F0;padding-bottom:10px">
             <div>
-              <div style="font-size:13px;font-weight:800;color:#F8FAFC">Örnek Üretim A.Ş. — Konsolide Nakit &amp; Kâr Teşhisi</div>
+              <div style="font-size:13px;font-weight:800;color:#0F172A">Örnek Üretim A.Ş. — Konsolide Nakit &amp; Kâr Teşhisi</div>
               <div style="font-size:10.5px;color:#64748B">Kaynak: 2026/09 Çift Taraflı Mizan &amp; Yaşlandırma</div>
             </div>
-            <div style="font-size:11px;font-weight:700;color:#38BDF8;background:rgba(56,189,248,0.12);padding:4px 10px;border-radius:8px">Doğruluk Skoru: %98.4</div>
+            <div style="font-size:11px;font-weight:700;color:#1D4ED8;background:#EFF6FF;border:1px solid #BFDBFE;padding:4px 10px;border-radius:8px">Doğruluk: %98.4</div>
           </div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
-            <div style="background:#1E293B;border:1px solid #334155;border-radius:10px;padding:10px;text-align:center">
-              <div style="font-size:9.5px;color:#94A3B8;font-weight:600">Kâğıt Kârı</div>
-              <div style="font-size:15px;font-weight:800;color:#10B981;font-family:var(--serif)">₺1.850.000</div>
-              <div style="font-size:9px;color:#059669">P&amp;L Gelir Tablosu</div>
+            <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px;text-align:center">
+              <div style="font-size:9.5px;color:#64748B;font-weight:600">Defter Kârı</div>
+              <div style="font-size:15px;font-weight:800;color:#059669;font-family:var(--serif)">₺1.850.000</div>
+              <div style="font-size:9px;color:#64748B">Mizan Net Kârı</div>
             </div>
-            <div style="background:#1E293B;border:1px solid #334155;border-radius:10px;padding:10px;text-align:center">
-              <div style="font-size:9.5px;color:#94A3B8;font-weight:600">Kasadaki Sıcak Nakit</div>
-              <div style="font-size:15px;font-weight:800;color:#EF4444;font-family:var(--serif)">₺42.000</div>
+            <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px;text-align:center">
+              <div style="font-size:9.5px;color:#64748B;font-weight:600">Kasadaki Sıcak Nakit</div>
+              <div style="font-size:15px;font-weight:800;color:#DC2626;font-family:var(--serif)">₺42.000</div>
               <div style="font-size:9px;color:#DC2626">Kritik Kasa Açığı</div>
             </div>
-            <div style="background:#1E293B;border:1px solid #334155;border-radius:10px;padding:10px;text-align:center">
-              <div style="font-size:9.5px;color:#94A3B8;font-weight:600">Alacak &amp; Stokta Kilitli</div>
-              <div style="font-size:15px;font-weight:800;color:#F59E0B;font-family:var(--serif)">₺1.808.000</div>
-              <div style="font-size:9px;color:#D97706">88 Gün Vade</div>
+            <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px;text-align:center">
+              <div style="font-size:9.5px;color:#64748B;font-weight:600">Alacak &amp; Stokta Kilitli</div>
+              <div style="font-size:15px;font-weight:800;color:#B45309;font-family:var(--serif)">₺1.808.000</div>
+              <div style="font-size:9px;color:#64748B">88 Gün Vade</div>
             </div>
           </div>
-          <div style="background:rgba(29,78,216,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center">
-            <span style="font-size:11px;color:#BFDBFE">💡 <b>Öncelikli Aksiyon:</b> İlk 3 müşteride açık hesap vadesini 15 gün geri çekin; +₺450.000 nakit kilidini açın.</span>
-            <a href="/uygulama?sample=data_hub" style="font-size:11px;font-weight:800;color:#FFFFFF;background:#2563EB;padding:5px 10px;border-radius:6px;text-decoration:none;white-space:nowrap">Canlı İncele →</a>
+          <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px">
+            <span style="font-size:11px;color:#1E3A8A;line-height:1.4">💡 <b>Öncelikli Aksiyon:</b> İlk 3 müşteride açık hesap vadesini 15 gün geri çekin; +₺450.000 nakit kilidini açın.</span>
+            <a href="/uygulama?sample=data_hub" class="primary" style="font-size:11px;font-weight:800;padding:6px 12px;border-radius:6px;text-decoration:none;white-space:nowrap">Canlı İncele →</a>
           </div>
         </div>
       </div>
@@ -729,252 +729,192 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="kobiSliderTrack" id="kobiSliderTrack">
   <!-- Kart 1 -->
   <div class="kobiCard" data-category="cash">
-    <div>
-      <span class="kobiTag cash">💵 1. KÂR &amp; NAKİT ÇELİŞKİSİ</span>
-      <div class="kobiCardImgWrap">
-        <img src="/static/ads/kobi_1_kar_vs_kasa.jpg" alt="1. Kâr ve Nakit Çelişkisi" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-      </div>
-      <div class="kobiTitle">"Muhasebeciniz 'Bu Ay Kârdayız' Diyor, Ama Siz Ay Sonu Maaşları Nasıl Ödeyeceğinizi Düşünüyorsunuz."</div>
-      <div class="kobiDesc">Defterde kâr çıkması, kasada nakit olduğu anlamına gelmez. Satışı yapmışsınız ama parayı müşteriden alamamışsınız; malı üretip depoya yığmışsınız. Kârınız buharlaşmadı; müşterinin açık hesabında ve depodaki kolilerde kilitli kaldı.</div>
-      <div class="kobiMetrics">
-        <div class="kobiMetricRow"><span>Defterdeki Kâr:</span><b style="color:#059669">₺1.850.000 (Kâğıt Üzerinde)</b></div>
-        <div class="kobiMetricRow"><span>Kasadaki Sıcak Nakit:</span><b style="color:#DC2626">₺42.000 (Kritik Alarm)</b></div>
-        <div class="kobiMetricRow"><span>Alacak &amp; Stokta Kilitli:</span><b style="color:#B45309">₺1.808.000 Bağlı Sermaye</b></div>
-      </div>
-      <div class="kobiPrescription">
-        <b>DFBP 60 Saniyelik Reçetesi (Nakit Köprüsü):</b>
-        P&amp;L kârınızın hangi hesaplarda kilitlendiğini kuruşu kuruşuna haritalandırır; kâğıt kârı ile serbest nakit akışı arasındaki sızıntıyı kapatır.
-      </div>
+    <span class="kobiTag cash">💵 1. KÂR &amp; NAKİT ÇELİŞKİSİ</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_1_kar_vs_kasa.jpg" alt="1. Kâr ve Nakit Çelişkisi" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
     </div>
-    <a href="/uygulama?sample=data_hub" class="kobiCta">
-      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
-      <span>→</span>
-    </a>
+    <div class="kobiTitle">"Muhasebeciniz 'Bu Ay Kârdayız' Diyor, Ama Siz Ay Sonu Maaşları Nasıl Ödeyeceğinizi Düşünüyorsunuz."</div>
+    <div class="kobiDesc">Defterde kâr çıkması, kasada nakit olduğu anlamına gelmez. Satışı yapmışsınız ama parayı müşteriden alamamışsınız; malı üretip depoya yığmışsınız. Kârınız buharlaşmadı; müşterinin açık hesabında ve depodaki kolilerde kilitli kaldı.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Defterdeki Kâr:</span><b style="color:#059669">₺1.850.000 (Mizan Bilanço Kârı)</b></div>
+      <div class="kobiMetricRow"><span>Kasadaki Sıcak Nakit:</span><b style="color:#DC2626">₺42.000 (Kritik Alarm)</b></div>
+      <div class="kobiMetricRow"><span>Alacak &amp; Stokta Kilitli:</span><b style="color:#B45309">₺1.808.000 Bağlı Sermaye</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (Nakit Köprüsü):</b>
+      P&amp;L kârınızın hangi hesaplarda kilitlendiğini kuruşu kuruşuna haritalandırır; defter kârı ile serbest nakit akışı arasındaki sızıntıyı kapatır.
+    </div>
   </div>
 
   <!-- Kart 2 -->
   <div class="kobiCard" data-category="cash">
-    <div>
-      <span class="kobiTag cash">💵 2. AÇIK HESAP &amp; TERSİNE BANKACILIK</span>
-      <div class="kobiCardImgWrap">
-        <img src="/static/ads/kobi_2_acik_hesap.jpg" alt="2. Açık Hesap ve Tersine Bankacılık" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-      </div>
-      <div class="kobiTitle">"Siz Mal mı Satıyorsunuz, Yoksa Müşterilerinize Faizsiz Kredi Dağıtan Banka mısınız?"</div>
-      <div class="kobiDesc">Siz bankadan %50 faizle kredi çekip hammadde alıyorsunuz, işçilik ödüyorsunuz; müşteriniz ise malı alıp 90 gün sonra ödüyor! Kendi özkaynağınızla başkalarının ticaretini finanse ediyorsunuz.</div>
-      <div class="kobiMetrics">
-        <div class="kobiMetricRow"><span>Ortalama Tahsilat Vadeniz:</span><b style="color:#DC2626">88 Gün (Sektör: 60 Gün)</b></div>
-        <div class="kobiMetricRow"><span>Müşteriyi Fonlama Maliyeti:</span><b style="color:#B45309">Yıllık ~₺1.250.000 Gizli Faiz</b></div>
-        <div class="kobiMetricRow"><span>15 Gün Erken Tahsilat Kazancı:</span><b style="color:#1D4ED8">+₺450.000 Sıcak Para</b></div>
-      </div>
-      <div class="kobiPrescription">
-        <b>DFBP 60 Saniyelik Reçetesi (Alacak Yaşlandırma):</b>
-        Alacak portföyünün vadesini tarar; vadesi 60 günü aşan riskli carileri sıralar ve tahsilat hızlandırma protokolünü devreye sokar.
-      </div>
+    <span class="kobiTag cash">💵 2. AÇIK HESAP &amp; TERSİNE BANKACILIK</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_2_acik_hesap.jpg" alt="2. Açık Hesap ve Tersine Bankacılık" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
     </div>
-    <a href="/uygulama?sample=data_hub" class="kobiCta">
-      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
-      <span>→</span>
-    </a>
+    <div class="kobiTitle">"Siz Mal mı Satıyorsunuz, Yoksa Müşterilerinize Faizsiz Kredi Dağıtan Banka mısınız?"</div>
+    <div class="kobiDesc">Siz bankadan %50 faizle kredi çekip hammadde alıyorsunuz, işçilik ödüyorsunuz; müşteriniz ise malı alıp 90 gün sonra ödüyor! Kendi özkaynağınızla başkalarının ticaretini finanse ediyorsunuz.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Ortalama Tahsilat Vadeniz:</span><b style="color:#DC2626">88 Gün (Sektör: 60 Gün)</b></div>
+      <div class="kobiMetricRow"><span>Müşteriyi Fonlama Maliyeti:</span><b style="color:#B45309">Yıllık ~₺1.250.000 Gizli Faiz</b></div>
+      <div class="kobiMetricRow"><span>15 Gün Erken Tahsilat Kazancı:</span><b style="color:#1D4ED8">+₺450.000 Sıcak Para</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (Alacak Yaşlandırma):</b>
+      Alacak portföyünün vadesini tarar; vadesi 60 günü aşan riskli carileri sıralar ve tahsilat hızlandırma protokolünü devreye sokar.
+    </div>
   </div>
 
   <!-- Kart 3 -->
   <div class="kobiCard" data-category="profit">
-    <div>
-      <span class="kobiTag profit">📊 3. ÖLÜ STOK MEZARLIĞI</span>
-      <div class="kobiCardImgWrap">
-        <img src="/static/ads/kobi_3_olu_stok.jpg" alt="3. Ölü Stok Mezarlığı" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-      </div>
-      <div class="kobiTitle">"Deponuz Ağzına Kadar Mal Dolu Diye Zenginleştiğinizi mi Sanıyorsunuz?"</div>
-      <div class="kobiDesc">6 aydır rafta bekleyen o kumaş, o profil, o yedek parça depoda durdukça değer kazanmıyor; her gün banka kredinizin faizini yiyor. Depodaki atıl malı görmezden gelmek, her ay deste deste parayı çöpe atmaktır.</div>
-      <div class="kobiMetrics">
-        <div class="kobiMetricRow"><span>Depodaki Toplam Envanter:</span><b style="color:#0F172A">₺2.400.000</b></div>
-        <div class="kobiMetricRow"><span>180+ Günlük Ölü Stok:</span><b style="color:#DC2626">₺680.000 (Atıl Sermaye)</b></div>
-        <div class="kobiMetricRow"><span>Aylık Gizli Faiz Yükü:</span><b style="color:#B45309">~₺45.000 / Ay Kayıp</b></div>
-      </div>
-      <div class="kobiPrescription">
-        <b>DFBP 60 Saniyelik Reçetesi (Envanter İstihbaratı):</b>
-        Mizan ile depo kayıtlarını eşleştirir; 180+ gündür devretmeyen ölü stokları listeler ve acil nakde dönüşüm reçetesini çıkarır.
-      </div>
+    <span class="kobiTag profit">📊 3. ÖLÜ STOK MEZARLIĞI</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_3_olu_stok.jpg" alt="3. Ölü Stok Mezarlığı" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
     </div>
-    <a href="/uygulama?sample=data_hub" class="kobiCta">
-      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
-      <span>→</span>
-    </a>
+    <div class="kobiTitle">"Deponuz Ağzına Kadar Mal Dolu Diye Zenginleştiğinizi mi Sanıyorsunuz?"</div>
+    <div class="kobiDesc">6 aydır rafta bekleyen o kumaş, o profil, o yedek parça depoda durdukça değer kazanmıyor; her gün banka kredinizin faizini yiyor. Depodaki atıl malı görmezden gelmek, her ay deste deste parayı çöpe atmaktır.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Depodaki Toplam Envanter:</span><b style="color:#0F172A">₺2.400.000</b></div>
+      <div class="kobiMetricRow"><span>180+ Günlük Ölü Stok:</span><b style="color:#DC2626">₺680.000 (Atıl Sermaye)</b></div>
+      <div class="kobiMetricRow"><span>Aylık Gizli Faiz Yükü:</span><b style="color:#B45309">~₺45.000 / Ay Kayıp</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (Envanter İstihbaratı):</b>
+      Mizan ile depo kayıtlarını eşleştirir; 180+ gündür devretmeyen ölü stokları listeler ve acil nakde dönüşüm reçetesini çıkarır.
+    </div>
   </div>
 
   <!-- Kart 4 -->
   <div class="kobiCard" data-category="mgmt">
-    <div>
-      <span class="kobiTag mgmt">🏛️ 4. MİZAN ÇİLESİ VS. KARAR MASASI</span>
-      <div class="kobiCardImgWrap">
-        <img src="/static/ads/kobi_4_mizan_vs_karar.jpg" alt="4. Mizan Çilesi vs Karar Masası" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-      </div>
-      <div class="kobiTitle">"Muhasebeciniz Size Çıkacak Vergiyi Söyler; Parayı Nereden Bulacağınızı Söylemez."</div>
-      <div class="kobiDesc">Mali müşavirin işi devlete vergi beyannamesi vermektir. Ancak önünüze konan 500 satırlık mizan tablosundan "Yarın hangi müşteriye mal çıkışını durdurmalıyım?", "Hangi maliyet canımı yakıyor?" sorularının yanıtı çıkmaz.</div>
-      <div class="kobiMetrics">
-        <div class="kobiMetricRow"><span>Klasik Mizan Tablosu:</span><b style="color:#64748B">500 Satır Hesap (Karar Yok)</b></div>
-        <div class="kobiMetricRow"><span>Digital Finance BP:</span><b style="color:#1D4ED8">1 Sayfalık Board Raporu</b></div>
-        <div class="kobiMetricRow"><span>Yönetimsel Analiz Süresi:</span><b style="color:#059669">Sadece 60 Saniye</b></div>
-      </div>
-      <div class="kobiPrescription">
-        <b>DFBP 60 Saniyelik Reçetesi (1-Sayfalık Yönetim Özeti):</b>
-        33 karar motoru mizanınızı tarar; kâr durumunu, paranın kilitlendiği yeri ve alınacak 1 numaralı icraat kararını tek sayfada masaya koyar.
-      </div>
+    <span class="kobiTag mgmt">🏛️ 4. MİZAN ÇİLESİ VS. KARAR MASASI</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_4_mizan_vs_karar.jpg" alt="4. Mizan Çilesi vs Karar Masası" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
     </div>
-    <a href="/uygulama?sample=data_hub" class="kobiCta">
-      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
-      <span>→</span>
-    </a>
+    <div class="kobiTitle">"Muhasebeciniz Size Çıkacak Vergiyi Söyler; Parayı Nereden Bulacağınızı Söylemez."</div>
+    <div class="kobiDesc">Mali müşavirin işi devlete vergi beyannamesi vermektir. Ancak önünüze konan 500 satırlık mizan tablosundan "Yarın hangi müşteriye mal çıkışını durdurmalıyım?", "Hangi maliyet canımı yakıyor?" sorularının yanıtı çıkmaz.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Klasik Mizan Tablosu:</span><b style="color:#64748B">500 Satır Hesap (Karar Yok)</b></div>
+      <div class="kobiMetricRow"><span>Digital Finance BP:</span><b style="color:#1D4ED8">1 Sayfalık Board Raporu</b></div>
+      <div class="kobiMetricRow"><span>Yönetimsel Analiz Süresi:</span><b style="color:#059669">Sadece 60 Saniye</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (1-Sayfalık Yönetim Özeti):</b>
+      33 karar motoru mizanınızı tarar; kâr durumunu, paranın kilitlendiği yeri ve alınacak 1 numaralı icraat kararını tek sayfada masaya koyar.
+    </div>
   </div>
 
   <!-- Kart 5 -->
   <div class="kobiCard" data-category="cash">
-    <div>
-      <span class="kobiTag cash">💵 5. CİRO ALDANMASI &amp; KASA GERÇEĞİ</span>
-      <div class="kobiCardImgWrap">
-        <img src="/static/ads/kobi_5_ciro_aldanmasi.jpg" alt="5. Ciro Aldanması ve Kasa Gerçeği" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-      </div>
-      <div class="kobiTitle">"50 Milyon Ciro Yapıp Ay Sonu Çek Öderken Ter Döken Patronlardan mısınız?"</div>
-      <div class="kobiDesc">Ciro gösteriştir, kâr akıl işidir, kasadaki nakit ise gerçeğin ta kendisidir. Cironuz ikiye katlanıyor ama borcunuz da aynı hızla katlanıyorsa büyümüyorsunuz; sadece daha büyük bir riskin altına giriyorsunuz.</div>
-      <div class="kobiMetrics">
-        <div class="kobiMetricRow"><span>Yıllık Satış Cirosu:</span><b style="color:#059669">₺45.000.000 (Büyüme Görünümü)</b></div>
-        <div class="kobiMetricRow"><span>Banka &amp; Borç Yükü:</span><b style="color:#DC2626">₺18.000.000 (Faiz Baskısı)</b></div>
-        <div class="kobiMetricRow"><span>Kasaya Kalan Net Nakit:</span><b style="color:#DC2626">-₺350.000 (Nakit Açığı)</b></div>
-      </div>
-      <div class="kobiPrescription">
-        <b>DFBP 60 Saniyelik Reçetesi (Nakit Çevrim Motoru):</b>
-        Satıştan tahsilata kadar paranın kaç günde döndüğünü (CCC) hesaplar; cironun nakde dönüşme kabiliyetini ve net kâr kalitesini ölçer.
-      </div>
+    <span class="kobiTag cash">💵 5. CİRO ALDANMASI &amp; KASA GERÇEĞİ</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_5_ciro_aldanmasi.jpg" alt="5. Ciro Aldanması ve Kasa Gerçeği" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
     </div>
-    <a href="/uygulama?sample=data_hub" class="kobiCta">
-      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
-      <span>→</span>
-    </a>
+    <div class="kobiTitle">"50 Milyon Ciro Yapıp Ay Sonu Çek Öderken Ter Döken Patronlardan mısınız?"</div>
+    <div class="kobiDesc">Ciro gösteriştir, kâr akıl işidir, kasadaki nakit ise gerçeğin ta kendisidir. Cironuz ikiye katlanıyor ama borcunuz da aynı hızla katlanıyorsa büyümüyorsunuz; sadece daha büyük bir riskin altına giriyorsunuz.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Yıllık Satış Cirosu:</span><b style="color:#059669">₺45.000.000 (Büyüme Görünümü)</b></div>
+      <div class="kobiMetricRow"><span>Banka &amp; Borç Yükü:</span><b style="color:#DC2626">₺18.000.000 (Faiz Baskısı)</b></div>
+      <div class="kobiMetricRow"><span>Kasaya Kalan Net Nakit:</span><b style="color:#DC2626">-₺350.000 (Nakit Açığı)</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (Nakit Çevrim Motoru):</b>
+      Satıştan tahsilata kadar paranın kaç günde döndüğünü (CCC) hesaplar; cironun nakde dönüşme kabiliyetini ve net kâr kalitesini ölçer.
+    </div>
   </div>
 
   <!-- Kart 6 -->
   <div class="kobiCard" data-category="mgmt">
-    <div>
-      <span class="kobiTag mgmt">🏛️ 6. MÜŞTERİ REHİNESİ &amp; KONSANTRASYON</span>
-      <div class="kobiCardImgWrap">
-        <img src="/static/ads/kobi_6_musteri_rehinesi.jpg" alt="6. Müşteri Rehinesi ve Konsantrasyon" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-      </div>
-      <div class="kobiTitle">"Cironuzun Yarısını Tek Bir Müşteriye Yapıyorsanız; Patron Siz Değilsiniz, O Müşteridir."</div>
-      <div class="kobiDesc">Büyük müşteriyle çalışmak iyidir ama bütün yumurtaları aynı sepete koymak felakettir. O müşteri yarın "Vadeyi 4 aya çıkarıyorum" dediğinde veya ödemeyi geciktirdiğinde şirketin dayanacak kaç günlük can suyu var?</div>
-      <div class="kobiMetrics">
-        <div class="kobiMetricRow"><span>İlk 3 Müşterinin Payı:</span><b style="color:#DC2626">%64 (Kritik Bağımlılık)</b></div>
-        <div class="kobiMetricRow"><span>Olası Vade Gecikmesi:</span><b style="color:#B45309">-₺1.200.000 Nakit Açığı</b></div>
-        <div class="kobiMetricRow"><span>Dayanıklılık Süresi:</span><b style="color:#DC2626">Yalnızca 22 Gün!</b></div>
-      </div>
-      <div class="kobiPrescription">
-        <b>DFBP 60 Saniyelik Reçetesi (Erken Uyarı Radarı):</b>
-        Müşteri bağımlılığınızı ölçer; olası gecikmelerde şirketin likidite dayanıklılığını test eder ve açık hesap tavan limiti belirler.
-      </div>
+    <span class="kobiTag mgmt">🏛️ 6. MÜŞTERİ REHİNESİ &amp; KONSANTRASYON</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_6_musteri_rehinesi.jpg" alt="6. Müşteri Rehinesi ve Konsantrasyon" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
     </div>
-    <a href="/uygulama?sample=data_hub" class="kobiCta">
-      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
-      <span>→</span>
-    </a>
+    <div class="kobiTitle">"Cironuzun Yarısını Tek Bir Müşteriye Yapıyorsanız; Patron Siz Değilsiniz, O Müşteridir."</div>
+    <div class="kobiDesc">Büyük müşteriyle çalışmak iyidir ama bütün yumurtaları aynı sepete koymak felakettir. O müşteri yarın "Vadeyi 4 aya çıkarıyorum" dediğinde veya ödemeyi geciktirdiğinde şirketin dayanacak kaç günlük can suyu var?</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>İlk 3 Müşterinin Payı:</span><b style="color:#DC2626">%64 (Kritik Bağımlılık)</b></div>
+      <div class="kobiMetricRow"><span>Olası Vade Gecikmesi:</span><b style="color:#B45309">-₺1.200.000 Nakit Açığı</b></div>
+      <div class="kobiMetricRow"><span>Dayanıklılık Süresi:</span><b style="color:#DC2626">Yalnızca 22 Gün!</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (Erken Uyarı Radarı):</b>
+      Müşteri bağımlılığınızı ölçer; olası gecikmelerde şirketin likidite dayanıklılığını test eder ve açık hesap tavan limiti belirler.
+    </div>
   </div>
 
   <!-- Kart 7 -->
   <div class="kobiCard" data-category="profit">
-    <div>
-      <span class="kobiTag profit">📊 7. FİYATLAMA GÜCÜ &amp; MARJ KORUMA</span>
-      <div class="kobiCardImgWrap">
-        <img src="/static/ads/kobi_7_fiyat_gucu.jpg" alt="7. Fiyatlama Gücü ve Marj Koruma" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-      </div>
-      <div class="kobiTitle">"Fiyatlarınıza Sadece %3 Zam Yapsanız Kasaya Kaç Yüz Bin Lira Kalır, Hiç Hesapladınız mı?"</div>
-      <div class="kobiDesc">"Müşteri kaçar" korkusuyla maliyet artışlarını fiyata yansıtmamak şirketin özkaynağını eritir. Kontrolsüz iskontolar ve plansız vadeler, ciro artarken kârı sıfırlayan ana sızıntıdır.</div>
-      <div class="kobiMetrics">
-        <div class="kobiMetricRow"><span>Mevcut Brüt Kâr Marjı:</span><b style="color:#B45309">%22,4 (Enflasyon Baskısı)</b></div>
-        <div class="kobiMetricRow"><span>Fiyatta +%3 Düzeltme:</span><b style="color:#059669">+₺324.000 Net Kâr Katkısı</b></div>
-        <div class="kobiMetricRow"><span>10 Gün Erken Tahsilat:</span><b style="color:#1D4ED8">+₺450.000 Kurtarılan Nakit</b></div>
-      </div>
-      <div class="kobiPrescription">
-        <b>DFBP 60 Saniyelik Reçetesi (What-If Simülatörü):</b>
-        Fiyat artışı, vade kısaltma ve gider tasarrufu sürgülerini hareket ettirerek şirketin anlık kâr ve nakit kazanımını canlı simüle eder.
-      </div>
+    <span class="kobiTag profit">📊 7. FİYATLAMA GÜCÜ &amp; MARJ KORUMA</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_7_fiyat_gucu.jpg" alt="7. Fiyatlama Gücü ve Marj Koruma" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
     </div>
-    <a href="/uygulama?sample=data_hub" class="kobiCta">
-      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
-      <span>→</span>
-    </a>
+    <div class="kobiTitle">"Fiyatlarınıza Sadece %3 Zam Yapsanız Kasaya Kaç Yüz Bin Lira Kalır, Hiç Hesapladınız mı?"</div>
+    <div class="kobiDesc">"Müşteri kaçar" korkusuyla maliyet artışlarını fiyata yansıtmamak şirketin özkaynağını eritir. Kontrolsüz iskontolar ve plansız vadeler, ciro artarken kârı sıfırlayan ana sızıntıdır.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Mevcut Brüt Kâr Marjı:</span><b style="color:#B45309">%22,4 (Enflasyon Baskısı)</b></div>
+      <div class="kobiMetricRow"><span>Fiyatta +%3 Düzeltme:</span><b style="color:#059669">+₺324.000 Net Kâr Katkısı</b></div>
+      <div class="kobiMetricRow"><span>10 Gün Erken Tahsilat:</span><b style="color:#1D4ED8">+₺450.000 Kurtarılan Nakit</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (What-If Simülatörü):</b>
+      Fiyat artışı, vade kısaltma ve gider tasarrufu sürgülerini hareket ettirerek şirketin anlık kâr ve nakit kazanımını canlı simüle eder.
+    </div>
   </div>
 
   <!-- Kart 8 -->
   <div class="kobiCard" data-category="cash">
-    <div>
-      <span class="kobiTag cash">💵 8. KREDİ KAPANINDAN ÇIKIŞ</span>
-      <div class="kobiCardImgWrap">
-        <img src="/static/ads/kobi_8_kredi_kapani.jpg" alt="8. Kredi Kapanından Çıkış" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-      </div>
-      <div class="kobiTitle">"Faizlerin %50 Olduğu Yerde, Şirketi Banka Kredisiyle Döndüremezsiniz."</div>
-      <div class="kobiDesc">Kasada nakit sıkışınca ilk refleks bankaya koşup kredi çekmektir. Ama içerideki para kaçağını kapatmadan kredi çekmek, sadece bankalara çalışmaktır. Çözüm yeni borç değil; içerideki kilitli parayı kurtarmaktır.</div>
-      <div class="kobiMetrics">
-        <div class="kobiMetricRow"><span>Bankaya Yıllık Faiz Yükü:</span><b style="color:#DC2626">₺1.850.000 / Yıl</b></div>
-        <div class="kobiMetricRow"><span>İçeride Kilitli Kendi Paranız:</span><b style="color:#059669">₺1.400.000 (Alacak &amp; Stok)</b></div>
-        <div class="kobiMetricRow"><span>Kredi İhtiyacı Tasarrufu:</span><b style="color:#1D4ED8">%40 Daha Az Borçlanma</b></div>
-      </div>
-      <div class="kobiPrescription">
-        <b>DFBP 60 Saniyelik Reçetesi (Kaldıraç &amp; Borç Kapasitesi):</b>
-        Operasyonel kârınızın faizleri kaç kat karşıladığını ölçer; yeni borca girmeden içerideki kilitli nakdi çözerek şirketi rahatlatır.
-      </div>
+    <span class="kobiTag cash">💵 8. KREDİ KAPANINDAN ÇIKIŞ</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_8_kredi_kapani.jpg" alt="8. Kredi Kapanından Çıkış" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
     </div>
-    <a href="/uygulama?sample=data_hub" class="kobiCta">
-      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
-      <span>→</span>
-    </a>
+    <div class="kobiTitle">"Faizlerin %50 Olduğu Yerde, Şirketi Banka Kredisiyle Döndüremezsiniz."</div>
+    <div class="kobiDesc">Kasada nakit sıkışınca ilk refleks bankaya koşup kredi çekmektir. Ama içerideki para kaçağını kapatmadan kredi çekmek, sadece bankalara çalışmaktır. Çözüm yeni borç değil; içerideki kilitli parayı kurtarmaktır.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Bankaya Yıllık Faiz Yükü:</span><b style="color:#DC2626">₺1.850.000 / Yıl</b></div>
+      <div class="kobiMetricRow"><span>İçeride Kilitli Kendi Paranız:</span><b style="color:#059669">₺1.400.000 (Alacak &amp; Stok)</b></div>
+      <div class="kobiMetricRow"><span>Kredi İhtiyacı Tasarrufu:</span><b style="color:#1D4ED8">%40 Daha Az Borçlanma</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (Kaldıraç &amp; Borç Kapasitesi):</b>
+      Operasyonel kârınızın faizleri kaç kat karşıladığını ölçer; yeni borca girmeden içerideki kilitli nakdi çözerek şirketi rahatlatır.
+    </div>
   </div>
 
   <!-- Kart 9 -->
   <div class="kobiCard" data-category="mgmt">
-    <div>
-      <span class="kobiTag mgmt">🏛️ 9. ORTAKLAR MASASINDA FİKİR BİRLİĞİ</span>
-      <div class="kobiCardImgWrap">
-        <img src="/static/ads/kobi_9_ortaklar_masasi.jpg" alt="9. Ortaklar Masasında Fikir Birliği" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-      </div>
-      <div class="kobiTitle">"Her Ay Ortaklarınızla 'İşler İyiydi de Bu Para Nereye Gitti' Kavgası Yapmaktan Bıkmadınız mı?"</div>
-      <div class="kobiDesc">Ortaklar arasındaki en büyük gerginlik rakamların farklı yorumlanmasıdır. Biri "Satış ekibi rekor kırdı" der, diğeri "Kasa boş, tedarikçiyi ödeyemiyoruz" der. Suçlu aramak yerine tek bir gerçeğin etrafında toplanın.</div>
-      <div class="kobiMetrics">
-        <div class="kobiMetricRow"><span>1. Teşhis:</span><b style="color:#DC2626">Kârın %62'si Alacak ve Stokta Bağlı</b></div>
-        <div class="kobiMetricRow"><span>2. Öncelikli İcraat:</span><b style="color:#1D4ED8">Vadesi Aşan 3 Müşteriyi Durdur</b></div>
-        <div class="kobiMetricRow"><span>3. Kurtarılabilir Nakit:</span><b style="color:#059669">₺1.100.000 (Haftalık Protokol)</b></div>
-      </div>
-      <div class="kobiPrescription">
-        <b>DFBP 60 Saniyelik Reçetesi (Deterministik Yönetim Masası):</b>
-        Kimsenin tartışamayacağı çift taraflı denetlenmiş verilerle şirketin tek bir yönetim ve eylem gündemi üzerinde uzlaşmasını sağlar.
-      </div>
+    <span class="kobiTag mgmt">🏛️ 9. ORTAKLAR MASASINDA FİKİR BİRLİĞİ</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_9_ortaklar_masasi.jpg" alt="9. Ortaklar Masasında Fikir Birliği" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
     </div>
-    <a href="/uygulama?sample=data_hub" class="kobiCta">
-      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
-      <span>→</span>
-    </a>
+    <div class="kobiTitle">"Her Ay Ortaklarınızla 'İşler İyiydi de Bu Para Nereye Gitti' Kavgası Yapmaktan Bıkmadınız mı?"</div>
+    <div class="kobiDesc">Ortaklar arasındaki en büyük gerginlik rakamların farklı yorumlanmasıdır. Biri "Satış ekibi rekor kırdı" der, diğeri "Kasa boş, tedarikçiyi ödeyemiyoruz" der. Suçlu aramak yerine tek bir gerçeğin etrafında toplanın.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>1. Teşhis:</span><b style="color:#DC2626">Kârın %62'si Alacak ve Stokta Bağlı</b></div>
+      <div class="kobiMetricRow"><span>2. Öncelikli İcraat:</span><b style="color:#1D4ED8">Vadesi Aşan 3 Müşteriyi Durdur</b></div>
+      <div class="kobiMetricRow"><span>3. Kurtarılabilir Nakit:</span><b style="color:#059669">₺1.100.000 (Haftalık Protokol)</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (Deterministik Yönetim Masası):</b>
+      Kimsenin tartışamayacağı çift taraflı denetlenmiş verilerle şirketin tek bir yönetim ve eylem gündemi üzerinde uzlaşmasını sağlar.
+    </div>
   </div>
 
   <!-- Kart 10 -->
   <div class="kobiCard" data-category="profit">
-    <div>
-      <span class="kobiTag profit">📊 10. CFO ZEKA ARBİTRAJI</span>
-      <div class="kobiCardImgWrap">
-        <img src="/static/ads/kobi_10_cfo_arbitraji.jpg" alt="10. CFO Zeka Arbitrajı" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-      </div>
-      <div class="kobiTitle">"Büyük Holdingler Her Ay Milyonluk Finans Kadrolarıyla Şirket Yönetiyor. Siz Hâlâ Hissiyatla mı Karar Veriyorsunuz?"</div>
-      <div class="kobiDesc">Aylık 150-200 bin TL maaşla Finans Direktörü (CFO) tutmak KOBİ ölçeğinde zordur. Ancak rekabet etmek için holdinglerin sahip olduğu finansal denetime ve karar gücüne ihtiyacınız var.</div>
-      <div class="kobiMetrics">
-        <div class="kobiMetricRow"><span>Holding Finans Kadrosu:</span><b style="color:#64748B">Aylık ₺200.000+ Maliyet</b></div>
-        <div class="kobiMetricRow"><span>Digital Finance BP:</span><b style="color:#1D4ED8">60 Saniyede CFO Masası</b></div>
-        <div class="kobiMetricRow"><span>Karar Gücü:</span><b style="color:#059669">33 Deterministik Analiz Motoru</b></div>
-      </div>
-      <div class="kobiPrescription">
-        <b>DFBP 60 Saniyelik Reçetesi (60 Saniyede Finansal Röntgen):</b>
-        Mizanınızı yükleyin; 33 motor çift taraflı denetimle çalışsın, şirketinizi holding düzeyinde analitik finansal zekayla donatsın.
-      </div>
+    <span class="kobiTag profit">📊 10. CFO ZEKA ARBİTRAJI</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_10_cfo_arbitraji.jpg" alt="10. CFO Zeka Arbitrajı" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
     </div>
-    <a href="/uygulama?sample=data_hub" class="kobiCta">
-      <span>⚡ Canlı Demoda Bu Teşhisi Görün</span>
-      <span>→</span>
-    </a>
+    <div class="kobiTitle">"Büyük Holdingler Her Ay Milyonluk Finans Kadrolarıyla Şirket Yönetiyor. Siz Hâlâ Hissiyatla mı Karar Veriyorsunuz?"</div>
+    <div class="kobiDesc">Aylık 150-200 bin TL maaşla Finans Direktörü (CFO) tutmak KOBİ ölçeğinde zordur. Ancak rekabet etmek için holdinglerin sahip olduğu finansal denetime ve karar gücüne ihtiyacınız var.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Holding Finans Kadrosu:</span><b style="color:#64748B">Aylık ₺200.000+ Maliyet</b></div>
+      <div class="kobiMetricRow"><span>Digital Finance BP:</span><b style="color:#1D4ED8">60 Saniyede CFO Masası</b></div>
+      <div class="kobiMetricRow"><span>Karar Gücü:</span><b style="color:#059669">33 Deterministik Analiz Motoru</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (60 Saniyede Finansal Röntgen):</b>
+      Mizanınızı yükleyin; 33 motor çift taraflı denetimle çalışsın, şirketinizi holding düzeyinde analitik finansal zekayla donatsın.
+    </div>
   </div>
   </div>
   <div class="kobiDotsWrap" id="kobiDotsWrap"></div>
@@ -1097,7 +1037,7 @@ if (document.readyState === 'loading') {
 </section></div>
 
 <!-- SECTION: WORKING CAPITAL LEAK & LOCKED CASH CALCULATOR -->
-<div class="secBlock reveal"><section id="calculator" class="marketingSection hidePrint" style="padding-top:0">
+<div class="secBlock tint reveal"><section id="calculator" class="marketingSection hidePrint" style="padding-top:0">
   <div style="background:linear-gradient(145deg,#FFFFFF 0%,#F8FAFC 100%);border:1.5px solid #CBD5E1;border-radius:24px;box-shadow:0 16px 44px rgba(15,27,45,.07);padding:36px">
     <div style="text-align:center;max-width:700px;margin:0 auto 28px">
       <span class="workflowBadge" style="background:#EEF4FF;border-color:#BFDBFE;color:#1D4ED8">⚡ 10 SANİYELİK İNTERAKTİF FİNANSAL TEŞHİS</span>
@@ -1304,8 +1244,71 @@ if (document.readyState === 'loading') {
   </section>
 </div>
 
+<!-- SECTION: 4-STEP WORKFLOW WITH INTERACTIVE PLAYER -->
+<div class="secBlock tint reveal"><section id="workflow" class="marketingSection hidePrint">
+<div class="marketingHead">
+  <span class="workflowBadge">İNTERAKTİF İŞ AKIŞI MİMARİSİ</span>
+  <h2>Peki Bu Kararlar Nasıl Üretiliyor? 4 Adımda Bütünleşik İş Akışı</h2>
+  <p>Verinizi sisteme bıraktığınız andan yönetim kurulu aksiyon planına kadar geçen deterministik süreç.</p>
+</div>
+<div class="workflowGrid" id="wfGrid">
+  <div class="workflowCard wfInteractive" data-step="0" style="cursor:pointer;border-top:3px solid var(--accent)">
+    <span class="workflowBadge">ADIM 1 · GİRİŞ</span>
+    <h3>Sıfır Entegrasyonla Yükleme</h3>
+    <p>Mizan (1xx-7xx), Satış Defteri, AR/AP Yaşlandırma veya Stok dosyanızı sürükleyin. Aylar süren ERP kurulumu gerekmez; 60 saniyede hazır.</p>
+  </div>
+  <div class="workflowCard wfInteractive" data-step="1" style="cursor:pointer">
+    <span class="workflowBadge">ADIM 2 · HESAPLAMA</span>
+    <h3>33 Deterministik Motor</h3>
+    <p>Bilanço denkliği, gelir tablosu kontrolleri ve alt defter mutabakatları çift taraflı denetimden geçer. Matematiksel kesinlikle kurallar çalışır.</p>
+  </div>
+  <div class="workflowCard wfInteractive" data-step="2" style="cursor:pointer">
+    <span class="workflowBadge">ADIM 3 · ANLATIM</span>
+    <h3>Kök Neden & Karar Zinciri</h3>
+    <p>WHAT → WHY → SO WHAT → NOW WHAT → WHAT IF mantığıyla her rakamın kök nedeni, finansal riski ve parasal büyüklüğü açıklanır.</p>
+  </div>
+  <div class="workflowCard wfInteractive" data-step="3" style="cursor:pointer">
+    <span class="workflowBadge">ADIM 4 · İŞ KARARLARI</span>
+    <h3>Yönetim Aksiyonları & AI Partner</h3>
+    <p>Sahibi, vadesi ve beklenen TL getirisi belli aksiyon planı oluşur. Stratejik kararlarınız için yapay zeka destekli soru-cevap katmanı hazırdır.</p>
+  </div>
+</div>
+
+<!-- Interactive Live Step Viewer (Executive Light Theme) -->
+<div id="wfLiveViewer" style="margin-top:24px;background:#FFFFFF;border:1.5px solid #DCE6F5;border-radius:22px;padding:24px;color:#0F1B2D;box-shadow:0 14px 34px rgba(15,27,45,.06)">
+  <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #F1F5F9;padding-bottom:14px;margin-bottom:18px;flex-wrap:wrap;gap:10px">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span id="wfViewerStepTag" class="workflowBadge" style="background:#EFF6FF;border-color:#BFDBFE;color:#1D4ED8;margin:0">CANLI SİMÜLASYON · ADIM 1</span>
+      <b id="wfViewerStepTitle" style="font-size:15px;color:#0F172A">Mizan ve Alt Defterlerin Doğrudan İçe Aktarımı</b>
+    </div>
+    <div style="display:flex;gap:6px" id="wfNavPills">
+      <button type="button" class="wfPill active" data-wfpill="0" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#1D4ED8;color:#FFFFFF;border:none;border-radius:999px;cursor:pointer">1. Dosya Bırak</button>
+      <button type="button" class="wfPill" data-wfpill="1" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;cursor:pointer">2. 33 Karar Motoru</button>
+      <button type="button" class="wfPill" data-wfpill="2" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;cursor:pointer">3. Kök Neden</button>
+      <button type="button" class="wfPill" data-wfpill="3" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;cursor:pointer">4. Yönetim Aksiyonları</button>
+    </div>
+  </div>
+  <div id="wfViewerContent">
+    <div style="display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center">
+      <div>
+        <p style="color:#334155;font-size:13.5px;line-height:1.6;margin:0 0 14px">ERP veya muhasebe programınızdan aldığınız standart Excel/CSV mizanınızı ve varsa yaşlandırma/stok alt defterlerinizi tarayıcıya sürükleyin. Kolon eşleme yapay zeka tahminiyle değil, hesap planı kuralları (1xx-7xx) üzerinden deterministik olarak anında tanınır.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <span style="background:#F1F5F9;border:1px solid #CBD5E1;padding:6px 12px;border-radius:8px;font-size:12px;color:#1D4ED8;font-weight:600">✓ Luca, Logo, Mikro, Netsis, Zirve uyumlu</span>
+          <span style="background:#ECFDF5;border:1px solid #A7F3D0;padding:6px 12px;border-radius:8px;font-size:12px;color:#047857;font-weight:600">✓ Sıfır Kurulum & Sıfır Bekleme</span>
+        </div>
+      </div>
+      <div style="background:#F8FAFC;border:2px dashed #93C5FD;border-radius:14px;padding:24px 20px;text-align:center">
+        <div style="font-size:32px;margin-bottom:8px">📥</div>
+        <b style="color:#0F172A;font-size:13px;display:block">Mizan Dosyanızı Sürükleyin</b>
+        <span style="color:#64748B;font-size:11px">.xlsx, .xls, .csv formatları otomatik taranır</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section></div>
+
 <!-- SECTION: ERP & MUHASEBE ENTEGRASYONLARI VE GLOBAL / IFRS VİZYONU -->
-<div class="secBlock tint reveal">
+<div class="secBlock reveal">
   <section id="integrations" class="marketingSection hidePrint" style="padding-top:0">
     <div class="marketingHead">
       <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">🔗 ERP &amp; MUHASEBE YAZILIMLARIYLA %100 UYUMLU</span>
@@ -1382,7 +1385,7 @@ if (document.readyState === 'loading') {
           <div class="ceoGrid3">
             <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
               <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
-              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Kâğıt Üzerindeki Kâr, Alacak ve Stok Kilitlenmesinde Kayboluyor</h4>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Defterdeki Kâr, Alacak ve Stok Kilitlenmesinde Kayboluyor</h4>
               <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Defterde ₺1.000.000 net kâr görünmesine karşın, bu kârın neredeyse tamamı müşterilerin 80 günlük tahsilat vadesinde (₺2.25M) ve depodaki 96 günlük stokta (₺1.71M) kilitlenmiştir. Kasa bu kârı fiilen görememektedir.</p>
             </div>
             <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
@@ -1417,7 +1420,7 @@ if (document.readyState === 'loading') {
             <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
               <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
               <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Yüksek Cirolu Müşteriler Uzun Vade ve Gizli Finansmanla Zarar Ettiriyor</h4>
-              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Cironun %38'ini tek başına oluşturan ilk 3 müşteri, 110 gün vade kullanmaktadır. %45 ticari kredi faizi ortamında bu vadenin faiz maliyeti satış marjının %14'ünü tüketmekte ve kâğıt üzerindeki kârı gizli zarara dönüştürmektedir.</p>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Cironun %38'ini tek başına oluşturan ilk 3 müşteri, 110 gün vade kullanmaktadır. %45 ticari kredi faizi ortamında bu vadenin faiz maliyeti satış marjının %14'ünü tüketmekte ve defterdeki net kârı gizli zarara dönüştürmektedir.</p>
             </div>
             <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
               <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
@@ -1658,68 +1661,6 @@ if (document.readyState === 'loading') {
   </section>
 </div>
 
-<!-- SECTION: 4-STEP WORKFLOW WITH INTERACTIVE PLAYER -->
-<div class="secBlock tint reveal"><section id="workflow" class="marketingSection hidePrint">
-<div class="marketingHead">
-  <span class="workflowBadge">İNTERAKTİF İŞ AKIŞI MİMARİSİ</span>
-  <h2>Peki Bu Kararlar Nasıl Üretiliyor? 4 Adımda Bütünleşik İş Akışı</h2>
-  <p>Verinizi sisteme bıraktığınız andan yönetim kurulu aksiyon planına kadar geçen deterministik süreç.</p>
-</div>
-<div class="workflowGrid" id="wfGrid">
-  <div class="workflowCard wfInteractive" data-step="0" style="cursor:pointer;border-top:3px solid var(--accent)">
-    <span class="workflowBadge">ADIM 1 · GİRİŞ</span>
-    <h3>Sıfır Entegrasyonla Yükleme</h3>
-    <p>Mizan (1xx-7xx), Satış Defteri, AR/AP Yaşlandırma veya Stok dosyanızı sürükleyin. Aylar süren ERP kurulumu gerekmez; 60 saniyede hazır.</p>
-  </div>
-  <div class="workflowCard wfInteractive" data-step="1" style="cursor:pointer">
-    <span class="workflowBadge">ADIM 2 · HESAPLAMA</span>
-    <h3>33 Deterministik Motor</h3>
-    <p>Bilanço denkliği, gelir tablosu kontrolleri ve alt defter mutabakatları çift taraflı denetimden geçer. Matematiksel kesinlikle kurallar çalışır.</p>
-  </div>
-  <div class="workflowCard wfInteractive" data-step="2" style="cursor:pointer">
-    <span class="workflowBadge">ADIM 3 · ANLATIM</span>
-    <h3>Kök Neden & Karar Zinciri</h3>
-    <p>WHAT → WHY → SO WHAT → NOW WHAT → WHAT IF mantığıyla her rakamın kök nedeni, finansal riski ve parasal büyüklüğü açıklanır.</p>
-  </div>
-  <div class="workflowCard wfInteractive" data-step="3" style="cursor:pointer">
-    <span class="workflowBadge">ADIM 4 · İŞ KARARLARI</span>
-    <h3>Yönetim Aksiyonları & AI Partner</h3>
-    <p>Sahibi, vadesi ve beklenen TL getirisi belli aksiyon planı oluşur. Stratejik kararlarınız için yapay zeka destekli soru-cevap katmanı hazırdır.</p>
-  </div>
-</div>
-
-<!-- Interactive Live Step Viewer (Executive Light Theme) -->
-<div id="wfLiveViewer" style="margin-top:24px;background:#FFFFFF;border:1.5px solid #DCE6F5;border-radius:22px;padding:24px;color:#0F1B2D;box-shadow:0 14px 34px rgba(15,27,45,.06)">
-  <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #F1F5F9;padding-bottom:14px;margin-bottom:18px;flex-wrap:wrap;gap:10px">
-    <div style="display:flex;align-items:center;gap:10px">
-      <span id="wfViewerStepTag" class="workflowBadge" style="background:#EFF6FF;border-color:#BFDBFE;color:#1D4ED8;margin:0">CANLI SİMÜLASYON · ADIM 1</span>
-      <b id="wfViewerStepTitle" style="font-size:15px;color:#0F172A">Mizan ve Alt Defterlerin Doğrudan İçe Aktarımı</b>
-    </div>
-    <div style="display:flex;gap:6px" id="wfNavPills">
-      <button type="button" class="wfPill active" data-wfpill="0" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#1D4ED8;color:#FFFFFF;border:none;border-radius:999px;cursor:pointer">1. Dosya Bırak</button>
-      <button type="button" class="wfPill" data-wfpill="1" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;cursor:pointer">2. 33 Karar Motoru</button>
-      <button type="button" class="wfPill" data-wfpill="2" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;cursor:pointer">3. Kök Neden</button>
-      <button type="button" class="wfPill" data-wfpill="3" style="padding:6px 14px;font-size:11.5px;font-weight:700;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;cursor:pointer">4. Yönetim Aksiyonları</button>
-    </div>
-  </div>
-  <div id="wfViewerContent">
-    <div style="display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center">
-      <div>
-        <p style="color:#334155;font-size:13.5px;line-height:1.6;margin:0 0 14px">ERP veya muhasebe programınızdan aldığınız standart Excel/CSV mizanınızı ve varsa yaşlandırma/stok alt defterlerinizi tarayıcıya sürükleyin. Kolon eşleme yapay zeka tahminiyle değil, hesap planı kuralları (1xx-7xx) üzerinden deterministik olarak anında tanınır.</p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <span style="background:#F1F5F9;border:1px solid #CBD5E1;padding:6px 12px;border-radius:8px;font-size:12px;color:#1D4ED8;font-weight:600">✓ Luca, Logo, Mikro, Netsis, Zirve uyumlu</span>
-          <span style="background:#ECFDF5;border:1px solid #A7F3D0;padding:6px 12px;border-radius:8px;font-size:12px;color:#047857;font-weight:600">✓ Sıfır Kurulum & Sıfır Bekleme</span>
-        </div>
-      </div>
-      <div style="background:#F8FAFC;border:2px dashed #93C5FD;border-radius:14px;padding:24px 20px;text-align:center">
-        <div style="font-size:32px;margin-bottom:8px">📥</div>
-        <b style="color:#0F172A;font-size:13px;display:block">Mizan Dosyanızı Sürükleyin</b>
-        <span style="color:#64748B;font-size:11px">.xlsx, .xls, .csv formatları otomatik taranır</span>
-      </div>
-    </div>
-  </div>
-</div>
-</section></div>
 
 <!-- SECTION: COMPARISON MATRIX -->
 <div class="secBlock reveal"><section id="comparison" class="marketingSection hidePrint">
@@ -1781,31 +1722,26 @@ if (document.readyState === 'loading') {
 </section></div>
 
 <!-- SECTION: TRANSPARENT PRICING MATRIX -->
-<div class="secBlock reveal">
+<div class="secBlock tint reveal">
   <section id="pricing" class="marketingSection hidePrint" style="padding-top:0">
     <div class="marketingHead">
-      <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">💰 ŞEFFAF &amp; TAHMİN EDİLEBİLİR FİYATLANDIRMA</span>
-      <h2 style="margin-top:10px">Gizli Maliyet Yok · 60 Saniyede Amorti Eden Finansal Karar Gücü</h2>
-      <p>Aylık yüz binlerce liralık finans danışmanlığı veya CFO kadrosu yerine; şirketinizin büyüklüğüne uygun şeffaf paketlerle hemen başlayın. Tüm paketler aynı deterministik 33 motorlu finansal çekirdeği kullanır.</p>
-
-      <div style="display:inline-flex;align-items:center;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:999px;padding:4px;margin-top:20px;box-shadow:0 4px 12px rgba(15,27,45,0.05)">
-        <button id="homeBtnMonthly" class="primary" style="border-radius:999px;padding:8px 20px;font-size:13px" onclick="setHomeBilling('monthly')">Aylık Ödeme</button>
-        <button id="homeBtnAnnual" class="secondary" style="border-radius:999px;padding:8px 20px;font-size:13px;border:0" onclick="setHomeBilling('annual')">Yıllık Ödeme <span style="background:#DCFCE7;color:#15803D;font-weight:800;padding:2px 8px;border-radius:999px;font-size:10.5px;margin-left:4px">%20 İndirim 🎁</span></button>
-      </div>
+      <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">💼 ÇÖZÜM MODELLERİ &amp; KAPSAM</span>
+      <h2 style="margin-top:10px">Şirketinizin Ölçeğine ve İhtiyacına Uygun Çözüm Modelleri</h2>
+      <p>İster tek bir mizanla finansal durumunuzu anında test edin, ister çoklu veri ve What-If simülatörüyle şirketinizin büyümesini yönetin. Tüm modeller aynı deterministik 33 motorlu finansal çekirdekle çalışır.</p>
     </div>
 
     <div class="pricingGrid" style="margin-top:28px">
       <!-- Plan 1: Starter -->
       <div class="card priceCard">
-        <div class="plan">Başlangıç (Keşif)</div>
-        <h3>Starter</h3>
-        <div class="amt">₺0<span> /anında</span></div>
-        <div class="desc">Sistemi test etmek ve Data Hub altın veri setiyle tüm karar motorlarını görmek isteyenler için.</div>
+        <div class="plan">Keşif &amp; Test</div>
+        <h3>Starter Demo</h3>
+        <div class="amt" style="font-size:22px;color:#1D4ED8;margin:12px 0 8px">Anında Canlı Demo<span> /Kayıtsız</span></div>
+        <div class="desc">Sistemin karar motorlarını test etmek ve örnek şirket verisiyle finansal röntgeni canlı görmek isteyen yöneticiler için.</div>
         <ul>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Tüm 33 finansal karar motoru aktif</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Görünmez Kâr Sızıntısı &amp; Kilitli Nakit Teşhisi</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Kâr Köprüsü &amp; Nakit Çevrim Süresi (CCC)</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Kayıt olmadan anında canlı test</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Kayıt olmadan tek tıkla anında test</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>RAM-Only (kalıcı disk saklama yok)</li>
         </ul>
         <button class="secondary" style="width:100%" onclick="window.location.href='/uygulama?sample=data_hub'">⚡ Canlı Demoyu Başlat</button>
@@ -1814,10 +1750,10 @@ if (document.readyState === 'loading') {
       <!-- Plan 2: Professional (Featured) -->
       <div class="card priceCard featured">
         <div class="badgeTop">En Çok Tercih Edilen</div>
-        <div class="plan">Büyüyen KOBİ'ler</div>
-        <h3>Professional</h3>
-        <div id="homeProPriceAmt" class="amt">₺2.490<span> /ay</span></div>
-        <div id="homeProSubText" class="desc">Kendi mizanını ve alt defterlerini yükleyip yönetim kurulu kararları üreten şirketler için.</div>
+        <div class="plan">KOBİ &amp; Büyüyen Şirketler</div>
+        <h3>Professional Karar Masası</h3>
+        <div class="amt" style="font-size:22px;color:#1D4ED8;margin:12px 0 8px">Tam Yönetim Masası<span> /KOBİ</span></div>
+        <div class="desc">Kendi mizanını ve alt defterlerini yükleyip yönetim kurulu kararları, What-If simülasyonu ve tek sayfalık icra raporu alan şirketler için.</div>
         <ul>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Sınırsız mizan ve alt defter yükleme</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>İnteraktif Kâr &amp; Nakit Simülatörü (What-If Lab)</li>
@@ -1826,37 +1762,38 @@ if (document.readyState === 'loading') {
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Çok dönemli trend &amp; Kasa Dayanıklılık Radarı</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>AI Finance Business Partner stratejik brifing</li>
         </ul>
-        <button class="primary" style="width:100%" onclick="window.location.href='/uygulama?auth=register'">Ücretsiz 14 Gün Dene</button>
+        <button class="primary" style="width:100%" onclick="window.location.href='/uygulama'">🚀 Hemen Başlayın</button>
       </div>
 
       <!-- Plan 3: Enterprise -->
       <div class="card priceCard">
-        <div class="plan">Kurumsal &amp; Holding</div>
-        <h3>Enterprise</h3>
-        <div class="amt">Özel Teklif<span> /şirket</span></div>
-        <div class="desc">Çoklu grup şirketleri, doğrudan ERP bağlayıcıları ve özel SLA isteyen kurumlar için.</div>
+        <div class="plan">Grup Şirketleri &amp; Holding</div>
+        <h3>Kurumsal &amp; Holding</h3>
+        <div class="amt" style="font-size:22px;color:#1D4ED8;margin:12px 0 8px">Konsolide Çözüm<span> /Holding</span></div>
+        <div class="desc">Çoklu grup şirketleri konsolidasyonu, doğrudan ERP bağlayıcıları ve özel SLA isteyen kurumlar için.</div>
         <ul>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Professional paketindeki tüm yetenekler</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Professional modelindeki tüm yetenekler</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Çoklu şirket konsolidasyonu &amp; özel yetkilendirme</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Doğrudan ERP API Bağlayıcı (SAP, Logo, Netsis)</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Özel sektör benchmark bantları &amp; kurumsal kurallar</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Öncelikli 2 Saat SLA + Kıdemli Finans Müşaviri</li>
         </ul>
-        <button class="secondary" style="width:100%" onclick="window.location.href='/iletisim'">Kurumsal Teklif Al</button>
+        <button class="secondary" style="width:100%" onclick="window.location.href='/iletisim'">🤝 Kurumsal İletişim</button>
       </div>
     </div>
 
     <!-- Güven & İade Garantisi Rozeti -->
     <div style="text-align:center;margin-top:22px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:12.5px;color:#64748B;font-weight:600">
-      <span>🛡️ 14 Gün Koşulsuz İade Garantisi</span>
-      <span>💳 Kredi Kartı Bilgisi Gerekmez</span>
-      <span>🔒 Gizli Kurulum veya Lisans Maliyeti Yok</span>
+      <span>⚡ Anında Kurulumsuz Deneyim</span>
+      <span>🔒 Sıfır Kalıcı Disk Depolama (RAM-Only)</span>
+      <span>📊 33 Deterministik Karar Motoru</span>
+      <span>📑 1-Sayfalık Yönetim Kurulu PDF Raporu</span>
     </div>
   </section>
 </div>
 
 <!-- SECTION: BANKA DÜZEYİNDE GÜVENLİK VE HUKUKİ TAAHHÜTLER -->
-<div class="secBlock tint reveal">
+<div class="secBlock reveal">
   <section id="securityShield" class="marketingSection hidePrint" style="padding-top:0">
     <div class="marketingHead">
       <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">🛡️ KURUMSAL GÜVENLİK VE GİZLİLİK KALKANI</span>
@@ -1897,7 +1834,7 @@ if (document.readyState === 'loading') {
 </div>
 
 <!-- SECTION: SIKÇA SORULAN SORULAR (SSS / FAQ) -->
-<div class="secBlock reveal">
+<div class="secBlock tint reveal">
   <section id="faq" class="marketingSection hidePrint" style="padding-top:0">
     <div class="marketingHead">
       <span class="workflowBadge" style="background:#F1F5F9;color:#334155;border-color:#CBD5E1">❓ AKLINIZA TAKILABİLECEK SORULAR</span>
@@ -3086,21 +3023,21 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </a>
 </div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda" class="active">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div style="display:flex;align-items:center;gap:6px" class="hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
-<div class="pageHead reveal in"><span class="eyebrow">Hakkımızda</span><h1>Muhasebe Raporu Değil, Stratejik İş Kararları Üretiyoruz</h1><p>Finans ekiplerinin ve şirket sahiplerinin saatlerce harcadığı "rakamları toparlama ve mutabakat" işini sıfıra indirip, zamanı asıl değerin üretildiği yere — stratejik iş ve yönetim kararlarına — taşıyoruz.</p></div>
+<div class="pageHead reveal in"><span class="eyebrow">Bizi Tanıyın</span><h1>Finansal Veriyi Güvenilir Yönetim Kararına Dönüştürüyoruz</h1><p>Reel sektörde ve holdinglerde kıdemli finans yöneticiliği yapmış uzmanlar ile finansal yazılım mühendislerinin ortak vizyonuyla hayata geçirildi. Amacımız; her büyüklükteki şirketin kendi mizanından kuruşu kuruşuna doğrulanmış, net ve icra edilebilir yönetim kararları alabilmesidir.</p></div>
 
 <div class="secBlock reveal"><section id="about" class="marketingSection hidePrint" style="padding-top:0"><div class="aboutGrid">
-<div><span class="badge" style="margin-bottom:14px;display:inline-block">Kurumsal Değer Önerimiz</span><h2 style="font-family:var(--serif);font-size:30px;margin:6px 0 12px;letter-spacing:-.5px">Finansal Verileri İş Kararlarına Dönüştüren Sistem</h2><p class="muted" style="font-size:14.5px;line-height:1.7">Digital Finance Business Partner, finansal verileri statik bir defter kaydı olmaktan çıkarıp şirketin geleceğini yöneten bir karar motoruna dönüştürmek amacıyla kuruldu. Sistem önce <b>33 finansal karar motoruyla</b> çift taraflı denetim yapar; rakamları doğrular, kârın nerede nakde dönüşmediğini saptar ve somut yönetim kararları ile aksiyon planları üretir. Yapay zeka yalnızca üstte ayrı etiketlenmiş stratejik bir yorum katmanıdır; rakamlar asla halüsinasyona bırakılmaz.</p><div class="aboutStats"><div class="st"><b>33</b><span>Karar Motoru</span></div><div class="st"><b>%100</b><span>Deterministik Denetim</span></div><div class="st"><b>0</b><span>Kalıcı Veri Saklama</span></div></div></div>
+<div><span class="badge" style="margin-bottom:14px;display:inline-block">Biz Kimiz?</span><h2 style="font-family:var(--serif);font-size:28px;margin:6px 0 14px;letter-spacing:-.5px">Mizanı Sadece Vergi İçin Değil, Şirketin Geleceği İçin Okuyoruz</h2><p class="muted" style="font-size:14px;line-height:1.75">Digital Finance Business Partner (DFBP), Türkiye'deki işletmelerin en yaygın finansal sıkıntısı olan <i>"Defterde kâr çıkıyor ama kasada para nerede?"</i> sorusuna bağımsız ve matematiksel bir çözüm sunmak amacıyla kuruldu.<br><br>Klasik muhasebe süreçleri geçmişe dönük vergi ve yasal beyan üretir. Oysa patronun ve yöneticinin ihtiyacı; yarın sabah hangi müşteriye mal çıkışını durduracağını, nakdin hangi depoda veya vadede kilitlendiğini ve kasayı rahatlatacak 1 numaralı adımı bilmektir. Platformumuz, mizanınızı <b>33 deterministik karar motoruyla</b> inceleyerek kurumsal finans zekasını dakikalar içinde masanıza taşır.</p><div class="aboutStats"><div class="st"><b>33</b><span>Karar Motoru</span></div><div class="st"><b>%100</b><span>Matematiksel Doğrulama</span></div><div class="st"><b>0</b><span>Disk Saklama (RAM-Only)</span></div></div></div>
 <div class="card" style="padding:26px">
 <div style="display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1px solid #BFDBFE;color:var(--accent);font-size:11.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:16px">
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-  Bağımsız Karar Destek Prensibi
+  Çalışma İlkelerimiz
 </div>
-<h3 style="margin:0 0 12px;font-family:var(--serif);font-size:20px;color:#0F1B2D">Temel İlkelerimiz</h3>
-<ul style="margin:0;padding-left:18px;color:#33415C;font-size:13.5px;line-height:2">
-<li>Karar destek, robotik veya kuru rapor üretiminden çok farklıdır.</li>
-<li><b>Önce hesap, sonra yorum</b> — sıra asla değişmez.</li>
-<li>Veri sizindir; oturum RAM'de işlenir, sunucuda kalıcı depolanmaz.</li>
-<li>Yapay zekâ yorumu, doğrulanmış rakamların yerine değil, üstüne konur.</li>
+<h3 style="margin:0 0 12px;font-family:var(--serif);font-size:19px;color:#0F1B2D">Yönetim ve Güven Standartlarımız</h3>
+<ul style="margin:0;padding-left:18px;color:#33415C;font-size:13.5px;line-height:1.9">
+<li><b>Önce Matematik, Sonra Yorum:</b> Rakamlar asla tahmine bırakılmaz; tüm çıktılar çift taraflı denetimden geçer.</li>
+<li><b>Sade ve Anlaşılır Dil:</b> Ağır akademik jargondan uzak, sahadaki yöneticinin doğrudan uygulayabileceği kararlar sunar.</li>
+<li><b>Mutlak Veri Mahremiyeti:</b> Mizanınız sunucuda kalıcı depolanmaz; geçici bellekte işlenip oturum sonunda yok edilir.</li>
+<li><b>Net İcraat Takvimi:</b> Kararlar soyut tavsiye olarak kalmaz; sorumlusu, vadesi ve TL etkisiyle birlikte verilir.</li>
 </ul></div>
 </div></section>
 </div>
@@ -3116,7 +3053,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="card" style="padding:28px;border-top:4px solid #1D4ED8;background:#FFFFFF;box-shadow:0 8px 26px rgba(15,27,45,0.05)">
     <div style="font-size:32px;margin-bottom:12px">🛡️</div>
     <h3 style="font-size:18px;font-family:var(--serif);margin:0 0 8px;color:#0F1B2D">Temel Amacımız (Varoluş Sebebi)</h3>
-    <div style="color:#1D4ED8;font-size:12px;font-weight:700;margin-bottom:10px">Patronu "Kâğıt Üstünde Kâr" Yanılsamasından Kurtarmak</div>
+    <div style="color:#1D4ED8;font-size:12px;font-weight:700;margin-bottom:10px">Patronu "Defterde Kâr, Kasada Yok" Yanılsamasından Kurtarmak</div>
     <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Muhasebe geçmişi kaydeder, patron ise yarın için risk alır. Aradaki en ölümcül tehlike; şirketin defterde kârlı görünürken, paranın müşteri vadelerinde ve depoda kilitlenip şirketi sessizce tüketmesidir. Temel varoluş sebebimiz; bu finansal kör noktayı anında ortadan kaldırmak ve patronun şirketteki her kuruşun nereye bağlandığını çıplak gözle görmesini sağlamaktır.</p>
   </div>
   <div class="card" style="padding:28px;border-top:4px solid #10B981;background:#FFFFFF;box-shadow:0 8px 26px rgba(15,27,45,0.05)">
@@ -4955,7 +4892,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
           <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:16px">
             <div style="font-size:11px;color:#64748B;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:6px">🩺 1. KÂR DURUMU VE KASAYA GİREN NAKİT</div>
             <div style="font-size:20px;font-weight:800;color:#0F1B2D;margin-bottom:4px" id="snapProfitQualityVal">-</div>
-            <div style="font-size:12px;color:#475569;line-height:1.5" id="snapProfitQualityDesc">Kâğıt üzerindeki kâr ile kasaya giren nakit dengesi hesaplanıyor...</div>
+            <div style="font-size:12px;color:#475569;line-height:1.5" id="snapProfitQualityDesc">Defterdeki kâr ile kasaya giren nakit dengesi hesaplanıyor...</div>
           </div>
           
           <!-- Kart 2: Şirketin Parasının Kilitlendiği Yer -->
@@ -5744,7 +5681,7 @@ const money=v=>{
 };
 
 window._activeLang = 'tr';
-const I18N_BUNDLE = {"tr": {"singleTab": "Tek Dönem Mizan", "trendTab": "Çok Dönem / Trend", "hubTab": "Data Hub / Çoklu Veri", "analyzeBtn": "Mizanı Analiz Et", "analyzeBtnTrend": "İki Dönemi Analiz Et", "analyzeBtnHub": "Tüm Verileri Analiz Et", "sampleBtn": "📄 Tek dönem örnekle dene", "sampleTrendBtn": "📊 İki dönemli örnekle dene (Trend Demo)", "sampleHubBtn": "🗂️ Data Hub örnekle dene (Mizan + AR + AP + Stok + Satış)", "dropTitle": "Mizan Dosyanızı Buraya Sürükleyin", "dropSub": "veya bilgisayarınızdan seçin (.xlsx, .xls, .csv)", "dropBtn": "📁 Dosya Seç", "downloadTemplate": "📥 Standart Mizan Şablonu İndir (.csv)", "navHome": "Anasayfa", "navAbout": "Hakkımızda", "navApp": "Uygulama", "navPricing": "Paketler", "navSecurity": "Güvenlik", "navContact": "İletişim", "login": "Giriş Yap", "register": "Ücretsiz Kayıt Ol", "s1Title": "Finansal Gerçekler (Ne Oldu?)", "s1Desc": "Şirkette gerçekte ne oldu: Kâr nereden nereye aktı?", "s1Sub": "Doğrulanmış rakamlar: Ciro, operasyonel kâr kalitesi, borç yapısı ve nakit akış gerçekleşmesi.", "s2Title": "Para Nerede? — Görünmez Kâr Sızıntısı & Kilitli Nakit Teşhisi", "s2Desc": "Kâğıt üzerinde kâr var ama para kasada nerede duruyor?", "s2Sub": "Müşteri vadelerinde (120 Alıcılar) ve depodaki stokta (150-153) kilitlenen sermaye ve her yıl ödenen gizli finansman faiz sızıntısı.", "s3Title": "Sektörel Kıyaslama & Öncelikli Riskler (Bize Maliyeti Ne?)", "s3Desc": "Sektör ortalamalarına göre neredeyiz ve acil ele alınması gereken riskler", "s3Sub": "TCMB Sektör Bilançoları & Borsa İstanbul (BIST) 500+ şirket verisiyle kıyaslama ve skorlanmış riskler.", "s4Title": "Kritik Taraflar & Operasyonel İstihbarat (Sızıntıyı Kim Yapıyor?)", "s4Desc": "Hangi müşteri, tedarikçi veya stok kalemi kârı ve nakdi doğrudan etkiliyor?", "s4Sub": "Nakit ve kâr üzerinde en büyük etkisi olan müşteriler ve stok kalemleri. Çoklu veri yüklendiğinde otomatik detaylanır.", "s5Title": "Kök Neden & Yönetim Hikâyeleri (Neden Oldu & Ne Yapılmalı?)", "s5Desc": "Bulguların arkasındaki 5 adımlı nedensellik zinciri, parasal sızıntı maliyeti ve icraat kararları", "s5Sub": "Belirti (Ne Oldu?) ➔ Kanıt (Rakamlar) ➔ Kök Neden (Tetikleyici) ➔ Parasal Sızıntı (Maliyet) ➔ Yönetim Kararı & İcraat", "s6Title": "Yönetim Kararları & Aksiyon Takvimi (Şimdi Ne Yapmalı?)", "s6Desc": "Yönetimin masaya koyup uygulayacağı somut kararlar", "s6Sub": "Karar maddesi → Sahibi → Termini → Takip Edilecek KPI. Her aksiyon maddesi ayrı bir takip numarasına sahiptir.", "s7Title": "Varsayımı Değiştirirsek Ne Olur? (Canlı Senaryo Simülatörü)", "s7Desc": "Fiyatı artırırsak, tahsilatı çekersek veya gideri kıssak kasaya ne girer?", "s7Sub": "Formüllü fırsatlar kataloğu ve anlık duyarlılık simülatörü.", "s8Title": "Yönetici Özeti & AI Finance Business Partner (Karar Brifingi)", "s8Desc": "Tüm analizin tek paragrafta özeti ve stratejik soru-cevap", "s8Sub": "Önce matematiksel kurallarla hesaplanır, sonra yorumlanır. Yöneticinin bu raporla hangi stratejik adımı atması gerektiği açıkça belirtilir.", "sEkATitle": "Ek A — Veri Güvenilirliği & Çift Taraflı Hesaplama Denetimi", "sEkADesc": "Analizin dayandığı verinin doğrulanma düzeyi ve dosya bazlı kırılım", "sEkBTitle": "Ek B — Trend İzleme, İzlenebilirlik & 3 Temel Mali Tablo", "sEkBDesc": "Çok dönem yüklendiğinde hareketi gösterir; her sayı kaynağına izlenebilir", "taxTitle": "🏛️ Vergisel Yönetim Avantajları & Yasal Nakit Tasarrufu", "taxSub": "Şirketin finansal tablolarından (mizan) türetilmiş yasal vergi kalkanları, KKEG optimizasyonu ve nakit tasarrufları", "simHeader": "İnteraktif Senaryo Laboratuvarı & Nakit Simülatörü", "simSub": "Önerilen senaryoları seçin veya sürgüleri hareket ettirerek serbest kalacak nakdi ve kâr etkisini anında canlı görün"}, "en": {"singleTab": "Single Period Trial Balance", "trendTab": "Multi-Period / Trend", "hubTab": "Data Hub / Multi-Source", "analyzeBtn": "Analyze Trial Balance", "analyzeBtnTrend": "Analyze Two Periods", "analyzeBtnHub": "Analyze All Sources", "sampleBtn": "📄 Try Single Period Sample", "sampleTrendBtn": "📊 Try Two-Period Trend Sample", "sampleHubBtn": "🗂️ Try Data Hub Sample (GL + AR + AP + Inventory + Sales)", "dropTitle": "Drag & Drop Your Trial Balance Here", "dropSub": "or choose from computer (.xlsx, .xls, .csv)", "dropBtn": "📁 Select File", "downloadTemplate": "📥 Download Standard Template (.csv)", "navHome": "Home", "navAbout": "About", "navApp": "App", "navPricing": "Pricing", "navSecurity": "Security", "navContact": "Contact", "login": "Log In", "register": "Sign Up Free", "s1Title": "Financial Facts (What Happened?)", "s1Desc": "What actually happened: How profit flowed across statements", "s1Sub": "Verified figures: Revenue, operating profit quality, debt structure, and cash realization.", "s2Title": "Where is Cash? — Hidden Profit Leakage & Trapped Working Capital", "s2Desc": "On paper there is profit, but where is the cash trapped?", "s2Sub": "Capital locked in receivables (AR) and inventory, plus hidden annual debt finance costs.", "s3Title": "Benchmarking & Priority Risks (What Does It Cost Us?)", "s3Desc": "Where we stand relative to industry benchmarks and urgent risks", "s3Sub": "Central Bank Sector Balance Sheets & Stock Exchange 500+ corporate benchmarks.", "s4Title": "Key Counterparties & Operational Intelligence (Who Drives It?)", "s4Desc": "Which customer, supplier, or inventory SKU directly moves profit and cash?", "s4Sub": "Counterparties with the largest cash footprint. Enriched automatically when multi-source files are loaded.", "s5Title": "Root Cause & Management Narratives (Why & What to Do?)", "s5Desc": "5-step causal chain behind findings, financial leakage cost, and decisive execution actions", "s5Sub": "Symptom ➔ Evidence ➔ Root Cause ➔ Financial Leakage ➔ Decision & Action", "s6Title": "Management Action Matrix & Schedule (Now What?)", "s6Desc": "Decisive executive actions ready to execute tomorrow", "s6Sub": "Action item → Owner → Deadline → Target KPI with unique tracking ID.", "s7Title": "What If We Change Assumptions? (Live Scenario Simulator)", "s7Desc": "If we raise prices, shorten DSO, or curb opex, what lands in cash?", "s7Sub": "Formulaic opportunity catalog and instant sensitivity simulator.", "s8Title": "Executive Summary & AI Finance Business Partner (Decision Briefing)", "s8Desc": "Single-paragraph summary of full analysis and strategic Q&A", "s8Sub": "Calculated using deterministic mathematical rules first, then synthesized.", "sEkATitle": "Appendix A — Data Reliability & Double-Entry Audit", "sEkADesc": "Verification level and file-by-file audit of underlying financial data", "sEkBTitle": "Appendix B — Trend Tracking, Traceability & 3 Core Statements", "sEkBDesc": "Shows movement across periods; every number traces back to underlying journal accounts", "taxTitle": "🏛️ Practical Tax Management & Statutory Cash Shields", "taxSub": "Statutory tax shields, disallowed interest reduction, and cash savings derived from statement balances", "simHeader": "Interactive Scenario Lab & Cash Simulator", "simSub": "Choose suggested scenarios or move sliders to see cash liberation and profit impact in real time"}, "de": {"singleTab": "Einperiodige Summen- & Saldenliste", "trendTab": "Mehrperioden / Trend", "hubTab": "Data Hub / Multi-Source", "analyzeBtn": "Saldenliste analysieren", "analyzeBtnTrend": "Zwei Perioden analysieren", "analyzeBtnHub": "Alle Daten analysieren", "sampleBtn": "📄 Einperiodiges Beispiel testen", "sampleTrendBtn": "📊 Zweiperiodigen Trend testen", "sampleHubBtn": "🗂️ Data Hub Beispiel testen", "dropTitle": "Saldenliste hier ablegen", "dropSub": "oder vom Computer auswählen (.xlsx, .xls, .csv)", "dropBtn": "📁 Datei auswählen", "downloadTemplate": "📥 Standard-Vorlage herunterladen (.csv)", "navHome": "Startseite", "navAbout": "Über uns", "navApp": "Anwendung", "navPricing": "Preise", "navSecurity": "Sicherheit", "navContact": "Kontakt", "login": "Anmelden", "register": "Kostenlos Registrieren", "s1Title": "Finanzielle Fakten (Was ist passiert?)", "s1Desc": "Ertragsfluss und Kapitalverwendung im Detail", "s1Sub": "Umsatz, operative Ertragsqualität, Verschuldung und Cashflow.", "s2Title": "Wo ist das Geld? — Gebundenes Kapital & Liquiditätsabfluss", "s2Desc": "Auf dem Papier Gewinn, aber wo steht die Liquidität?", "s2Sub": "In Forderungen und Vorräten gebundenes Betriebskapital.", "s3Title": "Branchenvergleich & Risiken (Was kostet es uns?)", "s3Desc": "Positionierung im Branchenvergleich und Risiken", "s3Sub": "Zentralbank- und Börsenbenchmarks für 500+ Unternehmen.", "s4Title": "Wesentliche Parteien & Operative Intelligenz (Wer verursacht es?)", "s4Desc": "Welche Kunden oder Artikel binden Marge und Cash?", "s4Sub": "Fokus auf Haupttreiber des operativen Kapitals.", "s5Title": "Ursachenanalyse & Management-Berichte (Warum & Was tun?)", "s5Desc": "5-stufige Kausalkette, Schadenshöhe und Managemententscheidungen", "s5Sub": "Symptom ➔ Nachweis ➔ Hauptursache ➔ Finanzieller Verlust ➔ Maßnahme", "s6Title": "Management-Maßnahmen & Umsetzungsplan (Was jetzt?)", "s6Desc": "Konkrete Maßnahmen zur sofortigen Umsetzung", "s6Sub": "Maßnahme → Verantwortlicher → Frist → KPI.", "s7Title": "Was wäre wenn? (Live-Szenario-Simulator)", "s7Desc": "Sensitivitätsanalyse für Preis, Zahlungsziel und Kosten", "s7Sub": "Echtzeit-Berechnung des Liquiditätseffekts.", "s8Title": "Executive Summary & AI Finance Business Partner", "s8Desc": "Gesamtzusammenfassung und Entscheidungsunterstützung", "s8Sub": "Zuerst mathematisch determiniert, dann interpretiert.", "sEkATitle": "Anhang A — Datenqualität & Rechnungslegungsprüfung", "sEkADesc": "Prüfstufe der Quelldaten und Kontenabstimmung", "sEkBTitle": "Anhang B — Trend-Monitoring & 3 Hauptfinanzberichte", "sEkBDesc": "Mehrperioden-Vergleich und lückenlose Kontenrückverfolgung", "taxTitle": "🏛️ Steuerstrategie & Rechtliche Steuersparmodelle", "taxSub": "Gesetzliche Steuerabzüge und Liquiditätsschilde basierend auf der Bilanz", "simHeader": "Interaktiver Szenario-Simulator", "simSub": "Wählen Sie Presets oder bewegen Sie Schieberegler für Cashflow- und Gewinnauswirkungen"}, "fr": {"singleTab": "Balance Générale Période Unique", "trendTab": "Multi-Périodes / Tendance", "hubTab": "Data Hub / Multi-Sources", "analyzeBtn": "Analyser la balance", "analyzeBtnTrend": "Analyser deux périodes", "analyzeBtnHub": "Analyser toutes les sources", "sampleBtn": "📄 Essayer exemple période unique", "sampleTrendBtn": "📊 Essayer exemple tendance", "sampleHubBtn": "🗂️ Essayer Data Hub", "dropTitle": "Déposez votre balance générale ici", "dropSub": "ou sélectionnez depuis votre ordinateur (.xlsx, .xls, .csv)", "dropBtn": "📁 Choisir un fichier", "downloadTemplate": "📥 Télécharger modèle standard (.csv)", "navHome": "Accueil", "navAbout": "À propos", "navApp": "Application", "navPricing": "Tarifs", "navSecurity": "Sécurité", "navContact": "Contact", "login": "Connexion", "register": "Inscription Gratuite", "s1Title": "Faits Financiers (Que s'est-il passé ?)", "s1Desc": "Flux réel du résultat d'exploitation", "s1Sub": "Chiffre d'affaires, marge opérationnelle, endettement et trésorerie nette.", "s2Title": "Où est l'argent ? — Fuites de profit et trésorerie immobilisée", "s2Desc": "Du bénéfice comptable, mais où est la trésorerie ?", "s2Sub": "Capitaux immobilisés dans les créances clients et stocks.", "s3Title": "Analyse Sectorielle & Risques Prioritaires (Quel est le coût ?)", "s3Desc": "Positionnement sectoriel et alertes critiques", "s3Sub": "Données Banque Centrale et marché boursier pour 500+ entreprises.", "s4Title": "Tiers Clés & Renseignement Opérationnel (Qui génère l'impact ?)", "s4Desc": "Quels clients ou références pèsent le plus lourd ?", "s4Sub": "Analyse approfondie des contreparties critiques.", "s5Title": "Causes Profondes & Narration Décisionnelle (Pourquoi & Que faire ?)", "s5Desc": "Chaîne causale en 5 étapes, coût financier et décisions", "s5Sub": "Symptôme ➔ Preuve ➔ Cause Première ➔ Perte Financière ➔ Décision", "s6Title": "Plan d'Action Managérial & Calendrier (Que faire maintenant ?)", "s6Desc": "Feuille de route pour le comité de direction", "s6Sub": "Action → Porteur → Échéance → KPI cible.", "s7Title": "Simulateur de Scénarios en Direct", "s7Desc": "Ajustements de prix, délais et charges en direct", "s7Sub": "Simulateur instantané de sensibilité de trésorerie.", "s8Title": "Synthèse Exécutive & AI Finance Business Partner", "s8Desc": "Synthèse générale et questions-réponses stratégiques", "s8Sub": "Calculé d'abord selon des règles déterministes strictes.", "sEkATitle": "Annexe A — Fiabilité des Données & Contrôle Arithmétique", "sEkADesc": "Niveau de vérification et réconciliation de la balance", "sEkBTitle": "Annexe B — Analyse de Tendance & 3 États Financiers", "sEkBDesc": "Évolution pluriannuelle et traçabilité intégrale", "taxTitle": "🏛️ Stratégie Fiscale & Économies Légales de Trésorerie", "taxSub": "Boucliers fiscaux et optimisation des charges issus du bilan", "simHeader": "Laboratoire de Scénarios Interactif", "simSub": "Ajustez les curseurs pour simuler l'impact immédiat sur la trésorerie"}, "es": {"singleTab": "Balance de Sumas y Saldos Único", "trendTab": "Multi-Periodo / Tendencia", "hubTab": "Data Hub / Multi-Fuente", "analyzeBtn": "Analizar balance", "analyzeBtnTrend": "Analizar dos periodos", "analyzeBtnHub": "Analizar todas las fuentes", "sampleBtn": "📄 Probar ejemplo de un periodo", "sampleTrendBtn": "📊 Probar ejemplo de tendencia", "sampleHubBtn": "🗂️ Probar Data Hub", "dropTitle": "Arrastre su balance aquí", "dropSub": "o elija de su ordenador (.xlsx, .xls, .csv)", "dropBtn": "📁 Seleccionar archivo", "downloadTemplate": "📥 Descargar plantilla estándar (.csv)", "navHome": "Inicio", "navAbout": "Sobre Nosotros", "navApp": "Aplicación", "navPricing": "Precios", "navSecurity": "Seguridad", "navContact": "Contacto", "login": "Iniciar Sesión", "register": "Registro Gratis", "s1Title": "Hechos Financieros (¿Qué Ocurrió?)", "s1Desc": "Flujo real de beneficios y estructura patrimonial", "s1Sub": "Ingresos netos, margen operativo, endeudamiento y tesorería.", "s2Title": "¿Dónde está el dinero? — Fugas de beneficio y caja atrapada", "s2Desc": "Hay beneficio contable, pero ¿dónde está el dinero?", "s2Sub": "Capital inmovilizado en clientes pendientes y almacén.", "s3Title": "Comparativa Sectorial & Riesgos Prioritarios (¿Cuál es el coste?)", "s3Desc": "Posicionamiento sectorial y riesgos urgentes", "s3Sub": "Datos de referencia de Banco Central y bolsas 500+ empresas.", "s4Title": "Contrapartes Clave & Análisis Operativo (¿Quién genera el impacto?)", "s4Desc": "Clientes, proveedores y existencias determinantes", "s4Sub": "Impacto operativo directo en caja y márgenes.", "s5Title": "Causa Raíz & Narrativa de Gestión (¿Por qué y qué hacer?)", "s5Desc": "Cadena causal de 5 pasos, fuga de caja e intervenciones", "s5Sub": "Síntoma ➔ Evidencia ➔ Causa Raíz ➔ Fuga Financiera ➔ Decisión", "s6Title": "Matriz de Acciones de Dirección (¿Qué hacer ahora?)", "s6Desc": "Decisiones listas para ser aplicadas", "s6Sub": "Medida → Responsable → Plazo → KPI objetivo.", "s7Title": "Simulador de Escenarios en Vivo", "s7Desc": "¿Qué ocurre al variar precios, plazos o costes?", "s7Sub": "Simulador instantáneo de impacto en tesorería.", "s8Title": "Resumen Ejecutivo & AI Finance Business Partner", "s8Desc": "Informe condensado para el Consejo de Administración", "s8Sub": "Cálculo matemático determinista antes de la interpretación.", "sEkATitle": "Anexo A — Fiabilidad Contable & Auditoría Doble", "sEkADesc": "Nivel de validación y conciliación contable", "sEkBTitle": "Anexo B — Tendencia Histórica & 3 Estados Financieros", "sEkBDesc": "Seguimiento multi-periodo y trazabilidad total", "taxTitle": "🏛️ Estrategia Fiscal Práctica & Escudos de Caja", "taxSub": "Deducciones fiscales y ahorro de intereses derivados del balance", "simHeader": "Laboratorio de Escenarios Interactivo", "simSub": "Deslice controles para calcular el impacto en tesorería y beneficio"}, "it": {"singleTab": "Bilancio di Verifica Singolo", "trendTab": "Multi-Periodo / Trend", "hubTab": "Data Hub / Multi-Fonte", "analyzeBtn": "Analizza bilancio", "analyzeBtnTrend": "Analizza due periodi", "analyzeBtnHub": "Analizza tutte le fonti", "sampleBtn": "📄 Prova esempio singolo periodo", "sampleTrendBtn": "📊 Prova esempio trend", "sampleHubBtn": "🗂️ Prova Data Hub", "dropTitle": "Trascina qui il tuo bilancio di verifica", "dropSub": "oppure seleziona dal computer (.xlsx, .xls, .csv)", "dropBtn": "📁 Seleziona file", "downloadTemplate": "📥 Scarica modello standard (.csv)", "navHome": "Home", "navAbout": "Chi siamo", "navApp": "Applicazione", "navPricing": "Piani", "navSecurity": "Sicurezza", "navContact": "Contatti", "login": "Accedi", "register": "Registrati Gratis", "s1Title": "Fatti Finanziari (Cosa è successo?)", "s1Desc": "Dinamica economica reale e generazione utile", "s1Sub": "Ricavi netti, qualità del reddito operativo e liquidità.", "s2Title": "Dov'è il denaro? — Fuga di utili e capitale bloccato", "s2Desc": "C'è utile contabile, ma dov'è la cassa reale?", "s2Sub": "Capitale bloccato in crediti commerciali e magazzino.", "s3Title": "Benchmark di Settore & Rischi Prioritari (Quanto ci costa?)", "s3Desc": "Posizionamento rispetto ai concorrenti e rischi", "s3Sub": "Metriche Banca Centrale e Borsa per 500+ imprese.", "s4Title": "Controparti Chiave & Intelligence Operativa (Chi impatta?)", "s4Desc": "Clienti, fornitori e articoli che guidano i risultati", "s4Sub": "Analisi ad alto impatto per il capitale circolante.", "s5Title": "Cause Principali & Storie Decisionali (Perché & Cosa fare?)", "s5Desc": "Sequenza causale a 5 fasi, dispersione e azioni", "s5Sub": "Sintomo ➔ Evidenza ➔ Causa Primaria ➔ Dispersione ➔ Decisione", "s6Title": "Piano di Azione Manageriale & Scadenze (Cosa fare ora?)", "s6Desc": "Decisioni concrete per il management", "s6Sub": "Azione → Responsabile → Termine → KPI.", "s7Title": "Simulatore di Scenari in Tempo Reale", "s7Desc": "Sensibilità su prezzi, termini di incasso e spese", "s7Sub": "Simulatore istantaneo dell'impatto sulla liquidità.", "s8Title": "Sintesi Esecutiva & AI Finance Business Partner", "s8Desc": "Quadro strategico d'insieme per il vertice", "s8Sub": "Regole matematiche certe e sintesi esecutiva.", "sEkATitle": "Allegato A — Affidabilità Dati & Verifica a Partita Doppia", "sEkADesc": "Verifica contabile e riconciliazione delle fonti", "sEkBTitle": "Allegato B — Trend Storico & 3 Bilanci Principali", "sEkBDesc": "Confronto multi-periodo e tracciabilità analitica", "taxTitle": "🏛️ Strategia Fiscale Pratica & Scudi Fiscali Legali", "taxSub": "Ottimizzazione deduzioni e scudi fiscali basati sul bilancio", "simHeader": "Laboratorio Scenari Interattivo", "simSub": "Muovi i cursori per visualizzare immediatamente la liquidità liberata"}, "nl": {"singleTab": "Enkelvoudige Kolommenbalans", "trendTab": "Meerdere Perioden / Trend", "hubTab": "Data Hub / Multi-Bron", "analyzeBtn": "Balans analyseren", "analyzeBtnTrend": "Twee perioden analyseren", "analyzeBtnHub": "Alle bronnen analyseren", "sampleBtn": "📄 Test enkelvoudig voorbeeld", "sampleTrendBtn": "📊 Test trend voorbeeld", "sampleHubBtn": "🗂️ Test Data Hub", "dropTitle": "Sleep uw kolommenbalans hierheen", "dropSub": "of kies vanaf uw computer (.xlsx, .xls, .csv)", "dropBtn": "📁 Bestand kiezen", "downloadTemplate": "📥 Download standaardsjabloon (.csv)", "navHome": "Startpagina", "navAbout": "Over ons", "navApp": "Applicatie", "navPricing": "Tarieven", "navSecurity": "Beveiliging", "navContact": "Contact", "login": "Inloggen", "register": "Gratis Registreren", "s1Title": "Financiële Feiten (Wat is er gebeurd?)", "s1Desc": "Reële kapitaalstromen en winstbestemming", "s1Sub": "Omzet, operationele marge, schuldhefboom en kasstroom.", "s2Title": "Waar is het geld? — Verborgen winstlekkage & vastzittend kapitaal", "s2Desc": "Winst op papier, maar waar is het geld?", "s2Sub": "Kapitaal vast in debiteuren en magazijnvoorraad.", "s3Title": "Sectorvergelijking & Prioritaire Risico's (Wat kost het ons?)", "s3Desc": "Positie ten opzichte van sectorbenchmarks", "s3Sub": "Centrale Bank en beursbenchmarks van 500+ bedrijven.", "s4Title": "Belangrijkste Partijen & Operationele Analyse (Wie veroorzaakt het?)", "s4Desc": "Klanten en artikelen met de grootste invloed", "s4Sub": "Gedetailleerde analyse van werkkapitaal.", "s5Title": "Oorzaakanalyse & Managementverhalen (Waarom & Wat te doen?)", "s5Desc": "Keten in 5 stappen, financiële lekkage en besluiten", "s5Sub": "Symptoom ➔ Bewijs ➔ Oorzaak ➔ Lekkage ➔ Actie", "s6Title": "Management Actieplan & Planning (Wat nu?)", "s6Desc": "Direct uitvoerbare directiebesluiten", "s6Sub": "Actiepunt → Eigenaar → Deadline → KPI.", "s7Title": "Live Scenario Simulator", "s7Desc": "Effect van prijs, debiteurentermijn en kosten", "s7Sub": "Directe berekening van effect op cash en winst.", "s8Title": "Managementsamenvatting & AI Finance Business Partner", "s8Desc": "Eén overzichtelijke directiesamenvatting", "s8Sub": "Deterministisch berekend, daarna strategisch geïnterpreteerd.", "sEkATitle": "Bijlage A — Betrouwbaarheid & Boekhoudkundige Audit", "sEkADesc": "Controle van rekeningschema en balanssluiting", "sEkBTitle": "Bijlage B — Trend-Monitoring & 3 Financiële Overzichten", "sEkBDesc": "Meerperioden-vergelijking en brontraceerbaarheid", "taxTitle": "🏛️ Praktische Belastingoptimalisatie & Cash-voordelen", "taxSub": "Wettelijke aftrekposten en rentebeperking uit de balans", "simHeader": "Interactief Scenario Laboratorium", "simSub": "Verschuif regelaars om het effect op cashflow en winst te zien"}};
+const I18N_BUNDLE = {"tr": {"singleTab": "Tek Dönem Mizan", "trendTab": "Çok Dönem / Trend", "hubTab": "Data Hub / Çoklu Veri", "analyzeBtn": "Mizanı Analiz Et", "analyzeBtnTrend": "İki Dönemi Analiz Et", "analyzeBtnHub": "Tüm Verileri Analiz Et", "sampleBtn": "📄 Tek dönem örnekle dene", "sampleTrendBtn": "📊 İki dönemli örnekle dene (Trend Demo)", "sampleHubBtn": "🗂️ Data Hub örnekle dene (Mizan + AR + AP + Stok + Satış)", "dropTitle": "Mizan Dosyanızı Buraya Sürükleyin", "dropSub": "veya bilgisayarınızdan seçin (.xlsx, .xls, .csv)", "dropBtn": "📁 Dosya Seç", "downloadTemplate": "📥 Standart Mizan Şablonu İndir (.csv)", "navHome": "Anasayfa", "navAbout": "Hakkımızda", "navApp": "Uygulama", "navPricing": "Paketler", "navSecurity": "Güvenlik", "navContact": "İletişim", "login": "Giriş Yap", "register": "Ücretsiz Kayıt Ol", "s1Title": "Finansal Gerçekler (Ne Oldu?)", "s1Desc": "Şirkette gerçekte ne oldu: Kâr nereden nereye aktı?", "s1Sub": "Doğrulanmış rakamlar: Ciro, operasyonel kâr kalitesi, borç yapısı ve nakit akış gerçekleşmesi.", "s2Title": "Para Nerede? — Görünmez Kâr Sızıntısı & Kilitli Nakit Teşhisi", "s2Desc": "Defterde kâr var ama para kasada nerede duruyor?", "s2Sub": "Müşteri vadelerinde (120 Alıcılar) ve depodaki stokta (150-153) kilitlenen sermaye ve her yıl ödenen gizli finansman faiz sızıntısı.", "s3Title": "Sektörel Kıyaslama & Öncelikli Riskler (Bize Maliyeti Ne?)", "s3Desc": "Sektör ortalamalarına göre neredeyiz ve acil ele alınması gereken riskler", "s3Sub": "TCMB Sektör Bilançoları & Borsa İstanbul (BIST) 500+ şirket verisiyle kıyaslama ve skorlanmış riskler.", "s4Title": "Kritik Taraflar & Operasyonel İstihbarat (Sızıntıyı Kim Yapıyor?)", "s4Desc": "Hangi müşteri, tedarikçi veya stok kalemi kârı ve nakdi doğrudan etkiliyor?", "s4Sub": "Nakit ve kâr üzerinde en büyük etkisi olan müşteriler ve stok kalemleri. Çoklu veri yüklendiğinde otomatik detaylanır.", "s5Title": "Kök Neden & Yönetim Hikâyeleri (Neden Oldu & Ne Yapılmalı?)", "s5Desc": "Bulguların arkasındaki 5 adımlı nedensellik zinciri, parasal sızıntı maliyeti ve icraat kararları", "s5Sub": "Belirti (Ne Oldu?) ➔ Kanıt (Rakamlar) ➔ Kök Neden (Tetikleyici) ➔ Parasal Sızıntı (Maliyet) ➔ Yönetim Kararı & İcraat", "s6Title": "Yönetim Kararları & Aksiyon Takvimi (Şimdi Ne Yapmalı?)", "s6Desc": "Yönetimin masaya koyup uygulayacağı somut kararlar", "s6Sub": "Karar maddesi → Sahibi → Termini → Takip Edilecek KPI. Her aksiyon maddesi ayrı bir takip numarasına sahiptir.", "s7Title": "Varsayımı Değiştirirsek Ne Olur? (Canlı Senaryo Simülatörü)", "s7Desc": "Fiyatı artırırsak, tahsilatı çekersek veya gideri kıssak kasaya ne girer?", "s7Sub": "Formüllü fırsatlar kataloğu ve anlık duyarlılık simülatörü.", "s8Title": "Yönetici Özeti & AI Finance Business Partner (Karar Brifingi)", "s8Desc": "Tüm analizin tek paragrafta özeti ve stratejik soru-cevap", "s8Sub": "Önce matematiksel kurallarla hesaplanır, sonra yorumlanır. Yöneticinin bu raporla hangi stratejik adımı atması gerektiği açıkça belirtilir.", "sEkATitle": "Ek A — Veri Güvenilirliği & Çift Taraflı Hesaplama Denetimi", "sEkADesc": "Analizin dayandığı verinin doğrulanma düzeyi ve dosya bazlı kırılım", "sEkBTitle": "Ek B — Trend İzleme, İzlenebilirlik & 3 Temel Mali Tablo", "sEkBDesc": "Çok dönem yüklendiğinde hareketi gösterir; her sayı kaynağına izlenebilir", "taxTitle": "🏛️ Vergisel Yönetim Avantajları & Yasal Nakit Tasarrufu", "taxSub": "Şirketin finansal tablolarından (mizan) türetilmiş yasal vergi kalkanları, KKEG optimizasyonu ve nakit tasarrufları", "simHeader": "İnteraktif Senaryo Laboratuvarı & Nakit Simülatörü", "simSub": "Önerilen senaryoları seçin veya sürgüleri hareket ettirerek serbest kalacak nakdi ve kâr etkisini anında canlı görün"}, "en": {"singleTab": "Single Period Trial Balance", "trendTab": "Multi-Period / Trend", "hubTab": "Data Hub / Multi-Source", "analyzeBtn": "Analyze Trial Balance", "analyzeBtnTrend": "Analyze Two Periods", "analyzeBtnHub": "Analyze All Sources", "sampleBtn": "📄 Try Single Period Sample", "sampleTrendBtn": "📊 Try Two-Period Trend Sample", "sampleHubBtn": "🗂️ Try Data Hub Sample (GL + AR + AP + Inventory + Sales)", "dropTitle": "Drag & Drop Your Trial Balance Here", "dropSub": "or choose from computer (.xlsx, .xls, .csv)", "dropBtn": "📁 Select File", "downloadTemplate": "📥 Download Standard Template (.csv)", "navHome": "Home", "navAbout": "About", "navApp": "App", "navPricing": "Pricing", "navSecurity": "Security", "navContact": "Contact", "login": "Log In", "register": "Sign Up Free", "s1Title": "Financial Facts (What Happened?)", "s1Desc": "What actually happened: How profit flowed across statements", "s1Sub": "Verified figures: Revenue, operating profit quality, debt structure, and cash realization.", "s2Title": "Where is Cash? — Hidden Profit Leakage & Trapped Working Capital", "s2Desc": "On paper there is profit, but where is the cash trapped?", "s2Sub": "Capital locked in receivables (AR) and inventory, plus hidden annual debt finance costs.", "s3Title": "Benchmarking & Priority Risks (What Does It Cost Us?)", "s3Desc": "Where we stand relative to industry benchmarks and urgent risks", "s3Sub": "Central Bank Sector Balance Sheets & Stock Exchange 500+ corporate benchmarks.", "s4Title": "Key Counterparties & Operational Intelligence (Who Drives It?)", "s4Desc": "Which customer, supplier, or inventory SKU directly moves profit and cash?", "s4Sub": "Counterparties with the largest cash footprint. Enriched automatically when multi-source files are loaded.", "s5Title": "Root Cause & Management Narratives (Why & What to Do?)", "s5Desc": "5-step causal chain behind findings, financial leakage cost, and decisive execution actions", "s5Sub": "Symptom ➔ Evidence ➔ Root Cause ➔ Financial Leakage ➔ Decision & Action", "s6Title": "Management Action Matrix & Schedule (Now What?)", "s6Desc": "Decisive executive actions ready to execute tomorrow", "s6Sub": "Action item → Owner → Deadline → Target KPI with unique tracking ID.", "s7Title": "What If We Change Assumptions? (Live Scenario Simulator)", "s7Desc": "If we raise prices, shorten DSO, or curb opex, what lands in cash?", "s7Sub": "Formulaic opportunity catalog and instant sensitivity simulator.", "s8Title": "Executive Summary & AI Finance Business Partner (Decision Briefing)", "s8Desc": "Single-paragraph summary of full analysis and strategic Q&A", "s8Sub": "Calculated using deterministic mathematical rules first, then synthesized.", "sEkATitle": "Appendix A — Data Reliability & Double-Entry Audit", "sEkADesc": "Verification level and file-by-file audit of underlying financial data", "sEkBTitle": "Appendix B — Trend Tracking, Traceability & 3 Core Statements", "sEkBDesc": "Shows movement across periods; every number traces back to underlying journal accounts", "taxTitle": "🏛️ Practical Tax Management & Statutory Cash Shields", "taxSub": "Statutory tax shields, disallowed interest reduction, and cash savings derived from statement balances", "simHeader": "Interactive Scenario Lab & Cash Simulator", "simSub": "Choose suggested scenarios or move sliders to see cash liberation and profit impact in real time"}, "de": {"singleTab": "Einperiodige Summen- & Saldenliste", "trendTab": "Mehrperioden / Trend", "hubTab": "Data Hub / Multi-Source", "analyzeBtn": "Saldenliste analysieren", "analyzeBtnTrend": "Zwei Perioden analysieren", "analyzeBtnHub": "Alle Daten analysieren", "sampleBtn": "📄 Einperiodiges Beispiel testen", "sampleTrendBtn": "📊 Zweiperiodigen Trend testen", "sampleHubBtn": "🗂️ Data Hub Beispiel testen", "dropTitle": "Saldenliste hier ablegen", "dropSub": "oder vom Computer auswählen (.xlsx, .xls, .csv)", "dropBtn": "📁 Datei auswählen", "downloadTemplate": "📥 Standard-Vorlage herunterladen (.csv)", "navHome": "Startseite", "navAbout": "Über uns", "navApp": "Anwendung", "navPricing": "Preise", "navSecurity": "Sicherheit", "navContact": "Kontakt", "login": "Anmelden", "register": "Kostenlos Registrieren", "s1Title": "Finanzielle Fakten (Was ist passiert?)", "s1Desc": "Ertragsfluss und Kapitalverwendung im Detail", "s1Sub": "Umsatz, operative Ertragsqualität, Verschuldung und Cashflow.", "s2Title": "Wo ist das Geld? — Gebundenes Kapital & Liquiditätsabfluss", "s2Desc": "Auf dem Papier Gewinn, aber wo steht die Liquidität?", "s2Sub": "In Forderungen und Vorräten gebundenes Betriebskapital.", "s3Title": "Branchenvergleich & Risiken (Was kostet es uns?)", "s3Desc": "Positionierung im Branchenvergleich und Risiken", "s3Sub": "Zentralbank- und Börsenbenchmarks für 500+ Unternehmen.", "s4Title": "Wesentliche Parteien & Operative Intelligenz (Wer verursacht es?)", "s4Desc": "Welche Kunden oder Artikel binden Marge und Cash?", "s4Sub": "Fokus auf Haupttreiber des operativen Kapitals.", "s5Title": "Ursachenanalyse & Management-Berichte (Warum & Was tun?)", "s5Desc": "5-stufige Kausalkette, Schadenshöhe und Managemententscheidungen", "s5Sub": "Symptom ➔ Nachweis ➔ Hauptursache ➔ Finanzieller Verlust ➔ Maßnahme", "s6Title": "Management-Maßnahmen & Umsetzungsplan (Was jetzt?)", "s6Desc": "Konkrete Maßnahmen zur sofortigen Umsetzung", "s6Sub": "Maßnahme → Verantwortlicher → Frist → KPI.", "s7Title": "Was wäre wenn? (Live-Szenario-Simulator)", "s7Desc": "Sensitivitätsanalyse für Preis, Zahlungsziel und Kosten", "s7Sub": "Echtzeit-Berechnung des Liquiditätseffekts.", "s8Title": "Executive Summary & AI Finance Business Partner", "s8Desc": "Gesamtzusammenfassung und Entscheidungsunterstützung", "s8Sub": "Zuerst mathematisch determiniert, dann interpretiert.", "sEkATitle": "Anhang A — Datenqualität & Rechnungslegungsprüfung", "sEkADesc": "Prüfstufe der Quelldaten und Kontenabstimmung", "sEkBTitle": "Anhang B — Trend-Monitoring & 3 Hauptfinanzberichte", "sEkBDesc": "Mehrperioden-Vergleich und lückenlose Kontenrückverfolgung", "taxTitle": "🏛️ Steuerstrategie & Rechtliche Steuersparmodelle", "taxSub": "Gesetzliche Steuerabzüge und Liquiditätsschilde basierend auf der Bilanz", "simHeader": "Interaktiver Szenario-Simulator", "simSub": "Wählen Sie Presets oder bewegen Sie Schieberegler für Cashflow- und Gewinnauswirkungen"}, "fr": {"singleTab": "Balance Générale Période Unique", "trendTab": "Multi-Périodes / Tendance", "hubTab": "Data Hub / Multi-Sources", "analyzeBtn": "Analyser la balance", "analyzeBtnTrend": "Analyser deux périodes", "analyzeBtnHub": "Analyser toutes les sources", "sampleBtn": "📄 Essayer exemple période unique", "sampleTrendBtn": "📊 Essayer exemple tendance", "sampleHubBtn": "🗂️ Essayer Data Hub", "dropTitle": "Déposez votre balance générale ici", "dropSub": "ou sélectionnez depuis votre ordinateur (.xlsx, .xls, .csv)", "dropBtn": "📁 Choisir un fichier", "downloadTemplate": "📥 Télécharger modèle standard (.csv)", "navHome": "Accueil", "navAbout": "À propos", "navApp": "Application", "navPricing": "Tarifs", "navSecurity": "Sécurité", "navContact": "Contact", "login": "Connexion", "register": "Inscription Gratuite", "s1Title": "Faits Financiers (Que s'est-il passé ?)", "s1Desc": "Flux réel du résultat d'exploitation", "s1Sub": "Chiffre d'affaires, marge opérationnelle, endettement et trésorerie nette.", "s2Title": "Où est l'argent ? — Fuites de profit et trésorerie immobilisée", "s2Desc": "Du bénéfice comptable, mais où est la trésorerie ?", "s2Sub": "Capitaux immobilisés dans les créances clients et stocks.", "s3Title": "Analyse Sectorielle & Risques Prioritaires (Quel est le coût ?)", "s3Desc": "Positionnement sectoriel et alertes critiques", "s3Sub": "Données Banque Centrale et marché boursier pour 500+ entreprises.", "s4Title": "Tiers Clés & Renseignement Opérationnel (Qui génère l'impact ?)", "s4Desc": "Quels clients ou références pèsent le plus lourd ?", "s4Sub": "Analyse approfondie des contreparties critiques.", "s5Title": "Causes Profondes & Narration Décisionnelle (Pourquoi & Que faire ?)", "s5Desc": "Chaîne causale en 5 étapes, coût financier et décisions", "s5Sub": "Symptôme ➔ Preuve ➔ Cause Première ➔ Perte Financière ➔ Décision", "s6Title": "Plan d'Action Managérial & Calendrier (Que faire maintenant ?)", "s6Desc": "Feuille de route pour le comité de direction", "s6Sub": "Action → Porteur → Échéance → KPI cible.", "s7Title": "Simulateur de Scénarios en Direct", "s7Desc": "Ajustements de prix, délais et charges en direct", "s7Sub": "Simulateur instantané de sensibilité de trésorerie.", "s8Title": "Synthèse Exécutive & AI Finance Business Partner", "s8Desc": "Synthèse générale et questions-réponses stratégiques", "s8Sub": "Calculé d'abord selon des règles déterministes strictes.", "sEkATitle": "Annexe A — Fiabilité des Données & Contrôle Arithmétique", "sEkADesc": "Niveau de vérification et réconciliation de la balance", "sEkBTitle": "Annexe B — Analyse de Tendance & 3 États Financiers", "sEkBDesc": "Évolution pluriannuelle et traçabilité intégrale", "taxTitle": "🏛️ Stratégie Fiscale & Économies Légales de Trésorerie", "taxSub": "Boucliers fiscaux et optimisation des charges issus du bilan", "simHeader": "Laboratoire de Scénarios Interactif", "simSub": "Ajustez les curseurs pour simuler l'impact immédiat sur la trésorerie"}, "es": {"singleTab": "Balance de Sumas y Saldos Único", "trendTab": "Multi-Periodo / Tendencia", "hubTab": "Data Hub / Multi-Fuente", "analyzeBtn": "Analizar balance", "analyzeBtnTrend": "Analizar dos periodos", "analyzeBtnHub": "Analizar todas las fuentes", "sampleBtn": "📄 Probar ejemplo de un periodo", "sampleTrendBtn": "📊 Probar ejemplo de tendencia", "sampleHubBtn": "🗂️ Probar Data Hub", "dropTitle": "Arrastre su balance aquí", "dropSub": "o elija de su ordenador (.xlsx, .xls, .csv)", "dropBtn": "📁 Seleccionar archivo", "downloadTemplate": "📥 Descargar plantilla estándar (.csv)", "navHome": "Inicio", "navAbout": "Sobre Nosotros", "navApp": "Aplicación", "navPricing": "Precios", "navSecurity": "Seguridad", "navContact": "Contacto", "login": "Iniciar Sesión", "register": "Registro Gratis", "s1Title": "Hechos Financieros (¿Qué Ocurrió?)", "s1Desc": "Flujo real de beneficios y estructura patrimonial", "s1Sub": "Ingresos netos, margen operativo, endeudamiento y tesorería.", "s2Title": "¿Dónde está el dinero? — Fugas de beneficio y caja atrapada", "s2Desc": "Hay beneficio contable, pero ¿dónde está el dinero?", "s2Sub": "Capital inmovilizado en clientes pendientes y almacén.", "s3Title": "Comparativa Sectorial & Riesgos Prioritarios (¿Cuál es el coste?)", "s3Desc": "Posicionamiento sectorial y riesgos urgentes", "s3Sub": "Datos de referencia de Banco Central y bolsas 500+ empresas.", "s4Title": "Contrapartes Clave & Análisis Operativo (¿Quién genera el impacto?)", "s4Desc": "Clientes, proveedores y existencias determinantes", "s4Sub": "Impacto operativo directo en caja y márgenes.", "s5Title": "Causa Raíz & Narrativa de Gestión (¿Por qué y qué hacer?)", "s5Desc": "Cadena causal de 5 pasos, fuga de caja e intervenciones", "s5Sub": "Síntoma ➔ Evidencia ➔ Causa Raíz ➔ Fuga Financiera ➔ Decisión", "s6Title": "Matriz de Acciones de Dirección (¿Qué hacer ahora?)", "s6Desc": "Decisiones listas para ser aplicadas", "s6Sub": "Medida → Responsable → Plazo → KPI objetivo.", "s7Title": "Simulador de Escenarios en Vivo", "s7Desc": "¿Qué ocurre al variar precios, plazos o costes?", "s7Sub": "Simulador instantáneo de impacto en tesorería.", "s8Title": "Resumen Ejecutivo & AI Finance Business Partner", "s8Desc": "Informe condensado para el Consejo de Administración", "s8Sub": "Cálculo matemático determinista antes de la interpretación.", "sEkATitle": "Anexo A — Fiabilidad Contable & Auditoría Doble", "sEkADesc": "Nivel de validación y conciliación contable", "sEkBTitle": "Anexo B — Tendencia Histórica & 3 Estados Financieros", "sEkBDesc": "Seguimiento multi-periodo y trazabilidad total", "taxTitle": "🏛️ Estrategia Fiscal Práctica & Escudos de Caja", "taxSub": "Deducciones fiscales y ahorro de intereses derivados del balance", "simHeader": "Laboratorio de Escenarios Interactivo", "simSub": "Deslice controles para calcular el impacto en tesorería y beneficio"}, "it": {"singleTab": "Bilancio di Verifica Singolo", "trendTab": "Multi-Periodo / Trend", "hubTab": "Data Hub / Multi-Fonte", "analyzeBtn": "Analizza bilancio", "analyzeBtnTrend": "Analizza due periodi", "analyzeBtnHub": "Analizza tutte le fonti", "sampleBtn": "📄 Prova esempio singolo periodo", "sampleTrendBtn": "📊 Prova esempio trend", "sampleHubBtn": "🗂️ Prova Data Hub", "dropTitle": "Trascina qui il tuo bilancio di verifica", "dropSub": "oppure seleziona dal computer (.xlsx, .xls, .csv)", "dropBtn": "📁 Seleziona file", "downloadTemplate": "📥 Scarica modello standard (.csv)", "navHome": "Home", "navAbout": "Chi siamo", "navApp": "Applicazione", "navPricing": "Piani", "navSecurity": "Sicurezza", "navContact": "Contatti", "login": "Accedi", "register": "Registrati Gratis", "s1Title": "Fatti Finanziari (Cosa è successo?)", "s1Desc": "Dinamica economica reale e generazione utile", "s1Sub": "Ricavi netti, qualità del reddito operativo e liquidità.", "s2Title": "Dov'è il denaro? — Fuga di utili e capitale bloccato", "s2Desc": "C'è utile contabile, ma dov'è la cassa reale?", "s2Sub": "Capitale bloccato in crediti commerciali e magazzino.", "s3Title": "Benchmark di Settore & Rischi Prioritari (Quanto ci costa?)", "s3Desc": "Posizionamento rispetto ai concorrenti e rischi", "s3Sub": "Metriche Banca Centrale e Borsa per 500+ imprese.", "s4Title": "Controparti Chiave & Intelligence Operativa (Chi impatta?)", "s4Desc": "Clienti, fornitori e articoli che guidano i risultati", "s4Sub": "Analisi ad alto impatto per il capitale circolante.", "s5Title": "Cause Principali & Storie Decisionali (Perché & Cosa fare?)", "s5Desc": "Sequenza causale a 5 fasi, dispersione e azioni", "s5Sub": "Sintomo ➔ Evidenza ➔ Causa Primaria ➔ Dispersione ➔ Decisione", "s6Title": "Piano di Azione Manageriale & Scadenze (Cosa fare ora?)", "s6Desc": "Decisioni concrete per il management", "s6Sub": "Azione → Responsabile → Termine → KPI.", "s7Title": "Simulatore di Scenari in Tempo Reale", "s7Desc": "Sensibilità su prezzi, termini di incasso e spese", "s7Sub": "Simulatore istantaneo dell'impatto sulla liquidità.", "s8Title": "Sintesi Esecutiva & AI Finance Business Partner", "s8Desc": "Quadro strategico d'insieme per il vertice", "s8Sub": "Regole matematiche certe e sintesi esecutiva.", "sEkATitle": "Allegato A — Affidabilità Dati & Verifica a Partita Doppia", "sEkADesc": "Verifica contabile e riconciliazione delle fonti", "sEkBTitle": "Allegato B — Trend Storico & 3 Bilanci Principali", "sEkBDesc": "Confronto multi-periodo e tracciabilità analitica", "taxTitle": "🏛️ Strategia Fiscale Pratica & Scudi Fiscali Legali", "taxSub": "Ottimizzazione deduzioni e scudi fiscali basati sul bilancio", "simHeader": "Laboratorio Scenari Interattivo", "simSub": "Muovi i cursori per visualizzare immediatamente la liquidità liberata"}, "nl": {"singleTab": "Enkelvoudige Kolommenbalans", "trendTab": "Meerdere Perioden / Trend", "hubTab": "Data Hub / Multi-Bron", "analyzeBtn": "Balans analyseren", "analyzeBtnTrend": "Twee perioden analyseren", "analyzeBtnHub": "Alle bronnen analyseren", "sampleBtn": "📄 Test enkelvoudig voorbeeld", "sampleTrendBtn": "📊 Test trend voorbeeld", "sampleHubBtn": "🗂️ Test Data Hub", "dropTitle": "Sleep uw kolommenbalans hierheen", "dropSub": "of kies vanaf uw computer (.xlsx, .xls, .csv)", "dropBtn": "📁 Bestand kiezen", "downloadTemplate": "📥 Download standaardsjabloon (.csv)", "navHome": "Startpagina", "navAbout": "Over ons", "navApp": "Applicatie", "navPricing": "Tarieven", "navSecurity": "Beveiliging", "navContact": "Contact", "login": "Inloggen", "register": "Gratis Registreren", "s1Title": "Financiële Feiten (Wat is er gebeurd?)", "s1Desc": "Reële kapitaalstromen en winstbestemming", "s1Sub": "Omzet, operationele marge, schuldhefboom en kasstroom.", "s2Title": "Waar is het geld? — Verborgen winstlekkage & vastzittend kapitaal", "s2Desc": "Winst op papier, maar waar is het geld?", "s2Sub": "Kapitaal vast in debiteuren en magazijnvoorraad.", "s3Title": "Sectorvergelijking & Prioritaire Risico's (Wat kost het ons?)", "s3Desc": "Positie ten opzichte van sectorbenchmarks", "s3Sub": "Centrale Bank en beursbenchmarks van 500+ bedrijven.", "s4Title": "Belangrijkste Partijen & Operationele Analyse (Wie veroorzaakt het?)", "s4Desc": "Klanten en artikelen met de grootste invloed", "s4Sub": "Gedetailleerde analyse van werkkapitaal.", "s5Title": "Oorzaakanalyse & Managementverhalen (Waarom & Wat te doen?)", "s5Desc": "Keten in 5 stappen, financiële lekkage en besluiten", "s5Sub": "Symptoom ➔ Bewijs ➔ Oorzaak ➔ Lekkage ➔ Actie", "s6Title": "Management Actieplan & Planning (Wat nu?)", "s6Desc": "Direct uitvoerbare directiebesluiten", "s6Sub": "Actiepunt → Eigenaar → Deadline → KPI.", "s7Title": "Live Scenario Simulator", "s7Desc": "Effect van prijs, debiteurentermijn en kosten", "s7Sub": "Directe berekening van effect op cash en winst.", "s8Title": "Managementsamenvatting & AI Finance Business Partner", "s8Desc": "Eén overzichtelijke directiesamenvatting", "s8Sub": "Deterministisch berekend, daarna strategisch geïnterpreteerd.", "sEkATitle": "Bijlage A — Betrouwbaarheid & Boekhoudkundige Audit", "sEkADesc": "Controle van rekeningschema en balanssluiting", "sEkBTitle": "Bijlage B — Trend-Monitoring & 3 Financiële Overzichten", "sEkBDesc": "Meerperioden-vergelijking en brontraceerbaarheid", "taxTitle": "🏛️ Praktische Belastingoptimalisatie & Cash-voordelen", "taxSub": "Wettelijke aftrekposten en rentebeperking uit de balans", "simHeader": "Interactief Scenario Laboratorium", "simSub": "Verschuif regelaars om het effect op cashflow en winst te zien"}};
 
 function _updateStepHeader(stepId, numStr, title, desc, sub){
   const el = $(stepId);
@@ -6118,7 +6055,7 @@ function render(d){
     const crTier=(crp>=80 && cb.operating_cash_flow_proxy>0)?'positive':(crp>=50 && cb.operating_cash_flow_proxy>0)?'medium':crp>0?'high':'critical';
     let crExpl='';
     if(crp<=0 || cb.operating_cash_flow_proxy<=0){
-      crExpl='⚠️ <b>Kâğıt üzerinde '+money(cb.net_profit)+' net kâr görünmesine rağmen, işletme nakit akışı '+money(cb.operating_cash_flow_proxy)+' negatiftir (%0 nakit gerçekleşmesi).</b> Net kârın tamamı ve fazlası alacaklarda ('+money(cb.working_capital_components?.receivables_effect)+') ve stokta ('+money(cb.working_capital_components?.inventory_effect)+') kilitlenmiştir. Kasa bu kârı görememiştir; acil tahsilat hızlandırma ve ölü stok eritme aksiyonu şarttır.';
+      crExpl='⚠️ <b>Defterde '+money(cb.net_profit)+' net kâr görünmesine rağmen, işletme nakit akışı '+money(cb.operating_cash_flow_proxy)+' negatiftir (%0 nakit gerçekleşmesi).</b> Net kârın tamamı ve fazlası alacaklarda ('+money(cb.working_capital_components?.receivables_effect)+') ve stokta ('+money(cb.working_capital_components?.inventory_effect)+') kilitlenmiştir. Kasa bu kârı görememiştir; acil tahsilat hızlandırma ve ölü stok eritme aksiyonu şarttır.';
     } else if(crp<80){
       crExpl='Faaliyet kârı '+money(cb.operating_profit)+', net kâr '+money(cb.net_profit)+'; alacak/stok/borç hareketleri dahil edildiğinde işletme nakdi '+money(cb.operating_cash_flow_proxy)+' oluyor — yani defter kârının yaklaşık <b>%'+crp+'\u0027i</b> fiilen kasaya giriyor. Kalan tutar alacak tahsilatında veya depodaki stokta bağlıdır.';
     } else {
@@ -7411,7 +7348,7 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
       const crpDisplay = Math.max(0, Math.min(100, Math.round(crp)));
       if(crp <= 0 || (ocf != null && ocf <= 0)){
         snapProfitVal.innerHTML = '<span style="color:#DC2626">%0</span> <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Realizasyonu (Kilitli)</span>';
-        snapProfitDesc.textContent = 'Kâğıt üzerinde ' + money(netIncome) + ' kâr var ancak işletme nakit akışı eksiye (' + money(ocf) + ') düşmüş. Kârın tamamı alacak ve stokta kilitli.';
+        snapProfitDesc.textContent = 'Defterde ' + money(netIncome) + ' net kâr var ancak işletme nakit akışı eksiye (' + money(ocf) + ') düşmüş. Kârın tamamı alacak ve stokta kilitli.';
       } else if(crpDisplay < 50){
         snapProfitVal.innerHTML = '<span style="color:#DC2626">%' + crpDisplay + '</span> <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Realizasyonu</span>';
         snapProfitDesc.textContent = 'Defterdeki her 100 TL kârın yalnızca ' + crpDisplay + ' TL\'si fiilen kasaya giriyor; kalan tutar müşteri alacakları ve depodaki stokta bağlı.';
@@ -7572,7 +7509,7 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
       title: 'Kasada Neden Para Yok?',
       sub: 'Kâr Nereye Gitti?',
       cat: 'Nakit Akışı & Kâr Kalitesi',
-      l1_title: 'Kâğıt Üzerindeki Kâr, Alacak ve Stok Kilitlenmesinde Kayboluyor',
+      l1_title: 'Defterdeki Kâr, Alacak ve Stok Kilitlenmesinde Kayboluyor',
       l1_desc: netProfit > 0 
         ? ('Şirket defterde <b>' + money(netProfit) + '</b> net kâr üretmiş görünmesine karşın, bu kârın neredeyse tamamı müşterilerin ' + num(dso) + ' günlük tahsilat vadesinde (<b>' + money(arVal) + '</b>) ve depodaki ' + num(dio) + ' günlük stokta (<b>' + money(invVal) + '</b>) rehin kalmıştır. Kasa bu kârı fiilen görememektedir.')
         : ('Operasyonel kârlılık zayıf seyrederken, işletme sermayesine kilitlenen <b>' + money(arVal + invVal) + '</b> likiditeyi tüketmekte ve nakit açığını banka borçlarıyla finanse etmeye zorlamaktadır.'),
