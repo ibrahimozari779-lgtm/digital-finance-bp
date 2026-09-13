@@ -28,6 +28,23 @@ def test_tcmb_fx_rates_resolution():
     assert fxfy['effective_date'] == '31.12.2023'
     assert fxfy['rates']['USD'] == 29.4382
 
+    # 2019 Compact Date matching (e.g. 31122019)
+    fx19_compact = resolve_fx_rates('31122019')
+    assert fx19_compact['effective_date'] == '31.12.2019'
+    assert fx19_compact['rates']['USD'] == 5.9402
+    assert fx19_compact['rates']['EUR'] == 6.6506
+
+    # 2019 File Name / raw hint matching
+    fx19_hint = resolve_fx_rates(raw_text_hint='mizan_31122019.xlsx')
+    assert fx19_hint['effective_date'] == '31.12.2019'
+    assert fx19_hint['rates']['USD'] == 5.9402
+    assert fx19_hint['rates']['EUR'] == 6.6506
+
+    # 2015-2020 Historical Benchmark rates check
+    fx20 = resolve_fx_rates('2020-12-31')
+    assert fx20['effective_date'] == '31.12.2020'
+    assert fx20['rates']['USD'] == 7.3405
+
     # Default fallback
     fxdef = resolve_fx_rates(None)
     assert 'effective_date' in fxdef

@@ -18,20 +18,40 @@ def infer_period(filename: str, sheets: dict[str, Any] | None = None) -> dict[st
                     text += ' ' + str(name).lower() + ' ' + ' '.join(tokens)
         except Exception:
             pass
-    years = [int(y) for y in re.findall(r'(?<!\d)(20\d{2})(?!\d)', text)]
+    # 1. Exact dates (delimited like 31.12.2019 or compact like 31122019)
+    exact_match = re.search(r'(0[1-9]|[12]\d|3[01])[-/.]?(0[1-9]|1[0-2])[-/.]?(20\d{2})', text)
+    if exact_match:
+        d_str, m_str, y_str = exact_match.group(1), exact_match.group(2), exact_match.group(3)
+        y = int(y_str)
+        m = int(m_str)
+        d = int(d_str)
+        if m == 12 and d == 31:
+            days = 366 if (y % 4 == 0 and (y % 100 != 0 or y % 400 == 0)) else 365
+            return {'available': True, 'period_type': 'annual', 'period_start': f'{y}-01-01', 'period_end': f'{y}-12-31', 'period_days': days, 'label': str(y), 'confidence': 'high'}
+        elif m == 6 and d == 30:
+            return {'available': True, 'period_type': 'semi_annual', 'period_start': f'{y}-01-01', 'period_end': f'{y}-06-30', 'period_days': 181 + (1 if y % 4 == 0 and (y % 100 != 0 or y % 400 == 0) else 0), 'label': f'H1 {y}', 'confidence': 'high'}
+        elif m == 9 and d == 30:
+            return {'available': True, 'period_type': 'nine_months', 'period_start': f'{y}-01-01', 'period_end': f'{y}-09-30', 'period_days': 273 + (1 if y % 4 == 0 and (y % 100 != 0 or y % 400 == 0) else 0), 'label': f'9M {y}', 'confidence': 'high'}
+        elif m == 3 and d == 31:
+            return {'available': True, 'period_type': 'quarterly', 'period_start': f'{y}-01-01', 'period_end': f'{y}-03-31', 'period_days': 90 + (1 if y % 4 == 0 and (y % 100 != 0 or y % 400 == 0) else 0), 'label': f'Q1 {y}', 'confidence': 'high'}
+
+    years = [int(y) for y in re.findall(r'(20\d{2})', text)]
     year = years[-1] if years else None
-    # Exact dates first.
+
+    # Delimited dates fallback
     dates = re.findall(r'(?:31[./-]12|30[./-]06|30[./-]09|31[./-]03)[./-](20\d{2})', text)
     if dates:
-        y = int(dates[-1]);
+        y = int(dates[-1])
         if '31.12' in text or '31/12' in text or '31-12' in text:
-            return {'available': True, 'period_type':'annual', 'period_start':f'{y}-01-01', 'period_end':f'{y}-12-31', 'period_days':365 + (1 if y%4==0 and (y%100!=0 or y%400==0) else 0), 'label':str(y), 'confidence':'high'}
+            return {'available': True, 'period_type': 'annual', 'period_start': f'{y}-01-01', 'period_end': f'{y}-12-31', 'period_days': 365 + (1 if y % 4 == 0 and (y % 100 != 0 or y % 400 == 0) else 0), 'label': str(y), 'confidence': 'high'}
+
     for mname, m in MONTHS.items():
         if mname in text and year:
-            # month-only labels are a point-in-time statement; use month days for flow metrics only if explicitly monthly.
             import calendar
-            days=calendar.monthrange(year,m)[1]
-            return {'available': True, 'period_type':'monthly', 'period_start':f'{year}-{m:02d}-01', 'period_end':f'{year}-{m:02d}-{days:02d}', 'period_days':days, 'label':f'{mname.title()} {year}', 'confidence':'medium'}
+            days = calendar.monthrange(year, m)[1]
+            return {'available': True, 'period_type': 'monthly', 'period_start': f'{year}-{m:02d}-01', 'period_end': f'{year}-{m:02d}-{days:02d}', 'period_days': days, 'label': f'{mname.title()} {year}', 'confidence': 'medium'}
+
     if year:
-        return {'available': True, 'period_type':'annual', 'period_start':f'{year}-01-01', 'period_end':f'{year}-12-31', 'period_days':365 + (1 if year%4==0 and (year%100!=0 or year%400==0) else 0), 'label':str(year), 'confidence':'medium'}
+        return {'available': True, 'period_type': 'annual', 'period_start': f'{year}-01-01', 'period_end': f'{year}-12-31', 'period_days': 365 + (1 if year % 4 == 0 and (year % 100 != 0 or year % 400 == 0) else 0), 'label': str(year), 'confidence': 'medium'}
+
     return {'available': False, 'period_type':None, 'period_start':None, 'period_end':None, 'period_days':None, 'label':None, 'confidence':'low'}

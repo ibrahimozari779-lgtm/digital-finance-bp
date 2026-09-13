@@ -29,10 +29,35 @@ TCMB_BENCHMARK_RATES: dict[str, dict[str, float]] = {
     "2022-12-31": {"USD": 18.6983, "EUR": 19.9349, "GBP": 22.5645, "CHF": 20.2100},
     # 2021 Year-End (Official TCMB 31.12.2021)
     "2021-12-31": {"USD": 13.3290, "EUR": 15.0867, "GBP": 17.9860, "CHF": 14.5420},
+    # 2020 Year-End (Official TCMB 31.12.2020)
+    "2020-12-31": {"USD": 7.3405, "EUR": 9.0079, "GBP": 9.9438, "CHF": 8.2841},
+    # 2019 Year-End (Official TCMB 31.12.2019)
+    "2019-12-31": {"USD": 5.9402, "EUR": 6.6506, "GBP": 7.7765, "CHF": 6.0930},
+    # 2018 Year-End (Official TCMB 31.12.2018)
+    "2018-12-31": {"USD": 5.2609, "EUR": 6.0280, "GBP": 6.6528, "CHF": 5.3352},
+    # 2017 Year-End (Official TCMB 29.12.2017 / 31.12.2017)
+    "2017-12-31": {"USD": 3.7719, "EUR": 4.5155, "GBP": 5.0803, "CHF": 3.8548},
+    # 2016 Year-End (Official TCMB 30.12.2016 / 31.12.2016)
+    "2016-12-31": {"USD": 3.5192, "EUR": 3.7099, "GBP": 4.3189, "CHF": 3.4454},
+    # 2015 Year-End (Official TCMB 31.12.2015)
+    "2015-12-31": {"USD": 2.9076, "EUR": 3.1776, "GBP": 4.3007, "CHF": 2.9278},
 }
 
 # Default Fallback (Latest benchmark - 2025 Q4 / Year-End)
 DEFAULT_PERIOD_KEY = "2025-12-31"
+
+
+def _closest_benchmark_key(year: int) -> str:
+    """Finds the closest benchmark year in TCMB_BENCHMARK_RATES."""
+    available_years = sorted(int(k.split('-')[0]) for k in TCMB_BENCHMARK_RATES.keys())
+    if not available_years:
+        return DEFAULT_PERIOD_KEY
+    if year <= available_years[0]:
+        return f"{available_years[0]}-12-31"
+    if year >= available_years[-1]:
+        return f"{available_years[-1]}-12-31"
+    closest_yr = min(available_years, key=lambda y: abs(y - year))
+    return f"{closest_yr}-12-31"
 
 
 def resolve_fx_rates(
@@ -43,15 +68,15 @@ def resolve_fx_rates(
     """Resolves official TCMB Gösterge Alış Kuru based on the financial statement's period end.
 
     Args:
-        period_end_date: e.g. '2024-12-31', '31.12.2025', or ISO format
-        fiscal_year: e.g. 2024, 2025
-        raw_text_hint: e.g. file name or header text containing '2024', '2025', etc.
+        period_end_date: e.g. '2019-12-31', '31.12.2019', '31122019', or ISO format
+        fiscal_year: e.g. 2019, 2024, 2025
+        raw_text_hint: e.g. file name or header text containing '2019', '2024', etc.
 
     Returns:
         dict containing:
-            effective_date: Formatted date string (e.g. '31.12.2025')
+            effective_date: Formatted date string (e.g. '31.12.2019')
             source: Official source name
-            rates: Dict of currency to rate in TRY (e.g. {'TRY': 1.0, 'EUR': 38.125, ...})
+            rates: Dict of currency to rate in TRY (e.g. {'TRY': 1.0, 'EUR': 6.6506, ...})
             multipliers: Dict of currency to multiplier for TRY conversion (1 / rate)
             badge_text: Transparent badge string for frontend display
     """
@@ -60,46 +85,59 @@ def resolve_fx_rates(
     # 1. Try matching period_end_date directly
     if period_end_date:
         s = str(period_end_date).strip()
-        iso_match = re.search(r'(20\d{2})[-/.](0[1-9]|1[0-2])[-/.]([0-3]\d)', s)
-        if iso_match:
-            y, m, d = iso_match.group(1), iso_match.group(2), iso_match.group(3)
-            candidate = f'{y}-{m}-{d}'
-            if candidate in TCMB_BENCHMARK_RATES:
-                matched_key = candidate
-            else:
-                year_end = f'{y}-12-31'
-                if year_end in TCMB_BENCHMARK_RATES:
-                    matched_key = year_end
 
-        tr_match = re.search(r'([0-3]\d)[-/.](0[1-9]|1[0-2])[-/.](20\d{2})', s)
-        if not matched_key and tr_match:
+        # Check TR format first (DDMMYYYY or DD[-/.]MM[-/.]YYYY)
+        tr_match = re.search(r'(0[1-9]|[12]\d|3[01])[-/.]?(0[1-9]|1[0-2])[-/.]?(20\d{2})', s)
+        if tr_match:
             d, m, y = tr_match.group(1), tr_match.group(2), tr_match.group(3)
             candidate = f'{y}-{m}-{d}'
             if candidate in TCMB_BENCHMARK_RATES:
                 matched_key = candidate
             else:
-                year_end = f'{y}-12-31'
-                if year_end in TCMB_BENCHMARK_RATES:
-                    matched_key = year_end
+                matched_key = _closest_benchmark_key(int(y))
+
+        # Check ISO format (YYYYMMDD or YYYY[-/.]MM[-/.]DD)
+        if not matched_key:
+            iso_match = re.search(r'(20\d{2})[-/.]?(0[1-9]|1[0-2])[-/.]?(0[1-9]|[12]\d|3[01])', s)
+            if iso_match:
+                y, m, d = iso_match.group(1), iso_match.group(2), iso_match.group(3)
+                candidate = f'{y}-{m}-{d}'
+                if candidate in TCMB_BENCHMARK_RATES:
+                    matched_key = candidate
+                else:
+                    matched_key = _closest_benchmark_key(int(y))
+
+        # Check for year only in string
+        if not matched_key:
+            yr_match = re.search(r'(20\d{2})', s)
+            if yr_match:
+                matched_key = _closest_benchmark_key(int(yr_match.group(1)))
 
     # 2. Try fiscal year if no direct match
     if not matched_key and fiscal_year:
         try:
-            fy = int(str(fiscal_year).strip())
-            year_end = f'{fy}-12-31'
-            if year_end in TCMB_BENCHMARK_RATES:
-                matched_key = year_end
+            yr_match = re.search(r'(20\d{2})', str(fiscal_year))
+            if yr_match:
+                matched_key = _closest_benchmark_key(int(yr_match.group(1)))
         except (ValueError, TypeError):
             pass
 
     # 3. Try raw text hint (e.g. filename)
     if not matched_key and raw_text_hint:
-        years = re.findall(r'(?<!\d)(202[1-9])(?!\d)', str(raw_text_hint))
-        if years:
-            last_year = years[-1]
-            year_end = f'{last_year}-12-31'
-            if year_end in TCMB_BENCHMARK_RATES:
-                matched_key = year_end
+        # Match compact dates in filename e.g. 31122019
+        compact_tr = re.search(r'(0[1-9]|[12]\d|3[01])[-/.]?(0[1-9]|1[0-2])[-/.]?(20\d{2})', str(raw_text_hint))
+        if compact_tr:
+            d, m, y = compact_tr.group(1), compact_tr.group(2), compact_tr.group(3)
+            candidate = f'{y}-{m}-{d}'
+            if candidate in TCMB_BENCHMARK_RATES:
+                matched_key = candidate
+            else:
+                matched_key = _closest_benchmark_key(int(y))
+
+        if not matched_key:
+            years = re.findall(r'(20\d{2})', str(raw_text_hint))
+            if years:
+                matched_key = _closest_benchmark_key(int(years[-1]))
 
     # Fallback to default
     if not matched_key or matched_key not in TCMB_BENCHMARK_RATES:
@@ -143,3 +181,4 @@ def resolve_fx_rates(
         'multipliers': multipliers,
         'badge_text': badge_text,
     }
+
