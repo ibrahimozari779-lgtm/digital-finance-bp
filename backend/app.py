@@ -727,8 +727,8 @@ _SAMPLE_FILES = {
     # Data Hub demo set — a matching mizan + AR/AP aging + inventory + sales ledger
     # so the multi-source engines (AR/AP intelligence, inventory, PVM/sales-driven
     # profit bridge) actually have data to run against in the one-click demo.
-    'hub_mizan': ('demo_data/sample_mizan_2025_donem2.xlsx', 'Data Hub — Mizan'),
-    'hub_mizan_prior': ('demo_data/sample_mizan_2024_donem1.xlsx', 'Data Hub — Mizan (Önceki Dönem)'),
+    'hub_mizan': ('demo_data/sample_mizan_2025_donem2.xlsx', 'Data Hub — Mizan (2025 Cari Dönem)'),
+    'hub_mizan_prior': ('demo_data/sample_mizan_2024_donem1.xlsx', 'Data Hub — Mizan (2024 Önceki Dönem)'),
     'ar_aging': ('demo_data/sample_ar_aging.xlsx', 'Data Hub — AR Yaşlandırma'),
     'ap_aging': ('demo_data/sample_ap_aging.xlsx', 'Data Hub — AP Yaşlandırma'),
     'inventory': ('demo_data/sample_inventory.xlsx', 'Data Hub — Stok'),

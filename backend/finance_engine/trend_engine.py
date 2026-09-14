@@ -72,14 +72,15 @@ def _clean_period_label(raw: str | None, fallback: str) -> str:
         return fallback
     raw_str = str(raw).strip()
     raw_lower = raw_str.lower()
-    if "hub_mizan_prior" in raw_lower or "period1" in raw_lower or "donem1" in raw_lower or raw_str.startswith("2024"):
+    if "hub_mizan_prior" in raw_lower or "period1" in raw_lower or "donem1" in raw_lower or "2024" in raw_str:
         return "Önceki Dönem (2024)"
-    if "hub_mizan" in raw_lower or "period2" in raw_lower or "donem2" in raw_lower or raw_str.startswith("2025"):
+    if "hub_mizan" in raw_lower or "period2" in raw_lower or "donem2" in raw_lower or "2025" in raw_str:
         return "Cari Dönem (2025)"
     clean = raw_str.split("/")[-1].split("\\")[-1]
     if clean.endswith((".xlsx", ".xls", ".csv")):
         clean = clean.rsplit(".", 1)[0]
     return clean or fallback
+
 
 
 def build_trend_analysis(
