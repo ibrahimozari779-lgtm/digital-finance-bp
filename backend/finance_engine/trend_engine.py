@@ -67,6 +67,21 @@ def _direction(change_pct: float | None) -> str:
     return "yatay"
 
 
+def _clean_period_label(raw: str | None, fallback: str) -> str:
+    if not raw:
+        return fallback
+    raw_str = str(raw).strip()
+    raw_lower = raw_str.lower()
+    if "hub_mizan_prior" in raw_lower or "period1" in raw_lower or "donem1" in raw_lower or raw_str.startswith("2024"):
+        return "Önceki Dönem (2024)"
+    if "hub_mizan" in raw_lower or "period2" in raw_lower or "donem2" in raw_lower or raw_str.startswith("2025"):
+        return "Cari Dönem (2025)"
+    clean = raw_str.split("/")[-1].split("\\")[-1]
+    if clean.endswith((".xlsx", ".xls", ".csv")):
+        clean = clean.rsplit(".", 1)[0]
+    return clean or fallback
+
+
 def build_trend_analysis(
     current_statements: dict[str, Any],
     previous_periods: list[dict[str, Any]] | None = None,
@@ -89,8 +104,15 @@ def build_trend_analysis(
             "reason": "Trend analizi için en az bir önceki döneme ait finansal tablo verisi gereklidir. Şu an yalnızca tek dönem yüklendi.",
         }
 
-    timeline = [{"label": p.get("label") or p.get("period_label") or p.get("filename") or f"Dönem {i+1}", "statements": p["statements"]} for i, p in enumerate(previous_periods)]
-    timeline.append({"label": current_label, "statements": current_statements})
+    timeline = [
+        {
+            "label": _clean_period_label(p.get("label") or p.get("period_label") or p.get("filename"), f"Dönem {i+1}"),
+            "statements": p["statements"],
+        }
+        for i, p in enumerate(previous_periods)
+    ]
+    curr_l = _clean_period_label(current_statements.get("period_metadata", {}).get("label") if isinstance(current_statements.get("period_metadata"), dict) else current_label, current_label)
+    timeline.append({"label": curr_l, "statements": current_statements})
 
     amount_series = {key: [] for key, *_ in _METRIC_DEFS}
     ratio_series = {key: [] for key, *_ in _RATIO_DEFS}
@@ -114,7 +136,10 @@ def build_trend_analysis(
         # Every period in the timeline already carries a full `statements`
         # shape, so this reuses the same single-period logic consistently.
         try:
-            period_ccc = build_cash_conversion_cycle(t["statements"])
+            p_days = None
+            if isinstance(t["statements"].get("period_metadata"), dict):
+                p_days = t["statements"]["period_metadata"].get("period_days")
+            period_ccc = build_cash_conversion_cycle(t["statements"], period_days=p_days)
             ccc_series.append(period_ccc.get("cash_conversion_cycle_days"))
             dso_series.append(period_ccc.get("dso_days"))
             dio_series.append(period_ccc.get("dio_days"))

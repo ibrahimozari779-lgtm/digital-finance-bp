@@ -23,6 +23,7 @@ from .narrative_engine import build_narrative_engine
 from .dupont_engine import build_dupont_analysis
 from .profit_improvement_engine import build_profit_improvement_analysis
 from .resource_allocation_engine import build_resource_allocation_analysis
+from .core_metrics import build_core_metrics
 
 
 def _safe_div(a: float | None, b: float | None) -> float | None:
@@ -421,8 +422,18 @@ def build_finance_business_partner_analysis(
     statements["tax_strategy"] = tax_strategy
     statements["fx_rates"] = fx_rates
 
+    core_metrics = build_core_metrics(
+        statements=statements,
+        quality=quality,
+        ccc=ccc,
+        health_score=health_score,
+        health_label=health_label,
+        data_hub=data_hub,
+    )
+
     return {
         "engine_version": "2.0",
+        "core_metrics": core_metrics,
         "health_score": health_score,
         "health_label": health_label,
         "score_components": {
