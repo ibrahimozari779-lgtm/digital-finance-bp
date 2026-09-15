@@ -654,7 +654,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
             <span style="width:10px;height:10px;border-radius:50%;background:#EF4444;display:inline-block"></span>
             <span style="width:10px;height:10px;border-radius:50%;background:#F59E0B;display:inline-block"></span>
             <span style="width:10px;height:10px;border-radius:50%;background:#10B981;display:inline-block"></span>
-            <span style="color:#64748B;font-size:11px;font-weight:700;margin-left:8px;font-family:monospace">cockpit.digitalfinancebp.com</span>
+            <span style="color:#64748B;font-size:11px;font-weight:700;margin-left:8px;font-family:monospace">digitalfinancebp.com/uygulama</span>
           </div>
           <span style="font-size:10px;font-weight:800;color:#047857;background:#ECFDF5;padding:3px 8px;border-radius:999px;border:1px solid #A7F3D0">● 33 MOTOR AKTİF</span>
         </div>
