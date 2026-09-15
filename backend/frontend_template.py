@@ -171,20 +171,24 @@ HOME_HTML = r'''<!doctype html>
 ::view-transition-new(root){animation:dfbpFadeIn .32s ease both}
 @keyframes dfbpFadeOut{to{opacity:0;transform:translateY(-6px)}}
 @keyframes dfbpFadeIn{from{opacity:0;transform:translateY(8px)}}
-.topNav{display:flex;gap:26px;align-items:center}
-.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.topNav{display:flex;gap:18px;align-items:center}
+.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
 .topNav a:hover{color:var(--text)}
 .topNav a.active{color:var(--accent);border-color:var(--accent)}
 .top.scrolled{box-shadow:0 12px 30px rgba(15,27,45,.10)}
+.authCluster{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+.headerSwitches{display:flex;align-items:center;gap:6px;justify-content:flex-end}
+.headerSwitches select,select.globalLangSwitch{padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1}
+.headerSwitches select:hover,select.globalLangSwitch:hover{border-color:var(--accent);color:#0F1B2D;background:#FFFFFF}
 .navBtns,#authArea{display:flex;gap:8px;align-items:center;flex-shrink:0;white-space:nowrap}
 .navBtns a,.navBtns button,#authArea button{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  font-size:13px;
+  font-size:12.5px;
   font-weight:700;
-  padding:8px 16px;
-  border-radius:10px;
+  padding:6px 14px;
+  border-radius:9px;
   text-decoration:none;
   transition:all .15s ease;
   cursor:pointer;
@@ -216,13 +220,13 @@ HOME_HTML = r'''<!doctype html>
   transform:translateY(-1px);
 }
 .navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text);flex-shrink:0}
-.brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
+.brandLogoWrap{flex-shrink:0;min-width:max-content}
 .brandLink{text-decoration:none;display:flex;align-items:center;gap:10px;min-width:0}
 .brandLogoIcon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0}
-.brandTextWrap{min-width:0;overflow:hidden}
-.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.headerRight{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brandTextWrap{min-width:0}
+.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap}
+.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap}
+.headerRight{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .mobileNavAuth{display:none}
 
 @media(max-width:920px){
@@ -234,6 +238,7 @@ HOME_HTML = r'''<!doctype html>
   .brandLogoIcon svg{width:18px;height:18px}
   .brandTitle{font-size:15.5px}
   .brandSub{display:none}
+  .brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
   .topNav{position:fixed;top:56px;left:0;right:0;width:100vw;background:#FFFFFF;border-bottom:1.5px solid var(--line);box-shadow:0 14px 34px rgba(15,27,45,0.12);flex-direction:column;align-items:stretch;gap:0;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .28s ease,padding .2s ease;z-index:999;box-sizing:border-box}
   .topNav.open{max-height:460px;padding:10px 20px 20px;overflow-y:auto}
   .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.06);font-size:14.5px;color:var(--text);font-weight:600;display:block;text-align:left}
@@ -244,6 +249,7 @@ HOME_HTML = r'''<!doctype html>
 
 @media(max-width:768px){
   .navBtns{display:none}
+  .authCluster{flex-direction:row;align-items:center}
   .headerRight{gap:6px}
   .globalLangSwitch{padding:4px 5px !important;font-size:11px !important;border-radius:7px !important;max-width:60px}
   .wrap{padding:0 12px}
@@ -521,7 +527,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/" class="active">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="headerSwitches hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/" class="active">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn primary">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <section class="mHero">
   <div class="reveal in">
@@ -2361,25 +2367,29 @@ PRICING_HTML = r'''<!doctype html>
 ::view-transition-new(root){animation:dfbpFadeIn .32s ease both}
 @keyframes dfbpFadeOut{to{opacity:0;transform:translateY(-6px)}}
 @keyframes dfbpFadeIn{from{opacity:0;transform:translateY(8px)}}
-.topNav{display:flex;gap:26px;align-items:center}
-.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.topNav{display:flex;gap:18px;align-items:center}
+.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
 .topNav a:hover{color:var(--text)}
 .topNav a.active{color:var(--accent);border-color:var(--accent)}
 .top.scrolled{box-shadow:0 12px 30px rgba(15,27,45,.10)}
-.navBtns{display:flex;gap:10px;align-items:center}
-.navBtn{display:inline-flex;align-items:center;justify-content:center;padding:8px 18px;border-radius:10px;font-size:13px;font-weight:700;letter-spacing:-.1px;text-decoration:none;cursor:pointer;transition:all .18s ease;line-height:1.2}
+.authCluster{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+.headerSwitches{display:flex;align-items:center;gap:6px;justify-content:flex-end}
+.headerSwitches select,select.globalLangSwitch{padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1}
+.headerSwitches select:hover,select.globalLangSwitch:hover{border-color:var(--accent);color:#0F1B2D;background:#FFFFFF}
+.navBtns{display:flex;gap:8px;align-items:center}
+.navBtn{display:inline-flex;align-items:center;justify-content:center;padding:6px 14px;border-radius:9px;font-size:12.5px;font-weight:700;letter-spacing:-.1px;text-decoration:none;cursor:pointer;transition:all .18s ease;line-height:1.2;white-space:nowrap}
 .navBtn.sec{background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B}
 .navBtn.sec:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
 .navBtn.pri{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
 .navBtn.pri:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
 .navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text);flex-shrink:0}
-.brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
+.brandLogoWrap{flex-shrink:0;min-width:max-content}
 .brandLink{text-decoration:none;display:flex;align-items:center;gap:10px;min-width:0}
 .brandLogoIcon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0}
-.brandTextWrap{min-width:0;overflow:hidden}
-.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.headerRight{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brandTextWrap{min-width:0}
+.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap}
+.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap}
+.headerRight{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .mobileNavAuth{display:none}
 
 @media(max-width:920px){
@@ -2391,6 +2401,7 @@ PRICING_HTML = r'''<!doctype html>
   .brandLogoIcon svg{width:18px;height:18px}
   .brandTitle{font-size:15.5px}
   .brandSub{display:none}
+  .brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
   .topNav{position:fixed;top:56px;left:0;right:0;width:100vw;background:#FFFFFF;border-bottom:1.5px solid var(--line);box-shadow:0 14px 34px rgba(15,27,45,0.12);flex-direction:column;align-items:stretch;gap:0;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .28s ease,padding .2s ease;z-index:999;box-sizing:border-box}
   .topNav.open{max-height:460px;padding:10px 20px 20px;overflow-y:auto}
   .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.06);font-size:14.5px;color:var(--text);font-weight:600;display:block;text-align:left}
@@ -2401,6 +2412,7 @@ PRICING_HTML = r'''<!doctype html>
 
 @media(max-width:768px){
   .navBtns{display:none}
+  .authCluster{flex-direction:row;align-items:center}
   .headerRight{gap:6px}
   .globalLangSwitch{padding:4px 5px !important;font-size:11px !important;border-radius:7px !important;max-width:60px}
   .wrap{padding:0 12px}
@@ -2560,7 +2572,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler" class="active">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="headerSwitches hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler" class="active">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">Paketler</span><h1>Şirketiniz İçin Doğru Çözümü Seçin</h1><p>Tek seferlik bir örnek raporla mı başlamak istiyorsunuz, yoksa her ay yönetim kuruluna sunacağınız 33 karar motorlu finansal zekayı mı kurmak istiyorsunuz — tüm paketler aynı deterministik finansal çekirdeği kullanır.</p>
   <div style="display:inline-flex;align-items:center;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:999px;padding:4px;margin-top:24px;box-shadow:0 4px 12px rgba(15,27,45,0.05)">
@@ -2911,25 +2923,29 @@ ABOUT_HTML = r'''<!doctype html>
 ::view-transition-new(root){animation:dfbpFadeIn .32s ease both}
 @keyframes dfbpFadeOut{to{opacity:0;transform:translateY(-6px)}}
 @keyframes dfbpFadeIn{from{opacity:0;transform:translateY(8px)}}
-.topNav{display:flex;gap:26px;align-items:center}
-.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.topNav{display:flex;gap:18px;align-items:center}
+.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
 .topNav a:hover{color:var(--text)}
 .topNav a.active{color:var(--accent);border-color:var(--accent)}
 .top.scrolled{box-shadow:0 12px 30px rgba(15,27,45,.10)}
-.navBtns{display:flex;gap:10px;align-items:center}
-.navBtn{display:inline-flex;align-items:center;justify-content:center;padding:8px 18px;border-radius:10px;font-size:13px;font-weight:700;letter-spacing:-.1px;text-decoration:none;cursor:pointer;transition:all .18s ease;line-height:1.2}
+.authCluster{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+.headerSwitches{display:flex;align-items:center;gap:6px;justify-content:flex-end}
+.headerSwitches select,select.globalLangSwitch{padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1}
+.headerSwitches select:hover,select.globalLangSwitch:hover{border-color:var(--accent);color:#0F1B2D;background:#FFFFFF}
+.navBtns{display:flex;gap:8px;align-items:center}
+.navBtn{display:inline-flex;align-items:center;justify-content:center;padding:6px 14px;border-radius:9px;font-size:12.5px;font-weight:700;letter-spacing:-.1px;text-decoration:none;cursor:pointer;transition:all .18s ease;line-height:1.2;white-space:nowrap}
 .navBtn.sec{background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B}
 .navBtn.sec:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
 .navBtn.pri{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
 .navBtn.pri:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
 .navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text);flex-shrink:0}
-.brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
+.brandLogoWrap{flex-shrink:0;min-width:max-content}
 .brandLink{text-decoration:none;display:flex;align-items:center;gap:10px;min-width:0}
 .brandLogoIcon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0}
-.brandTextWrap{min-width:0;overflow:hidden}
-.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.headerRight{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brandTextWrap{min-width:0}
+.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap}
+.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap}
+.headerRight{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .mobileNavAuth{display:none}
 
 @media(max-width:920px){
@@ -2941,6 +2957,7 @@ ABOUT_HTML = r'''<!doctype html>
   .brandLogoIcon svg{width:18px;height:18px}
   .brandTitle{font-size:15.5px}
   .brandSub{display:none}
+  .brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
   .topNav{position:fixed;top:56px;left:0;right:0;width:100vw;background:#FFFFFF;border-bottom:1.5px solid var(--line);box-shadow:0 14px 34px rgba(15,27,45,0.12);flex-direction:column;align-items:stretch;gap:0;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .28s ease,padding .2s ease;z-index:999;box-sizing:border-box}
   .topNav.open{max-height:460px;padding:10px 20px 20px;overflow-y:auto}
   .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.06);font-size:14.5px;color:var(--text);font-weight:600;display:block;text-align:left}
@@ -2951,6 +2968,7 @@ ABOUT_HTML = r'''<!doctype html>
 
 @media(max-width:768px){
   .navBtns{display:none}
+  .authCluster{flex-direction:row;align-items:center}
   .headerRight{gap:6px}
   .globalLangSwitch{padding:4px 5px !important;font-size:11px !important;border-radius:7px !important;max-width:60px}
   .wrap{padding:0 12px}
@@ -3109,7 +3127,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda" class="active">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="headerSwitches hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda" class="active">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">Bizi Tanıyın</span><h1>Finansal Veriyi Güvenilir Yönetim Kararına Dönüştürüyoruz</h1><p>Reel sektörde ve holdinglerde kıdemli finans yöneticiliği yapmış uzmanlar ile finansal yazılım mühendislerinin ortak vizyonuyla hayata geçirildi. Amacımız; her büyüklükteki şirketin kendi mizanından kuruşu kuruşuna doğrulanmış, net ve icra edilebilir yönetim kararları alabilmesidir.</p></div>
 
@@ -3464,25 +3482,29 @@ CONTACT_HTML = r'''<!doctype html>
 ::view-transition-new(root){animation:dfbpFadeIn .32s ease both}
 @keyframes dfbpFadeOut{to{opacity:0;transform:translateY(-6px)}}
 @keyframes dfbpFadeIn{from{opacity:0;transform:translateY(8px)}}
-.topNav{display:flex;gap:26px;align-items:center}
-.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.topNav{display:flex;gap:18px;align-items:center}
+.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
 .topNav a:hover{color:var(--text)}
 .topNav a.active{color:var(--accent);border-color:var(--accent)}
 .top.scrolled{box-shadow:0 12px 30px rgba(15,27,45,.10)}
-.navBtns{display:flex;gap:10px;align-items:center}
-.navBtn{display:inline-flex;align-items:center;justify-content:center;padding:8px 18px;border-radius:10px;font-size:13px;font-weight:700;letter-spacing:-.1px;text-decoration:none;cursor:pointer;transition:all .18s ease;line-height:1.2}
+.authCluster{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+.headerSwitches{display:flex;align-items:center;gap:6px;justify-content:flex-end}
+.headerSwitches select,select.globalLangSwitch{padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1}
+.headerSwitches select:hover,select.globalLangSwitch:hover{border-color:var(--accent);color:#0F1B2D;background:#FFFFFF}
+.navBtns{display:flex;gap:8px;align-items:center}
+.navBtn{display:inline-flex;align-items:center;justify-content:center;padding:6px 14px;border-radius:9px;font-size:12.5px;font-weight:700;letter-spacing:-.1px;text-decoration:none;cursor:pointer;transition:all .18s ease;line-height:1.2;white-space:nowrap}
 .navBtn.sec{background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B}
 .navBtn.sec:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
 .navBtn.pri{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
 .navBtn.pri:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
 .navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text);flex-shrink:0}
-.brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
+.brandLogoWrap{flex-shrink:0;min-width:max-content}
 .brandLink{text-decoration:none;display:flex;align-items:center;gap:10px;min-width:0}
 .brandLogoIcon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0}
-.brandTextWrap{min-width:0;overflow:hidden}
-.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.headerRight{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brandTextWrap{min-width:0}
+.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap}
+.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap}
+.headerRight{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .mobileNavAuth{display:none}
 
 @media(max-width:920px){
@@ -3494,6 +3516,7 @@ CONTACT_HTML = r'''<!doctype html>
   .brandLogoIcon svg{width:18px;height:18px}
   .brandTitle{font-size:15.5px}
   .brandSub{display:none}
+  .brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
   .topNav{position:fixed;top:56px;left:0;right:0;width:100vw;background:#FFFFFF;border-bottom:1.5px solid var(--line);box-shadow:0 14px 34px rgba(15,27,45,0.12);flex-direction:column;align-items:stretch;gap:0;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .28s ease,padding .2s ease;z-index:999;box-sizing:border-box}
   .topNav.open{max-height:460px;padding:10px 20px 20px;overflow-y:auto}
   .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.06);font-size:14.5px;color:var(--text);font-weight:600;display:block;text-align:left}
@@ -3504,6 +3527,7 @@ CONTACT_HTML = r'''<!doctype html>
 
 @media(max-width:768px){
   .navBtns{display:none}
+  .authCluster{flex-direction:row;align-items:center}
   .headerRight{gap:6px}
   .globalLangSwitch{padding:4px 5px !important;font-size:11px !important;border-radius:7px !important;max-width:60px}
   .wrap{padding:0 12px}
@@ -3661,7 +3685,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim" class="active">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="headerSwitches hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim" class="active">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">İletişim</span><h1>Konuşalım</h1><p>Paketler, kurumsal teklif veya demo talebi için bize ulaşın; genelde 1 iş günü içinde dönüş yapıyoruz.</p></div>
 <div class="secBlock reveal"><section id="contact" class="marketingSection hidePrint" style="padding-top:0">
@@ -3967,25 +3991,29 @@ SECURITY_HTML = r'''<!doctype html>
 ::view-transition-new(root){animation:dfbpFadeIn .32s ease both}
 @keyframes dfbpFadeOut{to{opacity:0;transform:translateY(-6px)}}
 @keyframes dfbpFadeIn{from{opacity:0;transform:translateY(8px)}}
-.topNav{display:flex;gap:26px;align-items:center}
-.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.topNav{display:flex;gap:18px;align-items:center}
+.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
 .topNav a:hover{color:var(--text)}
 .topNav a.active{color:var(--accent);border-color:var(--accent)}
 .top.scrolled{box-shadow:0 12px 30px rgba(15,27,45,.10)}
-.navBtns{display:flex;gap:10px;align-items:center}
-.navBtn{display:inline-flex;align-items:center;justify-content:center;padding:8px 18px;border-radius:10px;font-size:13px;font-weight:700;letter-spacing:-.1px;text-decoration:none;cursor:pointer;transition:all .18s ease;line-height:1.2}
+.authCluster{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+.headerSwitches{display:flex;align-items:center;gap:6px;justify-content:flex-end}
+.headerSwitches select,select.globalLangSwitch{padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1}
+.headerSwitches select:hover,select.globalLangSwitch:hover{border-color:var(--accent);color:#0F1B2D;background:#FFFFFF}
+.navBtns{display:flex;gap:8px;align-items:center}
+.navBtn{display:inline-flex;align-items:center;justify-content:center;padding:6px 14px;border-radius:9px;font-size:12.5px;font-weight:700;letter-spacing:-.1px;text-decoration:none;cursor:pointer;transition:all .18s ease;line-height:1.2;white-space:nowrap}
 .navBtn.sec{background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B}
 .navBtn.sec:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
 .navBtn.pri{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
 .navBtn.pri:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
 .navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text);flex-shrink:0}
-.brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
+.brandLogoWrap{flex-shrink:0;min-width:max-content}
 .brandLink{text-decoration:none;display:flex;align-items:center;gap:10px;min-width:0}
 .brandLogoIcon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0}
-.brandTextWrap{min-width:0;overflow:hidden}
-.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.headerRight{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brandTextWrap{min-width:0}
+.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap}
+.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap}
+.headerRight{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .mobileNavAuth{display:none}
 
 @media(max-width:920px){
@@ -3997,6 +4025,7 @@ SECURITY_HTML = r'''<!doctype html>
   .brandLogoIcon svg{width:18px;height:18px}
   .brandTitle{font-size:15.5px}
   .brandSub{display:none}
+  .brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
   .topNav{position:fixed;top:56px;left:0;right:0;width:100vw;background:#FFFFFF;border-bottom:1.5px solid var(--line);box-shadow:0 14px 34px rgba(15,27,45,0.12);flex-direction:column;align-items:stretch;gap:0;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .28s ease,padding .2s ease;z-index:999;box-sizing:border-box}
   .topNav.open{max-height:460px;padding:10px 20px 20px;overflow-y:auto}
   .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.06);font-size:14.5px;color:var(--text);font-weight:600;display:block;text-align:left}
@@ -4007,6 +4036,7 @@ SECURITY_HTML = r'''<!doctype html>
 
 @media(max-width:768px){
   .navBtns{display:none}
+  .authCluster{flex-direction:row;align-items:center}
   .headerRight{gap:6px}
   .globalLangSwitch{padding:4px 5px !important;font-size:11px !important;border-radius:7px !important;max-width:60px}
   .wrap{padding:0 12px}
@@ -4164,7 +4194,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik" class="active">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="headerSwitches hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik" class="active">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">Security &amp; Governance</span><h1>Kurumsal veri güvenliği ve AI yönetişimi</h1><p>Finans ekipleri güvenlik sayfasına, düşündüğünüzden çok daha fazla bakıyor. Verinizin nasıl işlendiğini, nerede durduğunu ve AI katmanının nasıl sınırlandığını burada tam olarak görebilirsiniz.</p></div>
 
@@ -4470,33 +4500,35 @@ APP_HTML = r'''<!doctype html>
 ::view-transition-new(root){animation:dfbpFadeIn .32s ease both}
 @keyframes dfbpFadeOut{to{opacity:0;transform:translateY(-6px)}}
 @keyframes dfbpFadeIn{from{opacity:0;transform:translateY(8px)}}
-.topNav{display:flex;gap:26px;align-items:center}
-.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.topNav{display:flex;gap:18px;align-items:center}
+.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
 .topNav a:hover{color:var(--text)}
 .topNav a.active{color:var(--accent);border-color:var(--accent)}
 .top.scrolled{box-shadow:0 12px 30px rgba(15,27,45,.10)}
+.authCluster{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+.headerSwitches{display:flex;align-items:center;gap:6px;justify-content:flex-end}
+.headerSwitches select{padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1}
+.headerSwitches select:hover{border-color:var(--accent);color:#0F1B2D;background:#FFFFFF}
 .navBtns{display:flex;gap:10px;align-items:center}
 .navBtn{display:inline-flex;align-items:center;justify-content:center;padding:8px 18px;border-radius:10px;font-size:13px;font-weight:700;letter-spacing:-.1px;text-decoration:none;cursor:pointer;transition:all .18s ease;line-height:1.2}
 .navBtn.sec{background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B}
 .navBtn.sec:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
 .navBtn.pri{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
 .navBtn.pri:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
-#authArea{display:flex;gap:10px;align-items:center}
-#authArea button{padding:8px 18px;border-radius:10px;font-size:13px;font-weight:700;line-height:1.2;cursor:pointer;transition:all .18s ease}
+#authArea{display:flex;gap:8px;align-items:center}
+#authArea button{padding:6px 14px;border-radius:9px;font-size:12.5px;font-weight:700;line-height:1.2;cursor:pointer;transition:all .18s ease;white-space:nowrap}
 #authArea button.secondary{background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B}
 #authArea button.secondary:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
 #authArea button.primary{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
 #authArea button.primary:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
 .navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text);flex-shrink:0}
-.brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
+.brandLogoWrap{flex-shrink:0;min-width:max-content}
 .brandLink{text-decoration:none;display:flex;align-items:center;gap:10px;min-width:0}
 .brandLogoIcon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0}
-.brandTextWrap{min-width:0;overflow:hidden}
-.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.headerRight{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.headerSwitches{display:flex;align-items:center;gap:6px}
-.headerSwitches select{padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer}
+.brandTextWrap{min-width:0}
+.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap}
+.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap}
+.headerRight{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .mobileNavAuth{display:none}
 
 @media(max-width:920px){
@@ -4508,6 +4540,7 @@ APP_HTML = r'''<!doctype html>
   .brandLogoIcon svg{width:18px;height:18px}
   .brandTitle{font-size:15.5px}
   .brandSub{display:none}
+  .brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
   .topNav{position:fixed;top:56px;left:0;right:0;width:100vw;background:#FFFFFF;border-bottom:1.5px solid var(--line);box-shadow:0 14px 34px rgba(15,27,45,0.12);flex-direction:column;align-items:stretch;gap:0;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .28s ease,padding .2s ease;z-index:999;box-sizing:border-box}
   .topNav.open{max-height:460px;padding:10px 20px 20px;overflow-y:auto}
   .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.06);font-size:14.5px;color:var(--text);font-weight:600;display:block;text-align:left}
@@ -4519,6 +4552,7 @@ APP_HTML = r'''<!doctype html>
 @media(max-width:768px){
   #authArea{display:none}
   .navBtns{display:none}
+  .authCluster{flex-direction:row;align-items:center}
   .headerRight{gap:6px}
   .headerSwitches{gap:4px}
   .headerSwitches select{padding:4px 5px;font-size:11px;border-radius:7px;max-width:60px}
@@ -4831,7 +4865,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama" class="active">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth" id="mobileNavAuth"><button type="button" onclick="openAuthModal('login')" class="secondary">Giriş Yap</button><button type="button" onclick="openAuthModal('register')" class="primary">Ücretsiz Kayıt Ol</button></div></nav><div class="headerSwitches hidePrint"><select id="currencySwitch" onchange="setCurrency(this.value)" class="select" title="Para Birimi"><option value="TRY">₺ TRY</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select><select id="langSwitch" onchange="setLanguage(this.value)" class="select" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="primary">Ücretsiz Kayıt Ol</button></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama" class="active">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth" id="mobileNavAuth"><button type="button" onclick="openAuthModal('login')" class="secondary">Giriş Yap</button><button type="button" onclick="openAuthModal('register')" class="primary">Ücretsiz Kayıt Ol</button></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select id="currencySwitch" onchange="setCurrency(this.value)" class="select" title="Para Birimi"><option value="TRY">₺ TRY</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select><select id="langSwitch" onchange="setLanguage(this.value)" class="select" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="primary">Ücretsiz Kayıt Ol</button></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <div id="authModalOverlay" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.65);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px">
   <div class="card" style="background:#FFFFFF;border:1px solid #DCE6F5;border-radius:24px;box-shadow:0 24px 70px rgba(15,27,45,.25);max-width:420px;width:100%;padding:28px;position:relative;overflow:hidden">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
