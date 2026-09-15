@@ -215,12 +215,47 @@ HOME_HTML = r'''<!doctype html>
   box-shadow:0 4px 12px rgba(29,78,216,.35);
   transform:translateY(-1px);
 }
-.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
-@media(max-width:1080px){
-  .topNav{position:fixed;top:74px;left:0;right:0;background:#F7F9FC;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
-  .topNav.open{max-height:280px;padding:14px 22px}
-  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.08)}
-  .navToggle{display:inline-flex}
+.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text);flex-shrink:0}
+.brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
+.brandLink{text-decoration:none;display:flex;align-items:center;gap:10px;min-width:0}
+.brandLogoIcon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0}
+.brandTextWrap{min-width:0;overflow:hidden}
+.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.headerRight{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.mobileNavAuth{display:none}
+
+@media(max-width:920px){
+  html,body{overflow-x:hidden;max-width:100vw;width:100%}
+  .top{padding:12px 0 10px}
+  .wrap{padding:0 16px;max-width:100vw;box-sizing:border-box}
+  .brand{gap:10px}
+  .brandLogoIcon{width:32px;height:32px;border-radius:9px}
+  .brandLogoIcon svg{width:18px;height:18px}
+  .brandTitle{font-size:15.5px}
+  .brandSub{display:none}
+  .topNav{position:fixed;top:56px;left:0;right:0;width:100vw;background:#FFFFFF;border-bottom:1.5px solid var(--line);box-shadow:0 14px 34px rgba(15,27,45,0.12);flex-direction:column;align-items:stretch;gap:0;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .28s ease,padding .2s ease;z-index:999;box-sizing:border-box}
+  .topNav.open{max-height:460px;padding:10px 20px 20px;overflow-y:auto}
+  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.06);font-size:14.5px;color:var(--text);font-weight:600;display:block;text-align:left}
+  .mobileNavAuth{display:flex;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(15,27,45,.08)}
+  .mobileNavAuth a{flex:1;padding:10px 12px;font-size:13px;font-weight:700;border-radius:10px;text-align:center;justify-content:center;text-decoration:none}
+  .navToggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;font-size:18px;border-radius:8px;cursor:pointer}
+}
+
+@media(max-width:768px){
+  .navBtns{display:none}
+  .headerRight{gap:6px}
+  .globalLangSwitch{padding:4px 5px !important;font-size:11px !important;border-radius:7px !important;max-width:60px}
+  .wrap{padding:0 12px}
+  .brandTitle{font-size:14.5px}
+  .mHero{padding:24px 0 20px;grid-template-columns:1fr;gap:20px}
+  .mHero h1{font-size:26px !important;line-height:1.2 !important}
+  .mHero p.lead{font-size:13.5px;line-height:1.55}
+  .ctaRow{flex-direction:column;gap:10px}
+  .ctaRow a{width:100%;text-align:center;justify-content:center}
+  .miniTrust{gap:8px 12px;margin-top:16px}
+  .aboutStats{grid-template-columns:1fr !important;gap:10px}
+  .statsStrip{grid-template-columns:1fr !important;gap:12px}
 }
 .badge.v{white-space:nowrap}
 /* ---- Marketing hero (separate from app hero) ---- */
@@ -474,23 +509,19 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 }
 </style></head>
 <body>
-<header class="top"><div class="wrap brand"><div>
-  <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:12px">
-    <div style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
+<header class="top"><div class="wrap brand"><div class="brandLogoWrap">
+  <a href="/" class="brandLink">
+    <div class="brandLogoIcon">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 6-8"/><circle cx="21" cy="5" r="2" fill="#FFFFFF"/>
       </svg>
     </div>
-    <div>
-      <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2">
-        Digital Finance Business Partner
-      </div>
-      <div style="font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px">
-        Finansal Teşhis &amp; Yönetim Karar Destek Platformu
-      </div>
+    <div class="brandTextWrap">
+      <div class="brandTitle">Digital Finance Business Partner</div>
+      <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/" class="active">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div style="display:flex;align-items:center;gap:6px" class="hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/" class="active">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="headerSwitches hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn primary">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <section class="mHero">
   <div class="reveal in">
@@ -2341,12 +2372,44 @@ PRICING_HTML = r'''<!doctype html>
 .navBtn.sec:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
 .navBtn.pri{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
 .navBtn.pri:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
-.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
+.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text);flex-shrink:0}
+.brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
+.brandLink{text-decoration:none;display:flex;align-items:center;gap:10px;min-width:0}
+.brandLogoIcon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0}
+.brandTextWrap{min-width:0;overflow:hidden}
+.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.headerRight{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.mobileNavAuth{display:none}
+
 @media(max-width:920px){
-  .topNav{position:fixed;top:74px;left:0;right:0;background:#F7F9FC;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
-  .topNav.open{max-height:280px;padding:14px 22px}
-  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.08)}
-  .navToggle{display:inline-flex}
+  html,body{overflow-x:hidden;max-width:100vw;width:100%}
+  .top{padding:12px 0 10px}
+  .wrap{padding:0 16px;max-width:100vw;box-sizing:border-box}
+  .brand{gap:10px}
+  .brandLogoIcon{width:32px;height:32px;border-radius:9px}
+  .brandLogoIcon svg{width:18px;height:18px}
+  .brandTitle{font-size:15.5px}
+  .brandSub{display:none}
+  .topNav{position:fixed;top:56px;left:0;right:0;width:100vw;background:#FFFFFF;border-bottom:1.5px solid var(--line);box-shadow:0 14px 34px rgba(15,27,45,0.12);flex-direction:column;align-items:stretch;gap:0;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .28s ease,padding .2s ease;z-index:999;box-sizing:border-box}
+  .topNav.open{max-height:460px;padding:10px 20px 20px;overflow-y:auto}
+  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.06);font-size:14.5px;color:var(--text);font-weight:600;display:block;text-align:left}
+  .mobileNavAuth{display:flex;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(15,27,45,.08)}
+  .mobileNavAuth a{flex:1;padding:10px 12px;font-size:13px;font-weight:700;border-radius:10px;text-align:center;justify-content:center;text-decoration:none}
+  .navToggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;font-size:18px;border-radius:8px;cursor:pointer}
+}
+
+@media(max-width:768px){
+  .navBtns{display:none}
+  .headerRight{gap:6px}
+  .globalLangSwitch{padding:4px 5px !important;font-size:11px !important;border-radius:7px !important;max-width:60px}
+  .wrap{padding:0 12px}
+  .brandTitle{font-size:14.5px}
+  .pageHead{padding:28px 0 10px}
+  .pageHead h1{font-size:26px !important}
+  .pricingGrid{grid-template-columns:1fr !important;gap:16px}
+  .compareTableWrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .compareTable{min-width:480px}
 }
 .badge.v{white-space:nowrap}
 /* ---- Marketing hero (separate from app hero) ---- */
@@ -2485,23 +2548,19 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 </style></head>
 <body>
-<header class="top"><div class="wrap brand"><div>
-  <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:12px">
-    <div style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
+<header class="top"><div class="wrap brand"><div class="brandLogoWrap">
+  <a href="/" class="brandLink">
+    <div class="brandLogoIcon">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 6-8"/><circle cx="21" cy="5" r="2" fill="#FFFFFF"/>
       </svg>
     </div>
-    <div>
-      <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2">
-        Digital Finance Business Partner
-      </div>
-      <div style="font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px">
-        Finansal Teşhis &amp; Yönetim Karar Destek Platformu
-      </div>
+    <div class="brandTextWrap">
+      <div class="brandTitle">Digital Finance Business Partner</div>
+      <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler" class="active">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div style="display:flex;align-items:center;gap:6px" class="hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler" class="active">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="headerSwitches hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">Paketler</span><h1>Şirketiniz İçin Doğru Çözümü Seçin</h1><p>Tek seferlik bir örnek raporla mı başlamak istiyorsunuz, yoksa her ay yönetim kuruluna sunacağınız 33 karar motorlu finansal zekayı mı kurmak istiyorsunuz — tüm paketler aynı deterministik finansal çekirdeği kullanır.</p>
   <div style="display:inline-flex;align-items:center;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:999px;padding:4px;margin-top:24px;box-shadow:0 4px 12px rgba(15,27,45,0.05)">
@@ -2863,12 +2922,43 @@ ABOUT_HTML = r'''<!doctype html>
 .navBtn.sec:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
 .navBtn.pri{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
 .navBtn.pri:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
-.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
+.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text);flex-shrink:0}
+.brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
+.brandLink{text-decoration:none;display:flex;align-items:center;gap:10px;min-width:0}
+.brandLogoIcon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0}
+.brandTextWrap{min-width:0;overflow:hidden}
+.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.headerRight{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.mobileNavAuth{display:none}
+
 @media(max-width:920px){
-  .topNav{position:fixed;top:74px;left:0;right:0;background:#F7F9FC;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
-  .topNav.open{max-height:280px;padding:14px 22px}
-  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.08)}
-  .navToggle{display:inline-flex}
+  html,body{overflow-x:hidden;max-width:100vw;width:100%}
+  .top{padding:12px 0 10px}
+  .wrap{padding:0 16px;max-width:100vw;box-sizing:border-box}
+  .brand{gap:10px}
+  .brandLogoIcon{width:32px;height:32px;border-radius:9px}
+  .brandLogoIcon svg{width:18px;height:18px}
+  .brandTitle{font-size:15.5px}
+  .brandSub{display:none}
+  .topNav{position:fixed;top:56px;left:0;right:0;width:100vw;background:#FFFFFF;border-bottom:1.5px solid var(--line);box-shadow:0 14px 34px rgba(15,27,45,0.12);flex-direction:column;align-items:stretch;gap:0;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .28s ease,padding .2s ease;z-index:999;box-sizing:border-box}
+  .topNav.open{max-height:460px;padding:10px 20px 20px;overflow-y:auto}
+  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.06);font-size:14.5px;color:var(--text);font-weight:600;display:block;text-align:left}
+  .mobileNavAuth{display:flex;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(15,27,45,.08)}
+  .mobileNavAuth a{flex:1;padding:10px 12px;font-size:13px;font-weight:700;border-radius:10px;text-align:center;justify-content:center;text-decoration:none}
+  .navToggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;font-size:18px;border-radius:8px;cursor:pointer}
+}
+
+@media(max-width:768px){
+  .navBtns{display:none}
+  .headerRight{gap:6px}
+  .globalLangSwitch{padding:4px 5px !important;font-size:11px !important;border-radius:7px !important;max-width:60px}
+  .wrap{padding:0 12px}
+  .brandTitle{font-size:14.5px}
+  .pageHead{padding:28px 0 10px}
+  .pageHead h1{font-size:26px !important}
+  .aboutGrid{grid-template-columns:1fr !important;gap:20px}
+  .aboutStats{grid-template-columns:1fr !important;gap:10px}
 }
 .badge.v{white-space:nowrap}
 /* ---- Marketing hero (separate from app hero) ---- */
@@ -3007,23 +3097,19 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 </style></head>
 <body>
-<header class="top"><div class="wrap brand"><div>
-  <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:12px">
-    <div style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
+<header class="top"><div class="wrap brand"><div class="brandLogoWrap">
+  <a href="/" class="brandLink">
+    <div class="brandLogoIcon">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 6-8"/><circle cx="21" cy="5" r="2" fill="#FFFFFF"/>
       </svg>
     </div>
-    <div>
-      <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2">
-        Digital Finance Business Partner
-      </div>
-      <div style="font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px">
-        Finansal Teşhis &amp; Yönetim Karar Destek Platformu
-      </div>
+    <div class="brandTextWrap">
+      <div class="brandTitle">Digital Finance Business Partner</div>
+      <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda" class="active">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div style="display:flex;align-items:center;gap:6px" class="hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda" class="active">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="headerSwitches hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">Bizi Tanıyın</span><h1>Finansal Veriyi Güvenilir Yönetim Kararına Dönüştürüyoruz</h1><p>Reel sektörde ve holdinglerde kıdemli finans yöneticiliği yapmış uzmanlar ile finansal yazılım mühendislerinin ortak vizyonuyla hayata geçirildi. Amacımız; her büyüklükteki şirketin kendi mizanından kuruşu kuruşuna doğrulanmış, net ve icra edilebilir yönetim kararları alabilmesidir.</p></div>
 
@@ -3389,12 +3475,42 @@ CONTACT_HTML = r'''<!doctype html>
 .navBtn.sec:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
 .navBtn.pri{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
 .navBtn.pri:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
-.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
+.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text);flex-shrink:0}
+.brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
+.brandLink{text-decoration:none;display:flex;align-items:center;gap:10px;min-width:0}
+.brandLogoIcon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0}
+.brandTextWrap{min-width:0;overflow:hidden}
+.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.headerRight{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.mobileNavAuth{display:none}
+
 @media(max-width:920px){
-  .topNav{position:fixed;top:74px;left:0;right:0;background:#F7F9FC;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
-  .topNav.open{max-height:280px;padding:14px 22px}
-  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.08)}
-  .navToggle{display:inline-flex}
+  html,body{overflow-x:hidden;max-width:100vw;width:100%}
+  .top{padding:12px 0 10px}
+  .wrap{padding:0 16px;max-width:100vw;box-sizing:border-box}
+  .brand{gap:10px}
+  .brandLogoIcon{width:32px;height:32px;border-radius:9px}
+  .brandLogoIcon svg{width:18px;height:18px}
+  .brandTitle{font-size:15.5px}
+  .brandSub{display:none}
+  .topNav{position:fixed;top:56px;left:0;right:0;width:100vw;background:#FFFFFF;border-bottom:1.5px solid var(--line);box-shadow:0 14px 34px rgba(15,27,45,0.12);flex-direction:column;align-items:stretch;gap:0;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .28s ease,padding .2s ease;z-index:999;box-sizing:border-box}
+  .topNav.open{max-height:460px;padding:10px 20px 20px;overflow-y:auto}
+  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.06);font-size:14.5px;color:var(--text);font-weight:600;display:block;text-align:left}
+  .mobileNavAuth{display:flex;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(15,27,45,.08)}
+  .mobileNavAuth a{flex:1;padding:10px 12px;font-size:13px;font-weight:700;border-radius:10px;text-align:center;justify-content:center;text-decoration:none}
+  .navToggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;font-size:18px;border-radius:8px;cursor:pointer}
+}
+
+@media(max-width:768px){
+  .navBtns{display:none}
+  .headerRight{gap:6px}
+  .globalLangSwitch{padding:4px 5px !important;font-size:11px !important;border-radius:7px !important;max-width:60px}
+  .wrap{padding:0 12px}
+  .brandTitle{font-size:14.5px}
+  .pageHead{padding:28px 0 10px}
+  .pageHead h1{font-size:26px !important}
+  .contactGrid{grid-template-columns:1fr !important;gap:16px}
 }
 .badge.v{white-space:nowrap}
 /* ---- Marketing hero (separate from app hero) ---- */
@@ -3533,23 +3649,19 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 </style></head>
 <body>
-<header class="top"><div class="wrap brand"><div>
-  <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:12px">
-    <div style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
+<header class="top"><div class="wrap brand"><div class="brandLogoWrap">
+  <a href="/" class="brandLink">
+    <div class="brandLogoIcon">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 6-8"/><circle cx="21" cy="5" r="2" fill="#FFFFFF"/>
       </svg>
     </div>
-    <div>
-      <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2">
-        Digital Finance Business Partner
-      </div>
-      <div style="font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px">
-        Finansal Teşhis &amp; Yönetim Karar Destek Platformu
-      </div>
+    <div class="brandTextWrap">
+      <div class="brandTitle">Digital Finance Business Partner</div>
+      <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim" class="active">İletişim</a></nav><div style="display:flex;align-items:center;gap:6px" class="hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim" class="active">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="headerSwitches hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">İletişim</span><h1>Konuşalım</h1><p>Paketler, kurumsal teklif veya demo talebi için bize ulaşın; genelde 1 iş günü içinde dönüş yapıyoruz.</p></div>
 <div class="secBlock reveal"><section id="contact" class="marketingSection hidePrint" style="padding-top:0">
@@ -3866,12 +3978,42 @@ SECURITY_HTML = r'''<!doctype html>
 .navBtn.sec:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
 .navBtn.pri{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
 .navBtn.pri:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
-.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
+.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text);flex-shrink:0}
+.brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
+.brandLink{text-decoration:none;display:flex;align-items:center;gap:10px;min-width:0}
+.brandLogoIcon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0}
+.brandTextWrap{min-width:0;overflow:hidden}
+.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.headerRight{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.mobileNavAuth{display:none}
+
 @media(max-width:920px){
-  .topNav{position:fixed;top:74px;left:0;right:0;background:#F7F9FC;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
-  .topNav.open{max-height:280px;padding:14px 22px}
-  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.08)}
-  .navToggle{display:inline-flex}
+  html,body{overflow-x:hidden;max-width:100vw;width:100%}
+  .top{padding:12px 0 10px}
+  .wrap{padding:0 16px;max-width:100vw;box-sizing:border-box}
+  .brand{gap:10px}
+  .brandLogoIcon{width:32px;height:32px;border-radius:9px}
+  .brandLogoIcon svg{width:18px;height:18px}
+  .brandTitle{font-size:15.5px}
+  .brandSub{display:none}
+  .topNav{position:fixed;top:56px;left:0;right:0;width:100vw;background:#FFFFFF;border-bottom:1.5px solid var(--line);box-shadow:0 14px 34px rgba(15,27,45,0.12);flex-direction:column;align-items:stretch;gap:0;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .28s ease,padding .2s ease;z-index:999;box-sizing:border-box}
+  .topNav.open{max-height:460px;padding:10px 20px 20px;overflow-y:auto}
+  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.06);font-size:14.5px;color:var(--text);font-weight:600;display:block;text-align:left}
+  .mobileNavAuth{display:flex;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(15,27,45,.08)}
+  .mobileNavAuth a{flex:1;padding:10px 12px;font-size:13px;font-weight:700;border-radius:10px;text-align:center;justify-content:center;text-decoration:none}
+  .navToggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;font-size:18px;border-radius:8px;cursor:pointer}
+}
+
+@media(max-width:768px){
+  .navBtns{display:none}
+  .headerRight{gap:6px}
+  .globalLangSwitch{padding:4px 5px !important;font-size:11px !important;border-radius:7px !important;max-width:60px}
+  .wrap{padding:0 12px}
+  .brandTitle{font-size:14.5px}
+  .pageHead{padding:28px 0 10px}
+  .pageHead h1{font-size:26px !important}
+  .secShieldGrid{grid-template-columns:1fr !important;gap:14px}
 }
 .badge.v{white-space:nowrap}
 /* ---- Marketing hero (separate from app hero) ---- */
@@ -4010,23 +4152,19 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 </style></head>
 <body>
-<header class="top"><div class="wrap brand"><div>
-  <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:12px">
-    <div style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
+<header class="top"><div class="wrap brand"><div class="brandLogoWrap">
+  <a href="/" class="brandLink">
+    <div class="brandLogoIcon">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 6-8"/><circle cx="21" cy="5" r="2" fill="#FFFFFF"/>
       </svg>
     </div>
-    <div>
-      <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2">
-        Digital Finance Business Partner
-      </div>
-      <div style="font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px">
-        Finansal Teşhis &amp; Yönetim Karar Destek Platformu
-      </div>
+    <div class="brandTextWrap">
+      <div class="brandTitle">Digital Finance Business Partner</div>
+      <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik" class="active">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div style="display:flex;align-items:center;gap:6px" class="hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik" class="active">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="headerSwitches hidePrint"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">Security &amp; Governance</span><h1>Kurumsal veri güvenliği ve AI yönetişimi</h1><p>Finans ekipleri güvenlik sayfasına, düşündüğünüzden çok daha fazla bakıyor. Verinizin nasıl işlendiğini, nerede durduğunu ve AI katmanının nasıl sınırlandığını burada tam olarak görebilirsiniz.</p></div>
 
@@ -4349,12 +4487,72 @@ APP_HTML = r'''<!doctype html>
 #authArea button.secondary:hover{border-color:var(--accent);color:var(--accent);background:#F8FAFC}
 #authArea button.primary{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);border:1.5px solid #1D4ED8;color:#FFFFFF;box-shadow:0 4px 12px rgba(29,78,216,.28)}
 #authArea button.primary:hover{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);transform:translateY(-1px);box-shadow:0 6px 16px rgba(29,78,216,.36)}
-.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text)}
+.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text);flex-shrink:0}
+.brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
+.brandLink{text-decoration:none;display:flex;align-items:center;gap:10px;min-width:0}
+.brandLogoIcon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0}
+.brandTextWrap{min-width:0;overflow:hidden}
+.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.headerRight{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.headerSwitches{display:flex;align-items:center;gap:6px}
+.headerSwitches select{padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer}
+.mobileNavAuth{display:none}
+
 @media(max-width:920px){
-  .topNav{position:fixed;top:74px;left:0;right:0;background:#F7F9FC;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:6px 22px;max-height:0;overflow:hidden;transition:max-height .25s ease;z-index:60}
-  .topNav.open{max-height:280px;padding:14px 22px}
-  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.08)}
-  .navToggle{display:inline-flex}
+  html,body{overflow-x:hidden;max-width:100vw;width:100%}
+  .top{padding:12px 0 10px}
+  .wrap{padding:0 16px;max-width:100vw;box-sizing:border-box}
+  .brand{gap:10px}
+  .brandLogoIcon{width:32px;height:32px;border-radius:9px}
+  .brandLogoIcon svg{width:18px;height:18px}
+  .brandTitle{font-size:15.5px}
+  .brandSub{display:none}
+  .topNav{position:fixed;top:56px;left:0;right:0;width:100vw;background:#FFFFFF;border-bottom:1.5px solid var(--line);box-shadow:0 14px 34px rgba(15,27,45,0.12);flex-direction:column;align-items:stretch;gap:0;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .28s ease,padding .2s ease;z-index:999;box-sizing:border-box}
+  .topNav.open{max-height:460px;padding:10px 20px 20px;overflow-y:auto}
+  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.06);font-size:14.5px;color:var(--text);font-weight:600;display:block;text-align:left}
+  .mobileNavAuth{display:flex;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(15,27,45,.08)}
+  .mobileNavAuth button,.mobileNavAuth a{flex:1;padding:10px 12px;font-size:13px;font-weight:700;border-radius:10px;text-align:center;justify-content:center;cursor:pointer}
+  .navToggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;font-size:18px;border-radius:8px;cursor:pointer}
+}
+
+@media(max-width:768px){
+  #authArea{display:none}
+  .navBtns{display:none}
+  .headerRight{gap:6px}
+  .headerSwitches{gap:4px}
+  .headerSwitches select{padding:4px 5px;font-size:11px;border-radius:7px;max-width:60px}
+  .wrap{padding:0 12px}
+  .brandTitle{font-size:14.5px}
+  .hero{grid-template-columns:1fr !important;padding:16px 0 12px !important;gap:14px !important}
+  .heroCard,.card{padding:16px 14px !important;border-radius:16px !important}
+  .heroTitle{font-size:23px !important;line-height:1.2 !important;margin-bottom:10px !important}
+  .heroText{font-size:12.5px !important;line-height:1.5 !important}
+  .framework{gap:6px !important;margin:12px 0 2px !important}
+  .framework span{font-size:11px !important;padding:5px 9px !important}
+  .cfoDemoHeroBanner{padding:14px !important;gap:12px !important}
+  .cfoDemoHeroBanner > div:last-child{width:100%;display:flex;flex-direction:column;gap:8px !important}
+  .cfoDemoHeroBanner button{width:100%;justify-content:center;padding:10px 14px !important}
+  .tabs{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:6px;padding-bottom:4px;width:100%;box-sizing:border-box}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{white-space:nowrap;flex-shrink:0;padding:7px 12px;font-size:12px}
+  .dropZone{padding:18px 12px !important}
+  .dropText strong{font-size:13.5px !important}
+  .dropText span{font-size:11px !important}
+  #analyze,#analyzeTrend,#analyzeHub{width:100%;padding:12px 16px !important;font-size:13.5px !important}
+  .grid4,.grid3,.grid2{grid-template-columns:1fr !important;gap:10px !important}
+  .metric{padding:14px !important}
+  .metric .value{font-size:21px !important}
+  .tableWrap,.compareTableWrap{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;margin-bottom:10px}
+  table{min-width:320px}
+  .sectionHead{flex-direction:column !important;align-items:flex-start !important;gap:4px !important}
+  .sectionHead h2{font-size:16px !important}
+  .scenario .big{font-size:20px !important}
+  .waterfall{height:160px !important}
+  .statsStrip{grid-template-columns:1fr !important;gap:12px !important;padding:16px 0 !important}
+  .mHero h1{font-size:28px !important;line-height:1.18 !important}
+  .mHero p.lead{font-size:14px !important;line-height:1.55 !important}
+  .aboutStats{grid-template-columns:1fr !important;gap:10px !important}
 }
 .badge.v{white-space:nowrap}
 /* ---- Marketing hero (separate from app hero) ---- */
@@ -4621,23 +4819,19 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     <div id="loadingStepTxt" class="loadingStepTxt">Hesap planı ve bakiyeler denetleniyor...</div>
   </div>
 </div>
-<header class="top"><div class="wrap brand"><div>
-  <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:12px">
-    <div style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0">
+<header class="top"><div class="wrap brand"><div class="brandLogoWrap">
+  <a href="/" class="brandLink">
+    <div class="brandLogoIcon">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 6-8"/><circle cx="21" cy="5" r="2" fill="#FFFFFF"/>
       </svg>
     </div>
-    <div>
-      <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2">
-        Digital Finance Business Partner
-      </div>
-      <div style="font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px">
-        Finansal Teşhis &amp; Yönetim Karar Destek Platformu
-      </div>
+    <div class="brandTextWrap">
+      <div class="brandTitle">Digital Finance Business Partner</div>
+      <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div style="display:flex;align-items:center;gap:10px;flex-wrap:nowrap;flex-shrink:0"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama" class="active">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a></nav><div style="display:flex;align-items:center;gap:6px" class="hidePrint"><select id="currencySwitch" onchange="setCurrency(this.value)" class="select" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Para Birimi"><option value="TRY">₺ TRY</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select><select id="langSwitch" onchange="setLanguage(this.value)" class="select" style="padding:4px 8px;font-size:11.5px;font-weight:700;border-radius:8px;background:#F8FAFC;border:1px solid #CBD5E1;cursor:pointer" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="primary">Ücretsiz Kayıt Ol</button></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama" class="active">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth" id="mobileNavAuth"><button type="button" onclick="openAuthModal('login')" class="secondary">Giriş Yap</button><button type="button" onclick="openAuthModal('register')" class="primary">Ücretsiz Kayıt Ol</button></div></nav><div class="headerSwitches hidePrint"><select id="currencySwitch" onchange="setCurrency(this.value)" class="select" title="Para Birimi"><option value="TRY">₺ TRY</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select><select id="langSwitch" onchange="setLanguage(this.value)" class="select" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="primary">Ücretsiz Kayıt Ol</button></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <div id="authModalOverlay" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.65);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px">
   <div class="card" style="background:#FFFFFF;border:1px solid #DCE6F5;border-radius:24px;box-shadow:0 24px 70px rgba(15,27,45,.25);max-width:420px;width:100%;padding:28px;position:relative;overflow:hidden">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
@@ -5867,7 +6061,7 @@ function renderComparative(tr){
   }).join('');
   const findings=tr.trend_findings||[];
   $('comparativeFindings').innerHTML=findings.length?findings.map(f=>'<div class="insight '+esc(f.severity)+'" style="margin-top:10px"><h3>'+esc(f.title)+'</h3><p>'+esc(f.interpretation)+'</p><p class="small muted">'+esc(f.recommendation)+'</p></div>').join(''):'<div class="notice">Dönemler arasında belirgin bir yapısal kırılma tespit edilmedi.</div>';
-  const unitFor={net_sales:'amount',gross_profit:'amount',operating_profit:'amount',net_profit:'amount',total_assets:'amount',total_equity:'amount',financial_debt:'amount',gross_margin_pct:'pct_points',operating_margin_pct:'pct_points',net_margin_pct:'pct_points',current_ratio:'ratio',debt_to_equity:'x',ccc_days:'days'};
+  const unitFor={net_sales:'amount',gross_profit:'amount',operating_profit:'amount',net_profit:'amount',total_assets:'amount',total_equity:'amount',financial_debt:'amount',gross_margin_pct:'pct_points',operating_margin_pct:'pct_points',net_margin_pct:'pct_points',current_ratio:'ratio',debt_to_equity:'x',ccc_days:'days',dso_days:'days',dio_days:'days',dpo_days:'days'};
   const dirArrow={improving:'<span style="color:#2e7d32;font-weight:700">↑</span>',worsening:'<span style="color:#c62828;font-weight:700">↓</span>',flat:'<span style="color:#888">→</span>'};
   const rows=Object.entries(tr.metric_trends||{}).map(([k,m])=>{
     const dir=m.latest_direction||'flat';
@@ -5875,11 +6069,11 @@ function renderComparative(tr){
     return '<tr><td style="font-weight:600">'+esc(m.label)+'</td>'+(m.series||[]).map((v,i)=>{
       const prev=m.series[i-1];
       let bg='';
-      if(i>0&&prev!=null&&v!=null){const up=v>prev;const good=(k==='financial_debt'||k==='debt_to_equity'||k==='ccc_days')?!up:up;bg=good?'background:#f0fbf3':'background:#fff5f5';}
+      if(i>0&&prev!=null&&v!=null){const up=v>prev;const good=(k==='financial_debt'||k==='debt_to_equity'||k==='ccc_days'||k==='dso_days'||k==='dio_days')?!up:up;bg=good?'background:#f0fbf3':'background:#fff5f5';}
       return '<td style="'+bg+';text-align:right">'+(unitFor[k]==='ratio'?(v==null?'–':num(v)):_cmpUnit(unitFor[k]||'amount',v))+'</td>';
     }).join('')+'<td style="text-align:center">'+arrowHtml+'</td></tr>';
   }).join('');
-  $('comparativeTable').innerHTML='<div class="sectionHead" style="margin-bottom:8px"><div><h2 style="font-size:10.5pt">Tüm Metriklerin Tam Dönem Serisi</h2></div></div><table><thead><tr><th>Metrik</th>'+(tr.period_labels||[]).map(l=>'<th>'+esc(l)+'</th>').join('')+'<th>Yön</th></tr></thead><tbody>'+rows+'</tbody></table><p class="small muted" style="margin-top:8px">'+esc(tr.note||'')+'</p>';
+  $('comparativeTable').innerHTML='<div class="sectionHead" style="margin-bottom:8px"><div><h2 style="font-size:10.5pt">Tüm Metriklerin Tam Dönem Serisi</h2></div></div><div class="tableWrap"><table><thead><tr><th>Metrik</th>'+(tr.period_labels||[]).map(l=>'<th>'+esc(l)+'</th>').join('')+'<th>Yön</th></tr></thead><tbody>'+rows+'</tbody></table></div><p class="small muted" style="margin-top:8px">'+esc(tr.note||'')+'</p>';
 }
 
 function profitabilityNarrative(pl,pq){
@@ -8397,25 +8591,44 @@ let AUTH_MODE='login';
 
 function authHeaders(){return AUTH_TOKEN?{'Authorization':'Bearer '+AUTH_TOKEN}:{};}
 
+function logoutUser(){
+  AUTH_TOKEN=null;AUTH_EMAIL=null;
+  localStorage.removeItem('dfbp_token');
+  localStorage.removeItem('dfbp_email');
+  renderAuthArea();
+  refreshHistoryVisibility();
+}
 function renderAuthArea(){
   const box=$('authArea');
+  const mob=$('mobileNavAuth');
   if(AUTH_TOKEN){
-    box.innerHTML='<span class="small muted" style="margin-right:8px">👤 '+esc(AUTH_EMAIL||'')+'</span><button id="logoutBtn" class="secondary">Çıkış</button>';
-    $('logoutBtn').onclick=()=>{AUTH_TOKEN=null;AUTH_EMAIL=null;localStorage.removeItem('dfbp_token');localStorage.removeItem('dfbp_email');renderAuthArea();refreshHistoryVisibility();};
-    $('historyLoggedOut').classList.add('hidden');$('historyLoggedIn').classList.remove('hidden');
+    if(box){
+      box.innerHTML='<span class="small muted" style="margin-right:8px">👤 '+esc(AUTH_EMAIL||'')+'</span><button id="logoutBtn" class="secondary">Çıkış</button>';
+      $('logoutBtn').onclick=logoutUser;
+    }
+    if(mob){
+      mob.innerHTML='<div style="font-size:12px;color:var(--muted);width:100%;margin-bottom:6px">👤 '+esc(AUTH_EMAIL||'')+'</div><button type="button" onclick="logoutUser()" class="secondary" style="width:100%">Çıkış Yap</button>';
+    }
+    $('historyLoggedOut')?.classList.add('hidden');$('historyLoggedIn')?.classList.remove('hidden');
     loadHistory();
   }else{
-    box.innerHTML='<button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="secondary">Kayıt Ol</button>';
-    $('loginOpenBtn').onclick=()=>openAuthModal('login');
-    $('registerOpenBtn').onclick=()=>openAuthModal('register');
-    $('historyLoggedOut').classList.remove('hidden');$('historyLoggedIn').classList.add('hidden');
+    if(box){
+      box.innerHTML='<button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="secondary">Kayıt Ol</button>';
+      $('loginOpenBtn').onclick=()=>openAuthModal('login');
+      $('registerOpenBtn').onclick=()=>openAuthModal('register');
+    }
+    if(mob){
+      mob.innerHTML='<button type="button" onclick="openAuthModal(\'login\')" class="secondary">Giriş Yap</button><button type="button" onclick="openAuthModal(\'register\')" class="primary">Ücretsiz Kayıt Ol</button>';
+    }
+    $('historyLoggedOut')?.classList.remove('hidden');$('historyLoggedIn')?.classList.add('hidden');
   }
 }
 function refreshHistoryVisibility(){
-  if(AUTH_TOKEN){$('historyLoggedOut').classList.add('hidden');$('historyLoggedIn').classList.remove('hidden');}
-  else{$('historyLoggedOut').classList.remove('hidden');$('historyLoggedIn').classList.add('hidden');}
+  if(AUTH_TOKEN){$('historyLoggedOut')?.classList.add('hidden');$('historyLoggedIn')?.classList.remove('hidden');}
+  else{$('historyLoggedOut')?.classList.remove('hidden');$('historyLoggedIn')?.classList.add('hidden');}
 }
 function openAuthModal(mode){
+  $('mainNav')?.classList.remove('open');
   AUTH_MODE=mode;
   const isReg = mode === 'register';
   $('authModalTitle').textContent = isReg ? 'Ücretsiz Kurumsal Hesap Aç' : 'Yönetici Girişi';

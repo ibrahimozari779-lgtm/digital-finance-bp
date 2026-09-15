@@ -280,7 +280,7 @@ def build_trend_analysis(
                 "period_a_label": period_labels[-2], "period_b_label": period_labels[-1],
                 "period_a_value": a, "period_b_value": b,
                 "change_abs": change_abs, "change_pct": change_pct,
-                "unit": "pct_points" if is_pct_point_metric else ("x" if key == "debt_to_equity" else ("days" if key == "ccc_days" else "amount")),
+                "unit": "pct_points" if is_pct_point_metric else ("x" if key == "debt_to_equity" else ("days" if key in {"ccc_days", "dso_days", "dio_days", "dpo_days"} else "amount")),
                 "assessment": mt.get("latest_assessment", "bilinmiyor"),
             })
 
