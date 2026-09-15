@@ -4353,9 +4353,9 @@ APP_HTML = r'''<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#F6F7F9;--panel:#FFFFFF;--panel2:#F0F3F8;--line:#E4E8EF;--text:#0F1B2D;--muted:#5B6B84;--accent:#1D4ED8;--accent2:#4F8CFF;--red:#C22A3E;--amber:#B4720A;--green:#0E7C66;--shadow:0 1px 2px rgba(15,27,45,.04),0 12px 32px rgba(15,27,45,.06);--serif:'Fraunces',ui-serif,Georgia,serif}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(1100px 480px at 12% -10%, rgba(29,78,216,.07), transparent 60%),radial-gradient(900px 420px at 100% 0%, rgba(14,124,102,.05), transparent 55%),#F6F7F9;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}button,input,select{font:inherit}.wrap{max-width:1440px;margin:auto;padding:0 28px}.top{padding:26px 0 18px;border-bottom:1px solid rgba(15,27,45,.08);position:sticky;top:0;background:rgba(246,247,249,.86);backdrop-filter:blur(18px);z-index:10}.brand{display:flex;align-items:center;justify-content:space-between;gap:20px}.brand h1{margin:0;font-size:25px;letter-spacing:-.6px}.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}.badge{padding:6px 10px;border:1px solid #D7DEE8;border-radius:999px;color:var(--accent);font-size:12px;white-space:nowrap}.hero{padding:34px 0 24px;display:grid;grid-template-columns:1.45fr .55fr;gap:18px}.heroCard,.card{background:#FFFFFF;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.heroCard{padding:28px}.heroTitle{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1.08;margin:0 0 14px;letter-spacing:-.5px}.heroText{color:var(--muted);max-width:780px}.framework{display:flex;flex-wrap:wrap;gap:8px 10px;margin:16px 0 2px;padding:0}.framework span{font-size:11.5px;color:#33415C;background:#EEF2FF;border:1px solid var(--line);border-radius:999px;padding:6px 11px}.framework span b{color:var(--accent);font-weight:800}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(1100px 480px at 12% -10%, rgba(29,78,216,.07), transparent 60%),radial-gradient(900px 420px at 100% 0%, rgba(14,124,102,.05), transparent 55%),#F6F7F9;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}button,input,select{font:inherit}.wrap{max-width:1440px;margin:auto;padding:0 28px}.top{padding:14px 0 12px;border-bottom:1px solid #E2E8F0;position:sticky;top:0;background:rgba(255,255,255,0.98);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:60;box-shadow:0 2px 8px rgba(15,27,45,.04)}.brand{display:flex;align-items:center;justify-content:space-between;gap:20px}.brand h1{margin:0;font-size:25px;letter-spacing:-.6px}.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}.badge{padding:6px 10px;border:1px solid #D7DEE8;border-radius:999px;color:var(--accent);font-size:12px;white-space:nowrap}.hero{padding:34px 0 24px;display:grid;grid-template-columns:1.45fr .55fr;gap:18px}.heroCard,.card{background:#FFFFFF;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.heroCard{padding:28px}.heroTitle{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1.08;margin:0 0 14px;letter-spacing:-.5px}.heroText{color:var(--muted);max-width:780px}.framework{display:flex;flex-wrap:wrap;gap:8px 10px;margin:16px 0 2px;padding:0}.framework span{font-size:11.5px;color:#33415C;background:#EEF2FF;border:1px solid var(--line);border-radius:999px;padding:6px 11px}.framework span b{color:var(--accent);font-weight:800}
 .qsel{margin-top:18px}.qsel .qtitle{font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:700}.qsel .qrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.qsel button{border:1px solid #D7DEE8;background:#EEF2FF;color:#33415C;border-radius:12px;padding:10px 12px;font-size:12.5px;cursor:pointer;text-align:left;line-height:1.3}.qsel button:hover{border-color:#B7C3D6}.qsel button.active{border-color:var(--accent);color:var(--accent);background:#DCE6FB}
-.upload{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}.file{border:1px dashed #C9D2DE;padding:12px;border-radius:12px;background:#F5F7FA;max-width:100%}.select,button{border:1px solid #D7DEE8;border-radius:11px;padding:11px 14px;background:#FFFFFF;color:var(--text)}button.primary,a.primary{background:linear-gradient(135deg,#2557E8,#1D4ED8);border:0;color:#FFFFFF;font-weight:800;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;box-shadow:0 6px 16px rgba(29,78,216,.25)}a.primary:hover,button.primary:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(29,78,216,.32)}button.secondary,a.secondary{cursor:pointer;border:1.5px solid #C9D2DE;background:#FFFFFF;color:var(--text)}a.secondary:hover,button.secondary:hover{border-color:var(--accent);color:var(--accent)}button:disabled{opacity:.5;cursor:not-allowed}.scoreCard{padding:25px;display:flex;flex-direction:column;justify-content:center}.scoreRing{width:170px;height:170px;border-radius:50%;margin:auto;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--score)*1%),#E4E8EF 0);position:relative}.scoreRing:after{content:"";position:absolute;inset:12px;border-radius:50%;background:#FFFFFF}.scoreNum{position:relative;z-index:1;text-align:center}.scoreNum strong{display:block;font-size:48px;line-height:1}.scoreNum span{color:var(--muted);font-size:12px}.status{margin:15px auto 0;padding:7px 12px;border-radius:999px;background:#EAF0FF;color:var(--accent);font-size:12px;font-weight:700}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:22px;margin:0 0 16px;transition:transform .18s ease,box-shadow .18s ease,outline .2s}.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(15,27,45,.08)}@keyframes growUp{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}.wf{transform-origin:bottom}.wf .col{transform-origin:bottom}@keyframes growWidth{from{width:0}to{}}.metric{padding:17px;border:1px solid var(--line);border-radius:15px;background:rgba(15,27,45,.03)}.metric .label{color:var(--muted);font-size:12px}.metric .value{font-size:25px;font-weight:800;margin-top:5px;letter-spacing:-.5px}.metric .sub{font-size:11px;color:var(--muted);margin-top:5px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:17px}.sectionHead h2{margin:0;font-size:18px}.sectionHead p{margin:0;color:var(--muted);font-size:12px}.flowStep{margin:36px 0 14px;padding-top:6px;border-top:1px solid rgba(15,27,45,.08)}.flowStep:first-child{margin-top:0;border-top:0;padding-top:0}.flowLabel{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin:0 0 4px}.flowLabel .n{width:22px;height:22px;border-radius:50%;background:#EAF0FF;color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:11px}.flowLabel p{margin:0;color:var(--muted);font-size:12.5px;font-weight:500;text-transform:none;letter-spacing:0}.flowLabel.alt{color:var(--accent2)}.flowLabel.alt .n{color:var(--accent2)}.flowSub{color:var(--muted);font-size:12.5px;margin:2px 0 16px 32px}.insight{border:1px solid var(--line);border-radius:15px;padding:16px;background:#F7F9FC}.insight.critical{border-color:#E8B4BD}.insight.high{border-color:#E9CBA8}.insight.medium{border-color:#E5DBA0}.insight.positive{border-color:#A9D9C9}.insight h3{margin:0 0 5px;font-size:14px}.insight p{margin:6px 0;color:#33415C;font-size:13px}.insight ul{margin:6px 0;padding-left:18px;color:#33415C;font-size:13px}.tag{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;background:#EAF0FF;color:#5B6B84}.tag.critical{background:#FCE8EA;color:#C22A3E}.tag.high{background:#FDF0E0;color:#B4720A}.tag.medium{background:#FBF6DE;color:#8A6D00}.tag.positive{background:#E4F5EF;color:#0E7C66}.riskRow,.actionRow{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(15,27,45,.08)}.rank{font-size:18px;font-weight:900;color:#5B6B84}.riskScore{font-size:12px;color:var(--muted)}.bar{height:7px;background:#E4E8EF;border-radius:99px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}.waterfallWrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:10px;margin-bottom:10px}.waterfall{display:flex;align-items:flex-end;gap:9px;height:190px;padding:20px 5px 0;border-bottom:1px solid var(--line);min-width:620px}.wf{flex:1;display:flex;flex-direction:column;justify-content:end;height:100%;min-width:65px}.wf .col{border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#83a4ff,#506fd0);min-height:3px}.wf.neg .col{background:linear-gradient(180deg,#ff8290,#9d3e54)}.wf .lab{font-size:10.5px;font-weight:600;color:var(--muted);text-align:center;margin-top:7px;white-space:nowrap}.wf .num{font-size:10px;font-weight:700;text-align:center;color:#33415C;margin-bottom:4px;white-space:nowrap}.subnavPill{font-size:12px;font-weight:600;color:#475569;text-decoration:none;padding:5px 12px;border-radius:999px;background:#F1F5F9;border:1px solid #E2E8F0;transition:all .15s ease}.subnavPill:hover{background:#E2E8F0;color:#1D4ED8;border-color:#CBD5E1}.dashPill{font-size:11.5px;font-weight:700;color:#475569;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:999px;padding:5px 12px;cursor:pointer;transition:all .15s ease;white-space:nowrap}.dashPill:hover{background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE}.scenario{padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#F5F8FF,#EEF3FC)}.scenario h3{margin:0 0 6px;font-size:15px}.scenario .big{font-size:24px;font-weight:900;color:var(--accent)}.scenario p{color:var(--muted);font-size:11px;margin:6px 0}.muted{color:var(--muted)}.small{font-size:11px}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:10px 8px;border-bottom:1px solid rgba(15,27,45,.08);text-align:right}th:first-child,td:first-child{text-align:left}th{color:#5B6B84;font-weight:600}.notice{padding:12px 14px;border-radius:12px;background:#EEF2FF;border:1px solid var(--line);color:#5B6B84;font-size:12px}.error{color:#C22A3E;background:#FCE8EA;border:1px solid #E8B4BD;padding:12px;border-radius:12px;margin:15px 0}.hidden{display:none!important}.footer{padding:25px 0 50px;color:#5B6B84;font-size:11px;text-align:center}.tabs{display:flex;gap:8px;margin-top:16px}.tab{padding:8px 12px;border-radius:999px;background:#F0F3F8;border:1px solid var(--line);color:#5B6B84;cursor:pointer}.tab.active{background:#DCE6FB;color:var(--accent);border-color:#1D4ED8}.tabPanel{display:none}.tabPanel.active{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.hidePrint{display:block}
+.upload{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}.file{border:1px dashed #C9D2DE;padding:12px;border-radius:12px;background:#F5F7FA;max-width:100%}.select,button{border:1px solid #D7DEE8;border-radius:11px;padding:11px 14px;background:#FFFFFF;color:var(--text)}button.primary,a.primary{background:linear-gradient(135deg,#2557E8,#1D4ED8);border:0;color:#FFFFFF;font-weight:800;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;box-shadow:0 6px 16px rgba(29,78,216,.25)}a.primary:hover,button.primary:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(29,78,216,.32)}button.secondary,a.secondary{cursor:pointer;border:1.5px solid #C9D2DE;background:#FFFFFF;color:var(--text)}a.secondary:hover,button.secondary:hover{border-color:var(--accent);color:var(--accent)}button:disabled{opacity:.5;cursor:not-allowed}.scoreCard{padding:25px;display:flex;flex-direction:column;justify-content:center}.scoreRing{width:170px;height:170px;border-radius:50%;margin:auto;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--score)*1%),#E4E8EF 0);position:relative}.scoreRing:after{content:"";position:absolute;inset:12px;border-radius:50%;background:#FFFFFF}.scoreNum{position:relative;z-index:1;text-align:center}.scoreNum strong{display:block;font-size:48px;line-height:1}.scoreNum span{color:var(--muted);font-size:12px}.status{margin:15px auto 0;padding:7px 12px;border-radius:999px;background:#EAF0FF;color:var(--accent);font-size:12px;font-weight:700}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:22px;margin:0 0 16px;transition:transform .18s ease,box-shadow .18s ease,outline .2s}.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(15,27,45,.08)}@keyframes growUp{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}.wf{transform-origin:bottom}.wf .col{transform-origin:bottom}@keyframes growWidth{from{width:0}to{}}.metric{padding:17px;border:1px solid var(--line);border-radius:15px;background:rgba(15,27,45,.03)}.metric .label{color:var(--muted);font-size:12px}.metric .value{font-size:25px;font-weight:800;margin-top:5px;letter-spacing:-.5px}.metric .sub{font-size:11px;color:var(--muted);margin-top:5px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:17px}.sectionHead h2{margin:0;font-size:18px}.sectionHead p{margin:0;color:var(--muted);font-size:12px}.flowStep{margin:36px 0 14px;padding-top:6px;border-top:1px solid rgba(15,27,45,.08)}.flowStep:first-child{margin-top:0;border-top:0;padding-top:0}.flowLabel{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin:0 0 4px}.flowLabel .n{width:22px;height:22px;border-radius:50%;background:#EAF0FF;color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:11px}.flowLabel p{margin:0;color:var(--muted);font-size:12.5px;font-weight:500;text-transform:none;letter-spacing:0}.flowLabel.alt{color:var(--accent2)}.flowLabel.alt .n{color:var(--accent2)}.flowSub{color:var(--muted);font-size:12.5px;margin:2px 0 16px 32px}.insight{border:1px solid var(--line);border-radius:15px;padding:16px;background:#F7F9FC}.insight.critical{border-color:#E8B4BD}.insight.high{border-color:#E9CBA8}.insight.medium{border-color:#E5DBA0}.insight.positive{border-color:#A9D9C9}.insight h3{margin:0 0 5px;font-size:14px}.insight p{margin:6px 0;color:#33415C;font-size:13px}.insight ul{margin:6px 0;padding-left:18px;color:#33415C;font-size:13px}.tag{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;background:#EAF0FF;color:#5B6B84}.tag.critical{background:#FCE8EA;color:#C22A3E}.tag.high{background:#FDF0E0;color:#B4720A}.tag.medium{background:#FBF6DE;color:#8A6D00}.tag.positive{background:#E4F5EF;color:#0E7C66}.riskRow,.actionRow{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(15,27,45,.08)}.rank{font-size:18px;font-weight:900;color:#5B6B84}.riskScore{font-size:12px;color:var(--muted)}.bar{height:7px;background:#E4E8EF;border-radius:99px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}.waterfallWrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:10px;margin-bottom:10px}.waterfall{display:flex;align-items:flex-end;gap:9px;height:190px;padding:20px 5px 0;border-bottom:1px solid var(--line);min-width:620px}.wf{flex:1;display:flex;flex-direction:column;justify-content:end;height:100%;min-width:65px}.wf .col{border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#83a4ff,#506fd0);min-height:3px}.wf.neg .col{background:linear-gradient(180deg,#ff8290,#9d3e54)}.wf .lab{font-size:10.5px;font-weight:600;color:var(--muted);text-align:center;margin-top:7px;white-space:nowrap}.wf .num{font-size:10px;font-weight:700;text-align:center;color:#33415C;margin-bottom:4px;white-space:nowrap}.subnavPill{font-size:12px;font-weight:600;color:#475569;text-decoration:none;padding:5px 12px;border-radius:999px;background:#F1F5F9;border:1px solid #E2E8F0;transition:all .15s ease}.subnavPill:hover{background:#E2E8F0;color:#1D4ED8;border-color:#CBD5E1}.dashboardSubNav{position:sticky;top:62px;z-index:45;background:#FFFFFF;border-bottom:1.5px solid #E2E8F0;box-shadow:0 4px 14px rgba(15,27,45,0.05);padding:10px 0;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;display:flex;gap:7px;white-space:nowrap}.dashPill{font-size:11.5px;font-weight:700;color:#475569;background:#F8FAFC;border:1px solid #CBD5E1;border-radius:999px;padding:5px 12px;cursor:pointer;transition:all .15s ease;white-space:nowrap}.dashPill:hover{background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE}.scenario{padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#F5F8FF,#EEF3FC)}.scenario h3{margin:0 0 6px;font-size:15px}.scenario .big{font-size:24px;font-weight:900;color:var(--accent)}.scenario p{color:var(--muted);font-size:11px;margin:6px 0}.muted{color:var(--muted)}.small{font-size:11px}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:10px 8px;border-bottom:1px solid rgba(15,27,45,.08);text-align:right}th:first-child,td:first-child{text-align:left}th{color:#5B6B84;font-weight:600}.notice{padding:12px 14px;border-radius:12px;background:#EEF2FF;border:1px solid var(--line);color:#5B6B84;font-size:12px}.error{color:#C22A3E;background:#FCE8EA;border:1px solid #E8B4BD;padding:12px;border-radius:12px;margin:15px 0}.hidden{display:none!important}.footer{padding:25px 0 50px;color:#5B6B84;font-size:11px;text-align:center}.tabs{display:flex;gap:8px;margin-top:16px}.tab{padding:8px 12px;border-radius:999px;background:#F0F3F8;border:1px solid var(--line);color:#5B6B84;cursor:pointer}.tab.active{background:#DCE6FB;color:var(--accent);border-color:#1D4ED8}.tabPanel{display:none}.tabPanel.active{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.hidePrint{display:block}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chip{font-size:11.5px;background:#EEF2FF;border:1px solid var(--line);border-radius:999px;padding:6px 11px;color:#33415C}.chip b{color:var(--accent)}
 .abar{height:9px;background:#E4E8EF;border-radius:99px;overflow:hidden;margin-top:6px}.abar i{display:block;height:100%;background:linear-gradient(90deg,#8aa7ff,#ff8290);border-radius:99px}
 .custRow{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(15,27,45,.08);font-size:12.5px}
@@ -5100,16 +5100,16 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </div>
 
 <!-- Sticky Dashboard Sub-Navigation Bar -->
-<div class="dashboardSubNav hidePrint" style="position:sticky;top:64px;z-index:35;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #E2E8F0;padding:10px 0;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;display:flex;gap:7px;white-space:nowrap">
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_1')">1. Finansal Gerçekler</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_2')">2. Kilitli Nakit</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_3')">3. Sektör &amp; Riskler</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_4')">4. Kritik Taraflar</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_5')">5. Kök Neden</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_6')">6. Aksiyonlar</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_7')">7. Vergi Kalkanı</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_8')">8. Senaryo Lab</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_9')">9. Karar Brifingi</button>
+<div id="dashboardSubNav" class="dashboardSubNav hidePrint" style="position:sticky;top:62px;z-index:45;background:#FFFFFF;border-bottom:1.5px solid #E2E8F0;box-shadow:0 4px 14px rgba(15,27,45,0.05);padding:9px 0;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;display:flex;gap:7px;white-space:nowrap">
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_1')">1. Finansal Röntgen</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_2')">2. Öncelikli Riskler</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_3')">3. Kilitli Nakit &amp; Faiz</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_4')">4. Operasyonel Kârlılık</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_5')">5. Bilanço &amp; CCC</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_6')">6. Kritik Taraflar</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_7')">7. Kök Neden Hikâyeleri</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_8')">8. Vergi Kalkanı</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_9')">9. Senaryo Lab</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_ekA')">Ek A · Denetim</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_ekB')">Ek B · Mali Tablolar</button>
 </div>
@@ -5338,6 +5338,34 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
           <div class="label" style="color:#E11D48">💸 Yıllık Kâr Sızıntısı (Faiz Yükü)</div>
           <div id="wcLeakCostVal" class="value" style="color:#BE123C">-</div>
           <div id="wcLeakCostSub" class="sub">Kilitli sermayenin yıllık %45 finansman maliyeti</div>
+        </div>
+      </div>
+
+      <!-- Faiz Oranı Belirleme Aracı -->
+      <div id="wcInterestToolCard" style="background:#FFF1F2;border:1.5px solid #FECDD3;border-radius:14px;padding:12px 18px;margin-top:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:38px;height:38px;border-radius:10px;background:#FFE4E6;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🏦</div>
+          <div>
+            <div style="font-size:13px;font-weight:800;color:#9F1239;display:flex;align-items:center;gap:8px">
+              <span>Yıllık Borçlanma / Faiz Oranı Belirleme Aracı:</span>
+              <span id="wcInterestRateDisplay" style="background:#BE123C;color:#FFFFFF;padding:2px 8px;border-radius:6px;font-size:13px;font-weight:900">%45</span>
+            </div>
+            <div style="font-size:11.5px;color:#BE123C;margin-top:2px">Şirketinizin fiili kredi faiz oranını belirleyin; kilitli nakdin yarattığı yıllık faiz yükünü anlık hesaplasın.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <div style="display:flex;gap:4px">
+            <button type="button" class="secondary wcRatePreset" onclick="setWcInterestRate(30)" style="font-size:11px;padding:5px 9px;border-radius:7px;font-weight:700">%30</button>
+            <button type="button" class="secondary wcRatePreset" onclick="setWcInterestRate(40)" style="font-size:11px;padding:5px 9px;border-radius:7px;font-weight:700">%40</button>
+            <button type="button" class="secondary wcRatePreset active" onclick="setWcInterestRate(45)" style="font-size:11px;padding:5px 9px;border-radius:7px;font-weight:700;background:#FFE4E6;border-color:#BE123C;color:#9F1239">%45</button>
+            <button type="button" class="secondary wcRatePreset" onclick="setWcInterestRate(55)" style="font-size:11px;padding:5px 9px;border-radius:7px;font-weight:700">%55</button>
+            <button type="button" class="secondary wcRatePreset" onclick="setWcInterestRate(65)" style="font-size:11px;padding:5px 9px;border-radius:7px;font-weight:700">%65</button>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <input id="wcInterestRateInput" type="range" min="10" max="85" value="45" step="1" oninput="setWcInterestRate(this.value)" style="width:120px;cursor:pointer">
+            <input id="wcInterestRateNum" type="number" min="5" max="100" value="45" step="1" onchange="setWcInterestRate(this.value)" oninput="setWcInterestRate(this.value)" style="width:58px;padding:4px 6px;font-size:12.5px;font-weight:800;text-align:center;border-radius:7px;border:1.5px solid #FECDD3;color:#9F1239;background:#FFFFFF">
+            <b style="font-size:13px;color:#9F1239">%</b>
+          </div>
         </div>
       </div>
 
@@ -6373,13 +6401,30 @@ function collapseAllSteps(){
 }
 window.collapseAllSteps = collapseAllSteps;
 
+function syncStickyNav(){
+  const h = document.querySelector('header.top');
+  const sub = $('dashboardSubNav');
+  if(h && sub){
+    const hHeight = Math.round(h.getBoundingClientRect().height || h.offsetHeight);
+    if(hHeight > 0) sub.style.top = hHeight + 'px';
+  }
+}
+window.addEventListener('resize', syncStickyNav);
+window.addEventListener('scroll', syncStickyNav, { passive: true });
+window.addEventListener('load', syncStickyNav);
+
 function jumpToFlowStep(id){
   const el = $(id);
   if(!el) return;
   if(!el.classList.contains('active')){
     el.classList.add('active');
   }
-  const topPos = el.getBoundingClientRect().top + window.pageYOffset - 110;
+  const h = document.querySelector('header.top');
+  const sub = $('dashboardSubNav');
+  const hHeight = h ? Math.round(h.getBoundingClientRect().height || h.offsetHeight) : 60;
+  const sHeight = sub ? Math.round(sub.getBoundingClientRect().height || sub.offsetHeight) : 42;
+  const totalOffset = hHeight + sHeight + 14;
+  const topPos = el.getBoundingClientRect().top + window.pageYOffset - totalOffset;
   window.scrollTo({top: Math.max(0, topPos), behavior: 'smooth'});
 }
 window.jumpToFlowStep = jumpToFlowStep;
@@ -7716,9 +7761,9 @@ function renderWorkingCapitalLeak(bp, pl, bs, k, c, d){
     apVal = (cogs / daysInYear) * dpo;
   }
 
-  // Net working capital locked in CCC & 45% annual financing cost proxy
+  // Net working capital locked in CCC & dynamic financing cost proxy (default 45%)
   const netLockedWc = Math.max(0, arVal + invVal - (apVal * 0.5));
-  const annualLeak = Math.max(arVal + invVal, netLockedWc) * 0.45;
+  const lockedBase = Math.max(arVal + invVal, netLockedWc);
 
   if($('wcLeakArVal')) $('wcLeakArVal').textContent = money(arVal);
   if($('wcLeakArSub')) $('wcLeakArSub').textContent = 'Ortalama tahsilat vadesi: ' + (dso ? num(dso) + ' gün' : '–');
@@ -7729,11 +7774,15 @@ function renderWorkingCapitalLeak(bp, pl, bs, k, c, d){
   if($('wcLeakApVal')) $('wcLeakApVal').textContent = money(apVal);
   if($('wcLeakApSub')) $('wcLeakApSub').textContent = 'Ortalama ödeme vadesi: ' + (dpo ? num(dpo) + ' gün' : '–');
 
-  if($('wcLeakCostVal')) $('wcLeakCostVal').textContent = money(annualLeak);
-
   // Daily run-rates for realistic slider math
   let dailySales = sales > 0 ? (sales / daysInYear) : (arVal > 0 && dso > 0 ? arVal / dso : (arVal > 0 ? arVal / 60 : 10000));
   let dailyCogs = cogs > 0 ? (cogs / daysInYear) : (dailySales * 0.70);
+
+  window._wcContext = {
+    arVal, invVal, apVal, netLockedWc, lockedBase,
+    sales, cogs, daysInYear, dailySales, dailyCogs
+  };
+  if(window._wcRate == null) window._wcRate = 45;
 
   function recalcMultiSimulator(){
     const dsoDays = parseInt($('wcSliderDso')?.value || 0, 10);
@@ -7751,7 +7800,8 @@ function renderWorkingCapitalLeak(bp, pl, bs, k, c, d){
     const apCash = dailyCogs * dpoDays;
     const totalCash = arCash + invCash + apCash;
 
-    const interestSaved = totalCash * 0.45;
+    const rateFrac = (window._wcRate || 45) / 100;
+    const interestSaved = totalCash * rateFrac;
     const marginGain = (sales > 0 ? sales : dailySales * 365) * (marginPct / 100);
     const totalProfit = interestSaved + marginGain;
 
@@ -7768,10 +7818,36 @@ function renderWorkingCapitalLeak(bp, pl, bs, k, c, d){
         if (dpoDays > 0) parts.push('tedarikçi vadesini <b>' + dpoDays + ' gün</b> optimize ederek <b>' + money(apCash) + '</b>');
         const actionsTxt = parts.length ? parts.join(', ') + ' serbest bırakıyorsunuz' : 'operasyonel kaldıraç uyguluyorsunuz';
         const marginTxt = marginGain > 0 ? ' Kâr marjındaki <b>%' + marginPct.toFixed(1) + '</b> verimlilik katkısıyla (+' + money(marginGain) + '), ' : ' ';
-        $('wcLeakSummaryBox').innerHTML = '<p>💡 <b>Canlı Yönetim Kararı Çıktısı:</b> ' + actionsTxt + '. Bu hamlelerle şirketinizin kasasına anında <b>+' + money(totalCash) + '</b> sıcak nakit giriyor.' + marginTxt + 'Banka kredisine ihtiyaç azalacağı için şirkete yılda toplam <b>+' + money(totalProfit) + '</b> ek net kâr ve faiz tasarrufu kalıcı olarak kalıyor.</p>';
+        $('wcLeakSummaryBox').innerHTML = '<p>💡 <b>Canlı Yönetim Kararı Çıktısı:</b> ' + actionsTxt + '. Bu hamlelerle şirketinizin kasasına anında <b>+' + money(totalCash) + '</b> sıcak nakit giriyor.' + marginTxt + 'Banka kredisine ihtiyaç azalacağı için (%' + (window._wcRate || 45) + ' kredi faiziyle) şirkete yılda toplam <b>+' + money(totalProfit) + '</b> ek net kâr ve faiz tasarrufu kalıcı olarak kalıyor.</p>';
       }
     }
   }
+  window._recalcWcMultiSim = recalcMultiSimulator;
+
+  window.setWcInterestRate = function(rate){
+    const val = Math.max(1, Math.min(150, parseFloat(rate) || 45));
+    window._wcRate = val;
+    if($('wcInterestRateDisplay')) $('wcInterestRateDisplay').textContent = '%' + val;
+    if($('wcInterestRateInput')) $('wcInterestRateInput').value = val;
+    if($('wcInterestRateNum')) $('wcInterestRateNum').value = val;
+
+    document.querySelectorAll('.wcRatePreset').forEach(btn => {
+      const isCurrent = btn.textContent.trim() === ('%' + val);
+      btn.style.background = isCurrent ? '#FFE4E6' : '#FFFFFF';
+      btn.style.borderColor = isCurrent ? '#BE123C' : '#CBD5E1';
+      btn.style.color = isCurrent ? '#9F1239' : '#0F1B2D';
+    });
+
+    if(window._wcContext){
+      const dynamicLeak = window._wcContext.lockedBase * (val / 100);
+      if($('wcLeakCostVal')) $('wcLeakCostVal').textContent = money(dynamicLeak);
+      if($('wcLeakCostSub')) $('wcLeakCostSub').textContent = 'Kilitli sermayenin yıllık %' + val + ' finansman maliyeti (Faiz Yükü: ' + money(dynamicLeak) + ')';
+    }
+    if(window._recalcWcMultiSim) window._recalcWcMultiSim();
+  };
+
+  // Initial calculation with current rate
+  window.setWcInterestRate(window._wcRate || 45);
 
   ['wcSliderDso', 'wcSliderDio', 'wcSliderDpo', 'wcSliderMargin'].forEach(id => {
     const s = $(id);
@@ -8509,7 +8585,7 @@ function renderTaxStrategy(ts){
       ? ('<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 14px;font-size:12px;margin-bottom:10px">' +
           '<div style="font-weight:800;color:#0F172A;margin-bottom:6px">📊 ' + (isEn ? 'Calculation Steps Tailored to Financials:' : 'Mali Tablolara Özgü Matematiksel Hesaplama Adımları:') + '</div>' +
           '<div style="display:flex;flex-direction:column;gap:4px">' +
-            s.calculation_steps.map(cs => '<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dashed #E2E8F0"><span style="color:#475569">' + esc(cs.label) + '</span><b style="color:#0F172A">' + esc(cs.value) + '</b></div>').join('') +
+            s.calculation_steps.map(cs => '<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #F1F5F9"><span style="color:#475569">' + esc(cs.label) + '</span><b style="color:#0F172A">' + esc(cs.value) + '</b></div>').join('') +
           '</div>' +
         '</div>')
       : (s.calculations && s.calculations.length ? ('<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 12px;font-size:12px;margin-bottom:10px">' +
@@ -8606,38 +8682,26 @@ function renderUnifiedRootCauseSection(rc, ne){
 
   container.innerHTML = items.map((item, idx) => {
     const sc = sevColors[item.severity] || sevColors.medium;
-    return '<div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:18px 20px;box-shadow:0 4px 14px rgba(15,27,45,0.03)">' +
-      '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;border-bottom:1px solid #E2E8F0;padding-bottom:10px">' +
-        '<div style="display:flex;align-items:center;gap:8px">' +
-          '<span style="background:#0F172A;color:#FFF;font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:6px">KÖK NEDEN #' + (idx + 1) + '</span>' +
-          '<h3 style="margin:0;font-size:15px;color:#0F172A">' + esc(item.title) + '</h3>' +
+    return '<div class="insight ' + esc(sc.tag) + '" style="margin-bottom:14px;border-radius:14px;padding:18px 20px">' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:12px">' +
+        '<div>' +
+          '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">' +
+            '<span style="background:#0F172A;color:#FFF;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px">KÖK NEDEN #' + (idx + 1) + '</span>' +
+            '<span class="tag ' + sc.tag + '">' + esc(item.severity.toUpperCase()) + '</span>' +
+            '<span class="tag" style="background:#F1F5F9;color:#475569;font-size:11px">' + esc(item.category) + '</span>' +
+          '</div>' +
+          '<h3 style="margin:4px 0 0;font-size:15.5px;color:#0F172A">' + esc(item.title) + '</h3>' +
         '</div>' +
-        '<div style="display:flex;align-items:center;gap:6px">' +
-          '<span class="tag" style="background:#F1F5F9;font-size:11px">' + esc(item.category) + '</span>' +
-          '<span class="tag ' + sc.tag + '">' + esc(item.severity) + '</span>' +
+        '<div style="text-align:right">' +
+          '<span class="tag ' + sc.tag + '" style="font-size:11.5px;font-weight:800">💸 Sızıntı: ' + esc(item.financial_leak) + '</span>' +
         '</div>' +
       '</div>' +
 
-      '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:12px">' +
-        '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px">' +
-          '<div style="font-size:10.5px;font-weight:800;color:#64748B;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">🔍 1. Belirti (Ne Oldu?)</div>' +
-          '<div style="font-size:12px;color:#0F172A;font-weight:600;line-height:1.4">' + esc(item.symptom) + '</div>' +
-        '</div>' +
-
-        '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px">' +
-          '<div style="font-size:10.5px;font-weight:800;color:#64748B;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">📊 2. Sayısal Kanıt</div>' +
-          '<div style="font-size:11.5px;color:#334155;line-height:1.4">' + (item.evidence && item.evidence.length ? item.evidence.filter(Boolean).map(esc).join('<br>') : 'Finansal sapma tespit edildi') + '</div>' +
-        '</div>' +
-
-        '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px">' +
-          '<div style="font-size:10.5px;font-weight:800;color:#64748B;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">⚙️ 3. Kök Neden (Tetikleyici)</div>' +
-          '<div style="font-size:12px;color:#1D4ED8;font-weight:700;line-height:1.4">' + esc(item.root_cause) + '</div>' +
-        '</div>' +
-
-        '<div style="background:' + sc.bg + ';border:1px solid ' + sc.border + ';border-radius:10px;padding:10px">' +
-          '<div style="font-size:10.5px;font-weight:800;color:' + sc.text + ';text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">💸 4. Parasal Sızıntı</div>' +
-          '<div style="font-size:12.5px;color:' + sc.text + ';font-weight:800;line-height:1.4">' + esc(item.financial_leak) + '</div>' +
-        '</div>' +
+      '<div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:#334155;margin-bottom:12px;line-height:1.5">' +
+        '<div><b>🔍 1. Belirti (Ne Oldu?):</b> ' + esc(item.symptom) + '</div>' +
+        '<div><b>📊 2. Sayısal Kanıt:</b> ' + (item.evidence && item.evidence.length ? item.evidence.filter(Boolean).map(esc).join(' · ') : 'Finansal sapma tespit edildi') + '</div>' +
+        '<div><b>⚙️ 3. Kök Neden (Tetikleyici):</b> <span style="color:#1D4ED8;font-weight:700">' + esc(item.root_cause) + '</span></div>' +
+        '<div><b>💸 4. Parasal Sızıntı:</b> <span style="color:' + sc.text + ';font-weight:700">' + esc(item.financial_leak) + '</span></div>' +
       '</div>' +
 
       '<div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:10px 14px">' +
@@ -8645,15 +8709,14 @@ function renderUnifiedRootCauseSection(rc, ne){
         '<ul style="margin:0;padding-left:18px;font-size:12px;color:#14532D;line-height:1.5">' +
           (item.actions.length ? item.actions.map(a => '<li>' + esc(a) + '</li>').join('') : '<li>Sözleşme şartlarını ve operasyonel iş akışını güncelleyin.</li>') +
         '</ul>' +
+      '</div>' +
+
       (item.data_gap ? 
-        '<div style="margin-top:10px;padding:10px 14px;background:#F8FAFC;border:1.5px dashed #94A3B8;border-radius:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">' +
-          '<div style="flex:1;min-width:240px">' +
-            '<div style="font-size:11px;font-weight:800;color:#334155;text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:5px">' +
-              '<span>🔍</span><span>Kök Neden Doğrulama &amp; Alt Defter İhtiyacı:</span>' +
-            '</div>' +
-            '<div style="font-size:11.5px;color:#475569;margin-top:2px;line-height:1.4">' + esc(item.data_gap) + '</div>' +
+        '<div class="notice" style="margin-top:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border:1px solid #CBD5E1">' +
+          '<div style="flex:1;min-width:240px;font-size:11.5px">' +
+            '🔍 <b>Kök Neden Doğrulama &amp; Alt Defter İhtiyacı:</b> ' + esc(item.data_gap) +
           '</div>' +
-          '<button type="button" class="secondary hidePrint" style="font-size:11px;padding:6px 12px;border-radius:8px;font-weight:700;display:inline-flex;align-items:center;gap:5px;cursor:pointer" onclick="goToDataHubTab()">' +
+          '<button type="button" class="secondary hidePrint" style="font-size:11px;padding:5px 12px;border-radius:7px;font-weight:700;display:inline-flex;align-items:center;gap:5px;cursor:pointer" onclick="goToDataHubTab()">' +
             '<span>📤</span><span>Defteri Data Hub\'a Yükle →</span>' +
           '</button>' +
         '</div>' : '') +
