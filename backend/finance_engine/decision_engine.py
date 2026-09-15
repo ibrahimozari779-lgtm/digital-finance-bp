@@ -443,6 +443,65 @@ def build_finance_business_partner_analysis(
             "profitability": round(profitability_points, 1),
             "efficiency_capital": round(efficiency_points, 1),
         },
+        "health_score_methodology": {
+            "title": "Finansal Sağlık Skoru Metodolojisi & Ağırlık Dağılımı",
+            "total_score": health_score,
+            "max_score": 100,
+            "label": health_label,
+            "description": "Finansal Sağlık Skoru bir kara kutu veya sübjektif AI tahmini değildir; 5 temel kurumsal finans boyutunu ölçen kural tabanlı, deterministik bir kompozit skorlama modelidir.",
+            "pillars": [
+                {
+                    "key": "data_trust",
+                    "name": "Veri Güvenilirliği & Bilanço Denkliği",
+                    "weight_pct": 15,
+                    "max_points": 15.0,
+                    "earned_points": round(data_component, 1),
+                    "metric_basis": f"Veri Kalite Skoru: {data_score:.0f}/100",
+                    "formula": "Veri Güvenilirlik Skoru × %15",
+                    "evaluation": "Bilanço eşitliği, aktif/pasif mutabakatı ve hesap planı tutarlılığı."
+                },
+                {
+                    "key": "liquidity",
+                    "name": "Likidite & Kısa Vadeli Ödeme Gücü",
+                    "weight_pct": 20,
+                    "max_points": 20.0,
+                    "earned_points": round(liquidity_points, 1),
+                    "metric_basis": f"Cari Oran: {current_ratio if current_ratio is not None else 0.0:.2f} · Nakit Oranı: {cash_ratio if cash_ratio is not None else 0.0:.2f}",
+                    "formula": "Cari Oran bandı (max 10p) + Nakit Oranı bandı (max 10p)",
+                    "evaluation": "Vadesi gelen kısa vadeli borçların dönen ve nakit varlıklarla karşılanabilme gücü."
+                },
+                {
+                    "key": "leverage",
+                    "name": "Kaldıraç & Finansman Yükü",
+                    "weight_pct": 25,
+                    "max_points": 25.0,
+                    "earned_points": round(leverage_points, 1),
+                    "metric_basis": f"Borç/Özkaynak: {debt_to_equity if debt_to_equity is not None else 0.0:.2f}x · Fin. Gider/FVÖK: %{((finance_cost_to_op or 0.0)*100):.1f}",
+                    "formula": "Borç/Özkaynak bandı (max 12p) + Finansman Gideri/Faaliyet Kârı bandı (max 13p)",
+                    "evaluation": "Faaliyet kârının finansman giderlerini karşılama kapasitesi ve özkaynak emniyet marjı."
+                },
+                {
+                    "key": "profitability",
+                    "name": "Faaliyet & Net Kârlılık",
+                    "weight_pct": 25,
+                    "max_points": 25.0,
+                    "earned_points": round(profitability_points, 1),
+                    "metric_basis": f"Faaliyet Marjı: %{operating_margin if operating_margin is not None else 0.0:.1f} · Net Marj: %{net_margin if net_margin is not None else 0.0:.1f}",
+                    "formula": "Faaliyet Kâr Marjı bandı (max 13p) + Net Kâr Marjı bandı (max 12p)",
+                    "evaluation": "Satışların faaliyet seviyesinde ve net dönem seviyesinde kâra dönüşüm başarısı."
+                },
+                {
+                    "key": "efficiency_capital",
+                    "name": "Varlık Verimliliği & Sermaye Gücü",
+                    "weight_pct": 15,
+                    "max_points": 15.0,
+                    "earned_points": round(efficiency_points, 1),
+                    "metric_basis": f"Aktif Devir Hızı: {asset_turnover if asset_turnover is not None else 0.0:.2f}x · Özkaynak Oranı: %{((equity_ratio or 0.0)*100):.1f}",
+                    "formula": "Aktif Devir Hızı bandı (max 8p) + Özkaynak/Aktif bandı (max 7p)",
+                    "evaluation": "Bağlı aktiflerin ciro üretme hızı ve şirketin varlıklarını finanse eden özkaynak payı."
+                }
+            ]
+        },
         "derived_metrics": {
             "finance_cost_to_operating_profit_pct": None if finance_cost_to_op is None else finance_cost_to_op * 100,
             "interest_coverage_proxy": interest_coverage_proxy,

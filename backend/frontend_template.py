@@ -12,7 +12,7 @@ HOME_HTML = r'''<!doctype html>
 :root{--bg:#F6F7F9;--panel:#FFFFFF;--panel2:#F0F3F8;--line:#E4E8EF;--text:#0F1B2D;--muted:#5B6B84;--accent:#1D4ED8;--accent2:#4F8CFF;--red:#C22A3E;--amber:#B4720A;--green:#0E7C66;--shadow:0 1px 2px rgba(15,27,45,.04),0 12px 32px rgba(15,27,45,.06);--serif:'Fraunces',ui-serif,Georgia,serif}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(1100px 480px at 12% -10%, rgba(29,78,216,.07), transparent 60%),radial-gradient(900px 420px at 100% 0%, rgba(14,124,102,.05), transparent 55%),#F6F7F9;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}button,input,select{font:inherit}.wrap{max-width:1440px;margin:auto;padding:0 28px}.top{padding:26px 0 18px;border-bottom:1px solid rgba(15,27,45,.08);position:sticky;top:0;background:rgba(246,247,249,.86);backdrop-filter:blur(18px);z-index:10}.brand{display:flex;align-items:center;justify-content:space-between;gap:20px}.brand h1{margin:0;font-size:25px;letter-spacing:-.6px}.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}.badge{padding:6px 10px;border:1px solid #D7DEE8;border-radius:999px;color:var(--accent);font-size:12px;white-space:nowrap}.hero{padding:34px 0 24px;display:grid;grid-template-columns:1.45fr .55fr;gap:18px}.heroCard,.card{background:#FFFFFF;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.heroCard{padding:28px}.heroTitle{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1.08;margin:0 0 14px;letter-spacing:-.5px}.heroText{color:var(--muted);max-width:780px}.framework{display:flex;flex-wrap:wrap;gap:8px 10px;margin:16px 0 2px;padding:0}.framework span{font-size:11.5px;color:#33415C;background:#EEF2FF;border:1px solid var(--line);border-radius:999px;padding:6px 11px}.framework span b{color:var(--accent);font-weight:800}
 .qsel{margin-top:18px}.qsel .qtitle{font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:700}.qsel .qrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.qsel button{border:1px solid #D7DEE8;background:#EEF2FF;color:#33415C;border-radius:12px;padding:10px 12px;font-size:12.5px;cursor:pointer;text-align:left;line-height:1.3}.qsel button:hover{border-color:#B7C3D6}.qsel button.active{border-color:var(--accent);color:var(--accent);background:#DCE6FB}
-.upload{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}.file{border:1px dashed #C9D2DE;padding:12px;border-radius:12px;background:#F5F7FA;max-width:100%}.select,button{border:1px solid #D7DEE8;border-radius:11px;padding:11px 14px;background:#FFFFFF;color:var(--text)}button.primary,a.primary{background:linear-gradient(135deg,#2557E8,#1D4ED8);border:0;color:#FFFFFF;font-weight:800;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;box-shadow:0 6px 16px rgba(29,78,216,.25)}a.primary:hover,button.primary:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(29,78,216,.32)}button.secondary,a.secondary{cursor:pointer;border:1.5px solid #C9D2DE;background:#FFFFFF;color:var(--text)}a.secondary:hover,button.secondary:hover{border-color:var(--accent);color:var(--accent)}button:disabled{opacity:.5;cursor:not-allowed}.scoreCard{padding:25px;display:flex;flex-direction:column;justify-content:center}.scoreRing{width:170px;height:170px;border-radius:50%;margin:auto;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--score)*1%),#E4E8EF 0);position:relative}.scoreRing:after{content:"";position:absolute;inset:12px;border-radius:50%;background:#FFFFFF}.scoreNum{position:relative;z-index:1;text-align:center}.scoreNum strong{display:block;font-size:48px;line-height:1}.scoreNum span{color:var(--muted);font-size:12px}.status{margin:15px auto 0;padding:7px 12px;border-radius:999px;background:#EAF0FF;color:var(--accent);font-size:12px;font-weight:700}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:22px;margin:0 0 16px;transition:transform .18s ease,box-shadow .18s ease,outline .2s}.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(15,27,45,.08)}@keyframes growUp{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}.wf{transform-origin:bottom}.wf .col{transform-origin:bottom}@keyframes growWidth{from{width:0}to{}}.metric{padding:17px;border:1px solid var(--line);border-radius:15px;background:rgba(15,27,45,.03)}.metric .label{color:var(--muted);font-size:12px}.metric .value{font-size:25px;font-weight:800;margin-top:5px;letter-spacing:-.5px}.metric .sub{font-size:11px;color:var(--muted);margin-top:5px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:17px}.sectionHead h2{margin:0;font-size:18px}.sectionHead p{margin:0;color:var(--muted);font-size:12px}.flowStep{margin:36px 0 14px;padding-top:6px;border-top:1px solid rgba(15,27,45,.08)}.flowStep:first-child{margin-top:0;border-top:0;padding-top:0}.flowLabel{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin:0 0 4px}.flowLabel .n{width:22px;height:22px;border-radius:50%;background:#EAF0FF;color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:11px}.flowLabel p{margin:0;color:var(--muted);font-size:12.5px;font-weight:500;text-transform:none;letter-spacing:0}.flowLabel.alt{color:var(--accent2)}.flowLabel.alt .n{color:var(--accent2)}.flowSub{color:var(--muted);font-size:12.5px;margin:2px 0 16px 32px}.insight{border:1px solid var(--line);border-radius:15px;padding:16px;background:#F7F9FC}.insight.critical{border-color:#E8B4BD}.insight.high{border-color:#E9CBA8}.insight.medium{border-color:#E5DBA0}.insight.positive{border-color:#A9D9C9}.insight h3{margin:0 0 5px;font-size:14px}.insight p{margin:6px 0;color:#33415C;font-size:13px}.insight ul{margin:6px 0;padding-left:18px;color:#33415C;font-size:13px}.tag{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;background:#EAF0FF;color:#5B6B84}.tag.critical{background:#FCE8EA;color:#C22A3E}.tag.high{background:#FDF0E0;color:#B4720A}.tag.medium{background:#FBF6DE;color:#8A6D00}.tag.positive{background:#E4F5EF;color:#0E7C66}.riskRow,.actionRow{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(15,27,45,.08)}.rank{font-size:18px;font-weight:900;color:#5B6B84}.riskScore{font-size:12px;color:var(--muted)}.bar{height:7px;background:#E4E8EF;border-radius:99px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}.waterfall{display:flex;align-items:flex-end;gap:7px;height:190px;padding:20px 5px 0;border-bottom:1px solid var(--line)}.wf{flex:1;display:flex;flex-direction:column;justify-content:end;height:100%;min-width:0}.wf .col{border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#83a4ff,#506fd0);min-height:3px}.wf.neg .col{background:linear-gradient(180deg,#ff8290,#9d3e54)}.wf .lab{font-size:10px;color:var(--muted);text-align:center;margin-top:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wf .num{font-size:9px;text-align:center;color:#33415C;margin-bottom:4px}.scenario{padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#F5F8FF,#EEF3FC)}.scenario h3{margin:0 0 6px;font-size:15px}.scenario .big{font-size:24px;font-weight:900;color:var(--accent)}.scenario p{color:var(--muted);font-size:11px;margin:6px 0}.muted{color:var(--muted)}.small{font-size:11px}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:10px 8px;border-bottom:1px solid rgba(15,27,45,.08);text-align:right}th:first-child,td:first-child{text-align:left}th{color:#5B6B84;font-weight:600}.notice{padding:12px 14px;border-radius:12px;background:#EEF2FF;border:1px solid var(--line);color:#5B6B84;font-size:12px}.error{color:#C22A3E;background:#FCE8EA;border:1px solid #E8B4BD;padding:12px;border-radius:12px;margin:15px 0}.hidden{display:none!important}.footer{padding:25px 0 50px;color:#5B6B84;font-size:11px;text-align:center}.tabs{display:flex;gap:8px;margin-top:16px}.tab{padding:8px 12px;border-radius:999px;background:#F0F3F8;border:1px solid var(--line);color:#5B6B84;cursor:pointer}.tab.active{background:#DCE6FB;color:var(--accent);border-color:#1D4ED8}.tabPanel{display:none}.tabPanel.active{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.hidePrint{display:block}
+.upload{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}.file{border:1px dashed #C9D2DE;padding:12px;border-radius:12px;background:#F5F7FA;max-width:100%}.select,button{border:1px solid #D7DEE8;border-radius:11px;padding:11px 14px;background:#FFFFFF;color:var(--text)}button.primary,a.primary{background:linear-gradient(135deg,#2557E8,#1D4ED8);border:0;color:#FFFFFF;font-weight:800;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;box-shadow:0 6px 16px rgba(29,78,216,.25)}a.primary:hover,button.primary:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(29,78,216,.32)}button.secondary,a.secondary{cursor:pointer;border:1.5px solid #C9D2DE;background:#FFFFFF;color:var(--text)}a.secondary:hover,button.secondary:hover{border-color:var(--accent);color:var(--accent)}button:disabled{opacity:.5;cursor:not-allowed}.scoreCard{padding:25px;display:flex;flex-direction:column;justify-content:center}.scoreRing{width:170px;height:170px;border-radius:50%;margin:auto;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--score)*1%),#E4E8EF 0);position:relative}.scoreRing:after{content:"";position:absolute;inset:12px;border-radius:50%;background:#FFFFFF}.scoreNum{position:relative;z-index:1;text-align:center}.scoreNum strong{display:block;font-size:48px;line-height:1}.scoreNum span{color:var(--muted);font-size:12px}.status{margin:15px auto 0;padding:7px 12px;border-radius:999px;background:#EAF0FF;color:var(--accent);font-size:12px;font-weight:700}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:22px;margin:0 0 16px;transition:transform .18s ease,box-shadow .18s ease,outline .2s}.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(15,27,45,.08)}@keyframes growUp{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}.wf{transform-origin:bottom}.wf .col{transform-origin:bottom}@keyframes growWidth{from{width:0}to{}}.metric{padding:17px;border:1px solid var(--line);border-radius:15px;background:rgba(15,27,45,.03)}.metric .label{color:var(--muted);font-size:12px}.metric .value{font-size:25px;font-weight:800;margin-top:5px;letter-spacing:-.5px}.metric .sub{font-size:11px;color:var(--muted);margin-top:5px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:17px}.sectionHead h2{margin:0;font-size:18px}.sectionHead p{margin:0;color:var(--muted);font-size:12px}.flowStep{margin:36px 0 14px;padding-top:6px;border-top:1px solid rgba(15,27,45,.08)}.flowStep:first-child{margin-top:0;border-top:0;padding-top:0}.flowLabel{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin:0 0 4px}.flowLabel .n{width:22px;height:22px;border-radius:50%;background:#EAF0FF;color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:11px}.flowLabel p{margin:0;color:var(--muted);font-size:12.5px;font-weight:500;text-transform:none;letter-spacing:0}.flowLabel.alt{color:var(--accent2)}.flowLabel.alt .n{color:var(--accent2)}.flowSub{color:var(--muted);font-size:12.5px;margin:2px 0 16px 32px}.insight{border:1px solid var(--line);border-radius:15px;padding:16px;background:#F7F9FC}.insight.critical{border-color:#E8B4BD}.insight.high{border-color:#E9CBA8}.insight.medium{border-color:#E5DBA0}.insight.positive{border-color:#A9D9C9}.insight h3{margin:0 0 5px;font-size:14px}.insight p{margin:6px 0;color:#33415C;font-size:13px}.insight ul{margin:6px 0;padding-left:18px;color:#33415C;font-size:13px}.tag{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;background:#EAF0FF;color:#5B6B84}.tag.critical{background:#FCE8EA;color:#C22A3E}.tag.high{background:#FDF0E0;color:#B4720A}.tag.medium{background:#FBF6DE;color:#8A6D00}.tag.positive{background:#E4F5EF;color:#0E7C66}.riskRow,.actionRow{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(15,27,45,.08)}.rank{font-size:18px;font-weight:900;color:#5B6B84}.riskScore{font-size:12px;color:var(--muted)}.bar{height:7px;background:#E4E8EF;border-radius:99px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}.waterfallWrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:10px;margin-bottom:10px}.waterfall{display:flex;align-items:flex-end;gap:9px;height:190px;padding:20px 5px 0;border-bottom:1px solid var(--line);min-width:620px}.wf{flex:1;display:flex;flex-direction:column;justify-content:end;height:100%;min-width:65px}.wf .col{border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#83a4ff,#506fd0);min-height:3px}.wf.neg .col{background:linear-gradient(180deg,#ff8290,#9d3e54)}.wf .lab{font-size:10.5px;font-weight:600;color:var(--muted);text-align:center;margin-top:7px;white-space:nowrap}.wf .num{font-size:10px;font-weight:700;text-align:center;color:#33415C;margin-bottom:4px;white-space:nowrap}.subnavPill{font-size:12px;font-weight:600;color:#475569;text-decoration:none;padding:5px 12px;border-radius:999px;background:#F1F5F9;border:1px solid #E2E8F0;transition:all .15s ease}.subnavPill:hover{background:#E2E8F0;color:#1D4ED8;border-color:#CBD5E1}.dashPill{font-size:11.5px;font-weight:700;color:#475569;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:999px;padding:5px 12px;cursor:pointer;transition:all .15s ease;white-space:nowrap}.dashPill:hover{background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE}.scenario{padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#F5F8FF,#EEF3FC)}.scenario h3{margin:0 0 6px;font-size:15px}.scenario .big{font-size:24px;font-weight:900;color:var(--accent)}.scenario p{color:var(--muted);font-size:11px;margin:6px 0}.muted{color:var(--muted)}.small{font-size:11px}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:10px 8px;border-bottom:1px solid rgba(15,27,45,.08);text-align:right}th:first-child,td:first-child{text-align:left}th{color:#5B6B84;font-weight:600}.notice{padding:12px 14px;border-radius:12px;background:#EEF2FF;border:1px solid var(--line);color:#5B6B84;font-size:12px}.error{color:#C22A3E;background:#FCE8EA;border:1px solid #E8B4BD;padding:12px;border-radius:12px;margin:15px 0}.hidden{display:none!important}.footer{padding:25px 0 50px;color:#5B6B84;font-size:11px;text-align:center}.tabs{display:flex;gap:8px;margin-top:16px}.tab{padding:8px 12px;border-radius:999px;background:#F0F3F8;border:1px solid var(--line);color:#5B6B84;cursor:pointer}.tab.active{background:#DCE6FB;color:var(--accent);border-color:#1D4ED8}.tabPanel{display:none}.tabPanel.active{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.hidePrint{display:block}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chip{font-size:11.5px;background:#EEF2FF;border:1px solid var(--line);border-radius:999px;padding:6px 11px;color:#33415C}.chip b{color:var(--accent)}
 .abar{height:9px;background:#E4E8EF;border-radius:99px;overflow:hidden;margin-top:6px}.abar i{display:block;height:100%;background:linear-gradient(90deg,#8aa7ff,#ff8290);border-radius:99px}
 .custRow{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(15,27,45,.08);font-size:12.5px}
@@ -736,6 +736,20 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </div>
 </div>
 
+<!-- Sticky Sub-Navigation Bar for Marketing Page -->
+<nav id="homeSubNav" class="homeSubNav hidePrint" style="position:sticky;top:64px;z-index:40;background:rgba(255,255,255,0.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(15,27,45,0.08);padding:10px 0;margin-bottom:24px;overflow-x:auto;-webkit-overflow-scrolling:touch">
+  <div style="max-width:1440px;margin:0 auto;padding:0 28px;display:flex;gap:8px;align-items:center;white-space:nowrap">
+    <a href="#kobiShowcase" class="subnavPill">📊 Canlı Kokpit</a>
+    <a href="#calculator" class="subnavPill">🧮 Nakit Kaçağı Hesapla</a>
+    <a href="#caseStudies" class="subnavPill">📈 Temsili Yönetim Vakaları</a>
+    <a href="#workflow" class="subnavPill">⚙️ Nasıl Çalışır?</a>
+    <a href="#patronSorulari" class="subnavPill">❓ Patron Soruları</a>
+    <a href="#comparison" class="subnavPill">⚖️ Neden DFBP?</a>
+    <a href="#pricing" class="subnavPill">🏷️ Paketler</a>
+    <a href="#faq" class="subnavPill">💬 SSS</a>
+  </div>
+</nav>
+
 <!-- SECTION: 10 KOBİ PATRON VİTRİNİ -->
 <div class="secBlock reveal"><section id="kobiShowcase" class="marketingSection hidePrint" style="padding-top:0">
 <div class="marketingHead">
@@ -1190,20 +1204,20 @@ if (document.readyState === 'loading') {
   </div>
 </section></div>
 
-<!-- SECTION: DOĞRULANMIŞ ANONİM KOBİ BAŞARI HİKAYELERİ (CASE STUDIES) -->
+<!-- SECTION: GERÇEK VERİ TABANLI TEMSİLİ YÖNETİM VAKALARI (CASE STUDIES) -->
 <div class="secBlock reveal">
   <section id="caseStudies" class="marketingSection hidePrint" style="padding-top:0">
     <div class="marketingHead">
-      <span class="workflowBadge" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0">📈 DOĞRULANMIŞ KOBİ BAŞARI HİKAYELERİ</span>
-      <h2 style="margin-top:10px">Rakamlar Yalan Söylemez: KOBİ Patronları Kasalarını Nasıl Rahatlattı?</h2>
-      <p>Müşteri ticari sırlarının ve rekabet mahremiyetinin korunması amacıyla firma unvanları anonimleştirilmiştir; ancak tespit edilen kâr kaçakları ve açığa çıkarılan nakit kazanımları <b>33 Karar Motorumuzun çift taraflı denetim kayıtlarından</b> birebir alınmıştır.</p>
+      <span class="workflowBadge" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0">📈 GERÇEK VERİ TABANLI TEMSİLİ YÖNETİM VAKALARI</span>
+      <h2 style="margin-top:10px">Rakamlar Yalan Söylemez: Finansal Karar Modellerimiz Kasaları Nasıl Rahatlatıyor?</h2>
+      <p>Aşağıdaki vakalar, platformun 33 Karar Motoru ve çift taraflı denetim mimarisi ile analiz edilen gerçek sektör bilançoları baz alınarak modellenmiş <b>temsili yönetim senaryolarıdır</b>. Ticari mahremiyet nedeniyle unvanlar anonimleştirilmiş; matematiksel formülasyon, oran analizleri ve kâr/nakit optimizasyon dinamikleri birebir korunmuştur.</p>
     </div>
 
     <div class="caseGrid">
       <!-- Case 1: İmalat & Sanayi -->
       <div class="caseCard">
         <div class="caseHead">
-          <span class="caseBadge verified">✅ DOĞRULANMIŞ VAKA · İMALAT SANAYİ</span>
+          <span class="caseBadge verified">📊 TEMSİLİ MODELLEME VAKASI · İMALAT SANAYİ</span>
           <span class="caseLocation">Kocaeli · ₺65M Yıllık Hacim</span>
         </div>
         <div class="caseTitle">"Depodaki 180+ Günlük Ölü Stok Teşhis Edildi; ₺1.450.000 Atıl Nakit 45 Günde Kasaya Döndü."</div>
@@ -1223,19 +1237,19 @@ if (document.readyState === 'loading') {
       <!-- Case 2: Gıda Dağıtım & Toptan -->
       <div class="caseCard">
         <div class="caseHead">
-          <span class="caseBadge verified">✅ DOĞRULANMIŞ VAKA · HIZLI TÜKETİM &amp; DAĞITIM</span>
+          <span class="caseBadge verified">📊 TEMSİLİ MODELLEME VAKASI · HIZLI TÜKETİM &amp; DAĞITIM</span>
           <span class="caseLocation">Bursa · ₺110M Yıllık Hacim</span>
         </div>
-        <div class="caseTitle">"88 Günlük Açık Hesap Vadesi 52 Güne İndirildi; Banka Kredi İhtiyacı ₺2.800.000 Azaldı."</div>
+        <div class="caseTitle">"88 Günlük Operasyonel Açık Hesap Vadesi (Resmi Mizan: 81 Gün) 52 Güne İndirildi; Banka Kredi İhtiyacı ₺2.800.000 Azaldı."</div>
         <div class="caseProblem">
-          <b>Kriz:</b> Şirket rekor ciro yapmasına rağmen ay sonlarında tedarikçi çeklerini ödeyemiyordu. Müşteriler açık hesap vadelerini sürekli uzatarak şirketi faizsiz banka gibi kullanıyordu.
+          <b>Kriz:</b> Şirket rekor ciro yapmasına rağmen ay sonlarında tedarikçi çeklerini ödeyemiyordu. Resmi mizan DSO vadesi 81 gün iken operasyonel yaşlandırma alt defterinde fiili vade 88 güne çıkmıştı; bayiler açık hesap vadelerini sürekli uzatarak şirketi faizsiz banka gibi kullanıyordu.
         </div>
         <div class="caseSolution">
-          <b>DFBP Reçetesi:</b> Alacak Yaşlandırma Motoru ilk 20 bayinin vadesini taradı; vadesi 60 günü aşan riskli cariler durduruldu ve DBS (Doğrudan Borçlandırma Sistemi) entegrasyonuna bağlandı.
+          <b>DFBP Reçetesi:</b> Alacak Yaşlandırma Motoru ilk 20 bayinin vadesini taradı; vadesi 60 günü aşan riskli cariler durduruldu ve DBS (Doğrudan Borçlandırma Sistemi) entegrasyonuna bağlandı. Operasyonel DSO 88 günden 52 güne çekildi.
         </div>
         <div class="caseKpis">
           <div class="caseKpiItem"><b style="color:#047857">+₺2.800.000</b><span>Azalan Kredi Yükü</span></div>
-          <div class="caseKpiItem"><b style="color:#1D4ED8">88g → 52g</b><span>Alacak Vadesi (DSO)</span></div>
+          <div class="caseKpiItem"><b style="color:#1D4ED8">88g → 52g</b><span>Operasyonel Vade (DSO)</span></div>
           <div class="caseKpiItem"><b style="color:#B45309">₺640.000 / yıl</b><span>Kurtarılan Faiz Kârı</span></div>
         </div>
       </div>
@@ -1243,7 +1257,7 @@ if (document.readyState === 'loading') {
       <!-- Case 3: Tekstil & İhracat -->
       <div class="caseCard">
         <div class="caseHead">
-          <span class="caseBadge verified">✅ DOĞRULANMIŞ VAKA · TEKSTİL &amp; İHRACAT</span>
+          <span class="caseBadge verified">📊 TEMSİLİ MODELLEME VAKASI · TEKSTİL &amp; İHRACAT</span>
           <span class="caseLocation">İstanbul · €4.2M İhracat Hacmi</span>
         </div>
         <div class="caseTitle">"%62 Müşteri Konsantrasyonu ve Gizli Kur Zararı Yakalandı; Brüt Marj %18'den %24'e Çıktı."</div>
@@ -1263,7 +1277,7 @@ if (document.readyState === 'loading') {
       <!-- Case 4: Makine & Otomotiv Yan Sanayi -->
       <div class="caseCard">
         <div class="caseHead">
-          <span class="caseBadge verified">✅ DOĞRULANMIŞ VAKA · MAKİNE &amp; YAN SANAYİ</span>
+          <span class="caseBadge verified">📊 TEMSİLİ MODELLEME VAKASI · MAKİNE &amp; YAN SANAYİ</span>
           <span class="caseLocation">İzmir · ₺48M Yıllık Hacim</span>
         </div>
         <div class="caseTitle">"Mizan ile Stok Defteri Arasındaki %34 Mutabakat Uçurumu ve ₺920.000 Kâr Kaçağı Kapatıldı."</div>
@@ -4341,7 +4355,7 @@ APP_HTML = r'''<!doctype html>
 :root{--bg:#F6F7F9;--panel:#FFFFFF;--panel2:#F0F3F8;--line:#E4E8EF;--text:#0F1B2D;--muted:#5B6B84;--accent:#1D4ED8;--accent2:#4F8CFF;--red:#C22A3E;--amber:#B4720A;--green:#0E7C66;--shadow:0 1px 2px rgba(15,27,45,.04),0 12px 32px rgba(15,27,45,.06);--serif:'Fraunces',ui-serif,Georgia,serif}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(1100px 480px at 12% -10%, rgba(29,78,216,.07), transparent 60%),radial-gradient(900px 420px at 100% 0%, rgba(14,124,102,.05), transparent 55%),#F6F7F9;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}button,input,select{font:inherit}.wrap{max-width:1440px;margin:auto;padding:0 28px}.top{padding:26px 0 18px;border-bottom:1px solid rgba(15,27,45,.08);position:sticky;top:0;background:rgba(246,247,249,.86);backdrop-filter:blur(18px);z-index:10}.brand{display:flex;align-items:center;justify-content:space-between;gap:20px}.brand h1{margin:0;font-size:25px;letter-spacing:-.6px}.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}.badge{padding:6px 10px;border:1px solid #D7DEE8;border-radius:999px;color:var(--accent);font-size:12px;white-space:nowrap}.hero{padding:34px 0 24px;display:grid;grid-template-columns:1.45fr .55fr;gap:18px}.heroCard,.card{background:#FFFFFF;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.heroCard{padding:28px}.heroTitle{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1.08;margin:0 0 14px;letter-spacing:-.5px}.heroText{color:var(--muted);max-width:780px}.framework{display:flex;flex-wrap:wrap;gap:8px 10px;margin:16px 0 2px;padding:0}.framework span{font-size:11.5px;color:#33415C;background:#EEF2FF;border:1px solid var(--line);border-radius:999px;padding:6px 11px}.framework span b{color:var(--accent);font-weight:800}
 .qsel{margin-top:18px}.qsel .qtitle{font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:700}.qsel .qrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.qsel button{border:1px solid #D7DEE8;background:#EEF2FF;color:#33415C;border-radius:12px;padding:10px 12px;font-size:12.5px;cursor:pointer;text-align:left;line-height:1.3}.qsel button:hover{border-color:#B7C3D6}.qsel button.active{border-color:var(--accent);color:var(--accent);background:#DCE6FB}
-.upload{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}.file{border:1px dashed #C9D2DE;padding:12px;border-radius:12px;background:#F5F7FA;max-width:100%}.select,button{border:1px solid #D7DEE8;border-radius:11px;padding:11px 14px;background:#FFFFFF;color:var(--text)}button.primary,a.primary{background:linear-gradient(135deg,#2557E8,#1D4ED8);border:0;color:#FFFFFF;font-weight:800;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;box-shadow:0 6px 16px rgba(29,78,216,.25)}a.primary:hover,button.primary:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(29,78,216,.32)}button.secondary,a.secondary{cursor:pointer;border:1.5px solid #C9D2DE;background:#FFFFFF;color:var(--text)}a.secondary:hover,button.secondary:hover{border-color:var(--accent);color:var(--accent)}button:disabled{opacity:.5;cursor:not-allowed}.scoreCard{padding:25px;display:flex;flex-direction:column;justify-content:center}.scoreRing{width:170px;height:170px;border-radius:50%;margin:auto;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--score)*1%),#E4E8EF 0);position:relative}.scoreRing:after{content:"";position:absolute;inset:12px;border-radius:50%;background:#FFFFFF}.scoreNum{position:relative;z-index:1;text-align:center}.scoreNum strong{display:block;font-size:48px;line-height:1}.scoreNum span{color:var(--muted);font-size:12px}.status{margin:15px auto 0;padding:7px 12px;border-radius:999px;background:#EAF0FF;color:var(--accent);font-size:12px;font-weight:700}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:22px;margin:0 0 16px;transition:transform .18s ease,box-shadow .18s ease,outline .2s}.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(15,27,45,.08)}@keyframes growUp{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}.wf{transform-origin:bottom}.wf .col{transform-origin:bottom}@keyframes growWidth{from{width:0}to{}}.metric{padding:17px;border:1px solid var(--line);border-radius:15px;background:rgba(15,27,45,.03)}.metric .label{color:var(--muted);font-size:12px}.metric .value{font-size:25px;font-weight:800;margin-top:5px;letter-spacing:-.5px}.metric .sub{font-size:11px;color:var(--muted);margin-top:5px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:17px}.sectionHead h2{margin:0;font-size:18px}.sectionHead p{margin:0;color:var(--muted);font-size:12px}.flowStep{margin:36px 0 14px;padding-top:6px;border-top:1px solid rgba(15,27,45,.08)}.flowStep:first-child{margin-top:0;border-top:0;padding-top:0}.flowLabel{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin:0 0 4px}.flowLabel .n{width:22px;height:22px;border-radius:50%;background:#EAF0FF;color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:11px}.flowLabel p{margin:0;color:var(--muted);font-size:12.5px;font-weight:500;text-transform:none;letter-spacing:0}.flowLabel.alt{color:var(--accent2)}.flowLabel.alt .n{color:var(--accent2)}.flowSub{color:var(--muted);font-size:12.5px;margin:2px 0 16px 32px}.insight{border:1px solid var(--line);border-radius:15px;padding:16px;background:#F7F9FC}.insight.critical{border-color:#E8B4BD}.insight.high{border-color:#E9CBA8}.insight.medium{border-color:#E5DBA0}.insight.positive{border-color:#A9D9C9}.insight h3{margin:0 0 5px;font-size:14px}.insight p{margin:6px 0;color:#33415C;font-size:13px}.insight ul{margin:6px 0;padding-left:18px;color:#33415C;font-size:13px}.tag{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;background:#EAF0FF;color:#5B6B84}.tag.critical{background:#FCE8EA;color:#C22A3E}.tag.high{background:#FDF0E0;color:#B4720A}.tag.medium{background:#FBF6DE;color:#8A6D00}.tag.positive{background:#E4F5EF;color:#0E7C66}.riskRow,.actionRow{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(15,27,45,.08)}.rank{font-size:18px;font-weight:900;color:#5B6B84}.riskScore{font-size:12px;color:var(--muted)}.bar{height:7px;background:#E4E8EF;border-radius:99px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}.waterfall{display:flex;align-items:flex-end;gap:7px;height:190px;padding:20px 5px 0;border-bottom:1px solid var(--line)}.wf{flex:1;display:flex;flex-direction:column;justify-content:end;height:100%;min-width:0}.wf .col{border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#83a4ff,#506fd0);min-height:3px}.wf.neg .col{background:linear-gradient(180deg,#ff8290,#9d3e54)}.wf .lab{font-size:10px;color:var(--muted);text-align:center;margin-top:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wf .num{font-size:9px;text-align:center;color:#33415C;margin-bottom:4px}.scenario{padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#F5F8FF,#EEF3FC)}.scenario h3{margin:0 0 6px;font-size:15px}.scenario .big{font-size:24px;font-weight:900;color:var(--accent)}.scenario p{color:var(--muted);font-size:11px;margin:6px 0}.muted{color:var(--muted)}.small{font-size:11px}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:10px 8px;border-bottom:1px solid rgba(15,27,45,.08);text-align:right}th:first-child,td:first-child{text-align:left}th{color:#5B6B84;font-weight:600}.notice{padding:12px 14px;border-radius:12px;background:#EEF2FF;border:1px solid var(--line);color:#5B6B84;font-size:12px}.error{color:#C22A3E;background:#FCE8EA;border:1px solid #E8B4BD;padding:12px;border-radius:12px;margin:15px 0}.hidden{display:none!important}.footer{padding:25px 0 50px;color:#5B6B84;font-size:11px;text-align:center}.tabs{display:flex;gap:8px;margin-top:16px}.tab{padding:8px 12px;border-radius:999px;background:#F0F3F8;border:1px solid var(--line);color:#5B6B84;cursor:pointer}.tab.active{background:#DCE6FB;color:var(--accent);border-color:#1D4ED8}.tabPanel{display:none}.tabPanel.active{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.hidePrint{display:block}
+.upload{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}.file{border:1px dashed #C9D2DE;padding:12px;border-radius:12px;background:#F5F7FA;max-width:100%}.select,button{border:1px solid #D7DEE8;border-radius:11px;padding:11px 14px;background:#FFFFFF;color:var(--text)}button.primary,a.primary{background:linear-gradient(135deg,#2557E8,#1D4ED8);border:0;color:#FFFFFF;font-weight:800;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;box-shadow:0 6px 16px rgba(29,78,216,.25)}a.primary:hover,button.primary:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(29,78,216,.32)}button.secondary,a.secondary{cursor:pointer;border:1.5px solid #C9D2DE;background:#FFFFFF;color:var(--text)}a.secondary:hover,button.secondary:hover{border-color:var(--accent);color:var(--accent)}button:disabled{opacity:.5;cursor:not-allowed}.scoreCard{padding:25px;display:flex;flex-direction:column;justify-content:center}.scoreRing{width:170px;height:170px;border-radius:50%;margin:auto;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--score)*1%),#E4E8EF 0);position:relative}.scoreRing:after{content:"";position:absolute;inset:12px;border-radius:50%;background:#FFFFFF}.scoreNum{position:relative;z-index:1;text-align:center}.scoreNum strong{display:block;font-size:48px;line-height:1}.scoreNum span{color:var(--muted);font-size:12px}.status{margin:15px auto 0;padding:7px 12px;border-radius:999px;background:#EAF0FF;color:var(--accent);font-size:12px;font-weight:700}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:22px;margin:0 0 16px;transition:transform .18s ease,box-shadow .18s ease,outline .2s}.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(15,27,45,.08)}@keyframes growUp{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}.wf{transform-origin:bottom}.wf .col{transform-origin:bottom}@keyframes growWidth{from{width:0}to{}}.metric{padding:17px;border:1px solid var(--line);border-radius:15px;background:rgba(15,27,45,.03)}.metric .label{color:var(--muted);font-size:12px}.metric .value{font-size:25px;font-weight:800;margin-top:5px;letter-spacing:-.5px}.metric .sub{font-size:11px;color:var(--muted);margin-top:5px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:17px}.sectionHead h2{margin:0;font-size:18px}.sectionHead p{margin:0;color:var(--muted);font-size:12px}.flowStep{margin:36px 0 14px;padding-top:6px;border-top:1px solid rgba(15,27,45,.08)}.flowStep:first-child{margin-top:0;border-top:0;padding-top:0}.flowLabel{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin:0 0 4px}.flowLabel .n{width:22px;height:22px;border-radius:50%;background:#EAF0FF;color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:11px}.flowLabel p{margin:0;color:var(--muted);font-size:12.5px;font-weight:500;text-transform:none;letter-spacing:0}.flowLabel.alt{color:var(--accent2)}.flowLabel.alt .n{color:var(--accent2)}.flowSub{color:var(--muted);font-size:12.5px;margin:2px 0 16px 32px}.insight{border:1px solid var(--line);border-radius:15px;padding:16px;background:#F7F9FC}.insight.critical{border-color:#E8B4BD}.insight.high{border-color:#E9CBA8}.insight.medium{border-color:#E5DBA0}.insight.positive{border-color:#A9D9C9}.insight h3{margin:0 0 5px;font-size:14px}.insight p{margin:6px 0;color:#33415C;font-size:13px}.insight ul{margin:6px 0;padding-left:18px;color:#33415C;font-size:13px}.tag{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;background:#EAF0FF;color:#5B6B84}.tag.critical{background:#FCE8EA;color:#C22A3E}.tag.high{background:#FDF0E0;color:#B4720A}.tag.medium{background:#FBF6DE;color:#8A6D00}.tag.positive{background:#E4F5EF;color:#0E7C66}.riskRow,.actionRow{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(15,27,45,.08)}.rank{font-size:18px;font-weight:900;color:#5B6B84}.riskScore{font-size:12px;color:var(--muted)}.bar{height:7px;background:#E4E8EF;border-radius:99px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}.waterfallWrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:10px;margin-bottom:10px}.waterfall{display:flex;align-items:flex-end;gap:9px;height:190px;padding:20px 5px 0;border-bottom:1px solid var(--line);min-width:620px}.wf{flex:1;display:flex;flex-direction:column;justify-content:end;height:100%;min-width:65px}.wf .col{border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#83a4ff,#506fd0);min-height:3px}.wf.neg .col{background:linear-gradient(180deg,#ff8290,#9d3e54)}.wf .lab{font-size:10.5px;font-weight:600;color:var(--muted);text-align:center;margin-top:7px;white-space:nowrap}.wf .num{font-size:10px;font-weight:700;text-align:center;color:#33415C;margin-bottom:4px;white-space:nowrap}.subnavPill{font-size:12px;font-weight:600;color:#475569;text-decoration:none;padding:5px 12px;border-radius:999px;background:#F1F5F9;border:1px solid #E2E8F0;transition:all .15s ease}.subnavPill:hover{background:#E2E8F0;color:#1D4ED8;border-color:#CBD5E1}.dashPill{font-size:11.5px;font-weight:700;color:#475569;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:999px;padding:5px 12px;cursor:pointer;transition:all .15s ease;white-space:nowrap}.dashPill:hover{background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE}.scenario{padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#F5F8FF,#EEF3FC)}.scenario h3{margin:0 0 6px;font-size:15px}.scenario .big{font-size:24px;font-weight:900;color:var(--accent)}.scenario p{color:var(--muted);font-size:11px;margin:6px 0}.muted{color:var(--muted)}.small{font-size:11px}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:10px 8px;border-bottom:1px solid rgba(15,27,45,.08);text-align:right}th:first-child,td:first-child{text-align:left}th{color:#5B6B84;font-weight:600}.notice{padding:12px 14px;border-radius:12px;background:#EEF2FF;border:1px solid var(--line);color:#5B6B84;font-size:12px}.error{color:#C22A3E;background:#FCE8EA;border:1px solid #E8B4BD;padding:12px;border-radius:12px;margin:15px 0}.hidden{display:none!important}.footer{padding:25px 0 50px;color:#5B6B84;font-size:11px;text-align:center}.tabs{display:flex;gap:8px;margin-top:16px}.tab{padding:8px 12px;border-radius:999px;background:#F0F3F8;border:1px solid var(--line);color:#5B6B84;cursor:pointer}.tab.active{background:#DCE6FB;color:var(--accent);border-color:#1D4ED8}.tabPanel{display:none}.tabPanel.active{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.hidePrint{display:block}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chip{font-size:11.5px;background:#EEF2FF;border:1px solid var(--line);border-radius:999px;padding:6px 11px;color:#33415C}.chip b{color:var(--accent)}
 .abar{height:9px;background:#E4E8EF;border-radius:99px;overflow:hidden;margin-top:6px}.abar i{display:block;height:100%;background:linear-gradient(90deg,#8aa7ff,#ff8290);border-radius:99px}
 .custRow{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(15,27,45,.08);font-size:12.5px}
@@ -5021,7 +5035,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </div>
 </div>
 <div id="error" class="error hidden"></div>
-</div><div class="heroCard scoreCard"><div id="scoreRing" class="scoreRing" style="--score:0"><div class="scoreNum"><strong id="score">-</strong><span>Finansal Sağlık Skoru</span></div></div><div id="healthLabel" class="status">Dosya bekleniyor</div>
+</div><div class="heroCard scoreCard"><div id="scoreRing" class="scoreRing" style="--score:0"><div class="scoreNum"><strong id="score">-</strong><span>Finansal Sağlık Skoru</span></div></div><div id="healthLabel" class="status">Dosya bekleniyor</div><button type="button" class="secondary small hidePrint" onclick="openScoreMethodologyModal()" style="margin:10px auto 0;font-size:11px;padding:5px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;cursor:pointer">📐 Skor Metodolojisi &amp; Formül</button>
 <div id="topFocusCard" class="hidden hidePrint" style="margin-top:14px;border-top:1px solid rgba(15,27,45,.10);padding-top:10px;text-align:left"><div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Öncelikli Odak Konuları</div><div id="topFocusList" style="display:flex;flex-direction:column;gap:6px"></div></div>
 <div id="pvPreview" class="hidePrint" style="margin-top:18px;padding-top:16px;border-top:1px solid rgba(15,27,45,.10);text-align:left">
   <div class="pvLabel"><span style="display:inline-flex;align-items:center"><span class="dot"></span>Örnek Rapor Görünümü</span><span style="font-weight:700;color:var(--accent);background:#EFF6FF;padding:3px 10px;border-radius:6px;font-size:11px">⚡ Canlı Karar Motoru</span></div>
@@ -5085,6 +5099,21 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </div>
 </div>
 
+<!-- Sticky Dashboard Sub-Navigation Bar -->
+<div class="dashboardSubNav hidePrint" style="position:sticky;top:64px;z-index:35;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #E2E8F0;padding:10px 0;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;display:flex;gap:7px;white-space:nowrap">
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_1')">1. Finansal Gerçekler</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_2')">2. Kilitli Nakit</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_3')">3. Sektör &amp; Riskler</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_4')">4. Kritik Taraflar</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_5')">5. Kök Neden</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_6')">6. Aksiyonlar</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_7')">7. Vergi Kalkanı</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_8')">8. Senaryo Lab</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_9')">9. Karar Brifingi</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_ekA')">Ek A · Denetim</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_ekB')">Ek B · Mali Tablolar</button>
+</div>
+
 <!-- ==================== BÖLÜM 1: YÖNETİCİ BRİFİNGİ & FİNANSAL RÖNTGEN ==================== -->
 <section id="flowStep_1" class="accordionStep active">
   <div class="accordionHeader" onclick="toggleAccordion('flowStep_1')">
@@ -5112,6 +5141,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
           <div style="font-size:11.5px;color:#64748B;display:flex;align-items:center;gap:8px">
             <span>Deterministik Çift Taraflı Denetim:</span>
             <span id="snapAuditStatus" style="color:#16A34A;font-weight:700;background:#DCFCE7;border:1px solid #BBF7D0;padding:2px 8px;border-radius:6px">✓ %100 Bilanço Denkliği Doğrulandı</span>
+            <button type="button" class="secondary small hidePrint" onclick="openScoreMethodologyModal()" style="font-size:11px;padding:3px 10px;border-radius:6px;font-weight:700;cursor:pointer">📐 Skor Metodolojisi &amp; Formül</button>
           </div>
         </div>
         
@@ -5436,7 +5466,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div class="grid2">
         <div>
           <div class="small muted" style="margin-bottom:8px">Kâr Köprüsü (Şelale)</div>
-          <div id="waterfall" class="waterfall"></div>
+          <div class="waterfallWrap"><div id="waterfall" class="waterfall"></div></div>
         </div>
         <div>
           <div class="small muted" style="margin-bottom:8px">Kâr Kalitesi Metrikleri</div>
@@ -5696,8 +5726,45 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
               <div id="simCccImpact" class="value" style="color:#0E7C66;font-size:19px;font-weight:800">–</div>
               <div class="sub" style="color:#64748B">Çalışma sermayesi çevrimi</div>
             </div>
+            <div class="metric" style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px 14px;grid-column:span 2">
+              <div class="label" style="color:#475569;font-weight:700">Yıllık Finansman Faiz Tasarrufu (Kredi Maliyeti Önleme)</div>
+              <div id="simInterestSavings" class="value" style="color:#B45309;font-size:19px;font-weight:800">0 TL</div>
+              <div id="simInterestSub" class="sub" style="color:#64748B">Sermaye maliyeti %45 ile açığa çıkan nakit getirisi</div>
+            </div>
           </div>
           <div id="simSummaryText" style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px 14px;font-size:12.5px;color:#0F172A;font-weight:500;line-height:1.6">Sürgüleri hareket ettirerek veya yukarıdaki hazır senaryolara tıklayarak şirketin kazanımlarını test edin.</div>
+        </div>
+      </div>
+
+      <!-- Collapsible Simülasyon Varsayımları & Sermaye Maliyeti Parametreleri Panel -->
+      <div style="margin-top:16px;background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:14px 18px">
+        <div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="toggleSimAssumptions()">
+          <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;color:#0F172A">
+            <span>📐</span><span>Simülasyon Varsayımları &amp; Sermaye Maliyeti Parametreleri</span>
+            <span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:10px;font-weight:700">Şeffaf Matematik Modeli</span>
+          </div>
+          <span id="simAssumptionsChevron" style="font-size:12px;color:#64748B">▼</span>
+        </div>
+        <div id="simAssumptionsBody" style="margin-top:14px;padding-top:14px;border-top:1px solid #F1F5F9">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+                <span style="font-weight:700;color:#334155">Şirket Sermaye / Kredi Faiz Maliyeti (WACC / Borçlanma Oranı)</span>
+                <b id="simCostOfCapitalVal" style="color:var(--accent);font-size:13px">%45.0</b>
+              </div>
+              <input id="simCostOfCapital" type="range" min="15" max="75" value="45" step="1" style="width:100%;cursor:pointer">
+              <div style="font-size:11px;color:#64748B;margin-top:6px;line-height:1.4">
+                Türkiye KOBİ ticari kredi / rotatif faiz oranları referans alınarak varsayılan %45 belirlenmiştir. Kendi banka borçlanma veya sermaye maliyetinize göre sürgüyü ayarlayabilirsiniz.
+              </div>
+            </div>
+            <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 14px;font-size:11.5px;color:#334155;line-height:1.6">
+              <div style="font-weight:800;color:#0F172A;margin-bottom:4px">Kullanılan Formül Mimarisi:</div>
+              <div>• <b>DSO Nakit Girişi:</b> (DSO Azalış Gün / 365) × Yıllık Net Satışlar</div>
+              <div>• <b>DIO Nakit Çözümü:</b> (DIO Azalış Gün / 365) × Satılan Malın Maliyeti (SMM)</div>
+              <div>• <b>Faiz Tasarrufu:</b> Toplam Serbest Kalan Nakit × Sermaye Maliyeti (%)</div>
+              <div>• <b>Faaliyet Kâr Katkısı:</b> (Marj Artışı % × Satış) + (OpEx Tasarruf % × Faaliyet Gideri)</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -5833,6 +5900,31 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       </div>
     </div>
     <div id="boardDeckContent" style="padding:22px;overflow-y:auto;flex:1"></div>
+  </div>
+</div>
+
+<!-- Finansal Sağlık Skoru Metodolojisi & Formül Modalı -->
+<div id="scoreMethodologyModal" class="hidden hidePrint" style="position:fixed;inset:0;background:rgba(15,27,45,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;overflow-y:auto">
+  <div style="background:#FFFFFF;border-radius:18px;max-width:780px;width:100%;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 25px 60px rgba(0,0,0,0.3);overflow:hidden">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:1px solid #E2E8F0;background:#F8FAFC">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:20px">📐</span>
+        <div>
+          <h3 id="methodologyModalTitle" style="margin:0;font-size:16px;color:#0F1B2D;font-weight:800">Finansal Sağlık Skoru Metodolojisi &amp; Ağırlık Dağılımı</h3>
+          <p style="margin:0;font-size:11.5px;color:#64748B">5 Temel Boyut &bull; Deterministik Kural Tabanlı Kompozit Skor (Maks. 100 Puan)</p>
+        </div>
+      </div>
+      <button type="button" onclick="closeScoreMethodologyModal()" style="background:none;border:none;font-size:22px;color:#64748B;cursor:pointer;padding:4px 8px">✕</button>
+    </div>
+    <div style="padding:22px;overflow-y:auto;flex:1">
+      <div id="methodologyModalDesc" style="font-size:12px;color:#475569;line-height:1.6;margin-bottom:18px;background:#F8FAFC;padding:12px 16px;border-radius:12px;border:1.5px solid #E2E8F0">
+        Finansal Sağlık Skoru bir kara kutu veya sübjektif AI tahmini değildir; 5 temel kurumsal finans boyutunu ölçen kural tabanlı, deterministik bir kompozit skorlama modelidir.
+      </div>
+      <div id="methodologyPillarsList" style="display:flex;flex-direction:column;gap:12px"></div>
+    </div>
+    <div style="padding:14px 22px;border-top:1px solid #E2E8F0;background:#F8FAFC;display:flex;justify-content:flex-end">
+      <button type="button" class="primary" style="padding:8px 22px;border-radius:10px;font-size:13px;font-weight:700" onclick="closeScoreMethodologyModal()">Tamam, Kapat</button>
+    </div>
   </div>
 </div>
 
@@ -6281,6 +6373,87 @@ function collapseAllSteps(){
 }
 window.collapseAllSteps = collapseAllSteps;
 
+function jumpToFlowStep(id){
+  const el = $(id);
+  if(!el) return;
+  if(!el.classList.contains('active')){
+    el.classList.add('active');
+  }
+  const topPos = el.getBoundingClientRect().top + window.pageYOffset - 110;
+  window.scrollTo({top: Math.max(0, topPos), behavior: 'smooth'});
+}
+window.jumpToFlowStep = jumpToFlowStep;
+
+function goToDataHubTab(){
+  if($('hubTabBtn')) $('hubTabBtn').click();
+  const topEl = $('hubTabBtn') || document.querySelector('.tabs') || $('heroSection');
+  if(topEl) topEl.scrollIntoView({behavior:'smooth', block:'center'});
+}
+window.goToDataHubTab = goToDataHubTab;
+
+function toggleSimAssumptions(){
+  const body = $('simAssumptionsBody');
+  const chev = $('simAssumptionsChevron');
+  if(!body) return;
+  const isHidden = body.style.display === 'none';
+  body.style.display = isHidden ? 'block' : 'none';
+  if(chev) chev.textContent = isHidden ? '▼' : '▶';
+}
+window.toggleSimAssumptions = toggleSimAssumptions;
+
+function openScoreMethodologyModal(){
+  const modal = $('scoreMethodologyModal');
+  if(!modal) return;
+  modal.classList.remove('hidden');
+  const meth = (LAST && LAST.business_partner && LAST.business_partner.health_score_methodology) ? LAST.business_partner.health_score_methodology : null;
+  renderScoreMethodology(meth);
+}
+window.openScoreMethodologyModal = openScoreMethodologyModal;
+
+function closeScoreMethodologyModal(){
+  const modal = $('scoreMethodologyModal');
+  if(modal) modal.classList.add('hidden');
+}
+window.closeScoreMethodologyModal = closeScoreMethodologyModal;
+
+function renderScoreMethodology(meth){
+  const list = $('methodologyPillarsList');
+  if(!list) return;
+  if(meth && meth.pillars && meth.pillars.length){
+    list.innerHTML = meth.pillars.map(p => {
+      const pctWidth = Math.min(100, Math.max(0, (p.earned_points / p.max_points) * 100));
+      return '<div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:16px;box-shadow:0 2px 6px rgba(0,0,0,0.02)">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px">' +
+          '<div style="display:flex;align-items:center;gap:8px">' +
+            '<span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-weight:800;font-size:11px">Ağırlık: %' + p.weight_pct + '</span>' +
+            '<b style="font-size:13.5px;color:#0F172A">' + esc(p.name) + '</b>' +
+          '</div>' +
+          '<div style="font-size:13px;font-weight:800;color:#0F172A">' +
+            '<span style="color:#1D4ED8;font-size:16px">' + p.earned_points + '</span> / ' + p.max_points + ' Puan' +
+          '</div>' +
+        '</div>' +
+        '<div style="height:6px;background:#F1F5F9;border-radius:99px;overflow:hidden;margin-bottom:10px">' +
+          '<div style="width:' + pctWidth + '%;height:100%;background:linear-gradient(90deg,#2563EB,#3B82F6);border-radius:99px"></div>' +
+        '</div>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:11.5px;background:#F8FAFC;padding:10px 12px;border-radius:10px;border:1px solid #EDF2F7">' +
+          '<div><span style="color:#64748B;font-weight:600">Ölçülen Temel Metrik:</span> <b style="color:#334155">' + esc(p.metric_basis) + '</b></div>' +
+          '<div><span style="color:#64748B;font-weight:600">Puanlama Kuralı:</span> <span style="color:#334155">' + esc(p.formula) + '</span></div>' +
+        '</div>' +
+        '<div style="font-size:11.5px;color:#64748B;margin-top:8px;line-height:1.4">' + esc(p.evaluation) + '</div>' +
+      '</div>';
+    }).join('');
+  } else {
+    list.innerHTML = [
+      { name: '1. Veri Güvenilirliği & Bilanço Denkliği', weight: 15, basis: 'Bilanço eşitliği & hesap tutarlılığı', rule: 'Aktif = Pasif denkliği ve hesap planı kontrolü', desc: 'Bilanço eşitliği, aktif/pasif mutabakatı ve hesap planı tutarlılığı.' },
+      { name: '2. Likidite & Kısa Vadeli Ödeme Gücü', weight: 20, basis: 'Cari Oran & Nakit Oranı', rule: 'Cari oran (max 10p) + Nakit oranı (max 10p)', desc: 'Vadesi gelen kısa vadeli borçların dönen ve nakit varlıklarla karşılanabilme gücü.' },
+      { name: '3. Kaldıraç & Finansman Yükü', weight: 25, basis: 'Borç/Özkaynak & Fin. Gideri/FVÖK', rule: 'Borç/Özkaynak (max 12p) + Fin. Gideri/Kâr (max 13p)', desc: 'Faaliyet kârının finansman giderlerini karşılama kapasitesi ve özkaynak emniyet marjı.' },
+      { name: '4. Faaliyet & Net Kârlılık', weight: 25, basis: 'Faaliyet Marjı & Net Kâr Marjı', rule: 'Faaliyet Marjı (max 13p) + Net Kâr Marjı (max 12p)', desc: 'Satışların faaliyet seviyesinde ve net dönem seviyesinde kâra dönüşüm başarısı.' },
+      { name: '5. Varlık Verimliliği & Sermaye Gücü', weight: 15, basis: 'Aktif Devir Hızı & Özkaynak Oranı', rule: 'Aktif Devir Hızı (max 8p) + Özkaynak/Aktif (max 7p)', desc: 'Bağlı aktiflerin ciro üretme hızı ve şirketin varlıklarını finanse eden özkaynak payı.' }
+    ].map(p => '<div style="background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:12px;padding:14px"><div style="display:flex;justify-content:space-between;font-weight:700;font-size:13px;color:#0F172A;margin-bottom:6px"><span>' + p.name + '</span><span class="tag" style="background:#EFF6FF;color:#1D4ED8">Ağırlık: %' + p.weight + '</span></div><div style="font-size:11.5px;color:#334155;line-height:1.5"><p style="margin:0 0 4px"><b>Metrik / Formül:</b> ' + p.basis + ' &bull; ' + p.rule + '</p><p style="margin:0;color:#64748B">' + p.desc + '</p></div></div>').join('');
+  }
+}
+window.renderScoreMethodology = renderScoreMethodology;
+
 function render(d){
   LAST=d;$('dashboard').classList.remove('hidden');
   const bp=d.business_partner,pl=d.statements.profit_and_loss,bs=d.statements.balance_sheet,k=d.statements.kpis;
@@ -6349,7 +6522,7 @@ function render(d){
         '<div class="sub">Kapanış Mevcut Nakit</div>' +
       '</div>' +
     '</div>';
-    $('cashFlow').innerHTML = cbSummary + '<div id="cashFlowWf" class="waterfall"></div><div class="notice" style="margin-top:12px;font-size:12px"><b>Nakit Akış Yorumu:</b> Kasa ' + money(cb.opening_cash) + ' seviyesinden ' + money(cb.closing_cash) + ' seviyesine ' + (isPos ? 'yükselmiştir (+ ' : 'gerilemiştir (– ') + money(Math.abs(cb.cash_change)) + '). ' + esc(cb.note||'') + '</div>';
+    $('cashFlow').innerHTML = cbSummary + '<div class="waterfallWrap"><div id="cashFlowWf" class="waterfall"></div></div><div class="notice" style="margin-top:12px;font-size:12px"><b>Nakit Akış Yorumu:</b> Kasa ' + money(cb.opening_cash) + ' seviyesinden ' + money(cb.closing_cash) + ' seviyesine ' + (isPos ? 'yükselmiştir (+ ' : 'gerilemiştir (– ') + money(Math.abs(cb.cash_change)) + '). ' + esc(cb.note||'') + '</div>';
     waterfall('cashFlowWf',[['Açılış Nakit',cb.opening_cash,false],['Faaliyet Kârı',cb.operating_profit,false],['Alacak Etkisi',cb.working_capital_components?.receivables_effect,cb.working_capital_components?.receivables_effect<0],['Stok Etkisi',cb.working_capital_components?.inventory_effect,cb.working_capital_components?.inventory_effect<0],['Tedarikçi Borç Etkisi',cb.working_capital_components?.payables_effect,cb.working_capital_components?.payables_effect<0],['Finansal Borç Δ',cb.debt_change,cb.debt_change<0],['Açıklanmayan',cb.unexplained_cash_change,cb.unexplained_cash_change<0],['Kapanış Nakit',cb.closing_cash,false]]);
   } else {
     const wp = cb.working_capital_proxy || {};
@@ -8472,9 +8645,18 @@ function renderUnifiedRootCauseSection(rc, ne){
         '<ul style="margin:0;padding-left:18px;font-size:12px;color:#14532D;line-height:1.5">' +
           (item.actions.length ? item.actions.map(a => '<li>' + esc(a) + '</li>').join('') : '<li>Sözleşme şartlarını ve operasyonel iş akışını güncelleyin.</li>') +
         '</ul>' +
-      '</div>' +
-
-      (item.data_gap ? '<div class="small muted" style="margin-top:8px;font-size:11px">⚠️ <b>Ek Kanıt İhtiyacı:</b> ' + esc(item.data_gap) + '</div>' : '') +
+      (item.data_gap ? 
+        '<div style="margin-top:10px;padding:10px 14px;background:#F8FAFC;border:1.5px dashed #94A3B8;border-radius:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">' +
+          '<div style="flex:1;min-width:240px">' +
+            '<div style="font-size:11px;font-weight:800;color:#334155;text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:5px">' +
+              '<span>🔍</span><span>Kök Neden Doğrulama &amp; Alt Defter İhtiyacı:</span>' +
+            '</div>' +
+            '<div style="font-size:11.5px;color:#475569;margin-top:2px;line-height:1.4">' + esc(item.data_gap) + '</div>' +
+          '</div>' +
+          '<button type="button" class="secondary hidePrint" style="font-size:11px;padding:6px 12px;border-radius:8px;font-weight:700;display:inline-flex;align-items:center;gap:5px;cursor:pointer" onclick="goToDataHubTab()">' +
+            '<span>📤</span><span>Defteri Data Hub\'a Yükle →</span>' +
+          '</button>' +
+        '</div>' : '') +
     '</div>';
   }).join('');
 }
@@ -8506,15 +8688,19 @@ function setupInteractiveScenario(d){
     const dioDays=Number($('sliderDio')?$('sliderDio').value:0);
     const marginDeltaPct=Number($('sliderMargin').value);
     const opexCutPct=Number($('sliderOpex').value);
+    const waccPct=Number($('simCostOfCapital')?$('simCostOfCapital').value:45.0);
 
     $('sliderDsoVal').textContent=dsoDays+' gün';
     if($('sliderDioVal')) $('sliderDioVal').textContent=dioDays+' gün';
     $('sliderMarginVal').textContent='+'+marginDeltaPct.toFixed(1)+'%';
     $('sliderOpexVal').textContent=opexCutPct+'%';
+    if($('simCostOfCapitalVal')) $('simCostOfCapitalVal').textContent='%'+waccPct.toFixed(1);
 
     const cashFromDso = sales > 0 ? (dsoDays / daysInYear) * sales : 0;
     const cashFromDio = cogs > 0 ? (dioDays / daysInYear) * cogs : 0;
     const totalCashImpact = cashFromDso + cashFromDio;
+
+    const interestSavings = totalCashImpact * (waccPct / 100.0);
 
     const profitFromMargin = (marginDeltaPct / 100.0) * sales;
     const profitFromOpex = (opexCutPct / 100.0) * opex;
@@ -8526,12 +8712,15 @@ function setupInteractiveScenario(d){
 
     $('simCashImpact').textContent=(totalCashImpact>=0?'+':'')+money(totalCashImpact);
     $('simProfitImpact').textContent=(totalProfitImpact>=0?'+':'')+money(totalProfitImpact);
+    if($('simInterestSavings')) $('simInterestSavings').textContent=(interestSavings>=0?'+':'')+money(interestSavings);
+    if($('simInterestSub')) $('simInterestSub').textContent='Sermaye maliyeti %'+waccPct.toFixed(0)+' ile açığa çıkan nakit faiz kalkanı';
     if($('simMarginImpact')) $('simMarginImpact').textContent='%' + newMargin.toFixed(1) + (marginDeltaPct>0 || opexCutPct>0 ? ' (+' + (newMargin - curMargin).toFixed(1) + 'p)' : '');
     if($('simCccImpact')) $('simCccImpact').textContent=newCcc!=null ? (Math.round(newCcc) + ' gün' + ((dsoDays+dioDays)>0 ? ' (-' + (dsoDays+dioDays) + 'g)' : '')) : '–';
 
     let narrative=[];
     if(dsoDays>0) narrative.push('Alacakların '+dsoDays+' gün erken tahsili kasaya <b>'+money(cashFromDso)+'</b> nakit girişi sağlar.');
     if(dioDays>0) narrative.push('Stok devrini '+dioDays+' gün hızlandırmak depodan <b>'+money(cashFromDio)+'</b> nakit çözer.');
+    if(interestSavings>0) narrative.push('Açığa çıkan toplam nakit sayesinde yıllık <b>'+money(interestSavings)+'</b> kredi faiz maliyetinden tasarruf edilir (%'+waccPct.toFixed(0)+' sermaye maliyeti).');
     if(marginDeltaPct>0) narrative.push('Fiyat/marj yönetimindeki %'+marginDeltaPct.toFixed(1)+' artış yıllık faaliyet kârına <b>'+money(profitFromMargin)+'</b> ekler.');
     if(opexCutPct>0) narrative.push('Faaliyet giderlerindeki %'+opexCutPct+' tasarruf doğrudan P&L kârına <b>'+money(profitFromOpex)+'</b> yansır.');
 
@@ -8539,7 +8728,7 @@ function setupInteractiveScenario(d){
   }
 
   window._updateSim = updateSim;
-  ['sliderDso','sliderDio','sliderMargin','sliderOpex'].forEach(id=>{
+  ['sliderDso','sliderDio','sliderMargin','sliderOpex','simCostOfCapital'].forEach(id=>{
     const el=$(id); if(el) el.oninput=updateSim;
   });
   updateSim();
