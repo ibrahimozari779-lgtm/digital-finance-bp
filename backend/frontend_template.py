@@ -5213,11 +5213,53 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div id="exec" class="insight"></div>
       <div id="execChips" class="chips"></div>
       <div id="execDecision" style="margin-top:14px"></div>
-      <div style="margin-top:14px">
-        <button id="aiBtn" class="secondary hidePrint">✨ AI Finance Partner yorumunu üret (opsiyonel, LLM)</button>
-        <button id="boardDeckBtn" type="button" class="secondary hidePrint" style="border-color:#1D4ED8;color:#1D4ED8;font-weight:700">📑 1-Sayfalık Yönetim Kurulu Özeti (Board One-Pager)</button>
-        <button id="printBtn" class="secondary hidePrint">Raporu yazdır / PDF</button>
-        <button id="jsonBtn" class="secondary hidePrint">JSON indir</button>
+      <div style="margin-top:18px;padding:16px;background:linear-gradient(135deg,#EFF6FF 0%,#F8FAFC 100%);border:1.5px solid #BFDBFE;border-radius:16px" class="hidePrint">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+          <div>
+            <span style="font-size:11px;font-weight:800;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase">📑 RAPOR ÇIKTI MERKEZİ · 2 SEVİYELİ KARAR RAPORU</span>
+            <div style="font-size:14px;font-weight:800;color:#0F172A;margin-top:2px">Patron Özeti veya Detaylı Finansal Röntgen Raporu Alın</div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button id="aiBtn" class="secondary hidePrint" style="font-size:12px;padding:7px 12px">✨ AI Finance Partner yorumunu üret (opsiyonel, LLM)</button>
+            <button id="jsonBtn" class="secondary hidePrint" style="font-size:12px;padding:7px 12px">JSON İndir</button>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <!-- Seviye 1: Patron & Board Deck -->
+          <div style="background:#FFFFFF;border:1.5px solid #2563EB;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(37,99,235,0.08)">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">PATRON &amp; YÖNETİM KURULU</span>
+                <span style="font-size:11px;font-weight:700;color:#16A34A">⏱️ 30 Saniye</span>
+              </div>
+              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A">2 Sayfalık Yönetim Kurulu Karar Brifingi</h4>
+              <p style="margin:0;font-size:12px;color:#64748B;line-height:1.45">Durum, Para Nerede, Öncelikli Riskler ve Yarın Masaya Konacak Yönetim Kararlarını içeren tek bakışta A4 karar belgesi.</p>
+            </div>
+            <div style="margin-top:12px">
+              <button id="boardDeckBtn" type="button" class="primary" style="width:100%;padding:9px 14px;border-radius:10px;font-size:13px;font-weight:800;background:#1D4ED8;color:#FFFFFF;cursor:pointer">
+                📑 2 Sayfalık Yönetim Brifingini Aç / İndir →
+              </button>
+            </div>
+          </div>
+
+          <!-- Seviye 2: CFO Deep Dive -->
+          <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,0.03)">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                <span class="workflowBadge" style="background:#F1F5F9;color:#475569;border-color:#CBD5E1;margin:0">CFO &amp; DETAYLI RÖNTGEN</span>
+                <span style="font-size:11px;font-weight:700;color:#64748B">📊 23 Sayfa</span>
+              </div>
+              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A">Detaylı Finansal Röntgen &amp; Karar Raporu</h4>
+              <p style="margin:0;font-size:12px;color:#64748B;line-height:1.45">33 Karar Motoru, DuPont kâr köprüsü, müşteri/ürün kârlılık matrisi, stok yaşlandırma ve tüm analitik ekler.</p>
+            </div>
+            <div style="margin-top:12px">
+              <button id="printBtn" type="button" class="secondary" style="width:100%;padding:9px 14px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer">
+                🖨️ 23 Sayfalık Detaylı Raporu Yazdır / PDF
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
       <div id="aiBox" class="notice hidden" style="margin-top:12px"></div>
       <div id="methodNote" class="notice" style="margin-top:12px"></div>
@@ -6450,7 +6492,7 @@ function leverageNarrative(findings, k, bs, pl, bp){
   // 3. Faiz Karşılama ve Tavsiye
   if(finToOpPct != null && finToOpPct > 15){
     html += '<div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:8px;padding:8px 10px;margin-top:6px;color:#991B1B">' +
-      '⚡ <b>Faiz Baskısı &amp; Kâr Aşınması:</b> Esas faaliyet kârının yaklaşık <b>%' + num(finToOpPct) + '\u0027i finansman giderlerine (banka faizlerine)</b> gitmektedir. Kısa vadeli spot/rotatif kredilerin uzun vadeli taksitli kredilerle refinanse edilmesi ve kâr payı dağıtımı yerine özkaynak güçlendirme aksiyonu şarttır.</div>';
+      '⚡ <b>Faiz Baskısı &amp; Kâr Aşınması:</b> Esas faaliyet kârının yaklaşık <b>%' + num(finToOpPct) + '\u0027i finansman giderlerine [Mizandaki 780 Finansman Gideri]</b> gitmektedir. Likidite tamponunun korunması ve finansal riskin dengelenmesi amacıyla; kısa vadeli spot kredilerin uzun vadeli taksitli yapıyla dengelenmesi ve kâr dağıtımı yerine özkaynak güçlendirme seçeneği öncelikli yönetim senaryosu olarak değerlendirilmelidir.</div>';
   }
 
   html += '</div>';
@@ -6677,7 +6719,7 @@ function render(d){
     const crTier=(crp>=80 && cb.operating_cash_flow_proxy>0)?'positive':(crp>=50 && cb.operating_cash_flow_proxy>0)?'medium':crp>0?'high':'critical';
     let crExpl='';
     if(crp<=0 || cb.operating_cash_flow_proxy<=0){
-      crExpl='⚠️ <b>Defterde '+money(cb.net_profit)+' net kâr görünmesine rağmen, işletme nakit akışı '+money(cb.operating_cash_flow_proxy)+' negatiftir (%0 nakit gerçekleşmesi).</b> Net kârın tamamı ve fazlası alacaklarda ('+money(cb.working_capital_components?.receivables_effect)+') ve depodaki stokta ('+money(cb.working_capital_components?.inventory_effect)+') kilitlenmiştir. Kasa bu kârı görememiş, işletme operasyonel nakit açığı vermiştir. Acil tahsilat hızlandırma ve ölü stok eritme aksiyonu şarttır.';
+      crExpl='⚠️ <b>Defterde '+money(cb.net_profit)+' net kâr görünmesine rağmen, işletme nakit akışı '+money(cb.operating_cash_flow_proxy)+' negatiftir (Net Kârın Nakde Dönüşümü: Negatif).</b> Net kârın tamamı ve ilave nakit alacaklarda ('+money(cb.working_capital_components?.receivables_effect)+') ve depodaki stokta ('+money(cb.working_capital_components?.inventory_effect)+') kilitlenmiştir. Kasa bu kârı görememiş, işletme operasyonel nakit açığı vermiştir. Tahsilat vadelerinin kısaltılması ve atıl stokların eritilmesi öncelikli yönetim kararı olarak değerlendirilmelidir.';
     } else if(crp<80){
       crExpl='Faaliyet kârı '+money(cb.operating_profit)+', net kâr '+money(cb.net_profit)+'; alacak/stok/borç hareketleri dahil edildiğinde işletme faaliyet nakdi '+money(cb.operating_cash_flow_proxy)+' oluyor — yani defter kârının yaklaşık <b>%'+crp+'\u0027i</b> fiilen kasaya giriyor. Kalan tutar müşteride veya depoda bağlı kalmaktadır.';
     } else {
@@ -6761,14 +6803,14 @@ function render(d){
         '<div style="background:#FFFFFF;border:1px solid #FFE4E6;border-radius:10px;padding:10px 12px">' +
           '<div style="font-size:11px;color:#64748B">Aylık Gizli Faiz Yükü:</div>' +
           '<b style="font-size:14px;color:#BE123C">-' + money(wcLeak.monthly_interest_leakage || 0) + ' / Ay</b>' +
-          '<div style="font-size:11px;color:#64748B;margin-top:2px">Gösterge: %' + (wcLeak.indicative_borrowing_rate_pct || 48) + ' Faaliyet/Kredi</div>' +
+          '<div style="font-size:11px;color:#64748B;margin-top:2px">[İşletme Sermayesi Fırsat Maliyeti · Gösterge %' + (wcLeak.indicative_borrowing_rate_pct || 45) + ' Kredi Faizi]</div>' +
         '</div>' +
       '</div>' +
     '</div>';
   }
 
   $('benchmark').innerHTML='<div class="insight positive" style="margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">'
-    +'<div><b>🏛️ Kurumsal Kıyaslama Kaynağı:</b> <span class="muted">'+esc(instRef)+'</span></div>'
+    +'<div><b>🏛️ Kurumsal Kıyaslama Kaynağı:</b> <span class="muted">'+esc(instRef)+' (TCMB &amp; BIST 2024 Veri Tabanı)</span></div>'
     +'<div class="small">Sektör: <b>'+esc(bm.sector||'Genel')+'</b> · Konum: <span class="tag '+(bm.overall_score>=70?'positive':bm.overall_score>=50?'medium':'critical')+'">'+esc(bm.overall_label)+' ('+esc(bm.overall_score)+'/100)</span></div>'
     +'</div>'
     +'<div class="tableWrap" style="margin-top:8px"><table><thead><tr><th>Gösterge</th><th>Şirket Değeri</th><th>Sektör Bandı (Düşük / Medyan / Yüksek)</th><th>Sektöre Göre Konum</th></tr></thead><tbody>'
@@ -8145,7 +8187,7 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
     if(cb?.available && crp != null){
       const crpDisplay = Math.max(0, Math.min(100, Math.round(crp)));
       if(crp <= 0 || (ocf != null && ocf <= 0)){
-        snapProfitVal.innerHTML = '<span style="color:#DC2626">%0</span> <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Realizasyonu (Kilitli)</span>';
+        snapProfitVal.innerHTML = '<span style="color:#DC2626">Negatif</span> <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Dönüşümü (İşletme Nakit Açığı)</span>';
         snapProfitDesc.textContent = 'Defterde ' + money(netIncome) + ' net kâr var ancak işletme nakit akışı eksiye (' + money(ocf) + ') düşmüş. Kârın tamamı alacak ve stokta kilitli.';
       } else if(crpDisplay < 50){
         snapProfitVal.innerHTML = '<span style="color:#DC2626">%' + crpDisplay + '</span> <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Realizasyonu</span>';
