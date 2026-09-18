@@ -7306,6 +7306,23 @@ window.openErpMappingModal = function(filename){
     previewTableHtml = '<div style="font-size:12px;color:#64748B;padding:8px">Önizleme verisi mevcut değil.</div>';
   }
 
+  const rowAnomalies = info.row_anomalies || (info.primary && info.primary.row_anomalies) || [];
+  let anomaliesHtml = '';
+  if(rowAnomalies && rowAnomalies.length > 0){
+    anomaliesHtml = '<div style="margin-bottom:18px;background:#FEF2F2;border:1.5px solid #FCA5A5;border-radius:10px;padding:12px 16px">' +
+      '<div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:#991B1B;margin-bottom:6px">' +
+        '<span>⚠️</span><span>Tespit Edilen Satır Bazlı Format Hataları (' + rowAnomalies.length + ' Satır):</span>' +
+      '</div>' +
+      '<p style="margin:0 0 8px 0;font-size:11.5px;color:#7F1D1D">Aşağıdaki satırlarda standart dışı hesap kodu tespit edildi. Sistem analizde bu satırları izole eder; ancak dosyanızı Excel üzerinde de kontrol etmeniz önerilir:</p>' +
+      '<div style="display:flex;flex-direction:column;gap:6px">' +
+        rowAnomalies.slice(0, 5).map(a => '<div style="background:#FFFFFF;border:1px solid #FECDD3;border-radius:6px;padding:6px 10px;font-size:11.5px;display:flex;justify-content:space-between;align-items:center">' +
+          '<div><span style="background:#FEE2E2;color:#991B1B;font-weight:800;padding:2px 6px;border-radius:4px;margin-right:6px">Satır ' + esc(a.line_number) + '</span><b style="color:#0F172A">"' + esc(a.raw_value) + '"</b> <span style="color:#475569">(' + esc(a.reason) + ')</span></div>' +
+          '<span style="color:#047857;font-size:11px">💡 ' + esc(a.suggestion) + '</span>' +
+        '</div>').join('') +
+      '</div>' +
+    '</div>';
+  }
+
   m.innerHTML = '<div style="background:#FFFFFF;border-radius:18px;max-width:820px;width:100%;max-height:90vh;overflow-y:auto;padding:26px;box-shadow:0 25px 60px rgba(0,0,0,0.3);position:relative;border:1px solid #E2E8F0">' +
     '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid #E2E8F0;padding-bottom:12px">' +
       '<div>' +
@@ -7366,6 +7383,7 @@ window.openErpMappingModal = function(filename){
       '<h4 style="margin:0 0 6px 0;font-size:13px;color:#0F1B2D;font-weight:700">👀 Dosyadan Ham Veri Önizleme (İlk ' + previewRows.length + ' Satır)</h4>' +
       previewTableHtml +
     '</div>' +
+    anomaliesHtml +
 
     '<div style="display:flex;justify-content:flex-end;gap:10px;padding-top:14px;border-top:1px solid #E2E8F0">' +
       '<button type="button" class="primary" style="padding:10px 24px;font-size:13px;font-weight:700;border-radius:10px;cursor:pointer" onclick="closeErpMappingModal()">✅ Eşleştirmeyi Onayla ve Kapat</button>' +
@@ -7713,6 +7731,37 @@ function openBoardDeckModal(){
   html += '</div>';
   html += '</div>';
   html += '</div>';
+
+  // Macro & Stress Intelligence Bar
+  const inf = bp.inflation_adjustment_engine;
+  const stress = bp.liquidity_stress_testing_engine;
+  let macroIntelHtml = '';
+  if(inf || stress){
+    macroIntelHtml = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">';
+    if(inf){
+      const isEroding = inf.is_capital_eroding;
+      macroIntelHtml += '<div style="background:' + (isEroding?'#FFFBEB':'#F0FDF4') + ';border:1px solid ' + (isEroding?'#FDE68A':'#BBF7D0') + ';border-radius:10px;padding:10px 12px">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">' +
+          '<b style="font-size:11px;color:' + (isEroding?'#92400E':'#166534') + '">🔥 Enflasyon Düzeltmeli Kâr Röntgeni</b>' +
+          '<span class="tag ' + (inf.real_economic_profit<0?'critical':'positive') + '" style="font-size:10px">Reel: ' + money(inf.real_economic_profit) + '</span>' +
+        '</div>' +
+        '<div style="font-size:11px;color:#475569;line-height:1.4">Nominal: ' + money(inf.nominal_net_profit) + ' &bull; Fiktif Stok Kârı: ' + money(inf.phantom_inventory_profit) + ' &bull; Sermaye Koruma: ' + (isEroding ? '<b style="color:#DC2626">Açık ' + money(inf.capital_erosion_amount) + '</b>' : 'Sağlandı') + '</div>' +
+      '</div>';
+    }
+    if(stress){
+      const isDef = stress.scenario_60d?.is_deficit;
+      macroIntelHtml += '<div style="background:' + (isDef?'#FEF2F2':'#F0FDF4') + ';border:1px solid ' + (isDef?'#FCA5A5':'#BBF7D0') + ';border-radius:10px;padding:10px 12px">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">' +
+          '<b style="font-size:11px;color:' + (isDef?'#991B1B':'#166534') + '">⚡ Likidite Stres &amp; Şok Testi</b>' +
+          '<span class="tag ' + (isDef?'critical':'positive') + '" style="font-size:10px">60G Şok: ' + (isDef?'Nakit Açığı':'Güvenli') + '</span>' +
+        '</div>' +
+        '<div style="font-size:11px;color:#475569;line-height:1.4">İlk 3 Cari Riski: ' + money(stress.top_shock_amount) + ' &bull; Normal Dayanma: ' + stress.runway_days_normal + 'g &bull; Şok Dayanma: <b style="color:' + (isDef?'#DC2626':'#059669') + '">' + stress.runway_days_stressed + 'g</b></div>' +
+      '</div>';
+    }
+    macroIntelHtml += '</div>';
+  }
+
+  html += macroIntelHtml;
 
   // Bottom: Management Action Plan
   html += '<div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:14px">';
