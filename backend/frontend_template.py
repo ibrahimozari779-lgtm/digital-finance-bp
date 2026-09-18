@@ -497,6 +497,47 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 /* ---- Ghost button styling for secondary CTA ---- */
 .ctaRow a.ghostBtn{background:transparent;border:1.5px solid #CBD5E1;color:#475569;font-weight:700;padding:15px 24px;border-radius:14px;font-size:15px;text-decoration:none;transition:all .2s ease;display:inline-flex;align-items:center;gap:8px}
 .ctaRow a.ghostBtn:hover{border-color:#1D4ED8;color:#1D4ED8;background:#EFF6FF}
+
+/* ---- Dual Gates (Kapı A & Kapı B) ---- */
+.ctaDualGates{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0 16px}
+.gateCard{text-decoration:none;display:flex;flex-direction:column;gap:6px;padding:16px 20px;border-radius:16px;transition:all .22s cubic-bezier(0.16,1,0.3,1);position:relative}
+.gateCard.gateA{background:#FFFFFF;border:2px solid #2563EB;box-shadow:0 8px 24px rgba(37,99,235,0.10)}
+.gateCard.gateA:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(37,99,235,0.22);border-color:#1D4ED8}
+.gateCard.gateB{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);border:2px solid #1D4ED8;box-shadow:0 8px 24px rgba(29,78,216,0.28);color:#FFFFFF}
+.gateCard.gateB:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(29,78,216,0.38);border-color:#3B82F6}
+@media(max-width:680px){.ctaDualGates{grid-template-columns:1fr}}
+
+/* ---- Interactive What-If Live Laboratory ---- */
+.whatIfLabCard{background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%);border:1.5px solid #CBD5E1;border-radius:24px;padding:28px;box-shadow:0 14px 36px rgba(15,27,45,.06);margin-top:20px}
+.labGrid{display:grid;grid-template-columns:1.25fr 0.95fr;gap:24px;align-items:center}
+@media(max-width:960px){.labGrid{grid-template-columns:1fr}}
+.labControls{display:flex;flex-direction:column;gap:16px}
+.labSliderRow{background:#FFFFFF;border:1px solid #E2E8F0;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(15,27,45,.02);display:flex;flex-direction:column;gap:8px}
+.labSliderHead{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;color:#0F172A}
+.labBadgeVal{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;padding:3px 10px;border-radius:8px;font-size:12.5px;font-weight:800}
+.labRange{width:100%;height:6px;accent-color:#1D4ED8;cursor:pointer;margin:4px 0}
+.labPresets{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.labPresetBtn{background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;border-radius:999px;padding:5px 12px;font-size:11.5px;font-weight:700;cursor:pointer;transition:all .15s ease}
+.labPresetBtn:hover{background:#E2E8F0;color:#0F172A}
+.labPresetBtn.active{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8}
+.labVaultCard{background:radial-gradient(ellipse at top left,#1E293B 0%,#0F172A 100%);border-radius:20px;padding:26px;color:#FFFFFF;box-shadow:0 16px 40px rgba(15,23,42,.35);border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.labVaultCard::before{content:"";position:absolute;top:-50%;right:-50%;width:100%;height:100%;background:radial-gradient(circle,rgba(52,211,153,.12) 0%,transparent 70%);pointer-events:none}
+.vaultBigCounter{font-size:38px;font-weight:900;font-family:var(--serif);color:#34D399;letter-spacing:-1px;margin:8px 0 12px;line-height:1;transition:all .2s ease;display:block}
+.vaultBigCounter.pulse{transform:scale(1.04);color:#6EE7B7}
+.vaultBreakdown{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12)}
+.vSubItem{background:rgba(255,255,255,.06);border-radius:10px;padding:8px 10px;text-align:center}
+.vSubItem b{display:block;font-size:13px;color:#F8FAFC;font-weight:800}
+.vSubItem span{display:block;font-size:10px;color:#94A3B8;margin-top:2px}
+
+/* ---- Cyber Security Institutional Trust Wall ---- */
+.trustWallGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.trustBadgeCard{background:#FFFFFF;border:1.2px solid #E2E8F0;border-radius:14px;padding:14px;box-shadow:0 3px 10px rgba(15,27,45,.03);display:flex;align-items:flex-start;gap:10px;transition:all .2s ease;cursor:help;position:relative}
+.trustBadgeCard:hover{border-color:#93C5FD;transform:translateY(-2px);box-shadow:0 8px 20px rgba(29,78,216,.08)}
+.trustBadgeCard .tIco{width:34px;height:34px;border-radius:10px;background:#EFF6FF;color:#1D4ED8;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;border:1px solid #DBEAFE}
+.trustBadgeCard .tInfo b{display:block;font-size:12px;color:#0F172A;font-weight:800;margin-bottom:3px}
+.trustBadgeCard .tInfo span{display:block;font-size:10.5px;color:#64748B;line-height:1.4}
+@media(max-width:960px){.trustWallGrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.trustWallGrid{grid-template-columns:1fr}}
 @media print {
   body.boardDeckPrintMode * { visibility: hidden !important; }
   body.boardDeckPrintMode #boardDeckModal,
@@ -531,16 +572,33 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <main class="wrap">
 <section class="mHero">
   <div class="reveal in">
-    <h1>Finansal Verileri Yönetim Kararlarına Dönüştüren<br><span class="gradText">Karar Destek Sistemi</span></h1>
-    <p class="lead">Klasik muhasebe geçmiş mali kayıtları ve yasal vergi matrahını raporlar; <b>Digital Finance Business Partner</b> ise şirketin sermaye verimliliğini ve net nakit akışını maksimize eden stratejik yönetim kararlarını üretir. Mizan veya ERP alt defterlerinizi yükleyin; <b>33 Finansal Karar Motoru</b> 60 saniyede çift taraflı denetimle hesaplasın, kâr sızıntılarını, kilitli nakdi ve yönetimin uygulayacağı somut eylem planını masaya koysun.</p>
-    <div class="ctaRow">
-      <a href="/uygulama?sample=data_hub" class="primary" style="padding:16px 28px;border-radius:14px;font-size:15.5px;font-weight:800;display:inline-flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(29,78,216,.32)">⚡ Ücretsiz Canlı Demoyu Başlat <span>(60 Saniye)</span></a>
-      <a href="/uygulama" class="ghostBtn"><span>📁 Kendi Mizanını Test Et</span> <span>→</span></a>
+    <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-size:11.5px;font-weight:800;letter-spacing:0.6px;margin-bottom:12px;display:inline-block">⚡ STRATEJİK FİNANSAL İŞ ORTAĞI &amp; NAKİT MOTORU</span>
+    <h1 style="margin-top:8px">Şu Anda Şirketinizin Kasasında<br><span class="gradText">Kaç Milyon TL Kilitli &amp; Boşta Duruyor?</span></h1>
+    <p class="lead">Klasik muhasebe sadece geçmiş faturaları kaydeder ve vergi matrahı çıkarır. <b>Digital Finance Business Partner</b> ise kilitlenen sermayenizi, vadelerdeki gizli kredi faizlerini ve kurtarılabilir serbest nakit akışınızı <b>60 saniyede açığa çıkarır</b>.</p>
+    
+    <div class="ctaDualGates">
+      <a href="/uygulama" class="gateCard gateA">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:10px;font-weight:800;letter-spacing:0.6px;text-transform:uppercase;color:#1D4ED8;background:#EFF6FF;padding:3px 8px;border-radius:999px;border:1px solid #BFDBFE">KAPI A · GERÇEK VERİNİZLE</span>
+          <span style="font-size:15px">📁</span>
+        </div>
+        <b style="font-size:14.5px;color:#0F172A;margin:2px 0 0">Kendi Mizanımı Analiz Et</b>
+        <span style="font-size:11.5px;color:#64748B;line-height:1.4">60 Saniyede Gör · RAM-Only Sıfır Kalıcı Disk Güvencesi</span>
+      </a>
+      <a href="/uygulama?sample=data_hub" class="gateCard gateB">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:10px;font-weight:800;letter-spacing:0.6px;text-transform:uppercase;color:#FEF08A;background:rgba(255,255,255,0.18);padding:3px 8px;border-radius:999px">KAPI B · SIFIR SÜRTÜNME</span>
+          <span style="font-size:15px">⚡</span>
+        </div>
+        <b style="font-size:14.5px;color:#FFFFFF;margin:2px 0 0">Mizanım Yanımda Değil, Canlı Başlat</b>
+        <span style="font-size:11.5px;color:#DBEAFE;line-height:1.4">Temsili KOBİ Verisiyle Anında Dashboard'a Işınlan</span>
+      </a>
     </div>
+
     <div class="miniTrust">
       <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>RAM-Only (Sıfır Kalıcı Disk Kaydı)</span>
       <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>%100 Deterministik Çift Taraflı Denetim</span>
-      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg>Kredi Kartı Gerekmez · Anında Sonuç</span>
+      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg>Kurulumsuz · Anında Canlı Sonuç</span>
     </div>
   </div>
   <div class="heroArt reveal in">
@@ -626,22 +684,141 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
           <div class="dashKpis"><div><b>2</b><span>Kritik Nakit Riski</span></div><div><b>380.000 ₺</b><span>Kurtarılabilir Ölü Stok</span></div><div><b>8</b><span>Öncelikli Aksiyon</span></div></div>
         </div>
         <div class="dashPane" data-pane="4">
-          <div class="dTitle">Canlı Karar Simülatörü — "Fiyatı %3 Artırırsak Kasaya Ne Girer?"</div>
-          <svg viewBox="0 0 320 135" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:135px">
-            <line x1="0" y1="115" x2="320" y2="115" stroke="#E2E8F0" stroke-width="1"/>
-            <polyline points="10,105 60,95 110,98 160,70 210,75 260,45 300,50" fill="none" stroke="#94A3B8" stroke-width="2" stroke-dasharray="4 4"/>
-            <polyline points="10,105 60,82 110,80 160,46 210,42 260,16 300,12" fill="none" stroke="#2563EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="300" cy="12" r="5" fill="#2563EB"/><circle cx="300" cy="50" r="4" fill="#94A3B8"/>
-            <text x="295" y="8" fill="#1D4ED8" font-family="Inter,sans-serif" font-size="9.5" font-weight="800" text-anchor="end">+%3 Fiyat (+324.000 ₺)</text>
-            <text x="295" y="65" fill="#64748B" font-family="Inter,sans-serif" font-size="8.5" text-anchor="end">Mevcut Durum</text>
-          </svg>
-          <div class="dashKpis"><div><b>+324.000 ₺</b><span>Net Kâr Katkısı</span></div><div><b>+450.000 ₺</b><span>Tahsilatı 15 Gün Çekme</span></div><div><b>+774.000 ₺</b><span>Toplam Serbest Nakit</span></div></div>
+          <div class="dTitle" style="display:flex;justify-content:space-between;align-items:center">
+            <span>🎯 Canlı Karar Simülatörü</span>
+            <span style="font-size:9.5px;background:#EFF6FF;color:#1D4ED8;padding:2px 7px;border-radius:999px;font-weight:800">Sürgüleri Oynatın</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;padding:4px 0">
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:10px">
+              <span style="color:#475569;font-weight:600">Fiyat Artışı:</span>
+              <b id="pane4PriceVal" style="color:#1D4ED8;font-weight:800">+%3,0</b>
+            </div>
+            <input type="range" id="pane4PriceRange" min="0" max="10" step="0.5" value="3" class="labRange" style="height:4px;margin:0" oninput="recalcPane4Sim()">
+
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:10px">
+              <span style="color:#475569;font-weight:600">Tahsilat Hızlandırma:</span>
+              <b id="pane4DsoVal" style="color:#059669;font-weight:800">-15 Gün</b>
+            </div>
+            <input type="range" id="pane4DsoRange" min="0" max="30" step="1" value="15" class="labRange" style="height:4px;margin:0" oninput="recalcPane4Sim()">
+
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:10px">
+              <span style="color:#475569;font-weight:600">Ölü Stok Eritme:</span>
+              <b id="pane4DioVal" style="color:#D97706;font-weight:800">-%20</b>
+            </div>
+            <input type="range" id="pane4DioRange" min="0" max="50" step="5" value="20" class="labRange" style="height:4px;margin:0" oninput="recalcPane4Sim()">
+          </div>
+          <div class="dashKpis" style="margin-top:6px">
+            <div><b id="pane4ProfitKpi">+300.000 ₺</b><span>Net Kâr</span></div>
+            <div><b id="pane4DsoKpi">+411.000 ₺</b><span>Tahsilat</span></div>
+            <div><b id="pane4TotalKpi" style="color:#047857;font-weight:900">+847.000 ₺</b><span>Serbest Nakit</span></div>
+          </div>
         </div>
       </div>
       <div class="foot"><span>%100 Deterministik Çift Taraflı Denetim</span><span>60 Saniyede Hazır Yönetim Raporu</span></div>
     </div>
   </div>
 </section>
+
+<!-- SECTION: ANASAYFA CANLI WHAT-IF NAKİT LABORATUVARI -->
+<div class="secBlock reveal">
+  <section id="homeWhatIfLab" class="marketingSection hidePrint" style="padding-top:0">
+    <div class="whatIfLabCard">
+      <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E2E8F0;padding-bottom:16px;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+        <div>
+          <span class="workflowBadge" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0;margin:0">🧮 CANLI KARAR SİMÜLATÖRÜ · 60 SANİYELİK NAKİT ETKİSİ</span>
+          <h2 style="font-size:22px;margin:8px 0 4px;font-family:var(--serif);color:#0F172A">Sürgüleri Kaydırın: Şirketinizin Kasasına Girecek Sıcak Parayı Görün</h2>
+          <p style="margin:0;color:#64748B;font-size:13px">Klasik muhasebe sadece olanı yazar. Bu simülatör, alacağınız 3 temel yönetim kararının kasanıza kaç yüz bin TL nakit kazandıracağını anında hesaplar.</p>
+        </div>
+        <div class="labPresets">
+          <span style="font-size:11px;font-weight:700;color:#64748B">Hazır Senaryolar:</span>
+          <button type="button" class="labPresetBtn active" onclick="applyLabPreset(3, 15, 20, this)">Dengeli KOBİ</button>
+          <button type="button" class="labPresetBtn" onclick="applyLabPreset(0, 25, 30, this)">Agresif Tahsilat</button>
+          <button type="button" class="labPresetBtn" onclick="applyLabPreset(6, 5, 10, this)">Marj &amp; Fiyat Gücü</button>
+        </div>
+      </div>
+
+      <div class="labGrid">
+        <!-- Controls -->
+        <div class="labControls">
+          <!-- Slider 1 -->
+          <div class="labSliderRow">
+            <div class="labSliderHead">
+              <span>🏷️ 1. Fiyat Artışı / Enflasyonist Geçirgenlik</span>
+              <span class="labBadgeVal" id="labPriceVal">+%3,0</span>
+            </div>
+            <input type="range" id="labPriceRange" min="0" max="10" step="0.5" value="3" class="labRange" oninput="recalcHomeLabSim()">
+            <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#94A3B8">
+              <span>%0 (Mevcut)</span>
+              <span style="color:#64748B">Medyan: %3</span>
+              <span>+%10 (Azami)</span>
+            </div>
+          </div>
+
+          <!-- Slider 2 -->
+          <div class="labSliderRow">
+            <div class="labSliderHead">
+              <span>⏱️ 2. Müşteri Tahsilat Vadesi Kısaltma (DSO)</span>
+              <span class="labBadgeVal" id="labDsoVal">-15 Gün</span>
+            </div>
+            <input type="range" id="labDsoRange" min="0" max="30" step="1" value="15" class="labRange" oninput="recalcHomeLabSim()">
+            <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#94A3B8">
+              <span>0 Gün</span>
+              <span style="color:#64748B">Hedef: -15 Gün</span>
+              <span>-30 Gün</span>
+            </div>
+          </div>
+
+          <!-- Slider 3 -->
+          <div class="labSliderRow">
+            <div class="labSliderHead">
+              <span>📦 3. Depodaki Ölü &amp; Atıl Stok Eritme Hızı</span>
+              <span class="labBadgeVal" id="labDioVal">-%20</span>
+            </div>
+            <input type="range" id="labDioRange" min="0" max="50" step="5" value="20" class="labRange" oninput="recalcHomeLabSim()">
+            <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#94A3B8">
+              <span>%0 (Beklemede)</span>
+              <span style="color:#64748B">Öneri: %20</span>
+              <span>-%50 (Kampanya/Tasfiye)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vault Card (Big Counter) -->
+        <div class="labVaultCard">
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#34D399;background:rgba(52,211,153,.15);border:1px solid rgba(52,211,153,.3);padding:3px 10px;border-radius:999px">🔥 KASAYA GİRECEK EK SICAK NAKİT</span>
+              <span style="font-size:11.5px;color:#94A3B8">Yıllık Etki</span>
+            </div>
+            <span class="vaultBigCounter" id="labTotalVaultCounter">+847.000 ₺</span>
+            <div style="font-size:12px;color:#CBD5E1;line-height:1.45">Kredi çekmeden, banka faizine ezilmeden şirketin kendi operasyonel çarklarından açığa çıkacak serbest sıcak nakit.</div>
+          </div>
+
+          <div class="vaultBreakdown">
+            <div class="vSubItem">
+              <b id="labProfitSub">+300.000 ₺</b>
+              <span>Net Kâr Katkısı</span>
+            </div>
+            <div class="vSubItem">
+              <b id="labDsoSub">+411.000 ₺</b>
+              <span>Alacak Nakdi</span>
+            </div>
+            <div class="vSubItem">
+              <b id="labDioSub">+136.000 ₺</b>
+              <span>Stok Nakdi</span>
+            </div>
+          </div>
+
+          <div style="margin-top:16px">
+            <a href="/uygulama?sample=data_hub" class="primary" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;padding:12px;border-radius:12px;font-size:13px;font-weight:800;background:#10B981;border:none;box-shadow:0 4px 14px rgba(16,185,129,.35)">
+              ⚡ Kendi Şirketinizde Bu Parayı Kurtarmak İçin Başlayın →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
 <!-- SECTION: 3-STEP CUSTOMER WORKFLOW WITH INTERACTIVE PLAYER -->
 <div class="secBlock tint reveal"><section id="workflow" class="marketingSection hidePrint" style="padding-top:0">
@@ -1762,16 +1939,23 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
   // Hero "live" dashboard: auto-cycling tabs (EBITDA / DuPont / CCC / Risk / Scenario)
   const tabs=[...document.querySelectorAll('#heroDashTabs span')];
   const panes=[...document.querySelectorAll('#heroDashPanes .dashPane')];
+  const container = document.getElementById('heroDashPanes');
   if(!tabs.length||!panes.length) return;
-  let idx=0, timer=null;
+  let idx=0, timer=null, isPaused=false;
   function show(i){
     idx=i;
     tabs.forEach(t=>t.classList.toggle('on', t.dataset.pane===String(i)));
     panes.forEach(p=>p.classList.toggle('on', p.dataset.pane===String(i)));
   }
-  function next(){ show((idx+1)%panes.length); }
+  function next(){ if(!isPaused) show((idx+1)%panes.length); }
   function restart(){ if(timer) clearInterval(timer); timer=setInterval(next,4200); }
   tabs.forEach(t=>t.addEventListener('click',()=>{ show(parseInt(t.dataset.pane,10)); restart(); }));
+  if(container){
+    container.addEventListener('mouseenter', ()=>{ isPaused=true; });
+    container.addEventListener('mouseleave', ()=>{ isPaused=false; });
+    container.addEventListener('focusin', ()=>{ isPaused=true; });
+    container.addEventListener('focusout', ()=>{ isPaused=false; });
+  }
   restart();
 })();
 (function(){
@@ -1884,6 +2068,102 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
   dsoSlider.addEventListener('input', updateLeakCalc);
   secSelect.addEventListener('change', updateLeakCalc);
   updateLeakCalc();
+})();
+
+// ==========================================
+// 60-SANİYELİK CANLI NAKİT LABORATUVARI MOTORU
+// ==========================================
+(function(){
+  function fmtTL(v){
+    return '+' + Math.round(v).toLocaleString('tr-TR') + ' ₺';
+  }
+
+  // Hero Pane 4 Simülatörü
+  window.recalcPane4Sim = function(){
+    const pEl = document.getElementById('pane4PriceRange');
+    const dEl = document.getElementById('pane4DsoRange');
+    const sEl = document.getElementById('pane4DioRange');
+    if(!pEl || !dEl || !sEl) return;
+
+    const p = parseFloat(pEl.value) || 0;
+    const d = parseFloat(dEl.value) || 0;
+    const s = parseFloat(sEl.value) || 0;
+
+    const pVal = document.getElementById('pane4PriceVal');
+    const dVal = document.getElementById('pane4DsoVal');
+    const sVal = document.getElementById('pane4DioVal');
+    if(pVal) pVal.textContent = '+%' + p.toFixed(1).replace('.', ',');
+    if(dVal) dVal.textContent = '-' + d + ' Gün';
+    if(sVal) sVal.textContent = '-%' + s;
+
+    // Baz model: 10M Ciro, 1.7M Stok
+    const profit = 10000000 * (p / 100);
+    const dsoCash = (10000000 / 365) * d;
+    const stockCash = 1700000 * 0.40 * (s / 100);
+    const total = profit + dsoCash + stockCash;
+
+    const prKpi = document.getElementById('pane4ProfitKpi');
+    const dsKpi = document.getElementById('pane4DsoKpi');
+    const totKpi = document.getElementById('pane4TotalKpi');
+    if(prKpi) prKpi.textContent = fmtTL(profit);
+    if(dsKpi) dsKpi.textContent = fmtTL(dsoCash);
+    if(totKpi) totKpi.textContent = fmtTL(total);
+  };
+
+  // Full-Width Home What-If Lab Simülatörü
+  window.recalcHomeLabSim = function(){
+    const pEl = document.getElementById('labPriceRange');
+    const dEl = document.getElementById('labDsoRange');
+    const sEl = document.getElementById('labDioRange');
+    if(!pEl || !dEl || !sEl) return;
+
+    const p = parseFloat(pEl.value) || 0;
+    const d = parseFloat(dEl.value) || 0;
+    const s = parseFloat(sEl.value) || 0;
+
+    const pVal = document.getElementById('labPriceVal');
+    const dVal = document.getElementById('labDsoVal');
+    const sVal = document.getElementById('labDioVal');
+    if(pVal) pVal.textContent = '+%' + p.toFixed(1).replace('.', ',');
+    if(dVal) dVal.textContent = '-' + d + ' Gün';
+    if(sVal) sVal.textContent = '-%' + s;
+
+    // 10M Ciro, 1.7M Stok
+    const profit = 10000000 * (p / 100);
+    const dsoCash = (10000000 / 365) * d;
+    const stockCash = 1700000 * 0.40 * (s / 100);
+    const total = profit + dsoCash + stockCash;
+
+    const vCounter = document.getElementById('labTotalVaultCounter');
+    const prSub = document.getElementById('labProfitSub');
+    const dsSub = document.getElementById('labDsoSub');
+    const diSub = document.getElementById('labDioSub');
+
+    if(vCounter) vCounter.textContent = fmtTL(total);
+    if(prSub) prSub.textContent = fmtTL(profit);
+    if(dsSub) dsSub.textContent = fmtTL(dsoCash);
+    if(diSub) diSub.textContent = fmtTL(stockCash);
+  };
+
+  window.applyLabPreset = function(p, d, s, btn){
+    const pEl = document.getElementById('labPriceRange');
+    const dEl = document.getElementById('labDsoRange');
+    const sEl = document.getElementById('labDioRange');
+    if(pEl) pEl.value = p;
+    if(dEl) dEl.value = d;
+    if(sEl) sEl.value = s;
+
+    document.querySelectorAll('.labPresetBtn').forEach(b => b.classList.remove('active'));
+    if(btn) btn.classList.add('active');
+
+    window.recalcHomeLabSim();
+  };
+
+  // İlk yüklemede çalıştır
+  setTimeout(function(){
+    if(window.recalcPane4Sim) window.recalcPane4Sim();
+    if(window.recalcHomeLabSim) window.recalcHomeLabSim();
+  }, 100);
 })();
 </script>
 <script>
@@ -4545,6 +4825,55 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     display: none !important;
   }
 }
+/* Cyber Trust Wall Grid */
+.trustWallGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.trustBadgeCard {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.trustBadgeCard:hover {
+  transform: translateY(-2px);
+  border-color: #93C5FD;
+  box-shadow: 0 6px 16px rgba(37,99,235,0.08);
+}
+.trustBadgeCard .tIco {
+  font-size: 20px;
+  flex: none;
+  background: #F0FDF4;
+  border: 1px solid #DCFCE7;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trustBadgeCard .tInfo strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 2px;
+}
+.trustBadgeCard .tInfo span {
+  display: block;
+  font-size: 11px;
+  color: #64748B;
+  line-height: 1.35;
+}
 </style></head>
 <body>
 <div id="loadingOverlay" class="loadingOverlay hidden">
@@ -4711,16 +5040,34 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     <button id="analyzeHub" class="primary" style="padding:13px 24px;font-size:14px;border-radius:12px;font-weight:700">🚀 Tüm Verileri Analiz Et (Data Hub)</button>
   </div>
 </div>
-<div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:14px;padding:14px 18px;margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap">
-  <div style="display:flex;align-items:center;gap:12px">
-    <div style="width:36px;height:36px;border-radius:50%;background:#DCFCE7;display:grid;place-items:center;flex:none;color:#16A34A;font-weight:bold;font-size:18px">🛡️</div>
-    <div>
-      <div style="font-size:13px;font-weight:700;color:#166534">Sıfır Disk Depolama Güvencesi (RAM-Only) &amp; 256-Bit TLS Şifreleme</div>
-      <div style="font-size:12px;color:#15803D;line-height:1.45">Mizan ve defterleriniz sunucu sabit diskine ASLA kaydedilmez. Analiz anlık bellekte icra edilir ve oturum kapandığında tamamen silinir.</div>
+<div class="trustWallGrid">
+  <div class="trustBadgeCard" onclick="showKvkkModal()">
+    <div class="tIco">🛡️</div>
+    <div class="tInfo">
+      <strong>RAM-Only Bellek Mimarisi</strong>
+      <span>Verileriniz diske/veritabanına yazılmaz. Analiz bittiğinde silinir.</span>
     </div>
   </div>
-  <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#166534;font-weight:700">
-    <span>🔒 KVKK Tam Uyumlu</span> • <span>📑 Kurumsal NDA Güvencesi</span>
+  <div class="trustBadgeCard" onclick="showKvkkModal()">
+    <div class="tIco">🔐</div>
+    <div class="tInfo">
+      <strong>256-Bit TLS Şifreleme</strong>
+      <span>Tüm dosya aktarımı bankacılık düzeyinde uçtan uca şifrelenir.</span>
+    </div>
+  </div>
+  <div class="trustBadgeCard" onclick="showKvkkModal()">
+    <div class="tIco">⚖️</div>
+    <div class="tInfo">
+      <strong>KVKK 6698 Uyumlu</strong>
+      <span>Ticari mahremiyetiniz korunur; yapay zeka modelleriyle paylaşılmaz.</span>
+    </div>
+  </div>
+  <div class="trustBadgeCard" onclick="showKvkkModal()">
+    <div class="tIco">📑</div>
+    <div class="tInfo">
+      <strong>Kurumsal NDA Güvencesi</strong>
+      <span>Kurumsal ve holding ölçeğinde yasal bağlayıcılıklı gizlilik sözleşmesi.</span>
+    </div>
   </div>
 </div>
 <div id="error" class="error hidden"></div>
