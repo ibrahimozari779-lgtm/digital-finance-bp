@@ -1,8 +1,7 @@
 """Digital Finance Business Partner — multi-page marketing site + app.
 
-Pages: HOME_HTML (/), SOLUTIONS_HTML (/cozumler), PRICING_HTML (/paketler),
-ABOUT_HTML (/hakkimizda), CONTACT_HTML (/iletisim), SECURITY_HTML (/guvenlik),
-APP_HTML (/uygulama, the actual analysis tool).
+Pages: HOME_HTML (/), PRICING_HTML (/paketler), ABOUT_HTML (/hakkimizda),
+CONTACT_HTML (/iletisim), APP_HTML (/uygulama, the actual analysis tool).
 All share one nav/footer/CSS design system assembled in build scripts.
 """
 
@@ -569,7 +568,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/" class="active">Anasayfa</a><a href="/cozumler">Çözümler</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn primary">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/" class="active">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn primary">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <section class="mHero">
   <div class="reveal in">
@@ -914,68 +913,750 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </section>
 </div>
 
-<!-- SECTION: ÇÖZÜMLER & YÖNETİM REÇETELERİ VİTRİNİ (ÖZEL ÇÖZÜMLER KÖPRÜSÜ) -->
-<div class="secBlock reveal in"><section id="solutionsTeaser" class="marketingSection hidePrint" style="padding-top:10px">
-  <div class="marketingHead" style="margin-bottom:24px">
-    <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">🎯 KOBİ PATRONLARI &amp; ŞİRKET ORTAKLARI İÇİN</span>
-    <h2 style="margin-top:10px">Finansçınızın Anlattığı Rakamları, Patronun Anlayacağı Karara Çeviriyoruz</h2>
-    <p>Rakamları raporlamıyoruz; ne anlama geldiğini, kasanızda nerede kilitlendiğini ve yarın sabah ne yapmanız gerektiğini gösteriyoruz. Reklamlarımızda gördüğünüz 10 gerçek kriz çıkmazı ve patronun masasındaki 8 stratejik karar masası özel Çözümler sayfamızda:</p>
+<!-- SECTION: 10 KOBİ PATRON VİTRİNİ -->
+<div class="secBlock reveal"><section id="kobiShowcase" class="marketingSection hidePrint" style="padding-top:0">
+<div class="marketingHead">
+  <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">🎯 KOBİ PATRONLARI &amp; ŞİRKET ORTAKLARI İÇİN</span>
+  <h2 style="margin-top:10px">Patronun Masasındaki 10 Gerçek Kriz &amp; 60 Saniyelik Çözüm</h2>
+  <p>Muhasebe programınız geçmiş fişleri kaydeder; Digital Finance BP ise şirketi kâr eden ve nakit üreten bir makineye dönüştürür. İşte patronların en çok yaşadığı 10 çıkmaz ve somut reçetesi:</p>
+  
+  <div class="kobiPills">
+    <button type="button" class="kobiPill active" onclick="filterKobiShowcase('all', this)">🔥 Tümü (10)</button>
+    <button type="button" class="kobiPill" onclick="filterKobiShowcase('cash', this)">💵 Nakit &amp; Tahsilat (4)</button>
+    <button type="button" class="kobiPill" onclick="filterKobiShowcase('profit', this)">📊 Kâr, Marj &amp; Stok (3)</button>
+    <button type="button" class="kobiPill" onclick="filterKobiShowcase('mgmt', this)">🏛️ Yönetim &amp; Banka (3)</button>
+  </div>
+</div>
+
+<div class="kobiSliderWrap">
+  <div class="kobiSliderBar">
+    <div class="kobiSwipeHint">
+      <span style="font-size:14px">👈</span>
+      <span>Kartları sağa / sola kaydırarak inceleyin</span>
+      <span style="font-size:14px">👉</span>
+    </div>
+    <div class="kobiSliderNav">
+      <span class="kobiSlideBadge" id="kobiSliderCounter">1 / 10 Teşhis</span>
+      <button type="button" class="kobiNavBtn" onclick="slideKobi(-1)" aria-label="Önceki Teşhis" title="Önceki">‹</button>
+      <button type="button" class="kobiNavBtn" onclick="slideKobi(1)" aria-label="Sonraki Teşhis" title="Sonraki">›</button>
+    </div>
   </div>
 
-  <div style="background:linear-gradient(135deg,#FFFFFF 0%,#F8FAFC 100%);border:1.5px solid #CBD5E1;border-radius:24px;padding:32px;box-shadow:0 14px 34px rgba(15,27,45,.06)">
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:28px">
-      <!-- Highlight 1 -->
-      <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:18px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 14px rgba(15,27,45,.03)">
-        <div>
-          <span class="kobiTag cash" style="margin-bottom:10px">💵 1. KÂR &amp; NAKİT ÇELİŞKİSİ</span>
-          <h4 style="font-size:15px;color:#0F172A;margin:0 0 8px;line-height:1.4">"Kâğıt Üstünde Kârlıyız Ama Kasada Neden Para Yok?"</h4>
-          <p style="font-size:12.5px;color:#64748B;line-height:1.55;margin:0">Defterde ₺1.850.000 net kâr görünürken sıcak nakit neden sadece ₺42.000? Kilitlenen ₺1.808.000 sermayenin ve faiz sızıntısının 60 saniyelik teşhisi.</p>
+  <div class="kobiSliderTrack" id="kobiSliderTrack">
+  <!-- Kart 1 -->
+  <div class="kobiCard" data-category="cash">
+    <span class="kobiTag cash">💵 1. KÂR &amp; NAKİT ÇELİŞKİSİ</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_1_kar_vs_kasa.jpg" alt="1. Kâr ve Nakit Çelişkisi" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+    </div>
+    <div class="kobiTitle">"Muhasebeciniz 'Bu Ay Kârdayız' Diyor, Ama Siz Ay Sonu Maaşları Nasıl Ödeyeceğinizi Düşünüyorsunuz."</div>
+    <div class="kobiDesc">Defterde kâr çıkması, kasada nakit olduğu anlamına gelmez. Satışı yapmışsınız ama parayı müşteriden alamamışsınız; malı üretip depoya yığmışsınız. Kârınız buharlaşmadı; müşterinin açık hesabında ve depodaki kolilerde kilitli kaldı.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Defterdeki Kâr:</span><b style="color:#059669">₺1.850.000 (Mizan Bilanço Kârı)</b></div>
+      <div class="kobiMetricRow"><span>Kasadaki Sıcak Nakit:</span><b style="color:#DC2626">₺42.000 (Kritik Alarm)</b></div>
+      <div class="kobiMetricRow"><span>Alacak &amp; Stokta Kilitli:</span><b style="color:#B45309">₺1.808.000 Bağlı Sermaye</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (Nakit Köprüsü):</b>
+      P&amp;L kârınızın hangi hesaplarda kilitlendiğini kuruşu kuruşuna haritalandırır; defter kârı ile serbest nakit akışı arasındaki sızıntıyı kapatır.
+    </div>
+  </div>
+
+  <!-- Kart 2 -->
+  <div class="kobiCard" data-category="cash">
+    <span class="kobiTag cash">💵 2. AÇIK HESAP &amp; TERSİNE BANKACILIK</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_2_acik_hesap.jpg" alt="2. Açık Hesap ve Tersine Bankacılık" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+    </div>
+    <div class="kobiTitle">"Siz Mal mı Satıyorsunuz, Yoksa Müşterilerinize Faizsiz Kredi Dağıtan Banka mısınız?"</div>
+    <div class="kobiDesc">Siz bankadan %50 faizle kredi çekip hammadde alıyorsunuz, işçilik ödüyorsunuz; müşteriniz ise malı alıp 90 gün sonra ödüyor! Kendi özkaynağınızla başkalarının ticaretini finanse ediyorsunuz.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Ortalama Tahsilat Vadeniz:</span><b style="color:#DC2626">88 Gün (Sektör: 60 Gün)</b></div>
+      <div class="kobiMetricRow"><span>Müşteriyi Fonlama Maliyeti:</span><b style="color:#B45309">Yıllık ~₺1.250.000 Gizli Faiz</b></div>
+      <div class="kobiMetricRow"><span>15 Gün Erken Tahsilat Kazancı:</span><b style="color:#1D4ED8">+₺450.000 Sıcak Para</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (Alacak Yaşlandırma):</b>
+      Alacak portföyünün vadesini tarar; vadesi 60 günü aşan riskli carileri sıralar ve tahsilat hızlandırma protokolünü devreye sokar.
+    </div>
+  </div>
+
+  <!-- Kart 3 -->
+  <div class="kobiCard" data-category="profit">
+    <span class="kobiTag profit">📊 3. ÖLÜ STOK MEZARLIĞI</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_3_olu_stok.jpg" alt="3. Ölü Stok Mezarlığı" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+    </div>
+    <div class="kobiTitle">"Deponuz Ağzına Kadar Mal Dolu Diye Zenginleştiğinizi mi Sanıyorsunuz?"</div>
+    <div class="kobiDesc">6 aydır rafta bekleyen o kumaş, o profil, o yedek parça depoda durdukça değer kazanmıyor; her gün banka kredinizin faizini yiyor. Depodaki atıl malı görmezden gelmek, her ay deste deste parayı çöpe atmaktır.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Depodaki Toplam Envanter:</span><b style="color:#0F172A">₺2.400.000</b></div>
+      <div class="kobiMetricRow"><span>180+ Günlük Ölü Stok:</span><b style="color:#DC2626">₺680.000 (Atıl Sermaye)</b></div>
+      <div class="kobiMetricRow"><span>Aylık Gizli Faiz Yükü:</span><b style="color:#B45309">~₺45.000 / Ay Kayıp</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (Envanter İstihbaratı):</b>
+      Mizan ile depo kayıtlarını eşleştirir; 180+ gündür devretmeyen ölü stokları listeler ve acil nakde dönüşüm reçetesini çıkarır.
+    </div>
+  </div>
+
+  <!-- Kart 4 -->
+  <div class="kobiCard" data-category="mgmt">
+    <span class="kobiTag mgmt">🏛️ 4. MİZAN ÇİLESİ VS. KARAR MASASI</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_4_mizan_vs_karar.jpg" alt="4. Mizan Çilesi vs Karar Masası" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+    </div>
+    <div class="kobiTitle">"Muhasebeciniz Size Çıkacak Vergiyi Söyler; Parayı Nereden Bulacağınızı Söylemez."</div>
+    <div class="kobiDesc">Mali müşavirin işi devlete vergi beyannamesi vermektir. Ancak önünüze konan 500 satırlık mizan tablosundan "Yarın hangi müşteriye mal çıkışını durdurmalıyım?", "Hangi maliyet canımı yakıyor?" sorularının yanıtı çıkmaz.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Klasik Mizan Tablosu:</span><b style="color:#64748B">500 Satır Hesap (Karar Yok)</b></div>
+      <div class="kobiMetricRow"><span>Digital Finance BP:</span><b style="color:#1D4ED8">1 Sayfalık Board Raporu</b></div>
+      <div class="kobiMetricRow"><span>Yönetimsel Analiz Süresi:</span><b style="color:#059669">Sadece 60 Saniye</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (1-Sayfalık Yönetim Özeti):</b>
+      33 karar motoru mizanınızı tarar; kâr durumunu, paranın kilitlendiği yeri ve alınacak 1 numaralı icraat kararını tek sayfada masaya koyar.
+    </div>
+  </div>
+
+  <!-- Kart 5 -->
+  <div class="kobiCard" data-category="cash">
+    <span class="kobiTag cash">💵 5. CİRO ALDANMASI &amp; KASA GERÇEĞİ</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_5_ciro_aldanmasi.jpg" alt="5. Ciro Aldanması ve Kasa Gerçeği" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+    </div>
+    <div class="kobiTitle">"50 Milyon Ciro Yapıp Ay Sonu Çek Öderken Ter Döken Patronlardan mısınız?"</div>
+    <div class="kobiDesc">Ciro gösteriştir, kâr akıl işidir, kasadaki nakit ise gerçeğin ta kendisidir. Cironuz ikiye katlanıyor ama borcunuz da aynı hızla katlanıyorsa büyümüyorsunuz; sadece daha büyük bir riskin altına giriyorsunuz.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Yıllık Satış Cirosu:</span><b style="color:#059669">₺45.000.000 (Büyüme Görünümü)</b></div>
+      <div class="kobiMetricRow"><span>Banka &amp; Borç Yükü:</span><b style="color:#DC2626">₺18.000.000 (Faiz Baskısı)</b></div>
+      <div class="kobiMetricRow"><span>Kasaya Kalan Net Nakit:</span><b style="color:#DC2626">-₺350.000 (Nakit Açığı)</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (Nakit Çevrim Motoru):</b>
+      Satıştan tahsilata kadar paranın kaç günde döndüğünü (CCC) hesaplar; cironun nakde dönüşme kabiliyetini ve net kâr kalitesini ölçer.
+    </div>
+  </div>
+
+  <!-- Kart 6 -->
+  <div class="kobiCard" data-category="mgmt">
+    <span class="kobiTag mgmt">🏛️ 6. MÜŞTERİ REHİNESİ &amp; KONSANTRASYON</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_6_musteri_rehinesi.jpg" alt="6. Müşteri Rehinesi ve Konsantrasyon" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+    </div>
+    <div class="kobiTitle">"Cironuzun Yarısını Tek Bir Müşteriye Yapıyorsanız; Patron Siz Değilsiniz, O Müşteridir."</div>
+    <div class="kobiDesc">Büyük müşteriyle çalışmak iyidir ama bütün yumurtaları aynı sepete koymak felakettir. O müşteri yarın "Vadeyi 4 aya çıkarıyorum" dediğinde veya ödemeyi geciktirdiğinde şirketin dayanacak kaç günlük can suyu var?</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>İlk 3 Müşterinin Payı:</span><b style="color:#DC2626">%64 (Kritik Bağımlılık)</b></div>
+      <div class="kobiMetricRow"><span>Olası Vade Gecikmesi:</span><b style="color:#B45309">-₺1.200.000 Nakit Açığı</b></div>
+      <div class="kobiMetricRow"><span>Dayanıklılık Süresi:</span><b style="color:#DC2626">Yalnızca 22 Gün!</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (Erken Uyarı Radarı):</b>
+      Müşteri bağımlılığınızı ölçer; olası gecikmelerde şirketin likidite dayanıklılığını test eder ve açık hesap tavan limiti belirler.
+    </div>
+  </div>
+
+  <!-- Kart 7 -->
+  <div class="kobiCard" data-category="profit">
+    <span class="kobiTag profit">📊 7. FİYATLAMA GÜCÜ &amp; MARJ KORUMA</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_7_fiyat_gucu.jpg" alt="7. Fiyatlama Gücü ve Marj Koruma" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+    </div>
+    <div class="kobiTitle">"Fiyatlarınıza Sadece %3 Zam Yapsanız Kasaya Kaç Yüz Bin Lira Kalır, Hiç Hesapladınız mı?"</div>
+    <div class="kobiDesc">"Müşteri kaçar" korkusuyla maliyet artışlarını fiyata yansıtmamak şirketin özkaynağını eritir. Kontrolsüz iskontolar ve plansız vadeler, ciro artarken kârı sıfırlayan ana sızıntıdır.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Mevcut Brüt Kâr Marjı:</span><b style="color:#B45309">%22,4 (Enflasyon Baskısı)</b></div>
+      <div class="kobiMetricRow"><span>Fiyatta +%3 Düzeltme:</span><b style="color:#059669">+₺324.000 Net Kâr Katkısı</b></div>
+      <div class="kobiMetricRow"><span>10 Gün Erken Tahsilat:</span><b style="color:#1D4ED8">+₺450.000 Kurtarılan Nakit</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (What-If Simülatörü):</b>
+      Fiyat artışı, vade kısaltma ve gider tasarrufu sürgülerini hareket ettirerek şirketin anlık kâr ve nakit kazanımını canlı simüle eder.
+    </div>
+  </div>
+
+  <!-- Kart 8 -->
+  <div class="kobiCard" data-category="cash">
+    <span class="kobiTag cash">💵 8. KREDİ KAPANINDAN ÇIKIŞ</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_8_kredi_kapani.jpg" alt="8. Kredi Kapanından Çıkış" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+    </div>
+    <div class="kobiTitle">"Faizlerin %50 Olduğu Yerde, Şirketi Banka Kredisiyle Döndüremezsiniz."</div>
+    <div class="kobiDesc">Kasada nakit sıkışınca ilk refleks bankaya koşup kredi çekmektir. Ama içerideki para kaçağını kapatmadan kredi çekmek, sadece bankalara çalışmaktır. Çözüm yeni borç değil; içerideki kilitli parayı kurtarmaktır.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Bankaya Yıllık Faiz Yükü:</span><b style="color:#DC2626">₺1.850.000 / Yıl</b></div>
+      <div class="kobiMetricRow"><span>İçeride Kilitli Kendi Paranız:</span><b style="color:#059669">₺1.400.000 (Alacak &amp; Stok)</b></div>
+      <div class="kobiMetricRow"><span>Kredi İhtiyacı Tasarrufu:</span><b style="color:#1D4ED8">%40 Daha Az Borçlanma</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (Kaldıraç &amp; Borç Kapasitesi):</b>
+      Operasyonel kârınızın faizleri kaç kat karşıladığını ölçer; yeni borca girmeden içerideki kilitli nakdi çözerek şirketi rahatlatır.
+    </div>
+  </div>
+
+  <!-- Kart 9 -->
+  <div class="kobiCard" data-category="mgmt">
+    <span class="kobiTag mgmt">🏛️ 9. ORTAKLAR MASASINDA FİKİR BİRLİĞİ</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_9_ortaklar_masasi.jpg" alt="9. Ortaklar Masasında Fikir Birliği" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+    </div>
+    <div class="kobiTitle">"Her Ay Ortaklarınızla 'İşler İyiydi de Bu Para Nereye Gitti' Kavgası Yapmaktan Bıkmadınız mı?"</div>
+    <div class="kobiDesc">Ortaklar arasındaki en büyük gerginlik rakamların farklı yorumlanmasıdır. Biri "Satış ekibi rekor kırdı" der, diğeri "Kasa boş, tedarikçiyi ödeyemiyoruz" der. Suçlu aramak yerine tek bir gerçeğin etrafında toplanın.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>1. Teşhis:</span><b style="color:#DC2626">Kârın %62'si Alacak ve Stokta Bağlı</b></div>
+      <div class="kobiMetricRow"><span>2. Öncelikli İcraat:</span><b style="color:#1D4ED8">Vadesi Aşan 3 Müşteriyi Durdur</b></div>
+      <div class="kobiMetricRow"><span>3. Kurtarılabilir Nakit:</span><b style="color:#059669">₺1.100.000 (Haftalık Protokol)</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (Deterministik Yönetim Masası):</b>
+      Kimsenin tartışamayacağı çift taraflı denetlenmiş verilerle şirketin tek bir yönetim ve eylem gündemi üzerinde uzlaşmasını sağlar.
+    </div>
+  </div>
+
+  <!-- Kart 10 -->
+  <div class="kobiCard" data-category="profit">
+    <span class="kobiTag profit">📊 10. CFO ZEKA ARBİTRAJI</span>
+    <div class="kobiCardImgWrap">
+      <img src="/static/ads/kobi_10_cfo_arbitraji.jpg" alt="10. CFO Zeka Arbitrajı" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+    </div>
+    <div class="kobiTitle">"Büyük Holdingler Her Ay Milyonluk Finans Kadrolarıyla Şirket Yönetiyor. Siz Hâlâ Hissiyatla mı Karar Veriyorsunuz?"</div>
+    <div class="kobiDesc">Aylık 150-200 bin TL maaşla Finans Direktörü (CFO) tutmak KOBİ ölçeğinde zordur. Ancak rekabet etmek için holdinglerin sahip olduğu finansal denetime ve karar gücüne ihtiyacınız var.</div>
+    <div class="kobiMetrics">
+      <div class="kobiMetricRow"><span>Holding Finans Kadrosu:</span><b style="color:#64748B">Aylık ₺200.000+ Maliyet</b></div>
+      <div class="kobiMetricRow"><span>Digital Finance BP:</span><b style="color:#1D4ED8">60 Saniyede CFO Masası</b></div>
+      <div class="kobiMetricRow"><span>Karar Gücü:</span><b style="color:#059669">33 Deterministik Analiz Motoru</b></div>
+    </div>
+    <div class="kobiPrescription">
+      <b>DFBP 60 Saniyelik Reçetesi (60 Saniyede Finansal Röntgen):</b>
+      Mizanınızı yükleyin; 33 motor çift taraflı denetimle çalışsın, şirketinizi holding düzeyinde analitik finansal zekayla donatsın.
+    </div>
+  </div>
+  </div>
+  <div class="kobiDotsWrap" id="kobiDotsWrap"></div>
+</div>
+
+<script>
+function slideKobi(direction) {
+  var track = document.getElementById('kobiSliderTrack');
+  if (!track) return;
+  var visibleCards = Array.from(track.querySelectorAll('.kobiCard')).filter(function(c) {
+    return c.style.display !== 'none';
+  });
+  if (!visibleCards.length) return;
+  var cardWidth = visibleCards[0].offsetWidth + 22;
+  track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+}
+
+function initKobiSlider() {
+  var track = document.getElementById('kobiSliderTrack');
+  var dotsWrap = document.getElementById('kobiDotsWrap');
+  var counter = document.getElementById('kobiSliderCounter');
+  if (!track || !dotsWrap) return;
+
+  function getVisibleCards() {
+    return Array.from(track.querySelectorAll('.kobiCard')).filter(function(c) {
+      return c.style.display !== 'none';
+    });
+  }
+
+  function updateDotsAndCounter() {
+    var visible = getVisibleCards();
+    if (!visible.length) {
+      if (counter) counter.textContent = '0 / 0 Teşhis';
+      return;
+    }
+    var trackRect = track.getBoundingClientRect();
+    var activeIdx = 0;
+    var minDiff = Infinity;
+
+    visible.forEach(function(c, idx) {
+      var r = c.getBoundingClientRect();
+      var diff = Math.abs(r.left - trackRect.left);
+      if (diff < minDiff) {
+        minDiff = diff;
+        activeIdx = idx;
+      }
+    });
+
+    if (counter) {
+      counter.textContent = (activeIdx + 1) + ' / ' + visible.length + ' Teşhis';
+    }
+
+    var dots = dotsWrap.querySelectorAll('.kobiDot');
+    dots.forEach(function(dot, idx) {
+      if (idx === activeIdx) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+
+  function rebuildDots() {
+    var visible = getVisibleCards();
+    dotsWrap.innerHTML = '';
+    visible.forEach(function(c, idx) {
+      var dot = document.createElement('div');
+      dot.className = 'kobiDot' + (idx === 0 ? ' active' : '');
+      dot.title = 'Teşhis ' + (idx + 1);
+      dot.onclick = function() {
+        c.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      };
+      dotsWrap.appendChild(dot);
+    });
+    updateDotsAndCounter();
+  }
+
+  var scrollTimer = null;
+  track.addEventListener('scroll', function() {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(updateDotsAndCounter, 50);
+  }, { passive: true });
+
+  window._rebuildKobiSlider = rebuildDots;
+  rebuildDots();
+}
+
+function filterKobiShowcase(category, btn) {
+  var pills = document.querySelectorAll('.kobiPill');
+  for (var i = 0; i < pills.length; i++) {
+    pills[i].classList.remove('active');
+  }
+  if (btn) btn.classList.add('active');
+
+  var cards = document.querySelectorAll('.kobiCard');
+  for (var j = 0; j < cards.length; j++) {
+    var c = cards[j];
+    if (category === 'all' || c.getAttribute('data-category') === category) {
+      c.style.display = 'flex';
+    } else {
+      c.style.display = 'none';
+    }
+  }
+
+  var track = document.getElementById('kobiSliderTrack');
+  if (track) {
+    track.scrollTo({ left: 0, behavior: 'smooth' });
+  }
+  if (window._rebuildKobiSlider) {
+    window._rebuildKobiSlider();
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initKobiSlider);
+} else {
+  initKobiSlider();
+}
+</script>
+</section></div>
+
+<!-- SECTION: GERÇEK VERİ TABANLI TEMSİLİ YÖNETİM VAKALARI (CASE STUDIES) -->
+<div class="secBlock reveal">
+  <section id="caseStudies" class="marketingSection hidePrint" style="padding-top:0">
+    <div class="marketingHead">
+      <span class="workflowBadge" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0">📈 GERÇEK VERİ TABANLI TEMSİLİ YÖNETİM VAKALARI</span>
+      <h2 style="margin-top:10px">Rakamlar Yalan Söylemez: Finansal Karar Modellerimiz Kasaları Nasıl Rahatlatıyor?</h2>
+      <p>Aşağıdaki vakalar, platformun 33 Karar Motoru ve çift taraflı denetim mimarisi ile analiz edilen gerçek sektör bilançoları baz alınarak modellenmiş <b>temsili yönetim senaryolarıdır</b>. Ticari mahremiyet nedeniyle unvanlar anonimleştirilmiş; matematiksel formülasyon, oran analizleri ve kâr/nakit optimizasyon dinamikleri birebir korunmuştur.</p>
+    </div>
+
+    <div class="caseGrid">
+      <!-- Case 1: İmalat & Sanayi -->
+      <div class="caseCard">
+        <div class="caseHead">
+          <span class="caseBadge verified">📊 TEMSİLİ MODELLEME VAKASI · İMALAT SANAYİ</span>
+          <span class="caseLocation">Kocaeli · ₺65M Yıllık Hacim</span>
         </div>
-        <div style="margin-top:16px;padding-top:12px;border-top:1px solid #F1F5F9;font-size:12px;font-weight:800;color:#1D4ED8">
-          Reçete: 15 Günlük Tahsilat ➔ +₺685.000 Nakit
+        <div class="caseTitle">"Depodaki 180+ Günlük Ölü Stok Teşhis Edildi; ₺1.450.000 Atıl Nakit 45 Günde Kasaya Döndü."</div>
+        <div class="caseProblem">
+          <b>Kriz:</b> Şirket sürekli nakit sıkışıklığı çekiyor ve bankadan yüksek faizli ticari kredi kullanıyordu. Mizan incelendiğinde ₺3.2M stok görünüyordu ancak alt depo kırılımı takip edilmiyordu.
+        </div>
+        <div class="caseSolution">
+          <b>DFBP Reçetesi:</b> Envanter İstihbarat Motoru mizan ile stok defterini eşleştirdi; 180 günü aşan 4 grup ölü hammaddeyi listeledi. Hızlı iskonto ve iade protokolüyle atıl sermaye nakde çevrildi.
+        </div>
+        <div class="caseKpis">
+          <div class="caseKpiItem"><b style="color:#047857">+₺1.450.000</b><span>Kurtarılan Sıcak Nakit</span></div>
+          <div class="caseKpiItem"><b style="color:#1D4ED8">112g → 64g</b><span>Nakit Çevrim (CCC)</span></div>
+          <div class="caseKpiItem"><b style="color:#B45309">₺420.000 / yıl</b><span>Faiz Tasarrufu</span></div>
         </div>
       </div>
 
-      <!-- Highlight 2 -->
-      <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:18px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 14px rgba(15,27,45,.03)">
-        <div>
-          <span class="kobiTag profit" style="margin-bottom:10px">👥 2. MÜŞTERİ KREDİ TUZAĞI</span>
-          <h4 style="font-size:15px;color:#0F172A;margin:0 0 8px;line-height:1.4">"Cironun %35'ini Yapan Müşterim Gerçekte Beni Batırıyor mu?"</h4>
-          <p style="font-size:12.5px;color:#64748B;line-height:1.55;margin:0">En çok ciro getiren müşteriniz 95 gün vadeli açık hesap çalışıp kâr marjınızı faize yediriyorsa siz mal mı satıyorsunuz yoksa faizsiz kredi mi dağıtıyorsunuz?</p>
+      <!-- Case 2: Gıda Dağıtım & Toptan -->
+      <div class="caseCard">
+        <div class="caseHead">
+          <span class="caseBadge verified">📊 TEMSİLİ MODELLEME VAKASI · HIZLI TÜKETİM &amp; DAĞITIM</span>
+          <span class="caseLocation">Bursa · ₺110M Yıllık Hacim</span>
         </div>
-        <div style="margin-top:16px;padding-top:12px;border-top:1px solid #F1F5F9;font-size:12px;font-weight:800;color:#B45309">
-          Reçete: DBS Protokolü ➔ Kurtarılan ₺308K Faiz
+        <div class="caseTitle">"88 Günlük Operasyonel Açık Hesap Vadesi (Resmi Mizan: 81 Gün) 52 Güne İndirildi; Banka Kredi İhtiyacı ₺2.800.000 Azaldı."</div>
+        <div class="caseProblem">
+          <b>Kriz:</b> Şirket rekor ciro yapmasına rağmen ay sonlarında tedarikçi çeklerini ödeyemiyordu. Resmi mizan DSO vadesi 81 gün iken operasyonel yaşlandırma alt defterinde fiili vade 88 güne çıkmıştı; bayiler açık hesap vadelerini sürekli uzatarak şirketi faizsiz banka gibi kullanıyordu.
+        </div>
+        <div class="caseSolution">
+          <b>DFBP Reçetesi:</b> Alacak Yaşlandırma Motoru ilk 20 bayinin vadesini taradı; vadesi 60 günü aşan riskli cariler durduruldu ve DBS (Doğrudan Borçlandırma Sistemi) entegrasyonuna bağlandı. Operasyonel DSO 88 günden 52 güne çekildi.
+        </div>
+        <div class="caseKpis">
+          <div class="caseKpiItem"><b style="color:#047857">+₺2.800.000</b><span>Azalan Kredi Yükü</span></div>
+          <div class="caseKpiItem"><b style="color:#1D4ED8">88g → 52g</b><span>Operasyonel Vade (DSO)</span></div>
+          <div class="caseKpiItem"><b style="color:#B45309">₺640.000 / yıl</b><span>Kurtarılan Faiz Kârı</span></div>
         </div>
       </div>
 
-      <!-- Highlight 3 -->
-      <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:18px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 14px rgba(15,27,45,.03)">
-        <div>
-          <span class="kobiTag mgmt" style="margin-bottom:10px">⚖️ 8 PATRON KARAR MASASI</span>
-          <h4 style="font-size:15px;color:#0F172A;margin:0 0 8px;line-height:1.4">Teşhis ➔ 33 Motor Analitik Kanıt ➔ Yönetim Aksiyonu</h4>
-          <p style="font-size:12.5px;color:#64748B;line-height:1.55;margin:0">"Kasada Neden Para Yok?", "Hangi Müşteri Zarar Ettiriyor?", "Kredisiz Kaç Milyon TL Nakit Çıkar?" sorularının çift taraflı denetimli 3 katmanlı çözümü.</p>
+      <!-- Case 3: Tekstil & İhracat -->
+      <div class="caseCard">
+        <div class="caseHead">
+          <span class="caseBadge verified">📊 TEMSİLİ MODELLEME VAKASI · TEKSTİL &amp; İHRACAT</span>
+          <span class="caseLocation">İstanbul · €4.2M İhracat Hacmi</span>
         </div>
-        <div style="margin-top:16px;padding-top:12px;border-top:1px solid #F1F5F9;font-size:12px;font-weight:800;color:#7E22CE">
-          3 Katman: Teşhis · Kanıt · CFO Aksiyonu
+        <div class="caseTitle">"%62 Müşteri Konsantrasyonu ve Gizli Kur Zararı Yakalandı; Brüt Marj %18'den %24'e Çıktı."</div>
+        <div class="caseProblem">
+          <b>Kriz:</b> Şirketin cirosunun üçte ikisi tek bir yabancı alıcıya bağlıydı. Döviz kuru hareketlerinde kur farkı gelir/gider ayrıştırması yapılmadığı için kârlı sanılan siparişler gizli zarara yol açıyordu.
+        </div>
+        <div class="caseSolution">
+          <b>DFBP Reçetesi:</b> Müşteri Risk Radarı ve FX Risk Röntgeni devreye alındı. Kârsız 3 sipariş hattı revize edildi; vadeli döviz sözleşmelerinde kur koruma kuralları uygulanarak brüt marj 6 puan artırıldı.
+        </div>
+        <div class="caseKpis">
+          <div class="caseKpiItem"><b style="color:#047857">+%6 Net Artış</b><span>Brüt Kâr Marjı</span></div>
+          <div class="caseKpiItem"><b style="color:#1D4ED8">%62 → %34</b><span>Müşteri Bağımlılığı</span></div>
+          <div class="caseKpiItem"><b style="color:#B45309">+€280.000</b><span>Net Nakit Katkısı</span></div>
+        </div>
+      </div>
+
+      <!-- Case 4: Makine & Otomotiv Yan Sanayi -->
+      <div class="caseCard">
+        <div class="caseHead">
+          <span class="caseBadge verified">📊 TEMSİLİ MODELLEME VAKASI · MAKİNE &amp; YAN SANAYİ</span>
+          <span class="caseLocation">İzmir · ₺48M Yıllık Hacim</span>
+        </div>
+        <div class="caseTitle">"Mizan ile Stok Defteri Arasındaki %34 Mutabakat Uçurumu ve ₺920.000 Kâr Kaçağı Kapatıldı."</div>
+        <div class="caseProblem">
+          <b>Kriz:</b> Ortaklar toplantısında kâr paylaşımı konusunda anlaşmazlık vardı. Mizan tablosundaki 150/153 hesapları ile fiili depo sayım raporları arasında yüz binlerce liralık mutabakat farkı bulunuyordu.
+        </div>
+        <div class="caseSolution">
+          <b>DFBP Reçetesi:</b> Data Hub Çapraz Mutabakat Motoru mizan ile stok listesini satır satır eşleştirdi; kayıp stok hareketleri ve faturalandırılmamış sevkiyatlar tespit edilerek ortaklar arasında tek veri konsensüsü sağlandı.
+        </div>
+        <div class="caseKpis">
+          <div class="caseKpiItem"><b style="color:#047857">₺920.000</b><span>Tespit Edilen Sızıntı</span></div>
+          <div class="caseKpiItem"><b style="color:#1D4ED8">%100 Mutabakat</b><span>Mizan &amp; Defter Uyumu</span></div>
+          <div class="caseKpiItem"><b style="color:#B45309">1 Gün</b><span>Uzlaşma &amp; Karar Süresi</span></div>
         </div>
       </div>
     </div>
+  </section>
+</div>
 
-    <!-- Bottom Action Row -->
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;background:#EFF6FF;border:1.5px solid #BFDBFE;border-radius:16px;padding:18px 24px">
-      <div>
-        <div style="font-size:15px;font-weight:800;color:#1E3A8A">Patronun Masasındaki 10 Finansal Kriz &amp; 8 Yönetim Karar Masası</div>
-        <div style="font-size:12.5px;color:#475569;margin-top:3px">Enflasyon erimesi, ölü stok, ortaklar kâr payı çıkmazı ve banka kırmızı çizgisi dahil tüm reçeteleri özel sayfamızda inceleyin.</div>
+<!-- SECTION: 3-KATMANLI ÜRÜN MİMARİSİ (PATRONUN AKLINDAKİ 8 KRİTİK SORU) -->
+<div class="secBlock tint reveal">
+  <section id="patronSorulari" class="marketingSection hidePrint">
+    <div class="marketingHead">
+      <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">3 KATMANLI ÜRÜN MİMARİSİ</span>
+      <h2>Patron Muhasebe Raporu Değil; "Kasada Neden Para Yok ve Yarın Ne Yapmalıyım?" Sorusunun Cevabını İster</h2>
+      <p>Muhasebe programları sadece geçmişin dökümünü listeler. Digital Finance Business Partner ise patronun geceleri aklına takılan 8 kritik soruyu; çift taraflı analitik kanıtlar, net TL getirisi ve uygulanabilir yönetim kararlarıyla anında çözer.</p>
+    </div>
+
+    <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:22px;padding:26px;box-shadow:0 14px 34px rgba(15,27,45,.06)">
+      <div style="position:relative;display:flex;align-items:center;margin-bottom:18px;gap:6px">
+        <button type="button" class="pillScrollBtn" onclick="scrollPills('landingCeoPills', -280)" aria-label="Geri Kaydır" title="Önceki Sorular">‹</button>
+        <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;flex:1" id="landingCeoPills">
+        <button type="button" class="ceoPill active" data-lq="lq1" onclick="switchLandingCeo('lq1')">💸 Kasada Neden Para Yok?</button>
+        <button type="button" class="ceoPill" data-lq="lq2" onclick="switchLandingCeo('lq2')">👥 Hangi Müşteri Zarar Ettiriyor?</button>
+        <button type="button" class="ceoPill" data-lq="lq3" onclick="switchLandingCeo('lq3')">📦 Depoda Ne Kadar Para Uyuyor?</button>
+        <button type="button" class="ceoPill" data-lq="lq4" onclick="switchLandingCeo('lq4')">🔓 Kredisiz Kaç Milyon TL Nakit Çıkar?</button>
+        <button type="button" class="ceoPill" data-lq="lq5" onclick="switchLandingCeo('lq5')">📉 Satış Artarken Marj Neden Büyümüyor?</button>
+        <button type="button" class="ceoPill" data-lq="lq6" onclick="switchLandingCeo('lq6')">⚖️ Vade Makası (Müşteri vs Tedarikçi)</button>
+        <button type="button" class="ceoPill" data-lq="lq7" onclick="switchLandingCeo('lq7')">🚨 Yarın Sabahın 3 Kritik Alarmı</button>
+        <button type="button" class="ceoPill" data-lq="lq8" onclick="switchLandingCeo('lq8')">🎯 CEO'nun 1 Numaralı Kararı</button>
       </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <a href="/cozumler" class="primary" style="text-decoration:none;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:800;display:inline-flex;align-items:center;gap:8px;background:#1D4ED8;color:#FFFFFF;box-shadow:0 6px 18px rgba(29,78,216,0.25)">
-          <span>🔥 Tüm 10 Kriz &amp; 8 Karar Masasını İnceleyin</span>
-          <span>→</span>
+        <button type="button" class="pillScrollBtn" onclick="scrollPills('landingCeoPills', 280)" aria-label="İleri Kaydır" title="Sonraki Sorular">›</button>
+      </div>
+
+      <div id="landingCeoCards">
+        <!-- LQ1 -->
+        <div id="lqCard_lq1" class="ceoQuestionCard active">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">💸 NAKİT AKIŞI &amp; KÂR KALİTESİ</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi (₺10M Ciro / ₺1M Net Kâr)</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Defterdeki Kâr, Alacak ve Stok Kilitlenmesinde Kayboluyor</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Defterde ₺1.000.000 net kâr görünmesine karşın, bu kârın neredeyse tamamı müşterilerin 80 günlük tahsilat vadesinde (₺2.25M) ve depodaki 96 günlük stokta (₺1.71M) kilitlenmiştir. Kasa bu kârı fiilen görememektedir.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Net Dönem Kârı</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺1.000.000</div><div style="font-size:9.5px;color:#94A3B8">Defter kârı</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Müşteride Kilitli (120)</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺2.250.000</div><div style="font-size:9.5px;color:#94A3B8">80 gün tahsilat</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Depoda Kilitli (150)</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺1.710.000</div><div style="font-size:9.5px;color:#94A3B8">96 gün stokta</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Nakit Çevrim (CCC)</div><div style="font-size:14px;font-weight:800;color:#0F172A">134 gün</div><div style="font-size:9.5px;color:#94A3B8">Nakit bekleme</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 İlk 10 müşteride açık hesap vadesini 15 gün geri çekin; vadeli siparişleri DBS veya %2 peşin nakit iskontosuyla hızlandırın.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺685.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺308.250 / yıl</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> CFO &amp; Satış Direktörü · <b>Vade:</b> İlk 30 Gün</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LQ2 -->
+        <div id="lqCard_lq2" class="ceoQuestionCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">👥 MÜŞTERİ KÂRLILIĞI &amp; ALACAK RİSKİ</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Yüksek Cirolu Müşteriler Uzun Vade ve Gizli Finansmanla Zarar Ettiriyor</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Cironun %38'ini tek başına oluşturan ilk 3 müşteri, 110 gün vade kullanmaktadır. %45 ticari kredi faizi ortamında bu vadenin faiz maliyeti satış marjının %14'ünü tüketmekte ve defterdeki net kârı gizli zarara dönüştürmektedir.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">İlk 3 Müşteri Payı</div><div style="font-size:14px;font-weight:800;color:#0F172A">%38,4</div><div style="font-size:9.5px;color:#94A3B8">Yüksek konsantrasyon</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Ortalama Vade</div><div style="font-size:14px;font-weight:800;color:#0F172A">110 gün</div><div style="font-size:9.5px;color:#94A3B8">Sektör medyanı 65g</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Alacak Finansman Yükü</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺485.000</div><div style="font-size:9.5px;color:#94A3B8">Yıllık faiz erozyonu</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Risk Skoru</div><div style="font-size:14px;font-weight:800;color:#0F172A">84 / 100</div><div style="font-size:9.5px;color:#94A3B8">Kritik seviye</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 Vadesi 75 günü aşan bu müşterilere açık hesap yerine banka DBS limiti zorunluluğu getirin ve %2 vade farkı protokolü imzalayın.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺520.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺234.000 / yıl</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Ticari Satış Direktörü · <b>Vade:</b> 45 Gün</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LQ3 -->
+        <div id="lqCard_lq3" class="ceoQuestionCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">📦 STOK YÖNETİMİ &amp; ATIL SERMAYE</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Depoda ₺1.710.000 Uyuyor, Yıllık ₺769.500 Faiz Sızıntısı Üretiyor</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Mallar depoda ortalama 96 gün kalmaktadır. 90+ gündür hareket görmeyen atıl stoklar depoda çürürken şirketin banka kredisi maliyetini her ay büyütmektedir.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Depoda Bağlı Stok</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺1.710.000</div><div style="font-size:9.5px;color:#94A3B8">150-153 hesapları</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Stokta Kalma (DIO)</div><div style="font-size:14px;font-weight:800;color:#0F172A">96 gün</div><div style="font-size:9.5px;color:#94A3B8">Sektör medyanı 54g</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Yıllık Faiz Sızıntısı</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺769.500</div><div style="font-size:9.5px;color:#94A3B8">%45 faiz proxy</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Stok Devir Hızı</div><div style="font-size:14px;font-weight:800;color:#0F172A">3,8x / yıl</div><div style="font-size:9.5px;color:#94A3B8">Düşük devir</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 90 günden uzun süredir bekleyen ölü stokları paket indirimle derhal nakde çevirin. Satınalma siparişlerini haftalık satış hızına bağlayın.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺356.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺160.200 / yıl</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Tedarik Zinciri &amp; Satınalma Müdürü · <b>Vade:</b> 30 Gün</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LQ4 -->
+        <div id="lqCard_lq4" class="ceoQuestionCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">🔓 İÇ KAYNAKLI ÖZ FİNANSMAN</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Banka Kredisi Almadan Şirket İçinden ₺1.041.000 Sıcak Nakit Çıkabilir</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Tahsilatı 15 gün öne çekmek, stoğu 15 gün hızlandırmak ve tedarikçi vadesini 10 gün uzatmak; bankaya tek kuruş faiz ödemeden şirketinize ₺1.041.000 nakit ve yıllık ₺468.450 net kâr kazandırır.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Tahsilat Katkısı (-15G)</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺411.000</div><div style="font-size:9.5px;color:#94A3B8">Alacak hızlandırma</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Stok Katkısı (-15G)</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺356.000</div><div style="font-size:9.5px;color:#94A3B8">Depo eritme</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Tedarikçi Katkısı (+10G)</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺274.000</div><div style="font-size:9.5px;color:#94A3B8">Satıcı finansmanı</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Toplam İç Nakit</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺1.041.000</div><div style="font-size:9.5px;color:#94A3B8">Sıfır banka kredisi</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 3 Kaldıraçlı Çalışma Sermayesi Programı başlatın: Satış ekibinin primini ciroya değil "kasaya giren tahsilata" endeksleyin.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺1.041.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺468.450 / yıl</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> İcra Kurulu &amp; Genel Müdür · <b>Vade:</b> Hemen Devrede</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LQ5 -->
+        <div id="lqCard_lq5" class="ceoQuestionCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">📉 KÂR KALİTESİ &amp; MALİYET KONTROLÜ</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Faaliyet Giderleri (OpEx) Cirodan %8 Daha Hızlı Artmış</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Satışlar %25 büyürken brüt marj %35'ten %31'e gerilemiş; genel yönetim ve lojistik giderleri kâr artışını eritmiştir. Şirket daha çok çalışmakta ancak daha az operasyonel kâr üretmektedir.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Brüt Kâr Marjı</div><div style="font-size:14px;font-weight:800;color:#0F172A">%31,0</div><div style="font-size:9.5px;color:#94A3B8">Önceki: %35,0 (↓)</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Faaliyet Kâr Marjı</div><div style="font-size:14px;font-weight:800;color:#0F172A">%10,0</div><div style="font-size:9.5px;color:#94A3B8">Operasyonel marj</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Gider / Ciro Oranı</div><div style="font-size:14px;font-weight:800;color:#0F172A">%21,0</div><div style="font-size:9.5px;color:#94A3B8">OpEx yoğunluğu</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Finansman Yükü</div><div style="font-size:14px;font-weight:800;color:#0F172A">%40,0</div><div style="font-size:9.5px;color:#94A3B8">Faaliyet kârına oranı</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 Fiyatlama politikasını enflasyon bazlı dinamik tarifeye geçirin; kârsız ürün kodlarını ürün portföyünden derhal ayıklayın.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Ekstra Faaliyet Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺200.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Yıllık Marj Katkısı</div><div style="font-size:14px;font-weight:800;color:#166534">+%2,0 Puan</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Finans Direktörü &amp; Satış · <b>Vade:</b> 30 Gün</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LQ6 -->
+        <div id="lqCard_lq6" class="ceoQuestionCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">⚖️ İŞLETME SERMAYESİ ASİMETRİSİ</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Tedarikçiye 42 Günde Ödeyip Müşteriyi 80 Gün Beklemek Şirketi Kanamaya İtiyor</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Ortaya çıkan 38 günlük vade açığını kapatmak için şirket kendi özkaynağını eritmekte ve bankadan yüksek faizli rotatif kredi çekmektedir.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Müşteri Vadesi (DSO)</div><div style="font-size:14px;font-weight:800;color:#0F172A">80 gün</div><div style="font-size:9.5px;color:#94A3B8">Alacak vadesi</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Tedarikçi Vadesi (DPO)</div><div style="font-size:14px;font-weight:800;color:#0F172A">42 gün</div><div style="font-size:9.5px;color:#94A3B8">Ödeme vadesi</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Net Vade Makası Açığı</div><div style="font-size:14px;font-weight:800;color:#0F172A">38 gün</div><div style="font-size:9.5px;color:#94A3B8">Finanse edilen gün</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Tedarikçi Borçları</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺750.000</div><div style="font-size:9.5px;color:#94A3B8">320 Satıcılar</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 Tedarikçilerle vadeleri 15 gün uzatacak konsinye veya vadeli çek protokolü yapın; müşterilere ise tedarikçi vadesinin üzerinde açık hesap açmayın.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺410.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺184.500 / yıl</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Satınalma Direktörü &amp; CFO · <b>Vade:</b> 30 Gün</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LQ7 -->
+        <div id="lqCard_lq7" class="ceoQuestionCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">🚨 CEO ERKEN UYARI RADARI</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">33 Karar Motorunun Belirlediği 3 Öncelikli Alarm</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Mizan çift taraflı denetlenmiş ve nakit akışını riske atan ilk 3 finansal alarm tespit edilmiştir: Tahsilat süresinin uzaması, depoda kilitli sermaye ve kısa vadeli borç geri ödeme takvimi.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">1. Tahsilat Vadesi</div><div style="font-size:14px;font-weight:800;color:#0F172A">88 / 100</div><div style="font-size:9.5px;color:#94A3B8">Maruziyet: ₺780k</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">2. Kilitli Stok Yükü</div><div style="font-size:14px;font-weight:800;color:#0F172A">76 / 100</div><div style="font-size:9.5px;color:#94A3B8">Maruziyet: ₺769k</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">3. Likidite / Borç</div><div style="font-size:14px;font-weight:800;color:#0F172A">72 / 100</div><div style="font-size:9.5px;color:#94A3B8">Cari oran 1.1x</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Finansal Sağlık</div><div style="font-size:14px;font-weight:800;color:#0F172A">74 / 100</div><div style="font-size:9.5px;color:#94A3B8">Orta-Risk</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 Risk komitesini toplayarak bu 3 alarm için haftalık nakit akış toplantısı kurgulayın ve erken uyarı limitleri belirleyin.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Korunan Nakit Kalkanı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺390.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Batık Riski Önleme</div><div style="font-size:14px;font-weight:800;color:#166534">Tam Güvence</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> İcra Kurulu · <b>Vade:</b> İlk 7 Gün</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LQ8 -->
+        <div id="lqCard_lq8" class="ceoQuestionCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">🎯 CEO İCRAAT DİREKTİFİ</span>
+            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
+          </div>
+          <div class="ceoGrid3">
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
+              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Bugün Masaya Koymanız Gereken 1 Numaralı Karar</h4>
+              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Şirketinizin nakit akışını ve kârını kalıcı olarak kurtaracak tek hamle: Vadesi 60 günü aşan müşterilere yeni mal sevkiyatını dondurmak ve ilk 10 müşteriyle banka teminatlı DBS protokolü başlatmaktır.</p>
+            </div>
+            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
+              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Yıllık Kâr Sızıntısı</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺1.782.000</div><div style="font-size:9.5px;color:#94A3B8">Faiz kaybı</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Kilitli Nakit Tutarı</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺3.960.000</div><div style="font-size:9.5px;color:#94A3B8">Alacak + Stok</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Kurtarılabilir Kâr</div><div style="font-size:14px;font-weight:800;color:#0F172A">+₺801.900</div><div style="font-size:9.5px;color:#94A3B8">Yıllık faiz tasarrufu</div></div>
+                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">İcraat Etkisi</div><div style="font-size:14px;font-weight:800;color:#0F172A">Kritik</div><div style="font-size:9.5px;color:#94A3B8">Doğrudan kâr artışı</div></div>
+              </div>
+            </div>
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
+              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
+              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 Satış direktörüne bugün yazılı talimat verin: Vadesi 60 günü aşan müşteriye sevkiyat onayı verilmeyecek; açık hesap riski DBS garantisine bağlanacaktır.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺685.000</div></div>
+                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺308.250 / yıl</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> CEO &amp; Genel Müdür · <b>Vade:</b> Bugün</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid #E2E8F0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div style="font-size:13px;color:#64748B">
+          💡 Kendi şirketinizin mizanında bu soruların yanıtlarını kuruşu kuruşuna görmek için canlı demoyu başlatın.
+        </div>
+        <a href="/uygulama?sample=data_hub" class="primary" style="text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13.5px;font-weight:700">
+          🔥 Kendi Verilerinizle Canlı Cevapları Görün →
         </a>
       </div>
     </div>
-  </div>
-</section></div>
+  </section>
+</div>
+
+
 <!-- SECTION: COMPARISON MATRIX -->
 <div class="secBlock reveal"><section id="comparison" class="marketingSection hidePrint">
 <div class="marketingHead">
@@ -1149,7 +1830,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </section></div>
 
 </main>
-<div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/cozumler">Çözümler</a></li><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
+<div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
 
 <!-- Board One-Pager Executive Modal (Root level child for clean A4 printing) -->
 <div id="boardDeckModal" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;overflow-y:auto">
@@ -1480,13 +2161,13 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
 </script>
 <script>
 var GLOBAL_I18N = {
-  tr: { navHome: 'Anasayfa', navSolutions: 'Çözümler', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
-  en: { navHome: 'Home', navSolutions: 'Solutions', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
-  de: { navHome: 'Startseite', navSolutions: 'Lösungen', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
-  fr: { navHome: 'Accueil', navSolutions: 'Solutions', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
-  es: { navHome: 'Inicio', navSolutions: 'Soluciones', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
-  it: { navHome: 'Home', navSolutions: 'Soluzioni', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
-  nl: { navHome: 'Startpagina', navSolutions: 'Oplossingen', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
+  tr: { navHome: 'Anasayfa', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
+  en: { navHome: 'Home', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
+  de: { navHome: 'Startseite', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
+  fr: { navHome: 'Accueil', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
+  es: { navHome: 'Inicio', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
+  it: { navHome: 'Home', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
+  nl: { navHome: 'Startpagina', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
 };
 function setGlobalLanguage(lang){
   try { localStorage.setItem('dfbp_lang', lang); } catch(e){}
@@ -1495,15 +2176,7 @@ function setGlobalLanguage(lang){
   var nav = document.getElementById('mainNav');
   if(nav){
     var links = nav.querySelectorAll('a');
-    if(links.length >= 7){
-      links[0].textContent = dict.navHome;
-      links[1].textContent = dict.navSolutions;
-      links[2].textContent = dict.navAbout;
-      links[3].textContent = dict.navApp;
-      links[4].textContent = dict.navPricing;
-      links[5].textContent = dict.navSecurity;
-      links[6].textContent = dict.navContact;
-    } else if(links.length >= 6){
+    if(links.length >= 6){
       links[0].textContent = dict.navHome;
       links[1].textContent = dict.navAbout;
       links[2].textContent = dict.navApp;
@@ -1525,1554 +2198,6 @@ if(typeof document !== 'undefined' && document.addEventListener){
 </script>
 </body></html>'''
 
-SOLUTIONS_HTML = r'''<!doctype html>
-<html lang="tr">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.ico"><meta name="description" content="Digital Finance Business Partner (digitalfinancebp.com) — Patronun masasındaki 10 gerçek finansal kriz, 8 stratejik yönetim kararı, analitik kanıtlar ve 60 saniyelik icraat reçeteleri. Digital Finance Business Partner."><title>KOBİ Finansal Çözümleri &amp; Patron Karar Masası | Digital Finance Business Partner</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#F6F7F9;--panel:#FFFFFF;--panel2:#F0F3F8;--line:#E4E8EF;--text:#0F1B2D;--muted:#5B6B84;--accent:#1D4ED8;--accent2:#4F8CFF;--red:#C22A3E;--amber:#B4720A;--green:#0E7C66;--shadow:0 1px 2px rgba(15,27,45,.04),0 12px 32px rgba(15,27,45,.06);--serif:'Fraunces',ui-serif,Georgia,serif}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(1100px 480px at 12% -10%, rgba(29,78,216,.07), transparent 60%),radial-gradient(900px 420px at 100% 0%, rgba(14,124,102,.05), transparent 55%),#F6F7F9;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}button,input,select{font:inherit}.wrap{max-width:1440px;margin:auto;padding:0 28px}.top{padding:26px 0 18px;border-bottom:1px solid rgba(15,27,45,.08);position:sticky;top:0;background:rgba(246,247,249,.86);backdrop-filter:blur(18px);z-index:10}.brand{display:flex;align-items:center;justify-content:space-between;gap:20px}.brand h1{margin:0;font-size:25px;letter-spacing:-.6px}.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}.badge{padding:6px 10px;border:1px solid #D7DEE8;border-radius:999px;color:var(--accent);font-size:12px;white-space:nowrap}.hero{padding:34px 0 24px;display:grid;grid-template-columns:1.45fr .55fr;gap:18px}.heroCard,.card{background:#FFFFFF;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.heroCard{padding:28px}.heroTitle{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1.08;margin:0 0 14px;letter-spacing:-.5px}.heroText{color:var(--muted);max-width:780px}.framework{display:flex;flex-wrap:wrap;gap:8px 10px;margin:16px 0 2px;padding:0}.framework span{font-size:11.5px;color:#33415C;background:#EEF2FF;border:1px solid var(--line);border-radius:999px;padding:6px 11px}.framework span b{color:var(--accent);font-weight:800}
-.qsel{margin-top:18px}.qsel .qtitle{font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:700}.qsel .qrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.qsel button{border:1px solid #D7DEE8;background:#EEF2FF;color:#33415C;border-radius:12px;padding:10px 12px;font-size:12.5px;cursor:pointer;text-align:left;line-height:1.3}.qsel button:hover{border-color:#B7C3D6}.qsel button.active{border-color:var(--accent);color:var(--accent);background:#DCE6FB}
-.upload{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}.file{border:1px dashed #C9D2DE;padding:12px;border-radius:12px;background:#F5F7FA;max-width:100%}.select,button{border:1px solid #D7DEE8;border-radius:11px;padding:11px 14px;background:#FFFFFF;color:var(--text)}button.primary,a.primary{background:linear-gradient(135deg,#2557E8,#1D4ED8);border:0;color:#FFFFFF;font-weight:800;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;box-shadow:0 6px 16px rgba(29,78,216,.25)}a.primary:hover,button.primary:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(29,78,216,.32)}button.secondary,a.secondary{cursor:pointer;border:1.5px solid #C9D2DE;background:#FFFFFF;color:var(--text)}a.secondary:hover,button.secondary:hover{border-color:var(--accent);color:var(--accent)}button:disabled{opacity:.5;cursor:not-allowed}.scoreCard{padding:25px;display:flex;flex-direction:column;justify-content:center}.scoreRing{width:170px;height:170px;border-radius:50%;margin:auto;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--score)*1%),#E4E8EF 0);position:relative}.scoreRing:after{content:"";position:absolute;inset:12px;border-radius:50%;background:#FFFFFF}.scoreNum{position:relative;z-index:1;text-align:center}.scoreNum strong{display:block;font-size:48px;line-height:1}.scoreNum span{color:var(--muted);font-size:12px}.status{margin:15px auto 0;padding:7px 12px;border-radius:999px;background:#EAF0FF;color:var(--accent);font-size:12px;font-weight:700}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:22px;margin:0 0 16px;transition:transform .18s ease,box-shadow .18s ease,outline .2s}.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(15,27,45,.08)}@keyframes growUp{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}.wf{transform-origin:bottom}.wf .col{transform-origin:bottom}@keyframes growWidth{from{width:0}to{}}.metric{padding:17px;border:1px solid var(--line);border-radius:15px;background:rgba(15,27,45,.03)}.metric .label{color:var(--muted);font-size:12px}.metric .value{font-size:25px;font-weight:800;margin-top:5px;letter-spacing:-.5px}.metric .sub{font-size:11px;color:var(--muted);margin-top:5px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:17px}.sectionHead h2{margin:0;font-size:18px}.sectionHead p{margin:0;color:var(--muted);font-size:12px}.flowStep{margin:36px 0 14px;padding-top:6px;border-top:1px solid rgba(15,27,45,.08)}.flowStep:first-child{margin-top:0;border-top:0;padding-top:0}.flowLabel{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin:0 0 4px}.flowLabel .n{width:22px;height:22px;border-radius:50%;background:#EAF0FF;color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:11px}.flowLabel p{margin:0;color:var(--muted);font-size:12.5px;font-weight:500;text-transform:none;letter-spacing:0}.flowLabel.alt{color:var(--accent2)}.flowLabel.alt .n{color:var(--accent2)}.flowSub{color:var(--muted);font-size:12.5px;margin:2px 0 16px 32px}.insight{border:1px solid var(--line);border-radius:15px;padding:16px;background:#F7F9FC}.insight.critical{border-color:#E8B4BD}.insight.high{border-color:#E9CBA8}.insight.medium{border-color:#E5DBA0}.insight.positive{border-color:#A9D9C9}.insight h3{margin:0 0 5px;font-size:14px}.insight p{margin:6px 0;color:#33415C;font-size:13px}.insight ul{margin:6px 0;padding-left:18px;color:#33415C;font-size:13px}.tag{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;background:#EAF0FF;color:#5B6B84}.tag.critical{background:#FCE8EA;color:#C22A3E}.tag.high{background:#FDF0E0;color:#B4720A}.tag.medium{background:#FBF6DE;color:#8A6D00}.tag.positive{background:#E4F5EF;color:#0E7C66}.riskRow,.actionRow{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(15,27,45,.08)}.rank{font-size:18px;font-weight:900;color:#5B6B84}.riskScore{font-size:12px;color:var(--muted)}.bar{height:7px;background:#E4E8EF;border-radius:99px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}.waterfallWrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:10px;margin-bottom:10px}.waterfall{display:flex;align-items:flex-end;gap:9px;height:190px;padding:20px 5px 0;border-bottom:1px solid var(--line);min-width:620px}.wf{flex:1;display:flex;flex-direction:column;justify-content:end;height:100%;min-width:65px}.wf .col{border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#83a4ff,#506fd0);min-height:3px}.wf.neg .col{background:linear-gradient(180deg,#ff8290,#9d3e54)}.wf .lab{font-size:10.5px;font-weight:600;color:var(--muted);text-align:center;margin-top:7px;white-space:nowrap}.wf .num{font-size:10px;font-weight:700;text-align:center;color:#33415C;margin-bottom:4px;white-space:nowrap}.subnavPill{font-size:12px;font-weight:600;color:#475569;text-decoration:none;padding:5px 12px;border-radius:999px;background:#F1F5F9;border:1px solid #E2E8F0;transition:all .15s ease}.subnavPill:hover{background:#E2E8F0;color:#1D4ED8;border-color:#CBD5E1}.dashPill{font-size:11.5px;font-weight:700;color:#475569;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:999px;padding:5px 12px;cursor:pointer;transition:all .15s ease;white-space:nowrap}.dashPill:hover{background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE}.scenario{padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#F5F8FF,#EEF3FC)}.scenario h3{margin:0 0 6px;font-size:15px}.scenario .big{font-size:24px;font-weight:900;color:var(--accent)}.scenario p{color:var(--muted);font-size:11px;margin:6px 0}.muted{color:var(--muted)}.small{font-size:11px}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:10px 8px;border-bottom:1px solid rgba(15,27,45,.08);text-align:right}th:first-child,td:first-child{text-align:left}th{color:#5B6B84;font-weight:600}.notice{padding:12px 14px;border-radius:12px;background:#EEF2FF;border:1px solid var(--line);color:#5B6B84;font-size:12px}.error{color:#C22A3E;background:#FCE8EA;border:1px solid #E8B4BD;padding:12px;border-radius:12px;margin:15px 0}.hidden{display:none!important}.footer{padding:25px 0 50px;color:#5B6B84;font-size:11px;text-align:center}.tabs{display:flex;gap:8px;margin-top:16px}.tab{padding:8px 12px;border-radius:999px;background:#F0F3F8;border:1px solid var(--line);color:#5B6B84;cursor:pointer}.tab.active{background:#DCE6FB;color:var(--accent);border-color:#1D4ED8}.tabPanel{display:none}.tabPanel.active{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.hidePrint{display:block}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chip{font-size:11.5px;background:#EEF2FF;border:1px solid var(--line);border-radius:999px;padding:6px 11px;color:#33415C}.chip b{color:var(--accent)}
-.abar{height:9px;background:#E4E8EF;border-radius:99px;overflow:hidden;margin-top:6px}.abar i{display:block;height:100%;background:linear-gradient(90deg,#8aa7ff,#ff8290);border-radius:99px}
-.custRow{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(15,27,45,.08);font-size:12.5px}
-.highlight-target{outline:2px solid var(--accent);outline-offset:6px}
-/* --- Marketing surface additions --- */
-.topNav{display:flex;gap:18px}
-.topNav a{color:var(--muted);font-size:13px;text-decoration:none;font-weight:600}
-.topNav a:hover{color:var(--accent)}
-.marketingSection{padding:8px 0 16px}
-.marketingHead{text-align:center;max-width:640px;margin:0 auto 34px}
-.marketingHead h2{font-family:var(--serif);font-size:32px;margin:0 0 10px;letter-spacing:-.5px}
-.marketingHead p{color:var(--muted);margin:0;font-size:14.5px}
-.pricingGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
-.priceCard{display:flex;flex-direction:column;padding:28px 24px;position:relative}
-.priceCard.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}
-.priceCard .plan{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);font-weight:800;margin-bottom:8px}
-.priceCard h3{margin:0 0 6px;font-size:22px;font-family:var(--serif)}
-.priceCard .amt{font-size:34px;font-weight:900;margin:8px 0 4px}
-.priceCard .amt span{font-size:13px;color:var(--muted);font-weight:500}
-.priceCard .desc{color:var(--muted);font-size:13px;margin-bottom:18px}
-.priceCard ul{list-style:none;margin:0 0 22px;padding:0;flex:1;display:flex;flex-direction:column;gap:10px}
-.priceCard ul li{font-size:13px;color:#33415C;display:flex;gap:8px;align-items:flex-start}
-.priceCard ul li svg{flex:none;margin-top:2px;color:var(--accent)}
-.priceCard .badgeTop{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#FFFFFF;font-size:10.5px;font-weight:800;padding:4px 12px;border-radius:999px;letter-spacing:.5px}
-.aboutGrid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
-.aboutStats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
-.aboutStats .st{padding:16px;border:1px solid var(--line);border-radius:14px;text-align:center;background:rgba(15,27,45,.03)}
-.aboutStats .st b{display:block;font-size:24px;color:var(--accent);font-family:var(--serif)}
-.aboutStats .st span{font-size:11px;color:var(--muted)}
-.contactGrid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.contactCard{padding:26px}
-.contactRow{display:flex;flex-direction:column;gap:12px;margin-top:14px}
-.contactRow .item{display:flex;gap:10px;align-items:center;font-size:13px;color:#33415C}
-.contactRow .item svg{color:var(--accent);flex:none}
-@media(max-width:860px){.pricingGrid,.aboutGrid,.contactGrid{grid-template-columns:1fr}.topNav{display:none}}
-.trustBar{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(15,27,45,.10)}
-.trustBar .item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
-.trustBar .item svg{flex:none;color:var(--accent)}
-.heroPreview{position:relative;padding:22px;overflow:hidden}
-.pvLabel,.heroPreview .pvLabel{font-size:11px;color:var(--muted);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
-.pvLabel span.dot,.heroPreview .pvLabel span.dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;margin-right:6px;box-shadow:0 0 0 3px rgba(14,124,102,.15)}
-.pvRing{width:112px;height:112px;border-radius:50%;margin:2px auto 14px;display:grid;place-items:center;background:conic-gradient(var(--accent) 0 78%,#182c42 78% 100%);position:relative}
-.pvRing:after{content:"";position:absolute;inset:9px;border-radius:50%;background:#F7F9FC}
-.pvRing b{position:relative;font-family:var(--serif);font-size:26px;z-index:1}
-.pvRow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(15,27,45,.08);font-size:12px}
-.pvRow .n{color:var(--text);font-weight:700}
-.pvRow .n.up{color:var(--green)}.pvRow .n.down{color:var(--red)}
-.pvBars{display:flex;align-items:flex-end;gap:5px;height:54px;margin-top:14px}
-.pvBars i{flex:1;background:linear-gradient(180deg,var(--accent2),#4a63b8);border-radius:3px 3px 1px 1px;display:block}
-.statsStrip{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:6px 0 0;padding:26px 0}
-.statsStrip .stat b{font-family:var(--serif);font-size:36px;font-weight:600;color:var(--text);display:block;letter-spacing:-.5px}
-.statsStrip .stat span{font-size:12.5px;color:var(--muted);display:block;margin-top:4px;max-width:20ch}
-.whyCard{padding:20px;position:relative}
-.whyCard .icoWrap{width:40px;height:40px;border-radius:11px;background:#DCE6FB;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--accent)}
-.ctaBanner{margin:44px 0 8px;padding:38px 32px;border-radius:22px;background:linear-gradient(135deg,#EAF0FF 0%,#DCE6FB 55%,#EAF0FF 100%);border:1px solid #C9D8F5;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.ctaBanner h3{font-family:var(--serif);font-weight:600;font-size:26px;margin:0 0 6px;letter-spacing:-.3px}
-.ctaBanner p{margin:0;color:var(--muted);font-size:13.5px;max-width:52ch}
-@media(max-width:1000px){.statsStrip{grid-template-columns:repeat(2,1fr)}.heroTitle{font-size:34px}}
-@media(max-width:1000px){.hero{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.grid3,.grid2{grid-template-columns:1fr}.wrap{padding:0 15px}.heroTitle{font-size:31px}.flowSub{margin-left:0}.qsel .qrow{grid-template-columns:1fr}}
-@media print{
-  *,*::before,*::after{box-sizing:border-box!important}
-  @page{size:A4 portrait;margin:10mm 12mm 10mm 12mm}
-  html,body{background:#fff!important;color:#0F1B2D!important;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif!important;font-size:8.5pt!important;line-height:1.35!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-
-  /* ── Hide all interactive & website shell elements ─────────────── */
-  .hero,.upload,.hidePrint,.tabs,.tabPanel,.chips,.qsel,.tab,.footer,.siteFooter,
-  header.top,.top,.topNav,.navBtns,.navToggle,#authArea,#authModalOverlay,
-  .loadingOverlay,.dropZone,#criticalPartiesNotice,#methodNote,
-  .heroPreview,.trustBar,.statsStrip,.ctaBanner,
-  button,input,select,textarea,.secondary,.primary,
-  #sampleBtn,#aiBtn,#printBtn,#jsonBtn,#aiAskBtn,
-  #aiBox,#aiCustomBox,#aiCustomPrompt,#historySection,
-  .interactiveScenarioCard,#interactiveScenarioCard,
-  .abar{display:none!important}
-
-  /* ── Layout: full-width single column ──────────────────────────── */
-  .wrap{max-width:none!important;padding:0!important;margin:0!important;width:100%!important}
-
-  /* ── Boardroom Cover Header ────────────────────────────────────── */
-  #printCover{display:block!important;page-break-after:avoid!important;break-after:avoid!important;margin-bottom:12px}
-  .printExecutiveFooter{display:flex!important;justify-content:space-between;align-items:center;border-top:1px solid #CBD5E1;padding-top:6px;margin-top:14px;font-size:7pt!important;color:#64748B!important;page-break-inside:avoid!important;break-inside:avoid!important}
-
-  /* ── Cards & Containers ────────────────────────────────────────── */
-  .card{box-shadow:none!important;background:#fff!important;border:1px solid #CBD5E1!important;border-radius:6px!important;margin-bottom:8px!important;padding:8px 10px!important;page-break-inside:auto!important;break-inside:auto!important}
-  .heroCard{box-shadow:none!important;background:#fff!important;border:1px solid #CBD5E1!important;padding:8px!important}
-
-  /* ── Flow steps ─────────────────────────────────────────────────── */
-  .flowStep{margin:8px 0 4px!important;padding-top:2px!important;page-break-inside:auto!important;break-inside:auto!important}
-  .flowLabel{background:none!important;border-left:3.5px solid #1D4ED8!important;padding-left:8px!important;color:#0F1B2D!important;margin-bottom:4px!important;font-size:9pt!important;page-break-after:avoid!important;break-after:avoid!important}
-  .flowLabel .n{background:#1D4ED8!important;color:#fff!important;font-size:7.5pt!important;padding:1px 5px!important;border-radius:3px!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .flowSub{color:#64748B!important;font-size:7.5pt!important;margin-bottom:6px!important;line-height:1.25!important;page-break-after:avoid!important;break-after:avoid!important}
-
-  /* ── Metrics / KPIs ─────────────────────────────────────────────── */
-  .metric{background:#F8FAFC!important;border:1px solid #E2E8F0!important;border-radius:5px!important;padding:6px 8px!important;color:#0F1B2D!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;page-break-inside:avoid!important;break-inside:avoid!important}
-  .metric .label{font-size:6.5pt!important;color:#475569!important;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
-  .metric .value{font-size:11pt!important;font-weight:800;color:#0F1B2D!important}
-  .metric .sub{font-size:6.5pt!important;color:#64748B!important}
-  .grid2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:6px!important}
-  .grid3{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:6px!important}
-  .grid4{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:6px!important}
-
-  /* ── Health score ring ──────────────────────────────────────────── */
-  .scoreCard{display:flex!important;align-items:center!important;gap:16px!important;padding:8px 12px!important;page-break-inside:avoid!important;break-inside:avoid!important}
-  .scoreRing{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .scoreRing::after{background:#fff!important}
-
-  /* ── Section headings ───────────────────────────────────────────── */
-  .sectionHead{border-bottom:1px solid #E2E8F0!important;margin-bottom:6px!important;padding-bottom:4px!important;page-break-after:avoid!important;break-after:avoid!important}
-  .sectionHead h2{font-size:8.5pt!important;color:#1D4ED8!important;font-weight:800;margin:0!important}
-  .sectionHead p{font-size:7pt!important;color:#64748B!important;margin:1px 0 0!important}
-  h1,h2,h3,h4{page-break-after:avoid!important;break-after:avoid!important;color:#0F1B2D!important}
-  h3{font-size:8.5pt!important}
-
-  /* ── Risk & action rows (atomic: keep intact) ───────────────────── */
-  .riskRow,.actionRow{border:1px solid #E2E8F0!important;border-radius:5px!important;margin-bottom:4px!important;padding:5px 7px!important;page-break-inside:avoid!important;break-inside:avoid!important;background:#F8FAFC!important}
-  .rank{background:#EBF3FE!important;color:#1D4ED8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .bar{display:none!important}
-
-  /* ── Tags / badges ──────────────────────────────────────────────── */
-  .tag{border:1px solid #94A3B8!important;color:#1E293B!important;background:#F1F5F9!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;font-size:6.5pt!important}
-  .badge{border:1px solid #1D4ED8!important;color:#1D4ED8!important;font-size:7pt!important}
-
-  /* ── Insights / alerts ──────────────────────────────────────────── */
-  .insight{border-left:3.5px solid #1D4ED8!important;background:#EFF6FF!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;border-radius:4px!important;padding:6px 8px!important;margin-bottom:5px!important;page-break-inside:avoid!important;break-inside:avoid!important}
-  .insight.high,.insight.critical{border-left-color:#DC2626!important;background:#FEF2F2!important}
-  .insight.positive{border-left-color:#16A34A!important;background:#F0FDF4!important}
-  .notice{background:#F8FAFC!important;border:1px solid #CBD5E1!important;padding:6px 8px!important;border-radius:4px!important;font-size:7.5pt!important;color:#334155!important;page-break-inside:avoid!important;break-inside:avoid!important}
-
-  /* ── Waterfall chart ────────────────────────────────────────────── */
-  .waterfall{display:flex!important;align-items:flex-end!important;gap:4px!important;height:80px!important;padding:2px 0!important;page-break-inside:avoid!important;break-inside:avoid!important}
-  .wf .col{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .wf .num{font-size:6pt!important;color:#0F1B2D!important;font-weight:700}
-  .wf .lab{font-size:6pt!important;color:#475569!important;white-space:normal!important;max-height:22px;text-align:center;overflow:hidden;line-height:1.1}
-
-  /* ── Tables ─────────────────────────────────────────────────────── */
-  .tableWrap{overflow:visible!important}
-  table{border-collapse:collapse!important;width:100%!important;font-size:7pt!important}
-  th{background:#F1F5F9!important;color:#1E293B!important;font-weight:700;padding:3px 5px!important;border:1px solid #CBD5E1!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  td{padding:3px 5px!important;border:1px solid #E2E8F0!important}
-  tr{page-break-inside:avoid!important;break-inside:avoid!important}
-  tr:nth-child(even) td{background:#F8FAFC!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-
-  /* ── Misc ────────────────────────────────────────────────────────── */
-  .muted{color:#64748B!important}
-  .small{font-size:7pt!important}
-  a{color:#1D4ED8!important;text-decoration:none!important}
-  .scenario{border:1px solid #CBD5E1!important;border-radius:5px!important;padding:6px!important;page-break-inside:avoid!important;break-inside:avoid!important}
-  .scenario .big{font-size:11pt!important;font-weight:800;color:#1D4ED8!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .custRow,.wf{page-break-inside:avoid!important;break-inside:avoid!important}
-  .hidden{display:none!important}
-  #dashboard{display:block!important}
-}
-
-@view-transition{navigation:auto}
-::view-transition-old(root){animation:dfbpFadeOut .28s ease both}
-::view-transition-new(root){animation:dfbpFadeIn .32s ease both}
-@keyframes dfbpFadeOut{to{opacity:0;transform:translateY(-6px)}}
-@keyframes dfbpFadeIn{from{opacity:0;transform:translateY(8px)}}
-.topNav{display:flex;gap:18px;align-items:center}
-.topNav a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600;padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
-.topNav a:hover{color:var(--text)}
-.topNav a.active{color:var(--accent);border-color:var(--accent)}
-.top.scrolled{box-shadow:0 12px 30px rgba(15,27,45,.10)}
-.authCluster{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
-.headerSwitches{display:flex;align-items:center;gap:6px;justify-content:flex-end}
-.headerSwitches select,select.globalLangSwitch{padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1}
-.headerSwitches select:hover,select.globalLangSwitch:hover{border-color:var(--accent);color:#0F1B2D;background:#FFFFFF}
-.navBtns,#authArea{display:flex;gap:8px;align-items:center;flex-shrink:0;white-space:nowrap}
-.navBtns a,.navBtns button,#authArea button{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-size:12.5px;
-  font-weight:700;
-  padding:6px 14px;
-  border-radius:9px;
-  text-decoration:none;
-  transition:all .15s ease;
-  cursor:pointer;
-  line-height:1.2;
-  white-space:nowrap;
-  flex-shrink:0;
-}
-.navBtns a.secondary,.navBtns button.secondary,#authArea button.secondary,#loginOpenBtn{
-  background:#FFFFFF;
-  border:1px solid #CBD5E1;
-  color:#1E293B;
-  box-shadow:0 1px 2px rgba(0,0,0,.03);
-}
-.navBtns a.secondary:hover,.navBtns button.secondary:hover,#authArea button.secondary:hover,#loginOpenBtn:hover{
-  background:#F8FAFC;
-  border-color:#94A3B8;
-  color:#0F172A;
-}
-.navBtns a.primary,.navBtns button.primary,#authArea button.primary,#registerOpenBtn{
-  background:#1D4ED8;
-  border:1px solid #1D4ED8;
-  color:#FFFFFF;
-  box-shadow:0 2px 6px rgba(29,78,216,.25);
-}
-.navBtns a.primary:hover,.navBtns button.primary:hover,#authArea button.primary:hover,#registerOpenBtn:hover{
-  background:#1E40AF;
-  border-color:#1E40AF;
-  box-shadow:0 4px 12px rgba(29,78,216,.35);
-  transform:translateY(-1px);
-}
-.navToggle{display:none;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--text);flex-shrink:0}
-.brandLogoWrap{flex-shrink:0;min-width:max-content}
-.brandLink{text-decoration:none;display:flex;align-items:center;gap:10px;min-width:0}
-.brandLogoIcon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(29,78,216,0.28);flex-shrink:0}
-.brandTextWrap{min-width:0}
-.brandTitle{font-family:var(--serif);font-size:18px;font-weight:700;color:#0F1B2D;letter-spacing:-.4px;line-height:1.2;white-space:nowrap}
-.brandSub{font-size:11px;color:#64748B;font-weight:500;letter-spacing:.2px;margin-top:2px;white-space:nowrap}
-.headerRight{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.mobileNavAuth{display:none}
-
-@media(max-width:920px){
-  html,body{overflow-x:hidden;max-width:100vw;width:100%}
-  .top{padding:12px 0 10px}
-  .wrap{padding:0 16px;max-width:100vw;box-sizing:border-box}
-  .brand{gap:10px}
-  .brandLogoIcon{width:32px;height:32px;border-radius:9px}
-  .brandLogoIcon svg{width:18px;height:18px}
-  .brandTitle{font-size:15.5px}
-  .brandSub{display:none}
-  .brandLogoWrap{min-width:0;flex:1 1 auto;overflow:hidden}
-  .topNav{position:fixed;top:56px;left:0;right:0;width:100vw;background:#FFFFFF;border-bottom:1.5px solid var(--line);box-shadow:0 14px 34px rgba(15,27,45,0.12);flex-direction:column;align-items:stretch;gap:0;padding:0 20px;max-height:0;overflow:hidden;transition:max-height .28s ease,padding .2s ease;z-index:999;box-sizing:border-box}
-  .topNav.open{max-height:460px;padding:10px 20px 20px;overflow-y:auto}
-  .topNav a{width:100%;padding:12px 0;border-bottom:1px solid rgba(15,27,45,.06);font-size:14.5px;color:var(--text);font-weight:600;display:block;text-align:left}
-  .mobileNavAuth{display:flex;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(15,27,45,.08)}
-  .mobileNavAuth a{flex:1;padding:10px 12px;font-size:13px;font-weight:700;border-radius:10px;text-align:center;justify-content:center;text-decoration:none}
-  .navToggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;font-size:18px;border-radius:8px;cursor:pointer}
-}
-
-@media(max-width:768px){
-  .navBtns{display:none}
-  .authCluster{flex-direction:row;align-items:center}
-  .headerRight{gap:6px}
-  .globalLangSwitch{padding:4px 5px !important;font-size:11px !important;border-radius:7px !important;max-width:60px}
-  .wrap{padding:0 12px}
-  .brandTitle{font-size:14.5px}
-  .mHero{padding:24px 0 20px;grid-template-columns:1fr;gap:20px}
-  .mHero h1{font-size:26px !important;line-height:1.2 !important}
-  .mHero p.lead{font-size:13.5px;line-height:1.55}
-  .ctaRow{flex-direction:column;gap:10px}
-  .ctaRow a{width:100%;text-align:center;justify-content:center}
-  .miniTrust{gap:8px 12px;margin-top:16px}
-  .aboutStats{grid-template-columns:1fr !important;gap:10px}
-  .statsStrip{grid-template-columns:1fr !important;gap:12px}
-}
-.badge.v{white-space:nowrap}
-/* ---- Marketing hero (separate from app hero) ---- */
-.mHero{padding:56px 0 30px;display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center}
-.mHero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);background:#DCE6FB;border:1px solid #1f4258;padding:7px 14px;border-radius:999px;margin-bottom:18px}
-.mHero h1{font-family:var(--serif);font-weight:600;font-size:50px;line-height:1.08;margin:0 0 18px;letter-spacing:-1px}
-.mHero h1 span{color:var(--accent)}
-.mHero p.lead{color:var(--muted);font-size:16px;max-width:560px;line-height:1.65;margin:0 0 26px}
-.mHero .ctaRow{display:flex;gap:12px;flex-wrap:wrap}
-.mHero .ctaRow a{text-decoration:none}
-.mHero .miniTrust{display:flex;gap:18px;flex-wrap:wrap;margin-top:28px}
-.mHero .miniTrust span{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
-.mHero .miniTrust svg{color:var(--accent)}
-.heroArt{position:relative}
-.heroArt .floatCard{position:absolute;background:#FFFFFF;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:14px 16px;font-size:11.5px;color:#33415C;animation:dfbpFloat 5s ease-in-out infinite}
-.heroArt .floatCard b{display:block;font-size:16px;color:var(--accent);font-family:var(--serif)}
-.heroArt .fc1{top:-10px;left:-10px;animation-delay:0s}
-.heroArt .fc2{bottom:6px;right:-14px;animation-delay:1.2s}
-@keyframes dfbpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-/* ---- Alternating content blocks (fixes the "iç içe" cramped look) ---- */
-.secBlock{padding:28px 0}
-.secBlock.tint{background:linear-gradient(180deg,#F8FAFC 0%,#FFFFFF 100%);border:1px solid #E2E8F0;border-radius:26px;margin:0 -10px;box-shadow:0 4px 20px rgba(15,27,45,.03)}
-.pillScrollBtn{width:36px;height:36px;border-radius:50%;background:#FFFFFF;border:1.5px solid #CBD5E1;color:#1E293B;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;cursor:pointer;flex-shrink:0;box-shadow:0 4px 12px rgba(15,27,45,0.08);transition:all .18s ease;user-select:none;z-index:4}
-.pillScrollBtn:hover{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8;transform:scale(1.08);box-shadow:0 6px 16px rgba(29,78,216,0.25)}
-.pillScrollBtn:active{transform:scale(0.95)}
-.secBlock+.secBlock{border-top:1px solid rgba(15,27,45,.06)}
-.pageHead{padding:54px 0 10px;text-align:center}
-.pageHead .eyebrow{display:inline-flex;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);background:#DCE6FB;border:1px solid #1f4258;padding:7px 14px;border-radius:999px;margin-bottom:16px}
-.pageHead h1{font-family:var(--serif);font-size:38px;margin:0 0 12px;letter-spacing:-.6px}
-.pageHead p{color:var(--muted);max-width:600px;margin:0 auto;font-size:14.5px}
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
-.reveal.in{opacity:1;transform:none}
-/* ---- Rich footer ---- */
-.siteFooter{border-top:1px solid var(--line);margin-top:40px;padding:46px 0 26px}
-.siteFooter .cols{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:28px;margin-bottom:30px}
-.siteFooter h4{font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:0 0 14px}
-.siteFooter .brandCol p{color:var(--muted);font-size:12.5px;max-width:280px;line-height:1.6}
-.siteFooter ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
-.siteFooter ul a{color:#33415C;text-decoration:none;font-size:13px}
-.siteFooter ul a:hover{color:var(--accent)}
-.siteFooter .legal{border-top:1px solid rgba(15,27,45,.08);padding-top:20px;color:#5B6B84;font-size:11px;line-height:1.7}
-html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-columns:1fr 1fr}.mHero{grid-template-columns:1fr}.heroArt{order:-1;max-width:340px;margin:24px auto 40px;padding:0 14px}.heroArt .floatCard{position:static;display:inline-block;margin:6px 6px 0 0;animation:none}.heroArt .fc1,.heroArt .fc2{top:auto;left:auto;right:auto;bottom:auto}}
-/* ---- FAQ (paketler sayfası) ---- */
-.faqItem{border-bottom:1px solid var(--line);padding:16px 0}
-.faqItem summary{cursor:pointer;font-weight:700;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center}
-.faqItem summary::-webkit-details-marker{display:none}
-.faqItem summary:after{content:'+';font-size:20px;color:var(--accent)}
-.faqItem[open] summary:after{content:'–'}
-.faqItem p{color:var(--muted);font-size:13.5px;margin:10px 0 0}
-/* ---- Executive Intelligence band (single, deliberate dark boardroom section) ---- */
-.execBand{background:radial-gradient(1200px 500px at 15% -20%, rgba(76,201,240,.10), transparent 60%),linear-gradient(160deg,#0D1B2A 0%,#081426 100%);border-radius:26px;padding:52px;display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:center;overflow:hidden}
-.execEyebrow{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:1.6px;color:#4CC9F0;background:rgba(76,201,240,.12);border:1px solid rgba(76,201,240,.35);padding:6px 12px;border-radius:999px;margin-bottom:16px}
-.execCopy h2{font-family:var(--serif);color:#F8FAFC;font-size:28px;line-height:1.2;margin:0 0 12px;letter-spacing:-.4px}
-.execCopy p{color:#94A3B8;font-size:14px;line-height:1.7;margin:0 0 18px;max-width:44ch}
-.execList{list-style:none;margin:0 0 24px;padding:0;display:flex;flex-direction:column;gap:9px}
-.execList li{color:#C7D2E8;font-size:13px}
-.execList li b{color:#F8FAFC}
-.execCta{display:inline-block;color:#0D1B2A;background:#4CC9F0;font-weight:800;font-size:13.5px;padding:12px 20px;border-radius:11px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
-.execCta:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(76,201,240,.35)}
-.execArt{filter:drop-shadow(0 24px 48px rgba(0,0,0,.35))}
-@media(max-width:860px){.execBand{grid-template-columns:1fr;padding:32px 22px}}
-/* ---- New: live dashboard hero panel (Executive Light Theme) ---- */
-.heroDash{background:#FFFFFF;border-radius:24px;border:1.5px solid #DCE6F5;padding:24px;position:relative;overflow:hidden;box-shadow:0 20px 45px rgba(15,27,45,.08)}
-.heroDash .dHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #F1F5F9}
-.heroDash .dHead .dots span{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px}
-.heroDash .dHead .live{font-size:11px;color:#059669;display:flex;align-items:center;gap:6px;font-weight:800;letter-spacing:.4px}
-.heroDash .dHead .live i{width:6px;height:6px;border-radius:50%;background:#10B981;display:inline-block;box-shadow:0 0 0 3px rgba(16,185,129,.22);animation:dfbpPulse 1.8s ease infinite}
-@keyframes dfbpPulse{0%,100%{opacity:1}50%{opacity:.35}}
-.dashTabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.dashTabs span{font-size:11px;color:#64748B;background:#F1F5F9;border:1px solid transparent;border-radius:999px;padding:6px 12px;cursor:pointer;font-weight:600;transition:all .2s ease}
-.dashTabs span:hover{background:#E2E8F0;color:#1E293B}
-.dashTabs span.on{color:#1D4ED8;background:#EFF6FF;border-color:#BFDBFE;font-weight:800}
-.dashPane{display:none;min-height:230px}
-.dashPane.on{display:block;animation:dfbpFadeIn .3s ease both}
-.dashPane .dTitle{color:#0F172A;font-size:11.5px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;font-weight:700}
-.dashKpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
-.dashKpis div{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:9px 10px;text-align:center}
-.dashKpis div b{display:block;font-size:15px;color:#0F172A;font-family:var(--serif);font-weight:700}
-.dashKpis div span{font-size:10px;color:#64748B}
-.heroDash .foot{margin-top:14px;padding-top:12px;border-top:1px solid #F1F5F9;font-size:11px;color:#64748B;display:flex;justify-content:space-between;font-weight:600}
-/* ---- New: CFO trust strip ---- */
-.trustGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.trustCard{padding:22px}
-.trustCard .icoWrap2{width:38px;height:38px;border-radius:10px;background:#0D1B2A;color:#4CC9F0;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-.trustCard h3{margin:0 0 6px;font-size:14.5px}
-.trustCard p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.55}
-/* ---- New: Executive Journey ---- */
-.journey{display:grid;grid-template-columns:repeat(6,1fr);gap:0;position:relative;margin-top:8px}
-.journey:before{content:"";position:absolute;top:22px;left:6%;right:6%;height:2px;background:linear-gradient(90deg,#C9D8F5,#4CC9F0,#C9D8F5)}
-.jStep{text-align:center;padding:0 8px;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
-.jStep.in{opacity:1;transform:none}
-.jStep .jDot{width:44px;height:44px;border-radius:50%;background:#FFFFFF;border:2px solid var(--accent);color:var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;position:relative;z-index:1;font-weight:900;font-size:13px}
-.jStep h4{margin:0 0 5px;font-size:13px;letter-spacing:.4px}
-.jStep p{margin:0;font-size:11.5px;color:var(--muted);line-height:1.4}
-@media(max-width:860px){.journey{grid-template-columns:1fr 1fr;gap:22px 0}.journey:before{display:none}.trustGrid{grid-template-columns:1fr 1fr}}
-/* ---- New: outcome-based module groups ---- */
-.intelGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.intelCard{padding:24px;display:flex;flex-direction:column}
-.intelCard .igIco{width:40px;height:40px;border-radius:11px;background:#DCE6FB;color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-.intelCard h3{margin:0 0 8px;font-size:16px;font-family:var(--serif)}
-.intelCard ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
-.intelCard ul li{font-size:12.5px;color:#33415C;display:flex;gap:7px;align-items:flex-start}
-.intelCard ul li:before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:6px;flex:none}
-@media(max-width:860px){.intelGrid{grid-template-columns:1fr 1fr}}
-/* ---- New: security/governance page ---- */
-
-/* ---- High-impact FinTech additions ---- */
-.gradText{background:linear-gradient(135deg,#1D4ED8 0%,#2563EB 50%,#38BDF8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block}
-.livePill{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);background:linear-gradient(135deg,#EEF4FF,#E0EDFF);border:1px solid #BFDBFE;padding:8px 16px;border-radius:999px;margin-bottom:20px;box-shadow:0 2px 10px rgba(37,99,235,.12)}
-.livePill i{width:8px;height:8px;border-radius:50%;background:#10B981;display:inline-block;box-shadow:0 0 0 4px rgba(16,185,129,.25);animation:dfbpPulse 1.8s ease infinite}
-.dilemmaGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:20px}
-.dilemmaCard{background:#FFFFFF;border:1px solid var(--line);border-radius:18px;padding:26px;position:relative;overflow:hidden;box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease}
-.dilemmaCard:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(15,27,45,.09)}
-.dilemmaQ{font-size:15px;font-weight:700;color:#0F1B2D;margin-bottom:12px;display:flex;gap:10px;align-items:flex-start;line-height:1.4}
-.dilemmaQ span{background:#FEE2E2;color:#DC2626;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:900;flex:none;margin-top:2px}
-.dilemmaA{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:14px 16px;font-size:13px;color:#33415C;line-height:1.55}
-.dilemmaA b{color:var(--accent);display:block;margin-bottom:4px}
-.workflowGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;margin-top:20px}
-.workflowCard{background:#FFFFFF;border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow);position:relative;display:flex;flex-direction:column}
-.workflowBadge{font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--accent);background:#EFF6FF;border:1px solid #DBEAFE;padding:4px 10px;border-radius:999px;align-self:flex-start;margin-bottom:12px}
-.workflowCard h3{font-size:16px;margin:0 0 8px;font-family:var(--serif);color:#0F1B2D}
-.workflowCard p{font-size:12.5px;color:var(--muted);line-height:1.55;margin:0}
-.compareTableWrap{background:#FFFFFF;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);margin-top:20px}
-.compareTable{width:100%;border-collapse:collapse;font-size:13px}
-.compareTable th,.compareTable td{padding:16px 18px;border-bottom:1px solid rgba(15,27,45,.08);text-align:left}
-.compareTable th{background:#F8FAFC;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#475569}
-.compareTable th.featured{background:linear-gradient(135deg,#EFF6FF,#DBEAFE);color:var(--accent);border-bottom:2px solid var(--accent)}
-.compareTable td.featured{background:#F8FAFF;font-weight:600;color:#0F1B2D}
-@media(max-width:860px){.dilemmaGrid,.workflowGrid{grid-template-columns:1fr}.compareTableWrap{overflow-x:auto}}
-
-.kobiPills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:18px auto 26px}
-.kobiPill{padding:9px 18px;border-radius:999px;font-size:12.5px;font-weight:700;border:1.5px solid #CBD5E1;background:#FFFFFF;color:#475569;cursor:pointer;transition:all .2s ease}
-.kobiPill:hover{border-color:#1D4ED8;color:#1D4ED8;background:#EFF6FF}
-.kobiSliderWrap{position:relative;margin-top:20px}
-.kobiSliderBar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px;padding:0 4px}
-.kobiSwipeHint{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:#64748B;background:#F8FAFC;border:1px solid #E2E8F0;padding:6px 14px;border-radius:999px}
-.kobiSliderNav{display:flex;align-items:center;gap:10px}
-.kobiSlideBadge{font-size:12px;font-weight:800;color:#1D4ED8;background:#EFF6FF;border:1px solid #DBEAFE;padding:6px 14px;border-radius:999px}
-.kobiNavBtn{width:40px;height:40px;border-radius:50%;border:1.5px solid #CBD5E1;background:#FFFFFF;color:#0F172A;font-size:22px;line-height:1;font-weight:700;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 3px 10px rgba(15,27,45,.06);transition:all .2s ease;user-select:none}
-.kobiNavBtn:hover{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8;box-shadow:0 6px 18px rgba(29,78,216,.28);transform:scale(1.06)}
-.kobiNavBtn:active{transform:scale(0.96)}
-.kobiSliderTrack{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:10px 4px 22px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.kobiSliderTrack::-webkit-scrollbar{display:none}
-.kobiCard{flex:0 0 420px;max-width:420px;scroll-snap-align:start;scroll-snap-stop:normal;background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:20px;padding:24px;box-shadow:0 6px 20px rgba(15,27,45,.04);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;display:flex;flex-direction:column;justify-content:space-between}
-.kobiCard:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(15,27,45,.10);border-color:#93C5FD}
-.kobiCardImgWrap{border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 4px 12px rgba(15,27,45,.06);border:1px solid #E2E8F0;aspect-ratio:16/9;background:#0F172A;position:relative}
-.kobiCardImgWrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
-.kobiCard:hover .kobiCardImgWrap img{transform:scale(1.03)}
-.kobiDotsWrap{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:8px}
-.kobiDot{width:8px;height:8px;border-radius:999px;background:#CBD5E1;transition:all .25s ease;cursor:pointer}
-.kobiDot.active{width:26px;background:#1D4ED8;box-shadow:0 2px 8px rgba(29,78,216,.3)}
-.kobiTag{display:inline-block;padding:4px 10px;border-radius:6px;font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin-bottom:12px;width:fit-content}
-.kobiTag.cash{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE}
-.kobiTag.profit{background:#FEF3C7;color:#B45309;border:1px solid #FDE68A}
-.kobiTag.mgmt{background:#F3E8FF;color:#7E22CE;border:1px solid #E9D5FF}
-.kobiTitle{font-size:15.5px;font-weight:800;color:#0F1B2D;line-height:1.4;margin-bottom:10px}
-.kobiDesc{font-size:12.5px;color:#475569;line-height:1.55;margin-bottom:14px}
-.kobiMetrics{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:12px 14px;margin-bottom:14px;display:flex;flex-direction:column;gap:6px;font-size:12px}
-.kobiMetricRow{display:flex;justify-content:space-between;align-items:center}
-.kobiPrescription{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:12px 14px;font-size:12px;color:#14532D;line-height:1.45;margin-bottom:0}
-.kobiPrescription b{color:#166534;display:block;margin-bottom:3px;font-weight:800}
-.kobiCta{display:inline-flex;align-items:center;justify-content:space-between;font-size:12.5px;font-weight:800;color:#1D4ED8;text-decoration:none;padding:10px 14px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;transition:all .15s ease}
-.kobiCta:hover{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8}
-@media(max-width:900px){.kobiCard{flex:0 0 350px;max-width:350px}}
-@media(max-width:600px){.kobiCard{flex:0 0 86vw;max-width:86vw}.kobiSwipeHint{font-size:11px;padding:5px 10px}}
-
-.secGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.secCard{padding:22px}
-.secCard .scIco{width:38px;height:38px;border-radius:10px;background:#EAF0FF;color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:13px}
-.secCard h3{margin:0 0 7px;font-size:15px}
-.secCard p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.6}
-@media(max-width:860px){.secGrid{grid-template-columns:1fr}}
-
-/* CEO Diagnostic Hub 3-Layer Architecture */
-.ceoPill{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:999px;font-size:12.5px;font-weight:700;background:#F1F5F9;color:#475569;border:1px solid #CBD5E1;cursor:pointer;white-space:nowrap;transition:all .2s ease}
-.ceoPill:hover{background:#E2E8F0;color:#0F172A}
-.ceoPill.active{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8;box-shadow:0 4px 14px rgba(29,78,216,0.25)}
-.ceoQuestionCard{display:none;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:18px;padding:22px;box-shadow:0 8px 24px rgba(15,27,45,0.04);animation:fadeIn .3s ease}
-.ceoQuestionCard.active{display:block}
-.layerBadge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:10.5px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase}
-.layerBadge.l1{background:#FEE2E2;color:#991B1B;border:1px solid #FCA5A5}
-.layerBadge.l2{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE}
-.layerBadge.l3{background:#ECFDF5;color:#047857;border:1px solid #A7F3D0}
-.ceoGrid3{display:grid;grid-template-columns:1.1fr 1fr 1.3fr;gap:18px;margin-top:16px}
-@media(max-width:960px){.ceoGrid3{grid-template-columns:1fr}}
-
-
-.infoTooltip{position:relative;display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:#E2E8F0;color:#475569;font-size:10px;font-weight:800;cursor:help;margin-left:5px;vertical-align:middle}
-.infoTooltip:hover::after{content:attr(data-tooltip);position:absolute;bottom:135%;left:50%;transform:translateX(-50%);background:#0F172A;color:#FFFFFF;padding:8px 12px;border-radius:8px;font-size:11.5px;line-height:1.45;white-space:normal;width:230px;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,0.25);pointer-events:none;text-align:left;font-weight:400}
-
-/* ---- Case Studies (Anonim Doğrulanmış KOBİ Başarı Hikayeleri) ---- */
-.caseGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:24px}
-.caseCard{background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:20px;padding:24px;box-shadow:0 6px 20px rgba(15,27,45,.04);transition:transform .2s ease,box-shadow .2s ease}
-.caseCard:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(15,27,45,.08);border-color:#CBD5E1}
-.caseHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px}
-.caseBadge{font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:6px;background:#F1F5F9;color:#475569;border:1px solid #E2E8F0}
-.caseBadge.verified{background:#ECFDF5;color:#047857;border-color:#A7F3D0}
-.caseLocation{font-size:12px;color:#64748B;font-weight:600}
-.caseTitle{font-size:16px;font-weight:800;color:#0F1B2D;margin-bottom:8px;line-height:1.35}
-.caseProblem{font-size:12.5px;color:#64748B;line-height:1.55;margin-bottom:14px;background:#FFF5F5;border-left:3px solid #EF4444;padding:8px 12px;border-radius:0 8px 8px 0}
-.caseSolution{font-size:12.5px;color:#1E3A8A;line-height:1.55;margin-bottom:14px;background:#EFF6FF;border-left:3px solid #3B82F6;padding:8px 12px;border-radius:0 8px 8px 0}
-.caseKpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:12px}
-.caseKpiItem{text-align:center}
-.caseKpiItem b{display:block;font-size:15px;color:#0F172A;font-family:var(--serif);font-weight:800}
-.caseKpiItem span{font-size:10px;color:#64748B;font-weight:600}
-@media(max-width:860px){.caseGrid{grid-template-columns:1fr}}
-
-/* ---- Security & Trust Shield (Banka Düzeyinde Güvenlik) ---- */
-.secShieldGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
-.secShieldCard{background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:18px;padding:22px;box-shadow:0 4px 14px rgba(15,27,45,.03);transition:transform .2s ease}
-.secShieldCard:hover{transform:translateY(-2px);border-color:#93C5FD;box-shadow:0 10px 24px rgba(29,78,216,.08)}
-.secShieldIco{width:42px;height:42px;border-radius:12px;background:#EFF6FF;color:#1D4ED8;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;border:1px solid #DBEAFE}
-.secShieldCard h4{margin:0 0 6px;font-size:14.5px;color:#0F172A;font-weight:800}
-.secShieldCard p{margin:0;font-size:12px;color:#64748B;line-height:1.55}
-@media(max-width:960px){.secShieldGrid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:540px){.secShieldGrid{grid-template-columns:1fr}}
-
-/* ---- ERP & Global Multi-Currency Bar ---- */
-.erpLogosGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:16px}
-.erpLogoBadge{background:#FFFFFF;border:1px solid #CBD5E1;border-radius:12px;padding:12px 10px;text-align:center;font-size:12.5px;font-weight:800;color:#1E293B;box-shadow:0 2px 6px rgba(15,27,45,.03);transition:all .2s ease;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
-.erpLogoBadge:hover{border-color:#1D4ED8;color:#1D4ED8;transform:translateY(-2px);box-shadow:0 6px 16px rgba(29,78,216,.12)}
-.erpLogoBadge span{font-size:9.5px;color:#64748B;font-weight:600}
-
-/* ---- Mockup Showcase (Dashboard Cockpit & 1-Page Board PDF) - Executive Light Theme ---- */
-.mockupShowcase{margin-top:32px;background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%);border:1.5px solid #CBD5E1;border-radius:24px;padding:32px;color:#0F1B2D;box-shadow:0 14px 36px rgba(15,27,45,.06)}
-.mockupSplit{display:grid;grid-template-columns:1.2fr 0.8fr;gap:24px;align-items:center}
-@media(max-width:960px){.mockupSplit{grid-template-columns:1fr}}
-.mockupScreen{background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;overflow:hidden;box-shadow:0 12px 30px rgba(15,27,45,.06)}
-.mockupScreenHead{background:#F8FAFC;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E2E8F0}
-.mockupPaper{background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:14px;padding:20px;color:#0F172A;box-shadow:0 12px 30px rgba(15,27,45,.06);font-size:11px}
-.mockupBadge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#1D4ED8;background:#EFF6FF;border:1px solid #BFDBFE;padding:4px 10px;border-radius:999px;margin-bottom:12px}
-
-/* ---- Ghost button styling for secondary CTA ---- */
-.ctaRow a.ghostBtn{background:transparent;border:1.5px solid #CBD5E1;color:#475569;font-weight:700;padding:15px 24px;border-radius:14px;font-size:15px;text-decoration:none;transition:all .2s ease;display:inline-flex;align-items:center;gap:8px}
-.ctaRow a.ghostBtn:hover{border-color:#1D4ED8;color:#1D4ED8;background:#EFF6FF}
-
-/* ---- Dual Gates (Kapı A & Kapı B) ---- */
-.ctaDualGates{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0 16px}
-.gateCard{text-decoration:none;display:flex;flex-direction:column;gap:6px;padding:16px 20px;border-radius:16px;transition:all .22s cubic-bezier(0.16,1,0.3,1);position:relative}
-.gateCard.gateA{background:#FFFFFF;border:2px solid #2563EB;box-shadow:0 8px 24px rgba(37,99,235,0.10)}
-.gateCard.gateA:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(37,99,235,0.22);border-color:#1D4ED8}
-.gateCard.gateB{background:linear-gradient(135deg,#1D4ED8 0%,#1E40AF 100%);border:2px solid #1D4ED8;box-shadow:0 8px 24px rgba(29,78,216,0.28);color:#FFFFFF}
-.gateCard.gateB:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(29,78,216,0.38);border-color:#3B82F6}
-@media(max-width:680px){.ctaDualGates{grid-template-columns:1fr}}
-
-/* ---- Interactive What-If Live Laboratory ---- */
-.whatIfLabCard{background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%);border:1.5px solid #CBD5E1;border-radius:24px;padding:28px;box-shadow:0 14px 36px rgba(15,27,45,.06);margin-top:20px}
-.labGrid{display:grid;grid-template-columns:1.25fr 0.95fr;gap:24px;align-items:center}
-@media(max-width:960px){.labGrid{grid-template-columns:1fr}}
-.labControls{display:flex;flex-direction:column;gap:16px}
-.labSliderRow{background:#FFFFFF;border:1px solid #E2E8F0;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(15,27,45,.02);display:flex;flex-direction:column;gap:8px}
-.labSliderHead{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;color:#0F172A}
-.labBadgeVal{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;padding:3px 10px;border-radius:8px;font-size:12.5px;font-weight:800}
-.labRange{width:100%;height:6px;accent-color:#1D4ED8;cursor:pointer;margin:4px 0}
-.labPresets{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:4px}
-.labPresetBtn{background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;border-radius:999px;padding:5px 12px;font-size:11.5px;font-weight:700;cursor:pointer;transition:all .15s ease}
-.labPresetBtn:hover{background:#E2E8F0;color:#0F172A}
-.labPresetBtn.active{background:#1D4ED8;color:#FFFFFF;border-color:#1D4ED8}
-.labVaultCard{background:radial-gradient(ellipse at top left,#1E293B 0%,#0F172A 100%);border-radius:20px;padding:26px;color:#FFFFFF;box-shadow:0 16px 40px rgba(15,23,42,.35);border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-.labVaultCard::before{content:"";position:absolute;top:-50%;right:-50%;width:100%;height:100%;background:radial-gradient(circle,rgba(52,211,153,.12) 0%,transparent 70%);pointer-events:none}
-.vaultBigCounter{font-size:38px;font-weight:900;font-family:var(--serif);color:#34D399;letter-spacing:-1px;margin:8px 0 12px;line-height:1;transition:all .2s ease;display:block}
-.vaultBigCounter.pulse{transform:scale(1.04);color:#6EE7B7}
-.vaultBreakdown{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12)}
-.vSubItem{background:rgba(255,255,255,.06);border-radius:10px;padding:8px 10px;text-align:center}
-.vSubItem b{display:block;font-size:13px;color:#F8FAFC;font-weight:800}
-.vSubItem span{display:block;font-size:10px;color:#94A3B8;margin-top:2px}
-
-/* ---- Cyber Security Institutional Trust Wall ---- */
-.trustWallGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
-.trustBadgeCard{background:#FFFFFF;border:1.2px solid #E2E8F0;border-radius:14px;padding:14px;box-shadow:0 3px 10px rgba(15,27,45,.03);display:flex;align-items:flex-start;gap:10px;transition:all .2s ease;cursor:help;position:relative}
-.trustBadgeCard:hover{border-color:#93C5FD;transform:translateY(-2px);box-shadow:0 8px 20px rgba(29,78,216,.08)}
-.trustBadgeCard .tIco{width:34px;height:34px;border-radius:10px;background:#EFF6FF;color:#1D4ED8;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;border:1px solid #DBEAFE}
-.trustBadgeCard .tInfo b{display:block;font-size:12px;color:#0F172A;font-weight:800;margin-bottom:3px}
-.trustBadgeCard .tInfo span{display:block;font-size:10.5px;color:#64748B;line-height:1.4}
-@media(max-width:960px){.trustWallGrid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:540px){.trustWallGrid{grid-template-columns:1fr}}
-@media print {
-  body.boardDeckPrintMode * { visibility: hidden !important; }
-  body.boardDeckPrintMode #boardDeckModal,
-  body.boardDeckPrintMode #boardDeckModal * { visibility: visible !important; }
-  body.boardDeckPrintMode #boardDeckModal {
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
-    width: 100% !important;
-    height: auto !important;
-    background: #FFFFFF !important;
-    padding: 0 !important;
-    backdrop-filter: none !important;
-  }
-  body.boardDeckPrintMode #boardDeckModal .hidePrint { display: none !important; }
-}
-
-/* Solutions Page override: Guarantee instant visibility and crisp layout */
-.secBlock { opacity: 1 !important; transform: none !important; }
-.reveal { opacity: 1 !important; transform: none !important; }
-#kobiShowcase { padding-top: 10px !important; }
-#patronSorulari { padding-top: 10px !important; }
-</style></head>
-<body>
-<header class="top"><div class="wrap brand"><div class="brandLogoWrap">
-  <a href="/" class="brandLink">
-    <div class="brandLogoIcon">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 6-8"/><circle cx="21" cy="5" r="2" fill="#FFFFFF"/>
-      </svg>
-    </div>
-    <div class="brandTextWrap">
-      <div class="brandTitle">Digital Finance Business Partner</div>
-      <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
-    </div>
-  </a>
-</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/cozumler" class="active">Çözümler</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn primary">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
-
-<main class="wrap">
-<section class="mHero" style="padding-top:24px;padding-bottom:12px">
-  <div style="max-width:960px;margin:0 auto;text-align:center">
-    <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-size:12px;font-weight:800;letter-spacing:0.8px;margin-bottom:14px;display:inline-block">🎯 KOBİ PATRONLARI, GENEL MÜDÜRLER &amp; ŞİRKET ORTAKLARI İÇİN</span>
-    <h1 style="margin-top:8px;font-size:42px;line-height:1.18">Patronun Masasındaki 10 Gerçek Finansal Kriz<br><span class="gradText">&amp; 8 Stratejik Yönetim Masası</span></h1>
-    <p class="lead" style="margin:16px auto 24px;max-width:780px;font-size:16px;color:#475569;line-height:1.6">Muhasebe programınız geçmiş fişleri kaydeder ve vergi çıkarır; <b>Digital Finance Business Partner</b> ise şirketi kâr eden ve nakit üreten bir sisteme dönüştürür. Reklamlarımızda gördüğünüz 10 kriz çıkmazı, analitik kanıtları ve 60 saniyelik yönetim reçeteleri:</p>
-    
-    <div style="display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;margin:24px 0 20px">
-      <a href="/uygulama?sample=data_hub" class="primary" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;padding:15px 28px;border-radius:14px;font-size:15px;font-weight:800;background:#1D4ED8;color:#FFFFFF;box-shadow:0 8px 24px rgba(29,78,216,0.35);transition:all .2s ease">
-        <span>⚡</span>
-        <span>Canlı Demoyu Başlat (60 Sn)</span>
-        <span style="font-size:16px;margin-left:2px">→</span>
-      </a>
-      <a href="/uygulama" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;padding:14px 24px;border-radius:14px;font-size:14px;font-weight:700;background:#FFFFFF;color:#1E293B;border:1.5px solid #CBD5E1;box-shadow:0 2px 6px rgba(0,0,0,0.04);transition:all .2s ease">
-        <span>📁</span>
-        <span>Kendi Mizanınızı Yükleyin (Ücretsiz)</span>
-      </a>
-    </div>
-
-    <!-- Hızlı Sayfa İçi Çapa Linkleri -->
-    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px">
-      <a href="#kobiShowcase" class="subnavPill" style="font-size:12.5px;padding:7px 16px;font-weight:700">🔥 10 KOBİ Kriz Reçetesi</a>
-      <a href="#patronSorulari" class="subnavPill" style="font-size:12.5px;padding:7px 16px;font-weight:700">⚖️ 8 Karar Masası (3 Katman)</a>
-      <a href="#caseStudies" class="subnavPill" style="font-size:12.5px;padding:7px 16px;font-weight:700">📈 Sektörel Çözüm Vakaları</a>
-    </div>
-
-    <div class="miniTrust" style="justify-content:center;margin-top:24px">
-      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>RAM-Only (Sıfır Kalıcı Disk Kaydı)</span>
-      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>%100 Deterministik Çift Taraflı Denetim</span>
-      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg>Kurulumsuz · Anında Canlı Sonuç</span>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION: 10 KOBİ PATRON VİTRİNİ -->
-<div class="secBlock reveal"><section id="kobiShowcase" class="marketingSection hidePrint" style="padding-top:0">
-<div class="marketingHead">
-  <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">🎯 KOBİ PATRONLARI &amp; ŞİRKET ORTAKLARI İÇİN</span>
-  <h2 style="margin-top:10px">Patronun Masasındaki 10 Gerçek Kriz &amp; 60 Saniyelik Çözüm</h2>
-  <p>Muhasebe programınız geçmiş fişleri kaydeder; Digital Finance BP ise şirketi kâr eden ve nakit üreten bir makineye dönüştürür. İşte patronların en çok yaşadığı 10 çıkmaz ve somut reçetesi:</p>
-  
-  <div class="kobiPills">
-    <button type="button" class="kobiPill active" onclick="filterKobiShowcase('all', this)">🔥 Tümü (10)</button>
-    <button type="button" class="kobiPill" onclick="filterKobiShowcase('cash', this)">💵 Nakit &amp; Tahsilat (4)</button>
-    <button type="button" class="kobiPill" onclick="filterKobiShowcase('profit', this)">📊 Kâr, Marj &amp; Stok (3)</button>
-    <button type="button" class="kobiPill" onclick="filterKobiShowcase('mgmt', this)">🏛️ Yönetim &amp; Banka (3)</button>
-  </div>
-</div>
-
-<div class="kobiSliderWrap">
-  <div class="kobiSliderBar">
-    <div class="kobiSwipeHint">
-      <span style="font-size:14px">👈</span>
-      <span>Kartları sağa / sola kaydırarak inceleyin</span>
-      <span style="font-size:14px">👉</span>
-    </div>
-    <div class="kobiSliderNav">
-      <span class="kobiSlideBadge" id="kobiSliderCounter">1 / 10 Teşhis</span>
-      <button type="button" class="kobiNavBtn" onclick="slideKobi(-1)" aria-label="Önceki Teşhis" title="Önceki">‹</button>
-      <button type="button" class="kobiNavBtn" onclick="slideKobi(1)" aria-label="Sonraki Teşhis" title="Sonraki">›</button>
-    </div>
-  </div>
-
-  <div class="kobiSliderTrack" id="kobiSliderTrack">
-
-    <div style="margin-top:16px">
-      <a href="/cozumler" class="primary" style="display:block;text-align:center;text-decoration:none;padding:12px 14px;border-radius:10px;font-size:13px;font-weight:800">Tüm 10 Kriz &amp; 8 Masayı İncele →</a>
-    </div>
-  </div>
-  <!-- Kart 1 -->
-  <div class="kobiCard" data-category="cash">
-    <span class="kobiTag cash">💵 1. KÂR &amp; NAKİT ÇELİŞKİSİ</span>
-    <div class="kobiCardImgWrap">
-      <img src="/static/ads/kobi_1_kar_vs_kasa.jpg" alt="1. Kâr ve Nakit Çelişkisi" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-    </div>
-    <div class="kobiTitle">"Muhasebeciniz 'Bu Ay Kârdayız' Diyor, Ama Siz Ay Sonu Maaşları Nasıl Ödeyeceğinizi Düşünüyorsunuz."</div>
-    <div class="kobiDesc">Defterde kâr çıkması, kasada nakit olduğu anlamına gelmez. Satışı yapmışsınız ama parayı müşteriden alamamışsınız; malı üretip depoya yığmışsınız. Kârınız buharlaşmadı; müşterinin açık hesabında ve depodaki kolilerde kilitli kaldı.</div>
-    <div class="kobiMetrics">
-      <div class="kobiMetricRow"><span>Defterdeki Kâr:</span><b style="color:#059669">₺1.850.000 (Mizan Bilanço Kârı)</b></div>
-      <div class="kobiMetricRow"><span>Kasadaki Sıcak Nakit:</span><b style="color:#DC2626">₺42.000 (Kritik Alarm)</b></div>
-      <div class="kobiMetricRow"><span>Alacak &amp; Stokta Kilitli:</span><b style="color:#B45309">₺1.808.000 Bağlı Sermaye</b></div>
-    </div>
-    <div class="kobiPrescription">
-      <b>DFBP 60 Saniyelik Reçetesi (Nakit Köprüsü):</b>
-      P&amp;L kârınızın hangi hesaplarda kilitlendiğini kuruşu kuruşuna haritalandırır; defter kârı ile serbest nakit akışı arasındaki sızıntıyı kapatır.
-    </div>
-  </div>
-
-  <!-- Kart 2 -->
-  <div class="kobiCard" data-category="cash">
-    <span class="kobiTag cash">💵 2. AÇIK HESAP &amp; TERSİNE BANKACILIK</span>
-    <div class="kobiCardImgWrap">
-      <img src="/static/ads/kobi_2_acik_hesap.jpg" alt="2. Açık Hesap ve Tersine Bankacılık" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-    </div>
-    <div class="kobiTitle">"Siz Mal mı Satıyorsunuz, Yoksa Müşterilerinize Faizsiz Kredi Dağıtan Banka mısınız?"</div>
-    <div class="kobiDesc">Siz bankadan %50 faizle kredi çekip hammadde alıyorsunuz, işçilik ödüyorsunuz; müşteriniz ise malı alıp 90 gün sonra ödüyor! Kendi özkaynağınızla başkalarının ticaretini finanse ediyorsunuz.</div>
-    <div class="kobiMetrics">
-      <div class="kobiMetricRow"><span>Ortalama Tahsilat Vadeniz:</span><b style="color:#DC2626">88 Gün (Sektör: 60 Gün)</b></div>
-      <div class="kobiMetricRow"><span>Müşteriyi Fonlama Maliyeti:</span><b style="color:#B45309">Yıllık ~₺1.250.000 Gizli Faiz</b></div>
-      <div class="kobiMetricRow"><span>15 Gün Erken Tahsilat Kazancı:</span><b style="color:#1D4ED8">+₺450.000 Sıcak Para</b></div>
-    </div>
-    <div class="kobiPrescription">
-      <b>DFBP 60 Saniyelik Reçetesi (Alacak Yaşlandırma):</b>
-      Alacak portföyünün vadesini tarar; vadesi 60 günü aşan riskli carileri sıralar ve tahsilat hızlandırma protokolünü devreye sokar.
-    </div>
-  </div>
-
-  <!-- Kart 3 -->
-  <div class="kobiCard" data-category="profit">
-    <span class="kobiTag profit">📊 3. ÖLÜ STOK MEZARLIĞI</span>
-    <div class="kobiCardImgWrap">
-      <img src="/static/ads/kobi_3_olu_stok.jpg" alt="3. Ölü Stok Mezarlığı" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-    </div>
-    <div class="kobiTitle">"Deponuz Ağzına Kadar Mal Dolu Diye Zenginleştiğinizi mi Sanıyorsunuz?"</div>
-    <div class="kobiDesc">6 aydır rafta bekleyen o kumaş, o profil, o yedek parça depoda durdukça değer kazanmıyor; her gün banka kredinizin faizini yiyor. Depodaki atıl malı görmezden gelmek, her ay deste deste parayı çöpe atmaktır.</div>
-    <div class="kobiMetrics">
-      <div class="kobiMetricRow"><span>Depodaki Toplam Envanter:</span><b style="color:#0F172A">₺2.400.000</b></div>
-      <div class="kobiMetricRow"><span>180+ Günlük Ölü Stok:</span><b style="color:#DC2626">₺680.000 (Atıl Sermaye)</b></div>
-      <div class="kobiMetricRow"><span>Aylık Gizli Faiz Yükü:</span><b style="color:#B45309">~₺45.000 / Ay Kayıp</b></div>
-    </div>
-    <div class="kobiPrescription">
-      <b>DFBP 60 Saniyelik Reçetesi (Envanter İstihbaratı):</b>
-      Mizan ile depo kayıtlarını eşleştirir; 180+ gündür devretmeyen ölü stokları listeler ve acil nakde dönüşüm reçetesini çıkarır.
-    </div>
-  </div>
-
-  <!-- Kart 4 -->
-  <div class="kobiCard" data-category="mgmt">
-    <span class="kobiTag mgmt">🏛️ 4. MİZAN ÇİLESİ VS. KARAR MASASI</span>
-    <div class="kobiCardImgWrap">
-      <img src="/static/ads/kobi_4_mizan_vs_karar.jpg" alt="4. Mizan Çilesi vs Karar Masası" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-    </div>
-    <div class="kobiTitle">"Muhasebeciniz Size Çıkacak Vergiyi Söyler; Parayı Nereden Bulacağınızı Söylemez."</div>
-    <div class="kobiDesc">Mali müşavirin işi devlete vergi beyannamesi vermektir. Ancak önünüze konan 500 satırlık mizan tablosundan "Yarın hangi müşteriye mal çıkışını durdurmalıyım?", "Hangi maliyet canımı yakıyor?" sorularının yanıtı çıkmaz.</div>
-    <div class="kobiMetrics">
-      <div class="kobiMetricRow"><span>Klasik Mizan Tablosu:</span><b style="color:#64748B">500 Satır Hesap (Karar Yok)</b></div>
-      <div class="kobiMetricRow"><span>Digital Finance BP:</span><b style="color:#1D4ED8">1 Sayfalık Board Raporu</b></div>
-      <div class="kobiMetricRow"><span>Yönetimsel Analiz Süresi:</span><b style="color:#059669">Sadece 60 Saniye</b></div>
-    </div>
-    <div class="kobiPrescription">
-      <b>DFBP 60 Saniyelik Reçetesi (1-Sayfalık Yönetim Özeti):</b>
-      33 karar motoru mizanınızı tarar; kâr durumunu, paranın kilitlendiği yeri ve alınacak 1 numaralı icraat kararını tek sayfada masaya koyar.
-    </div>
-  </div>
-
-  <!-- Kart 5 -->
-  <div class="kobiCard" data-category="cash">
-    <span class="kobiTag cash">💵 5. CİRO ALDANMASI &amp; KASA GERÇEĞİ</span>
-    <div class="kobiCardImgWrap">
-      <img src="/static/ads/kobi_5_ciro_aldanmasi.jpg" alt="5. Ciro Aldanması ve Kasa Gerçeği" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-    </div>
-    <div class="kobiTitle">"50 Milyon Ciro Yapıp Ay Sonu Çek Öderken Ter Döken Patronlardan mısınız?"</div>
-    <div class="kobiDesc">Ciro gösteriştir, kâr akıl işidir, kasadaki nakit ise gerçeğin ta kendisidir. Cironuz ikiye katlanıyor ama borcunuz da aynı hızla katlanıyorsa büyümüyorsunuz; sadece daha büyük bir riskin altına giriyorsunuz.</div>
-    <div class="kobiMetrics">
-      <div class="kobiMetricRow"><span>Yıllık Satış Cirosu:</span><b style="color:#059669">₺45.000.000 (Büyüme Görünümü)</b></div>
-      <div class="kobiMetricRow"><span>Banka &amp; Borç Yükü:</span><b style="color:#DC2626">₺18.000.000 (Faiz Baskısı)</b></div>
-      <div class="kobiMetricRow"><span>Kasaya Kalan Net Nakit:</span><b style="color:#DC2626">-₺350.000 (Nakit Açığı)</b></div>
-    </div>
-    <div class="kobiPrescription">
-      <b>DFBP 60 Saniyelik Reçetesi (Nakit Çevrim Motoru):</b>
-      Satıştan tahsilata kadar paranın kaç günde döndüğünü (CCC) hesaplar; cironun nakde dönüşme kabiliyetini ve net kâr kalitesini ölçer.
-    </div>
-  </div>
-
-  <!-- Kart 6 -->
-  <div class="kobiCard" data-category="mgmt">
-    <span class="kobiTag mgmt">🏛️ 6. MÜŞTERİ REHİNESİ &amp; KONSANTRASYON</span>
-    <div class="kobiCardImgWrap">
-      <img src="/static/ads/kobi_6_musteri_rehinesi.jpg" alt="6. Müşteri Rehinesi ve Konsantrasyon" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-    </div>
-    <div class="kobiTitle">"Cironuzun Yarısını Tek Bir Müşteriye Yapıyorsanız; Patron Siz Değilsiniz, O Müşteridir."</div>
-    <div class="kobiDesc">Büyük müşteriyle çalışmak iyidir ama bütün yumurtaları aynı sepete koymak felakettir. O müşteri yarın "Vadeyi 4 aya çıkarıyorum" dediğinde veya ödemeyi geciktirdiğinde şirketin dayanacak kaç günlük can suyu var?</div>
-    <div class="kobiMetrics">
-      <div class="kobiMetricRow"><span>İlk 3 Müşterinin Payı:</span><b style="color:#DC2626">%64 (Kritik Bağımlılık)</b></div>
-      <div class="kobiMetricRow"><span>Olası Vade Gecikmesi:</span><b style="color:#B45309">-₺1.200.000 Nakit Açığı</b></div>
-      <div class="kobiMetricRow"><span>Dayanıklılık Süresi:</span><b style="color:#DC2626">Yalnızca 22 Gün!</b></div>
-    </div>
-    <div class="kobiPrescription">
-      <b>DFBP 60 Saniyelik Reçetesi (Erken Uyarı Radarı):</b>
-      Müşteri bağımlılığınızı ölçer; olası gecikmelerde şirketin likidite dayanıklılığını test eder ve açık hesap tavan limiti belirler.
-    </div>
-  </div>
-
-  <!-- Kart 7 -->
-  <div class="kobiCard" data-category="profit">
-    <span class="kobiTag profit">📊 7. FİYATLAMA GÜCÜ &amp; MARJ KORUMA</span>
-    <div class="kobiCardImgWrap">
-      <img src="/static/ads/kobi_7_fiyat_gucu.jpg" alt="7. Fiyatlama Gücü ve Marj Koruma" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-    </div>
-    <div class="kobiTitle">"Fiyatlarınıza Sadece %3 Zam Yapsanız Kasaya Kaç Yüz Bin Lira Kalır, Hiç Hesapladınız mı?"</div>
-    <div class="kobiDesc">"Müşteri kaçar" korkusuyla maliyet artışlarını fiyata yansıtmamak şirketin özkaynağını eritir. Kontrolsüz iskontolar ve plansız vadeler, ciro artarken kârı sıfırlayan ana sızıntıdır.</div>
-    <div class="kobiMetrics">
-      <div class="kobiMetricRow"><span>Mevcut Brüt Kâr Marjı:</span><b style="color:#B45309">%22,4 (Enflasyon Baskısı)</b></div>
-      <div class="kobiMetricRow"><span>Fiyatta +%3 Düzeltme:</span><b style="color:#059669">+₺324.000 Net Kâr Katkısı</b></div>
-      <div class="kobiMetricRow"><span>10 Gün Erken Tahsilat:</span><b style="color:#1D4ED8">+₺450.000 Kurtarılan Nakit</b></div>
-    </div>
-    <div class="kobiPrescription">
-      <b>DFBP 60 Saniyelik Reçetesi (What-If Simülatörü):</b>
-      Fiyat artışı, vade kısaltma ve gider tasarrufu sürgülerini hareket ettirerek şirketin anlık kâr ve nakit kazanımını canlı simüle eder.
-    </div>
-  </div>
-
-  <!-- Kart 8 -->
-  <div class="kobiCard" data-category="cash">
-    <span class="kobiTag cash">💵 8. KREDİ KAPANINDAN ÇIKIŞ</span>
-    <div class="kobiCardImgWrap">
-      <img src="/static/ads/kobi_8_kredi_kapani.jpg" alt="8. Kredi Kapanından Çıkış" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-    </div>
-    <div class="kobiTitle">"Faizlerin %50 Olduğu Yerde, Şirketi Banka Kredisiyle Döndüremezsiniz."</div>
-    <div class="kobiDesc">Kasada nakit sıkışınca ilk refleks bankaya koşup kredi çekmektir. Ama içerideki para kaçağını kapatmadan kredi çekmek, sadece bankalara çalışmaktır. Çözüm yeni borç değil; içerideki kilitli parayı kurtarmaktır.</div>
-    <div class="kobiMetrics">
-      <div class="kobiMetricRow"><span>Bankaya Yıllık Faiz Yükü:</span><b style="color:#DC2626">₺1.850.000 / Yıl</b></div>
-      <div class="kobiMetricRow"><span>İçeride Kilitli Kendi Paranız:</span><b style="color:#059669">₺1.400.000 (Alacak &amp; Stok)</b></div>
-      <div class="kobiMetricRow"><span>Kredi İhtiyacı Tasarrufu:</span><b style="color:#1D4ED8">%40 Daha Az Borçlanma</b></div>
-    </div>
-    <div class="kobiPrescription">
-      <b>DFBP 60 Saniyelik Reçetesi (Kaldıraç &amp; Borç Kapasitesi):</b>
-      Operasyonel kârınızın faizleri kaç kat karşıladığını ölçer; yeni borca girmeden içerideki kilitli nakdi çözerek şirketi rahatlatır.
-    </div>
-  </div>
-
-  <!-- Kart 9 -->
-  <div class="kobiCard" data-category="mgmt">
-    <span class="kobiTag mgmt">🏛️ 9. ORTAKLAR MASASINDA FİKİR BİRLİĞİ</span>
-    <div class="kobiCardImgWrap">
-      <img src="/static/ads/kobi_9_ortaklar_masasi.jpg" alt="9. Ortaklar Masasında Fikir Birliği" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-    </div>
-    <div class="kobiTitle">"Her Ay Ortaklarınızla 'İşler İyiydi de Bu Para Nereye Gitti' Kavgası Yapmaktan Bıkmadınız mı?"</div>
-    <div class="kobiDesc">Ortaklar arasındaki en büyük gerginlik rakamların farklı yorumlanmasıdır. Biri "Satış ekibi rekor kırdı" der, diğeri "Kasa boş, tedarikçiyi ödeyemiyoruz" der. Suçlu aramak yerine tek bir gerçeğin etrafında toplanın.</div>
-    <div class="kobiMetrics">
-      <div class="kobiMetricRow"><span>1. Teşhis:</span><b style="color:#DC2626">Kârın %62'si Alacak ve Stokta Bağlı</b></div>
-      <div class="kobiMetricRow"><span>2. Öncelikli İcraat:</span><b style="color:#1D4ED8">Vadesi Aşan 3 Müşteriyi Durdur</b></div>
-      <div class="kobiMetricRow"><span>3. Kurtarılabilir Nakit:</span><b style="color:#059669">₺1.100.000 (Haftalık Protokol)</b></div>
-    </div>
-    <div class="kobiPrescription">
-      <b>DFBP 60 Saniyelik Reçetesi (Deterministik Yönetim Masası):</b>
-      Kimsenin tartışamayacağı çift taraflı denetlenmiş verilerle şirketin tek bir yönetim ve eylem gündemi üzerinde uzlaşmasını sağlar.
-    </div>
-  </div>
-
-  <!-- Kart 10 -->
-  <div class="kobiCard" data-category="profit">
-    <span class="kobiTag profit">📊 10. CFO ZEKA ARBİTRAJI</span>
-    <div class="kobiCardImgWrap">
-      <img src="/static/ads/kobi_10_cfo_arbitraji.jpg" alt="10. CFO Zeka Arbitrajı" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
-    </div>
-    <div class="kobiTitle">"Büyük Holdingler Her Ay Milyonluk Finans Kadrolarıyla Şirket Yönetiyor. Siz Hâlâ Hissiyatla mı Karar Veriyorsunuz?"</div>
-    <div class="kobiDesc">Aylık 150-200 bin TL maaşla Finans Direktörü (CFO) tutmak KOBİ ölçeğinde zordur. Ancak rekabet etmek için holdinglerin sahip olduğu finansal denetime ve karar gücüne ihtiyacınız var.</div>
-    <div class="kobiMetrics">
-      <div class="kobiMetricRow"><span>Holding Finans Kadrosu:</span><b style="color:#64748B">Aylık ₺200.000+ Maliyet</b></div>
-      <div class="kobiMetricRow"><span>Digital Finance BP:</span><b style="color:#1D4ED8">60 Saniyede CFO Masası</b></div>
-      <div class="kobiMetricRow"><span>Karar Gücü:</span><b style="color:#059669">33 Deterministik Analiz Motoru</b></div>
-    </div>
-    <div class="kobiPrescription">
-      <b>DFBP 60 Saniyelik Reçetesi (60 Saniyede Finansal Röntgen):</b>
-      Mizanınızı yükleyin; 33 motor çift taraflı denetimle çalışsın, şirketinizi holding düzeyinde analitik finansal zekayla donatsın.
-    </div>
-  </div>
-  </div>
-  <div class="kobiDotsWrap" id="kobiDotsWrap"></div>
-</div>
-
-<script>
-function slideKobi(direction) {
-  var track = document.getElementById('kobiSliderTrack');
-  if (!track) return;
-  var visibleCards = Array.from(track.querySelectorAll('.kobiCard')).filter(function(c) {
-    return c.style.display !== 'none';
-  });
-  if (!visibleCards.length) return;
-  var cardWidth = visibleCards[0].offsetWidth + 22;
-  track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-}
-
-function initKobiSlider() {
-  var track = document.getElementById('kobiSliderTrack');
-  var dotsWrap = document.getElementById('kobiDotsWrap');
-  var counter = document.getElementById('kobiSliderCounter');
-  if (!track || !dotsWrap) return;
-
-  function getVisibleCards() {
-    return Array.from(track.querySelectorAll('.kobiCard')).filter(function(c) {
-      return c.style.display !== 'none';
-    });
-  }
-
-  function updateDotsAndCounter() {
-    var visible = getVisibleCards();
-    if (!visible.length) {
-      if (counter) counter.textContent = '0 / 0 Teşhis';
-      return;
-    }
-    var trackRect = track.getBoundingClientRect();
-    var activeIdx = 0;
-    var minDiff = Infinity;
-
-    visible.forEach(function(c, idx) {
-      var r = c.getBoundingClientRect();
-      var diff = Math.abs(r.left - trackRect.left);
-      if (diff < minDiff) {
-        minDiff = diff;
-        activeIdx = idx;
-      }
-    });
-
-    if (counter) {
-      counter.textContent = (activeIdx + 1) + ' / ' + visible.length + ' Teşhis';
-    }
-
-    var dots = dotsWrap.querySelectorAll('.kobiDot');
-    dots.forEach(function(dot, idx) {
-      if (idx === activeIdx) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
-    });
-  }
-
-  function rebuildDots() {
-    var visible = getVisibleCards();
-    dotsWrap.innerHTML = '';
-    visible.forEach(function(c, idx) {
-      var dot = document.createElement('div');
-      dot.className = 'kobiDot' + (idx === 0 ? ' active' : '');
-      dot.title = 'Teşhis ' + (idx + 1);
-      dot.onclick = function() {
-        c.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-      };
-      dotsWrap.appendChild(dot);
-    });
-    updateDotsAndCounter();
-  }
-
-  var scrollTimer = null;
-  track.addEventListener('scroll', function() {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(updateDotsAndCounter, 50);
-  }, { passive: true });
-
-  window._rebuildKobiSlider = rebuildDots;
-  rebuildDots();
-}
-
-function filterKobiShowcase(category, btn) {
-  var pills = document.querySelectorAll('.kobiPill');
-  for (var i = 0; i < pills.length; i++) {
-    pills[i].classList.remove('active');
-  }
-  if (btn) btn.classList.add('active');
-
-  var cards = document.querySelectorAll('.kobiCard');
-  for (var j = 0; j < cards.length; j++) {
-    var c = cards[j];
-    if (category === 'all' || c.getAttribute('data-category') === category) {
-      c.style.display = 'flex';
-    } else {
-      c.style.display = 'none';
-    }
-  }
-
-  var track = document.getElementById('kobiSliderTrack');
-  if (track) {
-    track.scrollTo({ left: 0, behavior: 'smooth' });
-  }
-  if (window._rebuildKobiSlider) {
-    window._rebuildKobiSlider();
-  }
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initKobiSlider);
-} else {
-  initKobiSlider();
-}
-</script>
-</section></div>
-
-
-<!-- SECTION: 3-KATMANLI ÜRÜN MİMARİSİ (PATRONUN AKLINDAKİ 8 KRİTİK SORU) -->
-<div class="secBlock tint reveal">
-  <section id="patronSorulari" class="marketingSection hidePrint">
-    <div class="marketingHead">
-      <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">3 KATMANLI ÜRÜN MİMARİSİ</span>
-      <h2>Patron Muhasebe Raporu Değil; "Kasada Neden Para Yok ve Yarın Ne Yapmalıyım?" Sorusunun Cevabını İster</h2>
-      <p>Muhasebe programları sadece geçmişin dökümünü listeler. Digital Finance Business Partner ise patronun geceleri aklına takılan 8 kritik soruyu; çift taraflı analitik kanıtlar, net TL getirisi ve uygulanabilir yönetim kararlarıyla anında çözer.</p>
-    </div>
-
-    <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:22px;padding:26px;box-shadow:0 14px 34px rgba(15,27,45,.06)">
-      <div style="position:relative;display:flex;align-items:center;margin-bottom:18px;gap:6px">
-        <button type="button" class="pillScrollBtn" onclick="scrollPills('landingCeoPills', -280)" aria-label="Geri Kaydır" title="Önceki Sorular">‹</button>
-        <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;flex:1" id="landingCeoPills">
-        <button type="button" class="ceoPill active" data-lq="lq1" onclick="switchLandingCeo('lq1')">💸 Kasada Neden Para Yok?</button>
-        <button type="button" class="ceoPill" data-lq="lq2" onclick="switchLandingCeo('lq2')">👥 Hangi Müşteri Zarar Ettiriyor?</button>
-        <button type="button" class="ceoPill" data-lq="lq3" onclick="switchLandingCeo('lq3')">📦 Depoda Ne Kadar Para Uyuyor?</button>
-        <button type="button" class="ceoPill" data-lq="lq4" onclick="switchLandingCeo('lq4')">🔓 Kredisiz Kaç Milyon TL Nakit Çıkar?</button>
-        <button type="button" class="ceoPill" data-lq="lq5" onclick="switchLandingCeo('lq5')">📉 Satış Artarken Marj Neden Büyümüyor?</button>
-        <button type="button" class="ceoPill" data-lq="lq6" onclick="switchLandingCeo('lq6')">⚖️ Vade Makası (Müşteri vs Tedarikçi)</button>
-        <button type="button" class="ceoPill" data-lq="lq7" onclick="switchLandingCeo('lq7')">🚨 Yarın Sabahın 3 Kritik Alarmı</button>
-        <button type="button" class="ceoPill" data-lq="lq8" onclick="switchLandingCeo('lq8')">🎯 CEO'nun 1 Numaralı Kararı</button>
-      </div>
-        <button type="button" class="pillScrollBtn" onclick="scrollPills('landingCeoPills', 280)" aria-label="İleri Kaydır" title="Sonraki Sorular">›</button>
-      </div>
-
-      <div id="landingCeoCards">
-        <!-- LQ1 -->
-        <div id="lqCard_lq1" class="ceoQuestionCard active">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
-            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">💸 NAKİT AKIŞI &amp; KÂR KALİTESİ</span>
-            <div class="small muted">Örnek Şirket Verisi Teşhisi (₺10M Ciro / ₺1M Net Kâr)</div>
-          </div>
-          <div class="ceoGrid3">
-            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
-              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Defterdeki Kâr, Alacak ve Stok Kilitlenmesinde Kayboluyor</h4>
-              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Defterde ₺1.000.000 net kâr görünmesine karşın, bu kârın neredeyse tamamı müşterilerin 80 günlük tahsilat vadesinde (₺2.25M) ve depodaki 96 günlük stokta (₺1.71M) kilitlenmiştir. Kasa bu kârı fiilen görememektedir.</p>
-            </div>
-            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
-              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Net Dönem Kârı</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺1.000.000</div><div style="font-size:9.5px;color:#94A3B8">Defter kârı</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Müşteride Kilitli (120)</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺2.250.000</div><div style="font-size:9.5px;color:#94A3B8">80 gün tahsilat</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Depoda Kilitli (150)</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺1.710.000</div><div style="font-size:9.5px;color:#94A3B8">96 gün stokta</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Nakit Çevrim (CCC)</div><div style="font-size:14px;font-weight:800;color:#0F172A">134 gün</div><div style="font-size:9.5px;color:#94A3B8">Nakit bekleme</div></div>
-              </div>
-            </div>
-            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
-              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 İlk 10 müşteride açık hesap vadesini 15 gün geri çekin; vadeli siparişleri DBS veya %2 peşin nakit iskontosuyla hızlandırın.</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺685.000</div></div>
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺308.250 / yıl</div></div>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> CFO &amp; Satış Direktörü · <b>Vade:</b> İlk 30 Gün</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- LQ2 -->
-        <div id="lqCard_lq2" class="ceoQuestionCard">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
-            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">👥 MÜŞTERİ KÂRLILIĞI &amp; ALACAK RİSKİ</span>
-            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
-          </div>
-          <div class="ceoGrid3">
-            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
-              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Yüksek Cirolu Müşteriler Uzun Vade ve Gizli Finansmanla Zarar Ettiriyor</h4>
-              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Cironun %38'ini tek başına oluşturan ilk 3 müşteri, 110 gün vade kullanmaktadır. %45 ticari kredi faizi ortamında bu vadenin faiz maliyeti satış marjının %14'ünü tüketmekte ve defterdeki net kârı gizli zarara dönüştürmektedir.</p>
-            </div>
-            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
-              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">İlk 3 Müşteri Payı</div><div style="font-size:14px;font-weight:800;color:#0F172A">%38,4</div><div style="font-size:9.5px;color:#94A3B8">Yüksek konsantrasyon</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Ortalama Vade</div><div style="font-size:14px;font-weight:800;color:#0F172A">110 gün</div><div style="font-size:9.5px;color:#94A3B8">Sektör medyanı 65g</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Alacak Finansman Yükü</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺485.000</div><div style="font-size:9.5px;color:#94A3B8">Yıllık faiz erozyonu</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Risk Skoru</div><div style="font-size:14px;font-weight:800;color:#0F172A">84 / 100</div><div style="font-size:9.5px;color:#94A3B8">Kritik seviye</div></div>
-              </div>
-            </div>
-            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
-              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 Vadesi 75 günü aşan bu müşterilere açık hesap yerine banka DBS limiti zorunluluğu getirin ve %2 vade farkı protokolü imzalayın.</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺520.000</div></div>
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺234.000 / yıl</div></div>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Ticari Satış Direktörü · <b>Vade:</b> 45 Gün</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- LQ3 -->
-        <div id="lqCard_lq3" class="ceoQuestionCard">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
-            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">📦 STOK YÖNETİMİ &amp; ATIL SERMAYE</span>
-            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
-          </div>
-          <div class="ceoGrid3">
-            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
-              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Depoda ₺1.710.000 Uyuyor, Yıllık ₺769.500 Faiz Sızıntısı Üretiyor</h4>
-              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Mallar depoda ortalama 96 gün kalmaktadır. 90+ gündür hareket görmeyen atıl stoklar depoda çürürken şirketin banka kredisi maliyetini her ay büyütmektedir.</p>
-            </div>
-            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
-              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Depoda Bağlı Stok</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺1.710.000</div><div style="font-size:9.5px;color:#94A3B8">150-153 hesapları</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Stokta Kalma (DIO)</div><div style="font-size:14px;font-weight:800;color:#0F172A">96 gün</div><div style="font-size:9.5px;color:#94A3B8">Sektör medyanı 54g</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Yıllık Faiz Sızıntısı</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺769.500</div><div style="font-size:9.5px;color:#94A3B8">%45 faiz proxy</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Stok Devir Hızı</div><div style="font-size:14px;font-weight:800;color:#0F172A">3,8x / yıl</div><div style="font-size:9.5px;color:#94A3B8">Düşük devir</div></div>
-              </div>
-            </div>
-            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
-              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 90 günden uzun süredir bekleyen ölü stokları paket indirimle derhal nakde çevirin. Satınalma siparişlerini haftalık satış hızına bağlayın.</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺356.000</div></div>
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺160.200 / yıl</div></div>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Tedarik Zinciri &amp; Satınalma Müdürü · <b>Vade:</b> 30 Gün</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- LQ4 -->
-        <div id="lqCard_lq4" class="ceoQuestionCard">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
-            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">🔓 İÇ KAYNAKLI ÖZ FİNANSMAN</span>
-            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
-          </div>
-          <div class="ceoGrid3">
-            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
-              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Banka Kredisi Almadan Şirket İçinden ₺1.041.000 Sıcak Nakit Çıkabilir</h4>
-              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Tahsilatı 15 gün öne çekmek, stoğu 15 gün hızlandırmak ve tedarikçi vadesini 10 gün uzatmak; bankaya tek kuruş faiz ödemeden şirketinize ₺1.041.000 nakit ve yıllık ₺468.450 net kâr kazandırır.</p>
-            </div>
-            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
-              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Tahsilat Katkısı (-15G)</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺411.000</div><div style="font-size:9.5px;color:#94A3B8">Alacak hızlandırma</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Stok Katkısı (-15G)</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺356.000</div><div style="font-size:9.5px;color:#94A3B8">Depo eritme</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Tedarikçi Katkısı (+10G)</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺274.000</div><div style="font-size:9.5px;color:#94A3B8">Satıcı finansmanı</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Toplam İç Nakit</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺1.041.000</div><div style="font-size:9.5px;color:#94A3B8">Sıfır banka kredisi</div></div>
-              </div>
-            </div>
-            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
-              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 3 Kaldıraçlı Çalışma Sermayesi Programı başlatın: Satış ekibinin primini ciroya değil "kasaya giren tahsilata" endeksleyin.</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺1.041.000</div></div>
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺468.450 / yıl</div></div>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> İcra Kurulu &amp; Genel Müdür · <b>Vade:</b> Hemen Devrede</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- LQ5 -->
-        <div id="lqCard_lq5" class="ceoQuestionCard">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
-            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">📉 KÂR KALİTESİ &amp; MALİYET KONTROLÜ</span>
-            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
-          </div>
-          <div class="ceoGrid3">
-            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
-              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Faaliyet Giderleri (OpEx) Cirodan %8 Daha Hızlı Artmış</h4>
-              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Satışlar %25 büyürken brüt marj %35'ten %31'e gerilemiş; genel yönetim ve lojistik giderleri kâr artışını eritmiştir. Şirket daha çok çalışmakta ancak daha az operasyonel kâr üretmektedir.</p>
-            </div>
-            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
-              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Brüt Kâr Marjı</div><div style="font-size:14px;font-weight:800;color:#0F172A">%31,0</div><div style="font-size:9.5px;color:#94A3B8">Önceki: %35,0 (↓)</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Faaliyet Kâr Marjı</div><div style="font-size:14px;font-weight:800;color:#0F172A">%10,0</div><div style="font-size:9.5px;color:#94A3B8">Operasyonel marj</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Gider / Ciro Oranı</div><div style="font-size:14px;font-weight:800;color:#0F172A">%21,0</div><div style="font-size:9.5px;color:#94A3B8">OpEx yoğunluğu</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Finansman Yükü</div><div style="font-size:14px;font-weight:800;color:#0F172A">%40,0</div><div style="font-size:9.5px;color:#94A3B8">Faaliyet kârına oranı</div></div>
-              </div>
-            </div>
-            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
-              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 Fiyatlama politikasını enflasyon bazlı dinamik tarifeye geçirin; kârsız ürün kodlarını ürün portföyünden derhal ayıklayın.</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Ekstra Faaliyet Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺200.000</div></div>
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Yıllık Marj Katkısı</div><div style="font-size:14px;font-weight:800;color:#166534">+%2,0 Puan</div></div>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Finans Direktörü &amp; Satış · <b>Vade:</b> 30 Gün</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- LQ6 -->
-        <div id="lqCard_lq6" class="ceoQuestionCard">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
-            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">⚖️ İŞLETME SERMAYESİ ASİMETRİSİ</span>
-            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
-          </div>
-          <div class="ceoGrid3">
-            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
-              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Tedarikçiye 42 Günde Ödeyip Müşteriyi 80 Gün Beklemek Şirketi Kanamaya İtiyor</h4>
-              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Ortaya çıkan 38 günlük vade açığını kapatmak için şirket kendi özkaynağını eritmekte ve bankadan yüksek faizli rotatif kredi çekmektedir.</p>
-            </div>
-            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
-              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Müşteri Vadesi (DSO)</div><div style="font-size:14px;font-weight:800;color:#0F172A">80 gün</div><div style="font-size:9.5px;color:#94A3B8">Alacak vadesi</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Tedarikçi Vadesi (DPO)</div><div style="font-size:14px;font-weight:800;color:#0F172A">42 gün</div><div style="font-size:9.5px;color:#94A3B8">Ödeme vadesi</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Net Vade Makası Açığı</div><div style="font-size:14px;font-weight:800;color:#0F172A">38 gün</div><div style="font-size:9.5px;color:#94A3B8">Finanse edilen gün</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Tedarikçi Borçları</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺750.000</div><div style="font-size:9.5px;color:#94A3B8">320 Satıcılar</div></div>
-              </div>
-            </div>
-            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
-              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 Tedarikçilerle vadeleri 15 gün uzatacak konsinye veya vadeli çek protokolü yapın; müşterilere ise tedarikçi vadesinin üzerinde açık hesap açmayın.</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺410.000</div></div>
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺184.500 / yıl</div></div>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Satınalma Direktörü &amp; CFO · <b>Vade:</b> 30 Gün</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- LQ7 -->
-        <div id="lqCard_lq7" class="ceoQuestionCard">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
-            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">🚨 CEO ERKEN UYARI RADARI</span>
-            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
-          </div>
-          <div class="ceoGrid3">
-            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
-              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">33 Karar Motorunun Belirlediği 3 Öncelikli Alarm</h4>
-              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Mizan çift taraflı denetlenmiş ve nakit akışını riske atan ilk 3 finansal alarm tespit edilmiştir: Tahsilat süresinin uzaması, depoda kilitli sermaye ve kısa vadeli borç geri ödeme takvimi.</p>
-            </div>
-            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
-              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">1. Tahsilat Vadesi</div><div style="font-size:14px;font-weight:800;color:#0F172A">88 / 100</div><div style="font-size:9.5px;color:#94A3B8">Maruziyet: ₺780k</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">2. Kilitli Stok Yükü</div><div style="font-size:14px;font-weight:800;color:#0F172A">76 / 100</div><div style="font-size:9.5px;color:#94A3B8">Maruziyet: ₺769k</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">3. Likidite / Borç</div><div style="font-size:14px;font-weight:800;color:#0F172A">72 / 100</div><div style="font-size:9.5px;color:#94A3B8">Cari oran 1.1x</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Finansal Sağlık</div><div style="font-size:14px;font-weight:800;color:#0F172A">74 / 100</div><div style="font-size:9.5px;color:#94A3B8">Orta-Risk</div></div>
-              </div>
-            </div>
-            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
-              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 Risk komitesini toplayarak bu 3 alarm için haftalık nakit akış toplantısı kurgulayın ve erken uyarı limitleri belirleyin.</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Korunan Nakit Kalkanı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺390.000</div></div>
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Batık Riski Önleme</div><div style="font-size:14px;font-weight:800;color:#166534">Tam Güvence</div></div>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> İcra Kurulu · <b>Vade:</b> İlk 7 Gün</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- LQ8 -->
-        <div id="lqCard_lq8" class="ceoQuestionCard">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
-            <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">🎯 CEO İCRAAT DİREKTİFİ</span>
-            <div class="small muted">Örnek Şirket Verisi Teşhisi</div>
-          </div>
-          <div class="ceoGrid3">
-            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>
-              <h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">Bugün Masaya Koymanız Gereken 1 Numaralı Karar</h4>
-              <p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">Şirketinizin nakit akışını ve kârını kalıcı olarak kurtaracak tek hamle: Vadesi 60 günü aşan müşterilere yeni mal sevkiyatını dondurmak ve ilk 10 müşteriyle banka teminatlı DBS protokolü başlatmaktır.</p>
-            </div>
-            <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l2">2. KATMAN · ANALİTİK KANIT (33 MOTOR)</span></div>
-              <div style="font-size:12px;color:#475569;margin-bottom:10px;font-weight:600">Çift taraflı denetimle doğrulanan canlı rasyolar:</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Yıllık Kâr Sızıntısı</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺1.782.000</div><div style="font-size:9.5px;color:#94A3B8">Faiz kaybı</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Kilitli Nakit Tutarı</div><div style="font-size:14px;font-weight:800;color:#0F172A">₺3.960.000</div><div style="font-size:9.5px;color:#94A3B8">Alacak + Stok</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">Kurtarılabilir Kâr</div><div style="font-size:14px;font-weight:800;color:#0F172A">+₺801.900</div><div style="font-size:9.5px;color:#94A3B8">Yıllık faiz tasarrufu</div></div>
-                <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px"><div style="font-size:10.5px;color:#64748B">İcraat Etkisi</div><div style="font-size:14px;font-weight:800;color:#0F172A">Kritik</div><div style="font-size:9.5px;color:#94A3B8">Doğrudan kâr artışı</div></div>
-              </div>
-            </div>
-            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">
-              <div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (CFO TAVSİYESİ)</span></div>
-              <div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 Satış direktörüne bugün yazılı talimat verin: Vadesi 60 günü aşan müşteriye sevkiyat onayı verilmeyecek; açık hesap riski DBS garantisine bağlanacaktır.</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div><div style="font-size:14px;font-weight:800;color:#166534">+₺685.000</div></div>
-                <div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px"><div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Faiz Kârı</div><div style="font-size:14px;font-weight:800;color:#166534">+₺308.250 / yıl</div></div>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> CEO &amp; Genel Müdür · <b>Vade:</b> Bugün</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top:20px;padding-top:16px;border-top:1px solid #E2E8F0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-        <div style="font-size:13px;color:#64748B">
-          💡 Kendi şirketinizin mizanında bu soruların yanıtlarını kuruşu kuruşuna görmek için canlı demoyu başlatın.
-        </div>
-        <a href="/uygulama?sample=data_hub" class="primary" style="text-decoration:none;padding:10px 20px;border-radius:10px;font-size:13.5px;font-weight:700">
-          🔥 Kendi Verilerinizle Canlı Cevapları Görün →
-        </a>
-      </div>
-    </div>
-  </section>
-</div>
-
-
-
-<!-- SECTION: GERÇEK VERİ TABANLI TEMSİLİ YÖNETİM VAKALARI (CASE STUDIES) -->
-<div class="secBlock reveal">
-  <section id="caseStudies" class="marketingSection hidePrint" style="padding-top:0">
-    <div class="marketingHead">
-      <span class="workflowBadge" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0">📈 GERÇEK VERİ TABANLI TEMSİLİ YÖNETİM VAKALARI</span>
-      <h2 style="margin-top:10px">Rakamlar Yalan Söylemez: Finansal Karar Modellerimiz Kasaları Nasıl Rahatlatıyor?</h2>
-      <p>Aşağıdaki vakalar, platformun 33 Karar Motoru ve çift taraflı denetim mimarisi ile analiz edilen gerçek sektör bilançoları baz alınarak modellenmiş <b>temsili yönetim senaryolarıdır</b>. Ticari mahremiyet nedeniyle unvanlar anonimleştirilmiş; matematiksel formülasyon, oran analizleri ve kâr/nakit optimizasyon dinamikleri birebir korunmuştur.</p>
-    </div>
-
-    <div class="caseGrid">
-      <!-- Case 1: İmalat & Sanayi -->
-      <div class="caseCard">
-        <div class="caseHead">
-          <span class="caseBadge verified">📊 TEMSİLİ MODELLEME VAKASI · İMALAT SANAYİ</span>
-          <span class="caseLocation">Kocaeli · ₺65M Yıllık Hacim</span>
-        </div>
-        <div class="caseTitle">"Depodaki 180+ Günlük Ölü Stok Teşhis Edildi; ₺1.450.000 Atıl Nakit 45 Günde Kasaya Döndü."</div>
-        <div class="caseProblem">
-          <b>Kriz:</b> Şirket sürekli nakit sıkışıklığı çekiyor ve bankadan yüksek faizli ticari kredi kullanıyordu. Mizan incelendiğinde ₺3.2M stok görünüyordu ancak alt depo kırılımı takip edilmiyordu.
-        </div>
-        <div class="caseSolution">
-          <b>DFBP Reçetesi:</b> Envanter İstihbarat Motoru mizan ile stok defterini eşleştirdi; 180 günü aşan 4 grup ölü hammaddeyi listeledi. Hızlı iskonto ve iade protokolüyle atıl sermaye nakde çevrildi.
-        </div>
-        <div class="caseKpis">
-          <div class="caseKpiItem"><b style="color:#047857">+₺1.450.000</b><span>Kurtarılan Sıcak Nakit</span></div>
-          <div class="caseKpiItem"><b style="color:#1D4ED8">112g → 64g</b><span>Nakit Çevrim (CCC)</span></div>
-          <div class="caseKpiItem"><b style="color:#B45309">₺420.000 / yıl</b><span>Faiz Tasarrufu</span></div>
-        </div>
-      </div>
-
-      <!-- Case 2: Gıda Dağıtım & Toptan -->
-      <div class="caseCard">
-        <div class="caseHead">
-          <span class="caseBadge verified">📊 TEMSİLİ MODELLEME VAKASI · HIZLI TÜKETİM &amp; DAĞITIM</span>
-          <span class="caseLocation">Bursa · ₺110M Yıllık Hacim</span>
-        </div>
-        <div class="caseTitle">"88 Günlük Operasyonel Açık Hesap Vadesi (Resmi Mizan: 81 Gün) 52 Güne İndirildi; Banka Kredi İhtiyacı ₺2.800.000 Azaldı."</div>
-        <div class="caseProblem">
-          <b>Kriz:</b> Şirket rekor ciro yapmasına rağmen ay sonlarında tedarikçi çeklerini ödeyemiyordu. Resmi mizan DSO vadesi 81 gün iken operasyonel yaşlandırma alt defterinde fiili vade 88 güne çıkmıştı; bayiler açık hesap vadelerini sürekli uzatarak şirketi faizsiz banka gibi kullanıyordu.
-        </div>
-        <div class="caseSolution">
-          <b>DFBP Reçetesi:</b> Alacak Yaşlandırma Motoru ilk 20 bayinin vadesini taradı; vadesi 60 günü aşan riskli cariler durduruldu ve DBS (Doğrudan Borçlandırma Sistemi) entegrasyonuna bağlandı. Operasyonel DSO 88 günden 52 güne çekildi.
-        </div>
-        <div class="caseKpis">
-          <div class="caseKpiItem"><b style="color:#047857">+₺2.800.000</b><span>Azalan Kredi Yükü</span></div>
-          <div class="caseKpiItem"><b style="color:#1D4ED8">88g → 52g</b><span>Operasyonel Vade (DSO)</span></div>
-          <div class="caseKpiItem"><b style="color:#B45309">₺640.000 / yıl</b><span>Kurtarılan Faiz Kârı</span></div>
-        </div>
-      </div>
-
-      <!-- Case 3: Tekstil & İhracat -->
-      <div class="caseCard">
-        <div class="caseHead">
-          <span class="caseBadge verified">📊 TEMSİLİ MODELLEME VAKASI · TEKSTİL &amp; İHRACAT</span>
-          <span class="caseLocation">İstanbul · €4.2M İhracat Hacmi</span>
-        </div>
-        <div class="caseTitle">"%62 Müşteri Konsantrasyonu ve Gizli Kur Zararı Yakalandı; Brüt Marj %18'den %24'e Çıktı."</div>
-        <div class="caseProblem">
-          <b>Kriz:</b> Şirketin cirosunun üçte ikisi tek bir yabancı alıcıya bağlıydı. Döviz kuru hareketlerinde kur farkı gelir/gider ayrıştırması yapılmadığı için kârlı sanılan siparişler gizli zarara yol açıyordu.
-        </div>
-        <div class="caseSolution">
-          <b>DFBP Reçetesi:</b> Müşteri Risk Radarı ve FX Risk Röntgeni devreye alındı. Kârsız 3 sipariş hattı revize edildi; vadeli döviz sözleşmelerinde kur koruma kuralları uygulanarak brüt marj 6 puan artırıldı.
-        </div>
-        <div class="caseKpis">
-          <div class="caseKpiItem"><b style="color:#047857">+%6 Net Artış</b><span>Brüt Kâr Marjı</span></div>
-          <div class="caseKpiItem"><b style="color:#1D4ED8">%62 → %34</b><span>Müşteri Bağımlılığı</span></div>
-          <div class="caseKpiItem"><b style="color:#B45309">+€280.000</b><span>Net Nakit Katkısı</span></div>
-        </div>
-      </div>
-
-      <!-- Case 4: Makine & Otomotiv Yan Sanayi -->
-      <div class="caseCard">
-        <div class="caseHead">
-          <span class="caseBadge verified">📊 TEMSİLİ MODELLEME VAKASI · MAKİNE &amp; YAN SANAYİ</span>
-          <span class="caseLocation">İzmir · ₺48M Yıllık Hacim</span>
-        </div>
-        <div class="caseTitle">"Mizan ile Stok Defteri Arasındaki %34 Mutabakat Uçurumu ve ₺920.000 Kâr Kaçağı Kapatıldı."</div>
-        <div class="caseProblem">
-          <b>Kriz:</b> Ortaklar toplantısında kâr paylaşımı konusunda anlaşmazlık vardı. Mizan tablosundaki 150/153 hesapları ile fiili depo sayım raporları arasında yüz binlerce liralık mutabakat farkı bulunuyordu.
-        </div>
-        <div class="caseSolution">
-          <b>DFBP Reçetesi:</b> Data Hub Çapraz Mutabakat Motoru mizan ile stok listesini satır satır eşleştirdi; kayıp stok hareketleri ve faturalandırılmamış sevkiyatlar tespit edilerek ortaklar arasında tek veri konsensüsü sağlandı.
-        </div>
-        <div class="caseKpis">
-          <div class="caseKpiItem"><b style="color:#047857">₺920.000</b><span>Tespit Edilen Sızıntı</span></div>
-          <div class="caseKpiItem"><b style="color:#1D4ED8">%100 Mutabakat</b><span>Mizan &amp; Defter Uyumu</span></div>
-          <div class="caseKpiItem"><b style="color:#B45309">1 Gün</b><span>Uzlaşma &amp; Karar Süresi</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-
-<!-- CLOSING ACTION SECTION -->
-<div class="secBlock" style="margin-top:30px"><section class="ctaBanner hidePrint">
-  <div>
-    <h3 style="font-size:24px;margin:0 0 8px;font-family:var(--serif)">Finansal Verilerinizi Stratejik İş Kararlarına Dönüştürün</h3>
-    <p style="margin:0;color:var(--muted);font-size:14px">Entegrasyon gerektirmez. Örnek Data Hub verisiyle veya kendi mizanınızla 60 saniyede karar raporunuzu alın.</p>
-  </div>
-  <div style="display:flex;gap:12px;flex-wrap:wrap">
-    <a href="/uygulama?sample=data_hub" class="primary" style="text-decoration:none;padding:13px 22px;border-radius:12px;font-size:14px;font-weight:700">🔥 Canlı Demoyu Başlat</a>
-    <a href="/uygulama" class="secondary" style="text-decoration:none;padding:13px 22px;border-radius:12px;font-size:14px;font-weight:700">Kendi Dosyanızı Yükleyin →</a>
-  </div>
-</section></div>
-</main>
-
-<div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/cozumler">Çözümler</a></li><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
-
-
-<script>
-// KOBİ Slider Navigation
-window.slideKobi = function(direction) {
-  var track = document.getElementById('kobiSliderTrack');
-  if (!track) return;
-  var visibleCards = Array.from(track.querySelectorAll('.kobiCard')).filter(function(c) {
-    return c.style.display !== 'none';
-  });
-  if (!visibleCards.length) return;
-  var cardWidth = visibleCards[0].offsetWidth + 22;
-  track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-};
-
-window.initKobiSlider = function() {
-  var track = document.getElementById('kobiSliderTrack');
-  var dotsWrap = document.getElementById('kobiDotsWrap');
-  var counter = document.getElementById('kobiSliderCounter');
-  if (!track || !dotsWrap) return;
-
-  function getVisibleCards() {
-    return Array.from(track.querySelectorAll('.kobiCard')).filter(function(c) {
-      return c.style.display !== 'none';
-    });
-  }
-
-  function updateDotsAndCounter() {
-    var visible = getVisibleCards();
-    if (!visible.length) {
-      if (counter) counter.textContent = '0 / 0 Teşhis';
-      return;
-    }
-    var trackRect = track.getBoundingClientRect();
-    var activeIdx = 0;
-    var minDiff = Infinity;
-
-    visible.forEach(function(c, idx) {
-      var r = c.getBoundingClientRect();
-      var diff = Math.abs(r.left - trackRect.left);
-      if (diff < minDiff) {
-        minDiff = diff;
-        activeIdx = idx;
-      }
-    });
-
-    if (counter) {
-      counter.textContent = (activeIdx + 1) + ' / ' + visible.length + ' Teşhis';
-    }
-
-    var dots = dotsWrap.querySelectorAll('.kobiDot');
-    dots.forEach(function(dot, idx) {
-      if (idx === activeIdx) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
-    });
-  }
-
-  function rebuildDots() {
-    var visible = getVisibleCards();
-    dotsWrap.innerHTML = '';
-    visible.forEach(function(c, idx) {
-      var dot = document.createElement('div');
-      dot.className = 'kobiDot' + (idx === 0 ? ' active' : '');
-      dot.title = 'Teşhis ' + (idx + 1);
-      dot.onclick = function() {
-        c.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-      };
-      dotsWrap.appendChild(dot);
-    });
-    updateDotsAndCounter();
-  }
-
-  var scrollTimer = null;
-  track.addEventListener('scroll', function() {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(updateDotsAndCounter, 50);
-  }, { passive: true });
-
-  window._rebuildKobiSlider = rebuildDots;
-  rebuildDots();
-};
-
-window.filterKobiShowcase = function(category, btn) {
-  var pills = document.querySelectorAll('.kobiPill');
-  for (var i = 0; i < pills.length; i++) {
-    pills[i].classList.remove('active');
-  }
-  if (btn) btn.classList.add('active');
-
-  var cards = document.querySelectorAll('.kobiCard');
-  for (var j = 0; j < cards.length; j++) {
-    var c = cards[j];
-    if (category === 'all' || c.getAttribute('data-category') === category) {
-      c.style.display = 'flex';
-    } else {
-      c.style.display = 'none';
-    }
-  }
-
-  var track = document.getElementById('kobiSliderTrack');
-  if (track) {
-    track.scrollTo({ left: 0, behavior: 'smooth' });
-  }
-  if (window._rebuildKobiSlider) {
-    window._rebuildKobiSlider();
-  }
-};
-
-// Patronun 8 Sorusu (CEO Decision Board)
-window.scrollPills = function(id, delta){
-  const el = document.getElementById(id);
-  if(el){ el.scrollBy({ left: delta, behavior: 'smooth' }); }
-};
-
-window.switchLandingCeo = function(lqid){
-  document.querySelectorAll('#landingCeoPills .ceoPill').forEach(function(p){
-    p.classList.toggle('active', p.getAttribute('data-lq') === lqid);
-  });
-  document.querySelectorAll('#landingCeoCards .ceoQuestionCard').forEach(function(c){
-    c.classList.toggle('active', c.id === 'lqCard_' + lqid);
-  });
-};
-
-document.getElementById('navToggle')?.addEventListener('click', function(){
-  document.getElementById('mainNav')?.classList.toggle('open');
-});
-
-var GLOBAL_I18N = {
-  tr: { navHome: 'Anasayfa', navSolutions: 'Çözümler', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
-  en: { navHome: 'Home', navSolutions: 'Solutions', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
-  de: { navHome: 'Startseite', navSolutions: 'Lösungen', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
-  fr: { navHome: 'Accueil', navSolutions: 'Solutions', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
-  es: { navHome: 'Inicio', navSolutions: 'Soluciones', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
-  it: { navHome: 'Home', navSolutions: 'Soluzioni', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
-  nl: { navHome: 'Startpagina', navSolutions: 'Oplossingen', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
-};
-
-function setGlobalLanguage(lang){
-  try { localStorage.setItem('dfbp_lang', lang); } catch(e){}
-  var dict = GLOBAL_I18N[lang] || GLOBAL_I18N.tr;
-  document.querySelectorAll('.globalLangSwitch').forEach(function(s){ s.value = lang; });
-  var nav = document.getElementById('mainNav');
-  if(nav){
-    var links = nav.querySelectorAll('a');
-    if(links.length >= 7){
-      links[0].textContent = dict.navHome;
-      links[1].textContent = dict.navSolutions;
-      links[2].textContent = dict.navAbout;
-      links[3].textContent = dict.navApp;
-      links[4].textContent = dict.navPricing;
-      links[5].textContent = dict.navSecurity;
-      links[6].textContent = dict.navContact;
-    }
-  }
-  document.querySelectorAll('.navBtn.secondary, .navBtn.sec, #loginOpenBtn').forEach(function(b){ b.textContent = dict.login; });
-  document.querySelectorAll('.navBtn.primary, .navBtn.pri, #registerOpenBtn').forEach(function(b){ b.textContent = dict.register; });
-}
-
-function initSolutionsPage(){
-  if(window.initKobiSlider) window.initKobiSlider();
-  var saved = 'tr';
-  try { saved = localStorage.getItem('dfbp_lang') || 'tr'; } catch(e){}
-  setGlobalLanguage(saved);
-}
-
-if(document.readyState === 'loading'){
-  document.addEventListener('DOMContentLoaded', initSolutionsPage);
-} else {
-  initSolutionsPage();
-}
-</script>
-</body></html>
-'''
 
 PRICING_HTML = r'''<!doctype html>
 <html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.ico"><meta name="description" content="Digital Finance Business Partner (digitalfinancebp.com) — Şirketinizin finansal tablolarını 33 analitik karar motoruyla denetleyen, kâr sızıntılarını ve kilitli nakdi hesaplayan kurumsal karar destek platformu."><title>Paketler | Digital Finance Business Partner</title>
@@ -3447,7 +2572,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/cozumler">Çözümler</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler" class="active">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler" class="active">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">💼 ÇÖZÜM MODELLERİ &amp; PAKETLER</span><h1>Şirketinizin Ölçeğine ve İhtiyacına Uygun Çözüm Modelleri</h1><p>İster tek bir mizanla finansal durumunuzu anında test edin, ister çoklu veri ve What-If simülatörüyle şirketinizin büyümesini yönetin. Tüm modeller aynı deterministik 33 motorlu finansal çekirdekle çalışır.</p>
   <div style="display:inline-flex;align-items:center;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:999px;padding:4px;margin-top:24px;box-shadow:0 4px 12px rgba(15,27,45,0.05)">
@@ -3522,7 +2647,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <div class="secBlock tint reveal"><section class="ctaBanner hidePrint"><div><h3>Hangi paketin şirketinize uygun olduğundan emin değil misiniz?</h3><p>60 saniyede Data Hub altın örnek verisiyle tam bir yönetim kurulu raporunu açın, sistemi bizzat test edin.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a href="/uygulama?sample=data_hub" class="primary" style="text-decoration:none;padding:12px 20px;border-radius:11px">🔥 Canlı Demoyu Başlat</a><a href="/iletisim" class="secondary" style="text-decoration:none;padding:12px 20px;border-radius:11px">Kurumsal Teklif Al</a></div></section></div>
 
 </main>
-<div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/cozumler">Çözümler</a></li><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
+<div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
 <script>
 window.showKvkkModal=function(){var m=document.getElementById('kvkkModal');if(!m){m=document.createElement('div');m.id='kvkkModal';m.style.cssText='position:fixed;inset:0;background:rgba(15,27,45,0.7);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);';m.innerHTML='<div style="background:#FFFFFF;border-radius:18px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,0.3);position:relative;border:1px solid #E2E8F0"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid #E2E8F0;padding-bottom:12px"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:20px">🔒</span><h3 style="margin:0;font-size:18px;color:#0F1B2D;font-family:sans-serif;font-weight:700">Veri Güvenliği, RAM-Only İşleme ve KVKK Taahhüdü</h3></div><button class="kvkkClose" style="background:#F1F5F9;border:0;border-radius:50%;width:30px;height:30px;cursor:pointer;font-weight:bold;font-size:16px">✕</button></div><div style="font-size:13px;line-height:1.7;color:#33415C;display:flex;flex-direction:column;gap:12px"><div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:12px;color:#166534"><b>🛡️ Sıfır Disk Depolama (RAM-Only):</b> Yüklediğiniz mizan, muavin defteri veya operasyonel raporlar sunucunun kalıcı depolama birimlerine (HDD/SSD/Veritabanı) kaydedilmez. Tüm matematiksel hesaplamalar ve çift taraflı denetim anlık bellek (RAM) üzerinde icra edilir ve analiz tamamlandığında oturumla birlikte tamamen silinir.</div><p><b>1. Veri İzolasyonu &amp; Model Eğitimi Yasağı:</b> Şirketiniz tarafından paylaşılan hiçbir finansal veri, ciro, müşteri adı veya bilanço kalemi üçüncü şahıslara verilmez, satılmaz ve genel yapay zekâ modellerinin eğitimi için havuzlara aktarılmaz.</p><p><b>2. 256-Bit TLS Şifreleme:</b> Tarayıcınız ile platform arasındaki tüm veri akışı bankacılık standardında 256-bit SSL/TLS tüneli üzerinden şifrelenir.</p><p><b>3. 6698 Sayılı KVKK Uyumluluğu:</b> Şirket yetkililerine ait iletişim bilgileri ve ticari sırlar yalnızca talep edilen analizlerin üretilmesi amacıyla işlenir; yasal yükümlülükler haricinde hiçbir tarafla paylaşılmaz.</p><p><b>4. Kurumsal Gizlilik Sözleşmesi (NDA):</b> Kurumsal entegrasyon veya holding düzeyinde çalışmalarda şirketinizle karşılıklı Kurumsal NDA akdedilir.</p></div><div style="margin-top:20px;text-align:right"><button class="kvkkClose primary" style="padding:9px 20px;border-radius:10px;font-size:13px;background:#1D4ED8;color:#fff;border:0;cursor:pointer;font-weight:700">Anladım ve Kabul Ediyorum</button></div></div>';m.addEventListener('click',function(e){if(e.target===m||e.target.classList.contains('kvkkClose'))m.style.display='none';});document.body.appendChild(m);}m.style.display='flex';};
 document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('mainNav')?.classList.toggle('open'));
@@ -3593,13 +2718,13 @@ function setBilling(mode){
 </script>
 <script>
 var GLOBAL_I18N = {
-  tr: { navHome: 'Anasayfa', navSolutions: 'Çözümler', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
-  en: { navHome: 'Home', navSolutions: 'Solutions', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
-  de: { navHome: 'Startseite', navSolutions: 'Lösungen', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
-  fr: { navHome: 'Accueil', navSolutions: 'Solutions', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
-  es: { navHome: 'Inicio', navSolutions: 'Soluciones', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
-  it: { navHome: 'Home', navSolutions: 'Soluzioni', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
-  nl: { navHome: 'Startpagina', navSolutions: 'Oplossingen', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
+  tr: { navHome: 'Anasayfa', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
+  en: { navHome: 'Home', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
+  de: { navHome: 'Startseite', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
+  fr: { navHome: 'Accueil', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
+  es: { navHome: 'Inicio', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
+  it: { navHome: 'Home', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
+  nl: { navHome: 'Startpagina', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
 };
 function setGlobalLanguage(lang){
   try { localStorage.setItem('dfbp_lang', lang); } catch(e){}
@@ -3608,15 +2733,7 @@ function setGlobalLanguage(lang){
   var nav = document.getElementById('mainNav');
   if(nav){
     var links = nav.querySelectorAll('a');
-    if(links.length >= 7){
-      links[0].textContent = dict.navHome;
-      links[1].textContent = dict.navSolutions;
-      links[2].textContent = dict.navAbout;
-      links[3].textContent = dict.navApp;
-      links[4].textContent = dict.navPricing;
-      links[5].textContent = dict.navSecurity;
-      links[6].textContent = dict.navContact;
-    } else if(links.length >= 6){
+    if(links.length >= 6){
       links[0].textContent = dict.navHome;
       links[1].textContent = dict.navAbout;
       links[2].textContent = dict.navApp;
@@ -4010,7 +3127,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/cozumler">Çözümler</a><a href="/hakkimizda" class="active">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda" class="active">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">Bizi Tanıyın</span><h1>Finansal Veriyi Güvenilir Yönetim Kararına Dönüştürüyoruz</h1><p>Reel sektörde ve holdinglerde kıdemli finans yöneticiliği yapmış uzmanlar ile finansal yazılım mühendislerinin ortak vizyonuyla hayata geçirildi. Amacımız; her büyüklükteki şirketin kendi mizanından kuruşu kuruşuna doğrulanmış, net ve icra edilebilir yönetim kararları alabilmesidir.</p></div>
 
@@ -4087,7 +3204,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <div class="secBlock reveal"><section class="ctaBanner hidePrint"><div><h3>Bizi tanımak ister misiniz?</h3><p>Ekibinizle birlikte 15 dakikalık bir canlı demo oturumu planlayabilir veya Data Hub ile anında deneyebilirsiniz.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a href="/uygulama?sample=data_hub" class="primary" style="text-decoration:none;padding:12px 20px;border-radius:11px">🔥 Canlı Demoyu Başlat</a><a href="/iletisim" class="secondary" style="text-decoration:none;padding:12px 20px;border-radius:11px">İletişime Geç</a></div></section></div>
 
 </main>
-<div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/cozumler">Çözümler</a></li><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
+<div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
 <script>
 window.showKvkkModal=function(){var m=document.getElementById('kvkkModal');if(!m){m=document.createElement('div');m.id='kvkkModal';m.style.cssText='position:fixed;inset:0;background:rgba(15,27,45,0.7);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);';m.innerHTML='<div style="background:#FFFFFF;border-radius:18px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,0.3);position:relative;border:1px solid #E2E8F0"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid #E2E8F0;padding-bottom:12px"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:20px">🔒</span><h3 style="margin:0;font-size:18px;color:#0F1B2D;font-family:sans-serif;font-weight:700">Veri Güvenliği, RAM-Only İşleme ve KVKK Taahhüdü</h3></div><button class="kvkkClose" style="background:#F1F5F9;border:0;border-radius:50%;width:30px;height:30px;cursor:pointer;font-weight:bold;font-size:16px">✕</button></div><div style="font-size:13px;line-height:1.7;color:#33415C;display:flex;flex-direction:column;gap:12px"><div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:12px;color:#166534"><b>🛡️ Sıfır Disk Depolama (RAM-Only):</b> Yüklediğiniz mizan, muavin defteri veya operasyonel raporlar sunucunun kalıcı depolama birimlerine (HDD/SSD/Veritabanı) kaydedilmez. Tüm matematiksel hesaplamalar ve çift taraflı denetim anlık bellek (RAM) üzerinde icra edilir ve analiz tamamlandığında oturumla birlikte tamamen silinir.</div><p><b>1. Veri İzolasyonu &amp; Model Eğitimi Yasağı:</b> Şirketiniz tarafından paylaşılan hiçbir finansal veri, ciro, müşteri adı veya bilanço kalemi üçüncü şahıslara verilmez, satılmaz ve genel yapay zekâ modellerinin eğitimi için havuzlara aktarılmaz.</p><p><b>2. 256-Bit TLS Şifreleme:</b> Tarayıcınız ile platform arasındaki tüm veri akışı bankacılık standardında 256-bit SSL/TLS tüneli üzerinden şifrelenir.</p><p><b>3. 6698 Sayılı KVKK Uyumluluğu:</b> Şirket yetkililerine ait iletişim bilgileri ve ticari sırlar yalnızca talep edilen analizlerin üretilmesi amacıyla işlenir; yasal yükümlülükler haricinde hiçbir tarafla paylaşılmaz.</p><p><b>4. Kurumsal Gizlilik Sözleşmesi (NDA):</b> Kurumsal entegrasyon veya holding düzeyinde çalışmalarda şirketinizle karşılıklı Kurumsal NDA akdedilir.</p></div><div style="margin-top:20px;text-align:right"><button class="kvkkClose primary" style="padding:9px 20px;border-radius:10px;font-size:13px;background:#1D4ED8;color:#fff;border:0;cursor:pointer;font-weight:700">Anladım ve Kabul Ediyorum</button></div></div>';m.addEventListener('click',function(e){if(e.target===m||e.target.classList.contains('kvkkClose'))m.style.display='none';});document.body.appendChild(m);}m.style.display='flex';};
 document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('mainNav')?.classList.toggle('open'));
@@ -4136,13 +3253,13 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
 </script>
 <script>
 var GLOBAL_I18N = {
-  tr: { navHome: 'Anasayfa', navSolutions: 'Çözümler', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
-  en: { navHome: 'Home', navSolutions: 'Solutions', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
-  de: { navHome: 'Startseite', navSolutions: 'Lösungen', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
-  fr: { navHome: 'Accueil', navSolutions: 'Solutions', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
-  es: { navHome: 'Inicio', navSolutions: 'Soluciones', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
-  it: { navHome: 'Home', navSolutions: 'Soluzioni', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
-  nl: { navHome: 'Startpagina', navSolutions: 'Oplossingen', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
+  tr: { navHome: 'Anasayfa', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
+  en: { navHome: 'Home', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
+  de: { navHome: 'Startseite', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
+  fr: { navHome: 'Accueil', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
+  es: { navHome: 'Inicio', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
+  it: { navHome: 'Home', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
+  nl: { navHome: 'Startpagina', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
 };
 function setGlobalLanguage(lang){
   try { localStorage.setItem('dfbp_lang', lang); } catch(e){}
@@ -4151,15 +3268,7 @@ function setGlobalLanguage(lang){
   var nav = document.getElementById('mainNav');
   if(nav){
     var links = nav.querySelectorAll('a');
-    if(links.length >= 7){
-      links[0].textContent = dict.navHome;
-      links[1].textContent = dict.navSolutions;
-      links[2].textContent = dict.navAbout;
-      links[3].textContent = dict.navApp;
-      links[4].textContent = dict.navPricing;
-      links[5].textContent = dict.navSecurity;
-      links[6].textContent = dict.navContact;
-    } else if(links.length >= 6){
+    if(links.length >= 6){
       links[0].textContent = dict.navHome;
       links[1].textContent = dict.navAbout;
       links[2].textContent = dict.navApp;
@@ -4552,7 +3661,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/cozumler">Çözümler</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim" class="active">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim" class="active">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">İletişim</span><h1>Konuşalım</h1><p>Paketler, kurumsal teklif veya demo talebi için bize ulaşın; genelde 1 iş günü içinde dönüş yapıyoruz.</p></div>
 <div class="secBlock reveal"><section id="contact" class="marketingSection hidePrint" style="padding-top:0">
@@ -4604,7 +3713,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 </div>
 </main>
-<div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/cozumler">Çözümler</a></li><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
+<div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
 <script>
 window.showKvkkModal=function(){var m=document.getElementById('kvkkModal');if(!m){m=document.createElement('div');m.id='kvkkModal';m.style.cssText='position:fixed;inset:0;background:rgba(15,27,45,0.7);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);';m.innerHTML='<div style="background:#FFFFFF;border-radius:18px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,0.3);position:relative;border:1px solid #E2E8F0"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid #E2E8F0;padding-bottom:12px"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:20px">🔒</span><h3 style="margin:0;font-size:18px;color:#0F1B2D;font-family:sans-serif;font-weight:700">Veri Güvenliği, RAM-Only İşleme ve KVKK Taahhüdü</h3></div><button class="kvkkClose" style="background:#F1F5F9;border:0;border-radius:50%;width:30px;height:30px;cursor:pointer;font-weight:bold;font-size:16px">✕</button></div><div style="font-size:13px;line-height:1.7;color:#33415C;display:flex;flex-direction:column;gap:12px"><div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:12px;color:#166534"><b>🛡️ Sıfır Disk Depolama (RAM-Only):</b> Yüklediğiniz mizan, muavin defteri veya operasyonel raporlar sunucunun kalıcı depolama birimlerine (HDD/SSD/Veritabanı) kaydedilmez. Tüm matematiksel hesaplamalar ve çift taraflı denetim anlık bellek (RAM) üzerinde icra edilir ve analiz tamamlandığında oturumla birlikte tamamen silinir.</div><p><b>1. Veri İzolasyonu &amp; Model Eğitimi Yasağı:</b> Şirketiniz tarafından paylaşılan hiçbir finansal veri, ciro, müşteri adı veya bilanço kalemi üçüncü şahıslara verilmez, satılmaz ve genel yapay zekâ modellerinin eğitimi için havuzlara aktarılmaz.</p><p><b>2. 256-Bit TLS Şifreleme:</b> Tarayıcınız ile platform arasındaki tüm veri akışı bankacılık standardında 256-bit SSL/TLS tüneli üzerinden şifrelenir.</p><p><b>3. 6698 Sayılı KVKK Uyumluluğu:</b> Şirket yetkililerine ait iletişim bilgileri ve ticari sırlar yalnızca talep edilen analizlerin üretilmesi amacıyla işlenir; yasal yükümlülükler haricinde hiçbir tarafla paylaşılmaz.</p><p><b>4. Kurumsal Gizlilik Sözleşmesi (NDA):</b> Kurumsal entegrasyon veya holding düzeyinde çalışmalarda şirketinizle karşılıklı Kurumsal NDA akdedilir.</p></div><div style="margin-top:20px;text-align:right"><button class="kvkkClose primary" style="padding:9px 20px;border-radius:10px;font-size:13px;background:#1D4ED8;color:#fff;border:0;cursor:pointer;font-weight:700">Anladım ve Kabul Ediyorum</button></div></div>';m.addEventListener('click',function(e){if(e.target===m||e.target.classList.contains('kvkkClose'))m.style.display='none';});document.body.appendChild(m);}m.style.display='flex';};
 document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('mainNav')?.classList.toggle('open'));
@@ -4653,13 +3762,13 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
 </script>
 <script>
 var GLOBAL_I18N = {
-  tr: { navHome: 'Anasayfa', navSolutions: 'Çözümler', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
-  en: { navHome: 'Home', navSolutions: 'Solutions', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
-  de: { navHome: 'Startseite', navSolutions: 'Lösungen', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
-  fr: { navHome: 'Accueil', navSolutions: 'Solutions', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
-  es: { navHome: 'Inicio', navSolutions: 'Soluciones', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
-  it: { navHome: 'Home', navSolutions: 'Soluzioni', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
-  nl: { navHome: 'Startpagina', navSolutions: 'Oplossingen', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
+  tr: { navHome: 'Anasayfa', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
+  en: { navHome: 'Home', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
+  de: { navHome: 'Startseite', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
+  fr: { navHome: 'Accueil', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
+  es: { navHome: 'Inicio', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
+  it: { navHome: 'Home', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
+  nl: { navHome: 'Startpagina', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
 };
 function setGlobalLanguage(lang){
   try { localStorage.setItem('dfbp_lang', lang); } catch(e){}
@@ -4668,15 +3777,7 @@ function setGlobalLanguage(lang){
   var nav = document.getElementById('mainNav');
   if(nav){
     var links = nav.querySelectorAll('a');
-    if(links.length >= 7){
-      links[0].textContent = dict.navHome;
-      links[1].textContent = dict.navSolutions;
-      links[2].textContent = dict.navAbout;
-      links[3].textContent = dict.navApp;
-      links[4].textContent = dict.navPricing;
-      links[5].textContent = dict.navSecurity;
-      links[6].textContent = dict.navContact;
-    } else if(links.length >= 6){
+    if(links.length >= 6){
       links[0].textContent = dict.navHome;
       links[1].textContent = dict.navAbout;
       links[2].textContent = dict.navApp;
@@ -5069,7 +4170,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/cozumler">Çözümler</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik" class="active">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik" class="active">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in"><span class="eyebrow">Security &amp; Governance</span><h1>Kurumsal veri güvenliği ve AI yönetişimi</h1><p>Finans ekipleri güvenlik sayfasına, düşündüğünüzden çok daha fazla bakıyor. Verinizin nasıl işlendiğini, nerede durduğunu ve AI katmanının nasıl sınırlandığını burada tam olarak görebilirsiniz.</p></div>
 
@@ -5123,7 +4224,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 <div class="secBlock reveal"><section class="ctaBanner hidePrint"><div><h3>Güvenlik ekibinizle konuşmak ister misiniz?</h3><p>Kurumsal güvenlik, veri işleme ve AI yönetişimi hakkında detaylı bir görüşme planlayabiliriz.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a href="/iletisim" class="primary" style="text-decoration:none;padding:12px 20px;border-radius:11px">İletişime Geç</a></div></section></div>
 </main>
-<div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/cozumler">Çözümler</a></li><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
+<div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
 <script>
 window.showKvkkModal=function(){var m=document.getElementById('kvkkModal');if(!m){m=document.createElement('div');m.id='kvkkModal';m.style.cssText='position:fixed;inset:0;background:rgba(15,27,45,0.7);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);';m.innerHTML='<div style="background:#FFFFFF;border-radius:18px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,0.3);position:relative;border:1px solid #E2E8F0"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid #E2E8F0;padding-bottom:12px"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:20px">🔒</span><h3 style="margin:0;font-size:18px;color:#0F1B2D;font-family:sans-serif;font-weight:700">Veri Güvenliği, RAM-Only İşleme ve KVKK Taahhüdü</h3></div><button class="kvkkClose" style="background:#F1F5F9;border:0;border-radius:50%;width:30px;height:30px;cursor:pointer;font-weight:bold;font-size:16px">✕</button></div><div style="font-size:13px;line-height:1.7;color:#33415C;display:flex;flex-direction:column;gap:12px"><div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:12px;color:#166534"><b>🛡️ Sıfır Disk Depolama (RAM-Only):</b> Yüklediğiniz mizan, muavin defteri veya operasyonel raporlar sunucunun kalıcı depolama birimlerine (HDD/SSD/Veritabanı) kaydedilmez. Tüm matematiksel hesaplamalar ve çift taraflı denetim anlık bellek (RAM) üzerinde icra edilir ve analiz tamamlandığında oturumla birlikte tamamen silinir.</div><p><b>1. Veri İzolasyonu &amp; Model Eğitimi Yasağı:</b> Şirketiniz tarafından paylaşılan hiçbir finansal veri, ciro, müşteri adı veya bilanço kalemi üçüncü şahıslara verilmez, satılmaz ve genel yapay zekâ modellerinin eğitimi için havuzlara aktarılmaz.</p><p><b>2. 256-Bit TLS Şifreleme:</b> Tarayıcınız ile platform arasındaki tüm veri akışı bankacılık standardında 256-bit SSL/TLS tüneli üzerinden şifrelenir.</p><p><b>3. 6698 Sayılı KVKK Uyumluluğu:</b> Şirket yetkililerine ait iletişim bilgileri ve ticari sırlar yalnızca talep edilen analizlerin üretilmesi amacıyla işlenir; yasal yükümlülükler haricinde hiçbir tarafla paylaşılmaz.</p><p><b>4. Kurumsal Gizlilik Sözleşmesi (NDA):</b> Kurumsal entegrasyon veya holding düzeyinde çalışmalarda şirketinizle karşılıklı Kurumsal NDA akdedilir.</p></div><div style="margin-top:20px;text-align:right"><button class="kvkkClose primary" style="padding:9px 20px;border-radius:10px;font-size:13px;background:#1D4ED8;color:#fff;border:0;cursor:pointer;font-weight:700">Anladım ve Kabul Ediyorum</button></div></div>';m.addEventListener('click',function(e){if(e.target===m||e.target.classList.contains('kvkkClose'))m.style.display='none';});document.body.appendChild(m);}m.style.display='flex';};
 document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('mainNav')?.classList.toggle('open'));
@@ -5172,13 +4273,13 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
 </script>
 <script>
 var GLOBAL_I18N = {
-  tr: { navHome: 'Anasayfa', navSolutions: 'Çözümler', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
-  en: { navHome: 'Home', navSolutions: 'Solutions', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
-  de: { navHome: 'Startseite', navSolutions: 'Lösungen', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
-  fr: { navHome: 'Accueil', navSolutions: 'Solutions', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
-  es: { navHome: 'Inicio', navSolutions: 'Soluciones', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
-  it: { navHome: 'Home', navSolutions: 'Soluzioni', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
-  nl: { navHome: 'Startpagina', navSolutions: 'Oplossingen', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
+  tr: { navHome: 'Anasayfa', navAbout: 'Hakkımızda', navApp: 'Uygulama', navPricing: 'Paketler', navSecurity: 'Güvenlik', navContact: 'İletişim', login: 'Giriş Yap', register: 'Ücretsiz Kayıt Ol' },
+  en: { navHome: 'Home', navAbout: 'About', navApp: 'App', navPricing: 'Pricing', navSecurity: 'Security', navContact: 'Contact', login: 'Log In', register: 'Sign Up Free' },
+  de: { navHome: 'Startseite', navAbout: 'Über uns', navApp: 'Anwendung', navPricing: 'Preise', navSecurity: 'Sicherheit', navContact: 'Kontakt', login: 'Anmelden', register: 'Kostenlos Registrieren' },
+  fr: { navHome: 'Accueil', navAbout: 'À propos', navApp: 'Application', navPricing: 'Tarifs', navSecurity: 'Sécurité', navContact: 'Contact', login: 'Connexion', register: 'Inscription Gratuite' },
+  es: { navHome: 'Inicio', navAbout: 'Sobre Nosotros', navApp: 'Aplicación', navPricing: 'Precios', navSecurity: 'Seguridad', navContact: 'Contacto', login: 'Iniciar Sesión', register: 'Registro Gratis' },
+  it: { navHome: 'Home', navAbout: 'Chi siamo', navApp: 'Applicazione', navPricing: 'Piani', navSecurity: 'Sicurezza', navContact: 'Contatti', login: 'Accedi', register: 'Registrati Gratis' },
+  nl: { navHome: 'Startpagina', navAbout: 'Over ons', navApp: 'Applicatie', navPricing: 'Tarieven', navSecurity: 'Beveiliging', navContact: 'Contact', login: 'Inloggen', register: 'Gratis Registreren' }
 };
 function setGlobalLanguage(lang){
   try { localStorage.setItem('dfbp_lang', lang); } catch(e){}
@@ -5187,15 +4288,7 @@ function setGlobalLanguage(lang){
   var nav = document.getElementById('mainNav');
   if(nav){
     var links = nav.querySelectorAll('a');
-    if(links.length >= 7){
-      links[0].textContent = dict.navHome;
-      links[1].textContent = dict.navSolutions;
-      links[2].textContent = dict.navAbout;
-      links[3].textContent = dict.navApp;
-      links[4].textContent = dict.navPricing;
-      links[5].textContent = dict.navSecurity;
-      links[6].textContent = dict.navContact;
-    } else if(links.length >= 6){
+    if(links.length >= 6){
       links[0].textContent = dict.navHome;
       links[1].textContent = dict.navAbout;
       links[2].textContent = dict.navApp;
@@ -5797,7 +4890,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div class="brandSub">Finansal Teşhis &amp; Yönetim Karar Destek Platformu</div>
     </div>
   </a>
-</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/cozumler">Çözümler</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama" class="active">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth" id="mobileNavAuth"><button type="button" onclick="openAuthModal('login')" class="secondary">Giriş Yap</button><button type="button" onclick="openAuthModal('register')" class="primary">Ücretsiz Kayıt Ol</button></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select id="currencySwitch" onchange="setCurrency(this.value)" class="select" title="Para Birimi"><option value="TRY">₺ TRY</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select><select id="langSwitch" onchange="setLanguage(this.value)" class="select" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="primary">Ücretsiz Kayıt Ol</button></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+</div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama" class="active">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth" id="mobileNavAuth"><button type="button" onclick="openAuthModal('login')" class="secondary">Giriş Yap</button><button type="button" onclick="openAuthModal('register')" class="primary">Ücretsiz Kayıt Ol</button></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select id="currencySwitch" onchange="setCurrency(this.value)" class="select" title="Para Birimi"><option value="TRY">₺ TRY</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select><select id="langSwitch" onchange="setLanguage(this.value)" class="select" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="primary">Ücretsiz Kayıt Ol</button></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <div id="authModalOverlay" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.65);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px">
   <div class="card" style="background:#FFFFFF;border:1px solid #DCE6F5;border-radius:24px;box-shadow:0 24px 70px rgba(15,27,45,.25);max-width:420px;width:100%;padding:28px;position:relative;overflow:hidden">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
@@ -6911,7 +6004,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </div>
 </section>
 
-</main><div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/cozumler">Çözümler</a></li><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
+</main><div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
 
 <!-- Board One-Pager Executive Modal (Root-level child for clean A4 printing) -->
 <div id="boardDeckModal" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;overflow-y:auto">
@@ -7034,7 +6127,7 @@ const money=v=>{
 };
 
 window._activeLang = 'tr';
-const I18N_BUNDLE = {"tr": {"singleTab": "Tek Dönem Mizan", "trendTab": "Çok Dönem / Trend", "hubTab": "Data Hub / Çoklu Veri", "analyzeBtn": "Mizanı Analiz Et", "analyzeBtnTrend": "İki Dönemi Analiz Et", "analyzeBtnHub": "Tüm Verileri Analiz Et", "sampleBtn": "📄 Tek dönem örnekle dene", "sampleTrendBtn": "📊 İki dönemli örnekle dene (Trend Demo)", "sampleHubBtn": "🗂️ Data Hub örnekle dene (Mizan + AR + AP + Stok + Satış)", "dropTitle": "Mizan Dosyanızı Buraya Sürükleyin", "dropSub": "veya bilgisayarınızdan seçin (.xlsx, .xls, .csv)", "dropBtn": "📁 Dosya Seç", "downloadTemplate": "📥 Standart Mizan Şablonu İndir (.csv)", "navHome": "Anasayfa", "navSolutions": "Çözümler", "navAbout": "Hakkımızda", "navApp": "Uygulama", "navPricing": "Paketler", "navSecurity": "Güvenlik", "navContact": "İletişim", "login": "Giriş Yap", "register": "Ücretsiz Kayıt Ol", "s1Title": "Finansal Gerçekler (Ne Oldu?)", "s1Desc": "Şirkette gerçekte ne oldu: Kâr nereden nereye aktı?", "s1Sub": "Doğrulanmış rakamlar: Ciro, operasyonel kâr kalitesi, borç yapısı ve nakit akış gerçekleşmesi.", "s2Title": "Para Nerede? — Görünmez Kâr Sızıntısı & Kilitli Nakit Teşhisi", "s2Desc": "Defterde kâr var ama para kasada nerede duruyor?", "s2Sub": "Müşteri vadelerinde (120 Alıcılar) ve depodaki stokta (150-153) kilitlenen sermaye ve her yıl ödenen gizli finansman faiz sızıntısı.", "s3Title": "Sektörel Kıyaslama & Öncelikli Riskler (Bize Maliyeti Ne?)", "s3Desc": "Sektör ortalamalarına göre neredeyiz ve acil ele alınması gereken riskler", "s3Sub": "TCMB Sektör Bilançoları & Borsa İstanbul (BIST) 500+ şirket verisiyle kıyaslama ve skorlanmış riskler.", "s4Title": "Kritik Taraflar & Operasyonel İstihbarat (Sızıntıyı Kim Yapıyor?)", "s4Desc": "Hangi müşteri, tedarikçi veya stok kalemi kârı ve nakdi doğrudan etkiliyor?", "s4Sub": "Nakit ve kâr üzerinde en büyük etkisi olan müşteriler ve stok kalemleri. Çoklu veri yüklendiğinde otomatik detaylanır.", "s5Title": "Kök Neden & Yönetim Hikâyeleri (Neden Oldu & Ne Yapılmalı?)", "s5Desc": "Bulguların arkasındaki 5 adımlı nedensellik zinciri, parasal sızıntı maliyeti ve icraat kararları", "s5Sub": "Belirti (Ne Oldu?) ➔ Kanıt (Rakamlar) ➔ Kök Neden (Tetikleyici) ➔ Parasal Sızıntı (Maliyet) ➔ Yönetim Kararı & İcraat", "s6Title": "Yönetim Kararları & Aksiyon Takvimi (Şimdi Ne Yapmalı?)", "s6Desc": "Yönetimin masaya koyup uygulayacağı somut kararlar", "s6Sub": "Karar maddesi → Sahibi → Termini → Takip Edilecek KPI. Her aksiyon maddesi ayrı bir takip numarasına sahiptir.", "s7Title": "Varsayımı Değiştirirsek Ne Olur? (Canlı Senaryo Simülatörü)", "s7Desc": "Fiyatı artırırsak, tahsilatı çekersek veya gideri kıssak kasaya ne girer?", "s7Sub": "Formüllü fırsatlar kataloğu ve anlık duyarlılık simülatörü.", "s8Title": "Yönetici Özeti & AI Finance Business Partner (Karar Brifingi)", "s8Desc": "Tüm analizin tek paragrafta özeti ve stratejik soru-cevap", "s8Sub": "Önce matematiksel kurallarla hesaplanır, sonra yorumlanır. Yöneticinin bu raporla hangi stratejik adımı atması gerektiği açıkça belirtilir.", "sEkATitle": "Ek A — Veri Güvenilirliği & Çift Taraflı Hesaplama Denetimi", "sEkADesc": "Analizin dayandığı verinin doğrulanma düzeyi ve dosya bazlı kırılım", "sEkBTitle": "Ek B — Trend İzleme, İzlenebilirlik & 3 Temel Mali Tablo", "sEkBDesc": "Çok dönem yüklendiğinde hareketi gösterir; her sayı kaynağına izlenebilir", "taxTitle": "🏛️ Vergisel Yönetim Avantajları & Yasal Nakit Tasarrufu", "taxSub": "Şirketin finansal tablolarından (mizan) türetilmiş yasal vergi kalkanları, KKEG optimizasyonu ve nakit tasarrufları", "simHeader": "İnteraktif Senaryo Laboratuvarı & Nakit Simülatörü", "simSub": "Önerilen senaryoları seçin veya sürgüleri hareket ettirerek serbest kalacak nakdi ve kâr etkisini anında canlı görün"}, "en": {"singleTab": "Single Period Trial Balance", "trendTab": "Multi-Period / Trend", "hubTab": "Data Hub / Multi-Source", "analyzeBtn": "Analyze Trial Balance", "analyzeBtnTrend": "Analyze Two Periods", "analyzeBtnHub": "Analyze All Sources", "sampleBtn": "📄 Try Single Period Sample", "sampleTrendBtn": "📊 Try Two-Period Trend Sample", "sampleHubBtn": "🗂️ Try Data Hub Sample (GL + AR + AP + Inventory + Sales)", "dropTitle": "Drag & Drop Your Trial Balance Here", "dropSub": "or choose from computer (.xlsx, .xls, .csv)", "dropBtn": "📁 Select File", "downloadTemplate": "📥 Download Standard Template (.csv)", "navHome": "Home", "navSolutions": "Solutions", "navAbout": "About", "navApp": "App", "navPricing": "Pricing", "navSecurity": "Security", "navContact": "Contact", "login": "Log In", "register": "Sign Up Free", "s1Title": "Financial Facts (What Happened?)", "s1Desc": "What actually happened: How profit flowed across statements", "s1Sub": "Verified figures: Revenue, operating profit quality, debt structure, and cash realization.", "s2Title": "Where is Cash? — Hidden Profit Leakage & Trapped Working Capital", "s2Desc": "On paper there is profit, but where is the cash trapped?", "s2Sub": "Capital locked in receivables (AR) and inventory, plus hidden annual debt finance costs.", "s3Title": "Benchmarking & Priority Risks (What Does It Cost Us?)", "s3Desc": "Where we stand relative to industry benchmarks and urgent risks", "s3Sub": "Central Bank Sector Balance Sheets & Stock Exchange 500+ corporate benchmarks.", "s4Title": "Key Counterparties & Operational Intelligence (Who Drives It?)", "s4Desc": "Which customer, supplier, or inventory SKU directly moves profit and cash?", "s4Sub": "Counterparties with the largest cash footprint. Enriched automatically when multi-source files are loaded.", "s5Title": "Root Cause & Management Narratives (Why & What to Do?)", "s5Desc": "5-step causal chain behind findings, financial leakage cost, and decisive execution actions", "s5Sub": "Symptom ➔ Evidence ➔ Root Cause ➔ Financial Leakage ➔ Decision & Action", "s6Title": "Management Action Matrix & Schedule (Now What?)", "s6Desc": "Decisive executive actions ready to execute tomorrow", "s6Sub": "Action item → Owner → Deadline → Target KPI with unique tracking ID.", "s7Title": "What If We Change Assumptions? (Live Scenario Simulator)", "s7Desc": "If we raise prices, shorten DSO, or curb opex, what lands in cash?", "s7Sub": "Formulaic opportunity catalog and instant sensitivity simulator.", "s8Title": "Executive Summary & AI Finance Business Partner (Decision Briefing)", "s8Desc": "Single-paragraph summary of full analysis and strategic Q&A", "s8Sub": "Calculated using deterministic mathematical rules first, then synthesized.", "sEkATitle": "Appendix A — Data Reliability & Double-Entry Audit", "sEkADesc": "Verification level and file-by-file audit of underlying financial data", "sEkBTitle": "Appendix B — Trend Tracking, Traceability & 3 Core Statements", "sEkBDesc": "Shows movement across periods; every number traces back to underlying journal accounts", "taxTitle": "🏛️ Practical Tax Management & Statutory Cash Shields", "taxSub": "Statutory tax shields, disallowed interest reduction, and cash savings derived from statement balances", "simHeader": "Interactive Scenario Lab & Cash Simulator", "simSub": "Choose suggested scenarios or move sliders to see cash liberation and profit impact in real time"}, "de": {"singleTab": "Einperiodige Summen- & Saldenliste", "trendTab": "Mehrperioden / Trend", "hubTab": "Data Hub / Multi-Source", "analyzeBtn": "Saldenliste analysieren", "analyzeBtnTrend": "Zwei Perioden analysieren", "analyzeBtnHub": "Alle Daten analysieren", "sampleBtn": "📄 Einperiodiges Beispiel testen", "sampleTrendBtn": "📊 Zweiperiodigen Trend testen", "sampleHubBtn": "🗂️ Data Hub Beispiel testen", "dropTitle": "Saldenliste hier ablegen", "dropSub": "oder vom Computer auswählen (.xlsx, .xls, .csv)", "dropBtn": "📁 Datei auswählen", "downloadTemplate": "📥 Standard-Vorlage herunterladen (.csv)", "navHome": "Startseite", "navSolutions": "Lösungen", "navAbout": "Über uns", "navApp": "Anwendung", "navPricing": "Preise", "navSecurity": "Sicherheit", "navContact": "Kontakt", "login": "Anmelden", "register": "Kostenlos Registrieren", "s1Title": "Finanzielle Fakten (Was ist passiert?)", "s1Desc": "Ertragsfluss und Kapitalverwendung im Detail", "s1Sub": "Umsatz, operative Ertragsqualität, Verschuldung und Cashflow.", "s2Title": "Wo ist das Geld? — Gebundenes Kapital & Liquiditätsabfluss", "s2Desc": "Auf dem Papier Gewinn, aber wo steht die Liquidität?", "s2Sub": "In Forderungen und Vorräten gebundenes Betriebskapital.", "s3Title": "Branchenvergleich & Risiken (Was kostet es uns?)", "s3Desc": "Positionierung im Branchenvergleich und Risiken", "s3Sub": "Zentralbank- und Börsenbenchmarks für 500+ Unternehmen.", "s4Title": "Wesentliche Parteien & Operative Intelligenz (Wer verursacht es?)", "s4Desc": "Welche Kunden oder Artikel binden Marge und Cash?", "s4Sub": "Fokus auf Haupttreiber des operativen Kapitals.", "s5Title": "Ursachenanalyse & Management-Berichte (Warum & Was tun?)", "s5Desc": "5-stufige Kausalkette, Schadenshöhe und Managemententscheidungen", "s5Sub": "Symptom ➔ Nachweis ➔ Hauptursache ➔ Finanzieller Verlust ➔ Maßnahme", "s6Title": "Management-Maßnahmen & Umsetzungsplan (Was jetzt?)", "s6Desc": "Konkrete Maßnahmen zur sofortigen Umsetzung", "s6Sub": "Maßnahme → Verantwortlicher → Frist → KPI.", "s7Title": "Was wäre wenn? (Live-Szenario-Simulator)", "s7Desc": "Sensitivitätsanalyse für Preis, Zahlungsziel und Kosten", "s7Sub": "Echtzeit-Berechnung des Liquiditätseffekts.", "s8Title": "Executive Summary & AI Finance Business Partner", "s8Desc": "Gesamtzusammenfassung und Entscheidungsunterstützung", "s8Sub": "Zuerst mathematisch determiniert, dann interpretiert.", "sEkATitle": "Anhang A — Datenqualität & Rechnungslegungsprüfung", "sEkADesc": "Prüfstufe der Quelldaten und Kontenabstimmung", "sEkBTitle": "Anhang B — Trend-Monitoring & 3 Hauptfinanzberichte", "sEkBDesc": "Mehrperioden-Vergleich und lückenlose Kontenrückverfolgung", "taxTitle": "🏛️ Steuerstrategie & Rechtliche Steuersparmodelle", "taxSub": "Gesetzliche Steuerabzüge und Liquiditätsschilde basierend auf der Bilanz", "simHeader": "Interaktiver Szenario-Simulator", "simSub": "Wählen Sie Presets oder bewegen Sie Schieberegler für Cashflow- und Gewinnauswirkungen"}, "fr": {"singleTab": "Balance Générale Période Unique", "trendTab": "Multi-Périodes / Tendance", "hubTab": "Data Hub / Multi-Sources", "analyzeBtn": "Analyser la balance", "analyzeBtnTrend": "Analyser deux périodes", "analyzeBtnHub": "Analyser toutes les sources", "sampleBtn": "📄 Essayer exemple période unique", "sampleTrendBtn": "📊 Essayer exemple tendance", "sampleHubBtn": "🗂️ Essayer Data Hub", "dropTitle": "Déposez votre balance générale ici", "dropSub": "ou sélectionnez depuis votre ordinateur (.xlsx, .xls, .csv)", "dropBtn": "📁 Choisir un fichier", "downloadTemplate": "📥 Télécharger modèle standard (.csv)", "navHome": "Accueil", "navSolutions": "Solutions", "navAbout": "À propos", "navApp": "Application", "navPricing": "Tarifs", "navSecurity": "Sécurité", "navContact": "Contact", "login": "Connexion", "register": "Inscription Gratuite", "s1Title": "Faits Financiers (Que s'est-il passé ?)", "s1Desc": "Flux réel du résultat d'exploitation", "s1Sub": "Chiffre d'affaires, marge opérationnelle, endettement et trésorerie nette.", "s2Title": "Où est l'argent ? — Fuites de profit et trésorerie immobilisée", "s2Desc": "Du bénéfice comptable, mais où est la trésorerie ?", "s2Sub": "Capitaux immobilisés dans les créances clients et stocks.", "s3Title": "Analyse Sectorielle & Risques Prioritaires (Quel est le coût ?)", "s3Desc": "Positionnement sectoriel et alertes critiques", "s3Sub": "Données Banque Centrale et marché boursier pour 500+ entreprises.", "s4Title": "Tiers Clés & Renseignement Opérationnel (Qui génère l'impact ?)", "s4Desc": "Quels clients ou références pèsent le plus lourd ?", "s4Sub": "Analyse approfondie des contreparties critiques.", "s5Title": "Causes Profondes & Narration Décisionnelle (Pourquoi & Que faire ?)", "s5Desc": "Chaîne causale en 5 étapes, coût financier et décisions", "s5Sub": "Symptôme ➔ Preuve ➔ Cause Première ➔ Perte Financière ➔ Décision", "s6Title": "Plan d'Action Managérial & Calendrier (Que faire maintenant ?)", "s6Desc": "Feuille de route pour le comité de direction", "s6Sub": "Action → Porteur → Échéance → KPI cible.", "s7Title": "Simulateur de Scénarios en Direct", "s7Desc": "Ajustements de prix, délais et charges en direct", "s7Sub": "Simulateur instantané de sensibilité de trésorerie.", "s8Title": "Synthèse Exécutive & AI Finance Business Partner", "s8Desc": "Synthèse générale et questions-réponses stratégiques", "s8Sub": "Calculé d'abord selon des règles déterministes strictes.", "sEkATitle": "Annexe A — Fiabilité des Données & Contrôle Arithmétique", "sEkADesc": "Niveau de vérification et réconciliation de la balance", "sEkBTitle": "Annexe B — Analyse de Tendance & 3 États Financiers", "sEkBDesc": "Évolution pluriannuelle et traçabilité intégrale", "taxTitle": "🏛️ Stratégie Fiscale & Économies Légales de Trésorerie", "taxSub": "Boucliers fiscaux et optimisation des charges issus du bilan", "simHeader": "Laboratoire de Scénarios Interactif", "simSub": "Ajustez les curseurs pour simuler l'impact immédiat sur la trésorerie"}, "es": {"singleTab": "Balance de Sumas y Saldos Único", "trendTab": "Multi-Periodo / Tendencia", "hubTab": "Data Hub / Multi-Fuente", "analyzeBtn": "Analizar balance", "analyzeBtnTrend": "Analizar dos periodos", "analyzeBtnHub": "Analizar todas las fuentes", "sampleBtn": "📄 Probar ejemplo de un periodo", "sampleTrendBtn": "📊 Probar ejemplo de tendencia", "sampleHubBtn": "🗂️ Probar Data Hub", "dropTitle": "Arrastre su balance aquí", "dropSub": "o elija de su ordenador (.xlsx, .xls, .csv)", "dropBtn": "📁 Seleccionar archivo", "downloadTemplate": "📥 Descargar plantilla estándar (.csv)", "navHome": "Inicio", "navSolutions": "Soluciones", "navAbout": "Sobre Nosotros", "navApp": "Aplicación", "navPricing": "Precios", "navSecurity": "Seguridad", "navContact": "Contacto", "login": "Iniciar Sesión", "register": "Registro Gratis", "s1Title": "Hechos Financieros (¿Qué Ocurrió?)", "s1Desc": "Flujo real de beneficios y estructura patrimonial", "s1Sub": "Ingresos netos, margen operativo, endeudamiento y tesorería.", "s2Title": "¿Dónde está el dinero? — Fugas de beneficio y caja atrapada", "s2Desc": "Hay beneficio contable, pero ¿dónde está el dinero?", "s2Sub": "Capital inmovilizado en clientes pendientes y almacén.", "s3Title": "Comparativa Sectorial & Riesgos Prioritarios (¿Cuál es el coste?)", "s3Desc": "Posicionamiento sectorial y riesgos urgentes", "s3Sub": "Datos de referencia de Banco Central y bolsas 500+ empresas.", "s4Title": "Contrapartes Clave & Análisis Operativo (¿Quién genera el impacto?)", "s4Desc": "Clientes, proveedores y existencias determinantes", "s4Sub": "Impacto operativo directo en caja y márgenes.", "s5Title": "Causa Raíz & Narrativa de Gestión (¿Por qué y qué hacer?)", "s5Desc": "Cadena causal de 5 pasos, fuga de caja e intervenciones", "s5Sub": "Síntoma ➔ Evidencia ➔ Causa Raíz ➔ Fuga Financiera ➔ Decisión", "s6Title": "Matriz de Acciones de Dirección (¿Qué hacer ahora?)", "s6Desc": "Decisiones listas para ser aplicadas", "s6Sub": "Medida → Responsable → Plazo → KPI objetivo.", "s7Title": "Simulador de Escenarios en Vivo", "s7Desc": "¿Qué ocurre al variar precios, plazos o costes?", "s7Sub": "Simulador instantáneo de impacto en tesorería.", "s8Title": "Resumen Ejecutivo & AI Finance Business Partner", "s8Desc": "Informe condensado para el Consejo de Administración", "s8Sub": "Cálculo matemático determinista antes de la interpretación.", "sEkATitle": "Anexo A — Fiabilidad Contable & Auditoría Doble", "sEkADesc": "Nivel de validación y conciliación contable", "sEkBTitle": "Anexo B — Tendencia Histórica & 3 Estados Financieros", "sEkBDesc": "Seguimiento multi-periodo y trazabilidad total", "taxTitle": "🏛️ Estrategia Fiscal Práctica & Escudos de Caja", "taxSub": "Deducciones fiscales y ahorro de intereses derivados del balance", "simHeader": "Laboratorio de Escenarios Interactivo", "simSub": "Deslice controles para calcular el impacto en tesorería y beneficio"}, "it": {"singleTab": "Bilancio di Verifica Singolo", "trendTab": "Multi-Periodo / Trend", "hubTab": "Data Hub / Multi-Fonte", "analyzeBtn": "Analizza bilancio", "analyzeBtnTrend": "Analizza due periodi", "analyzeBtnHub": "Analizza tutte le fonti", "sampleBtn": "📄 Prova esempio singolo periodo", "sampleTrendBtn": "📊 Prova esempio trend", "sampleHubBtn": "🗂️ Prova Data Hub", "dropTitle": "Trascina qui il tuo bilancio di verifica", "dropSub": "oppure seleziona dal computer (.xlsx, .xls, .csv)", "dropBtn": "📁 Seleziona file", "downloadTemplate": "📥 Scarica modello standard (.csv)", "navHome": "Home", "navSolutions": "Solutions", "navAbout": "Chi siamo", "navApp": "Applicazione", "navPricing": "Piani", "navSecurity": "Sicurezza", "navContact": "Contatti", "login": "Accedi", "register": "Registrati Gratis", "s1Title": "Fatti Finanziari (Cosa è successo?)", "s1Desc": "Dinamica economica reale e generazione utile", "s1Sub": "Ricavi netti, qualità del reddito operativo e liquidità.", "s2Title": "Dov'è il denaro? — Fuga di utili e capitale bloccato", "s2Desc": "C'è utile contabile, ma dov'è la cassa reale?", "s2Sub": "Capitale bloccato in crediti commerciali e magazzino.", "s3Title": "Benchmark di Settore & Rischi Prioritari (Quanto ci costa?)", "s3Desc": "Posizionamento rispetto ai concorrenti e rischi", "s3Sub": "Metriche Banca Centrale e Borsa per 500+ imprese.", "s4Title": "Controparti Chiave & Intelligence Operativa (Chi impatta?)", "s4Desc": "Clienti, fornitori e articoli che guidano i risultati", "s4Sub": "Analisi ad alto impatto per il capitale circolante.", "s5Title": "Cause Principali & Storie Decisionali (Perché & Cosa fare?)", "s5Desc": "Sequenza causale a 5 fasi, dispersione e azioni", "s5Sub": "Sintomo ➔ Evidenza ➔ Causa Primaria ➔ Dispersione ➔ Decisione", "s6Title": "Piano di Azione Manageriale & Scadenze (Cosa fare ora?)", "s6Desc": "Decisioni concrete per il management", "s6Sub": "Azione → Responsabile → Termine → KPI.", "s7Title": "Simulatore di Scenari in Tempo Reale", "s7Desc": "Sensibilità su prezzi, termini di incasso e spese", "s7Sub": "Simulatore istantaneo dell'impatto sulla liquidità.", "s8Title": "Sintesi Esecutiva & AI Finance Business Partner", "s8Desc": "Quadro strategico d'insieme per il vertice", "s8Sub": "Regole matematiche certe e sintesi esecutiva.", "sEkATitle": "Allegato A — Affidabilità Dati & Verifica a Partita Doppia", "sEkADesc": "Verifica contabile e riconciliazione delle fonti", "sEkBTitle": "Allegato B — Trend Storico & 3 Bilanci Principali", "sEkBDesc": "Confronto multi-periodo e tracciabilità analitica", "taxTitle": "🏛️ Strategia Fiscale Pratica & Scudi Fiscali Legali", "taxSub": "Ottimizzazione deduzioni e scudi fiscali basati sul bilancio", "simHeader": "Laboratorio Scenari Interattivo", "simSub": "Muovi i cursori per visualizzare immediatamente la liquidità liberata"}, "nl": {"singleTab": "Enkelvoudige Kolommenbalans", "trendTab": "Meerdere Perioden / Trend", "hubTab": "Data Hub / Multi-Bron", "analyzeBtn": "Balans analyseren", "analyzeBtnTrend": "Twee perioden analyseren", "analyzeBtnHub": "Alle bronnen analyseren", "sampleBtn": "📄 Test enkelvoudig voorbeeld", "sampleTrendBtn": "📊 Test trend voorbeeld", "sampleHubBtn": "🗂️ Test Data Hub", "dropTitle": "Sleep uw kolommenbalans hierheen", "dropSub": "of kies vanaf uw computer (.xlsx, .xls, .csv)", "dropBtn": "📁 Bestand kiezen", "downloadTemplate": "📥 Download standaardsjabloon (.csv)", "navHome": "Startpagina", "navSolutions": "Oplossingen", "navAbout": "Over ons", "navApp": "Applicatie", "navPricing": "Tarieven", "navSecurity": "Beveiliging", "navContact": "Contact", "login": "Inloggen", "register": "Gratis Registreren", "s1Title": "Financiële Feiten (Wat is er gebeurd?)", "s1Desc": "Reële kapitaalstromen en winstbestemming", "s1Sub": "Omzet, operationele marge, schuldhefboom en kasstroom.", "s2Title": "Waar is het geld? — Verborgen winstlekkage & vastzittend kapitaal", "s2Desc": "Winst op papier, maar waar is het geld?", "s2Sub": "Kapitaal vast in debiteuren en magazijnvoorraad.", "s3Title": "Sectorvergelijking & Prioritaire Risico's (Wat kost het ons?)", "s3Desc": "Positie ten opzichte van sectorbenchmarks", "s3Sub": "Centrale Bank en beursbenchmarks van 500+ bedrijven.", "s4Title": "Belangrijkste Partijen & Operationele Analyse (Wie veroorzaakt het?)", "s4Desc": "Klanten en artikelen met de grootste invloed", "s4Sub": "Gedetailleerde analyse van werkkapitaal.", "s5Title": "Oorzaakanalyse & Managementverhalen (Waarom & Wat te doen?)", "s5Desc": "Keten in 5 stappen, financiële lekkage en besluiten", "s5Sub": "Symptoom ➔ Bewijs ➔ Oorzaak ➔ Lekkage ➔ Actie", "s6Title": "Management Actieplan & Planning (Wat nu?)", "s6Desc": "Direct uitvoerbare directiebesluiten", "s6Sub": "Actiepunt → Eigenaar → Deadline → KPI.", "s7Title": "Live Scenario Simulator", "s7Desc": "Effect van prijs, debiteurentermijn en kosten", "s7Sub": "Directe berekening van effect op cash en winst.", "s8Title": "Managementsamenvatting & AI Finance Business Partner", "s8Desc": "Eén overzichtelijke directiesamenvatting", "s8Sub": "Deterministisch berekend, daarna strategisch geïnterpreteerd.", "sEkATitle": "Bijlage A — Betrouwbaarheid & Boekhoudkundige Audit", "sEkADesc": "Controle van rekeningschema en balanssluiting", "sEkBTitle": "Bijlage B — Trend-Monitoring & 3 Financiële Overzichten", "sEkBDesc": "Meerperioden-vergelijking en brontraceerbaarheid", "taxTitle": "🏛️ Praktische Belastingoptimalisatie & Cash-voordelen", "taxSub": "Wettelijke aftrekposten en rentebeperking uit de balans", "simHeader": "Interactief Scenario Laboratorium", "simSub": "Verschuif regelaars om het effect op cashflow en winst te zien"}};
+const I18N_BUNDLE = {"tr": {"singleTab": "Tek Dönem Mizan", "trendTab": "Çok Dönem / Trend", "hubTab": "Data Hub / Çoklu Veri", "analyzeBtn": "Mizanı Analiz Et", "analyzeBtnTrend": "İki Dönemi Analiz Et", "analyzeBtnHub": "Tüm Verileri Analiz Et", "sampleBtn": "📄 Tek dönem örnekle dene", "sampleTrendBtn": "📊 İki dönemli örnekle dene (Trend Demo)", "sampleHubBtn": "🗂️ Data Hub örnekle dene (Mizan + AR + AP + Stok + Satış)", "dropTitle": "Mizan Dosyanızı Buraya Sürükleyin", "dropSub": "veya bilgisayarınızdan seçin (.xlsx, .xls, .csv)", "dropBtn": "📁 Dosya Seç", "downloadTemplate": "📥 Standart Mizan Şablonu İndir (.csv)", "navHome": "Anasayfa", "navAbout": "Hakkımızda", "navApp": "Uygulama", "navPricing": "Paketler", "navSecurity": "Güvenlik", "navContact": "İletişim", "login": "Giriş Yap", "register": "Ücretsiz Kayıt Ol", "s1Title": "Finansal Gerçekler (Ne Oldu?)", "s1Desc": "Şirkette gerçekte ne oldu: Kâr nereden nereye aktı?", "s1Sub": "Doğrulanmış rakamlar: Ciro, operasyonel kâr kalitesi, borç yapısı ve nakit akış gerçekleşmesi.", "s2Title": "Para Nerede? — Görünmez Kâr Sızıntısı & Kilitli Nakit Teşhisi", "s2Desc": "Defterde kâr var ama para kasada nerede duruyor?", "s2Sub": "Müşteri vadelerinde (120 Alıcılar) ve depodaki stokta (150-153) kilitlenen sermaye ve her yıl ödenen gizli finansman faiz sızıntısı.", "s3Title": "Sektörel Kıyaslama & Öncelikli Riskler (Bize Maliyeti Ne?)", "s3Desc": "Sektör ortalamalarına göre neredeyiz ve acil ele alınması gereken riskler", "s3Sub": "TCMB Sektör Bilançoları & Borsa İstanbul (BIST) 500+ şirket verisiyle kıyaslama ve skorlanmış riskler.", "s4Title": "Kritik Taraflar & Operasyonel İstihbarat (Sızıntıyı Kim Yapıyor?)", "s4Desc": "Hangi müşteri, tedarikçi veya stok kalemi kârı ve nakdi doğrudan etkiliyor?", "s4Sub": "Nakit ve kâr üzerinde en büyük etkisi olan müşteriler ve stok kalemleri. Çoklu veri yüklendiğinde otomatik detaylanır.", "s5Title": "Kök Neden & Yönetim Hikâyeleri (Neden Oldu & Ne Yapılmalı?)", "s5Desc": "Bulguların arkasındaki 5 adımlı nedensellik zinciri, parasal sızıntı maliyeti ve icraat kararları", "s5Sub": "Belirti (Ne Oldu?) ➔ Kanıt (Rakamlar) ➔ Kök Neden (Tetikleyici) ➔ Parasal Sızıntı (Maliyet) ➔ Yönetim Kararı & İcraat", "s6Title": "Yönetim Kararları & Aksiyon Takvimi (Şimdi Ne Yapmalı?)", "s6Desc": "Yönetimin masaya koyup uygulayacağı somut kararlar", "s6Sub": "Karar maddesi → Sahibi → Termini → Takip Edilecek KPI. Her aksiyon maddesi ayrı bir takip numarasına sahiptir.", "s7Title": "Varsayımı Değiştirirsek Ne Olur? (Canlı Senaryo Simülatörü)", "s7Desc": "Fiyatı artırırsak, tahsilatı çekersek veya gideri kıssak kasaya ne girer?", "s7Sub": "Formüllü fırsatlar kataloğu ve anlık duyarlılık simülatörü.", "s8Title": "Yönetici Özeti & AI Finance Business Partner (Karar Brifingi)", "s8Desc": "Tüm analizin tek paragrafta özeti ve stratejik soru-cevap", "s8Sub": "Önce matematiksel kurallarla hesaplanır, sonra yorumlanır. Yöneticinin bu raporla hangi stratejik adımı atması gerektiği açıkça belirtilir.", "sEkATitle": "Ek A — Veri Güvenilirliği & Çift Taraflı Hesaplama Denetimi", "sEkADesc": "Analizin dayandığı verinin doğrulanma düzeyi ve dosya bazlı kırılım", "sEkBTitle": "Ek B — Trend İzleme, İzlenebilirlik & 3 Temel Mali Tablo", "sEkBDesc": "Çok dönem yüklendiğinde hareketi gösterir; her sayı kaynağına izlenebilir", "taxTitle": "🏛️ Vergisel Yönetim Avantajları & Yasal Nakit Tasarrufu", "taxSub": "Şirketin finansal tablolarından (mizan) türetilmiş yasal vergi kalkanları, KKEG optimizasyonu ve nakit tasarrufları", "simHeader": "İnteraktif Senaryo Laboratuvarı & Nakit Simülatörü", "simSub": "Önerilen senaryoları seçin veya sürgüleri hareket ettirerek serbest kalacak nakdi ve kâr etkisini anında canlı görün"}, "en": {"singleTab": "Single Period Trial Balance", "trendTab": "Multi-Period / Trend", "hubTab": "Data Hub / Multi-Source", "analyzeBtn": "Analyze Trial Balance", "analyzeBtnTrend": "Analyze Two Periods", "analyzeBtnHub": "Analyze All Sources", "sampleBtn": "📄 Try Single Period Sample", "sampleTrendBtn": "📊 Try Two-Period Trend Sample", "sampleHubBtn": "🗂️ Try Data Hub Sample (GL + AR + AP + Inventory + Sales)", "dropTitle": "Drag & Drop Your Trial Balance Here", "dropSub": "or choose from computer (.xlsx, .xls, .csv)", "dropBtn": "📁 Select File", "downloadTemplate": "📥 Download Standard Template (.csv)", "navHome": "Home", "navAbout": "About", "navApp": "App", "navPricing": "Pricing", "navSecurity": "Security", "navContact": "Contact", "login": "Log In", "register": "Sign Up Free", "s1Title": "Financial Facts (What Happened?)", "s1Desc": "What actually happened: How profit flowed across statements", "s1Sub": "Verified figures: Revenue, operating profit quality, debt structure, and cash realization.", "s2Title": "Where is Cash? — Hidden Profit Leakage & Trapped Working Capital", "s2Desc": "On paper there is profit, but where is the cash trapped?", "s2Sub": "Capital locked in receivables (AR) and inventory, plus hidden annual debt finance costs.", "s3Title": "Benchmarking & Priority Risks (What Does It Cost Us?)", "s3Desc": "Where we stand relative to industry benchmarks and urgent risks", "s3Sub": "Central Bank Sector Balance Sheets & Stock Exchange 500+ corporate benchmarks.", "s4Title": "Key Counterparties & Operational Intelligence (Who Drives It?)", "s4Desc": "Which customer, supplier, or inventory SKU directly moves profit and cash?", "s4Sub": "Counterparties with the largest cash footprint. Enriched automatically when multi-source files are loaded.", "s5Title": "Root Cause & Management Narratives (Why & What to Do?)", "s5Desc": "5-step causal chain behind findings, financial leakage cost, and decisive execution actions", "s5Sub": "Symptom ➔ Evidence ➔ Root Cause ➔ Financial Leakage ➔ Decision & Action", "s6Title": "Management Action Matrix & Schedule (Now What?)", "s6Desc": "Decisive executive actions ready to execute tomorrow", "s6Sub": "Action item → Owner → Deadline → Target KPI with unique tracking ID.", "s7Title": "What If We Change Assumptions? (Live Scenario Simulator)", "s7Desc": "If we raise prices, shorten DSO, or curb opex, what lands in cash?", "s7Sub": "Formulaic opportunity catalog and instant sensitivity simulator.", "s8Title": "Executive Summary & AI Finance Business Partner (Decision Briefing)", "s8Desc": "Single-paragraph summary of full analysis and strategic Q&A", "s8Sub": "Calculated using deterministic mathematical rules first, then synthesized.", "sEkATitle": "Appendix A — Data Reliability & Double-Entry Audit", "sEkADesc": "Verification level and file-by-file audit of underlying financial data", "sEkBTitle": "Appendix B — Trend Tracking, Traceability & 3 Core Statements", "sEkBDesc": "Shows movement across periods; every number traces back to underlying journal accounts", "taxTitle": "🏛️ Practical Tax Management & Statutory Cash Shields", "taxSub": "Statutory tax shields, disallowed interest reduction, and cash savings derived from statement balances", "simHeader": "Interactive Scenario Lab & Cash Simulator", "simSub": "Choose suggested scenarios or move sliders to see cash liberation and profit impact in real time"}, "de": {"singleTab": "Einperiodige Summen- & Saldenliste", "trendTab": "Mehrperioden / Trend", "hubTab": "Data Hub / Multi-Source", "analyzeBtn": "Saldenliste analysieren", "analyzeBtnTrend": "Zwei Perioden analysieren", "analyzeBtnHub": "Alle Daten analysieren", "sampleBtn": "📄 Einperiodiges Beispiel testen", "sampleTrendBtn": "📊 Zweiperiodigen Trend testen", "sampleHubBtn": "🗂️ Data Hub Beispiel testen", "dropTitle": "Saldenliste hier ablegen", "dropSub": "oder vom Computer auswählen (.xlsx, .xls, .csv)", "dropBtn": "📁 Datei auswählen", "downloadTemplate": "📥 Standard-Vorlage herunterladen (.csv)", "navHome": "Startseite", "navAbout": "Über uns", "navApp": "Anwendung", "navPricing": "Preise", "navSecurity": "Sicherheit", "navContact": "Kontakt", "login": "Anmelden", "register": "Kostenlos Registrieren", "s1Title": "Finanzielle Fakten (Was ist passiert?)", "s1Desc": "Ertragsfluss und Kapitalverwendung im Detail", "s1Sub": "Umsatz, operative Ertragsqualität, Verschuldung und Cashflow.", "s2Title": "Wo ist das Geld? — Gebundenes Kapital & Liquiditätsabfluss", "s2Desc": "Auf dem Papier Gewinn, aber wo steht die Liquidität?", "s2Sub": "In Forderungen und Vorräten gebundenes Betriebskapital.", "s3Title": "Branchenvergleich & Risiken (Was kostet es uns?)", "s3Desc": "Positionierung im Branchenvergleich und Risiken", "s3Sub": "Zentralbank- und Börsenbenchmarks für 500+ Unternehmen.", "s4Title": "Wesentliche Parteien & Operative Intelligenz (Wer verursacht es?)", "s4Desc": "Welche Kunden oder Artikel binden Marge und Cash?", "s4Sub": "Fokus auf Haupttreiber des operativen Kapitals.", "s5Title": "Ursachenanalyse & Management-Berichte (Warum & Was tun?)", "s5Desc": "5-stufige Kausalkette, Schadenshöhe und Managemententscheidungen", "s5Sub": "Symptom ➔ Nachweis ➔ Hauptursache ➔ Finanzieller Verlust ➔ Maßnahme", "s6Title": "Management-Maßnahmen & Umsetzungsplan (Was jetzt?)", "s6Desc": "Konkrete Maßnahmen zur sofortigen Umsetzung", "s6Sub": "Maßnahme → Verantwortlicher → Frist → KPI.", "s7Title": "Was wäre wenn? (Live-Szenario-Simulator)", "s7Desc": "Sensitivitätsanalyse für Preis, Zahlungsziel und Kosten", "s7Sub": "Echtzeit-Berechnung des Liquiditätseffekts.", "s8Title": "Executive Summary & AI Finance Business Partner", "s8Desc": "Gesamtzusammenfassung und Entscheidungsunterstützung", "s8Sub": "Zuerst mathematisch determiniert, dann interpretiert.", "sEkATitle": "Anhang A — Datenqualität & Rechnungslegungsprüfung", "sEkADesc": "Prüfstufe der Quelldaten und Kontenabstimmung", "sEkBTitle": "Anhang B — Trend-Monitoring & 3 Hauptfinanzberichte", "sEkBDesc": "Mehrperioden-Vergleich und lückenlose Kontenrückverfolgung", "taxTitle": "🏛️ Steuerstrategie & Rechtliche Steuersparmodelle", "taxSub": "Gesetzliche Steuerabzüge und Liquiditätsschilde basierend auf der Bilanz", "simHeader": "Interaktiver Szenario-Simulator", "simSub": "Wählen Sie Presets oder bewegen Sie Schieberegler für Cashflow- und Gewinnauswirkungen"}, "fr": {"singleTab": "Balance Générale Période Unique", "trendTab": "Multi-Périodes / Tendance", "hubTab": "Data Hub / Multi-Sources", "analyzeBtn": "Analyser la balance", "analyzeBtnTrend": "Analyser deux périodes", "analyzeBtnHub": "Analyser toutes les sources", "sampleBtn": "📄 Essayer exemple période unique", "sampleTrendBtn": "📊 Essayer exemple tendance", "sampleHubBtn": "🗂️ Essayer Data Hub", "dropTitle": "Déposez votre balance générale ici", "dropSub": "ou sélectionnez depuis votre ordinateur (.xlsx, .xls, .csv)", "dropBtn": "📁 Choisir un fichier", "downloadTemplate": "📥 Télécharger modèle standard (.csv)", "navHome": "Accueil", "navAbout": "À propos", "navApp": "Application", "navPricing": "Tarifs", "navSecurity": "Sécurité", "navContact": "Contact", "login": "Connexion", "register": "Inscription Gratuite", "s1Title": "Faits Financiers (Que s'est-il passé ?)", "s1Desc": "Flux réel du résultat d'exploitation", "s1Sub": "Chiffre d'affaires, marge opérationnelle, endettement et trésorerie nette.", "s2Title": "Où est l'argent ? — Fuites de profit et trésorerie immobilisée", "s2Desc": "Du bénéfice comptable, mais où est la trésorerie ?", "s2Sub": "Capitaux immobilisés dans les créances clients et stocks.", "s3Title": "Analyse Sectorielle & Risques Prioritaires (Quel est le coût ?)", "s3Desc": "Positionnement sectoriel et alertes critiques", "s3Sub": "Données Banque Centrale et marché boursier pour 500+ entreprises.", "s4Title": "Tiers Clés & Renseignement Opérationnel (Qui génère l'impact ?)", "s4Desc": "Quels clients ou références pèsent le plus lourd ?", "s4Sub": "Analyse approfondie des contreparties critiques.", "s5Title": "Causes Profondes & Narration Décisionnelle (Pourquoi & Que faire ?)", "s5Desc": "Chaîne causale en 5 étapes, coût financier et décisions", "s5Sub": "Symptôme ➔ Preuve ➔ Cause Première ➔ Perte Financière ➔ Décision", "s6Title": "Plan d'Action Managérial & Calendrier (Que faire maintenant ?)", "s6Desc": "Feuille de route pour le comité de direction", "s6Sub": "Action → Porteur → Échéance → KPI cible.", "s7Title": "Simulateur de Scénarios en Direct", "s7Desc": "Ajustements de prix, délais et charges en direct", "s7Sub": "Simulateur instantané de sensibilité de trésorerie.", "s8Title": "Synthèse Exécutive & AI Finance Business Partner", "s8Desc": "Synthèse générale et questions-réponses stratégiques", "s8Sub": "Calculé d'abord selon des règles déterministes strictes.", "sEkATitle": "Annexe A — Fiabilité des Données & Contrôle Arithmétique", "sEkADesc": "Niveau de vérification et réconciliation de la balance", "sEkBTitle": "Annexe B — Analyse de Tendance & 3 États Financiers", "sEkBDesc": "Évolution pluriannuelle et traçabilité intégrale", "taxTitle": "🏛️ Stratégie Fiscale & Économies Légales de Trésorerie", "taxSub": "Boucliers fiscaux et optimisation des charges issus du bilan", "simHeader": "Laboratoire de Scénarios Interactif", "simSub": "Ajustez les curseurs pour simuler l'impact immédiat sur la trésorerie"}, "es": {"singleTab": "Balance de Sumas y Saldos Único", "trendTab": "Multi-Periodo / Tendencia", "hubTab": "Data Hub / Multi-Fuente", "analyzeBtn": "Analizar balance", "analyzeBtnTrend": "Analizar dos periodos", "analyzeBtnHub": "Analizar todas las fuentes", "sampleBtn": "📄 Probar ejemplo de un periodo", "sampleTrendBtn": "📊 Probar ejemplo de tendencia", "sampleHubBtn": "🗂️ Probar Data Hub", "dropTitle": "Arrastre su balance aquí", "dropSub": "o elija de su ordenador (.xlsx, .xls, .csv)", "dropBtn": "📁 Seleccionar archivo", "downloadTemplate": "📥 Descargar plantilla estándar (.csv)", "navHome": "Inicio", "navAbout": "Sobre Nosotros", "navApp": "Aplicación", "navPricing": "Precios", "navSecurity": "Seguridad", "navContact": "Contacto", "login": "Iniciar Sesión", "register": "Registro Gratis", "s1Title": "Hechos Financieros (¿Qué Ocurrió?)", "s1Desc": "Flujo real de beneficios y estructura patrimonial", "s1Sub": "Ingresos netos, margen operativo, endeudamiento y tesorería.", "s2Title": "¿Dónde está el dinero? — Fugas de beneficio y caja atrapada", "s2Desc": "Hay beneficio contable, pero ¿dónde está el dinero?", "s2Sub": "Capital inmovilizado en clientes pendientes y almacén.", "s3Title": "Comparativa Sectorial & Riesgos Prioritarios (¿Cuál es el coste?)", "s3Desc": "Posicionamiento sectorial y riesgos urgentes", "s3Sub": "Datos de referencia de Banco Central y bolsas 500+ empresas.", "s4Title": "Contrapartes Clave & Análisis Operativo (¿Quién genera el impacto?)", "s4Desc": "Clientes, proveedores y existencias determinantes", "s4Sub": "Impacto operativo directo en caja y márgenes.", "s5Title": "Causa Raíz & Narrativa de Gestión (¿Por qué y qué hacer?)", "s5Desc": "Cadena causal de 5 pasos, fuga de caja e intervenciones", "s5Sub": "Síntoma ➔ Evidencia ➔ Causa Raíz ➔ Fuga Financiera ➔ Decisión", "s6Title": "Matriz de Acciones de Dirección (¿Qué hacer ahora?)", "s6Desc": "Decisiones listas para ser aplicadas", "s6Sub": "Medida → Responsable → Plazo → KPI objetivo.", "s7Title": "Simulador de Escenarios en Vivo", "s7Desc": "¿Qué ocurre al variar precios, plazos o costes?", "s7Sub": "Simulador instantáneo de impacto en tesorería.", "s8Title": "Resumen Ejecutivo & AI Finance Business Partner", "s8Desc": "Informe condensado para el Consejo de Administración", "s8Sub": "Cálculo matemático determinista antes de la interpretación.", "sEkATitle": "Anexo A — Fiabilidad Contable & Auditoría Doble", "sEkADesc": "Nivel de validación y conciliación contable", "sEkBTitle": "Anexo B — Tendencia Histórica & 3 Estados Financieros", "sEkBDesc": "Seguimiento multi-periodo y trazabilidad total", "taxTitle": "🏛️ Estrategia Fiscal Práctica & Escudos de Caja", "taxSub": "Deducciones fiscales y ahorro de intereses derivados del balance", "simHeader": "Laboratorio de Escenarios Interactivo", "simSub": "Deslice controles para calcular el impacto en tesorería y beneficio"}, "it": {"singleTab": "Bilancio di Verifica Singolo", "trendTab": "Multi-Periodo / Trend", "hubTab": "Data Hub / Multi-Fonte", "analyzeBtn": "Analizza bilancio", "analyzeBtnTrend": "Analizza due periodi", "analyzeBtnHub": "Analizza tutte le fonti", "sampleBtn": "📄 Prova esempio singolo periodo", "sampleTrendBtn": "📊 Prova esempio trend", "sampleHubBtn": "🗂️ Prova Data Hub", "dropTitle": "Trascina qui il tuo bilancio di verifica", "dropSub": "oppure seleziona dal computer (.xlsx, .xls, .csv)", "dropBtn": "📁 Seleziona file", "downloadTemplate": "📥 Scarica modello standard (.csv)", "navHome": "Home", "navAbout": "Chi siamo", "navApp": "Applicazione", "navPricing": "Piani", "navSecurity": "Sicurezza", "navContact": "Contatti", "login": "Accedi", "register": "Registrati Gratis", "s1Title": "Fatti Finanziari (Cosa è successo?)", "s1Desc": "Dinamica economica reale e generazione utile", "s1Sub": "Ricavi netti, qualità del reddito operativo e liquidità.", "s2Title": "Dov'è il denaro? — Fuga di utili e capitale bloccato", "s2Desc": "C'è utile contabile, ma dov'è la cassa reale?", "s2Sub": "Capitale bloccato in crediti commerciali e magazzino.", "s3Title": "Benchmark di Settore & Rischi Prioritari (Quanto ci costa?)", "s3Desc": "Posizionamento rispetto ai concorrenti e rischi", "s3Sub": "Metriche Banca Centrale e Borsa per 500+ imprese.", "s4Title": "Controparti Chiave & Intelligence Operativa (Chi impatta?)", "s4Desc": "Clienti, fornitori e articoli che guidano i risultati", "s4Sub": "Analisi ad alto impatto per il capitale circolante.", "s5Title": "Cause Principali & Storie Decisionali (Perché & Cosa fare?)", "s5Desc": "Sequenza causale a 5 fasi, dispersione e azioni", "s5Sub": "Sintomo ➔ Evidenza ➔ Causa Primaria ➔ Dispersione ➔ Decisione", "s6Title": "Piano di Azione Manageriale & Scadenze (Cosa fare ora?)", "s6Desc": "Decisioni concrete per il management", "s6Sub": "Azione → Responsabile → Termine → KPI.", "s7Title": "Simulatore di Scenari in Tempo Reale", "s7Desc": "Sensibilità su prezzi, termini di incasso e spese", "s7Sub": "Simulatore istantaneo dell'impatto sulla liquidità.", "s8Title": "Sintesi Esecutiva & AI Finance Business Partner", "s8Desc": "Quadro strategico d'insieme per il vertice", "s8Sub": "Regole matematiche certe e sintesi esecutiva.", "sEkATitle": "Allegato A — Affidabilità Dati & Verifica a Partita Doppia", "sEkADesc": "Verifica contabile e riconciliazione delle fonti", "sEkBTitle": "Allegato B — Trend Storico & 3 Bilanci Principali", "sEkBDesc": "Confronto multi-periodo e tracciabilità analitica", "taxTitle": "🏛️ Strategia Fiscale Pratica & Scudi Fiscali Legali", "taxSub": "Ottimizzazione deduzioni e scudi fiscali basati sul bilancio", "simHeader": "Laboratorio Scenari Interattivo", "simSub": "Muovi i cursori per visualizzare immediatamente la liquidità liberata"}, "nl": {"singleTab": "Enkelvoudige Kolommenbalans", "trendTab": "Meerdere Perioden / Trend", "hubTab": "Data Hub / Multi-Bron", "analyzeBtn": "Balans analyseren", "analyzeBtnTrend": "Twee perioden analyseren", "analyzeBtnHub": "Alle bronnen analyseren", "sampleBtn": "📄 Test enkelvoudig voorbeeld", "sampleTrendBtn": "📊 Test trend voorbeeld", "sampleHubBtn": "🗂️ Test Data Hub", "dropTitle": "Sleep uw kolommenbalans hierheen", "dropSub": "of kies vanaf uw computer (.xlsx, .xls, .csv)", "dropBtn": "📁 Bestand kiezen", "downloadTemplate": "📥 Download standaardsjabloon (.csv)", "navHome": "Startpagina", "navAbout": "Over ons", "navApp": "Applicatie", "navPricing": "Tarieven", "navSecurity": "Beveiliging", "navContact": "Contact", "login": "Inloggen", "register": "Gratis Registreren", "s1Title": "Financiële Feiten (Wat is er gebeurd?)", "s1Desc": "Reële kapitaalstromen en winstbestemming", "s1Sub": "Omzet, operationele marge, schuldhefboom en kasstroom.", "s2Title": "Waar is het geld? — Verborgen winstlekkage & vastzittend kapitaal", "s2Desc": "Winst op papier, maar waar is het geld?", "s2Sub": "Kapitaal vast in debiteuren en magazijnvoorraad.", "s3Title": "Sectorvergelijking & Prioritaire Risico's (Wat kost het ons?)", "s3Desc": "Positie ten opzichte van sectorbenchmarks", "s3Sub": "Centrale Bank en beursbenchmarks van 500+ bedrijven.", "s4Title": "Belangrijkste Partijen & Operationele Analyse (Wie veroorzaakt het?)", "s4Desc": "Klanten en artikelen met de grootste invloed", "s4Sub": "Gedetailleerde analyse van werkkapitaal.", "s5Title": "Oorzaakanalyse & Managementverhalen (Waarom & Wat te doen?)", "s5Desc": "Keten in 5 stappen, financiële lekkage en besluiten", "s5Sub": "Symptoom ➔ Bewijs ➔ Oorzaak ➔ Lekkage ➔ Actie", "s6Title": "Management Actieplan & Planning (Wat nu?)", "s6Desc": "Direct uitvoerbare directiebesluiten", "s6Sub": "Actiepunt → Eigenaar → Deadline → KPI.", "s7Title": "Live Scenario Simulator", "s7Desc": "Effect van prijs, debiteurentermijn en kosten", "s7Sub": "Directe berekening van effect op cash en winst.", "s8Title": "Managementsamenvatting & AI Finance Business Partner", "s8Desc": "Eén overzichtelijke directiesamenvatting", "s8Sub": "Deterministisch berekend, daarna strategisch geïnterpreteerd.", "sEkATitle": "Bijlage A — Betrouwbaarheid & Boekhoudkundige Audit", "sEkADesc": "Controle van rekeningschema en balanssluiting", "sEkBTitle": "Bijlage B — Trend-Monitoring & 3 Financiële Overzichten", "sEkBDesc": "Meerperioden-vergelijking en brontraceerbaarheid", "taxTitle": "🏛️ Praktische Belastingoptimalisatie & Cash-voordelen", "taxSub": "Wettelijke aftrekposten en rentebeperking uit de balans", "simHeader": "Interactief Scenario Laboratorium", "simSub": "Verschuif regelaars om het effect op cashflow en winst te zien"}};
 
 function _updateStepHeader(stepId, numStr, title, desc, sub){
   const el = $(stepId);
@@ -7055,15 +6148,7 @@ function setLanguage(lang){
   const nav = $('mainNav');
   if(nav){
     const links = nav.querySelectorAll('a');
-    if(links.length >= 7){
-      links[0].textContent = dict.navHome;
-      links[1].textContent = dict.navSolutions || 'Çözümler';
-      links[2].textContent = dict.navAbout;
-      links[3].textContent = dict.navApp;
-      links[4].textContent = dict.navPricing;
-      links[5].textContent = dict.navSecurity;
-      links[6].textContent = dict.navContact;
-    } else if(links.length >= 6){
+    if(links.length >= 6){
       links[0].textContent = dict.navHome;
       links[1].textContent = dict.navAbout;
       links[2].textContent = dict.navApp;
