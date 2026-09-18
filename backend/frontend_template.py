@@ -573,25 +573,18 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <section class="mHero">
   <div class="reveal in">
     <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-size:11.5px;font-weight:800;letter-spacing:0.6px;margin-bottom:12px;display:inline-block">⚡ STRATEJİK FİNANSAL İŞ ORTAĞI &amp; NAKİT MOTORU</span>
-    <h1 style="margin-top:8px">Şu Anda Şirketinizin Kasasında<br><span class="gradText">Kaç Milyon TL Kilitli &amp; Boşta Duruyor?</span></h1>
+    <h1 style="margin-top:8px">Şu Anda Şirketinizin Kasasında<br><span class="gradText">Kaç Milyon TL Kilitli ve Boşta Duruyor?</span></h1>
     <p class="lead">Klasik muhasebe sadece geçmiş faturaları kaydeder ve vergi matrahı çıkarır. <b>Digital Finance Business Partner</b> ise kilitlenen sermayenizi, vadelerdeki gizli kredi faizlerini ve kurtarılabilir serbest nakit akışınızı <b>60 saniyede açığa çıkarır</b>.</p>
     
-    <div class="ctaDualGates">
-      <a href="/uygulama" class="gateCard gateA">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <span style="font-size:10px;font-weight:800;letter-spacing:0.6px;text-transform:uppercase;color:#1D4ED8;background:#EFF6FF;padding:3px 8px;border-radius:999px;border:1px solid #BFDBFE">KAPI A · GERÇEK VERİNİZLE</span>
-          <span style="font-size:15px">📁</span>
-        </div>
-        <b style="font-size:14.5px;color:#0F172A;margin:2px 0 0">Kendi Mizanımı Analiz Et</b>
-        <span style="font-size:11.5px;color:#64748B;line-height:1.4">60 Saniyede Gör · RAM-Only Sıfır Kalıcı Disk Güvencesi</span>
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:24px 0 18px">
+      <a href="/uygulama" class="primary" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;padding:15px 28px;border-radius:14px;font-size:15px;font-weight:800;background:#1D4ED8;color:#FFFFFF;box-shadow:0 8px 24px rgba(29,78,216,0.35);transition:all .2s ease">
+        <span>📁</span>
+        <span>Ücretsiz Finansal Röntgenimi Çıkar</span>
+        <span style="font-size:16px;margin-left:2px">→</span>
       </a>
-      <a href="/uygulama?sample=data_hub" class="gateCard gateB">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <span style="font-size:10px;font-weight:800;letter-spacing:0.6px;text-transform:uppercase;color:#FEF08A;background:rgba(255,255,255,0.18);padding:3px 8px;border-radius:999px">KAPI B · SIFIR SÜRTÜNME</span>
-          <span style="font-size:15px">⚡</span>
-        </div>
-        <b style="font-size:14.5px;color:#FFFFFF;margin:2px 0 0">Mizanım Yanımda Değil, Canlı Başlat</b>
-        <span style="font-size:11.5px;color:#DBEAFE;line-height:1.4">Temsili KOBİ Verisiyle Anında Dashboard'a Işınlan</span>
+      <a href="/uygulama?sample=data_hub" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;padding:14px 22px;border-radius:14px;font-size:14px;font-weight:700;background:#FFFFFF;color:#1E293B;border:1.5px solid #CBD5E1;box-shadow:0 2px 6px rgba(0,0,0,0.04);transition:all .2s ease">
+        <span>⚡</span>
+        <span>Mizanım Yanımda Değil, Canlı Demoyu Başlat</span>
       </a>
     </div>
 
@@ -5853,13 +5846,32 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="accordionBody">
     <!-- Card 1: Enflasyon Düzeltmeli Gerçek Kârlılık Röntgeni -->
     <div id="inflationCard" class="card" style="border:1.5px solid #E2E8F0;border-radius:18px;padding:22px;margin-bottom:16px">
-      <div class="sectionHead">
-        <div>
+      <div class="sectionHead" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
+        <div style="max-width:680px">
           <div style="display:inline-flex;align-items:center;gap:6px;background:#FEF2F2;color:#DC2626;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:0.5px;margin-bottom:8px">
-            🔥 GERÇEK KÂRLILIK RÖNTGENİ
+            🔥 GERÇEK KÂRLILIK RÖNTGENİ &amp; FAİZ/ENFLASYON SİMÜLATÖRÜ
           </div>
           <h2 style="font-size:20px;margin:0 0 6px">Enflasyon Düzeltmeli Gerçek Ekonomik Kâr &amp; Sermaye Koruma Analizi</h2>
-          <p class="muted" style="margin:0;font-size:13px">Klasik mizan enflasyonu dikkate almaz; fiktif stok kârını gerçek kâr gibi gösterir. Bu motor, paranın satın alma gücü kaybını ve stok yenileme maliyetini düşerek gerçek kârınızı ortaya koyar.</p>
+          <p class="muted" style="margin:0;font-size:13px">Klasik mizan enflasyonu dikkate almaz; fiktif stok kârını gerçek kâr gibi gösterir. Aşağıdaki simülatör ile piyasadaki yıllık enflasyon veya kredi faiz oranını değiştirerek kârınızın ve özkaynağınızın reel durumunu anında test edin.</p>
+        </div>
+        
+        <!-- Dinamik Enflasyon & Faiz Oranı Simülatörü Kontrol Kutusu -->
+        <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:12px 16px;min-width:280px;box-shadow:0 2px 8px rgba(15,27,45,0.03)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-size:12px;font-weight:700;color:#0F172A">📊 Test Edilen Yıllık Oran:</span>
+            <b id="infSliderVal" style="font-size:15px;font-weight:900;color:#DC2626">%45</b>
+          </div>
+          <input type="range" id="infRateSlider" min="10" max="90" step="5" value="45" style="width:100%;height:6px;accent-color:#DC2626;cursor:pointer" oninput="onInflationSliderChange(this.value)">
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:#94A3B8;margin-top:4px">
+            <span>%10 (Düşük)</span>
+            <span style="color:#64748B;font-weight:600">TCMB / Piyasa</span>
+            <span>%90 (Yüksek Şok)</span>
+          </div>
+          <div style="display:flex;gap:5px;margin-top:8px">
+            <button type="button" class="secondary" style="flex:1;padding:3px 6px;font-size:10.5px;border-radius:6px" onclick="setInfSliderRate(30)">%30 Hedef</button>
+            <button type="button" class="secondary" style="flex:1;padding:3px 6px;font-size:10.5px;border-radius:6px" onclick="setInfSliderRate(45)">%45 Standart</button>
+            <button type="button" class="secondary" style="flex:1;padding:3px 6px;font-size:10.5px;border-radius:6px" onclick="setInfSliderRate(65)">%65 Faiz/Kredi</button>
+          </div>
         </div>
       </div>
       <div id="inflationMetrics" class="grid4" style="margin-top:16px"></div>
@@ -8796,38 +8808,90 @@ function renderTaxStrategy(ts){
   }).join('');
 }
 
-function renderInflationAnalysis(inf){
+function renderInflationAnalysis(inf, overrideRatePct){
   const card = $('inflationCard');
   if(!card || !inf) return;
 
-  const isEroding = inf.is_capital_eroding;
-  const isLoss = inf.real_economic_profit < 0 && inf.nominal_net_profit > 0;
+  window._baseInflationEngine = inf;
   const isEn = window._activeLang === 'en';
 
+  const ratePct = overrideRatePct != null ? Number(overrideRatePct) : (inf.annual_inflation_rate_pct || 45);
+  const rateRatio = ratePct / 100.0;
+  const baseRatio = (inf.annual_inflation_rate_pct || 45) / 100.0;
+
+  // Slider UI güncelle
+  const slider = $('infRateSlider');
+  if(slider && overrideRatePct == null) slider.value = ratePct;
+  const valBadge = $('infSliderVal');
+  if(valBadge) valBadge.textContent = '%' + ratePct;
+
+  // Dinamik olarak yeniden ölçekle
+  const netProfit = inf.nominal_net_profit;
+  const phantomProfit = baseRatio > 0 ? (inf.phantom_inventory_profit * (rateRatio / baseRatio)) : 0;
+  const monetaryLoss = baseRatio > 0 ? (inf.monetary_position_loss * (rateRatio / baseRatio)) : 0;
+  const equityThreshold = baseRatio > 0 ? (inf.equity_preservation_threshold * (rateRatio / baseRatio)) : 0;
+
+  const realProfit = netProfit - phantomProfit - Math.max(0, monetaryLoss);
+  const isEroding = netProfit < equityThreshold;
+  const erosionAmount = Math.max(0, equityThreshold - netProfit);
+  const isLoss = realProfit < 0 && netProfit > 0;
+
   $('inflationMetrics').innerHTML =
-    metric(isEn ? 'Nominal Accounting Profit' : 'Defterdeki Nominal Net Kâr', money(inf.nominal_net_profit), isEn ? 'Reported P&L' : 'Mizan / Gelir Tablosu') +
-    metric(isEn ? 'Phantom Inventory Profit' : 'Fiktif Stok Kârı (İllüzyon)', money(inf.phantom_inventory_profit), isEn ? 'Replacement Cost Gap' : 'Stok Yenileme Maliyet Farkı') +
-    metric(isEn ? 'Real Economic Profit' : 'Reel Ekonomik Net Kâr', (inf.real_economic_profit > 0 ? '+' : '') + money(inf.real_economic_profit), isEn ? 'Inflation-Adjusted' : 'Enflasyondan Arındırılmış') +
-    metric(isEn ? 'Capital Preservation Gap' : 'Sermaye Koruma Açığı', isEroding ? ('-' + money(inf.capital_erosion_amount)) : (isEn ? 'Protected' : 'Korunuyor'), isEn ? 'Equity Erosion' : 'Reel Özkaynak Erimesi');
+    metric(isEn ? 'Nominal Accounting Profit' : 'Defterdeki Nominal Net Kâr', money(netProfit), isEn ? 'Reported P&L' : 'Mizan / Gelir Tablosu') +
+    metric(isEn ? 'Phantom Inventory Profit' : 'Fiktif Stok Kârı (İllüzyon)', money(phantomProfit), isEn ? 'Replacement Cost Gap' : 'Stok Yenileme Maliyet Farkı (%' + ratePct + ')') +
+    metric(isEn ? 'Real Economic Profit' : 'Reel Ekonomik Net Kâr', (realProfit > 0 ? '+' : '') + money(realProfit), isEn ? 'Inflation/Rate Adjusted' : 'Reel Kârlılık (%' + ratePct + ')') +
+    metric(isEn ? 'Capital Preservation Gap' : 'Sermaye Koruma Açığı', isEroding ? ('-' + money(erosionAmount)) : (isEn ? 'Protected' : 'Korunuyor'), isEn ? 'Equity Erosion' : 'Reel Özkaynak Erimesi');
 
   const alertBg = isLoss ? '#FEF2F2' : isEroding ? '#FFFBEB' : '#F0FDF4';
   const alertBorder = isLoss ? '#FCA5A5' : isEroding ? '#FDE68A' : '#BBF7D0';
   const alertColor = isLoss ? '#991B1B' : isEroding ? '#92400E' : '#166534';
   const alertIcon = isLoss ? '🚨' : isEroding ? '⚠️' : '✅';
 
+  let dynamicAssessment = '';
+  if(isLoss){
+    dynamicAssessment = (isEn ? 'Illusion Profit Alert: ' : 'İllüzyon Kâr Uyarısı: ') +
+      (isEn ? 'Although nominal profit is ' + money(netProfit) + ', at %' + ratePct + ' rate, your company is in REAL LOSS of ' + money(realProfit) + '. ' + money(phantomProfit) + ' of your profit is phantom inventory inflation.'
+            : 'Defterde ' + money(netProfit) + ' nominal net kâr görünmesine rağmen, yıllık %' + ratePct + ' oranında şirketiniz aslında ' + money(realProfit) + ' REEL ZARARDADIR. Kâr zannettiğiniz tutarın ' + money(phantomProfit) + '\'si satılan stoğu aynı fiyattan yerine koyamama kaynaklıdır.');
+  } else if(isEroding){
+    dynamicAssessment = (isEn ? 'Capital Erosion: ' : 'Sermaye Erimesi Uyarısı: ') +
+      (isEn ? 'Company produces net profit (' + money(netProfit) + '), but fails the equity preservation threshold (' + money(equityThreshold) + ') at %' + ratePct + ' rate. Real equity erosion is ' + money(erosionAmount) + ' per year.'
+            : 'Şirket kâr üretmektedir ancak net kâr (' + money(netProfit) + '), %' + ratePct + ' oranında özkaynakların korunması için gereken ' + money(equityThreshold) + ' eşiğinin altında kalmaktadır. Şirket özkaynağı reel olarak yılda ' + money(erosionAmount) + ' erimektedir.');
+  } else {
+    dynamicAssessment = (isEn ? 'Positive Real Profit: ' : 'Reel Kârlılık Pozitif: ') +
+      (isEn ? 'Net profit covers the %' + ratePct + ' rate threshold and generates +' + money(realProfit) + ' real economic value.'
+            : 'Şirket net kârı (' + money(netProfit) + '), yıllık %' + ratePct + ' oranını ve stok ikame maliyetlerini karşılayarak +' + money(realProfit) + ' reel ekonomik katma değer üretmektedir.');
+  }
+
   $('inflationAssessment').innerHTML =
     '<div style="background:' + alertBg + ';border:1.5px solid ' + alertBorder + ';border-radius:12px;padding:14px;color:' + alertColor + '">' +
       '<div style="font-size:13.5px;font-weight:800;display:flex;align-items:center;gap:8px;margin-bottom:6px">' +
         '<span>' + alertIcon + '</span>' +
-        '<span>' + (isEn ? 'Executive Inflation Assessment:' : 'Yönetim Kurulu Reel Enflasyon Teşhisi:') + '</span>' +
+        '<span>' + (isEn ? 'Executive Inflation & Rate Assessment:' : 'Yönetim Kurulu Reel Enflasyon & Faiz Teşhisi:') + '</span>' +
       '</div>' +
-      '<p style="margin:0;font-size:12.5px;line-height:1.6">' + esc(inf.executive_assessment) + '</p>' +
+      '<p style="margin:0;font-size:12.5px;line-height:1.6">' + dynamicAssessment + '</p>' +
       '<div style="margin-top:10px;font-size:11.5px;opacity:0.9">' +
         '<b>' + (isEn ? 'Methodology & Benchmark:' : 'Metodoloji:') + '</b> ' +
-        (isEn ? 'Annual Inflation Benchmark: %' + inf.annual_inflation_rate_pct + ' · Stock Days: ' + inf.stock_holding_days + ' days.' : 'Yıllık Gösterge Enflasyon: %' + inf.annual_inflation_rate_pct + ' · Ortalama Stokta Kalma: ' + inf.stock_holding_days + ' gün.') +
+        (isEn ? 'Simulated Annual Rate: %' + ratePct + ' · Stock Days: ' + inf.stock_holding_days + ' days.' : 'Simüle Edilen Yıllık Oran: %' + ratePct + ' · Ortalama Stokta Kalma: ' + inf.stock_holding_days + ' gün.') +
       '</div>' +
     '</div>';
 }
+
+function onInflationSliderChange(val){
+  const rate = Number(val);
+  const valBadge = $('infSliderVal');
+  if(valBadge) valBadge.textContent = '%' + rate;
+  if(window._baseInflationEngine){
+    renderInflationAnalysis(window._baseInflationEngine, rate);
+  }
+}
+window.onInflationSliderChange = onInflationSliderChange;
+
+function setInfSliderRate(rate){
+  const slider = $('infRateSlider');
+  if(slider) slider.value = rate;
+  onInflationSliderChange(rate);
+}
+window.setInfSliderRate = setInfSliderRate;
 
 function renderLiquidityStressTest(stress){
   const card = $('liquidityStressCard');
