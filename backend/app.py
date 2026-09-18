@@ -680,8 +680,9 @@ def quality_checks(source_df:pd.DataFrame,mapping:dict[str,Any],tb:pd.DataFrame,
         elif chk["status"]=="warning": score-=7
     return {"score":max(0,score),"checks":checks}
 
-from frontend_template import HOME_HTML as _HOME_T, PRICING_HTML as _PRICING_T, ABOUT_HTML as _ABOUT_T, CONTACT_HTML as _CONTACT_T, SECURITY_HTML as _SECURITY_T, APP_HTML as _APP_T
+from frontend_template import HOME_HTML as _HOME_T, SOLUTIONS_HTML as _SOLUTIONS_T, PRICING_HTML as _PRICING_T, ABOUT_HTML as _ABOUT_T, CONTACT_HTML as _CONTACT_T, SECURITY_HTML as _SECURITY_T, APP_HTML as _APP_T
 HOME_PAGE = _HOME_T.replace("__APP_VERSION__", APP_VERSION)
+SOLUTIONS_PAGE = _SOLUTIONS_T.replace("__APP_VERSION__", APP_VERSION)
 PRICING_PAGE = _PRICING_T.replace("__APP_VERSION__", APP_VERSION)
 ABOUT_PAGE = _ABOUT_T.replace("__APP_VERSION__", APP_VERSION)
 CONTACT_PAGE = _CONTACT_T.replace("__APP_VERSION__", APP_VERSION)
@@ -690,6 +691,9 @@ HTML = _APP_T.replace("__APP_VERSION__", APP_VERSION)  # the analysis app itself
 
 @app.get('/',response_class=HTMLResponse)
 def home()->str:return HOME_PAGE
+
+@app.get('/cozumler',response_class=HTMLResponse)
+def solutions_page()->str:return SOLUTIONS_PAGE
 
 @app.get('/paketler',response_class=HTMLResponse)
 def pricing_page()->str:return PRICING_PAGE
