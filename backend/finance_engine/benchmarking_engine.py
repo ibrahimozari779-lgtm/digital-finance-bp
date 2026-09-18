@@ -17,6 +17,31 @@ _METRICS = [
     ("return_on_equity_pct", "Özkaynak Kârlılığı %", True),
 ]
 
+# TCMB ve BIST Reel Sektör İşletme Sermayesi (DSO, DIO, CCC) Medyan Referansları
+# ve Gösterge Borçlanma / Fırsat Maliyeti Oranı
+SECTOR_WORKING_CAPITAL_BENCHMARKS: dict[str, dict[str, Any]] = {
+    "Genel": {
+        "median_dso": 65.0, "median_dio": 50.0, "median_ccc": 75.0,
+        "indicative_borrowing_rate": 0.48,  # %48 Ticari Kredi / Fırsat Maliyeti
+    },
+    "Perakende / Ticaret": {
+        "median_dso": 35.0, "median_dio": 45.0, "median_ccc": 40.0,
+        "indicative_borrowing_rate": 0.48,
+    },
+    "Üretim / Sanayi": {
+        "median_dso": 75.0, "median_dio": 70.0, "median_ccc": 95.0,
+        "indicative_borrowing_rate": 0.48,
+    },
+    "Hizmet": {
+        "median_dso": 50.0, "median_dio": 10.0, "median_ccc": 45.0,
+        "indicative_borrowing_rate": 0.48,
+    },
+    "Teknoloji": {
+        "median_dso": 55.0, "median_dio": 5.0, "median_ccc": 45.0,
+        "indicative_borrowing_rate": 0.48,
+    },
+}
+
 SECTOR_BANDS: dict[str, dict[str, tuple[float, float, float]]] = {
     "Genel": {
         "gross_margin_pct": (15, 25, 40), "operating_margin_pct": (4, 8, 15), "net_margin_pct": (2, 5, 10),
@@ -140,10 +165,81 @@ def build_benchmark_analysis(statements: dict[str, Any], sector: str | None = No
     else:
         overall_label = "Sektör göstergelerinin belirgin altında"
 
+    # --- Working Capital & Hidden Interest Leakage Engine ---
+    wc_ref = SECTOR_WORKING_CAPITAL_BENCHMARKS.get(sector_key, SECTOR_WORKING_CAPITAL_BENCHMARKS[_DEFAULT_SECTOR])
+    pl = statements.get("profit_and_loss", {})
+    net_sales = float(pl.get("Net sales") or 0.0)
+    cogs = float(pl.get("COGS") or 0.0)
+
+    receivables = float(k.get("receivables") or 0.0)
+    inventory = float(k.get("inventory") or 0.0)
+    payables = float(k.get("payables") or 0.0)
+
+    # Gün sayıları (Mevcut şirket performansı)
+    company_dso = (receivables / net_sales * 365.0) if net_sales > 0 else 0.0
+    company_dio = (inventory / cogs * 365.0) if cogs > 0 else 0.0
+    company_dpo = (payables / cogs * 365.0) if cogs > 0 else 0.0
+    company_ccc = company_dso + company_dio - company_dpo
+
+    sector_dso = float(wc_ref["median_dso"])
+    sector_dio = float(wc_ref["median_dio"])
+    sector_ccc = float(wc_ref["median_ccc"])
+    borrowing_rate = float(wc_ref["indicative_borrowing_rate"])
+
+    # Alacak ve Stoktaki Sektörel Sapma Tutarları
+    dso_gap_days = max(0.0, company_dso - sector_dso)
+    dio_gap_days = max(0.0, company_dio - sector_dio)
+
+    excess_receivables_cash = (net_sales / 365.0) * dso_gap_days if net_sales > 0 else 0.0
+    excess_inventory_cash = (cogs / 365.0) * dio_gap_days if cogs > 0 else 0.0
+    total_excess_working_capital = excess_receivables_cash + excess_inventory_cash
+
+    # Yıllık ve Aylık Gizli Finansman / Faiz Sızıntısı
+    annual_interest_leakage = total_excess_working_capital * borrowing_rate
+    monthly_interest_leakage = annual_interest_leakage / 12.0
+
+    working_capital_leakage = {
+        "sector": sector_key,
+        "indicative_borrowing_rate_pct": round(borrowing_rate * 100, 1),
+        "dso": {
+            "company_days": round(company_dso, 1),
+            "sector_median_days": round(sector_dso, 1),
+            "gap_days": round(dso_gap_days, 1),
+            "excess_cash_tied_up": round(excess_receivables_cash, 2),
+            "annual_interest_cost": round(excess_receivables_cash * borrowing_rate, 2),
+        },
+        "dio": {
+            "company_days": round(company_dio, 1),
+            "sector_median_days": round(sector_dio, 1),
+            "gap_days": round(dio_gap_days, 1),
+            "excess_cash_tied_up": round(excess_inventory_cash, 2),
+            "annual_interest_cost": round(excess_inventory_cash * borrowing_rate, 2),
+        },
+        "ccc": {
+            "company_days": round(company_ccc, 1),
+            "sector_median_days": round(sector_ccc, 1),
+            "gap_days": round(max(0.0, company_ccc - sector_ccc), 1),
+        },
+        "total_excess_cash_tied_up": round(total_excess_working_capital, 2),
+        "annual_interest_leakage": round(annual_interest_leakage, 2),
+        "monthly_interest_leakage": round(monthly_interest_leakage, 2),
+        "executive_summary": (
+            f"Şirketiniz sektör medyanına kıyasla alacak tahsilatında {dso_gap_days:.0f} gün, "
+            f"stok eritmede ise {dio_gap_days:.0f} gün geridedir. Bu operasyonel gecikme nedeniyle "
+            f"toplam {total_excess_working_capital:,.0f} TL işletme sermayesi fazladan kilitli kalmakta "
+            f"ve yıllık %{borrowing_rate*100:.0f} gösterge faiz maliyetiyle şirkete yılda "
+            f"yaklaşık {annual_interest_leakage:,.0f} TL (ayda {monthly_interest_leakage:,.0f} TL) "
+            f"gizli finansman yükü oluşturmaktadır."
+            if total_excess_working_capital > 0
+            else "İşletme sermayesi devir hızınız sektör medyanlarının üzerinde olup fazladan faiz sızıntısı tespit edilmemiştir."
+        ),
+    }
+
     return {
         "sector": sector_key,
         "available_sectors": list(SECTOR_BANDS.keys()),
         "metrics": metrics_out,
+        "working_capital_leakage": working_capital_leakage,
         "overall_score": overall_score,
         "overall_label": overall_label,
         "institutional_reference": {

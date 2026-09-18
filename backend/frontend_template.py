@@ -5835,6 +5835,54 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </div>
 </section>
 
+<!-- ==================== BÖLÜM 8: ENFLASYON RÖNTGENİ & LİKİDİTE STRES TESTİ ==================== -->
+<section id="flowStep_8" class="accordionStep active">
+  <div class="accordionHeader" onclick="toggleAccordion('flowStep_8')">
+    <div class="accordionTitleGroup">
+      <span class="accordionNum" style="background:#DC2626;color:#FFFFFF">8</span>
+      <div>
+        <h3 class="accordionTitle">Enflasyon Düzeltmeli Gerçek Kârlılık Röntgeni &amp; Müşteri Konsantrasyonu Likidite Stres Testi</h3>
+        <div class="accordionSub">Fiktif stok kârı illüzyonunun deşifresi, reel sermaye erimesi ve müşteri ödeme gecikmesi şok simülasyonu</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <span class="tag" style="background:#FEF2F2;color:#DC2626;font-size:11px;font-weight:700">Reel Röntgen &amp; Şok</span>
+      <div class="accordionToggleIcon">▼</div>
+    </div>
+  </div>
+  <div class="accordionBody">
+    <!-- Card 1: Enflasyon Düzeltmeli Gerçek Kârlılık Röntgeni -->
+    <div id="inflationCard" class="card" style="border:1.5px solid #E2E8F0;border-radius:18px;padding:22px;margin-bottom:16px">
+      <div class="sectionHead">
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:6px;background:#FEF2F2;color:#DC2626;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:0.5px;margin-bottom:8px">
+            🔥 GERÇEK KÂRLILIK RÖNTGENİ
+          </div>
+          <h2 style="font-size:20px;margin:0 0 6px">Enflasyon Düzeltmeli Gerçek Ekonomik Kâr &amp; Sermaye Koruma Analizi</h2>
+          <p class="muted" style="margin:0;font-size:13px">Klasik mizan enflasyonu dikkate almaz; fiktif stok kârını gerçek kâr gibi gösterir. Bu motor, paranın satın alma gücü kaybını ve stok yenileme maliyetini düşerek gerçek kârınızı ortaya koyar.</p>
+        </div>
+      </div>
+      <div id="inflationMetrics" class="grid4" style="margin-top:16px"></div>
+      <div id="inflationAssessment" style="margin-top:14px"></div>
+    </div>
+
+    <!-- Card 2: Müşteri Konsantrasyonu Likidite Stres Testi -->
+    <div id="liquidityStressCard" class="card" style="border:1.5px solid #E2E8F0;border-radius:18px;padding:22px;margin-bottom:0">
+      <div class="sectionHead">
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:6px;background:#FFFBEB;color:#D97706;border:1px solid #FDE68A;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:0.5px;margin-bottom:8px">
+            ⚡ LİKİDİTE KIRILGANLIK &amp; TEMERRÜT ŞOKU
+          </div>
+          <h2 style="font-size:20px;margin:0 0 6px">Müşteri Konsantrasyonu Likidite Stres Testi (30 &amp; 60 Günlük Şok)</h2>
+          <p class="muted" style="margin:0;font-size:13px">"İlk 3 müşterim ödemeyi geciktirirse şirketim kaç gün ayakta kalabilir?" sorusunun deterministik simülasyonu.</p>
+        </div>
+      </div>
+      <div id="stressMetrics" class="grid4" style="margin-top:16px"></div>
+      <div id="stressAssessment" style="margin-top:14px"></div>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== EK A: SEKTÖREL KIYASLAMA & VERİ GÜVENİLİRLİK DENETİMİ ==================== -->
 <section id="flowStep_ekA" class="accordionStep">
   <div class="accordionHeader" onclick="toggleAccordion('flowStep_ekA')">
@@ -6675,13 +6723,50 @@ function render(d){
       instRef=bm.institutional_reference;
     }
   }
+  const wcLeak = bm.working_capital_leakage || {};
+  let leakHtml = '';
+  if(wcLeak && wcLeak.total_excess_cash_tied_up > 0){
+    leakHtml = '<div style="margin-top:16px;background:#FFF1F2;border:1.5px solid #FECDD3;border-radius:14px;padding:16px">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px">' +
+        '<div style="display:flex;align-items:center;gap:8px">' +
+          '<span style="font-size:18px">🚨</span>' +
+          '<b style="color:#9F1239;font-size:13.5px">Sektörel Vade Gecikmesi &amp; Gizli Finansman / Faiz Sızıntısı:</b>' +
+        '</div>' +
+        '<span class="tag critical" style="font-weight:800;font-size:12px">Yıllık Kayıp: ' + money(wcLeak.annual_interest_leakage) + '</span>' +
+      '</div>' +
+      '<p style="font-size:12.5px;color:#881337;line-height:1.55;margin:0 0 12px">' + esc(wcLeak.executive_summary) + '</p>' +
+      '<div class="grid3" style="gap:10px">' +
+        '<div style="background:#FFFFFF;border:1px solid #FFE4E6;border-radius:10px;padding:10px 12px">' +
+          '<div style="font-size:11px;color:#64748B">Tahsilat (DSO) Sapması:</div>' +
+          '<b style="font-size:14px;color:#E11D48">' + (wcLeak.dso?.gap_days > 0 ? ('+' + wcLeak.dso.gap_days + ' Gün') : 'Sektörden Hızlı') + '</b>' +
+          '<div style="font-size:11px;color:#9F1239;margin-top:2px">Kilitli: ' + money(wcLeak.dso?.excess_cash_tied_up || 0) + '</div>' +
+        '</div>' +
+        '<div style="background:#FFFFFF;border:1px solid #FFE4E6;border-radius:10px;padding:10px 12px">' +
+          '<div style="font-size:11px;color:#64748B">Stokta Kalma (DIO) Sapması:</div>' +
+          '<b style="font-size:14px;color:#D97706">' + (wcLeak.dio?.gap_days > 0 ? ('+' + wcLeak.dio.gap_days + ' Gün') : 'Sektörden Hızlı') + '</b>' +
+          '<div style="font-size:11px;color:#92400E;margin-top:2px">Kilitli: ' + money(wcLeak.dio?.excess_cash_tied_up || 0) + '</div>' +
+        '</div>' +
+        '<div style="background:#FFFFFF;border:1px solid #FFE4E6;border-radius:10px;padding:10px 12px">' +
+          '<div style="font-size:11px;color:#64748B">Aylık Gizli Faiz Yükü:</div>' +
+          '<b style="font-size:14px;color:#BE123C">-' + money(wcLeak.monthly_interest_leakage || 0) + ' / Ay</b>' +
+          '<div style="font-size:11px;color:#64748B;margin-top:2px">Gösterge: %' + (wcLeak.indicative_borrowing_rate_pct || 48) + ' Faaliyet/Kredi</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }
+
   $('benchmark').innerHTML='<div class="insight positive" style="margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">'
     +'<div><b>🏛️ Kurumsal Kıyaslama Kaynağı:</b> <span class="muted">'+esc(instRef)+'</span></div>'
     +'<div class="small">Sektör: <b>'+esc(bm.sector||'Genel')+'</b> · Konum: <span class="tag '+(bm.overall_score>=70?'positive':bm.overall_score>=50?'medium':'critical')+'">'+esc(bm.overall_label)+' ('+esc(bm.overall_score)+'/100)</span></div>'
     +'</div>'
     +'<div class="tableWrap" style="margin-top:8px"><table><thead><tr><th>Gösterge</th><th>Şirket Değeri</th><th>Sektör Bandı (Düşük / Medyan / Yüksek)</th><th>Sektöre Göre Konum</th></tr></thead><tbody>'
     +(bm.metrics||[]).map(m=>'<tr><td><b>'+esc(m.label)+'</b></td><td>'+esc(m.value)+'</td><td>'+esc(m.band_low)+' / <b>'+esc(m.band_mid)+'</b> / '+esc(m.band_high)+'</td><td><span class="tag '+(m.favorability==='favorable'?'positive':m.favorability==='unfavorable'?'critical':'medium')+'">'+esc(m.favorability)+'</span></td></tr>').join('')
-    +'</tbody></table></div>';
+    +'</tbody></table></div>'
+    +leakHtml;
+
+  // Render Step 8: Inflation Adjustment & Liquidity Stress Test
+  renderInflationAnalysis(bp.inflation_adjustment_engine);
+  renderLiquidityStressTest(bp.liquidity_stress_testing_engine);
 
   // Step 3 & Step 6b — Unified 5-Step Causality Pipeline (Belirti ➔ Kanıt ➔ Kök Neden ➔ Sızıntı ➔ İcraat)
   renderUnifiedRootCauseSection(bp.root_cause_engine, bp.narrative_engine);
@@ -8660,6 +8745,74 @@ function renderTaxStrategy(ts){
       '</div>' +
     '</div>';
   }).join('');
+}
+
+function renderInflationAnalysis(inf){
+  const card = $('inflationCard');
+  if(!card || !inf) return;
+
+  const isEroding = inf.is_capital_eroding;
+  const isLoss = inf.real_economic_profit < 0 && inf.nominal_net_profit > 0;
+  const isEn = window._activeLang === 'en';
+
+  $('inflationMetrics').innerHTML =
+    metric(isEn ? 'Nominal Accounting Profit' : 'Defterdeki Nominal Net Kâr', money(inf.nominal_net_profit), isEn ? 'Reported P&L' : 'Mizan / Gelir Tablosu') +
+    metric(isEn ? 'Phantom Inventory Profit' : 'Fiktif Stok Kârı (İllüzyon)', money(inf.phantom_inventory_profit), isEn ? 'Replacement Cost Gap' : 'Stok Yenileme Maliyet Farkı') +
+    metric(isEn ? 'Real Economic Profit' : 'Reel Ekonomik Net Kâr', (inf.real_economic_profit > 0 ? '+' : '') + money(inf.real_economic_profit), isEn ? 'Inflation-Adjusted' : 'Enflasyondan Arındırılmış') +
+    metric(isEn ? 'Capital Preservation Gap' : 'Sermaye Koruma Açığı', isEroding ? ('-' + money(inf.capital_erosion_amount)) : (isEn ? 'Protected' : 'Korunuyor'), isEn ? 'Equity Erosion' : 'Reel Özkaynak Erimesi');
+
+  const alertBg = isLoss ? '#FEF2F2' : isEroding ? '#FFFBEB' : '#F0FDF4';
+  const alertBorder = isLoss ? '#FCA5A5' : isEroding ? '#FDE68A' : '#BBF7D0';
+  const alertColor = isLoss ? '#991B1B' : isEroding ? '#92400E' : '#166534';
+  const alertIcon = isLoss ? '🚨' : isEroding ? '⚠️' : '✅';
+
+  $('inflationAssessment').innerHTML =
+    '<div style="background:' + alertBg + ';border:1.5px solid ' + alertBorder + ';border-radius:12px;padding:14px;color:' + alertColor + '">' +
+      '<div style="font-size:13.5px;font-weight:800;display:flex;align-items:center;gap:8px;margin-bottom:6px">' +
+        '<span>' + alertIcon + '</span>' +
+        '<span>' + (isEn ? 'Executive Inflation Assessment:' : 'Yönetim Kurulu Reel Enflasyon Teşhisi:') + '</span>' +
+      '</div>' +
+      '<p style="margin:0;font-size:12.5px;line-height:1.6">' + esc(inf.executive_assessment) + '</p>' +
+      '<div style="margin-top:10px;font-size:11.5px;opacity:0.9">' +
+        '<b>' + (isEn ? 'Methodology & Benchmark:' : 'Metodoloji:') + '</b> ' +
+        (isEn ? 'Annual Inflation Benchmark: %' + inf.annual_inflation_rate_pct + ' · Stock Days: ' + inf.stock_holding_days + ' days.' : 'Yıllık Gösterge Enflasyon: %' + inf.annual_inflation_rate_pct + ' · Ortalama Stokta Kalma: ' + inf.stock_holding_days + ' gün.') +
+      '</div>' +
+    '</div>';
+}
+
+function renderLiquidityStressTest(stress){
+  const card = $('liquidityStressCard');
+  if(!card || !stress) return;
+
+  const isEn = window._activeLang === 'en';
+  const s60 = stress.scenario_60d || {};
+  const s30 = stress.scenario_30d || {};
+  const isDeficit = s60.is_deficit;
+
+  $('stressMetrics').innerHTML =
+    metric(isEn ? 'Available Cash Buffer' : 'Mevcut Serbest Nakit', money(stress.available_cash), isEn ? 'Liquid Reserves' : 'Kasa + Banka Likidite') +
+    metric(isEn ? 'Concentration Exposure' : 'İlk 3 Müşteri Kredi Riski', money(stress.top_shock_amount), esc(stress.concentration_basis)) +
+    metric(isEn ? '60-Day Delay Cash Gap' : '60 Günlük Gecikme Açığı', money(s60.cash_gap), isEn ? 'Frozen Working Capital' : 'Kilitlenen Tahsilat Tutarı') +
+    metric(isEn ? 'Stress Net Cash Runway' : 'Şok Sonrası Kasa Bakiyesi', (s60.net_cash_after_shock > 0 ? '+' : '') + money(s60.net_cash_after_shock), isDeficit ? (isEn ? 'DEFICIT ALARM' : 'NAKİT AÇIĞI') : (isEn ? 'Protected' : 'Dayanıklı'));
+
+  const alertBg = isDeficit ? '#FEF2F2' : '#F0FDF4';
+  const alertBorder = isDeficit ? '#FCA5A5' : '#BBF7D0';
+  const alertColor = isDeficit ? '#991B1B' : '#166534';
+  const alertIcon = isDeficit ? '🚨' : '🛡️';
+
+  $('stressAssessment').innerHTML =
+    '<div style="background:' + alertBg + ';border:1.5px solid ' + alertBorder + ';border-radius:12px;padding:14px;color:' + alertColor + '">' +
+      '<div style="font-size:13.5px;font-weight:800;display:flex;align-items:center;gap:8px;margin-bottom:6px">' +
+        '<span>' + alertIcon + '</span>' +
+        '<span>' + esc(stress.stress_status) + '</span>' +
+      '</div>' +
+      '<p style="margin:0;font-size:12.5px;line-height:1.6">' + esc(stress.deficit_summary) + '</p>' +
+      '<div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:11.5px;opacity:0.95">' +
+        '<span><b>Normal Kasa Dayanma Süresi:</b> ' + stress.runway_days_normal + ' gün</span> • ' +
+        '<span><b>Stres Altında Kasa Dayanma:</b> ' + stress.runway_days_stressed + ' gün</span> • ' +
+        '<span><b>Aylık Operasyonel Yanma (Burn Rate):</b> ' + money(stress.monthly_burn_rate) + '</span>' +
+      '</div>' +
+    '</div>';
 }
 
 function renderUnifiedRootCauseSection(rc, ne){

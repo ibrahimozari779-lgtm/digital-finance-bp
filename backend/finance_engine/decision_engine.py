@@ -412,6 +412,12 @@ def build_finance_business_partner_analysis(
     from .tax_strategy_engine import build_tax_strategy_analysis
     tax_strategy = build_tax_strategy_analysis(statements, data_hub)
 
+    from .inflation_adjustment_engine import build_inflation_adjustment_analysis
+    inflation_adjustment = build_inflation_adjustment_analysis(statements)
+
+    from .liquidity_stress_testing_engine import build_liquidity_stress_test
+    liquidity_stress_test = build_liquidity_stress_test(statements, data_hub)
+
     from .fx_rates_provider import resolve_fx_rates
     period_meta = statements.get("period_metadata") or {}
     fx_rates = resolve_fx_rates(
@@ -543,5 +549,7 @@ def build_finance_business_partner_analysis(
         "product_profitability_engine": prod_prof,
         "pricing_opportunity_engine": pricing_opp,
         "tax_strategy_engine": tax_strategy,
+        "inflation_adjustment_engine": inflation_adjustment,
+        "liquidity_stress_testing_engine": liquidity_stress_test,
         "fx_rates": fx_rates,
     }
