@@ -257,11 +257,39 @@ def inspect_file_structure(content: bytes, filename: str) -> dict[str, Any]:
 
         # Check European standard if role == 'finance'
         coa_info = None
+        row_anomalies = []
         if role == "finance":
+            code_col = mapping.get("account_code")
+            name_col = mapping.get("account_name")
+            if code_col and code_col in df.columns:
+                # Satır bazlı anomali taraması (örn. TDHP 1xx-7xx standardı dışı veya bozuk format)
+                for idx, val in df[code_col].items():
+                    if pd.isna(val):
+                        continue
+                    s_val = str(val).strip()
+                    # Başlık satırları veya boşlukları atla
+                    if not s_val or s_val.lower() in ("hesap", "kod", "hesap kodu", "account", "toplam"):
+                        continue
+                    m = re.match(r"^(\d{3})", s_val)
+                    if not m:
+                        row_anomalies.append({
+                            "line_number": int(idx) + 2,  # 1-based + 1 header row
+                            "raw_value": s_val,
+                            "reason": "Geçersiz hesap kodu formatı (3 basamaklı TDHP/hesap kökü bulunamadı)",
+                            "suggestion": "Hesap kodunun '100', '120.01' vb. formatta olduğunu kontrol edin.",
+                        })
+                    elif m.group(1)[0] not in ("1", "2", "3", "4", "5", "6", "7", "8", "9"):
+                        row_anomalies.append({
+                            "line_number": int(idx) + 2,
+                            "raw_value": s_val,
+                            "reason": f"Bilinmeyen ana hesap sınıfı ({m.group(1)})",
+                            "suggestion": "Standart TDHP 1xx-7xx hesap kodları kullanılmalıdır.",
+                        })
+                    if len(row_anomalies) >= 10:  # UI'ı tıkamamak için ilk 10 anomaliyi al
+                        break
+
             try:
                 from .european_accounting_standardizer import detect_coa_standard
-                code_col = mapping.get("account_code")
-                name_col = mapping.get("account_name")
                 sample_codes = [str(x) for x in df[code_col].dropna().head(50)] if code_col and code_col in df.columns else []
                 sample_names = [str(x) for x in df[name_col].dropna().head(50)] if name_col and name_col in df.columns else []
                 std_code, std_meta, std_conf = detect_coa_standard(sample_codes, sample_names, filename)
@@ -289,6 +317,7 @@ def inspect_file_structure(content: bytes, filename: str) -> dict[str, Any]:
             "columns": raw_cols,
             "mapped_fields": mapped_details,
             "unmapped_required": unmapped_required,
+            "row_anomalies": row_anomalies,
             "is_ready": len(unmapped_required) == 0,
             "preview_rows": preview_rows,
         })
