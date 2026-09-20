@@ -6750,6 +6750,13 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
             </div>
             <input id="sliderOpex" type="range" min="0" max="25" value="0" step="1" style="width:100%;cursor:pointer">
           </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px">
+              <span>Şirket Sermaye / Kredi Faiz Maliyeti (WACC / Faiz Oranı)</span>
+              <b id="simCostOfCapitalVal" style="color:var(--accent)">%45.0</b>
+            </div>
+            <input id="simCostOfCapital" type="range" min="15" max="75" value="45" step="1" style="width:100%;cursor:pointer">
+          </div>
         </div>
 
         <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:center;gap:14px;box-shadow:0 4px 12px rgba(15,27,45,0.04)">
@@ -6787,37 +6794,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
         </div>
       </div>
 
-      <!-- Collapsible Simülasyon Varsayımları & Sermaye Maliyeti Parametreleri Panel -->
-      <div style="margin-top:16px;background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:14px 18px">
-        <div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="toggleSimAssumptions()">
-          <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;color:#0F172A">
-            <span>📐</span><span>Simülasyon Varsayımları &amp; Sermaye Maliyeti Parametreleri</span>
-            <span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:10px;font-weight:700">Şeffaf Matematik Modeli</span>
-          </div>
-          <span id="simAssumptionsChevron" style="font-size:12px;color:#64748B">▼</span>
-        </div>
-        <div id="simAssumptionsBody" style="margin-top:14px;padding-top:14px;border-top:1px solid #F1F5F9">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
-            <div>
-              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
-                <span style="font-weight:700;color:#334155">Şirket Sermaye / Kredi Faiz Maliyeti (WACC / Borçlanma Oranı)</span>
-                <b id="simCostOfCapitalVal" style="color:var(--accent);font-size:13px">%45.0</b>
-              </div>
-              <input id="simCostOfCapital" type="range" min="15" max="75" value="45" step="1" style="width:100%;cursor:pointer">
-              <div style="font-size:11px;color:#64748B;margin-top:6px;line-height:1.4">
-                Türkiye KOBİ ticari kredi / rotatif faiz oranları referans alınarak varsayılan %45 belirlenmiştir. Kendi banka borçlanma veya sermaye maliyetinize göre sürgüyü ayarlayabilirsiniz.
-              </div>
-            </div>
-            <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 14px;font-size:11.5px;color:#334155;line-height:1.6">
-              <div style="font-weight:800;color:#0F172A;margin-bottom:4px">Kullanılan Formül Mimarisi:</div>
-              <div>• <b>DSO Nakit Girişi:</b> (DSO Azalış Gün / 365) × Yıllık Net Satışlar</div>
-              <div>• <b>DIO Nakit Çözümü:</b> (DIO Azalış Gün / 365) × Satılan Malın Maliyeti (SMM)</div>
-              <div>• <b>Faiz Tasarrufu:</b> Toplam Serbest Kalan Nakit × Sermaye Maliyeti (%)</div>
-              <div>• <b>Faaliyet Kâr Katkısı:</b> (Marj Artışı % × Satış) + (OpEx Tasarruf % × Faaliyet Gideri)</div>
-            </div>
-          </div>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -6826,14 +6803,14 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
 <section id="flowStep_10" class="accordionStep active">
   <div class="accordionHeader" onclick="toggleAccordion('flowStep_10')">
     <div class="accordionTitleGroup">
-      <span class="accordionNum" style="background:#DC2626;color:#FFFFFF">10</span>
+      <span class="accordionNum">10</span>
       <div>
         <h3 class="accordionTitle">Enflasyon Düzeltmeli Gerçek Kârlılık Röntgeni &amp; Müşteri Konsantrasyonu Likidite Stres Testi</h3>
         <div class="accordionSub">Fiktif stok kârı illüzyonunun deşifresi, reel sermaye erimesi ve müşteri ödeme gecikmesi şok simülasyonu</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag" style="background:#FEF2F2;color:#DC2626;font-size:11px;font-weight:700">Reel Röntgen &amp; Şok</span>
+      <span class="tag" style="background:#EEF2FF;color:#3B4B8A;font-size:11px;font-weight:700">Reel Röntgen &amp; Şok</span>
       <div class="accordionToggleIcon">▼</div>
     </div>
   </div>
@@ -7756,7 +7733,7 @@ const _cmpUnit=(u,v)=>{
   if(u==='amount') return money(v);
   if(u==='pct_points') return num(v)+'%';
   if(u==='x') return num(v)+'x';
-  if(u==='days') return num(v)+' gün';
+  if(u==='days') return (v==null?'–':Math.round(Number(v))+' gün');
   return num(v);
 };
 const _cmpAssessClass={improved:'positive',worsened:'high',flat:'',bilinmiyor:''};
@@ -8100,12 +8077,12 @@ function render(d){
     { code: 'DPO', title: 'Tedarikçi Vadesi', days: cm.dpo_days != null ? cm.dpo_days : c.dpo_days, sub: 'Mizan 320 (Resmi)', color: '#0E7C66', tip: 'DPO: (Borçlar / SMM) × ' + daysPeriod + '. Tedarikçiye ödeme süresi.' },
     { code: 'CCC', title: 'Nakit Çevrim', days: cm.ccc_days != null ? cm.ccc_days : c.cash_conversion_cycle_days, sub: 'Kasadaki nakdin dönüş hızı', color: '#7C3AED', tip: 'CCC = DSO + DIO - DPO. Hammaddeden tahsilata kadar nakdin bağlı kaldığı net gün sayısıdır.' }
   ];
-  $('cccMetric').textContent = (cm.ccc_days != null ? num(cm.ccc_days) : (c.cash_conversion_cycle_days == null ? '–' : num(c.cash_conversion_cycle_days))) + ' gün';
+  $('cccMetric').textContent = (cm.ccc_days != null ? Math.round(cm.ccc_days) : (c.cash_conversion_cycle_days == null ? '–' : Math.round(c.cash_conversion_cycle_days))) + ' gün';
   $('workingCapital').innerHTML = '<div class="grid4">' + cccCards.map(x => 
     '<div class="metric" style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 10px;background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px">' +
       '<div style="display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:0.5px;color:' + x.color + '" title="' + esc(x.tip) + '">' + esc(x.code) + '</div>' +
       '<div style="font-size:11px;font-weight:700;color:#64748B;margin-top:2px;margin-bottom:6px;text-align:center">' + esc(x.title) + '</div>' +
-      '<div class="value" style="font-size:21px;font-weight:900;color:#0F172A;margin:2px 0">' + (x.days == null ? '–' : num(x.days) + ' gün') + '</div>' +
+      '<div class="value" style="font-size:21px;font-weight:900;color:#0F172A;margin:2px 0">' + (x.days == null ? '–' : Math.round(Number(x.days)) + ' gün') + '</div>' +
       '<div class="sub" style="font-size:10.5px;color:#94A3B8;text-align:center;margin-top:2px">' + esc(x.sub) + '</div>' +
     '</div>'
   ).join('') + '</div><div style="margin-top:12px">' + workingCapitalNarrative(c, cm, pl, k) + '</div>';
@@ -8377,14 +8354,14 @@ function agingBlock(title,due,data){
   let crossBadge = '';
   if(due === 'DSO' && cm.dso_days != null){
     crossBadge = ' <span class="tag" style="background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-size:10.5px;padding:2px 6px" title="Kanonik Mizan 120 DSO">' +
-      'Mizan 120 (Resmi): ' + num(cm.dso_days) + ' gün</span>';
+      'Mizan 120 (Resmi): ' + Math.round(cm.dso_days) + ' gün</span>';
   } else if(due === 'DPO' && cm.dpo_days != null){
     crossBadge = ' <span class="tag" style="background:#ECFDF5;color:#065F46;border:1px solid #A7F3D0;font-size:10.5px;padding:2px 6px" title="Kanonik Mizan 320 DPO">' +
-      'Mizan 320 (Resmi): ' + num(cm.dpo_days) + ' gün</span>';
+      'Mizan 320 (Resmi): ' + Math.round(cm.dpo_days) + ' gün</span>';
   }
   const concTxt=data.concentration_80pct_party_count!=null?' · Toplamın %80\u0027ine <b>'+data.concentration_80pct_party_count+'</b> '+partyWord+' denk geliyor ('+esc(data.party_count??'–')+' '+partyWord+'\u0027nin %'+num(data.concentration_80pct_share_of_parties_pct)+'\u0027i)':'';
   const anomalyBlock=(data.data_anomalies&&data.data_anomalies.length)?'<p class="small" style="margin-top:8px;color:#9a6b00">⚠ Veri uyarısı: '+data.data_anomalies.map(esc).join(' · ')+'</p>':'' ;
-  return '<div class="insight" style="margin-top:10px;background:#FFFFFF;border:1px solid #E2E8F0;border-radius:12px;padding:16px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><b>'+esc(titleLabel)+'</b> '+riskTierTag+'</div><p>Toplam Bakiye: <b>'+money(data.outstanding)+'</b> · Vadesi Geçen: <b style="color:#DC2626">'+money(data.overdue)+'</b> · '+esc(dueLabel)+': <b>'+(data[due==='DSO'?'dso_days':'dpo_days']==null?'–':num(data[due==='DSO'?'dso_days':'dpo_days'])+' gün')+'</b>' + crossBadge + '</p>'+overdueBar+'<p class="small muted" style="margin-top:8px">Ağırlıklı ort. gecikme: '+(data.weighted_average_overdue_days==null?'–':num(data.weighted_average_overdue_days)+' gün')+' · Beklenen risk tutarı: '+money(data.collection_risk_estimate)+' ('+pct(data.collection_risk_estimate_pct_of_outstanding)+') · İlk 10 '+partyWord+' payı: '+pct(data.top_10_share_pct)+' ('+(data.party_count??'–')+' '+partyWord+')'+concTxt+'</p>'+anomalyBlock+bucketRows+topOverdueRows+'</div>'
+  return '<div class="insight" style="margin-top:10px;background:#FFFFFF;border:1px solid #E2E8F0;border-radius:12px;padding:16px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><b>'+esc(titleLabel)+'</b> '+riskTierTag+'</div><p>Toplam Bakiye: <b>'+money(data.outstanding)+'</b> · Vadesi Geçen: <b style="color:#DC2626">'+money(data.overdue)+'</b> · '+esc(dueLabel)+': <b>'+(data[due==='DSO'?'dso_days':'dpo_days']==null?'–':Math.round(data[due==='DSO'?'dso_days':'dpo_days'])+' gün')+'</b>' + crossBadge + '</p>'+overdueBar+'<p class="small muted" style="margin-top:8px">Ağırlıklı ort. gecikme: '+(data.weighted_average_overdue_days==null?'–':Math.round(data.weighted_average_overdue_days)+' gün')+' · Beklenen risk tutarı: '+money(data.collection_risk_estimate)+' ('+pct(data.collection_risk_estimate_pct_of_outstanding)+') · İlk 10 '+partyWord+' payı: '+pct(data.top_10_share_pct)+' ('+(data.party_count??'–')+' '+partyWord+')'+concTxt+'</p>'+anomalyBlock+bucketRows+topOverdueRows+'</div>'
 }
 
 // "Kritik Müşteriler" — replaces the old flat Sales Intelligence metric wall.
@@ -8643,7 +8620,7 @@ function renderHub(ms){
   const inv = an.inventory || an.inventory_aging || {};
   const hasInv = !!(an.inventory || an.inventory_aging);
   // Inventory Intelligence — Standalone Card
-  $('inventoryIntel').innerHTML='<div class="card"><div class="sectionHead"><div><h2>Stok Zekâsı (Ölü Stok &amp; Devir Hızı)</h2><p>Stok değeri, ortalama rafta kalma süresi ve nakit kilitleyen atıl ürünler</p></div></div>'+(hasInv?'<div class="grid4">'+metric('Toplam Stok Değeri',money(inv.value),'Mizan / Stok Defteri')+metric('Ürün (SKU) Sayısı',inv.sku_count??'–','Toplam Kalem')+metric('Stok Devir Süresi (DIO)',inv.dio_days==null?'–':num(inv.dio_days)+' gün','Ortalama Satış Süresi')+metric('180+ Gün Atıl Stok',money(inv.stale_180_amount),'Kasayı Kilitleyen Nakit')+ '</div>'+(inv.findings||[]).map(f=>'<div class="insight '+esc(f.severity)+'" style="margin-top:10px"><b>'+esc(f.title)+'</b><p>'+esc(f.detail)+'</p></div>').join(''):'<div class="notice">Stok detay defteri yüklenmedi.</div>')+'</div>';
+  $('inventoryIntel').innerHTML='<div class="card"><div class="sectionHead"><div><h2>Stok Zekâsı (Ölü Stok &amp; Devir Hızı)</h2><p>Stok değeri, ortalama rafta kalma süresi ve nakit kilitleyen atıl ürünler</p></div></div>'+(hasInv?'<div class="grid4">'+metric('Toplam Stok Değeri',money(inv.value),'Mizan / Stok Defteri')+metric('Ürün (SKU) Sayısı',inv.sku_count??'–','Toplam Kalem')+metric('Stok Devir Süresi (DIO)',inv.dio_days==null?'–':Math.round(inv.dio_days)+' gün','Ortalama Satış Süresi')+metric('180+ Gün Atıl Stok',money(inv.stale_180_amount),'Kasayı Kilitleyen Nakit')+ '</div>'+(inv.findings||[]).map(f=>'<div class="insight '+esc(f.severity)+'" style="margin-top:10px"><b>'+esc(f.title)+'</b><p>'+esc(f.detail)+'</p></div>').join(''):'<div class="notice">Stok detay defteri yüklenmedi.</div>')+'</div>';
 }
 
 // ---------------------------------------------------------------------
@@ -11188,13 +11165,13 @@ function renderWorkingCapitalLeak(bp, pl, bs, k, c, d){
   const lockedBase = Math.max(arVal + invVal, netLockedWc);
 
   if($('wcLeakArVal')) $('wcLeakArVal').textContent = money(arVal);
-  if($('wcLeakArSub')) $('wcLeakArSub').textContent = 'Ortalama tahsilat vadesi: ' + (dso ? num(dso) + ' gün' : '–');
+  if($('wcLeakArSub')) $('wcLeakArSub').textContent = 'Ortalama tahsilat vadesi: ' + (dso ? Math.round(dso) + ' gün' : '–');
   
   if($('wcLeakInvVal')) $('wcLeakInvVal').textContent = money(invVal);
-  if($('wcLeakInvSub')) $('wcLeakInvSub').textContent = 'Ortalama stokta bekleme: ' + (dio ? num(dio) + ' gün' : '–');
+  if($('wcLeakInvSub')) $('wcLeakInvSub').textContent = 'Ortalama stokta bekleme: ' + (dio ? Math.round(dio) + ' gün' : '–');
 
   if($('wcLeakApVal')) $('wcLeakApVal').textContent = money(apVal);
-  if($('wcLeakApSub')) $('wcLeakApSub').textContent = 'Ortalama ödeme vadesi: ' + (dpo ? num(dpo) + ' gün' : '–');
+  if($('wcLeakApSub')) $('wcLeakApSub').textContent = 'Ortalama ödeme vadesi: ' + (dpo ? Math.round(dpo) + ' gün' : '–');
 
   // Daily run-rates for realistic slider math
   let dailySales = sales > 0 ? (sales / daysInYear) : (arVal > 0 && dso > 0 ? arVal / dso : (arVal > 0 ? arVal / 60 : 10000));
@@ -11279,12 +11256,31 @@ function renderWorkingCapitalLeak(bp, pl, bs, k, c, d){
 }
 
 window.scrollPills = function(id, delta){ const el = document.getElementById(id); if(el) el.scrollBy({left: delta, behavior: 'smooth'}); };
+window.stepCeoQuestion = function(delta){
+  const cards = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8'];
+  const activePill = document.querySelector('#ceoQuestionPills .ceoPill.active');
+  let cur = activePill ? activePill.getAttribute('data-q') : 'q1';
+  let idx = cards.indexOf(cur);
+  if(idx === -1) idx = 0;
+  let nextIdx = idx + delta;
+  if(nextIdx < 0) nextIdx = cards.length - 1;
+  if(nextIdx >= cards.length) nextIdx = 0;
+  window.switchCeoQuestion(cards[nextIdx]);
+  const targetPill = document.querySelector('#ceoQuestionPills .ceoPill[data-q="' + cards[nextIdx] + '"]');
+  if(targetPill) targetPill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+};
 window.switchCeoQuestion = function(qid){
   document.querySelectorAll('#ceoQuestionPills .ceoPill').forEach(p => {
     p.classList.toggle('active', p.getAttribute('data-q') === qid);
   });
   document.querySelectorAll('#ceoQuestionDetails .ceoQuestionCard').forEach(c => {
     c.classList.toggle('active', c.id === 'ceoCard_' + qid);
+  });
+  document.querySelectorAll('#ceoQuestionDetails .cardDotBtn').forEach(d => {
+    const isAct = d.getAttribute('data-dot') === qid;
+    d.classList.toggle('active', isAct);
+    d.style.background = isAct ? '#1D4ED8' : '#E2E8F0';
+    d.style.color = isAct ? '#FFFFFF' : '#475569';
   });
 };
 
@@ -11344,7 +11340,7 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
 
       let dsoNote = '';
       if(dsoMismatch){
-        dsoNote = '<div style="margin-top:6px;font-weight:700;color:#92400E">📌 DSO Çift Kaynak Analizi: Genel Mizan DSO: <b>' + glDso.toFixed(1) + ' gün [Resmi]</b> iken, Yaşlandırma Alt Defteri DSO: <b>' + arAgingDso.toFixed(1) + ' gün [Operasyonel]</b> seviyesindedir.</div>';
+        dsoNote = '<div style="margin-top:6px;font-weight:700;color:#92400E">📌 DSO Çift Kaynak Analizi: Genel Mizan DSO: <b>' + Math.round(glDso) + ' gün [Resmi]</b> iken, Yaşlandırma Alt Defteri DSO: <b>' + Math.round(arAgingDso) + ' gün [Operasyonel]</b> seviyesindedir.</div>';
       }
 
       alertEl.style.display = 'block';
@@ -11416,7 +11412,7 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
       snapLeakVal.innerHTML = money(rec) + ' <span style="font-size:12px;font-weight:600;color:#DC2626">Müşteri Alacakları</span>';
       let extraDsoText = '';
       if(dsoMismatch){
-        extraDsoText = ' (Alt defter yaşlandırma: ' + arAgingDso.toFixed(1) + ' gün)';
+        extraDsoText = ' (Alt defter yaşlandırma: ' + Math.round(arAgingDso) + ' gün)';
       }
       snapLeakDesc.textContent = Math.round(dso) + ' günlük açık hesap vadesi' + extraDsoText + '. Şirketin müşterileri finanse etme yıllık tahmini faiz yükü: ~' + money(annualFinanceCost) + '.';
     } else if(inv > 0){
@@ -11549,13 +11545,13 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
       cat: 'Nakit Akışı & Kâr Kalitesi',
       l1_title: 'Defterdeki Kâr, Alacak ve Stok Kilitlenmesinde Kayboluyor',
       l1_desc: netProfit > 0 
-        ? ('Şirket defterde <b>' + money(netProfit) + '</b> net kâr üretmiş görünmesine karşın, bu kârın neredeyse tamamı müşterilerin ' + num(dso) + ' günlük tahsilat vadesinde (<b>' + money(arVal) + '</b>) ve depodaki ' + num(dio) + ' günlük stokta (<b>' + money(invVal) + '</b>) rehin kalmıştır. Kasa bu kârı fiilen görememektedir.')
+        ? ('Şirket defterde <b>' + money(netProfit) + '</b> net kâr üretmiş görünmesine karşın, bu kârın neredeyse tamamı müşterilerin ' + Math.round(dso) + ' günlük tahsilat vadesinde (<b>' + money(arVal) + '</b>) ve depodaki ' + Math.round(dio) + ' günlük stokta (<b>' + money(invVal) + '</b>) rehin kalmıştır. Kasa bu kârı fiilen görememektedir.')
         : ('Operasyonel kârlılık zayıf seyrederken, işletme sermayesine kilitlenen <b>' + money(arVal + invVal) + '</b> likiditeyi tüketmekte ve nakit açığını banka borçlarıyla finanse etmeye zorlamaktadır.'),
       l2_metrics: [
         { label: 'Net Dönem Kârı', val: money(netProfit), note: 'Defter kârı' },
-        { label: 'Müşteride Kilitli (120)', val: money(arVal), note: num(dso) + ' gün tahsilat' },
-        { label: 'Depoda Kilitli (150)', val: money(invVal), note: num(dio) + ' gün stokta' },
-        { label: 'Nakit Çevrim Süresi (CCC)', val: num(ccc) + ' gün', note: 'Nakit bekleme süresi' }
+        { label: 'Müşteride Kilitli (120)', val: money(arVal), note: Math.round(dso) + ' gün tahsilat' },
+        { label: 'Depoda Kilitli (150)', val: money(invVal), note: Math.round(dio) + ' gün stokta' },
+        { label: 'Nakit Çevrim Süresi (CCC)', val: Math.round(ccc) + ' gün', note: 'Nakit bekleme süresi' }
       ],
       l3_action: 'İlk 10 müşteride açık hesap vadesini 15 gün geri çekin; vadeli siparişleri DBS veya %2 peşin nakit iskontosuyla hızlandırın.',
       l3_cash: '+' + money(dailySales * 15 + dailyCogs * 15),
@@ -11572,9 +11568,9 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
       sub: 'Ciro vs Gerçek Kâr',
       cat: 'Müşteri Kârlılığı & Alacak Riski',
       l1_title: 'Yüksek Cirolu Müşteriler Uzun Vade ve Faiz Yüküyle Gizli Zarar Ettiriyor',
-      l1_desc: 'Ciro hacmi büyük müşterilere tanınan ' + num(dso) + ' günlük uzun vadeler ve yüksek iskontolar, %45 yıllık finansman faizi ortamında kâr marjını tamamen silmektedir. 90 günden uzun vadeli çalışan her satış, brüt marjın en az %11\'ini banka faizine kaptırmaktadır.',
+      l1_desc: 'Ciro hacmi büyük müşterilere tanınan ' + Math.round(dso) + ' günlük uzun vadeler ve yüksek iskontolar, %45 yıllık finansman faizi ortamında kâr marjını tamamen silmektedir. 90 günden uzun vadeli çalışan her satış, brüt marjın en az %11\'ini banka faizine kaptırmaktadır.',
       l2_metrics: [
-        { label: 'Ortalama Tahsilat (DSO)', val: num(dso) + ' gün', note: 'Sektör medyanı ~60 gün' },
+        { label: 'Ortalama Tahsilat (DSO)', val: Math.round(dso) + ' gün', note: 'Sektör medyanı ~60 gün' },
         { label: 'Toplam Alacak Portföyü', val: money(arVal), note: '120 Alıcılar' },
         { label: 'Yıllık Faiz Sızıntısı', val: money(arVal * 0.45), note: 'Alacak finansman maliyeti' },
         { label: 'Finansman / Faaliyet Kârı', val: pct(k?.finance_cost_to_operating_profit_pct || 32), note: 'Faize giden operasyonel kâr' }
@@ -11594,10 +11590,10 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
       sub: 'Stoklar Kârı Yutuyor mu?',
       cat: 'Stok Yönetimi & Atıl Sermaye',
       l1_title: 'Depodaki Atıl Stoklar Hem Nakdi Kilitliyor Hem Faiz Yükü Üretiyor',
-      l1_desc: 'Depoda şu anda <b>' + money(invVal) + '</b> tutarında işletme sermayesi bağlı beklemektedir. Ürünlerin depoda ortalama <b>' + num(dio) + ' gün</b> kalması, şirkete yıllık <b>' + money(invVal * 0.45) + '</b> tutarında görünmez stok finansman maliyeti çıkarmaktadır.',
+      l1_desc: 'Depoda şu anda <b>' + money(invVal) + '</b> tutarında işletme sermayesi bağlı beklemektedir. Ürünlerin depoda ortalama <b>' + Math.round(dio) + ' gün</b> kalması, şirkete yıllık <b>' + money(invVal * 0.45) + '</b> tutarında görünmez stok finansman maliyeti çıkarmaktadır.',
       l2_metrics: [
         { label: 'Depodaki Bağlı Sermaye', val: money(invVal), note: '150-158 hesapları' },
-        { label: 'Stokta Kalma Süresi (DIO)', val: num(dio) + ' gün', note: 'Depo bekleme süresi' },
+        { label: 'Stokta Kalma Süresi (DIO)', val: Math.round(dio) + ' gün', note: 'Depo bekleme süresi' },
         { label: 'Yıllık Stok Faiz Yükü', val: money(invVal * 0.45), note: '%45 tahmini finansman maliyeti' },
         { label: 'Satılan Malın Maliyeti (SMM)', val: money(cogs), note: 'Yıllık maliyet akışı' }
       ],
@@ -11660,11 +11656,11 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
       sub: 'Kim Kimi Finanse Ediyor?',
       cat: 'İşletme Sermayesi Asimetrisi',
       l1_title: 'Tedarikçiye Hızlı Ödeyip Müşteriyi Beklemek Şirketi Kanamaya İtiyor',
-      l1_desc: 'Tedarikçiye ortalama <b>' + num(dpo) + ' günde</b> ödeme yaparken, müşterilerden alacağı ortalama <b>' + num(dso) + ' günde</b> tahsil ediyorsunuz. Ortaya çıkan <b>' + num(Math.max(0, dso - dpo)) + ' günlük negatif vade makasını</b> şirketiniz kendi cebinden finanse etmek zorunda kalıyor.',
+      l1_desc: 'Tedarikçiye ortalama <b>' + Math.round(dpo) + ' günde</b> ödeme yaparken, müşterilerden alacağı ortalama <b>' + Math.round(dso) + ' günde</b> tahsil ediyorsunuz. Ortaya çıkan <b>' + Math.round(Math.max(0, dso - dpo)) + ' günlük negatif vade makasını</b> şirketiniz kendi cebinden finanse etmek zorunda kalıyor.',
       l2_metrics: [
-        { label: 'Müşteri Vadesi (DSO)', val: num(dso) + ' gün', note: 'Para girişi' },
-        { label: 'Tedarikçi Vadesi (DPO)', val: num(dpo) + ' gün', note: 'Para çıkışı' },
-        { label: 'Net Vade Makası Açığı', val: num(Math.max(0, dso - dpo)) + ' gün', note: 'Finanse edilen gün' },
+        { label: 'Müşteri Vadesi (DSO)', val: Math.round(dso) + ' gün', note: 'Para girişi' },
+        { label: 'Tedarikçi Vadesi (DPO)', val: Math.round(dpo) + ' gün', note: 'Para çıkışı' },
+        { label: 'Net Vade Makası Açığı', val: Math.round(Math.max(0, dso - dpo)) + ' gün', note: 'Finanse edilen gün' },
         { label: 'Tedarikçi Borcu (320)', val: money(apVal), note: 'Kullanılan satıcı kredisi' }
       ],
       l3_action: 'Ana tedarikçilerle masaya oturup vadeleri 15 gün uzatın veya konsinye modele geçin; müşterilere ise tedarikçi vadesinden daha uzun vade vermeyi kesin kural olarak yasaklayın.',
@@ -11795,6 +11791,21 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
           '</div>' +
         '</div>' +
       '</div>' +
+      '<!-- CARD BOTTOM NAVIGATION BAR (Sağa / Sola Gitme & Adım Butonları) -->' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1.5px solid #E2E8F0;flex-wrap:wrap;gap:12px">' +
+        '<button type="button" class="secondary" onclick="stepCeoQuestion(-1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer">' +
+          '<span>←</span> Önceki Soru' +
+        '</button>' +
+        '<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">' +
+          '<span style="font-size:12px;font-weight:800;color:#64748B;margin-right:6px">Soru ' + (idx + 1) + ' / 8:</span>' +
+          questions.map((dq, di) => 
+            '<button type="button" class="cardDotBtn ' + (di===idx?'active':'') + '" data-dot="' + dq.id + '" onclick="switchCeoQuestion(\'' + dq.id + '\')" style="border:none;background:' + (di===idx?'#1D4ED8':'#E2E8F0') + ';color:' + (di===idx?'#FFFFFF':'#475569') + ';width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="' + esc(dq.title) + '">' + (di+1) + '</button>'
+          ).join('') +
+        '</div>' +
+        '<button type="button" class="primary" onclick="stepCeoQuestion(1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;background:#1D4ED8;color:#FFFFFF;cursor:pointer">' +
+          'Sonraki Soru <span>→</span>' +
+        '</button>' +
+      '</div>' +
     '</div>'
   ).join('');
 }
@@ -11849,27 +11860,7 @@ function toggleTms7Table(){
   el.classList.toggle('hidden');
 }
 
-function copyActionWhatsApp(idx, btnId){
-  const cfe = LAST?.business_partner?.cash_flow_engine || LAST?.cash_flow_engine;
-  const act = cfe?.patron_cockpit?.actions?.[idx];
-  if(!act || !act.whatsapp_template) return;
-  const btn = $(btnId);
-  navigator.clipboard.writeText(act.whatsapp_template).then(()=>{
-    if(btn){
-      const old = btn.textContent;
-      btn.textContent = '✅ WhatsApp Talimatı Kopyalandı!';
-      btn.style.background = '#15803D';
-      btn.style.color = '#FFFFFF';
-      setTimeout(()=>{
-        btn.textContent = old;
-        btn.style.background = '#FFFFFF';
-        btn.style.color = '';
-      }, 2500);
-    }
-  }).catch(()=>{
-    alert(act.whatsapp_template);
-  });
-}
+function copyActionWhatsApp(idx, btnId){ /* WhatsApp action removed */ }
 
 function renderCashFlowCockpit(cfe){
   const card = $('patronCashCockpitCard');
@@ -11980,11 +11971,7 @@ function renderCashFlowCockpit(cfe){
         '<div style="font-size:11.5px;color:#64748B;margin-bottom:8px"><b>Hedef KPI:</b> ' + esc(act.kpi) + '</div>' +
         '<div style="font-size:12px;font-weight:800;color:#15803D;margin-bottom:10px">Nakit Etkisi: +' + money(act.cash_impact_tl) + '</div>' +
       '</div>' +
-      '<div>' +
-        '<button id="' + btnId + '" type="button" class="secondary hidePrint" style="width:100%;font-size:11.5px;padding:7px 10px;font-weight:700;border-radius:8px;cursor:pointer;background:#FFFFFF" onclick="copyActionWhatsApp(' + idx + ', this.id)">' +
-          '📱 Ekibe WhatsApp Talimatı Kopyala' +
-        '</button>' +
-      '</div>' +
+
     '</div>';
   });
   actionsHtml += '</div></div>';
@@ -12531,31 +12518,33 @@ function renderUnifiedRootCauseSection(rc, ne){
   container.innerHTML = items.map((item, idx) => {
     const sc = sevColors[item.severity] || sevColors.medium;
     const sevLabel = (window._activeLang === 'en') ? (item.severity||'').toUpperCase() : (item.severity === 'critical' ? 'KRİTİK' : item.severity === 'high' ? 'YÜKSEK' : item.severity === 'medium' ? 'ORTA' : 'DÜŞÜK');
-    return '<div class="insight ' + esc(sc.tag) + '" style="margin-bottom:14px;border-radius:14px;padding:18px 20px">' +
-      '<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:12px">' +
+    const evText = (item.evidence && item.evidence.length) ? item.evidence.filter(Boolean).map(esc).join(' · ') : 'Finansal sapma ve defter kanıtı';
+    return '<div class="card" style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:20px;box-shadow:0 4px 16px rgba(15,27,45,0.03);margin-bottom:14px;display:flex;flex-direction:column;justify-content:space-between;gap:14px">' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">' +
         '<div>' +
-          '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">' +
-            '<span style="background:#0F172A;color:#FFF;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px">KÖK NEDEN #' + (idx + 1) + '</span>' +
-            '<span class="tag ' + sc.tag + '">' + esc(sevLabel) + '</span>' +
-            '<span class="tag" style="background:#F1F5F9;color:#475569;font-size:11px">' + esc(item.category) + '</span>' +
+          '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">' +
+            '<span style="background:#0F172A;color:#FFF;font-size:10.5px;font-weight:800;padding:2.5px 8px;border-radius:6px">KÖK NEDEN #' + (idx + 1) + '</span>' +
+            '<span class="tag" style="background:#F1F5F9;color:#334155;font-size:11px;font-weight:700">' + esc(item.category) + '</span>' +
+            '<span class="tag ' + sc.tag + '" style="font-size:10.5px;font-weight:800">' + esc(sevLabel) + '</span>' +
           '</div>' +
-          '<h3 style="margin:4px 0 0;font-size:15.5px;color:#0F172A">' + esc(item.title) + '</h3>' +
+          '<h3 style="margin:4px 0 0;font-size:15.5px;font-weight:800;color:#0F172A;line-height:1.4">' + esc(item.title) + '</h3>' +
         '</div>' +
-        '<div style="text-align:right">' +
-          '<span class="tag ' + sc.tag + '" style="font-size:11.5px;font-weight:800">💸 Sızıntı: ' + esc(item.financial_leak) + '</span>' +
+        '<div style="background:#FFF1F2;border:1px solid #FECDD3;border-radius:10px;padding:8px 12px;text-align:right;max-width:320px;word-break:break-word;overflow-wrap:break-word">' +
+          '<div style="font-size:10px;font-weight:800;color:#BE123C;text-transform:uppercase;letter-spacing:0.5px">💸 TAHMİNİ PARASAL SIZINTI</div>' +
+          '<div style="font-size:12.5px;font-weight:800;color:#9F1239;line-height:1.35;margin-top:2px">' + esc(item.financial_leak) + '</div>' +
         '</div>' +
       '</div>' +
 
-      '<div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:#334155;margin-bottom:12px;line-height:1.5">' +
-        '<div><b>🔍 1. Belirti (Ne Oldu?):</b> ' + esc(item.symptom) + '</div>' +
-        '<div><b>📊 2. Sayısal Kanıt:</b> ' + (item.evidence && item.evidence.length ? item.evidence.filter(Boolean).map(esc).join(' · ') : 'Finansal sapma tespit edildi') + '</div>' +
-        '<div><b>⚙️ 3. Kök Neden (Tetikleyici):</b> <span style="color:#1D4ED8;font-weight:700">' + esc(item.root_cause) + '</span></div>' +
-        '<div><b>💸 4. Parasal Sızıntı:</b> <span style="color:' + sc.text + ';font-weight:700">' + esc(item.financial_leak) + '</span></div>' +
+      '<div style="display:flex;flex-direction:column;gap:9px;font-size:13px;color:#1E293B;line-height:1.55">' +
+        '<div><b style="color:#0F172A">🔍 1. Belirti (Ne Oldu?):</b> <span style="color:#334155">' + esc(item.symptom) + '</span></div>' +
+        '<div><b style="color:#0F172A">📊 2. Sayısal Kanıt:</b> <span style="color:#475569">' + evText + '</span></div>' +
+        '<div><b style="color:#0F172A">⚙️ 3. Kök Neden (Tetikleyici):</b> <span style="color:#1E3A8A;font-weight:700;background:#EFF6FF;border:1px solid #DBEAFE;padding:2px 8px;border-radius:6px">' + esc(item.root_cause) + '</span></div>' +
+        '<div><b style="color:#0F172A">💸 4. Parasal Sızıntı Etkisi:</b> <span style="color:#B91C1C;font-weight:700">' + esc(item.financial_leak) + '</span></div>' +
       '</div>' +
 
-      '<div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:10px 14px">' +
+      '<div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:12px 14px">' +
         '<div style="font-size:11.5px;font-weight:800;color:#166534;margin-bottom:4px">🎯 5. Yönetim Kararı &amp; İcraat:</div>' +
-        '<ul style="margin:0;padding-left:18px;font-size:12px;color:#14532D;line-height:1.5">' +
+        '<ul style="margin:0;padding-left:18px;font-size:12px;color:#14532D;line-height:1.55">' +
           (item.actions.length ? item.actions.map(a => '<li>' + esc(a) + '</li>').join('') : '<li>Sözleşme şartlarını ve operasyonel iş akışını güncelleyin.</li>') +
         '</ul>' +
       '</div>' +
