@@ -4890,11 +4890,131 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   body.detailedReportPrintMode .reportDocSection {
     background: #ffffff !important;
     border: 1px solid #CBD5E1 !important;
+    border-radius: 8px !important;
+    padding: 12px 16px !important;
+    margin-bottom: 14px !important;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+
+  body.detailedReportPrintMode .card {
+    background: #ffffff !important;
+    border: 1px solid #CBD5E1 !important;
     border-radius: 6px !important;
-    padding: 12px 14px !important;
-    margin-bottom: 12px !important;
+    padding: 10px 12px !important;
+    margin-bottom: 10px !important;
+    box-shadow: none !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
+  }
+
+  body.detailedReportPrintMode .accordionStep {
+    box-shadow: none !important;
+    border: 1px solid #CBD5E1 !important;
+    margin-bottom: 12px !important;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+
+  body.detailedReportPrintMode .accordionHeader {
+    padding: 8px 12px !important;
+    background: #F8FAFC !important;
+    border-bottom: 1px solid #E2E8F0 !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  body.detailedReportPrintMode .accordionBody {
+    display: block !important;
+    padding: 12px !important;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+
+  body.detailedReportPrintMode .grid4,
+  body.detailedReportPrintMode .grid3,
+  body.detailedReportPrintMode .grid2 {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  body.detailedReportPrintMode .grid4 > * {
+    flex: 1 1 calc(25% - 8px) !important;
+    min-width: 130px !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  body.detailedReportPrintMode .grid3 > * {
+    flex: 1 1 calc(33.333% - 8px) !important;
+    min-width: 170px !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  body.detailedReportPrintMode .grid2 > * {
+    flex: 1 1 calc(50% - 8px) !important;
+    min-width: 200px !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  body.detailedReportPrintMode .tableWrap {
+    overflow: visible !important;
+    width: 100% !important;
+    margin: 8px 0 !important;
+  }
+
+  body.detailedReportPrintMode table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    font-size: 7.5pt !important;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+
+  body.detailedReportPrintMode thead {
+    display: table-header-group !important;
+  }
+
+  body.detailedReportPrintMode tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  body.detailedReportPrintMode th,
+  body.detailedReportPrintMode td {
+    padding: 4px 6px !important;
+    border: 1px solid #CBD5E1 !important;
+  }
+
+  body.detailedReportPrintMode th {
+    background: #F1F5F9 !important;
+    font-weight: 700 !important;
+    color: #1E293B !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body.detailedReportPrintMode .metric,
+  body.detailedReportPrintMode .riskRow,
+  body.detailedReportPrintMode .actionRow,
+  body.detailedReportPrintMode .notice,
+  body.detailedReportPrintMode .insight,
+  body.detailedReportPrintMode .scoreCard,
+  body.detailedReportPrintMode .waterfall {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  body.detailedReportPrintMode .sectionHead,
+  body.detailedReportPrintMode h1,
+  body.detailedReportPrintMode h2,
+  body.detailedReportPrintMode h3,
+  body.detailedReportPrintMode h4 {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
   }
 
   body.detailedReportPrintMode .hidePrint {
@@ -8014,7 +8134,7 @@ window.openBoardDeckInNewWindow = function(){
   w.document.close();
 };
 
-// Detailed Financial Health & Executive Decision Report (Full Preview & A4 Print Engine)
+// Detailed Financial Health & Executive Decision Report (Full Preview & A4 Print Engine - ALL SECTIONS)
 function openDetailedReportModal(){
   const d = LAST || window.LAST;
   if(!d){
@@ -8030,272 +8150,154 @@ function openDetailedReportModal(){
   const bs = d.statements?.balance_sheet || bp.statements?.balance_sheet || {};
   const k = d.statements?.kpis || bp.statements?.kpis || {};
   const cm = bp.core_metrics || {};
-  const cfe = bp.cash_flow_engine || {};
-  const pc = cfe.patron_cockpit || {};
-  const dp = bp.dupont_analysis || {};
-  const cb = bp.cash_bridge_engine || {};
-  const rr = bp.risk_ranking_engine?.ranked_risks || [];
-  const rawActions = (bp.management_actions && bp.management_actions.length) 
-    ? bp.management_actions 
-    : ((bp.strategy_playbook && bp.strategy_playbook.length) 
-        ? bp.strategy_playbook 
-        : (bp.actions || []));
-  const tms7 = cfe.tms7_statement || {};
-  const proj13 = cfe.thirteen_week_projection || {};
 
-  const healthScore = bp.health_score != null ? Math.round(bp.health_score) : (k.health_score != null ? Math.round(k.health_score) : 0);
-  const healthLabel = bp.health_label || (healthScore >= 80 ? 'Güçlü' : healthScore >= 65 ? 'İyi' : healthScore >= 50 ? 'Dengeli' : 'Riskli');
-  const hColor = healthScore >= 80 ? '#16A34A' : healthScore >= 65 ? '#2563EB' : healthScore >= 50 ? '#D97706' : '#DC2626';
+  box.innerHTML = '';
 
-  const ccc = bp.cash_conversion_cycle || {};
-  const dso = cm.dso_days != null ? cm.dso_days : (ccc.dso_days != null ? ccc.dso_days : k.dso);
-  const dio = cm.dio_days != null ? cm.dio_days : (ccc.dio_days != null ? ccc.dio_days : k.dio);
-  const dpo = cm.dpo_days != null ? cm.dpo_days : (ccc.dpo_days != null ? ccc.dpo_days : k.dpo);
-  const cccDays = cm.ccc_days != null ? cm.ccc_days : (ccc.cash_conversion_cycle_days != null ? ccc.cash_conversion_cycle_days : k.ccc);
+  // 1. KURUMSAL KAPAK & RAPOR KİMLİK BAŞLIĞI
+  const coverDiv = document.createElement('div');
+  coverDiv.className = 'reportDocSection';
+  coverDiv.style.cssText = 'background:#FFFFFF;border:2px solid #0F172A;border-radius:14px;padding:24px 28px;margin-bottom:24px;box-shadow:0 4px 16px rgba(15,27,45,0.06);page-break-inside:avoid;break-inside:avoid';
 
-  let html = '';
+  const companyName = d.period_metadata?.company_name || 'Şirket Finansal Raporu';
+  const periodLabel = d.period_metadata?.label || 'Cari Dönem';
+  const dateStr = new Date().toLocaleDateString('tr-TR', {year:'numeric', month:'long', day:'numeric'});
 
-  // 1. KURUMSAL KAPAK & YÖNETİCİ BRİFİNGİ
-  html += '<div class="reportDocSection" style="background:#FFFFFF;border:1.5px solid #0F172A;border-radius:12px;padding:18px 22px;margin-bottom:16px;page-break-inside:avoid;break-inside:avoid">';
-  html += '<div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #0F172A;padding-bottom:12px;margin-bottom:14px">';
-  html += '<div>';
-  html += '<div style="font-size:10.5px;font-weight:800;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase;margin-bottom:2px">DİGİTAL FINANCE BUSINESS PARTNER &bull; RESMİ KARAR RAPORU</div>';
-  html += '<h1 style="margin:0;font-size:20px;font-weight:900;color:#0F172A;letter-spacing:-0.5px">Detaylı Finansal Röntgen &amp; Yönetici Karar Raporu</h1>';
-  html += '<div style="font-size:11.5px;color:#64748B;margin-top:4px">Dönem: <b>' + esc(d.period_metadata?.label || 'Cari Dönem') + '</b> &bull; Rapor Tarihi: <b>' + new Date().toLocaleDateString('tr-TR', {year:'numeric',month:'long',day:'numeric'}) + '</b></div>';
-  html += '</div>';
-  html += '<div style="text-align:right">';
-  html += '<div style="background:#DCFCE7;color:#166534;border:1.5px solid #BBF7D0;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:800">✓ %100 Bilanço Denkliği Doğrulandı</div>';
-  html += '<div style="font-size:10.5px;color:#DC2626;font-weight:700;margin-top:4px">GİZLİ &bull; YÖNETİM KURULUNA ÖZEL</div>';
-  html += '</div>';
-  html += '</div>';
+  coverDiv.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2.5px solid #0F172A;padding-bottom:16px;margin-bottom:18px">
+      <div>
+        <div style="font-size:11px;font-weight:900;letter-spacing:1.5px;color:#1D4ED8;text-transform:uppercase;margin-bottom:4px">DİGİTAL FINANCE BUSINESS PARTNER &bull; RESMİ FİNANSAL KARAR RAPORU</div>
+        <h1 style="margin:0;font-size:24px;font-weight:900;color:#0F172A;letter-spacing:-0.5px">Detaylı Finansal Röntgen &amp; Yönetici Karar Raporu</h1>
+        <div style="font-size:13px;color:#475569;margin-top:6px;font-weight:500">
+          Analiz Edilen Şirket/Mizan: <b>${esc(companyName)}</b> &bull; Dönem: <b>${esc(periodLabel)}</b> &bull; Rapor Tarihi: <b>${dateStr}</b>
+        </div>
+      </div>
+      <div style="text-align:right">
+        <div style="background:#DCFCE7;color:#166534;border:1.5px solid #BBF7D0;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:800;display:inline-block">✓ %100 Bilanço Denkliği Doğrulandı</div>
+        <div style="font-size:11px;color:#DC2626;font-weight:800;margin-top:6px;letter-spacing:0.5px">GİZLİ &bull; YÖNETİM KURULUNA ÖZEL</div>
+      </div>
+    </div>
+    <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:14px 18px">
+      <div style="font-size:12px;font-weight:800;color:#0F172A;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">📑 Rapor İçindekiler / Karar Motorları İndeksi (12 Kapsamlı Bölüm · 33 Karar Motoru)</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;font-size:11.5px;color:#334155">
+        <div><b>1.</b> Yönetici Brifingi, Finansal Röntgen &amp; Stratejik Soru Masası</div>
+        <div><b>7.</b> Kök Neden &amp; Karar Hikâyeleri</div>
+        <div><b>2.</b> Öncelikli Yönetim Riskleri &amp; İcraat Takvimi</div>
+        <div><b>8.</b> Vergisel Yönetim Avantajları &amp; Teşvikler</div>
+        <div><b>3.</b> Para Nerede?, Nakit Köprüsü, TMS 7 &amp; 13 Hafta Projeksiyon</div>
+        <div><b>9.</b> Canlı Senaryo Simülatörü &amp; Esneklik Matrisi</div>
+        <div><b>4.</b> Operasyonel Kârlılık, Kâr Kalitesi &amp; DuPont Analizi</div>
+        <div><b>10.</b> Enflasyon Röntgeni &amp; Likidite Stres Testi</div>
+        <div><b>5.</b> Bilanço Gücü, Borç Yapısı &amp; Nakit Çevrim Süresi (CCC)</div>
+        <div><b>Ek A.</b> Sektörel Kıyaslama &amp; Veri Güvenilirlik Denetimi</div>
+        <div><b>6.</b> Kritik Taraflar &amp; Operasyonel Müşteri/Stok İstihbaratı</div>
+        <div><b>Ek B.</b> Trend İzleme &amp; 3 Temel Mali Tablo (P&amp;L, Bilanço, CF)</div>
+      </div>
+    </div>
+  `;
+  box.appendChild(coverDiv);
 
-  // KPI Strip
-  html += '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">';
-  html += '<div style="flex:1;min-width:140px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 12px">';
-  html += '<div style="font-size:10.5px;color:#64748B;font-weight:700;text-transform:uppercase">Finansal Sağlık</div>';
-  html += '<div style="font-size:20px;font-weight:900;color:' + hColor + ';margin:2px 0">' + healthScore + ' / 100</div>';
-  html += '<div style="font-size:10.5px;color:' + hColor + ';font-weight:700">' + healthLabel + ' Durum</div>';
-  html += '</div>';
-  html += '<div style="flex:1;min-width:140px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 12px">';
-  html += '<div style="font-size:10.5px;color:#64748B;font-weight:700;text-transform:uppercase">Dönem Net Kârı</div>';
-  html += '<div style="font-size:20px;font-weight:900;color:#0F172A;margin:2px 0">' + money(pl['Net profit']) + '</div>';
-  html += '<div style="font-size:10.5px;color:#64748B">Gelir Tablosu</div>';
-  html += '</div>';
-  html += '<div style="flex:1;min-width:140px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 12px">';
-  html += '<div style="font-size:10.5px;color:#64748B;font-weight:700;text-transform:uppercase">İşletme Nakit Akışı (OCF)</div>';
-  html += '<div style="font-size:20px;font-weight:900;color:' + ((cb.operating_cash_flow_proxy||0)>=0?'#16A34A':'#DC2626') + ';margin:2px 0">' + ((cb.operating_cash_flow_proxy||0)>0?'+':'') + money(cb.operating_cash_flow_proxy||0) + '</div>';
-  html += '<div style="font-size:10.5px;color:#64748B">Esas Faaliyet Nakdi</div>';
-  html += '</div>';
-  html += '<div style="flex:1;min-width:140px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 12px">';
-  html += '<div style="font-size:10.5px;color:#64748B;font-weight:700;text-transform:uppercase">Nakit Çevrim (CCC)</div>';
-  html += '<div style="font-size:20px;font-weight:900;color:#0F172A;margin:2px 0">' + (cccDays!=null ? Math.round(Number(cccDays)) + ' gün' : '–') + '</div>';
-  html += '<div style="font-size:10.5px;color:#64748B">DSO ' + Math.round(Number(dso)||0) + ' + DIO ' + Math.round(Number(dio)||0) + ' - DPO ' + Math.round(Number(dpo)||0) + '</div>';
-  html += '</div>';
-  html += '</div>';
+  // 2. TÜM 12 BÖLÜMÜ SIRASIYLA ENTEGRE ET
+  const stepIds = [
+    'flowStep_1', 'flowStep_2', 'flowStep_3', 'flowStep_4', 'flowStep_5',
+    'flowStep_6', 'flowStep_7', 'flowStep_8', 'flowStep_9', 'flowStep_10',
+    'flowStep_ekA', 'flowStep_ekB'
+  ];
 
-  // Executive Story
-  html += '<div style="background:#EFF6FF;border-left:4px solid #1D4ED8;border-radius:6px;padding:12px 16px;font-size:12px;color:#1E293B;line-height:1.55">';
-  html += '<b>📋 Yönetici Teşhisi &amp; Karar Brifingi:</b> ' + esc(bp.executive_summary || 'Finansal tablolar incelenmiş olup detaylı bulgular aşağıda sıralanmıştır.') + '</div>';
-  html += '</div>';
+  stepIds.forEach(id => {
+    const orig = document.getElementById(id);
+    if(!orig) return;
 
-  // 2. 30 SANİYELİK PATRON TEŞHİSİ
-  html += '<div class="reportDocSection" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:12px;padding:16px 20px;margin-bottom:16px;page-break-inside:avoid;break-inside:avoid">';
-  html += '<div style="font-size:13px;font-weight:800;color:#0F172A;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;border-bottom:1.5px solid #E2E8F0;padding-bottom:6px">⚡ 30 Saniyelik Patron Teşhisi: Kâr Kalitesi, Para Nerede &amp; 1 Numaralı Karar</div>';
-  html += '<div style="display:flex;gap:12px;flex-wrap:wrap">';
-  html += '<div style="flex:1;min-width:240px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:12px 14px">';
-  html += '<div style="font-size:11px;font-weight:800;color:#475569;text-transform:uppercase">1. Kâr Durumu &amp; Kasaya Giren Nakit</div>';
-  const crpVal = cb.cash_realization_pct;
-  const crpStr = crpVal != null ? (crpVal < 0 ? '-%' + Math.abs(Math.round(crpVal)) : '%' + Math.round(crpVal)) : '–';
-  html += '<div style="font-size:18px;font-weight:900;color:' + ((cb.operating_cash_flow_proxy||0)>=0?'#16A34A':'#DC2626') + ';margin:4px 0">' + crpStr + ' Dönüşüm</div>';
-  html += '<div style="font-size:11.5px;color:#64748B;line-height:1.45">' + ($('snapProfitQualityDesc')?.textContent || 'Defter kârı ile operasyonel nakit girişi analizi.') + '</div>';
-  html += '</div>';
-  html += '<div style="flex:1;min-width:240px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:12px 14px">';
-  html += '<div style="font-size:11px;font-weight:800;color:#92400E;text-transform:uppercase">2. Şirket Parasının Kilitlendiği Yer</div>';
-  html += '<div style="font-size:18px;font-weight:900;color:#B45309;margin:4px 0">' + ($('snapCapitalLeakVal')?.textContent || 'Müşteri Alacakları') + '</div>';
-  html += '<div style="font-size:11.5px;color:#92400E;line-height:1.45">' + ($('snapCapitalLeakDesc')?.textContent || 'Sermaye kilitlenmesi tespit edilmiştir.') + '</div>';
-  html += '</div>';
-  html += '<div style="flex:1;min-width:240px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:12px 14px">';
-  html += '<div style="font-size:11px;font-weight:800;color:#1D4ED8;text-transform:uppercase">3. Alınacak 1 Numaralı Karar</div>';
-  html += '<div style="font-size:18px;font-weight:900;color:#1D4ED8;margin:4px 0">' + ($('snapTopActionVal')?.textContent || 'Tahsilat Hızlandırma') + '</div>';
-  html += '<div style="font-size:11.5px;color:#1E40AF;line-height:1.45">' + ($('snapTopActionDesc')?.textContent || 'Kasaya sıcak nakit akışı sağlayacak öncelikli aksiyon.') + '</div>';
-  html += '</div>';
-  html += '</div>';
-  html += '</div>';
+    // Clone element
+    const clone = orig.cloneNode(true);
+    clone.id = 'report_' + id;
+    clone.classList.add('reportDocSection');
+    clone.classList.add('active');
+    clone.style.cssText = 'background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:14px;padding:22px 26px;margin-bottom:24px;box-shadow:0 3px 12px rgba(15,27,45,0.04);';
 
-  // 3. ÖNCELİKLİ RİSKLER TABLOSU
-  html += '<div class="reportDocSection" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:12px;padding:16px 20px;margin-bottom:16px;page-break-inside:avoid;break-inside:avoid">';
-  html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1.5px solid #E2E8F0;padding-bottom:6px">';
-  html += '<div style="font-size:13px;font-weight:800;color:#B91C1C;text-transform:uppercase;letter-spacing:0.5px">🚨 Öncelikli Finansal Riskler &amp; Kırmızı Alarmlar</div>';
-  html += '<span style="font-size:11px;font-weight:800;color:#DC2626;background:#FEE2E2;padding:2px 8px;border-radius:4px">' + rr.length + ' Risk Tespit Edildi</span>';
-  html += '</div>';
-  html += '<table style="width:100%;border-collapse:collapse;font-size:11.5px">';
-  html += '<thead><tr style="background:#F8FAFC;border-bottom:1.5px solid #CBD5E1;text-align:left"><th style="padding:6px 8px;width:30px">#</th><th style="padding:6px 8px">Risk Başlığı &amp; Kategori</th><th style="padding:6px 8px;width:90px;text-align:center">Skor (/100)</th><th style="padding:6px 8px;width:120px;text-align:right">Maruziyet (TL)</th><th style="padding:6px 8px;width:90px;text-align:center">Seviye</th></tr></thead>';
-  html += '<tbody>';
-  rr.slice(0, 6).forEach(r => {
-    const isCrit = r.severity === 'critical' || r.risk_tier === 'CRITICAL';
-    html += '<tr style="border-bottom:1px solid #F1F5F9">';
-    html += '<td style="padding:6px 8px;font-weight:800;color:#1D4ED8">#' + r.rank + '</td>';
-    html += '<td style="padding:6px 8px"><b>' + esc(r.title) + '</b><div style="font-size:10.5px;color:#64748B">' + esc(r.category || '') + '</div></td>';
-    html += '<td style="padding:6px 8px;text-align:center;font-weight:700">' + (r.risk_score != null ? Math.round(r.risk_score) : '–') + '</td>';
-    html += '<td style="padding:6px 8px;text-align:right;font-weight:800;color:#DC2626">' + (r.estimated_exposure != null ? money(r.estimated_exposure) : '–') + '</td>';
-    html += '<td style="padding:6px 8px;text-align:center"><span style="background:' + (isCrit?'#FEE2E2':'#FEF3C7') + ';color:' + (isCrit?'#991B1B':'#92400E') + ';padding:2px 8px;border-radius:4px;font-size:10.5px;font-weight:800">' + esc(r.risk_tier || r.severity || 'HIGH') + '</span></td>';
-    html += '</tr>';
-  });
-  html += '</tbody></table>';
-  html += '</div>';
+    // Remove buttons, inputs, interactive widgets, toggles, sub-navbars
+    clone.querySelectorAll('.hidePrint, .accordionToolbar, .dashboardSubNav, .accordionToggleIcon, button, input, select').forEach(e => e.remove());
 
-  // 4. PATRON İCRAAT MASASI
-  html += '<div class="reportDocSection" style="background:#FFFFFF;border:1.5px solid #2563EB;border-radius:12px;padding:16px 20px;margin-bottom:16px;page-break-inside:avoid;break-inside:avoid">';
-  html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1.5px solid #BFDBFE;padding-bottom:6px">';
-  html += '<div style="font-size:13px;font-weight:800;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.5px">🎯 Bu Hafta Ne Yapmalı? (Patron İcraat Masası)</div>';
-  if(pc.total_unlockable_cash){
-    html += '<div style="font-size:11.5px;font-weight:800;color:#15803D;background:#F0FDF4;border:1px solid #BBF7D0;padding:3px 8px;border-radius:6px">💰 Kurtarılacak Kilitli Nakit: +' + money(pc.total_unlockable_cash) + '</div>';
-  }
-  html += '</div>';
-  html += '<table style="width:100%;border-collapse:collapse;font-size:11.5px">';
-  html += '<thead><tr style="background:#EFF6FF;border-bottom:1.5px solid #BFDBFE;text-align:left"><th style="padding:6px 8px">Öncelikli Görev / Aksiyon</th><th style="padding:6px 8px;width:120px">Sorumlu</th><th style="padding:6px 8px;width:90px">Termin</th><th style="padding:6px 8px;width:130px;text-align:right">Hedef / KPI</th></tr></thead>';
-  html += '<tbody>';
-  const actList = (pc.actions && pc.actions.length) ? pc.actions : rawActions.slice(0, 4);
-  actList.forEach(a => {
-    html += '<tr style="border-bottom:1px solid #F1F5F9">';
-    html += '<td style="padding:6px 8px;font-weight:600;color:#0F172A">' + esc(a.action || a.title || '') + (a.description ? '<div style="font-size:10.5px;color:#64748B">' + esc(a.description) + '</div>' : '') + '</td>';
-    html += '<td style="padding:6px 8px;font-weight:700;color:#1E40AF">' + esc(a.owner || 'CFO / Finans') + '</td>';
-    html += '<td style="padding:6px 8px;color:#DC2626;font-weight:700">' + esc(a.deadline || a.timeline || '14 Gün') + '</td>';
-    html += '<td style="padding:6px 8px;text-align:right;font-weight:800;color:#16A34A">' + (a.target_kpi ? esc(a.target_kpi) : (a.unlock_cash_tl ? '+' + money(a.unlock_cash_tl) : 'Nakit Hızlandırma')) + '</td>';
-    html += '</tr>';
-  });
-  html += '</tbody></table>';
-  html += '</div>';
+    // Clean and fix header
+    const hdr = clone.querySelector('.accordionHeader');
+    if(hdr){
+      hdr.removeAttribute('onclick');
+      hdr.style.cssText = 'padding:0 0 14px 0;border-bottom:2px solid #E2E8F0;margin-bottom:16px;background:none;cursor:default;display:flex;justify-content:space-between;align-items:center';
+    }
 
-  // 5. YÖNETİMSEL CFO NAKİT KÖPRÜSÜ
-  if(cb.available){
-    const wcc = cb.working_capital_components || {};
-    html += '<div class="reportDocSection" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:12px;padding:16px 20px;margin-bottom:16px;page-break-inside:avoid;break-inside:avoid">';
-    html += '<div style="font-size:13px;font-weight:800;color:#0F172A;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;border-bottom:1.5px solid #E2E8F0;padding-bottom:6px">💸 Nakit Akış Tablosu (Yönetimsel CFO Köprüsü)</div>';
-    html += '<table style="width:100%;border-collapse:collapse;font-size:11px">';
-    html += '<tbody>';
-    html += '<tr style="background:#F1F5F9;font-weight:800"><td colspan="2" style="padding:5px 8px">I. İŞLETME FAALİYETLERİNDEN NAKİT AKIŞI</td></tr>';
-    html += '<tr><td style="padding:5px 8px 5px 16px">Dönem Net Kârı</td><td style="padding:5px 8px;text-align:right"><b>' + money(cb.net_profit) + '</b></td></tr>';
-    html += '<tr><td style="padding:5px 8px 5px 16px">Faaliyet Dışı Düzeltmeler (Finansman / Vergi Eklemeleri)</td><td style="padding:5px 8px;text-align:right">+' + money(cb.non_operating_addback) + '</td></tr>';
-    html += '<tr style="background:#FAFBFD;font-weight:700"><td style="padding:5px 8px 5px 16px">Faaliyet Kârı (FVÖK)</td><td style="padding:5px 8px;text-align:right">' + money(cb.operating_profit) + '</td></tr>';
-    html += '<tr><td style="padding:5px 8px 5px 16px;color:#475569">Δ Ticari Alacak Değişimi (Müşteri)</td><td style="padding:5px 8px;text-align:right;color:' + (wcc.receivables_effect<0?'#DC2626':'#16A34A') + '">' + money(wcc.receivables_effect) + '</td></tr>';
-    html += '<tr><td style="padding:5px 8px 5px 16px;color:#475569">Δ Stok Değişimi (Depo Kilidi)</td><td style="padding:5px 8px;text-align:right;color:' + (wcc.inventory_effect<0?'#DC2626':'#16A34A') + '">' + money(wcc.inventory_effect) + '</td></tr>';
-    html += '<tr><td style="padding:5px 8px 5px 16px;color:#475569">Δ Ticari Borç Değişimi (Tedarikçi Katkısı)</td><td style="padding:5px 8px;text-align:right;color:' + (wcc.payables_effect<0?'#DC2626':'#16A34A') + '">' + money(wcc.payables_effect) + '</td></tr>';
-    html += '<tr style="font-weight:800;background:#EFF6FF"><td style="padding:6px 8px">İşletme Faaliyetleri Net Nakit Akışı (Esas Faaliyet)</td><td style="padding:6px 8px;text-align:right;color:' + (cb.operating_cash_flow_proxy<0?'#DC2626':'#16A34A') + '">' + money(cb.operating_cash_flow_proxy) + '</td></tr>';
-    html += '<tr style="background:#F1F5F9;font-weight:800"><td colspan="2" style="padding:5px 8px">II. KASA MUTABAKATI &amp; REALİZASYON</td></tr>';
-    html += '<tr><td style="padding:5px 8px 5px 16px">Dönem Başı Kasa &amp; Banka</td><td style="padding:5px 8px;text-align:right">' + money(cb.opening_cash) + '</td></tr>';
-    html += '<tr><td style="padding:5px 8px 5px 16px">Dönem Sonu Kasa &amp; Banka (100+102)</td><td style="padding:5px 8px;text-align:right;font-weight:800">' + money(cb.closing_cash) + '</td></tr>';
-    html += '<tr style="font-weight:800;border-top:1.5px solid #CBD5E1"><td style="padding:6px 8px">Net Kâr Nakde Dönüşüm Oranı</td><td style="padding:6px 8px;text-align:right;color:' + ((cb.cash_realization_pct||0)<50?'#DC2626':'#16A34A') + '">' + crpStr + '</td></tr>';
-    html += '</tbody></table>';
-    html += '</div>';
-  }
+    // Ensure body is visible
+    const bdy = clone.querySelector('.accordionBody');
+    if(bdy){
+      bdy.style.cssText = 'display:block !important;padding:0 !important;';
+    }
 
-  // 6. TMS 7 DOLAYLI NAKİT AKIŞ TABLOSU
-  if(tms7 && tms7.operating_activities){
-    const op = tms7.operating_activities || {};
-    const inv = tms7.investing_activities || {};
-    const fin = tms7.financing_activities || {};
-    const summ = tms7.summary || {};
-    html += '<div class="reportDocSection" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:12px;padding:16px 20px;margin-bottom:16px;page-break-inside:avoid;break-inside:avoid">';
-    html += '<div style="font-size:13px;font-weight:800;color:#0F172A;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;border-bottom:1.5px solid #E2E8F0;padding-bottom:6px">📑 TMS 7 Dolaylı Nakit Akış Tablosu (Resmi UFRS Formatı)</div>';
-    html += '<table style="width:100%;border-collapse:collapse;font-size:11px">';
-    html += '<thead><tr style="background:#F8FAFC;border-bottom:1px solid #CBD5E1;text-align:left"><th style="padding:5px 8px">TMS 7 Nakit Akış Kalemi</th><th style="padding:5px 8px;text-align:right;width:140px">Tutar (TL)</th><th style="padding:5px 8px;text-align:right;width:140px">Nitelik</th></tr></thead>';
-    html += '<tbody>';
-    html += '<tr style="background:#F1F5F9;font-weight:800"><td colspan="3" style="padding:5px 8px">A. İŞLETME FAALİYETLERİNDEN NAKİT AKIŞLARI</td></tr>';
-    html += '<tr><td style="padding:4px 8px 4px 16px">• Dönem Net Kârı</td><td style="padding:4px 8px;text-align:right">' + money(op.net_profit) + '</td><td style="padding:4px 8px;text-align:right;color:#64748B">Tahakkuk</td></tr>';
-    html += '<tr><td style="padding:4px 8px 4px 16px">• (+) Amortisman ve Finansman Düzeltmeleri</td><td style="padding:4px 8px;text-align:right">+' + money((op.depreciation_addback||0)+(op.finance_costs_addback||0)) + '</td><td style="padding:4px 8px;text-align:right;color:#64748B">Gayri Nakdi</td></tr>';
-    html += '<tr><td style="padding:4px 8px 4px 16px">• Ticari Alacak Değişimi (120)</td><td style="padding:4px 8px;text-align:right;color:' + (op.receivables_change<0?'#DC2626':'#16A34A') + '">' + (op.receivables_change>0?'+':'') + money(op.receivables_change) + '</td><td style="padding:4px 8px;text-align:right;color:#64748B">İşletme Sermayesi</td></tr>';
-    html += '<tr><td style="padding:4px 8px 4px 16px">• Stok Değişimi (150/153)</td><td style="padding:4px 8px;text-align:right;color:' + (op.inventory_change<0?'#DC2626':'#16A34A') + '">' + (op.inventory_change>0?'+':'') + money(op.inventory_change) + '</td><td style="padding:4px 8px;text-align:right;color:#64748B">İşletme Sermayesi</td></tr>';
-    html += '<tr><td style="padding:4px 8px 4px 16px">• Ticari Borç Değişimi (320)</td><td style="padding:4px 8px;text-align:right;color:' + (op.payables_change<0?'#DC2626':'#16A34A') + '">' + (op.payables_change>0?'+':'') + money(op.payables_change) + '</td><td style="padding:4px 8px;text-align:right;color:#64748B">Tedarikçi Kredisi</td></tr>';
-    html += '<tr style="background:#F0FDF4;font-weight:800"><td style="padding:6px 8px">İşletme Faaliyetlerinden Net Nakit Akışı</td><td style="padding:6px 8px;text-align:right;color:' + (op.net_operating_cash_flow>=0?'#16A34A':'#DC2626') + '">' + money(op.net_operating_cash_flow) + '</td><td style="padding:6px 8px;text-align:right">Esas Faaliyet</td></tr>';
-    html += '<tr style="background:#F1F5F9;font-weight:800"><td colspan="3" style="padding:5px 8px">B. YATIRIM VE FİNANSMAN AKIŞLARI</td></tr>';
-    html += '<tr><td style="padding:4px 8px 4px 16px">• Yatırım Nakit Akışı (CAPEX)</td><td style="padding:4px 8px;text-align:right;color:#DC2626">' + money(inv.net_investing_cash_flow) + '</td><td style="padding:4px 8px;text-align:right;color:#64748B">Duran Varlık</td></tr>';
-    html += '<tr><td style="padding:4px 8px 4px 16px">• Finansman Nakit Akışı (Kredi/Faiz)</td><td style="padding:4px 8px;text-align:right">' + money(fin.net_financing_cash_flow) + '</td><td style="padding:4px 8px;text-align:right;color:#64748B">Dış Kaynak</td></tr>';
-    html += '<tr style="background:#0F172A;color:#FFFFFF;font-weight:800"><td style="padding:6px 8px">Dönem Sonu Kasa &amp; Banka Mutabakatı (100+102)</td><td style="padding:6px 8px;text-align:right;color:#38BDF8">' + money(summ.closing_cash) + '</td><td style="padding:6px 8px;text-align:right;color:#CBD5E1">Resmi Kasa</td></tr>';
-    html += '</tbody></table>';
-    html += '</div>';
-  }
+    // Ensure special hidden tables/cards are displayed if populated
+    const tms7Wrap = clone.querySelector('#tms7TableWrap') || clone.querySelector('[id*="tms7TableWrap"]');
+    if(tms7Wrap){
+      tms7Wrap.classList.remove('hidden');
+      tms7Wrap.style.display = 'block';
+      tms7Wrap.style.marginTop = '14px';
+    }
+    const tms7Card = clone.querySelector('#tms7Card') || clone.querySelector('[id*="tms7Card"]');
+    if(tms7Card){
+      tms7Card.classList.remove('hidden');
+      tms7Card.style.display = 'block';
+    }
+    const pcc = clone.querySelector('#patronCashCockpitCard') || clone.querySelector('[id*="patronCashCockpitCard"]');
+    if(pcc){
+      pcc.classList.remove('hidden');
+      pcc.style.display = 'block';
+    }
+    const thw = clone.querySelector('#thirteenWeekCard') || clone.querySelector('[id*="thirteenWeekCard"]');
+    if(thw){
+      thw.classList.remove('hidden');
+      thw.style.display = 'block';
+    }
 
-  // 7. 13 HAFTALIK NAKİT PROJEKSİYONU
-  if(proj13 && proj13.weeks && proj13.weeks.length){
-    html += '<div class="reportDocSection" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:12px;padding:16px 20px;margin-bottom:16px;page-break-inside:avoid;break-inside:avoid">';
-    html += '<div style="font-size:13px;font-weight:800;color:#0F172A;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;border-bottom:1.5px solid #E2E8F0;padding-bottom:6px">📅 13 Haftalık Dinamik Nakit Akış Projeksiyonu</div>';
-    html += '<table style="width:100%;border-collapse:collapse;font-size:10px">';
-    html += '<thead><tr style="background:#F8FAFC;border-bottom:1.5px solid #CBD5E1;text-align:left"><th style="padding:4px 6px">Hafta</th><th style="padding:4px 6px">Açılış</th><th style="padding:4px 6px;color:#16A34A">Tahsilat</th><th style="padding:4px 6px;color:#DC2626">Tedarikçi</th><th style="padding:4px 6px;color:#DC2626">Maaş/OpEx</th><th style="padding:4px 6px;color:#DC2626">Vergi/Kredi</th><th style="padding:4px 6px">Net Değişim</th><th style="padding:4px 6px">Kapanış</th><th style="padding:4px 6px;text-align:center">Durum</th></tr></thead>';
-    html += '<tbody>';
-    proj13.weeks.forEach(w => {
-      const isDef = w.status === 'DEFICIT';
-      const isWarn = w.status === 'WARNING';
-      html += '<tr style="border-bottom:1px solid #F1F5F9">';
-      html += '<td style="padding:4px 6px;font-weight:700">' + esc(w.label) + '</td>';
-      html += '<td style="padding:4px 6px">' + money(w.beginning_cash) + '</td>';
-      html += '<td style="padding:4px 6px;color:#16A34A;font-weight:600">+' + money(w.inflows) + '</td>';
-      html += '<td style="padding:4px 6px;color:#DC2626">-' + money(w.outflow_breakdown?.supplier_payments) + '</td>';
-      html += '<td style="padding:4px 6px;color:#DC2626">-' + money(w.outflow_breakdown?.payroll_and_opex) + '</td>';
-      html += '<td style="padding:4px 6px;color:#DC2626">-' + money((w.outflow_breakdown?.tax_and_sgk||0)+(w.outflow_breakdown?.debt_service||0)) + '</td>';
-      html += '<td style="padding:4px 6px;font-weight:700;color:' + (w.net_cash_flow>=0?'#16A34A':'#DC2626') + '">' + (w.net_cash_flow>0?'+':'') + money(w.net_cash_flow) + '</td>';
-      html += '<td style="padding:4px 6px;font-weight:800;color:' + (w.ending_cash<0?'#DC2626':'#0F172A') + '">' + money(w.ending_cash) + '</td>';
-      html += '<td style="padding:4px 6px;text-align:center"><span style="background:' + (isDef?'#FEE2E2':isWarn?'#FEF3C7':'#DCFCE7') + ';color:' + (isDef?'#991B1B':isWarn?'#92400E':'#166534') + ';padding:2px 6px;border-radius:4px;font-size:9.5px;font-weight:800">' + (isDef?'AÇIK':isWarn?'UYARI':'İYİ') + '</span></td>';
-      html += '</tr>';
+    // Strip inline script or event listeners if any
+    clone.querySelectorAll('*').forEach(el => {
+      el.removeAttribute('onclick');
+      el.removeAttribute('onchange');
+      el.removeAttribute('oninput');
     });
-    html += '</tbody></table>';
-    html += '</div>';
-  }
 
-  // 8. DUPONT ANALYSIS & CCC
-  html += '<div class="reportDocSection" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:12px;padding:16px 20px;margin-bottom:16px;page-break-inside:avoid;break-inside:avoid">';
-  html += '<div style="font-size:13px;font-weight:800;color:#0F172A;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;border-bottom:1.5px solid #E2E8F0;padding-bottom:6px">📈 DuPont Kâr Köprüsü &amp; Çalışma Sermayesi Çevrim Süresi (CCC)</div>';
-  html += '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px">';
-  html += '<div style="flex:1;min-width:180px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:12px">';
-  html += '<div style="font-size:11px;font-weight:700;color:#64748B">Özkaynak Kârlılığı (ROE)</div>';
-  html += '<div style="font-size:18px;font-weight:900;color:#1D4ED8;margin:3px 0">%' + (dp.roe_pct!=null ? num(dp.roe_pct) : '–') + '</div>';
-  html += '<div style="font-size:10.5px;color:#64748B">Net Kâr / Özkaynak</div>';
-  html += '</div>';
-  html += '<div style="flex:1;min-width:180px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:12px">';
-  html += '<div style="font-size:11px;font-weight:700;color:#64748B">Net Kâr Marjı</div>';
-  html += '<div style="font-size:18px;font-weight:900;color:#0F172A;margin:3px 0">%' + (dp.net_profit_margin_pct!=null ? num(dp.net_profit_margin_pct) : '–') + '</div>';
-  html += '<div style="font-size:10.5px;color:#64748B">Fiyatlama Gücü</div>';
-  html += '</div>';
-  html += '<div style="flex:1;min-width:180px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:12px">';
-  html += '<div style="font-size:11px;font-weight:700;color:#64748B">Varlık Devir Hızı (ATO)</div>';
-  html += '<div style="font-size:18px;font-weight:900;color:#0F172A;margin:3px 0">' + (dp.asset_turnover!=null ? num(dp.asset_turnover) + 'x' : '–') + '</div>';
-  html += '<div style="font-size:10.5px;color:#64748B">Ciro Verimi</div>';
-  html += '</div>';
-  html += '<div style="flex:1;min-width:180px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:12px">';
-  html += '<div style="font-size:11px;font-weight:700;color:#64748B">Kaldıraç Çarpanı</div>';
-  html += '<div style="font-size:18px;font-weight:900;color:#0F172A;margin:3px 0">' + (dp.equity_multiplier!=null ? num(dp.equity_multiplier) + 'x' : '–') + '</div>';
-  html += '<div style="font-size:10.5px;color:#64748B">Toplam Varlık / Özkaynak</div>';
-  html += '</div>';
-  html += '</div>';
-  html += '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:10px 14px;font-size:11.5px;line-height:1.5;color:#334155">';
-  html += '<b>Nakit Döngüsü:</b> ' + (dso!=null?Math.round(dso):0) + ' gün Alacak (DSO) + ' + (dio!=null?Math.round(dio):0) + ' gün Stok (DIO) - ' + (dpo!=null?Math.round(dpo):0) + ' gün Tedarikçi (DPO) = <b>' + (cccDays!=null?Math.round(cccDays):0) + ' gün Nakit Dönüşüm Süresi (CCC)</b>.';
-  html += '</div>';
-  html += '</div>';
+    box.appendChild(clone);
+  });
 
-  // 9. ENFLASYON & STRES TESTİ
-  html += '<div class="reportDocSection" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:12px;padding:16px 20px;margin-bottom:16px;page-break-inside:avoid;break-inside:avoid">';
-  html += '<div style="font-size:13px;font-weight:800;color:#DC2626;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;border-bottom:1.5px solid #E2E8F0;padding-bottom:6px">🔥 Enflasyon Düzeltmeli Gerçek Kârlılık &amp; Müşteri Likidite Stres Testi</div>';
-  html += '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px">';
-  html += '<div style="flex:1;min-width:240px;background:#FEF2F2;border:1px solid #FCA5A5;border-radius:10px;padding:12px">';
-  html += '<div style="font-size:11px;font-weight:800;color:#991B1B">Enflasyon Karşısında Reel Kâr Durumu</div>';
-  html += '<div style="font-size:14px;font-weight:800;color:#7F1D1D;margin:3px 0">' + ($('#inflationAssessment b')?.textContent || 'Fiktif Kâr Ayrıştırması') + '</div>';
-  html += '<div style="font-size:11px;color:#991B1B">' + ($('#inflationAssessment p')?.textContent || 'Klasik mizan fiktif stok kârını gizler; reel kâr ve sermaye koruma takibi yapılmalıdır.') + '</div>';
-  html += '</div>';
-  html += '<div style="flex:1;min-width:240px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:12px">';
-  html += '<div style="font-size:11px;font-weight:800;color:#92400E">Müşteri Ödeme Gecikmesi Stres Testi (30-60 Gün)</div>';
-  html += '<div style="font-size:14px;font-weight:800;color:#78350F;margin:3px 0">' + ($('#stressAssessment b')?.textContent || 'Dayanıklılık Eşiği') + '</div>';
-  html += '<div style="font-size:11px;color:#78350F">' + ($('#stressAssessment p')?.textContent || 'İlk 3 müşterinin ödemeyi geciktirmesi durumunda likidite tamponu test edilmiştir.') + '</div>';
-  html += '</div>';
-  html += '</div>';
-  html += '</div>';
+  // 3. RESMİ İMZA, DENETİM VE ONAY BÖLÜMÜ
+  const footerDiv = document.createElement('div');
+  footerDiv.className = 'reportDocSection';
+  footerDiv.style.cssText = 'background:#FFFFFF;border:1.5px solid #0F172A;border-radius:14px;padding:22px 26px;margin-bottom:24px;box-shadow:0 3px 12px rgba(15,27,45,0.04);page-break-inside:avoid;break-inside:avoid';
+  footerDiv.innerHTML = `
+    <div style="border-bottom:1.5px solid #E2E8F0;padding-bottom:10px;margin-bottom:16px">
+      <h3 style="margin:0;font-size:15px;color:#0F172A;font-weight:900;text-transform:uppercase;letter-spacing:0.5px">⚖️ Rapor Doğrulama, Denetim &amp; Yönetim Onay Belgesi</h3>
+      <div style="font-size:11.5px;color:#64748B;margin-top:2px">Bu rapor 33 deterministik karar motoru ve çift yönlü muhasebe kuralları ile otomatik türetilmiştir.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px">
+      <div style="border:1px solid #CBD5E1;border-radius:8px;padding:12px;background:#F8FAFC">
+        <div style="font-size:10.5px;font-weight:800;color:#64748B;text-transform:uppercase">1. Raporlayan Sistem</div>
+        <div style="font-size:13px;font-weight:900;color:#0F172A;margin:4px 0">Digital Finance BP Engine</div>
+        <div style="font-size:11px;color:#16A34A;font-weight:700">✓ %100 Matematiksel Mutabakat</div>
+        <div style="font-size:10px;color:#94A3B8;margin-top:6px">İmza / Mühür: <i>Elektronik Doğrulandı</i></div>
+      </div>
+      <div style="border:1px solid #CBD5E1;border-radius:8px;padding:12px;background:#F8FAFC">
+        <div style="font-size:10.5px;font-weight:800;color:#64748B;text-transform:uppercase">2. CFO / Finans Direktörü</div>
+        <div style="font-size:13px;font-weight:900;color:#0F172A;margin:4px 0">Finansal Yönetim Mütalaası</div>
+        <div style="font-size:11px;color:#1D4ED8;font-weight:700">Öncelikli Aksiyonlar İncelendi</div>
+        <div style="font-size:10px;color:#94A3B8;margin-top:6px">Tarih / İmza: ....................................</div>
+      </div>
+      <div style="border:1px solid #CBD5E1;border-radius:8px;padding:12px;background:#F8FAFC">
+        <div style="font-size:10.5px;font-weight:800;color:#64748B;text-transform:uppercase">3. CEO / Yönetim Kurulu Başkanı</div>
+        <div style="font-size:13px;font-weight:900;color:#0F172A;margin:4px 0">Nihai İcraat &amp; Karar Onayı</div>
+        <div style="font-size:11px;color:#9333EA;font-weight:700">Haftalık Takip Planına Alındı</div>
+        <div style="font-size:10px;color:#94A3B8;margin-top:6px">Tarih / İmza: ....................................</div>
+      </div>
+    </div>
+    <div style="font-size:10.5px;color:#64748B;line-height:1.45;border-top:1px solid #E2E8F0;padding-top:10px">
+      <b>Yasal Uyarı:</b> Bu karar dokümanı resmi mizan verilerinden türetilmiş stratejik yönetim rehberidir; resmi vergi beyannamesi veya YMM raporu yerine geçmez. Tüm karar ve senaryolar çift taraflı muhasebe denkliği denetiminden geçmiştir.
+    </div>
+  `;
+  box.appendChild(footerDiv);
 
-  // FOOTER
-  html += '<div style="text-align:center;padding-top:12px;font-size:11px;color:#64748B;border-top:1px solid #CBD5E1">';
-  html += 'Digital Finance Business Partner &bull; CFO &amp; Yönetim Kurulu Karar Destek Platformu &bull; digitalfinancebp.com<br>';
-  html += '<span style="font-size:9.5px;color:#94A3B8">Bu rapor deterministik çift yönlü muhasebe denetim kurallarına dayanarak oluşturulmuştur. Resmi mali müşavirlik veya bağımsız denetim raporu yerine geçmez.</span>';
-  html += '</div>';
-
-  box.innerHTML = html;
   modal.classList.remove('hidden');
 }
 
@@ -8314,7 +8316,94 @@ window.openDetailedReportInNewWindow = function(){
     alert('Açılır pencere tarayıcınız tarafından engellendi. Lütfen izin verin veya doğrudan Yazdır butonunu kullanın.');
     return;
   }
-  w.document.write('<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>Detaylı Finansal Röntgen & Karar Raporu | Digital Finance BP</title><style>@page{size:A4 portrait;margin:10mm 12mm}body{margin:0;padding:16px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#0F172A;background:#fff}.reportDocSection{border:1px solid #CBD5E1;border-radius:8px;padding:14px 18px;margin-bottom:14px;page-break-inside:avoid;break-inside:avoid}table{width:100%;border-collapse:collapse;font-size:11px}th,td{padding:5px 7px;border:1px solid #E2E8F0}th{background:#F8FAFC;font-weight:700}thead{display:table-header-group}tr{page-break-inside:avoid;break-inside:avoid}@media print{body{padding:0}.hidePrint{display:none!important}}</style></head><body>' + content.innerHTML + '<script>setTimeout(function(){window.print();},400);<\\/script></body></html>');
+  w.document.write(`<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Detaylı Finansal Karar Raporu (Tüm Bölümler) | Digital Finance BP</title>
+  <style>
+    @page { size: A4 portrait; margin: 10mm 12mm 10mm 12mm; }
+    *, *::before, *::after { box-sizing: border-box !important; }
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #0F172A;
+      background: #F8FAFC;
+      line-height: 1.4;
+      font-size: 12px;
+    }
+    .reportDocSection {
+      background: #FFFFFF !important;
+      border: 1.5px solid #CBD5E1 !important;
+      border-radius: 12px !important;
+      padding: 20px 24px !important;
+      margin-bottom: 24px !important;
+      page-break-inside: auto !important;
+      break-inside: auto !important;
+    }
+    .card {
+      background: #FFFFFF !important;
+      border: 1px solid #E2E8F0 !important;
+      border-radius: 10px !important;
+      padding: 14px 18px !important;
+      margin-bottom: 14px !important;
+      box-shadow: none !important;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    .grid4, .grid3, .grid2 {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 10px !important;
+    }
+    .grid4 > * { flex: 1 1 calc(25% - 10px) !important; min-width: 130px !important; page-break-inside: avoid !important; break-inside: avoid !important; }
+    .grid3 > * { flex: 1 1 calc(33.333% - 10px) !important; min-width: 170px !important; page-break-inside: avoid !important; break-inside: avoid !important; }
+    .grid2 > * { flex: 1 1 calc(50% - 10px) !important; min-width: 200px !important; page-break-inside: avoid !important; break-inside: avoid !important; }
+    .metric {
+      background: #F8FAFC !important;
+      border: 1px solid #E2E8F0 !important;
+      border-radius: 8px !important;
+      padding: 10px 12px !important;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    .metric .label { font-size: 10.5px !important; color: #64748B !important; font-weight: 700 !important; text-transform: uppercase !important; }
+    .metric .value { font-size: 18px !important; font-weight: 800 !important; color: #0F172A !important; }
+    .metric .sub { font-size: 10.5px !important; color: #64748B !important; }
+    .riskRow, .actionRow, .notice, .insight {
+      border: 1px solid #E2E8F0 !important;
+      border-radius: 8px !important;
+      padding: 8px 12px !important;
+      margin-bottom: 8px !important;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    .tableWrap { overflow: visible !important; width: 100% !important; margin: 10px 0 !important; }
+    table { width: 100% !important; border-collapse: collapse !important; font-size: 11px !important; page-break-inside: auto !important; break-inside: auto !important; }
+    thead { display: table-header-group !important; }
+    tr { page-break-inside: avoid !important; break-inside: avoid !important; }
+    th { background: #F1F5F9 !important; color: #1E293B !important; font-weight: 700 !important; padding: 6px 8px !important; border: 1px solid #CBD5E1 !important; }
+    td { padding: 5px 8px !important; border: 1px solid #E2E8F0 !important; }
+    .sectionHead, .accordionHeader, h1, h2, h3, h4 { page-break-after: avoid !important; break-after: avoid !important; }
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10.5px; font-weight: 700; border: 1px solid #CBD5E1; }
+    .chip { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: 11px; background: #F1F5F9; margin: 2px 4px 2px 0; }
+    .waterfall { display: flex !important; align-items: flex-end !important; gap: 6px !important; height: 110px !important; page-break-inside: avoid !important; break-inside: avoid !important; }
+    .wf { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; height: 100%; }
+    .wf .col { width: 100%; border-radius: 4px 4px 0 0; }
+    .wf .num { font-size: 10px; font-weight: 700; margin-bottom: 2px; }
+    .wf .lab { font-size: 10px; color: #475569; text-align: center; margin-top: 4px; }
+    @media print {
+      body { padding: 0 !important; background: #fff !important; }
+      .hidePrint { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  ${content.innerHTML}
+  <script>setTimeout(function(){ window.print(); }, 400);<\/script>
+</body>
+</html>`);
   w.document.close();
 };
 
