@@ -13006,9 +13006,39 @@ function render13WeekVisualOnly(){
   vis.innerHTML = visualHtml;
 }
 
+function formatTwNumber(val){
+  if(val == null || isNaN(val)) return '0';
+  return new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 0 }).format(Math.round(val));
+}
+
+function parseTwNumber(str){
+  if(!str) return 0;
+  const clean = String(str).replace(/[^\d]/g, '');
+  return parseFloat(clean) || 0;
+}
+
+function onTwInputChange(inputEl, rowIdx, field){
+  const selStart = inputEl.selectionStart;
+  const oldLen = inputEl.value.length;
+  const numVal = parseTwNumber(inputEl.value);
+  const formatted = formatTwNumber(numVal);
+  inputEl.value = formatted;
+  const newLen = formatted.length;
+  const newPos = Math.max(0, selStart + (newLen - oldLen));
+  try { inputEl.setSelectionRange(newPos, newPos); } catch(e){}
+  
+  update13WeekCell(rowIdx, field, numVal);
+}
+
+function onTwInputBlur(inputEl, rowIdx, field){
+  const numVal = parseTwNumber(inputEl.value);
+  inputEl.value = formatTwNumber(numVal);
+  update13WeekCell(rowIdx, field, numVal);
+}
+
 function update13WeekCell(rowIdx, field, val){
   if(!window._twCurrent || !window._twCurrent.weeks) return;
-  const numVal = Math.max(0, parseFloat(val) || 0);
+  const numVal = Math.max(0, typeof val === 'number' ? val : (parseFloat(val) || 0));
   const targetWeek = window._twCurrent.weeks[rowIdx];
   if(!targetWeek) return;
 
@@ -13156,25 +13186,25 @@ function render13WeekProjection(proj, isReset){
       '<td>' +
         '<div style="display:flex;align-items:center;gap:3px;justify-content:flex-end">' +
           '<span style="color:#166534;font-weight:800;font-size:11px">+</span>' +
-          '<input type="number" step="1000" min="0" value="' + Math.round(w.inflows) + '" oninput="update13WeekCell(' + idx + ', \'inflow\', this.value)" style="width:105px;padding:4px 6px;border:1.5px solid #86EFAC;background:#F0FDF4;border-radius:6px;font-size:11.5px;font-weight:800;color:#166534;text-align:right" title="Tahsilat Girişini Düzenle">' +
+          '<input type="text" inputmode="numeric" value="' + formatTwNumber(w.inflows) + '" oninput="onTwInputChange(this, ' + idx + ', \'inflow\')" onblur="onTwInputBlur(this, ' + idx + ', \'inflow\')" onfocus="this.select()" onkeydown="if(event.key===\'Enter\') this.blur()" style="width:105px;padding:4px 6px;border:1.5px solid #86EFAC;background:#F0FDF4;border-radius:6px;font-size:12px;font-weight:800;color:#166534;text-align:right" title="Tahsilat Girişini Düzenle">' +
         '</div>' +
       '</td>' +
       '<td>' +
         '<div style="display:flex;align-items:center;gap:3px;justify-content:flex-end">' +
           '<span style="color:#991B1B;font-weight:800;font-size:11px">-</span>' +
-          '<input type="number" step="1000" min="0" value="' + suppVal + '" oninput="update13WeekCell(' + idx + ', \'supplier\', this.value)" style="width:105px;padding:4px 6px;border:1.5px solid #FECACA;background:#FEF2F2;border-radius:6px;font-size:11.5px;font-weight:800;color:#991B1B;text-align:right" title="Tedarikçi Çıkışını Düzenle">' +
+          '<input type="text" inputmode="numeric" value="' + formatTwNumber(suppVal) + '" oninput="onTwInputChange(this, ' + idx + ', \'supplier\')" onblur="onTwInputBlur(this, ' + idx + ', \'supplier\')" onfocus="this.select()" onkeydown="if(event.key===\'Enter\') this.blur()" style="width:105px;padding:4px 6px;border:1.5px solid #FECACA;background:#FEF2F2;border-radius:6px;font-size:11.5px;font-weight:800;color:#991B1B;text-align:right" title="Tedarikçi Çıkışını Düzenle">' +
         '</div>' +
       '</td>' +
       '<td>' +
         '<div style="display:flex;align-items:center;gap:3px;justify-content:flex-end">' +
           '<span style="color:#991B1B;font-weight:800;font-size:11px">-</span>' +
-          '<input type="number" step="1000" min="0" value="' + payrVal + '" oninput="update13WeekCell(' + idx + ', \'payroll\', this.value)" style="width:105px;padding:4px 6px;border:1.5px solid #FECACA;background:#FEF2F2;border-radius:6px;font-size:11.5px;font-weight:800;color:#991B1B;text-align:right" title="Maaş &amp; SGK Çıkışını Düzenle">' +
+          '<input type="text" inputmode="numeric" value="' + formatTwNumber(payrVal) + '" oninput="onTwInputChange(this, ' + idx + ', \'payroll\')" onblur="onTwInputBlur(this, ' + idx + ', \'payroll\')" onfocus="this.select()" onkeydown="if(event.key===\'Enter\') this.blur()" style="width:105px;padding:4px 6px;border:1.5px solid #FECACA;background:#FEF2F2;border-radius:6px;font-size:11.5px;font-weight:800;color:#991B1B;text-align:right" title="Maaş &amp; SGK Çıkışını Düzenle">' +
         '</div>' +
       '</td>' +
       '<td>' +
         '<div style="display:flex;align-items:center;gap:3px;justify-content:flex-end">' +
           '<span style="color:#991B1B;font-weight:800;font-size:11px">-</span>' +
-          '<input type="number" step="1000" min="0" value="' + taxDebtVal + '" oninput="update13WeekCell(' + idx + ', \'tax_debt\', this.value)" style="width:105px;padding:4px 6px;border:1.5px solid #FECACA;background:#FEF2F2;border-radius:6px;font-size:11.5px;font-weight:800;color:#991B1B;text-align:right" title="Vergi &amp; Kredi Taksitini Düzenle">' +
+          '<input type="text" inputmode="numeric" value="' + formatTwNumber(taxDebtVal) + '" oninput="onTwInputChange(this, ' + idx + ', \'tax_debt\')" onblur="onTwInputBlur(this, ' + idx + ', \'tax_debt\')" onfocus="this.select()" onkeydown="if(event.key===\'Enter\') this.blur()" style="width:105px;padding:4px 6px;border:1.5px solid #FECACA;background:#FEF2F2;border-radius:6px;font-size:11.5px;font-weight:800;color:#991B1B;text-align:right" title="Vergi &amp; Kredi Taksitini Düzenle">' +
         '</div>' +
       '</td>' +
       '<td id="tw_net_' + idx + '" style="font-weight:800;color:' + (netPos ? '#16A34A' : '#DC2626') + ';text-align:right">' + (netPos ? '+' : '') + money(w.net_cash_flow) + '</td>' +
