@@ -5369,9 +5369,12 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
           Muhasebe programından manuel dosya indirmeye son. ERP'nizden veya resmi e-Defter özel entegratörünüzden her gece otomatik mizan çekilir.
         </p>
       </div>
-      <span class="tag" style="background:#DCFCE7;color:#166534;font-size:11px;font-weight:800;padding:6px 12px;border-radius:999px">
-        ● Ingestion API Aktif
-      </span>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button type="button" onclick="openConnectorModal()" class="primary" style="padding:7px 14px;border-radius:10px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px">⚙️ API Anahtarını Kaydet / Bağlantı Ekle</button>
+        <span class="tag" style="background:#DCFCE7;color:#166534;font-size:11px;font-weight:800;padding:6px 12px;border-radius:999px">
+          ● Ingestion API Aktif
+        </span>
+      </div>
     </div>
 
     <!-- Konnektör Kartları -->
@@ -6638,6 +6641,70 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
           </div>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<!-- API Anahtarı ve Konnektör Yönetim Modalı -->
+<div id="connectorModal" class="hidden hidePrint" style="position:fixed;inset:0;background:rgba(15,27,45,.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2200;padding:20px;overflow-y:auto">
+  <div style="background:#FFFFFF;border-radius:18px;max-width:720px;width:100%;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 25px 60px rgba(0,0,0,0.35);overflow:hidden;border:1px solid #E2E8F0">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:1px solid #E2E8F0;background:#F8FAFC">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:22px">🔑</span>
+        <div>
+          <h3 style="margin:0;font-size:16px;color:#0F1B2D;font-weight:800">ERP &amp; e-Defter API Anahtarı Yönetimi</h3>
+          <p style="margin:2px 0 0;font-size:11.5px;color:#64748B">Özel entegratör veya ERP API anahtarınızı güvenle kaydedin; sistem her gece otomatik mizan çeksin.</p>
+        </div>
+      </div>
+      <button type="button" onclick="closeConnectorModal()" style="background:none;border:none;font-size:22px;color:#64748B;cursor:pointer;padding:4px 8px">✕</button>
+    </div>
+    
+    <div style="padding:22px;overflow-y:auto;flex:1">
+      <form id="connectorForm" onsubmit="saveConnectorForm(event)" style="display:flex;flex-direction:column;gap:14px">
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#33415C;margin-bottom:5px">Entegrasyon Sağlayıcısı (Sistem)</label>
+          <select id="connProvider" class="select" style="width:100%;padding:10px;font-size:13px" onchange="updateConnectorFormHint()">
+            <option value="uyumsoft">🏛️ Uyumsoft e-Defter Entegratörü (GİB XML)</option>
+            <option value="sovos">🏛️ Sovos / Foriba e-Defter Entegratörü</option>
+            <option value="sap_odata">🔷 SAP S/4HANA OData (API_TRIALBALANCE_SRV)</option>
+            <option value="netsuite">🟧 Oracle NetSuite (SuiteQL REST)</option>
+            <option value="parasut">🟢 Paraşüt Bulut Ön Muhasebe</option>
+            <option value="generic">🌐 Özel Muhasebe Webhook / REST</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#33415C;margin-bottom:5px">API Anahtarı / Gizli Belirteç (Token)</label>
+          <input id="connApiKey" type="password" placeholder="Örn: live_sec_uyum_982341..." required style="width:100%;padding:10px 12px;border:1px solid #CBD5E1;border-radius:10px;font-size:13px;box-sizing:border-box">
+          <small id="connKeyHint" style="display:block;color:#64748B;font-size:11px;margin-top:4px">Uyumsoft portalınızdan oluşturduğunuz "e-Defter Salt Okunur (Read-Only)" API anahtarını yapıştırın.</small>
+        </div>
+
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#33415C;margin-bottom:5px">Servis / Endpoint URL (Opsiyonel)</label>
+          <input id="connEndpointUrl" type="url" placeholder="https://api.efatura.entegrator.com/edefter/v1" style="width:100%;padding:10px 12px;border:1px solid #CBD5E1;border-radius:10px;font-size:13px;box-sizing:border-box">
+        </div>
+
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#33415C;margin-bottom:5px">Otomatik Çekme Sıklığı</label>
+          <select id="connFrequency" class="select" style="width:100%;padding:10px;font-size:13px">
+            <option value="daily">Her Gece Saat 02:00 (Önerilen)</option>
+            <option value="weekly">Haftalık (Her Pazartesi Sabah 06:00)</option>
+            <option value="monthly">Aylık (Her Ayın İlk Günü Resmi e-Defter Beratı Sonrası)</option>
+          </select>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:center;margin-top:6px">
+          <button type="submit" class="primary" style="padding:11px 20px;border-radius:10px;font-size:13px;font-weight:700">💾 Bağlantıyı Kaydet ve Test Et</button>
+          <span id="connSaveMsg" style="font-size:12px;font-weight:700"></span>
+        </div>
+      </form>
+
+      <div style="margin-top:24px;border-top:1px solid #E2E8F0;padding-top:18px">
+        <h4 style="margin:0 0 10px;font-size:13.5px;color:#0F1B2D;font-weight:800">Kayıtlı &amp; Aktif Bağlantılarınız</h4>
+        <div id="savedConnectorsList" style="display:flex;flex-direction:column;gap:8px">
+          <!-- JS ile doldurulur -->
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -8590,6 +8657,77 @@ function copyAgentScript() {
   const script = '# Antigravity Sync Agent - Tek Satırlık Windows Kurulumu\\nInvoke-WebRequest -Uri "https://finans.sirket.com/agent/install.ps1" -OutFile "$env:TEMP\\\\install.ps1"; & "$env:TEMP\\\\install.ps1" -ApiKey "live_sec_cfo_demo_893247" -ErpType "LOGO_TIGER"';
   navigator.clipboard.writeText(script).then(() => alert('PowerShell kurulum komutu kopyalandı! Logo/Mikro sunucusunda Yönetici olarak çalıştırın.'));
 }
+
+function openConnectorModal(){
+  $('connectorModal')?.classList.remove('hidden');
+  loadSavedConnectors();
+  updateConnectorFormHint();
+}
+function closeConnectorModal(){
+  $('connectorModal')?.classList.add('hidden');
+}
+function updateConnectorFormHint(){
+  const p = $('connProvider')?.value;
+  const hints = {
+    'uyumsoft': 'Uyumsoft portalınızdan aldığınız "e-Defter Salt Okuma" API anahtarını yapıştırın.',
+    'sovos': 'Sovos/Foriba Özel Entegratör API anahtarını (Client Secret) girin.',
+    'sap_odata': 'SAP OData API_TRIALBALANCE_SRV erişim belirtecini (Bearer Token) girin.',
+    'netsuite': 'Oracle NetSuite Token-Based Authentication (TBA) belirtecini girin.',
+    'parasut': 'Paraşüt Geliştirici panelinden aldığınız API Client Secret anahtarını girin.',
+    'generic': 'Kendi sunucunuzdan mizan göndereceğiniz yetki belirtecini (API Key) girin.'
+  };
+  if($('connKeyHint')) $('connKeyHint').textContent = hints[p] || 'API anahtarınızı yapıştırın.';
+}
+async function loadSavedConnectors(){
+  const listEl = $('savedConnectorsList');
+  if(!listEl) return;
+  try {
+    const res = await fetch('/api/v1/connectors/configs');
+    const data = await res.json();
+    const configs = data.configs || [];
+    if(!configs.length){
+      listEl.innerHTML = '<div class="muted small" style="padding:10px;text-align:center;background:#F8FAFC;border-radius:8px">Henüz kayıtlı bir bağlantınız yok. Yukarıdaki formdan ekleyebilirsiniz.</div>';
+      return;
+    }
+    listEl.innerHTML = configs.map(c => `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px">
+        <div>
+          <strong style="font-size:12.5px;color:#0F1B2D">${c.provider_name}</strong>
+          <div style="font-size:11px;color:#64748B;margin-top:2px">
+            Anahtar: <code>${c.api_key_masked}</code> · Sıklık: <b>${c.sync_frequency}</b> · Son Senkronizasyon: <b>${c.last_sync_at}</b>
+          </div>
+        </div>
+        <span class="tag" style="background:#DCFCE7;color:#166534;font-size:10.5px">● Aktif</span>
+      </div>
+    `).join('');
+  } catch(e){
+    listEl.innerHTML = '<div class="muted small">Bağlantılar yüklenemedi.</div>';
+  }
+}
+async function saveConnectorForm(e){
+  e.preventDefault();
+  const provider = $('connProvider').value;
+  const apiKey = $('connApiKey').value;
+  const endpointUrl = $('connEndpointUrl').value;
+  const syncFrequency = $('connFrequency').value;
+  const msgEl = $('connSaveMsg');
+  if(msgEl) { msgEl.textContent = 'Kaydediliyor ve test ediliyor...'; msgEl.style.color = '#1D4ED8'; }
+  try {
+    const res = await fetch('/api/v1/connectors/configs', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({provider, api_key: apiKey, endpoint_url: endpointUrl, sync_frequency: syncFrequency})
+    });
+    const d = await res.json();
+    if(!res.ok) throw new Error(d.detail || 'Kaydedilemedi.');
+    if(msgEl) { msgEl.textContent = '✓ Başarıyla bağlandı ve test edildi!'; msgEl.style.color = '#0E7C66'; }
+    $('connApiKey').value = '';
+    loadSavedConnectors();
+  } catch(err){
+    if(msgEl) { msgEl.textContent = 'Hata: ' + err.message; msgEl.style.color = '#C22A3E'; }
+  }
+}
+
 
 function prepPrint(){
   const cov=$('printCover');

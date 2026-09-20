@@ -132,3 +132,29 @@ def test_ingest_mizan_invalid_api_key(client):
         headers={"X-API-KEY": "hacker_key_999"},
     )
     assert res.status_code == 401
+
+
+def test_connector_configs_list_and_save(client):
+    # 1. List configs
+    res = client.get("/api/v1/connectors/configs")
+    assert res.status_code == 200
+    data = res.json()
+    assert "configs" in data
+
+    # 2. Save a new config
+    save_res = client.post(
+        "/api/v1/connectors/configs",
+        json={
+            "provider": "uyumsoft",
+            "api_key": "uyum_live_sec_token_9918234",
+            "endpoint_url": "https://api.efatura.entegrator.com/edefter/v1",
+            "sync_frequency": "daily"
+        }
+    )
+    assert save_res.status_code == 200
+    saved = save_res.json()
+    assert saved["status"] == "success"
+    assert saved["config"]["provider"] == "uyumsoft"
+    # Verify API key is masked (no plain text exposure)
+    assert saved["config"]["api_key_masked"].startswith("uyum***")
+

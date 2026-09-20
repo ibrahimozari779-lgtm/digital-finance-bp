@@ -59,6 +59,21 @@ if _HAVE_SQLALCHEMY:
 
         owner = relationship("User", back_populates="analyses")
 
+    class ConnectorConfig(Base):
+        __tablename__ = "connector_configs"
+        id = Column(Integer, primary_key=True, index=True)
+        user_id = Column(Integer, nullable=True, index=True)
+        tenant_id = Column(String(64), nullable=True, index=True, default="default")
+        provider = Column(String(64), nullable=False)
+        provider_name = Column(String(128), nullable=True)
+        api_key_masked = Column(String(64), nullable=True)
+        api_key_encrypted = Column(Text, nullable=True)
+        endpoint_url = Column(String(255), nullable=True)
+        sync_frequency = Column(String(32), default="daily")
+        status = Column(String(32), default="active")
+        last_sync_at = Column(DateTime, nullable=True)
+        created_at = Column(DateTime, default=datetime.utcnow)
+
     def init_db() -> None:
         Base.metadata.create_all(bind=engine)
 
@@ -100,6 +115,21 @@ else:
             self.result_json = result_json
             self.created_at = created_at or datetime.utcnow()
 
+    class ConnectorConfig:
+        def __init__(self, id=None, user_id=None, tenant_id="default", provider="generic", provider_name=None, api_key_masked=None, api_key_encrypted=None, endpoint_url=None, sync_frequency="daily", status="active", last_sync_at=None, created_at=None):
+            self.id = id
+            self.user_id = user_id
+            self.tenant_id = tenant_id or "default"
+            self.provider = provider
+            self.provider_name = provider_name or provider
+            self.api_key_masked = api_key_masked
+            self.api_key_encrypted = api_key_encrypted
+            self.endpoint_url = endpoint_url
+            self.sync_frequency = sync_frequency or "daily"
+            self.status = status or "active"
+            self.last_sync_at = last_sync_at
+            self.created_at = created_at or datetime.utcnow()
+
     class _Query:
         def __init__(self, model_cls, session):
             self.model_cls = model_cls
@@ -117,7 +147,12 @@ else:
 
         def _execute(self):
             conn = self.session.conn
-            table = "users" if self.model_cls is User else "analysis_records"
+            if self.model_cls is User:
+                table = "users"
+            elif self.model_cls is ConnectorConfig:
+                table = "connector_configs"
+            else:
+                table = "analysis_records"
             where_clauses = []
             params = []
             for col, op, val in self._filters:
@@ -148,6 +183,21 @@ else:
                         company_name=d.get("company_name"),
                         tenant_id=d.get("tenant_id", "default"),
                         plan=d.get("plan", "starter"),
+                        created_at=datetime.fromisoformat(d["created_at"]) if d.get("created_at") else datetime.utcnow()
+                    )
+                elif self.model_cls is ConnectorConfig:
+                    obj = ConnectorConfig(
+                        id=d.get("id"),
+                        user_id=d.get("user_id"),
+                        tenant_id=d.get("tenant_id", "default"),
+                        provider=d.get("provider", "generic"),
+                        provider_name=d.get("provider_name"),
+                        api_key_masked=d.get("api_key_masked"),
+                        api_key_encrypted=d.get("api_key_encrypted"),
+                        endpoint_url=d.get("endpoint_url"),
+                        sync_frequency=d.get("sync_frequency", "daily"),
+                        status=d.get("status", "active"),
+                        last_sync_at=d.get("last_sync_at"),
                         created_at=datetime.fromisoformat(d["created_at"]) if d.get("created_at") else datetime.utcnow()
                     )
                 else:
@@ -232,6 +282,13 @@ else:
                             (obj.user_id, getattr(obj, 'tenant_id', 'default'), obj.company_name, obj.period_label, obj.fiscal_year, obj.health_score, obj.result_json, created)
                         )
                         obj.id = cur.lastrowid
+                elif isinstance(obj, ConnectorConfig):
+                    if obj.id is None:
+                        cur.execute(
+                            "INSERT INTO connector_configs (user_id, tenant_id, provider, provider_name, api_key_masked, api_key_encrypted, endpoint_url, sync_frequency, status, last_sync_at, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                            (obj.user_id, getattr(obj, 'tenant_id', 'default'), obj.provider, obj.provider_name, obj.api_key_masked, obj.api_key_encrypted, obj.endpoint_url, obj.sync_frequency, obj.status, str(obj.last_sync_at) if obj.last_sync_at else None, created)
+                        )
+                        obj.id = cur.lastrowid
             self.conn.commit()
             self._pending_add.clear()
 
@@ -272,6 +329,22 @@ else:
                 result_json TEXT NOT NULL,
                 created_at TEXT,
                 FOREIGN KEY (user_id) REFERENCES users (id)
+            )
+        """)
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS connector_configs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER,
+                tenant_id TEXT DEFAULT 'default',
+                provider TEXT NOT NULL,
+                provider_name TEXT,
+                api_key_masked TEXT,
+                api_key_encrypted TEXT,
+                endpoint_url TEXT,
+                sync_frequency TEXT DEFAULT 'daily',
+                status TEXT DEFAULT 'active',
+                last_sync_at TEXT,
+                created_at TEXT
             )
         """)
         conn.commit()

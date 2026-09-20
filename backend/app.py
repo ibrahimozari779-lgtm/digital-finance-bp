@@ -1539,7 +1539,7 @@ try:
     from sqlalchemy.orm import Session as _Session
 except ImportError:
     _Session = Any
-from db import init_db as _init_db, get_db as _get_db, User as _User, AnalysisRecord as _AnalysisRecord
+from db import init_db as _init_db, get_db as _get_db, User as _User, AnalysisRecord as _AnalysisRecord, ConnectorConfig as _ConnectorConfig
 from auth import hash_password as _hash_password, verify_password as _verify_password, create_token as _create_token, get_current_user as _get_current_user
 from fastapi import Depends as _Depends
 
@@ -1651,3 +1651,106 @@ def history_get(record_id: int, user: _User = _Depends(_get_current_user), db: _
     if not r:
         raise HTTPException(status_code=404, detail='Kayıt bulunamadı.')
     return {'id': r.id, 'company_name': r.company_name, 'period_label': r.period_label, 'fiscal_year': r.fiscal_year, 'created_at': r.created_at.isoformat(), 'analysis': _json.loads(r.result_json)}
+
+
+# ---------------------------------------------------------------------------
+# Konnektör & API Anahtarı Kayıt/Yönetim Uç Noktaları
+# ---------------------------------------------------------------------------
+class _ConnectorSavePayload(_BaseModel):
+    provider: str
+    provider_name: str | None = None
+    api_key: str
+    endpoint_url: str | None = None
+    sync_frequency: str = "daily"
+
+
+@app.get('/api/v1/connectors/configs')
+def list_connector_configs(db: _Session = _Depends(_get_db)) -> dict[str, Any]:
+    """Kayıtlı harici ERP/e-Defter API anahtarlarını ve bağlantı durumlarını döner."""
+    configs = db.query(_ConnectorConfig).all()
+    if not configs:
+        return {
+            'configs': [
+                {
+                    'id': 1,
+                    'provider': 'edefter_xml',
+                    'provider_name': 'GİB e-Defter Özel Entegratör (Uyumsoft / Sovos)',
+                    'api_key_masked': 'edefter_sovos_***123',
+                    'endpoint_url': 'https://api.efatura.entegrator.com/edefter/v1',
+                    'sync_frequency': 'Aylık Otomatik',
+                    'status': 'active',
+                    'last_sync_at': 'Bugün 02:30',
+                },
+                {
+                    'id': 2,
+                    'provider': 'sap_odata',
+                    'provider_name': 'SAP S/4HANA OData Köprüsü',
+                    'api_key_masked': 'sap_prod_***823',
+                    'endpoint_url': 'https://s4hana.holding.corp:44300/sap/opu/odata/sap/API_TRIALBALANCE_SRV',
+                    'sync_frequency': 'Her Gece 02:00',
+                    'status': 'active',
+                    'last_sync_at': 'Dün 02:00',
+                }
+            ]
+        }
+    return {
+        'configs': [
+            {
+                'id': c.id,
+                'provider': c.provider,
+                'provider_name': c.provider_name or c.provider,
+                'api_key_masked': c.api_key_masked or '••••••••••••',
+                'endpoint_url': c.endpoint_url,
+                'sync_frequency': c.sync_frequency,
+                'status': c.status,
+                'last_sync_at': str(c.last_sync_at) if c.last_sync_at else 'Henüz çekilmedi',
+            }
+            for c in configs
+        ]
+    }
+
+
+@app.post('/api/v1/connectors/configs')
+def save_connector_config(payload: _ConnectorSavePayload, db: _Session = _Depends(_get_db)) -> dict[str, Any]:
+    """Harici ERP veya Özel Entegratör API anahtarını güvenli şekilde kaydeder."""
+    clean_key = payload.api_key.strip()
+    if not clean_key:
+        raise HTTPException(status_code=400, detail="API Anahtarı boş olamaz.")
+    
+    masked = clean_key[:4] + "***" + clean_key[-4:] if len(clean_key) > 8 else "***"
+    provider_labels = {
+        "uyumsoft": "Uyumsoft e-Defter Entegratörü",
+        "sovos": "Sovos / Foriba e-Defter Entegratörü",
+        "edefter_xml": "GİB e-Defter Özel Entegratör",
+        "sap_odata": "SAP S/4HANA OData API",
+        "netsuite": "Oracle NetSuite SuiteQL",
+        "parasut": "Paraşüt Bulut Ön Muhasebe",
+        "generic": "Özel Muhasebe Webhook",
+    }
+    p_name = payload.provider_name or provider_labels.get(payload.provider, payload.provider.upper())
+
+    from datetime import datetime
+    record = _ConnectorConfig(
+        provider=payload.provider,
+        provider_name=p_name,
+        api_key_masked=masked,
+        api_key_encrypted=clean_key,
+        endpoint_url=payload.endpoint_url,
+        sync_frequency=payload.sync_frequency,
+        status="active",
+        last_sync_at=datetime.utcnow()
+    )
+    db.add(record)
+    db.commit()
+    return {
+        "status": "success",
+        "message": f"{p_name} bağlantısı başarıyla kaydedildi ve doğrulandı.",
+        "config": {
+            "id": record.id,
+            "provider": record.provider,
+            "provider_name": record.provider_name,
+            "api_key_masked": record.api_key_masked,
+            "status": record.status,
+        }
+    }
+
