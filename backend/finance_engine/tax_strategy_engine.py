@@ -125,6 +125,11 @@ def build_tax_strategy_analysis(
                 f'başlatılarak 128 Şüpheli Ticari Alacaklar hesabına aktarılmalı ve 654 Karşılık Gideri yazılarak '
                 f'cari dönem kurumlar vergisi matrahından doğrudan {target_overdue:,.0f} TL düşülmelidir.'
             ),
+            'legal_note': (
+                '⚠️ Hukuki & Mali Şerh: VUK 323 gereğince karşılık ayrılabilmesi için alacağın teminatsız olması, '
+                'dava veya icra safhasına intikal etmiş bulunması ya da yapılan protestoya/yazılı isteme rağmen '
+                'ödenmemiş dava ve icra takibine değmeyecek derecedeki küçük alacak niteliğinde olması şarttır.'
+            ),
             'confidence': 'high' if overdue_ar > 0 else 'medium',
         })
         total_estimated_tax_saving += bad_debt_saving

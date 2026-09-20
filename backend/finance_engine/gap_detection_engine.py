@@ -130,8 +130,8 @@ def build_gap_detection(statements: dict[str, Any] | None, quality: dict[str, An
         if stale and stale>0:
             add_gap('GAP-INV-01','Inventory','high','180+ gün yaşlanmış stok var',
                     [f'180+ day inventory = {float(stale):,.0f} TL'],
-                    'Nakit stokta kilitli kalabilir ve değer düşüklüğü riski yaratabilir.',
-                    'SKU bazında slow/dead stock disposition planı ve cash release target belirle.',
+                    'Stokta bekleyen tutar nakit bağlar, değer düşüklüğü ve finansman maliyeti doğurur.',
+                    'Ürün (SKU) bazında atıl ve yavaş hareket eden stok tasfiye planı ve nakit kurtarma hedefi belirle.',
                     impact=float(stale), confidence='high')
 
     # Missing intelligence should be explicit
@@ -206,15 +206,15 @@ def build_extended_root_cause(statements, base_root_cause, data_hub, gaps):
     if inv and inv.get('stale_180_amount'):
         add('RC-INV-CASH','Stok → Nakit dönüşüm zinciri','Yaşlanmış stok nakdi bağlıyor',
             [f"180+ inventory = {float(inv['stale_180_amount']):,.0f} TL"],
-            'Slow-moving inventory', 'Stokta bağlı nakit ve olası değer düşüklüğü riski',
-            ['SKU movement history','sell-through','NRV / provision policy'],
-            ['Dead-stock disposition','SKU bazlı cash release target'], 'confirmed_by_data')
+            'Yavaş hareket eden stok', 'Stokta bağlı nakit ve olası değer düşüklüğü riski',
+            ['Stok hareket geçmişi','Satış hızı','Değer düşüklüğü karşılık politikası'],
+            ['Atıl stok tasfiye planı','Ürün bazlı nakit kurtarma hedefi'], 'confirmed_by_data')
     if ap and ap.get('overdue'):
         add('RC-AP-CASH','Tedarikçi → Nakit zinciri','Ödenecek borçlarda vade baskısı var',
             [f"Overdue AP = {float(ap['overdue']):,.0f} TL"],
-            'Supplier maturity pressure', 'Kısa vadeli nakit ihtiyacı ve supplier continuity riski',
-            ['supplier criticality','payment terms','13-week cash plan'],
-            ['Supplier prioritization','payment calendar'], 'confirmed_by_data')
+            'Tedarikçi vade baskısı', 'Kısa vadeli nakit ihtiyacı ve tedarikçi devamlılığı/mal temin riski',
+            ['Tedarikçi kritiklik derecesi','Ödeme vadeleri','13 haftalık nakit planı'],
+            ['Kritik tedarikçi önceliklendirmesi','Haftalık ödeme takvimi'], 'confirmed_by_data')
 
     # Convert missing intelligence into a first-class root cause/gap track.
     missing=[m['title'] for m in (gaps or {}).get('missing_intelligence',[])]

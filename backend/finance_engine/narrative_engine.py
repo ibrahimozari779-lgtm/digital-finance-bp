@@ -280,16 +280,16 @@ def _t_dso_risk() -> Trigger:
         )
         return {
             "ne_oldu": f"Tahsilat süresi (DSO) {ctx['dso_old']:.0f} günden {ctx['dso_new']:.0f} güne yükseldi.",
-            "neden": "Tahsilat performansındaki yavaşlama, tek dönemlik toplam alacak bakiyesinden görülüyor; "
-                     "hangi müşteri(ler)de yoğunlaştığı bu pipeline'ın aldığı veriyle (müşteri bazlı aging olmadan) "
-                     "belirlenemiyor — bu, doğrulanması gereken bir varsayım, kesinleşmiş bir tespit değil.",
+            "neden": "Tahsilat performansındaki yavaşlama, toplam alacak bakiyesindeki değişimden tespit edilmiştir; "
+                     "hangi müşterilerde gecikme yoğunlaştığını kesinleştirmek için müşteri bazlı alt defter (120 yaşlandırma) "
+                     "analiziyle teyit edilmesi önerilir.",
             "maliyet": maliyet,
             "ne_yapmali": [
-                "Alacak yaşlandırma (AR aging) raporunun çıkarılması ve en büyük gecikmelerin tespiti",
-                "Kredi limitlerinin gözden geçirilmesi",
-                "Tahsilat takip sıklığının artırılması",
+                "Alacak yaşlandırma (120 cari hesap) raporunun çıkarılması ve en büyük gecikmelerin tespiti",
+                "Kredi ve vade limitlerinin gözden geçirilmesi",
+                "Tahsilat takip sıklığının haftalık icraat masasına alınması",
             ],
-            "data_gap": "Müşteri bazlı alacak konsantrasyonu ('ilk 10 müşteri') için AR aging/subledger verisi gerekir; bu pipeline şu an almıyor.",
+            "data_gap": "Müşteri bazlı alacak konsantrasyonu ve gecikme detayları için Data Hub üzerinden müşteri yaşlandırma defteri eklenebilir.",
         }
 
     return {
@@ -319,14 +319,14 @@ def _t_inventory_bloat() -> Trigger:
         return {
             "ne_oldu": f"Stok devir süresi (DIO) {ctx['dio_old']:.0f} günden {ctx['dio_new']:.0f} güne yükseldi ({d:.0f} gün artış).",
             "neden": "Stok devir hızındaki yavaşlama toplam envanter bakiyesinden görülüyor; hangi ürün "
-                     "gruplarının yavaş hareket ettiği (SKU seviyesi) bu pipeline'ın aldığı veriyle belirlenemiyor.",
+                     "gruplarında atıl stok oluştuğunu netleştirmek için ürün bazlı (SKU) detaylandırma önerilir.",
             "maliyet": maliyet,
             "ne_yapmali": [
-                "Yavaş hareket eden (slow-moving) stok analizi",
-                "Satın alma parametrelerinin güncellenmesi",
-                "Stok tasfiye kampanyalarının değerlendirilmesi",
+                "Yavaş hareket eden (hareketsiz) stok analizi yapılması",
+                "Satın alma ve sipariş parametrelerinin güncellenmesi",
+                "Atıl stok tasfiye ve nakde çevirme planının devreye alınması",
             ],
-            "data_gap": "'%27 slow-moving' gibi ürün bazlı kırılım için SKU/hareket verisi gerekir; bu pipeline şu an almıyor.",
+            "data_gap": "Ürün bazlı atıl ve yavaş hareket eden stok kırılımı için Data Hub üzerinden stok envanter defteri eklenebilir.",
         }
 
     return {
@@ -349,17 +349,15 @@ def _t_cash_runway() -> Trigger:
             "ne_oldu": f"Mevcut nakit pozisyonu ({ctx['cash_balance']:,.0f} TL), kaba bir aylık faaliyet nakit "
                        f"akışı (yakma hızı) tahminiyle yaklaşık {ctx['runway_months']:.1f} aylık operasyonu "
                        f"finanse edebilecek düzeydedir.",
-            "neden": "Bu dönemde faaliyet nakit akışı proxy'si negatiftir (cash_bridge_engine); kaba aylık yakma "
-                     "hızı, dönemsel proxy'nin dönem uzunluğuna bölünmesiyle YAKLAŞIK olarak türetilmiştir — "
-                     "gerçek aylık nakit akışı verisi (banka hareketleri) olmadan kesin değildir.",
-            "maliyet": f"Yaklaşık aylık yakma hızı: {ctx['monthly_burn']:,.0f} TL.",
+            "neden": "Bu dönemde esas faaliyet nakit akışı negatiftir (Nakit Akış Köprüsü); aylık net nakit erimesi "
+                     "(Net Cash Burn), işletme nakit açığının dönem ay sayısına oranlanmasıyla hesaplanmıştır.",
+            "maliyet": f"Aylık net operasyonel nakit tüketimi (Net Cash Burn): {ctx['monthly_burn']:,.0f} TL.",
             "ne_yapmali": [
-                "Tahsilat hızlandırma programı",
-                "Stok optimizasyonu",
-                "Sermaye harcamalarının (capex) gözden geçirilmesi",
+                "Öncelikli tahsilat hızlandırma ve vade kısaltma programı",
+                "Atıl stokların tasfiyesi ve nakit serbestleştirme",
+                "Zorunlu olmayan sermaye harcamalarının (capex) ertelenmesi",
             ],
-            "data_gap": "Kesin ay-bazlı runway için aylık nakit akışı/banka hareketi verisi gerekir; burada "
-                        "dönemsel proxy'den türetilmiş kaba bir tahmin sunulmaktadır ('approx').",
+            "data_gap": "Detaylı haftalık/aylık nakit akışı tahmini için 13 Haftalık Nakit Projeksiyonu modülü kullanılmalıdır.",
             "approx": True,
         }
 

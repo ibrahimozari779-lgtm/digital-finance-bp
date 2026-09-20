@@ -34,13 +34,13 @@ def build_management_actions(findings, opportunities, statements, causal_chains=
       'P003':('Faaliyet giderlerini kalem bazında incele ve tasarruf alanlarını önceliklendir.','CFO / Operations','30-60 gün','OPEX / Net Sales'),
       'E001':('Ana faaliyet kârlılığını diğer gelirlerden ayrı takip et; tek seferlik gelir bağımlılığını test et.','CFO / FP&A','30-60 gün','Operating Profit / Net Profit'),
       'A001':('Sermaye bağlayan varlıkları incele ve düşük devirli kalemleri azalt.','CFO / Operations','30-60 gün','Asset Turnover'),
-      'GAP-SALES-01':('Vadesi geçmiş müşterileri tutar/yaş/öncelik bazında sırala ve tahsilat aksiyonlarını ata.','CFO / Credit Control','0-15 gün','Overdue AR / DSO'),
-      'GAP-SALES-02':('Vadeli fiyat primini finansman maliyeti ve tahsilat riski ile birlikte yeniden fiyatla.','CFO / Commercial','0-30 gün','Term Premium / Gross Margin'),
-      'GAP-SALES-03':('Müşteri yoğunlaşması için exposure ve tahsilat risk haritası oluştur.','CFO / Commercial','0-30 gün','Top-10 Customer Share'),
-      'GAP-AR-01':('Gecikmiş AR için müşteri bazlı tahsilat planı ve escalation süreci oluştur.','CFO / Credit Control','0-15 gün','Overdue AR / DSO'),
-      'GAP-AR-02':('En büyük borçlular için concentration limit ve collection priority belirle.','CFO / Credit Control','0-30 gün','Top-10 AR Share'),
-      'GAP-AP-01':('Kritik tedarikçileri önceliklendir ve ödeme takvimini 13 haftalık nakit planına bağla.','CFO / Treasury','0-30 gün','DPO / Overdue AP'),
-      'GAP-INV-01':('180+ gün stoklar için disposition planı ve nakit serbestleşme hedefi belirle.','CFO / Operations','0-30 gün','DIO / Stale Inventory'),
+      'GAP-SALES-01':('Vadesi geçmiş müşterileri tutar ve risk bazında sırala, tahsilat aksiyonlarını ata.','CFO / Kredi Kontrol','0-15 gün','Gecikmiş Alacak / DSO'),
+      'GAP-SALES-02':('Vadeli satış fiyat farkını finansman faiz maliyeti ile birlikte yeniden fiyatla.','CFO / Ticari Yönetim','0-30 gün','Vade Farkı / Brüt Kâr'),
+      'GAP-SALES-03':('Müşteri yoğunlaşması için risk limiti ve teminat takip haritası oluştur.','CFO / Ticari Yönetim','0-30 gün','İlk 10 Müşteri Payı'),
+      'GAP-AR-01':('Gecikmiş alacaklar için müşteri bazlı tahsilat planı ve yönetim eskalasyon süreci oluştur.','CFO / Kredi Kontrol','0-15 gün','Gecikmiş Alacak / DSO'),
+      'GAP-AR-02':('En büyük borçlular için müşteri risk limiti ve öncelikli tahsilat takvimi belirle.','CFO / Kredi Kontrol','0-30 gün','İlk 10 Alacak Payı'),
+      'GAP-AP-01':('Kritik tedarikçileri önceliklendir ve ödeme takvimini 13 haftalık nakit akış planına bağla.','CFO / Hazine','0-30 gün','Tedarikçi Vadesi / Gecikmiş Borç'),
+      'GAP-INV-01':('180+ gün stoklar için atıl stok tasfiye planı ve nakit kurtarma hedefi belirle.','CFO / Operasyon','0-30 gün','Stok Bekleme Süresi / Atıl Stok'),
     }
     cluster_by_code={}; cluster_meta={}
     for chain in (causal_chains or []):

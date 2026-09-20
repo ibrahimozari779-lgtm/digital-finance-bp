@@ -83,6 +83,8 @@ def build_liquidity_stress_test(
         "top_shock_amount": round(top_shock_amount, 2),
         "available_cash": round(cash, 2),
         "monthly_burn_rate": round(monthly_burn_rate, 2),
+        "monthly_burn_label": "Aylık Brüt Operasyonel Nakit Çıkışı (SMM / Temel İşletme Maliyeti)",
+        "burn_rate_methodology": "Bu tutar şirketin çarkını döndürmek için gereken aylık brüt nakit çıkışıdır (SMM/12). Kök neden analizindeki rakam ise kasadan eriyen net nakit açığıdır (Net Cash Burn).",
         "runway_days_normal": round(runway_days_normal, 1),
         "runway_days_stressed": round(runway_days_stressed, 1),
         "scenario_30d": {

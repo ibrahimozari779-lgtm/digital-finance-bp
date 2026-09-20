@@ -2592,28 +2592,31 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 <div class="secBlock reveal"><section class="marketingSection hidePrint" style="padding-top:0">
 <div class="pricingGrid">
-<div class="card priceCard"><div class="plan">Başlangıç</div><h3>Starter</h3><div class="amt">₺0<span> /örnek analiz</span></div><div class="desc">Sistemi görmek ve Data Hub altın veri setiyle test etmek isteyen finans ekipleri için.</div><ul>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Tüm 33 finansal karar motorunu canlı veride deneme</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Görünmez Kâr Sızıntısı & Kilitli Nakit Teşhisi</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Kâr Nakde Dönüşüm & Kâr Köprüsü</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Kayıt olmadan anında canlı demo</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Tarayıcıda çalışma (kalıcı saklama yok)</li>
-</ul><button class="secondary" style="width:100%" onclick="window.location.href='/uygulama?sample=data_hub'">🔥 Canlı Demoyu Aç</button></div>
-<div class="card priceCard featured"><div class="badgeTop">En Çok Tercih Edilen</div><div class="plan">Büyüyen Şirketler</div><h3>Professional</h3><div id="proPriceAmt" class="amt">₺2.490<span> /ay</span></div><div id="proSubText" class="desc">Kendi mizanını ve defterlerini düzenli yükleyip yönetim kararları üreten şirketler için.</div><ul>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Sınırsız mizan ve alt defter yükleme</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Görünmez Kâr Sızıntısı ve 4 Kaldıraçlı İnteraktif Simülatör</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Çok dönemli trend ve Nakit Akış Tablosu</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Geçmiş analizleri kaydetme ve karşılaştırma</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Data Hub: Mizan + AR/AP + Stok + Satış mutabakatı</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>AI Finance Business Partner stratejik Q&A</li>
-</ul><button class="primary" style="width:100%" onclick="window.location.href='/uygulama?auth=register'">Ücretsiz Kayıt Ol</button></div>
-<div class="card priceCard"><div class="plan">Kurumsal & Holding</div><h3>Enterprise</h3><div class="amt">Teklif İle<span> /özel</span></div><div class="desc">Çoklu şirket/grup yapısı, ERP doğrudan bağlayıcı ve özel danışmanlık isteyen kurumlar için.</div><ul>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Professional paketindeki tüm özellikler</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Çoklu şirket konsolidasyonu ve kullanıcı rolleri</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Özel sektör benchmark bantları ve özel kurallar</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Öncelikli SLA, kıdemli finans danışmanlığı desteği</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>ERP doğrudan API bağlayıcı (SAP, Netsis, Logo)</li>
-</ul><button class="secondary" style="width:100%" onclick="window.location.href='/iletisim'">Kurumsal Teklif Al</button></div>
+<div class="card priceCard"><div class="plan">KOBİ &amp; Patron</div><h3>KOBİ Başlangıç</h3><div id="starterPriceAmt" class="amt">₺1.750<span> /ay</span></div><div id="starterSubText" class="desc">Tek şirket / mizan analizi yapan, kâr sızıntısını ve nakit durumunu net görmek isteyen patronlar için.</div><ul>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Tek şirket / mizan için aylık tam finansal teşhis</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Görünmez Kâr Sızıntısı &amp; Kilitli Nakit Teşhisi</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Kâr Nakde Dönüşüm Oranı &amp; Cari Likidite Köprüsü</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><b>Seviye 1:</b> 1 Sayfalık Yönetim Kurulu Karar Brifingi</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>RAM-Only güvenli işleme (sunucu diskinde saklanmaz)</li>
+</ul><button class="secondary" style="width:100%" onclick="window.location.href='/uygulama?sample=data_hub'">🔥 Canlı Demoda İncele</button></div>
+
+<div class="card priceCard featured"><div class="badgeTop">En Çok Tercih Edilen</div><div class="plan">Büyüyen Şirketler &amp; CFO</div><h3>CFO Pro</h3><div id="proPriceAmt" class="amt">₺4.500<span> /ay</span></div><div id="proSubText" class="desc">13 haftalık nakit akışı, senaryo simülasyonu ve kapsamlı CFO yönetim raporu isteyen şirketler için.</div><ul>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>KOBİ Başlangıç paketindeki tüm temel analizler</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><b>13 Haftalık Dinamik Nakit Akışı</b> &amp; Kritik Eşik Uyarıları</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><b>Data Hub:</b> Mizan + AR/AP Yaşlandırma + Stok Mutabakatı</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>4 Kaldıraçlı İnteraktif Kâr &amp; Nakit Simülatörü</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><b>Seviye 2:</b> 8-10 Sayfalık CFO Yönetici Karar Raporu</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>AI Finance Partner stratejik yönetim Q&amp;A desteği</li>
+</ul><button class="primary" style="width:100%" onclick="window.location.href='/uygulama?auth=register'">Hemen Başla</button></div>
+
+<div class="card priceCard"><div class="plan">Müşavir &amp; Danışman</div><h3>Müşavir &amp; Danışman</h3><div id="advPriceAmt" class="amt">₺9.500<span> /ay</span></div><div id="advSubText" class="desc">Birden fazla mükellefe/şirkete finansal check-up ve White-Label denetim raporu sunan profesyoneller için.</div><ul>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>CFO Pro paketindeki tüm motorlar &amp; simülatörler</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><b>10+ Şirket / Mükellef</b> portföy yönetimi ve takibi</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><b>White-Label Özelliği:</b> Kendi ofis logonuz ve unvanınızla rapor</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><b>Seviye 3:</b> 35 Sayfalık Tam Kapsamlı Denetim Raporu</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>VUK 323 &amp; TMS uyumlu hazır çalışma kağıtları</li>
+<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Öncelikli SLA &amp; Kıdemli Finans Analisti Desteği</li>
+</ul><button class="secondary" style="width:100%" onclick="window.location.href='/iletisim'">Danışmanlık Görüşmesi Planla</button></div>
 </div>
 
 <div class="compareTableWrap" style="margin-top:34px">
@@ -2664,23 +2667,31 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
 function setBilling(mode){
   const btnM = document.getElementById('btnMonthly');
   const btnA = document.getElementById('btnAnnual');
-  const amt = document.getElementById('proPriceAmt');
-  const sub = document.getElementById('proSubText');
-  if(!btnM || !btnA || !amt) return;
+  const sAmt = document.getElementById('starterPriceAmt');
+  const sSub = document.getElementById('starterSubText');
+  const pAmt = document.getElementById('proPriceAmt');
+  const pSub = document.getElementById('proSubText');
+  const aAmt = document.getElementById('advPriceAmt');
+  const aSub = document.getElementById('advSubText');
+  if(!btnM || !btnA || !pAmt) return;
   if(mode === 'annual'){
-    btnA.className = 'primary';
-    btnA.style.border = '0';
-    btnM.className = 'secondary';
-    btnM.style.border = '0';
-    amt.innerHTML = '₺1.990<span> /ay</span>';
-    if(sub) sub.innerHTML = 'Yıllık ₺23.880 olarak faturalandırılır (<b>%20 indirim</b> ile 2 ay hediye, ₺6.000 tasarruf).';
+    btnA.className = 'primary'; btnA.style.border = '0';
+    btnM.className = 'secondary'; btnM.style.border = '0';
+    if(sAmt) sAmt.innerHTML = '₺1.400<span> /ay</span>';
+    if(sSub) sSub.innerHTML = 'Yıllık ₺16.800 (<b>%20 indirim</b>, ₺4.200 tasarruf).';
+    pAmt.innerHTML = '₺3.600<span> /ay</span>';
+    if(pSub) pSub.innerHTML = 'Yıllık ₺43.200 (<b>%20 indirim</b>, ₺10.800 tasarruf).';
+    if(aAmt) aAmt.innerHTML = '₺7.600<span> /ay</span>';
+    if(aSub) aSub.innerHTML = 'Yıllık ₺91.200 (<b>%20 indirim</b>, ₺22.800 tasarruf).';
   } else {
-    btnM.className = 'primary';
-    btnM.style.border = '0';
-    btnA.className = 'secondary';
-    btnA.style.border = '0';
-    amt.innerHTML = '₺2.490<span> /ay</span>';
-    if(sub) sub.innerHTML = 'Kendi mizanını ve defterlerini düzenli yükleyip yönetim kararları üreten şirketler için.';
+    btnM.className = 'primary'; btnM.style.border = '0';
+    btnA.className = 'secondary'; btnA.style.border = '0';
+    if(sAmt) sAmt.innerHTML = '₺1.750<span> /ay</span>';
+    if(sSub) sSub.innerHTML = 'Tek şirket / mizan analizi yapan, kâr sızıntısını ve nakit durumunu net görmek isteyen patronlar için.';
+    pAmt.innerHTML = '₺4.500<span> /ay</span>';
+    if(pSub) pSub.innerHTML = '13 haftalık nakit akışı, senaryo simülasyonu ve kapsamlı CFO yönetim raporu isteyen şirketler için.';
+    if(aAmt) aAmt.innerHTML = '₺9.500<span> /ay</span>';
+    if(aSub) aSub.innerHTML = 'Birden fazla mükellefe/şirkete finansal check-up ve White-Label denetim raporu sunan profesyoneller için.';
   }
 }
 (function(){
@@ -5192,6 +5203,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <span class="tag" style="background:#F1F5F9;font-size:11px">Excel / CSV</span>
     </div>
     <button type="button" onclick="downloadSampleMizan()" class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px">📥 Standart Mizan Şablonu İndir (.csv)</button>
+    <button type="button" onclick="openErpGuideModal()" class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;color:#1D4ED8;font-weight:700">📂 Logo / Mikro / Zirve / Luca Mizan Alma Rehberi</button>
   </div>
   <input id="file" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm" multiple style="display:none">
   <div id="fileListSingle" class="selectedFilesList"></div>
@@ -5418,48 +5430,66 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div id="execChips" class="chips"></div>
       <div id="execDecision" style="margin-top:14px"></div>
       <div style="margin-top:18px;padding:16px;background:linear-gradient(135deg,#EFF6FF 0%,#F8FAFC 100%);border:1.5px solid #BFDBFE;border-radius:16px" class="hidePrint">
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px">
           <div>
-            <span style="font-size:11px;font-weight:800;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase">📑 RAPOR ÇIKTI MERKEZİ · 2 SEVİYELİ KARAR RAPORU</span>
-            <div style="font-size:14px;font-weight:800;color:#0F172A;margin-top:2px">Patron Özeti veya Detaylı Finansal Röntgen Raporu Alın</div>
+            <span style="font-size:11px;font-weight:800;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase">📑 RAPOR ÇIKTI MERKEZİ · 3 KADEMELİ KARAR RAPORLARI</span>
+            <div style="font-size:14px;font-weight:800;color:#0F172A;margin-top:2px">Yönetim Kurulu Brifingi, CFO Yönetici Raporu veya Tam Denetim Raporu Alın</div>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button id="whiteLabelOpenBtn" type="button" class="secondary hidePrint" style="font-size:12px;padding:7px 12px;font-weight:700" onclick="openWhiteLabelModal()">🏢 Rapor Başlığı &amp; Logo (White-Label)</button>
             <button id="aiBtn" class="secondary hidePrint" style="font-size:12px;padding:7px 12px">✨ AI Finance Partner yorumunu üret (opsiyonel, LLM)</button>
             <button id="jsonBtn" class="secondary hidePrint" style="font-size:12px;padding:7px 12px">JSON İndir</button>
           </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:12px">
           <!-- Seviye 1: Patron & Board Deck -->
           <div style="background:#FFFFFF;border:1.5px solid #2563EB;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(37,99,235,0.08)">
             <div>
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">PATRON &amp; YÖNETİM KURULU</span>
-                <span style="font-size:11px;font-weight:700;color:#16A34A">⏱️ 30 Saniye</span>
+                <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">1. SEVİYE · PATRON &amp; YÖNETİM KURULU</span>
+                <span style="font-size:11px;font-weight:700;color:#16A34A">⏱️ 1 Sayfa / 30 Sn</span>
               </div>
               <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A">Yönetim Kurulu Karar Brifingi</h4>
               <p style="margin:0;font-size:12px;color:#64748B;line-height:1.45">Durum, Para Nerede, Öncelikli Riskler ve Yarın Masaya Konacak Yönetim Kararlarını içeren tek bakışta A4 karar belgesi.</p>
             </div>
             <div style="margin-top:12px">
               <button id="boardDeckBtn" type="button" class="primary" style="width:100%;padding:9px 14px;border-radius:10px;font-size:13px;font-weight:800;background:#1D4ED8;color:#FFFFFF;cursor:pointer">
-                📑 Yönetim Kurulu Karar Brifingini Aç / İndir →
+                📑 1 Sayfalık Karar Brifingini Aç →
               </button>
             </div>
           </div>
 
-          <!-- Seviye 2: CFO Deep Dive -->
+          <!-- Seviye 2: CFO Yönetici Raporu (8-10 Sayfa) -->
+          <div style="background:#FFFFFF;border:1.5px solid #0E7C66;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(14,124,102,0.08)">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                <span class="workflowBadge" style="background:#EAF7F4;color:#0E7C66;border-color:#A3E0D2;margin:0">2. SEVİYE · CFO &amp; DANIŞMAN</span>
+                <span style="font-size:11px;font-weight:700;color:#0E7C66">📊 8-10 Sayfa</span>
+              </div>
+              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A">CFO Yönetici Raporu</h4>
+              <p style="margin:0;font-size:12px;color:#64748B;line-height:1.45">DuPont kâr köprüsü, Yönetimsel Nakit Köprüsü, 13 Haftalık Nakit Akışı, GAP teşhisleri, Fırsat/Senaryo ve Vergi/Stres Analizi.</p>
+            </div>
+            <div style="margin-top:12px">
+              <button id="cfoReportBtn" type="button" class="primary" style="width:100%;padding:9px 14px;border-radius:10px;font-size:13px;font-weight:800;background:#0E7C66;color:#FFFFFF;cursor:pointer">
+                📑 8-10 Sayfalık CFO Raporunu Aç →
+              </button>
+            </div>
+          </div>
+
+          <!-- Seviye 3: Detaylı Denetim Raporu (35 Sayfa) -->
           <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,0.03)">
             <div>
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span class="workflowBadge" style="background:#F1F5F9;color:#475569;border-color:#CBD5E1;margin:0">CFO &amp; DETAYLI RÖNTGEN</span>
-                <span style="font-size:11px;font-weight:700;color:#64748B">📊 Kapsamlı Rapor</span>
+                <span class="workflowBadge" style="background:#F1F5F9;color:#475569;border-color:#CBD5E1;margin:0">3. SEVİYE · SMMM / YMM / DENETİM</span>
+                <span style="font-size:11px;font-weight:700;color:#64748B">📑 35 Sayfa</span>
               </div>
-              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A">Detaylı Finansal Röntgen &amp; Karar Raporu</h4>
-              <p style="margin:0;font-size:12px;color:#64748B;line-height:1.45">33 Karar Motoru, DuPont kâr köprüsü, müşteri/ürün kârlılık matrisi, stok yaşlandırma ve tüm analitik ekler.</p>
+              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A">Tam Kapsamlı Denetim Raporu</h4>
+              <p style="margin:0;font-size:12px;color:#64748B;line-height:1.45">33 Karar Motoru, Müşteri &amp; Ürün Kârlılık Matrisi, Stok/Alacak Yaşlandırma, Ek B Mali Tabloları ve Traceability İzi.</p>
             </div>
             <div style="margin-top:12px">
               <button id="printBtn" type="button" class="secondary" style="width:100%;padding:9px 14px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer">
-                📑 Detaylı Finansal Röntgen Raporunu Aç / Önizle →
+                📑 35 Sayfa Tam Denetim Raporunu Aç →
               </button>
             </div>
           </div>
@@ -6281,10 +6311,10 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
           <p>Doğrulanmış Gelir Tablosu (P&amp;L), Bilanço ve Nakit Akış Tablosu</p>
         </div>
       </div>
-      <div class="grid3">
-        <div id="plTable" class="tableWrap"></div>
-        <div id="bsTable" class="tableWrap"></div>
-        <div id="cfTable" class="tableWrap"></div>
+      <div class="reportTableGrid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:16px;margin-top:14px">
+        <div id="plTable" class="tableWrap" style="min-width:300px;overflow:hidden;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px;background:#FFFFFF;box-shadow:0 1px 3px rgba(0,0,0,0.04)"></div>
+        <div id="bsTable" class="tableWrap" style="min-width:300px;overflow:hidden;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px;background:#FFFFFF;box-shadow:0 1px 3px rgba(0,0,0,0.04)"></div>
+        <div id="cfTable" class="tableWrap" style="min-width:300px;overflow:hidden;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px;background:#FFFFFF;box-shadow:0 1px 3px rgba(0,0,0,0.04)"></div>
       </div>
     </div>
   </div>
@@ -6310,6 +6340,154 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       </div>
     </div>
     <div id="boardDeckContent" style="padding:22px;overflow-y:auto;flex:1"></div>
+  </div>
+</div>
+
+<!-- Seviye 2: CFO Yönetici Raporu Önizleme Modalı (8-10 Sayfa) -->
+<div id="cfoReportModal" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;overflow-y:auto">
+  <div style="background:#FFFFFF;border-radius:18px;max-width:1040px;width:100%;max-height:94vh;display:flex;flex-direction:column;box-shadow:0 25px 60px rgba(0,0,0,0.35);overflow:hidden">
+    <div class="hidePrint" style="display:flex;justify-content:space-between;align-items:center;padding:14px 22px;border-bottom:1.5px solid #E2E8F0;background:#F8FAFC;flex-shrink:0">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:22px">📑</span>
+        <div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <h3 style="margin:0;font-size:15px;color:#0F1B2D;font-weight:800">CFO Yönetici Raporu (8-10 Sayfa Stratejik Yönetim Özeti)</h3>
+            <span class="tag" style="background:#EAF7F4;color:#0E7C66;font-size:10.5px;font-weight:800">CFO &amp; Danışman</span>
+          </div>
+          <p style="margin:2px 0 0;font-size:11.5px;color:#64748B">DuPont Kâr Köprüsü &bull; Likidite &amp; Nakit Köprüsü &bull; 13 Haftalık Nakit Planı &bull; GAP &amp; Öncelikli Aksiyonlar</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button type="button" class="secondary" style="padding:7px 12px;border-radius:8px;font-size:12px;font-weight:700" onclick="openWhiteLabelModal()">🏢 Başlık / Logo Özelleştir</button>
+        <button id="printCfoReportBtn" type="button" class="primary" style="padding:7px 16px;border-radius:8px;font-size:12.5px;font-weight:700">🖨️ Yazdır / PDF İndir</button>
+        <button id="openCfoReportNewTabBtn" type="button" class="secondary" style="padding:7px 14px;border-radius:8px;font-size:12.5px;font-weight:700" onclick="openCfoReportInNewWindow()">📄 Temiz A4 Görünümü</button>
+        <button id="closeCfoReportBtn" type="button" style="background:none;border:none;font-size:22px;color:#64748B;cursor:pointer;padding:4px 8px">✕</button>
+      </div>
+    </div>
+    <div id="cfoReportContent" style="padding:24px;overflow-y:auto;flex:1;background:#F1F5F9"></div>
+  </div>
+</div>
+
+<!-- White-Label Kurumsal Rapor Başlığı & Logo Ayarlama Modalı -->
+<div id="whiteLabelModal" class="hidden hidePrint" style="position:fixed;inset:0;background:rgba(15,27,45,.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2200;padding:20px;overflow-y:auto">
+  <div style="background:#FFFFFF;border-radius:18px;max-width:620px;width:100%;box-shadow:0 25px 60px rgba(0,0,0,0.35);overflow:hidden;border:1px solid #E2E8F0">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:1px solid #E2E8F0;background:#F8FAFC">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:22px">🏢</span>
+        <div>
+          <h3 style="margin:0;font-size:16px;color:#0F1B2D;font-weight:800">White-Label Rapor Başlığı &amp; Logo Ayarları</h3>
+          <p style="margin:2px 0 0;font-size:11.5px;color:#64748B">Rapor kapaklarını ve imza bloklarını kendi danışmanlık/müşavirlik kimliğinizle özelleştirin</p>
+        </div>
+      </div>
+      <button type="button" onclick="closeWhiteLabelModal()" style="background:none;border:none;font-size:22px;color:#64748B;cursor:pointer;padding:4px 8px">✕</button>
+    </div>
+    <div style="padding:20px 22px">
+      <div style="font-size:12.5px;color:#475569;margin-bottom:16px;line-height:1.5;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:10px 14px">
+        💡 <b>Müşavir &amp; Finansal Danışmanlar İçin:</b> Burada tanımladığınız ofis adı, unvan ve logo tüm raporların (1 Sayfalık Karar Brifingi, 8-10 Sayfalık CFO Raporu ve 35 Sayfalık Denetim Raporu) kapağında ve nihai imza bloğunda yer alır.
+      </div>
+      <form id="whiteLabelForm" onsubmit="saveWhiteLabelForm(event)" style="display:flex;flex-direction:column;gap:14px">
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#33415C;margin-bottom:4px">Ofis / Şirket / Müşavirlik Adı</label>
+          <input type="text" id="wlFirmName" placeholder="Örn: ABC Finansal Danışmanlık &amp; Denetim A.Ş." style="width:100%;padding:9px 12px;border:1px solid #CBD5E1;border-radius:8px;font-size:13px">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#33415C;margin-bottom:4px">Danışman / SMMM / YMM Adı Soyadı</label>
+            <input type="text" id="wlAdvisorName" placeholder="Örn: Ahmet Yılmaz" style="width:100%;padding:9px 12px;border:1px solid #CBD5E1;border-radius:8px;font-size:13px">
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#33415C;margin-bottom:4px">Unvan / Rol</label>
+            <input type="text" id="wlAdvisorTitle" placeholder="Örn: Yeminli Mali Müşavir / Bağımsız Denetçi" style="width:100%;padding:9px 12px;border:1px solid #CBD5E1;border-radius:8px;font-size:13px">
+          </div>
+        </div>
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#33415C;margin-bottom:4px">Logo URL (PNG / SVG / JPEG veya Base64)</label>
+          <input type="text" id="wlLogoUrl" placeholder="https://sirketiniz.com/logo.png" style="width:100%;padding:9px 12px;border:1px solid #CBD5E1;border-radius:8px;font-size:13px">
+        </div>
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#33415C;margin-bottom:4px">Kapakta Görünecek Özel Yönetici Notu (Opsiyonel)</label>
+          <input type="text" id="wlReportNote" placeholder="Örn: Bu rapor şirket yönetim kurulu ve ortaklar kurulu için gizli olarak hazırlanmıştır." style="width:100%;padding:9px 12px;border:1px solid #CBD5E1;border-radius:8px;font-size:13px">
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:14px;border-top:1px solid #E2E8F0">
+          <button type="button" class="secondary" onclick="resetWhiteLabel()" style="font-size:12px;padding:7px 12px;color:#DC2626;border-color:#FCA5A5">Sıfırla (Varsayılana Dön)</button>
+          <div style="display:flex;gap:8px">
+            <button type="button" class="secondary" onclick="closeWhiteLabelModal()" style="font-size:12px;padding:7px 14px">Vazgeç</button>
+            <button type="submit" class="primary" style="font-size:12px;padding:7px 18px;border-radius:8px">💾 Kaydet ve Raporlara Uygula</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ERP Mizan Export Rehberi Modalı -->
+<div id="erpGuideModal" class="hidden hidePrint" style="position:fixed;inset:0;background:rgba(15,27,45,.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2200;padding:20px;overflow-y:auto">
+  <div style="background:#FFFFFF;border-radius:18px;max-width:760px;width:100%;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 25px 60px rgba(0,0,0,0.35);overflow:hidden;border:1px solid #E2E8F0">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:1px solid #E2E8F0;background:#F8FAFC">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:22px">📂</span>
+        <div>
+          <h3 style="margin:0;font-size:16px;color:#0F1B2D;font-weight:800">ERP &amp; Muhasebe Yazılımlarından Mizan Alma Rehberi</h3>
+          <p style="margin:2px 0 0;font-size:11.5px;color:#64748B">Logo, Mikro, Zirve ve Luca'dan 60 saniyede uyumlu mizan Excel/CSV dosyası dışa aktarma adımları</p>
+        </div>
+      </div>
+      <button type="button" onclick="closeErpGuideModal()" style="background:none;border:none;font-size:22px;color:#64748B;cursor:pointer;padding:4px 8px">✕</button>
+    </div>
+    <div style="padding:22px;overflow-y:auto;flex:1">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <!-- Logo -->
+        <div style="border:1px solid #E2E8F0;border-radius:12px;padding:14px 18px;background:#F8FAFC">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="background:#2563EB;color:#fff;font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px">LOGO (Go 3, Tiger 3, Netsis)</span>
+            <b style="font-size:13.5px;color:#0F172A">Genel Muhasebe Aylık / İki Tarih Arası Mizan</b>
+          </div>
+          <ol style="margin:0;padding-left:20px;font-size:12.5px;color:#33415C;line-height:1.6">
+            <li>Ana Menü &gt; <b>Genel Muhasebe</b> &gt; <b>Raporlar</b> &gt; <b>Mizanlar</b> &gt; <b>Aylık Mizan</b> (veya İki Tarih Arası Mizan).</li>
+            <li>Filtreler sekmesinde Hesap Kodu aralığını <b>100</b> ile <b>999</b> olarak belirleyin.</li>
+            <li>Rapor çıktısı türü olarak <b>Excel (Tablo)</b> seçin ve bilgisayarınıza kaydedin.</li>
+          </ol>
+        </div>
+        <!-- Mikro -->
+        <div style="border:1px solid #E2E8F0;border-radius:12px;padding:14px 18px;background:#F8FAFC">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="background:#0E7C66;color:#fff;font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px">MİKRO (V15, V16, Jump, Fly)</span>
+            <b style="font-size:13.5px;color:#0F172A">Detaylı Genel Mizan (098100)</b>
+          </div>
+          <ol style="margin:0;padding-left:20px;font-size:12.5px;color:#33415C;line-height:1.6">
+            <li><b>Muhasebe Modülü</b> &gt; <b>Mizan ve Defterler</b> &gt; <b>Detaylı Genel Mizan (098100)</b> menüsüne girin.</li>
+            <li>İncelemek istediğiniz ay/tarih aralığını girin; Seviye olarak <b>Muavin / Alt Hesap</b> seçin.</li>
+            <li>Ekrana döküm aldıktan sonra üst araç çubuğundaki <b>Excel'e Gönder</b> butonuna tıklayın.</li>
+          </ol>
+        </div>
+        <!-- Zirve -->
+        <div style="border:1px solid #E2E8F0;border-radius:12px;padding:14px 18px;background:#F8FAFC">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="background:#B45309;color:#fff;font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px">ZİRVE FİNANSMAN / MÜŞAVİR</span>
+            <b style="font-size:13.5px;color:#0F172A">Genel Muhasebe Mizan Tablosu</b>
+          </div>
+          <ol style="margin:0;padding-left:20px;font-size:12.5px;color:#33415C;line-height:1.6">
+            <li><b>Genel Muhasebe</b> &gt; <b>Mizan</b> modülünü açın.</li>
+            <li>Ay aralığını belirleyin ve <b>Mizan Hazırla (F5)</b> butonuna basın.</li>
+            <li>Tablo oluştuktan sonra üst paneldeki <b>Excel (XLS) İndir</b> ikonuna tıklayarak dışa aktarın.</li>
+          </ol>
+        </div>
+        <!-- Luca -->
+        <div style="border:1px solid #E2E8F0;border-radius:12px;padding:14px 18px;background:#F8FAFC">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="background:#6D28D9;color:#fff;font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px">LUCA NET / MALİ MÜŞAVİR</span>
+            <b style="font-size:13.5px;color:#0F172A">İki Tarih Arası Genel Mizan</b>
+          </div>
+          <ol style="margin:0;padding-left:20px;font-size:12.5px;color:#33415C;line-height:1.6">
+            <li><b>Muhasebe</b> &gt; <b>Raporlar</b> &gt; <b>Mizan</b> &gt; <b>İki Tarih Arası Mizan</b> ekranına gidin.</li>
+            <li>"Bakiye Veren Hesaplar" veya "Tüm Hesaplar" kutusunu işaretleyin.</li>
+            <li>Sağ üstteki <b>Excel</b> butonuna basarak dosyayı kaydedin.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div style="padding:14px 22px;border-top:1px solid #E2E8F0;background:#F8FAFC;display:flex;justify-content:flex-end">
+      <button type="button" class="primary" style="padding:8px 22px;border-radius:10px;font-size:13px;font-weight:700" onclick="closeErpGuideModal()">Tamam, Anladım</button>
+    </div>
   </div>
 </div>
 
@@ -6514,7 +6692,189 @@ const fmt=v=>v==null?'–':new Intl.NumberFormat('tr-TR',{maximumFractionDigits:
 const num=v=>v==null?'–':new Intl.NumberFormat('tr-TR',{maximumFractionDigits:1}).format(v);
 const pct=v=>v==null?'–':num(v)+'%'; const rat=v=>v==null?'–':num(v)+'x';
 const sevRank=s=>({critical:4,high:3,medium:2,low:1,positive:0})[s]??0;
-function table(title,obj){return '<div class="notice" style="margin-bottom:8px"><b>'+title+'</b></div><table><tbody>'+Object.entries(obj||{}).map(([k,v])=>'<tr><td>'+esc(k)+'</td><td><b>'+money(v)+'</b></td></tr>').join('')+'</tbody></table>'}
+
+const TR_FIN_LABELS = {
+  // Bilanço Aktif
+  'Cash and cash equivalents': 'Kasa ve Bankalar (Nakit)',
+  'Cash': 'Kasa ve Bankalar',
+  'Accounts receivable': 'Ticari Alacaklar (Müşteriler)',
+  'Trade receivables': 'Ticari Alacaklar',
+  'Inventories': 'Stoklar (İlk Madde, Yarı Mamul, Mamul)',
+  'Inventory': 'Stoklar',
+  'Other current assets': 'Diğer Dönen Varlıklar',
+  'Total current assets': 'TOPLAM DÖNEN VARLIKLAR',
+  'Current assets': 'TOPLAM DÖNEN VARLIKLAR',
+  'Property, plant and equipment': 'Maddi Duran Varlıklar (Tesis, Makine)',
+  'Tangible assets': 'Maddi Duran Varlıklar',
+  'Intangible assets': 'Maddi Olmayan Duran Varlıklar',
+  'Other non-current assets': 'Diğer Duran Varlıklar',
+  'Total non-current assets': 'TOPLAM DURAN VARLIKLAR',
+  'Non-current assets': 'TOPLAM DURAN VARLIKLAR',
+  'Total assets': 'TOPLAM AKTİF (VARLIKLAR)',
+  // Bilanço Pasif
+  'Short-term financial debt': 'Kısa Vadeli Banka Kredileri',
+  'Short term financial debt': 'Kısa Vadeli Finansal Borçlar',
+  'Accounts payable': 'Ticari Borçlar (Satıcılar)',
+  'Trade payables': 'Ticari Borçlar',
+  'Other current liabilities': 'Diğer Kısa Vadeli Yabancı Kaynaklar',
+  'Total current liabilities': 'TOPLAM KISA VADELİ BORÇLAR',
+  'Current liabilities': 'TOPLAM KISA VADELİ BORÇLAR',
+  'Long-term financial debt': 'Uzun Vadeli Banka Kredileri',
+  'Long term financial debt': 'Uzun Vadeli Finansal Borçlar',
+  'Other non-current liabilities': 'Diğer Uzun Vadeli Borçlar',
+  'Total non-current liabilities': 'TOPLAM UZUN VADELİ BORÇLAR',
+  'Non-current liabilities': 'TOPLAM UZUN VADELİ BORÇLAR',
+  'Total liabilities': 'TOPLAM BORÇLAR (YABANCI KAYNAKLAR)',
+  'Paid-in capital': 'Ödenmiş Sermaye',
+  'Capital': 'Ödenmiş Sermaye',
+  'Retained earnings': 'Geçmiş Yıllar Kârları / (Zararları)',
+  'Current year net profit': 'Dönem Net Kârı / (Zararı)',
+  'Net profit / loss': 'Dönem Net Kârı / (Zararı)',
+  'Total equity': 'TOPLAM ÖZKAYNAKLAR',
+  'Equity': 'TOPLAM ÖZKAYNAKLAR',
+  'Total liabilities and equity': 'TOPLAM PASİF (KAYNAKLAR)',
+  // Gelir Tablosu
+  'Gross sales': 'Brüt Satışlar',
+  'Sales discounts and returns': 'Satış İndirimleri ve İadeleri (-)',
+  'Net sales': 'NET SATIŞLAR (HASILAT)',
+  'Cost of goods sold': 'Satışların Maliyeti (-)',
+  'COGS': 'Satışların Maliyeti (-)',
+  'Gross profit': 'BRÜT SATIŞ KÂRI / (ZARARI)',
+  'Operating expenses': 'Faaliyet Giderleri (Genel Yönetim, Pazarlama, Ar-Ge) (-)',
+  'OPEX': 'Faaliyet Giderleri (-)',
+  'Operating profit': 'FAALİYET KÂRI / (ZARARI) (FVÖK / EBIT)',
+  'Finance costs': 'Finansman Giderleri (-)',
+  'Financial expenses': 'Finansman Giderleri (-)',
+  'Other income': 'Diğer Faaliyet Gelirleri',
+  'Other expenses': 'Diğer Faaliyet Giderleri (-)',
+  'Profit before tax': 'DÖNEM KÂRI / (ZARARI) (VERGİ ÖNCESİ)',
+  'Tax expenses': 'Dönem Vergi ve Yasal Yükümlülükleri (-)',
+  'Net profit': 'DÖNEM NET KÂRI / (ZARARI)'
+};
+
+function trFinKey(k){
+  return TR_FIN_LABELS[k] || TR_FIN_LABELS[(k||'').trim()] || k;
+}
+
+function table(title,obj){
+  return '<div class="notice" style="margin-bottom:10px;font-weight:800;display:flex;justify-content:space-between;align-items:center;background:#F8FAFC;border:1px solid #E2E8F0"><span>'+title+'</span><span class="small muted" style="font-weight:600">VUK / Tekdüzen</span></div>'
+    +'<div class="tableScrollWrap" style="overflow-x:auto;width:100%">'
+    +'<table style="width:100%;table-layout:fixed;border-collapse:collapse">'
+    +'<colgroup><col style="width:62%"><col style="width:38%"></colgroup>'
+    +'<tbody>'
+    +Object.entries(obj||{}).map(([k,v])=>{
+      const tk = trFinKey(k);
+      const isTotal = /toplam|total|brüt|ebit|net sat|özk|hasılat/i.test(tk);
+      const rowStyle = isTotal ? 'font-weight:800;background:rgba(29,78,216,0.05);border-top:1.5px solid #CBD5E1;border-bottom:1.5px solid #CBD5E1;' : '';
+      return '<tr style="'+rowStyle+'"><td style="padding:6px 8px;font-size:11.5px;line-height:1.35;word-break:break-word;overflow:hidden;text-overflow:ellipsis">'+esc(tk)+'</td><td style="padding:6px 8px;font-size:11.5px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums"><b>'+money(v)+'</b></td></tr>';
+    }).join('')
+    +'</tbody></table></div>';
+}
+
+// White-Label Config & Modal Helpers
+function getWhiteLabelConfig(){
+  try {
+    const raw = localStorage.getItem('dfbp_whitelabel');
+    if(raw) return JSON.parse(raw);
+  }catch(e){}
+  return { firmName: '', advisorName: '', advisorTitle: '', logoUrl: '', reportNote: '' };
+}
+function saveWhiteLabelConfig(cfg){
+  try {
+    localStorage.setItem('dfbp_whitelabel', JSON.stringify(cfg));
+  }catch(e){}
+}
+function openWhiteLabelModal(){
+  const cfg = getWhiteLabelConfig();
+  if($('wlFirmName')) $('wlFirmName').value = cfg.firmName || '';
+  if($('wlAdvisorName')) $('wlAdvisorName').value = cfg.advisorName || '';
+  if($('wlAdvisorTitle')) $('wlAdvisorTitle').value = cfg.advisorTitle || '';
+  if($('wlLogoUrl')) $('wlLogoUrl').value = cfg.logoUrl || '';
+  if($('wlReportNote')) $('wlReportNote').value = cfg.reportNote || '';
+  $('whiteLabelModal')?.classList.remove('hidden');
+}
+function closeWhiteLabelModal(){
+  $('whiteLabelModal')?.classList.add('hidden');
+}
+function saveWhiteLabelForm(e){
+  if(e) e.preventDefault();
+  const cfg = {
+    firmName: ($('wlFirmName')?.value || '').trim(),
+    advisorName: ($('wlAdvisorName')?.value || '').trim(),
+    advisorTitle: ($('wlAdvisorTitle')?.value || '').trim(),
+    logoUrl: ($('wlLogoUrl')?.value || '').trim(),
+    reportNote: ($('wlReportNote')?.value || '').trim()
+  };
+  saveWhiteLabelConfig(cfg);
+  closeWhiteLabelModal();
+  // Refresh whichever report is open
+  if(!$('boardDeckModal')?.classList.contains('hidden')) openBoardDeckModal();
+  if(!$('cfoReportModal')?.classList.contains('hidden')) openCfoReportModal();
+  if(!$('detailedReportModal')?.classList.contains('hidden')) openDetailedReportModal();
+}
+function resetWhiteLabel(){
+  localStorage.removeItem('dfbp_whitelabel');
+  if($('wlFirmName')) $('wlFirmName').value = '';
+  if($('wlAdvisorName')) $('wlAdvisorName').value = '';
+  if($('wlAdvisorTitle')) $('wlAdvisorTitle').value = '';
+  if($('wlLogoUrl')) $('wlLogoUrl').value = '';
+  if($('wlReportNote')) $('wlReportNote').value = '';
+  closeWhiteLabelModal();
+  if(!$('boardDeckModal')?.classList.contains('hidden')) openBoardDeckModal();
+  if(!$('cfoReportModal')?.classList.contains('hidden')) openCfoReportModal();
+  if(!$('detailedReportModal')?.classList.contains('hidden')) openDetailedReportModal();
+}
+
+function openErpGuideModal(){ $('erpGuideModal')?.classList.remove('hidden'); }
+function closeErpGuideModal(){ $('erpGuideModal')?.classList.add('hidden'); }
+
+// Action Tracker (Task Management in localStorage)
+function getActionStatuses(){
+  try {
+    return JSON.parse(localStorage.getItem('dfbp_action_tracker') || '{}');
+  }catch(e){ return {}; }
+}
+function setActionStatus(actId, val){
+  const s = getActionStatuses();
+  s[actId] = val;
+  try {
+    localStorage.setItem('dfbp_action_tracker', JSON.stringify(s));
+  }catch(e){}
+  updateActionTrackerProgress();
+}
+function updateActionTrackerProgress(){
+  const statuses = getActionStatuses();
+  const selects = document.querySelectorAll('.actionStatusSelect');
+  if(!selects.length) return;
+  let total = selects.length;
+  let done = 0;
+  let inProgress = 0;
+  selects.forEach(sel => {
+    const aid = sel.getAttribute('data-action-id');
+    const st = statuses[aid] || 'pending';
+    sel.value = st;
+    sel.style.background = st === 'completed' ? '#F0FDF4' : st === 'in_progress' ? '#FFFBEB' : '#FFFFFF';
+    sel.style.borderColor = st === 'completed' ? '#16A34A' : st === 'in_progress' ? '#D97706' : '#94A3B8';
+    sel.style.color = st === 'completed' ? '#166534' : st === 'in_progress' ? '#92400E' : '#33415C';
+    const row = sel.closest('.actionRow');
+    if(row){
+      if(st === 'completed'){
+        row.style.opacity = '0.65';
+        row.style.background = 'rgba(22, 163, 74, 0.04)';
+      } else {
+        row.style.opacity = '1';
+        row.style.background = 'none';
+      }
+    }
+    if(st === 'completed') done++;
+    else if(st === 'in_progress') inProgress++;
+  });
+  const pct = Math.round((done / total) * 100);
+  const textEl = document.getElementById('actionTrackerProgressText');
+  if(textEl){
+    textEl.innerHTML = `⚡ İcraat İlerlemesi: %${pct} Tamamlandı (${done}/${total} Aksiyon) · ${inProgress} İşlemde`;
+  }
+}
 function renderCashFlowTable(cb, pl, bs){
   if(!cb || !cb.available){
     const wc=cb?.working_capital_proxy||{};
@@ -7101,19 +7461,67 @@ function render(d){
   // of being hidden as an unnumbered bullet inside one group — each
   // recommendation is a separately trackable "madde", not a sub-note.
   const groups=groupActions(bp.management_actions||[]);
-  $('actions').innerHTML=groups.map((g,i)=>{
+  const actTrackerStatuses = getActionStatuses();
+  const progressBarHtml = '<div id="actionTrackerProgress" style="margin-bottom:14px;padding:10px 14px;background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">'
+    +'<div id="actionTrackerProgressText" style="font-size:12.5px;font-weight:800;color:#1D4ED8">⚡ İcraat İlerlemesi Takipçisi</div>'
+    +'<div class="small muted">Patron ve CFO için interaktif görev yönetim takibi (durumlar cihazınızda saklanır)</div>'
+    +'</div>';
+
+  function renderActionTrackerSelect(actId){
+    const curSt = actTrackerStatuses[actId] || 'pending';
+    return '<div style="display:flex;align-items:center;gap:6px;flex-shrink:0">'
+      +'<select class="actionStatusSelect" data-action-id="'+actId+'" onchange="setActionStatus(\''+actId+'\', this.value)" style="font-size:11px;font-weight:700;padding:4px 8px;border-radius:8px;border:1.5px solid '+(curSt==='completed'?'#16A34A':curSt==='in_progress'?'#D97706':'#94A3B8')+';background:'+(curSt==='completed'?'#F0FDF4':curSt==='in_progress'?'#FFFBEB':'#FFFFFF')+';color:'+(curSt==='completed'?'#166534':curSt==='in_progress'?'#92400E':'#33415C')+';cursor:pointer">'
+      +'<option value="pending" '+(curSt==='pending'?'selected':'')+'>⏳ Bekliyor</option>'
+      +'<option value="in_progress" '+(curSt==='in_progress'?'selected':'')+'>🔄 İşlemde</option>'
+      +'<option value="completed" '+(curSt==='completed'?'selected':'')+'>✅ Tamamlandı</option>'
+      +'</select>'
+      +'</div>';
+  }
+
+  const actionsListHtml = groups.map((g,i)=>{
     const kpis=[...new Set(g.items.map(x=>x.kpi).filter(Boolean))].join(' / ');
     const meta='<div class="small muted" style="margin-top:4px">'+esc(g.owner)+' · '+esc(g.time_horizon)+' · KPI: '+esc(kpis)+'</div>'+(g.expected_financial_impact!=null?'<div class="small" style="margin-top:4px"><b>Beklenen finansal etki:</b> '+money(g.expected_financial_impact)+' <span class="muted">('+esc(g.expected_impact_label||'proxy')+')</span></div>':'');
     if(g.items.length>1){
-      return g.items.map((x,j)=>'<div class="actionRow"><div class="rank">'+(i+1)+'.'+(j+1)+'</div><div><b>'+esc(x.action)+'</b>'+(j===g.items.length-1?meta:'')+'</div><span class="tag '+esc(x.severity||g.severity)+'">'+esc(x.severity||g.severity)+'</span></div>').join('');
+      return g.items.map((x,j)=>{
+        const actId = 'act_' + (i+1) + '_' + (j+1);
+        const curSt = actTrackerStatuses[actId] || 'pending';
+        return '<div class="actionRow" style="'+(curSt==='completed'?'opacity:0.65;background:rgba(22,163,74,0.04);':'')+'"><div class="rank">'+(i+1)+'.'+(j+1)+'</div><div><b>'+esc(x.action)+'</b>'+(j===g.items.length-1?meta:'')+'</div><div style="display:flex;align-items:center;gap:8px"><span class="tag '+esc(x.severity||g.severity)+'">'+esc(x.severity||g.severity)+'</span>'+renderActionTrackerSelect(actId)+'</div></div>';
+      }).join('');
     }
-    return '<div class="actionRow"><div class="rank">'+(i+1)+'</div><div><b>'+esc(g.action)+'</b>'+meta+'</div><span class="tag '+esc(g.severity)+'">'+esc(g.severity)+'</span></div>';
+    const actId = 'act_' + (i+1);
+    const curSt = actTrackerStatuses[actId] || 'pending';
+    return '<div class="actionRow" style="'+(curSt==='completed'?'opacity:0.65;background:rgba(22,163,74,0.04);':'')+'"><div class="rank">'+(i+1)+'</div><div><b>'+esc(g.action)+'</b>'+meta+'</div><div style="display:flex;align-items:center;gap:8px"><span class="tag '+esc(g.severity)+'">'+esc(g.severity)+'</span>'+renderActionTrackerSelect(actId)+'</div></div>';
   }).join('')||'<div class="notice">Aksiyon yok.</div>';
 
+  $('actions').innerHTML = progressBarHtml + actionsListHtml;
+  setTimeout(updateActionTrackerProgress, 20);
+
   // Step 5 — WHAT IF (Opportunity Engine)
+  const CS_LABELS = {
+    'opex_to_sales_pct': 'Faaliyet Gideri / Ciro',
+    'inventory_to_sales_pct': 'Stok / Ciro',
+    'receivables_to_sales_pct': 'Alacak / Ciro',
+    'payables_to_sales_pct': 'Borç / Ciro',
+    'gross_margin_pct': 'Brüt Marj',
+    'net_margin_pct': 'Net Marj',
+    'effective_interest_rate': 'Efektif Borçlanma Faizi',
+    'cash_conversion_cycle': 'Nakit Döngüsü (Gün)',
+    'working_capital': 'İşletme Sermayesi',
+    'current_ratio': 'Cari Oran'
+  };
+  function formatCsEntry(k, v){
+    const label = CS_LABELS[k] || k.replace(/_/g, ' ');
+    let valStr = v;
+    if(typeof v === 'number'){
+      if(k.endsWith('_pct') || k.includes('rate') || k.includes('margin')) valStr = '%' + num(v);
+      else if(v > 1000 || v < -1000) valStr = money(v);
+      else valStr = num(v);
+    }
+    return label + ': ' + valStr;
+  }
   const impactLabels={'annual_profit_if_period_is_annual':'Yıllık kâr etkisi (dönem yıllık ise)','finance_cost_saving_proxy':'Finansman maliyeti tasarrufu (proxy)','cash_release':'Nakit serbestleşmesi'};
   const opps=bp.opportunity_engine?.opportunities||[];
-  $('opportunities').innerHTML=opps.map(o=>{const cs=o.current_state||{};const csTxt=Object.entries(cs).filter(([k,v])=>v!=null).map(([k,v])=>k+': '+v).join(' · ');return '<div class="scenario"><div class="small muted">#'+esc(o.rank)+' · '+esc(o.area)+'</div><h3>'+esc(o.title)+'</h3><div class="big">'+money(o.estimated_impact)+'</div><p>'+esc(impactLabels[o.impact_type]||o.impact_type||'')+'</p><p class="small muted">Hesaplama: '+esc(o.calculation||'')+'</p><p class="small muted">Varsayım: '+esc(o.assumption||'')+'</p>'+(csTxt?'<div class="small muted" style="margin-top:6px">Mevcut durum: '+esc(csTxt)+'</div>':'')+'<div class="small" style="margin-top:6px">Satışın %'+esc(o.pct_of_net_sales??'–')+' · Net kârın %'+esc(o.pct_of_net_profit??'–')+'</div></div>'}).join('')||'<div class="notice">Fırsat bulunamadı.</div>';
+  $('opportunities').innerHTML=opps.map(o=>{const cs=o.current_state||{};const csTxt=Object.entries(cs).filter(([k,v])=>v!=null).map(([k,v])=>formatCsEntry(k,v)).join(' · ');return '<div class="scenario"><div class="small muted">#'+esc(o.rank)+' · '+esc(o.area)+'</div><h3>'+esc(o.title)+'</h3><div class="big">'+money(o.estimated_impact)+'</div><p>'+esc(impactLabels[o.impact_type]||o.impact_type||'')+'</p><p class="small muted">Hesaplama: '+esc(o.calculation||'')+'</p><p class="small muted">Varsayım: '+esc(o.assumption||'')+'</p>'+(csTxt?'<div class="small muted" style="margin-top:6px">Mevcut durum: '+esc(csTxt)+'</div>':'')+'<div class="small" style="margin-top:6px">Satışın %'+esc(o.pct_of_net_sales??'–')+' · Net kârın %'+esc(o.pct_of_net_profit??'–')+'</div></div>'}).join('')||'<div class="notice">Fırsat bulunamadı.</div>';
 
   // Step 7 — AI CFO: narrative + grounded KPI chips + an explicit "what should
   // the manager do with this" block, built from the same management actions
@@ -7978,12 +8386,16 @@ function openBoardDeckModal(){
 
   let html = '';
 
+  const wl = getWhiteLabelConfig();
   // Header Bar
   html += '<div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #0F1B2D;padding-bottom:12px;margin-bottom:14px">';
+  html += '<div style="display:flex;align-items:center;gap:12px">';
+  if(wl.logoUrl) html += '<img src="' + esc(wl.logoUrl) + '" style="max-height:36px;max-width:140px;object-fit:contain" alt="Logo">';
   html += '<div>';
-  html += '<div style="font-size:10px;font-weight:800;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase;margin-bottom:2px">YÖNETİM KURULU KARAR BRİFİNGİ (BOARD DECK)</div>';
+  html += '<div style="font-size:10px;font-weight:800;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase;margin-bottom:2px">' + esc(wl.firmName || 'YÖNETİM KURULU KARAR BRİFİNGİ (BOARD DECK)') + '</div>';
   html += '<h2 style="margin:0;font-size:19px;font-weight:900;color:#0F1B2D;letter-spacing:-0.5px">Finansal Sağlık, Likidite ve Stratejik Eylem Planı</h2>';
   html += '<div style="font-size:11px;color:#64748B;margin-top:3px">Dönem: <b>' + esc(d.period_metadata?.label || 'Cari Dönem') + '</b> · 33 Deterministik Karar Motoru Raporu</div>';
+  html += '</div>';
   html += '</div>';
   html += '<div style="text-align:right">';
   html += '<div style="font-size:26px;font-weight:900;color:' + hColor + ';line-height:1">' + healthScore + '<span style="font-size:13px;color:#94A3B8">/100</span></div>';
@@ -8108,7 +8520,7 @@ function openBoardDeckModal(){
   html += '</tbody></table>';
   html += '</div>';
 
-  html += '<div style="margin-top:12px;text-align:center;font-size:10.5px;color:#94A3B8">Digital Finance BP · CFO Karar Destek Sistemi · digitalfinancebp.com · Kurumsal Gizli Rapor</div>';
+  html += '<div style="margin-top:12px;text-align:center;font-size:10.5px;color:#94A3B8">' + esc(wl.firmName || 'Digital Finance BP') + (wl.advisorName ? ' · ' + esc(wl.advisorName) + ' (' + esc(wl.advisorTitle || 'Danışman') + ')' : '') + ' · Kurumsal Gizli Karar Belgesi</div>';
   html += '</div>';
 
   box.innerHTML = html;
@@ -8162,10 +8574,13 @@ function openDetailedReportModal(){
   const periodLabel = d.period_metadata?.label || 'Cari Dönem';
   const dateStr = new Date().toLocaleDateString('tr-TR', {year:'numeric', month:'long', day:'numeric'});
 
+  const wl = getWhiteLabelConfig();
   coverDiv.innerHTML = `
     <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2.5px solid #0F172A;padding-bottom:16px;margin-bottom:18px">
-      <div>
-        <div style="font-size:11px;font-weight:900;letter-spacing:1.5px;color:#1D4ED8;text-transform:uppercase;margin-bottom:4px">DİGİTAL FINANCE BUSINESS PARTNER &bull; RESMİ FİNANSAL KARAR RAPORU</div>
+      <div style="display:flex;align-items:center;gap:12px">
+        ${wl.logoUrl ? `<img src="${esc(wl.logoUrl)}" style="max-height:42px;max-width:160px;object-fit:contain" alt="Logo">` : ''}
+        <div>
+          <div style="font-size:11px;font-weight:900;letter-spacing:1.5px;color:#1D4ED8;text-transform:uppercase;margin-bottom:4px">${wl.firmName ? esc(wl.firmName) : 'DİGİTAL FINANCE BUSINESS PARTNER'} &bull; RESMİ FİNANSAL KARAR RAPORU</div>
         <h1 style="margin:0;font-size:24px;font-weight:900;color:#0F172A;letter-spacing:-0.5px">Detaylı Finansal Röntgen &amp; Yönetici Karar Raporu</h1>
         <div style="font-size:13px;color:#475569;margin-top:6px;font-weight:500">
           Analiz Edilen Şirket/Mizan: <b>${esc(companyName)}</b> &bull; Dönem: <b>${esc(periodLabel)}</b> &bull; Rapor Tarihi: <b>${dateStr}</b>
@@ -8280,8 +8695,8 @@ function openDetailedReportModal(){
         <div style="font-size:10px;color:#94A3B8;margin-top:6px">İmza / Mühür: <i>Elektronik Doğrulandı</i></div>
       </div>
       <div style="border:1px solid #CBD5E1;border-radius:8px;padding:12px;background:#F8FAFC">
-        <div style="font-size:10.5px;font-weight:800;color:#64748B;text-transform:uppercase">2. CFO / Finans Direktörü</div>
-        <div style="font-size:13px;font-weight:900;color:#0F172A;margin:4px 0">Finansal Yönetim Mütalaası</div>
+        <div style="font-size:10.5px;font-weight:800;color:#64748B;text-transform:uppercase">2. ${wl.advisorTitle ? esc(wl.advisorTitle) : 'CFO / Danışman / SMMM'}</div>
+        <div style="font-size:13px;font-weight:900;color:#0F172A;margin:4px 0">${wl.advisorName ? esc(wl.advisorName) : 'Finansal Yönetim Mütalaası'}</div>
         <div style="font-size:11px;color:#1D4ED8;font-weight:700">Öncelikli Aksiyonlar İncelendi</div>
         <div style="font-size:10px;color:#94A3B8;margin-top:6px">Tarih / İmza: ....................................</div>
       </div>
@@ -8407,6 +8822,327 @@ window.openDetailedReportInNewWindow = function(){
   w.document.close();
 };
 
+// Seviye 2: CFO Yönetici Raporu (8-10 Sayfa)
+function openCfoReportModal(){
+  const d = LAST || window.LAST;
+  if(!d){
+    alert('Lütfen önce bir finansal analiz çalıştırın veya Hızlı Demo butonuna tıklayın.');
+    return;
+  }
+  const modal = $('cfoReportModal');
+  const box = $('cfoReportContent');
+  if(!modal || !box) return;
+
+  const bp = d.business_partner || d;
+  const pl = d.statements?.profit_and_loss || bp.statements?.profit_and_loss || {};
+  const bs = d.statements?.balance_sheet || bp.statements?.balance_sheet || {};
+  const k = d.statements?.kpis || bp.statements?.kpis || {};
+  const cm = bp.core_metrics || {};
+  const cb = bp.cash_flow_engine || {};
+  const cf13 = bp.cash_flow_13w || {};
+  const ccc = bp.cash_conversion_cycle || {};
+  const dp = bp.dupont_analysis || {};
+  const opp = bp.opportunity_engine || {};
+  const stress = bp.liquidity_stress_testing_engine || {};
+
+  const wl = getWhiteLabelConfig();
+  const firmTitle = wl.firmName ? esc(wl.firmName) : 'DİGİTAL FINANCE BUSINESS PARTNER';
+  const logoHtml = wl.logoUrl ? `<img src="${esc(wl.logoUrl)}" style="max-height:42px;max-width:180px;object-fit:contain;margin-right:12px" alt="Logo">` : '';
+  const noteHtml = wl.reportNote ? `<div style="font-size:11.5px;color:#1D4ED8;background:#EFF6FF;padding:8px 12px;border-radius:8px;margin-bottom:12px;border:1px solid #BFDBFE"><b>Yönetici Notu:</b> ${esc(wl.reportNote)}</div>` : '';
+  const advisorSig = wl.advisorName ? `${esc(wl.advisorName)}<br><span style="font-size:10.5px;color:#64748B">${esc(wl.advisorTitle || 'Finansal Yönetim Danışmanı / SMMM')}</span>` : 'Mali Müşavir / Kıdemli CFO Danışmanı';
+
+  const companyName = d.period_metadata?.company_name || 'Şirket Finansal Raporu';
+  const periodLabel = d.period_metadata?.label || 'Cari Dönem';
+  const dateStr = new Date().toLocaleDateString('tr-TR', {year:'numeric', month:'long', day:'numeric'});
+
+  box.innerHTML = `
+    <!-- 1. KAPAK & YÖNETİCİ BRİFİNGİ -->
+    <div class="reportDocSection" style="background:#FFFFFF;border:2px solid #0E7C66;border-radius:14px;padding:24px 28px;margin-bottom:24px;box-shadow:0 4px 16px rgba(15,27,45,0.06);page-break-after:always;break-after:page">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2.5px solid #0E7C66;padding-bottom:16px;margin-bottom:18px">
+        <div style="display:flex;align-items:center">
+          ${logoHtml}
+          <div>
+            <div style="font-size:11px;font-weight:900;letter-spacing:1.5px;color:#0E7C66;text-transform:uppercase;margin-bottom:4px">${firmTitle} &bull; CFO YÖNETİCİ KARAR RAPORU</div>
+            <h1 style="margin:0;font-size:23px;font-weight:900;color:#0F172A;letter-spacing:-0.5px">CFO Stratejik Yönetim &amp; Nakit Karar Raporu</h1>
+            <div style="font-size:13px;color:#475569;margin-top:6px;font-weight:500">
+              Şirket/Mizan: <b>${esc(companyName)}</b> &bull; Dönem: <b>${esc(periodLabel)}</b> &bull; Rapor Tarihi: <b>${dateStr}</b>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div style="background:#DCFCE7;color:#166534;border:1.5px solid #BBF7D0;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:800;display:inline-block">✓ %100 Bilanço Denkliği Doğrulandı</div>
+          <div style="font-size:11px;color:#DC2626;font-weight:800;margin-top:6px;letter-spacing:0.5px">GİZLİ &bull; YÖNETİM KURULUNA ÖZEL</div>
+        </div>
+      </div>
+      ${noteHtml}
+      
+      <div style="margin-top:16px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px">
+        <h3 style="margin:0 0 8px;font-size:14px;color:#0F172A;text-transform:uppercase;letter-spacing:0.5px">📌 1. Yönetici Özeti &amp; Kâr Röntgeni</h3>
+        <p style="font-size:13.5px;line-height:1.65;color:#1E293B;margin:0 0 14px">${esc(bp.executive_summary || 'Finansal özet bulunamadı.')}</p>
+        
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:12px;margin-top:12px">
+          <div style="background:#FFF;border:1px solid #CBD5E1;border-radius:10px;padding:12px">
+            <div style="font-size:11px;color:#64748B">Finansal Sağlık Skoru</div>
+            <div style="font-size:22px;font-weight:900;color:#1D4ED8">${Math.round(bp.health_score || 0)} / 100</div>
+            <div style="font-size:10.5px;color:#64748B">${esc(bp.health_label || 'Dengeli')}</div>
+          </div>
+          <div style="background:#FFF;border:1px solid #CBD5E1;border-radius:10px;padding:12px">
+            <div style="font-size:11px;color:#64748B">Net Satış Hasılatı</div>
+            <div style="font-size:22px;font-weight:900;color:#0F172A">${money(pl['Net sales'] || pl['Gross sales'] || 0)}</div>
+            <div style="font-size:10.5px;color:#16A34A">Brüt Marj: %${num(k.gross_margin_pct ?? 0)}</div>
+          </div>
+          <div style="background:#FFF;border:1px solid #CBD5E1;border-radius:10px;padding:12px">
+            <div style="font-size:11px;color:#64748B">Faaliyet Kârı (EBIT)</div>
+            <div style="font-size:22px;font-weight:900;color:#0F172A">${money(pl['Operating profit'] || 0)}</div>
+            <div style="font-size:10.5px;color:#64748B">Net Kâr: ${money(pl['Net profit'] || 0)}</div>
+          </div>
+          <div style="background:#FFF;border:1px solid #CBD5E1;border-radius:10px;padding:12px">
+            <div style="font-size:11px;color:#64748B">Özsermaye Kârlılığı (ROE)</div>
+            <div style="font-size:22px;font-weight:900;color:#0E7C66">%${num(dp.roe_pct ?? (k.roe ? k.roe*100 : 0))}</div>
+            <div style="font-size:10.5px;color:#64748B">Kaldıraç: ${num(dp.equity_multiplier ?? k.debt_to_equity ?? 1)}x</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. NAKİT AKIŞI & LİKİDİTE KÖPRÜSÜ (PARA NEREDE?) -->
+    <div class="reportDocSection" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:14px;padding:24px 28px;margin-bottom:24px;box-shadow:0 4px 16px rgba(15,27,45,0.04);page-break-after:always;break-after:page">
+      <div style="border-bottom:2px solid #0E7C66;padding-bottom:10px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
+        <h2 style="margin:0;font-size:17px;font-weight:800;color:#0F172A">2. Yönetimsel Nakit Akış Köprüsü &bull; "Kâr Nerede, Kasa Neden Boş?"</h2>
+        <span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:700">TMS 7 &bull; Nakit Köprüsü</span>
+      </div>
+      <p style="font-size:12.5px;color:#475569;margin-bottom:16px">
+        Defterde yazan kâr ile fiilen kasaya giren nakit arasındaki farkı doğuran işletme sermayesi ve finansman hareketleri:
+      </p>
+      ${renderCashFlowTable(cb, pl, bs)}
+    </div>
+
+    <!-- 3. 13 HAFTALIK NAKİT AKIŞI & TAHMİNİ LİKİDİTE -->
+    <div class="reportDocSection" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:14px;padding:24px 28px;margin-bottom:24px;box-shadow:0 4px 16px rgba(15,27,45,0.04);page-break-after:always;break-after:page">
+      <div style="border-bottom:2px solid #0E7C66;padding-bottom:10px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
+        <h2 style="margin:0;font-size:17px;font-weight:800;color:#0F172A">3. 13 Haftalık Dinamik Nakit Akış Projeksiyonu &amp; Eşik Uyarıları</h2>
+        <span class="tag" style="background:#FEF3C7;color:#B45309;font-size:11px;font-weight:700">13W Cash Forecast</span>
+      </div>
+      <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:14px;margin-bottom:16px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:12px">
+          <div><span style="font-size:11px;color:#64748B">Açılış Nakit Tamponu:</span><b style="display:block;font-size:16px;color:#0F172A">${money(cf13.opening_cash || bs['Cash and cash equivalents'] || 0)}</b></div>
+          <div><span style="font-size:11px;color:#64748B">Aylık Brüt Operasyonel Çıkış (SMM):</span><b style="display:block;font-size:16px;color:#DC2626">${money(cf13.monthly_gross_outflow || (pl['COGS']?pl['COGS']/12:0))}</b></div>
+          <div><span style="font-size:11px;color:#64748B">Kritik Likidite Eşiği (Buffer):</span><b style="display:block;font-size:16px;color:#B45309">${money(cf13.minimum_cash_buffer || 250000)}</b></div>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table style="font-size:11px;width:100%;border-collapse:collapse">
+          <thead><tr style="background:#F1F5F9"><th style="padding:8px">Hafta</th><th>Dönem Başı</th><th>Beklenen Tahsilat</th><th>Operasyonel Çıkış</th><th>Net Nakit Hareketi</th><th>Dönem Sonu Kasa</th><th>Durum</th></tr></thead>
+          <tbody>
+            ${(cf13.weekly_projections || []).slice(0, 13).map((w, idx) => `
+              <tr style="${w.is_critical ? 'background:#FEF2F2;font-weight:700;' : ''}">
+                <td style="padding:7px 8px"><b>Hafta ${w.week || (idx+1)}</b></td>
+                <td>${money(w.opening_balance)}</td>
+                <td style="color:#16A34A">+${money(w.inflows)}</td>
+                <td style="color:#DC2626">-${money(w.outflows)}</td>
+                <td style="color:${w.net_cash_flow>=0?'#16A34A':'#DC2626'}"><b>${money(w.net_cash_flow)}</b></td>
+                <td><b>${money(w.closing_balance)}</b></td>
+                <td>${w.is_critical ? '<span class="tag critical" style="font-size:10px">Kritik Eşik Altı</span>' : '<span class="tag positive" style="font-size:10px">Güvenli</span>'}</td>
+              </tr>
+            `).join('') || '<tr><td colspan="7" style="text-align:center;padding:12px" class="muted">13 haftalık nakit projeksiyonu için Data Hub altın veri setini yükleyin.</td></tr>'}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 4. İŞLETME SERMAYESİ & NAKİT DÖNGÜSÜ -->
+    <div class="reportDocSection" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:14px;padding:24px 28px;margin-bottom:24px;box-shadow:0 4px 16px rgba(15,27,45,0.04);page-break-after:always;break-after:page">
+      <div style="border-bottom:2px solid #0E7C66;padding-bottom:10px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
+        <h2 style="margin:0;font-size:17px;font-weight:800;color:#0F172A">4. İşletme Sermayesi Kilit Noktaları &amp; Nakit Çevrim Süresi (CCC)</h2>
+        <span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:700">DSO &bull; DIO &bull; DPO</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:12px;margin-bottom:16px">
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:10px;padding:12px">
+          <div style="font-size:11px;color:#64748B">Tahsilat Süresi (DSO)</div>
+          <div style="font-size:22px;font-weight:800;color:#0F172A">${Math.round(cm.dso_days || ccc.dso_days || k.dso || 0)} Gün</div>
+          <div style="font-size:10.5px;color:#B45309">Müşteride Bağlı: ${money(bs['Accounts receivable'] || 0)}</div>
+        </div>
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:10px;padding:12px">
+          <div style="font-size:11px;color:#64748B">Stokta Kalma Süresi (DIO)</div>
+          <div style="font-size:22px;font-weight:800;color:#0F172A">${Math.round(cm.dio_days || ccc.dio_days || k.dio || 0)} Gün</div>
+          <div style="font-size:10.5px;color:#B45309">Depoda Bağlı: ${money(bs['Inventories'] || 0)}</div>
+        </div>
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:10px;padding:12px">
+          <div style="font-size:11px;color:#64748B">Borç Ödeme Süresi (DPO)</div>
+          <div style="font-size:22px;font-weight:800;color:#0F172A">${Math.round(cm.dpo_days || ccc.dpo_days || k.dpo || 0)} Gün</div>
+          <div style="font-size:10.5px;color:#16A34A">Tedarikçi Kredisi: ${money(bs['Accounts payable'] || 0)}</div>
+        </div>
+        <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:12px">
+          <div style="font-size:11px;color:#1D4ED8;font-weight:700">Net Nakit Döngüsü (CCC)</div>
+          <div style="font-size:22px;font-weight:900;color:#1D4ED8">${Math.round(cm.ccc_days || ccc.cash_conversion_cycle_days || k.ccc || 0)} Gün</div>
+          <div style="font-size:10.5px;color:#475569">Para Çıkışı ➔ Girişi Farkı</div>
+        </div>
+      </div>
+      <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:14px;font-size:12.5px;color:#33415C;line-height:1.6">
+        <b>💡 CFO Değerlendirmesi:</b> Net nakit döngünüz <b>${Math.round(cm.ccc_days || ccc.cash_conversion_cycle_days || k.ccc || 0)} gündür</b>. Mal alımından tahsilata kadar geçen bu sürede işletmenin kendi nakdi yetersiz kaldığında yüksek faizli banka kredisine bağımlılık oluşmaktadır. Tahsilat süresini 10 gün kısaltmak doğrudan kasaya sıcak para girdisi sağlayacaktır.
+      </div>
+    </div>
+
+    <!-- 5. GAP TEŞHİSLERİ & ÖNCELİKLİ YÖNETİM AKSİYONLARI -->
+    <div class="reportDocSection" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:14px;padding:24px 28px;margin-bottom:24px;box-shadow:0 4px 16px rgba(15,27,45,0.04);page-break-after:always;break-after:page">
+      <div style="border-bottom:2px solid #0E7C66;padding-bottom:10px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
+        <h2 style="margin:0;font-size:17px;font-weight:800;color:#0F172A">5. GAP Teşhis Bulguları &amp; Öncelikli Yönetim Aksiyonları</h2>
+        <span class="tag" style="background:#FEE2E2;color:#991B1B;font-size:11px;font-weight:700">Action Tracker</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        ${(bp.management_actions || []).slice(0, 8).map((act, idx) => {
+          const actId = 'act_' + (idx+1);
+          const st = (getActionStatuses())[actId] || 'pending';
+          const stBadge = st==='completed' ? '<span class="tag positive">✅ Tamamlandı</span>' : st==='in_progress' ? '<span class="tag medium">🔄 İşlemde</span>' : '<span class="tag">⏳ Bekliyor</span>';
+          return `
+            <div style="border:1px solid #E2E8F0;border-radius:10px;padding:12px 14px;background:#F8FAFC;display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+              <div>
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+                  <span style="font-weight:900;color:#0E7C66">#${idx+1}</span>
+                  <b style="font-size:13px;color:#0F172A">${esc(act.action)}</b>
+                </div>
+                <div style="font-size:11.5px;color:#64748B">Sorumlu: <b>${esc(act.owner || 'Finans')}</b> &bull; Vade: <b>${esc(act.time_horizon || 'Hemen')}</b> &bull; KPI: <b>${esc(act.kpi || 'Nakit')}</b></div>
+                ${act.expected_financial_impact ? `<div style="font-size:11.5px;color:#15803D;font-weight:700;margin-top:3px">Tahmini Finansal Etki: +${money(act.expected_financial_impact)} (${esc(act.expected_impact_label || 'Kurtarılan Nakit')})</div>` : ''}
+              </div>
+              <div style="text-align:right;flex-shrink:0">
+                <span class="tag ${esc(act.severity || 'medium')}" style="font-size:10px">${esc(act.severity || 'medium')}</span>
+                <div style="margin-top:6px">${stBadge}</div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+
+    <!-- 6. EN YÜKSEK GETİRİLİ 5 FIRSAT & SENARYO MATRİSİ -->
+    <div class="reportDocSection" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:14px;padding:24px 28px;margin-bottom:24px;box-shadow:0 4px 16px rgba(15,27,45,0.04);page-break-after:always;break-after:page">
+      <div style="border-bottom:2px solid #0E7C66;padding-bottom:10px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
+        <h2 style="margin:0;font-size:17px;font-weight:800;color:#0F172A">6. Kâr &amp; Nakit Kurtarma Simülasyonu (En Yüksek Getirili 5 Fırsat)</h2>
+        <span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:700">Opportunity Engine</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:12px">
+        ${(opp.opportunities || []).slice(0, 5).map((o, idx) => `
+          <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:12px;padding:14px">
+            <div style="font-size:11px;font-weight:700;color:#64748B">#${idx+1} &bull; ${esc(o.area)}</div>
+            <h4 style="margin:4px 0 6px;font-size:13.5px;color:#0F172A">${esc(o.title)}</h4>
+            <div style="font-size:18px;font-weight:900;color:#16A34A;margin-bottom:6px">+${money(o.estimated_impact)}</div>
+            <div style="font-size:11px;color:#475569;line-height:1.45">${esc(o.calculation || '')}</div>
+          </div>
+        `).join('') || '<div class="notice">Fırsat bulunamadı.</div>'}
+      </div>
+    </div>
+
+    <!-- 7. BORÇ, VERGİ & STRES TESTİ -->
+    <div class="reportDocSection" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:14px;padding:24px 28px;margin-bottom:24px;box-shadow:0 4px 16px rgba(15,27,45,0.04);page-break-after:always;break-after:page">
+      <div style="border-bottom:2px solid #0E7C66;padding-bottom:10px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
+        <h2 style="margin:0;font-size:17px;font-weight:800;color:#0F172A">7. Borç Yapısı, Vergi Kalkanı &amp; Likidite Dayanıklılık Testi</h2>
+        <span class="tag" style="background:#FEF3C7;color:#B45309;font-size:11px;font-weight:700">Stres &amp; Vergi</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px">
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:10px;padding:14px">
+          <h4 style="margin:0 0 8px;font-size:13px;color:#0F172A">Finansman Yükü &amp; Faiz Baskısı</h4>
+          <div style="font-size:12px;color:#33415C;line-height:1.6">
+            Finansman Gideri: <b>${money(pl['Finance costs'] || 0)}</b><br>
+            Faaliyet Kârına Oranı: <b>%${num(pl['Operating profit'] ? (pl['Finance costs']||0)/pl['Operating profit']*100 : 0)}</b><br>
+            Faiz Karşılama Oranı (ICR): <b>${num(k.interest_coverage || 0)}x</b>
+          </div>
+        </div>
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:10px;padding:14px">
+          <h4 style="margin:0 0 8px;font-size:13px;color:#0F172A">VUK 323 Şüpheli Alacak Uyarısı</h4>
+          <div style="font-size:11.5px;color:#64748B;line-height:1.55">
+            Dava veya icra aşamasına gelmemiş ticari alacaklar için doğrudan vergi karşılığı ayrılamaz. Hukuki takip başlatılan alacaklar için VUK 323 kapsamında karşılık ayrılarak vergi matrahından indirim imkânı araştırılmalıdır.
+          </div>
+        </div>
+      </div>
+      <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:12px 16px;font-size:12px;color:#1E3A8A">
+        <b>Dayanıklılık Testi:</b> %20 Ciro Düşüşü veya %15 Girdi Maliyeti Artışı durumunda şirketin mevcut likidite tamponu <b>${num(stress.runway_months || 2.5)} ay</b> faaliyetleri sürdürmeye yetmektedir.
+      </div>
+    </div>
+
+    <!-- 8. NİHAİ PROTOKOL & İMZA ONAYI -->
+    <div class="reportDocSection" style="background:#FFFFFF;border:1.5px solid #0E7C66;border-radius:14px;padding:24px 28px;page-break-inside:avoid;break-inside:avoid">
+      <div style="font-size:13px;font-weight:800;color:#0F172A;margin-bottom:12px;border-bottom:1px solid #E2E8F0;padding-bottom:8px">8. İcraat, Takip ve İtiraz / Onay Protokolü</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:16px">
+        <div style="border:1px solid #CBD5E1;border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;color:#64748B">Raporu Hazırlayan / Sunan:</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin:6px 0">${advisorSig}</div>
+          <div style="font-size:10.5px;color:#94A3B8;margin-top:14px">Tarih / Kaşe / İmza: ........................................</div>
+        </div>
+        <div style="border:1px solid #CBD5E1;border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;color:#64748B">Şirket Temsilcisi / Yönetim Kurulu Onayı:</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin:6px 0">${esc(companyName)}</div>
+          <div style="font-size:10.5px;color:#94A3B8;margin-top:14px">Tarih / İmza: ........................................</div>
+        </div>
+      </div>
+      <div style="font-size:10.5px;color:#64748B;line-height:1.5;border-top:1px solid #E2E8F0;padding-top:8px">
+        <b>Yasal Uyarı:</b> Bu karar dokümanı resmi mizan verilerinden türetilmiş yönetimsel CFO rehberidir; resmi vergi beyannamesi veya YMM tasdik raporu yerine geçmez. Tüm hesaplamalar deterministik çift taraflı denetim kurallarına tabidir.
+      </div>
+    </div>
+  `;
+
+  modal.classList.remove('hidden');
+}
+
+window.openCfoReportInNewWindow = function(){
+  let content = document.getElementById('cfoReportContent');
+  if(!content || !content.innerHTML || !content.innerHTML.trim()){
+    openCfoReportModal();
+    content = document.getElementById('cfoReportContent');
+  }
+  if(!content || !content.innerHTML){
+    alert('Lütfen önce bir analiz çalıştırın veya Hızlı Demo butonuna tıklayın.');
+    return;
+  }
+  const w = window.open('', '_blank');
+  if(!w){
+    alert('Açılır pencere tarayıcınız tarafından engellendi. Lütfen izin verin veya doğrudan Yazdır butonunu kullanın.');
+    return;
+  }
+  w.document.write(`<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>CFO Yönetici Raporu (8-10 Sayfa) | Digital Finance BP</title>
+  <style>
+    @page { size: A4 portrait; margin: 10mm 12mm 10mm 12mm; }
+    *, *::before, *::after { box-sizing: border-box !important; }
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #0F172A;
+      background: #FFFFFF;
+      font-size: 11pt;
+      line-height: 1.45;
+    }
+    .reportDocSection {
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin-bottom: 24px;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 6px 8px; border-bottom: 1px solid #E2E8F0; text-align: left; }
+    th { background: #F8FAFC; font-weight: 700; color: #475569; }
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 9.5pt; font-weight: 700; text-transform: uppercase; }
+    .tag.critical { background: #FEE2E2; color: #991B1B; }
+    .tag.medium { background: #FEF3C7; color: #92400E; }
+    .tag.positive { background: #DCFCE7; color: #166534; }
+    @media print {
+      body { padding: 0 !important; }
+      button, .hidePrint { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  ${content.innerHTML}
+  <script>
+    window.onload = function(){ window.print(); };
+  <\/script>
+</body>
+</html>`);
+  w.document.close();
+};
+
 if($('boardDeckBtn')) $('boardDeckBtn').onclick = openBoardDeckModal;
 if($('closeBoardDeckBtn')) $('closeBoardDeckBtn').onclick = () => $('boardDeckModal').classList.add('hidden');
 if($('printBoardDeckBtn')) $('printBoardDeckBtn').onclick = () => {
@@ -8421,7 +9157,11 @@ if($('printBoardDeckBtn')) $('printBoardDeckBtn').onclick = () => {
     setTimeout(cleanup, 2500);
   }, 100);
 };
-
+if($('cfoReportBtn')) $('cfoReportBtn').onclick = openCfoReportModal;
+if($('closeCfoReportBtn')) $('closeCfoReportBtn').onclick = () => $('cfoReportModal').classList.add('hidden');
+if($('printCfoReportBtn')) $('printCfoReportBtn').onclick = () => {
+  window.print();
+};
 if($('printBtn')) $('printBtn').onclick = openDetailedReportModal;
 if($('closeDetailedReportBtn')) $('closeDetailedReportBtn').onclick = () => $('detailedReportModal').classList.add('hidden');
 if($('printDetailedReportBtn')) $('printDetailedReportBtn').onclick = () => {

@@ -396,11 +396,9 @@ def _build_narrative_story(
         "forward_projection": _forward_looking_projection(category, trend),
         "what_to_do": _action_step(top, management_actions),
         "scope_note": (
-            "Bu yapı yalnızca kanonik finansal tablo modelinden (dönem-bazlı bilanço/gelir tablosu/KPI) "
-            "hesaplanabilen adımları içerir. Müşteri/SKU seviyesi kırılım (ör. 'ilk 10 müşteri', 'yavaş "
-            "hareket eden stokun %27'si') veya aylık nakit yakma hızı gibi bir projeksiyon, bu pipeline'ın "
-            "henüz almadığı daha ayrıntılı bir veri kaynağı gerektirir; üretilemeyen adımlar sessizce "
-            "atlanır, uydurulmaz."
+            "Bu analiz mizan verilerinden türetilmiş resmi bilanço, gelir tablosu ve temel rasyolara dayanır. "
+            "Müşteri ve ürün bazlı derinlemesine kırılımlar, Data Hub üzerinden eklenen alt defterlerle "
+            "(yaşlandırma ve stok) deterministik olarak doğrulanıp otomatik zenginleştirilir."
         ),
     }
 
