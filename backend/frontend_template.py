@@ -609,7 +609,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     <div class="heroDash">
       <div class="dHead">
         <div class="dots"><span style="background:#EF4444"></span><span style="background:#F59E0B"></span><span style="background:#10B981"></span></div>
-        <span class="live"><i></i>İNTERAKTİF CANLI ÖNİZLEME</span>
+        <span class="live"><i></i>CANLI ÖNİZLEME &bull; 10M ₺ ÖRNEK KOBİ ŞİRKETİ (5 SEKME MUTABIK)</span>
       </div>
       <div class="dashTabs" id="heroDashTabs">
         <span data-pane="0" class="on">💰 Kâr Köprüsü</span>
@@ -646,8 +646,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
           <svg viewBox="0 0 320 135" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:135px">
             <rect x="110" y="4" width="100" height="28" rx="7" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5"/><text x="160" y="22" text-anchor="middle" fill="#1D4ED8" font-family="Inter,sans-serif" font-size="11" font-weight="800">ROE %25,4</text>
             <line x1="130" y1="32" x2="60" y2="54" stroke="#CBD5E1" stroke-width="1.5"/><line x1="190" y1="32" x2="260" y2="54" stroke="#CBD5E1" stroke-width="1.5"/>
-            <rect x="15" y="54" width="90" height="26" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/><text x="60" y="71" text-anchor="middle" fill="#0F172A" font-family="Inter,sans-serif" font-size="9.5" font-weight="600">Net Marj %11,2</text>
-            <rect x="215" y="54" width="90" height="26" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/><text x="260" y="71" text-anchor="middle" fill="#0F172A" font-family="Inter,sans-serif" font-size="9.5" font-weight="600">Kaldıraç 1,36x</text>
+            <rect x="15" y="54" width="90" height="26" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/><text x="60" y="71" text-anchor="middle" fill="#0F172A" font-family="Inter,sans-serif" font-size="9.5" font-weight="600">Net Marj %10,0</text>
+            <rect x="215" y="54" width="90" height="26" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/><text x="260" y="71" text-anchor="middle" fill="#0F172A" font-family="Inter,sans-serif" font-size="9.5" font-weight="600">Kaldıraç 1,57x</text>
             <line x1="60" y1="80" x2="60" y2="98" stroke="#CBD5E1" stroke-width="1.5"/>
             <rect x="10" y="98" width="100" height="24" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/><text x="60" y="114" text-anchor="middle" fill="#475569" font-family="Inter,sans-serif" font-size="8.5">Ciro Hızı: 1,62x / yıl</text>
             <rect x="150" y="98" width="162" height="24" rx="6" fill="#ECFDF5" stroke="#10B981"/><text x="231" y="114" text-anchor="middle" fill="#047857" font-family="Inter,sans-serif" font-size="8.5" font-weight="700">100 ₺ Sermaye = 25,4 ₺ Kâr</text>
@@ -692,29 +692,36 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
             <span>🎯 Canlı Karar Simülatörü</span>
             <span style="font-size:9.5px;background:#EFF6FF;color:#1D4ED8;padding:2px 7px;border-radius:999px;font-weight:800">Sürgüleri Oynatın</span>
           </div>
-          <div style="display:flex;flex-direction:column;gap:6px;padding:4px 0">
+          <div style="display:flex;justify-content:space-between;font-size:9.5px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:6px;padding:4px 8px;margin-bottom:6px;color:#334155">
+            <span><b>Başlangıç Finansalları:</b> 10M ₺ Ciro</span>
+            <span>&bull;</span>
+            <span>80 Gün DSO</span>
+            <span>&bull;</span>
+            <span>1.7M ₺ Stok</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px;padding:2px 0">
             <div style="display:flex;justify-content:space-between;align-items:center;font-size:10px">
-              <span style="color:#475569;font-weight:600">Fiyat Artışı:</span>
-              <b id="pane4PriceVal" style="color:#1D4ED8;font-weight:800">+%3,0</b>
+              <span style="color:#475569;font-weight:600">1. Fiyat Artışı (10M ₺):</span>
+              <b id="pane4PriceVal" style="color:#1D4ED8;font-weight:800">+%3,0 (➔ 10.3M ₺)</b>
             </div>
             <input type="range" id="pane4PriceRange" min="0" max="10" step="0.5" value="3" class="labRange" style="height:4px;margin:0" oninput="recalcPane4Sim()">
 
             <div style="display:flex;justify-content:space-between;align-items:center;font-size:10px">
-              <span style="color:#475569;font-weight:600">Tahsilat Hızlandırma:</span>
-              <b id="pane4DsoVal" style="color:#059669;font-weight:800">-15 Gün</b>
+              <span style="color:#475569;font-weight:600">2. Tahsilat Vadesi (80 Gün):</span>
+              <b id="pane4DsoVal" style="color:#059669;font-weight:800">80 ➔ 65 Gün (-15g)</b>
             </div>
             <input type="range" id="pane4DsoRange" min="0" max="30" step="1" value="15" class="labRange" style="height:4px;margin:0" oninput="recalcPane4Sim()">
 
             <div style="display:flex;justify-content:space-between;align-items:center;font-size:10px">
-              <span style="color:#475569;font-weight:600">Ölü Stok Eritme:</span>
-              <b id="pane4DioVal" style="color:#D97706;font-weight:800">-%20</b>
+              <span style="color:#475569;font-weight:600">3. Atıl Stok (1.7M ₺):</span>
+              <b id="pane4DioVal" style="color:#D97706;font-weight:800">1.7M ➔ 1.56M ₺ (-%20)</b>
             </div>
             <input type="range" id="pane4DioRange" min="0" max="50" step="5" value="20" class="labRange" style="height:4px;margin:0" oninput="recalcPane4Sim()">
           </div>
           <div class="dashKpis" style="margin-top:6px">
-            <div><b id="pane4ProfitKpi">+300.000 ₺</b><span>Net Kâr</span></div>
-            <div><b id="pane4DsoKpi">+411.000 ₺</b><span>Tahsilat</span></div>
-            <div><b id="pane4TotalKpi" style="color:#047857;font-weight:900">+847.000 ₺</b><span>Serbest Nakit</span></div>
+            <div><b id="pane4ProfitKpi">+300.000 ₺</b><span>Net Kâr Katkısı</span></div>
+            <div><b id="pane4DsoKpi">+411.000 ₺</b><span>Alacaktan Nakit</span></div>
+            <div><b id="pane4TotalKpi" style="color:#047857;font-weight:900">+847.000 ₺</b><span>Kasaya Sıcak Nakit</span></div>
           </div>
         </div>
       </div>
@@ -1080,6 +1087,36 @@ if (document.readyState === 'loading') {
         </div>
       </div>
 
+      <!-- 4-Box Baseline Parameters Banner -->
+      <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:16px;padding:14px 18px;margin-bottom:20px;box-shadow:0 2px 8px rgba(15,27,45,0.02)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #F1F5F9">
+          <span style="font-size:11px;font-weight:800;color:#1D4ED8;letter-spacing:0.5px">📌 REFERANS KOBİ BAŞLANGIÇ FİNANSALLARI (SİMÜLASYON BU GERÇEK BAZA GÖRE ÇALIŞIR)</span>
+          <span style="font-size:11px;color:#64748B;font-weight:600">Örnek Mizan Profili</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+          <div style="border-right:1px solid #F1F5F9;padding-right:10px">
+            <div style="font-size:10.5px;font-weight:700;color:#64748B;text-transform:uppercase">1. Mevcut Yıllık Ciro</div>
+            <div style="font-size:15px;font-weight:800;color:#0F172A;margin-top:2px">10.000.000 ₺</div>
+            <div style="font-size:10.5px;color:#94A3B8">Mevcut Satış Hacmi</div>
+          </div>
+          <div style="border-right:1px solid #F1F5F9;padding-right:10px">
+            <div style="font-size:10.5px;font-weight:700;color:#64748B;text-transform:uppercase">2. Mevcut Alacak Vadesi (DSO)</div>
+            <div style="font-size:15px;font-weight:800;color:#0F172A;margin-top:2px">80 Gün</div>
+            <div style="font-size:10.5px;color:#94A3B8">2.191.780 ₺ Açık Hesap</div>
+          </div>
+          <div style="border-right:1px solid #F1F5F9;padding-right:10px">
+            <div style="font-size:10.5px;font-weight:700;color:#64748B;text-transform:uppercase">3. Depodaki Mevcut Stok</div>
+            <div style="font-size:15px;font-weight:800;color:#0F172A;margin-top:2px">1.700.000 ₺</div>
+            <div style="font-size:10.5px;color:#94A3B8">680.000 ₺ Atıl / Yavaş Stok</div>
+          </div>
+          <div>
+            <div style="font-size:10.5px;font-weight:700;color:#64748B;text-transform:uppercase">4. Mevcut Net Kâr / Kasa</div>
+            <div style="font-size:15px;font-weight:800;color:#059669;margin-top:2px">1.000.000 ₺ <span style="font-size:12px;color:#64748B">(Kasa: 250k ₺)</span></div>
+            <div style="font-size:10.5px;color:#059669;font-weight:600">%10 Net Marj &bull; Faiz: %45</div>
+          </div>
+        </div>
+      </div>
+
       <div class="labGrid">
         <!-- Controls -->
         <div class="labControls">
@@ -1095,6 +1132,10 @@ if (document.readyState === 'loading') {
               <span style="color:#64748B">Medyan: %3</span>
               <span>+%10 (Azami)</span>
             </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:6px 10px;font-size:11px;margin-top:2px">
+              <span style="color:#475569">Ciro Etkisi: 10M ₺ ➔ <b id="labNewRevVal" style="color:#1D4ED8">10.300.000 ₺</b></span>
+              <span style="color:#059669">Net Kâr: 1.0M ➔ <b id="labNewProfitVal" style="color:#059669">1.300.000 ₺</b></span>
+            </div>
           </div>
 
           <!-- Slider 2 -->
@@ -1108,6 +1149,10 @@ if (document.readyState === 'loading') {
               <span>0 Gün</span>
               <span style="color:#64748B">Hedef: -15 Gün</span>
               <span>-30 Gün</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:6px 10px;font-size:11px;margin-top:2px">
+              <span style="color:#475569">Tahsilat Süresi: 80 Gün ➔ <b id="labNewDsoVal" style="color:#059669">65 Gün</b></span>
+              <span style="color:#059669">Kasaya Çekilen: <b id="labDsoCashVal" style="color:#059669">+411.000 ₺</b></span>
             </div>
           </div>
 
@@ -1123,6 +1168,10 @@ if (document.readyState === 'loading') {
               <span style="color:#64748B">Öneri: %20</span>
               <span>-%50 (Kampanya/Tasfiye)</span>
             </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:6px 10px;font-size:11px;margin-top:2px">
+              <span style="color:#475569">Stok Bakiyesi: 1.7M ₺ ➔ <b id="labNewStockVal" style="color:#D97706">1.564.000 ₺</b></span>
+              <span style="color:#059669">Depodan Kurtarılan: <b id="labStockCashVal" style="color:#059669">+136.000 ₺</b></span>
+            </div>
           </div>
         </div>
 
@@ -1134,6 +1183,11 @@ if (document.readyState === 'loading') {
               <span style="font-size:11.5px;color:#94A3B8">Yıllık Etki</span>
             </div>
             <span class="vaultBigCounter" id="labTotalVaultCounter">+847.000 ₺</span>
+            <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:8px 12px;margin:8px 0 10px;font-size:11.5px;color:#E2E8F0;display:flex;justify-content:space-between">
+              <span>Mevcut Kasa: <b>250.000 ₺</b></span>
+              <span>➔</span>
+              <span>Yeni Kasa Potansiyeli: <b id="labNewVaultTotal" style="color:#34D399;font-weight:800">1.097.000 ₺</b></span>
+            </div>
             <div style="font-size:12px;color:#CBD5E1;line-height:1.45">Kredi çekmeden, banka faizine ezilmeden şirketin kendi operasyonel çarklarından açığa çıkacak serbest sıcak nakit.</div>
           </div>
 
@@ -2477,7 +2531,9 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
     const sVal = document.getElementById('pane4DioVal');
     if(pVal) pVal.textContent = '+%' + p.toFixed(1).replace('.', ',');
     if(dVal) dVal.textContent = '-' + d + ' Gün';
-    if(sVal) sVal.textContent = '-%' + s;
+    if(pVal) pVal.textContent = '+%' + p.toFixed(1).replace('.', ',') + ' (➔ ' + ((10 + 10*(p/100)).toFixed(1)).replace('.', ',') + 'M ₺)';
+    if(dVal) dVal.textContent = '80 ➔ ' + (80 - d) + ' Gün (-' + d + 'g)';
+    if(sVal) sVal.textContent = '1.7M ➔ ' + ((1.7 - (1.7*0.4*(s/100))).toFixed(2)).replace('.', ',') + 'M ₺ (-%' + s + ')';
 
     // Baz model: 10M Ciro, 1.7M Stok
     const profit = 10000000 * (p / 100);
@@ -2526,6 +2582,29 @@ window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.
     if(prSub) prSub.textContent = fmtTL(profit);
     if(dsSub) dsSub.textContent = fmtTL(dsoCash);
     if(diSub) diSub.textContent = fmtTL(stockCash);
+
+    // Dynamic Starting -> Simulated Updates
+    const newRev = 10000000 + profit;
+    const newProfit = 1000000 + profit;
+    const newDso = 80 - d;
+    const newStock = 1700000 - stockCash;
+    const newVaultTotal = 250000 + total;
+
+    const revEl = document.getElementById('labNewRevVal');
+    const pftEl = document.getElementById('labNewProfitVal');
+    const dsoEl = document.getElementById('labNewDsoVal');
+    const dsoCashEl = document.getElementById('labDsoCashVal');
+    const stockEl = document.getElementById('labNewStockVal');
+    const stockCashEl = document.getElementById('labStockCashVal');
+    const vaultTotEl = document.getElementById('labNewVaultTotal');
+
+    if(revEl) revEl.textContent = fmtTL(newRev);
+    if(pftEl) pftEl.textContent = fmtTL(newProfit);
+    if(dsoEl) dsoEl.textContent = newDso + ' Gün';
+    if(dsoCashEl) dsoCashEl.textContent = fmtTL(dsoCash);
+    if(stockEl) stockEl.textContent = fmtTL(newStock);
+    if(stockCashEl) stockCashEl.textContent = fmtTL(stockCash);
+    if(vaultTotEl) vaultTotEl.textContent = fmtTL(newVaultTotal);
   };
 
   window.applyLabPreset = function(p, d, s, btn){
@@ -7526,6 +7605,37 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
           <button class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px" onclick="applyScenarioPreset(0,0,0,0)">🔄 Sıfırla (Mevcut Durum)</button>
         </div>
       </div>
+
+      <!-- In-App Company Baseline Strip -->
+      <div id="simCompanyBaselineStrip" style="background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:14px;padding:12px 16px;margin-bottom:18px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #F1F5F9">
+          <span style="font-size:11px;font-weight:800;color:#1D4ED8;letter-spacing:0.5px">📌 ŞİRKETİNİZİN MEVCUT BAŞLANGIÇ FİNANSALLARI (SİMÜLASYON BU REEL TABANA GÖRE HESAPLANIR)</span>
+          <span style="font-size:11px;color:#64748B;font-weight:600">Yüklenen Mizan Dengeleri</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+          <div style="border-right:1px solid #E2E8F0;padding-right:8px">
+            <div style="font-size:10px;font-weight:700;color:#64748B;text-transform:uppercase">1. Mevcut Yıllık Ciro</div>
+            <div id="simBaseSales" style="font-size:14px;font-weight:800;color:#0F172A;margin-top:2px">– TL</div>
+            <div style="font-size:10px;color:#94A3B8">P&amp;L Net Satış Tabanı</div>
+          </div>
+          <div style="border-right:1px solid #E2E8F0;padding-right:8px">
+            <div style="font-size:10px;font-weight:700;color:#64748B;text-transform:uppercase">2. Mevcut Alacak Vadesi</div>
+            <div id="simBaseDso" style="font-size:14px;font-weight:800;color:#0F172A;margin-top:2px">– gün</div>
+            <div style="font-size:10px;color:#94A3B8">Müşteri Tahsilat (DSO)</div>
+          </div>
+          <div style="border-right:1px solid #E2E8F0;padding-right:8px">
+            <div style="font-size:10px;font-weight:700;color:#64748B;text-transform:uppercase">3. Mevcut Stok Süresi</div>
+            <div id="simBaseDio" style="font-size:14px;font-weight:800;color:#0F172A;margin-top:2px">– gün</div>
+            <div style="font-size:10px;color:#94A3B8">Depoda Bekleme (DIO)</div>
+          </div>
+          <div>
+            <div style="font-size:10px;font-weight:700;color:#64748B;text-transform:uppercase">4. Mevcut Faaliyet Kârı</div>
+            <div id="simBaseProfit" style="font-size:14px;font-weight:800;color:#059669;margin-top:2px">– TL</div>
+            <div id="simBaseMargin" style="font-size:10px;color:#059669;font-weight:600">–% Kâr Marjı</div>
+          </div>
+        </div>
+      </div>
+
       <div class="grid2">
         <div style="display:flex;flex-direction:column;gap:14px">
           <div>
@@ -13417,8 +13527,17 @@ function setupInteractiveScenario(d){
   const opex=Number(pl['Operating expenses']||0);
   const netProfit=Number(pl['Net profit']||0);
   const curCcc=ccc.cash_conversion_cycle_days;
+  const curDso=ccc.dso_days != null ? Number(ccc.dso_days) : null;
+  const curDio=ccc.dio_days != null ? Number(ccc.dio_days) : null;
   const curMargin=sales>0 ? (netProfit / sales * 100) : 0;
   const daysInYear=Number(ccc.days_in_period_assumption) || Number(d?.period_metadata?.period_days) || 365.0;
+
+  // Populate In-App Baseline Strip
+  if($('simBaseSales')) $('simBaseSales').textContent = money(sales);
+  if($('simBaseDso')) $('simBaseDso').textContent = curDso != null ? Math.round(curDso) + ' gün' : '–';
+  if($('simBaseDio')) $('simBaseDio').textContent = curDio != null ? Math.round(curDio) + ' gün' : '–';
+  if($('simBaseProfit')) $('simBaseProfit').textContent = money(pl['Operating profit'] || netProfit);
+  if($('simBaseMargin')) $('simBaseMargin').textContent = curMargin ? '%' + curMargin.toFixed(1) + ' Net Marj' : '';
 
   function updateSim(){
     if(!$('sliderDso')) return;
@@ -13428,10 +13547,10 @@ function setupInteractiveScenario(d){
     const opexCutPct=Number($('sliderOpex').value);
     const waccPct=Number($('simCostOfCapital')?$('simCostOfCapital').value:45.0);
 
-    $('sliderDsoVal').textContent=dsoDays+' gün';
-    if($('sliderDioVal')) $('sliderDioVal').textContent=dioDays+' gün';
-    $('sliderMarginVal').textContent='+'+marginDeltaPct.toFixed(1)+'%';
-    $('sliderOpexVal').textContent=opexCutPct+'%';
+    $('sliderDsoVal').textContent = curDso != null ? (Math.round(curDso) + ' ➔ ' + Math.max(0, Math.round(curDso - dsoDays)) + ' gün (-' + dsoDays + 'g)') : (dsoDays + ' gün kısaltma');
+    if($('sliderDioVal')) $('sliderDioVal').textContent = curDio != null ? (Math.round(curDio) + ' ➔ ' + Math.max(0, Math.round(curDio - dioDays)) + ' gün (-' + dioDays + 'g)') : (dioDays + ' gün kısaltma');
+    $('sliderMarginVal').textContent = '+' + marginDeltaPct.toFixed(1) + '%' + (curMargin ? ' (➔ %' + (curMargin + marginDeltaPct).toFixed(1) + ')' : '');
+    $('sliderOpexVal').textContent = opexCutPct + '% Tasarruf' + (profitFromOpex > 0 ? ' (➔ +' + money(profitFromOpex) + ')' : '');
     if($('simCostOfCapitalVal')) $('simCostOfCapitalVal').textContent='%'+waccPct.toFixed(1);
 
     const cashFromDso = sales > 0 ? (dsoDays / daysInYear) * sales : 0;
