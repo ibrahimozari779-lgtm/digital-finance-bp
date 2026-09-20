@@ -584,8 +584,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <section class="mHero">
   <div class="reveal in">
     <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-size:11.5px;font-weight:800;letter-spacing:0.6px;margin-bottom:12px;display:inline-block">🎯 KOBİ PATRONLARI &amp; ŞİRKET ORTAKLARI İÇİN FİNANSAL KARAR ORTAĞI</span>
-    <h1 style="margin-top:8px">Mizan Rakamlarını Değil;<br><span class="gradText">"Kasada Neden Para Yok ve Yarın Ne Yapmalıyım?"</span><br>Sorusunun Cevabını Masaya Koyuyoruz.</h1>
-    <p class="lead">Finansçınız ve muhasebeciniz geçmişi raporlar; biz paranın nerede kilitlendiğini, hangi müşterinin zarar ettirdiğini ve yarın sabah kasanızı kurtaracak <b>3 somut yönetim kararını</b> gösteririz. Defterdeki kâr ile kasadaki nakit arasındaki makası <b>60 saniyede kapatın</b>.</p>
+    <h1 style="margin-top:8px">Mizan Rakamlarını Değil;<br><span class="gradText">"Kasada Neden Para Yok ve Yarın Ne Yapmalıyım?"</span><br>Sorusunun Net Cevabını Masaya Koyuyoruz.</h1>
+    <p class="lead">Finansçınız ve muhasebeniz geçmişi belgeler; biz paranın hangi açık hesapta ve depoda kilitlendiğini, hangi müşterinin kârınızı erittiğini ve <b>yarın sabah kasanızı kurtaracak 3 somut yönetim kararını</b> kuruşuna kadar gösteririz. Kâğıt üzerindeki kâr ile kasanızdaki gerçek nakit arasındaki makası <b>60 saniyede kapatın</b>; banka faizine ezilmeden şirketinizi kendi nakdiyle büyütün.</p>
     
     <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:24px 0 18px">
       <a href="/uygulama?sample=data_hub" class="primary" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;padding:15px 28px;border-radius:14px;font-size:15px;font-weight:800;background:#1D4ED8;color:#FFFFFF;box-shadow:0 8px 24px rgba(29,78,216,0.35);transition:all .2s ease">
