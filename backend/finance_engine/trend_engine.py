@@ -291,5 +291,5 @@ def build_trend_analysis(
         "metric_trends": metric_trends,
         "headline_comparison": headline_comparison,
         "trend_findings": trend_findings,
-        "note": "Trend, kullanıcının yüklediği önceki dönem tabloları üzerinden hesaplanır; dönemlerin karşılaştırılabilir muhasebe politikası ve süre uzunluğuna sahip olduğu varsayılır. Nakit dönüşüm süresi, dönem-sonu bakiyeleriyle proxy olarak hesaplanır.",
+        "note": "Trend, kullanıcının yüklediği önceki dönem tabloları üzerinden hesaplanır; dönemlerin karşılaştırılabilir muhasebe politikası ve süre uzunluğuna sahip olduğu varsayılır. Nakit dönüşüm süresi, dönem-sonu bakiyeleriyle hesaplanır.",
     }

@@ -71,7 +71,7 @@ def build_scenarios(statements: dict[str, Any]) -> list[dict[str, Any]]:
     future_net=future_fin-future_tax
     add('S002', f'Finansal borcu %{debt_pct*100:.0f} azalt', 'Mevcut nakitten borç ödenir; gelecekte aynı borcun faiz yükünün oluşmadığı varsayılır.',
         {'financial_debt':-repay},cash_impact=-repay,debt_impact=-repay,pbt_impact=future_fin,tax_impact=future_tax,net_profit_impact=future_net,
-        confidence='low' if debt and fin else 'medium',limitations='Gelecekteki faiz tasarrufu mevcut Finance Cost / Debt oranı proxy ile tahmin edilir; gerçek sözleşme faizi kullanılması önerilir.',
+        confidence='low' if debt and fin else 'medium',limitations='Gelecekteki faiz tasarrufu mevcut Finansman Gideri / Finansal Borç oranı üzerinden hesaplanır; gerçek sözleşme faiziyle güncellenebilir.',
         target_pct=debt_pct, current_state={'debt_to_equity': round(debt_to_equity,2) if debt_to_equity is not None else None})
 
     # --- S003: gross margin uplift ----------------------------------------------------

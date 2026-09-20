@@ -74,7 +74,7 @@ def build_cash_conversion_cycle(statements: dict[str, Any], period_days: int | N
             "net_sales": net_sales, "cogs": cogs,
         },
         "note": (
-            ("DSO/DIO/DPO ortalama bakiyelerle hesaplanmıştır." if average_balances else "DSO/DIO/DPO dönem-sonu bakiyeleriyle proxy olarak hesaplanmıştır.") +
+            ("DSO/DIO/DPO ortalama bakiyelerle hesaplanmıştır." if average_balances else "DSO/DIO/DPO dönem-sonu bakiyeleriyle hesaplanmıştır.") +
             (f" Dönem uzunluğu: {days} gün." if period_days else " Dönem uzunluğu tespit edilemediği için 365 gün varsayılmıştır.") +
             " Kesin operasyonel CCC için açılış/ortalama bakiyeler ve subledger aging tercih edilir."
         ),
