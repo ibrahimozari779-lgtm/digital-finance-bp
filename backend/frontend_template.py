@@ -164,6 +164,15 @@ HOME_HTML = r'''<!doctype html>
   .custRow,.wf{page-break-inside:avoid!important;break-inside:avoid!important}
   .hidden{display:none!important}
   #dashboard{display:block!important}
+
+  /* ── Cash Flow & Cockpit Print Hardening ───────────────────────── */
+  #thirteenWeekVisual{display:none!important}
+  #thirteenWeekTableWrap,#thirteenWeekTableWrap.hidden{display:block!important;overflow:visible!important}
+  #tms7TableWrap,#tms7TableWrap.hidden{display:block!important;overflow:visible!important}
+  #tms7Visual{display:block!important;margin-bottom:8px!important}
+  #patronCashCockpitCard,#thirteenWeekCard,#tms7Card,#resourceAllocationCard{page-break-inside:avoid!important;break-inside:avoid!important}
+  #patronCockpitContent > div{page-break-inside:avoid!important;break-inside:avoid!important;margin-bottom:8px!important}
+  .grid4,.grid3,.grid2{page-break-inside:avoid!important;break-inside:avoid!important}
 }
 
 @view-transition{navigation:auto}
@@ -5233,12 +5242,12 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
                 <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">PATRON &amp; YÖNETİM KURULU</span>
                 <span style="font-size:11px;font-weight:700;color:#16A34A">⏱️ 30 Saniye</span>
               </div>
-              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A">2 Sayfalık Yönetim Kurulu Karar Brifingi</h4>
+              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A">Yönetim Kurulu Karar Brifingi</h4>
               <p style="margin:0;font-size:12px;color:#64748B;line-height:1.45">Durum, Para Nerede, Öncelikli Riskler ve Yarın Masaya Konacak Yönetim Kararlarını içeren tek bakışta A4 karar belgesi.</p>
             </div>
             <div style="margin-top:12px">
               <button id="boardDeckBtn" type="button" class="primary" style="width:100%;padding:9px 14px;border-radius:10px;font-size:13px;font-weight:800;background:#1D4ED8;color:#FFFFFF;cursor:pointer">
-                📑 2 Sayfalık Yönetim Brifingini Aç / İndir →
+                📑 Yönetim Kurulu Karar Brifingini Aç / İndir →
               </button>
             </div>
           </div>
@@ -5248,14 +5257,14 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
             <div>
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
                 <span class="workflowBadge" style="background:#F1F5F9;color:#475569;border-color:#CBD5E1;margin:0">CFO &amp; DETAYLI RÖNTGEN</span>
-                <span style="font-size:11px;font-weight:700;color:#64748B">📊 23 Sayfa</span>
+                <span style="font-size:11px;font-weight:700;color:#64748B">📊 Kapsamlı Rapor</span>
               </div>
               <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A">Detaylı Finansal Röntgen &amp; Karar Raporu</h4>
               <p style="margin:0;font-size:12px;color:#64748B;line-height:1.45">33 Karar Motoru, DuPont kâr köprüsü, müşteri/ürün kârlılık matrisi, stok yaşlandırma ve tüm analitik ekler.</p>
             </div>
             <div style="margin-top:12px">
               <button id="printBtn" type="button" class="secondary" style="width:100%;padding:9px 14px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer">
-                🖨️ 23 Sayfalık Detaylı Raporu Yazdır / PDF
+                🖨️ Detaylı Finansal Röntgen Raporunu Yazdır / PDF
               </button>
             </div>
           </div>
@@ -5551,9 +5560,10 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
           <h2>📑 TMS 7 Dolaylı Nakit Akış Tablosu</h2>
           <p>Esas faaliyetler, yatırım ve finansman nakit akışları ile kurumsal kasa mutabakatı</p>
         </div>
-        <button id="toggleTms7Btn" class="secondary hidePrint" style="font-size:12px;padding:6px 12px" onclick="toggleTms7Table()">Dökümü Aç / Kapat</button>
+        <button id="toggleTms7Btn" class="secondary hidePrint" style="font-size:12px;padding:6px 12px" onclick="toggleTms7Table()">📊 Detay Tabloyu Göster / Gizle</button>
       </div>
-      <div id="tms7TableWrap" class="tableWrap"></div>
+      <div id="tms7Visual" style="margin-bottom:12px"></div>
+      <div id="tms7TableWrap" class="tableWrap hidden"></div>
     </div>
 
     <!-- Sermaye Dağılımı ve Nakit Sıkışması -->
@@ -8911,12 +8921,50 @@ function render13WeekProjection(proj){
 
 function renderTms7Statement(tms7){
   const tbl = $('tms7TableWrap');
+  const vis = $('tms7Visual');
   if(!tbl || !tms7) return;
 
   const op = tms7.operating_activities || {};
   const inv = tms7.investing_activities || {};
   const fin = tms7.financing_activities || {};
   const summ = tms7.summary || {};
+
+  if(vis){
+    const opPos = (op.net_operating_cash_flow || 0) >= 0;
+    const invPos = (inv.net_investing_cash_flow || 0) >= 0;
+    const finPos = (fin.net_financing_cash_flow || 0) >= 0;
+    const changePos = (summ.net_cash_change || 0) >= 0;
+
+    let narrative = 'Şirket esas faaliyetlerinden ' + money(op.net_operating_cash_flow) + (opPos ? ' nakit üretmiş' : ' nakit eritmiş') + '; ';
+    narrative += 'yatırımlara ' + money(Math.abs(inv.net_investing_cash_flow || 0)) + ' harcamış ve finansmandan ' + money(fin.net_financing_cash_flow) + ' sağlamıştır. ';
+    narrative += 'Dönem sonu kasa & banka bakiyesi <b>' + money(summ.closing_cash) + '</b> olarak %100 mutabakatla kapanmıştır.';
+
+    vis.innerHTML = '<div class="grid4" style="gap:10px;margin-bottom:12px">' +
+      '<div style="background:' + (opPos ? '#F0FDF4' : '#FEF2F2') + ';border:1.5px solid ' + (opPos ? '#BBF7D0' : '#FCA5A5') + ';border-radius:12px;padding:12px 14px">' +
+        '<div style="font-size:11px;font-weight:700;color:' + (opPos ? '#166534' : '#991B1B') + '">Esas Faaliyet Nakdi</div>' +
+        '<div style="font-size:18px;font-weight:900;color:' + (opPos ? '#15803D' : '#DC2626') + ';margin:4px 0">' + (opPos ? '+' : '') + money(op.net_operating_cash_flow) + '</div>' +
+        '<div style="font-size:11px;color:' + (opPos ? '#15803D' : '#991B1B') + '">' + (opPos ? 'Kendi Kendini Besliyor' : 'İşletme Sermayesi Eritiyor') + '</div>' +
+      '</div>' +
+      '<div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:12px;padding:12px 14px">' +
+        '<div style="font-size:11px;font-weight:700;color:#92400E">Yatırım Nakit Akışı (CAPEX)</div>' +
+        '<div style="font-size:18px;font-weight:900;color:#B45309;margin:4px 0">' + (invPos ? '+' : '') + money(inv.net_investing_cash_flow) + '</div>' +
+        '<div style="font-size:11px;color:#92400E">Duran Varlık &amp; Kapasite</div>' +
+      '</div>' +
+      '<div style="background:#EFF6FF;border:1.5px solid #BFDBFE;border-radius:12px;padding:12px 14px">' +
+        '<div style="font-size:11px;font-weight:700;color:#1E40AF">Finansman Nakit Akışı</div>' +
+        '<div style="font-size:18px;font-weight:900;color:#1D4ED8;margin:4px 0">' + (finPos ? '+' : '') + money(fin.net_financing_cash_flow) + '</div>' +
+        '<div style="font-size:11px;color:#1E40AF">Kredi &amp; Faiz Dengesi</div>' +
+      '</div>' +
+      '<div style="background:#0F172A;color:#FFFFFF;border-radius:12px;padding:12px 14px">' +
+        '<div style="font-size:11px;font-weight:700;color:#94A3B8">Kapanış Kasa (100+102)</div>' +
+        '<div style="font-size:18px;font-weight:900;color:#38BDF8;margin:4px 0">' + money(summ.closing_cash) + '</div>' +
+        '<div style="font-size:11px;color:#CBD5E1">Net Değişim: ' + (changePos ? '+' : '') + money(summ.net_cash_change) + '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div style="background:#F8FAFC;border-left:4px solid #1D4ED8;padding:10px 14px;border-radius:6px;font-size:12.5px;color:#1E293B;line-height:1.5">' +
+      '💬 <b>Yönetim Brifingi:</b> ' + narrative +
+    '</div>';
+  }
 
   tbl.innerHTML = '<table>' +
     '<thead><tr><th>TMS 7 Dolaylı Nakit Akış Kalemi</th><th style="text-align:right">Tutar (TL)</th><th style="text-align:right">Nitelik</th></tr></thead>' +
