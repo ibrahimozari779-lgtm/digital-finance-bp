@@ -5514,7 +5514,46 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div id="cashRealizationCard" style="margin-top:20px;border-top:1.5px solid #E2E8F0;padding-top:16px">
         <div class="small muted" style="font-weight:700;margin-bottom:10px">Kârın Nakde Dönüşüm Analizi (Defter Kârı → Kasa Nakdi)</div>
         <div id="cashRealization"></div>
+    </div>
+
+    <!-- Patronun Haftalık Nakit & Karar Kokpiti -->
+    <div id="patronCashCockpitCard" class="card hidden" style="margin-top:20px;border:2px solid #2563EB;background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%)">
+      <div class="sectionHead" style="border-bottom:1.5px solid #DBEAFE;padding-bottom:12px;margin-bottom:16px">
+        <div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:20px">🏛️</span>
+            <h2 style="color:#1E3A8A;margin:0">Patronun Masası: Haftalık Nakit &amp; Karar Kokpiti</h2>
+          </div>
+          <p style="margin:4px 0 0">Para nerede? Sorun ne &amp; Kaç TL? Bu hafta ekibe hangi talimatı vermeliyim?</p>
+        </div>
+        <div id="patronRunwayBadge" style="display:flex;gap:8px;align-items:center"></div>
       </div>
+      <div id="patronCockpitContent"></div>
+    </div>
+
+    <!-- 13 Haftalık Dinamik Nakit Akış Projeksiyonu -->
+    <div id="thirteenWeekCard" class="card hidden" style="margin-top:16px">
+      <div class="sectionHead">
+        <div>
+          <h2>📅 13 Haftalık Dinamik Nakit Akış Projeksiyonu</h2>
+          <p>Haftalık tahsilat hızı, tedarikçi ödemeleri, maaş ve vergi kümelenmelerine göre kasanın seyri</p>
+        </div>
+        <button id="toggle13WeekTableBtn" class="secondary hidePrint" style="font-size:12px;padding:6px 12px" onclick="toggle13WeekTable()">📊 Detay Tabloyu Göster / Gizle</button>
+      </div>
+      <div id="thirteenWeekVisual" style="margin-bottom:16px"></div>
+      <div id="thirteenWeekTableWrap" class="tableWrap hidden" style="margin-top:12px"></div>
+    </div>
+
+    <!-- TMS 7 Dolaylı Nakit Akış Tablosu -->
+    <div id="tms7Card" class="card hidden" style="margin-top:16px">
+      <div class="sectionHead">
+        <div>
+          <h2>📑 TMS 7 Dolaylı Nakit Akış Tablosu</h2>
+          <p>Esas faaliyetler, yatırım ve finansman nakit akışları ile kurumsal kasa mutabakatı</p>
+        </div>
+        <button id="toggleTms7Btn" class="secondary hidePrint" style="font-size:12px;padding:6px 12px" onclick="toggleTms7Table()">Dökümü Aç / Kapat</button>
+      </div>
+      <div id="tms7TableWrap" class="tableWrap"></div>
     </div>
 
     <!-- Sermaye Dağılımı ve Nakit Sıkışması -->
@@ -6759,6 +6798,7 @@ function render(d){
     $('cashRealization').innerHTML='<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px;text-align:center"><div style="display:inline-flex;align-items:center;gap:6px;background:#EFF6FF;color:#1D4ED8;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:8px">ℹ️ Tek Dönem Modu Aktif</div><div style="font-size:13.5px;font-weight:700;color:#0F1B2D;margin-bottom:4px">Kârın Nakde Dönüşüm Oranı</div><p class="muted small" style="margin:0 auto 12px;max-width:440px">Tek dönem mizandan net kâr ve likidite tam hesaplanmıştır. Net kârın ne kadarının kasaya nakit aktığını görmek için iki dönemli karşılaştırma önerilir.</p><button class="secondary hidePrint" style="padding:7px 16px;font-size:12px;border-radius:8px" onclick="runDataHubSample()">⚡ Canlı 2 Dönemli Trend Demosunu Çalıştır</button></div>';
   }
   renderResourceAllocation(bp.resource_allocation_engine);
+  if(bp.cash_flow_engine) renderCashFlowCockpit(bp.cash_flow_engine);
   if(bp.tax_strategy_engine) renderTaxStrategy(bp.tax_strategy_engine);
   renderWorkingCapitalLeak(bp, pl, bs, k, c, d);
   renderCeoDiagnosticDesk(bp, pl, bs, k, c, d);
@@ -8637,6 +8677,274 @@ function renderResourceAllocation(ra){
     '<p>' + esc(ra.summary_narrative || '') + '</p>' +
     leaksHtml +
   '</div>';
+}
+
+function toggle13WeekTable(){
+  const el = $('thirteenWeekTableWrap');
+  if(!el) return;
+  el.classList.toggle('hidden');
+}
+
+function toggleTms7Table(){
+  const el = $('tms7TableWrap');
+  if(!el) return;
+  el.classList.toggle('hidden');
+}
+
+function copyActionWhatsApp(idx, btnId){
+  const cfe = LAST?.business_partner?.cash_flow_engine || LAST?.cash_flow_engine;
+  const act = cfe?.patron_cockpit?.actions?.[idx];
+  if(!act || !act.whatsapp_template) return;
+  const btn = $(btnId);
+  navigator.clipboard.writeText(act.whatsapp_template).then(()=>{
+    if(btn){
+      const old = btn.textContent;
+      btn.textContent = '✅ WhatsApp Talimatı Kopyalandı!';
+      btn.style.background = '#15803D';
+      btn.style.color = '#FFFFFF';
+      setTimeout(()=>{
+        btn.textContent = old;
+        btn.style.background = '#FFFFFF';
+        btn.style.color = '';
+      }, 2500);
+    }
+  }).catch(()=>{
+    alert(act.whatsapp_template);
+  });
+}
+
+function renderCashFlowCockpit(cfe){
+  const card = $('patronCashCockpitCard');
+  if(!card) return;
+  if(!cfe || !cfe.available){
+    card.classList.add('hidden');
+    const c13 = $('thirteenWeekCard'); if(c13) c13.classList.add('hidden');
+    const ct7 = $('tms7Card'); if(ct7) ct7.classList.add('hidden');
+    return;
+  }
+  card.classList.remove('hidden');
+  const c13 = $('thirteenWeekCard'); if(c13) c13.classList.remove('hidden');
+  const ct7 = $('tms7Card'); if(ct7) ct7.classList.remove('hidden');
+
+  const pc = cfe.patron_cockpit || {};
+  const where = pc.where_is_the_money || {};
+  const anomalies = pc.anomalies || [];
+  const actions = pc.actions || [];
+  const runway = pc.runway_weeks != null ? pc.runway_weeks : 13;
+
+  // Runway Badge
+  const rwClass = runway < 2 ? 'critical' : runway < 4 ? 'medium' : 'positive';
+  const rwIcon = runway < 2 ? '🚨' : runway < 4 ? '⚠️' : '🛡️';
+  $('patronRunwayBadge').innerHTML = '<span class="tag ' + rwClass + '" style="font-weight:800;font-size:12px;padding:5px 10px">' + rwIcon + ' Kasa Tamponu: ' + (runway >= 13 ? '13+ Hafta' : num(runway) + ' Hafta') + '</span>';
+
+  // 1. Para Nerede?
+  const whereHtml = '<div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:16px;margin-bottom:16px">' +
+    '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">' +
+      '<div style="display:flex;align-items:center;gap:6px">' +
+        '<span style="font-size:15px;font-weight:800;color:#1E3A8A">1. PARA NEREDE?</span>' +
+        '<span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:11px">Sermaye Dağılımı</span>' +
+      '</div>' +
+      '<span style="font-size:12px;font-weight:700;color:#475569">Net İşletme Sermayesi: <b>' + money(where.net_working_capital) + '</b></span>' +
+    '</div>' +
+    '<div class="grid4" style="gap:10px;margin-bottom:12px">' +
+      '<div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:10px;padding:10px 12px">' +
+        '<div style="font-size:11px;font-weight:700;color:#166534">Sıcak Nakit (Kasa &amp; Banka)</div>' +
+        '<div style="font-size:18px;font-weight:900;color:#15803D;margin:3px 0">' + money(where.cash_amount) + '</div>' +
+        '<div style="font-size:11px;color:#166534">Toplamın %' + num(where.cash_pct) + '\'i</div>' +
+      '</div>' +
+      '<div style="background:#EFF6FF;border:1.5px solid #BFDBFE;border-radius:10px;padding:10px 12px">' +
+        '<div style="font-size:11px;font-weight:700;color:#1E40AF">Müşteride Kilitli (120 Alacak)</div>' +
+        '<div style="font-size:18px;font-weight:900;color:#1D4ED8;margin:3px 0">' + money(where.receivables_amount) + '</div>' +
+        '<div style="font-size:11px;color:#1E40AF">Toplamın %' + num(where.receivables_pct) + '\'i</div>' +
+      '</div>' +
+      '<div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:10px;padding:10px 12px">' +
+        '<div style="font-size:11px;font-weight:700;color:#92400E">Depoda Kilitli (150/153 Stok)</div>' +
+        '<div style="font-size:18px;font-weight:900;color:#B45309;margin:3px 0">' + money(where.inventory_amount) + '</div>' +
+        '<div style="font-size:11px;color:#92400E">Toplamın %' + num(where.inventory_pct) + '\'i</div>' +
+      '</div>' +
+      '<div style="background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:10px;padding:10px 12px">' +
+        '<div style="font-size:11px;font-weight:700;color:#475569">Tedarikçiye Borç (320 Borçlar)</div>' +
+        '<div style="font-size:18px;font-weight:900;color:#334155;margin:3px 0">' + money(where.payables_amount) + '</div>' +
+        '<div style="font-size:11px;color:#64748B">Sağlanan Tedarikçi Kredisi</div>' +
+      '</div>' +
+    '</div>' +
+    '<div style="background:#F8FAFC;border-left:4px solid #2563EB;padding:10px 14px;border-radius:6px;font-size:12.5px;color:#1E293B;line-height:1.5">' +
+      '💬 <b>Patron Özeti:</b> ' + esc(where.headline || '') +
+    '</div>' +
+  '</div>';
+
+  // 2. Sorun Ne & Kaç TL? (Anomalies)
+  let anomaliesHtml = '<div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:16px;margin-bottom:16px">' +
+    '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">' +
+      '<div style="display:flex;align-items:center;gap:6px">' +
+        '<span style="font-size:15px;font-weight:800;color:#B91C1C">2. SORUN NE &amp; KAÇ TL? (Haftalık Risk Alarmları)</span>' +
+      '</div>' +
+      '<span class="tag critical" style="font-size:11px;font-weight:800">' + anomalies.length + ' Risk Tespit Edildi</span>' +
+    '</div>' +
+    '<div style="display:grid;grid-template-columns:' + (anomalies.length > 1 ? 'repeat(' + Math.min(3, anomalies.length) + ', 1fr)' : '1fr') + ';gap:12px">';
+
+  anomalies.forEach(a => {
+    const isCrit = a.severity === 'critical';
+    anomaliesHtml += '<div style="background:' + (isCrit ? '#FEF2F2' : '#FFFBEB') + ';border:1.5px solid ' + (isCrit ? '#FCA5A5' : '#FDE68A') + ';border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;justify-content:space-between">' +
+      '<div>' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">' +
+          '<b style="color:' + (isCrit ? '#991B1B' : '#92400E') + ';font-size:13px">' + (isCrit ? '🚨 ' : '⚠️ ') + esc(a.title) + '</b>' +
+          '<span class="tag ' + (isCrit ? 'critical' : 'medium') + '" style="font-size:10px">' + money(a.exposure_tl) + '</span>' +
+        '</div>' +
+        '<p style="margin:6px 0 0;font-size:12px;color:' + (isCrit ? '#7F1D1D' : '#78350F') + ';line-height:1.45">' + esc(a.description) + '</p>' +
+      '</div>' +
+    '</div>';
+  });
+  anomaliesHtml += '</div></div>';
+
+  // 3. Bu Hafta Ne Yapmalıyım? (Action Center)
+  let actionsHtml = '<div style="background:#FFFFFF;border:1.5px solid #2563EB;border-radius:14px;padding:16px">' +
+    '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">' +
+      '<div style="display:flex;align-items:center;gap:6px">' +
+        '<span style="font-size:15px;font-weight:800;color:#1D4ED8">3. BU HAFTA NE YAPMALIYIM? (Patron İcraat Masası)</span>' +
+        '<span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:700">3 Somut Aksiyon</span>' +
+      '</div>' +
+      '<div style="font-size:13px;font-weight:800;color:#15803D;background:#F0FDF4;border:1px solid #BBF7D0;padding:4px 10px;border-radius:8px">' +
+        '💰 Kurtarılacak Kilitli Nakit: <b>+' + money(pc.total_unlockable_cash) + '</b>' +
+      '</div>' +
+    '</div>' +
+    '<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:12px">';
+
+  actions.forEach((act, idx) => {
+    const btnId = 'waBtn_' + idx;
+    actionsHtml += '<div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:12px;padding:14px;display:flex;flex-direction:column;justify-content:space-between">' +
+      '<div>' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">' +
+          '<span class="tag" style="background:#EEF2FF;color:#3730A3;font-weight:800;font-size:10.5px">🎯 ' + esc(act.owner) + '</span>' +
+          '<span style="font-size:11px;font-weight:700;color:#DC2626">⏱️ ' + esc(act.deadline) + '</span>' +
+        '</div>' +
+        '<h4 style="margin:0 0 6px;font-size:13px;color:#0F172A;line-height:1.4">' + esc(act.task) + '</h4>' +
+        '<div style="font-size:11.5px;color:#64748B;margin-bottom:8px"><b>Hedef KPI:</b> ' + esc(act.kpi) + '</div>' +
+        '<div style="font-size:12px;font-weight:800;color:#15803D;margin-bottom:10px">Nakit Etkisi: +' + money(act.cash_impact_tl) + '</div>' +
+      '</div>' +
+      '<div>' +
+        '<button id="' + btnId + '" type="button" class="secondary hidePrint" style="width:100%;font-size:11.5px;padding:7px 10px;font-weight:700;border-radius:8px;cursor:pointer;background:#FFFFFF" onclick="copyActionWhatsApp(' + idx + ', this.id)">' +
+          '📱 Ekibe WhatsApp Talimatı Kopyala' +
+        '</button>' +
+      '</div>' +
+    '</div>';
+  });
+  actionsHtml += '</div></div>';
+
+  $('patronCockpitContent').innerHTML = whereHtml + anomaliesHtml + actionsHtml;
+
+  // Render 13-Week Projection
+  render13WeekProjection(cfe.thirteen_week_projection);
+
+  // Render TMS 7 Statement
+  renderTms7Statement(cfe.tms7_statement);
+}
+
+function render13WeekProjection(proj){
+  const vis = $('thirteenWeekVisual');
+  const tbl = $('thirteenWeekTableWrap');
+  if(!vis || !proj || !proj.weeks) return;
+
+  const weeks = proj.weeks;
+  const summ = proj.summary || {};
+
+  let visualHtml = '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:14px;margin-bottom:12px">' +
+    '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px">' +
+      '<div style="font-size:13px;font-weight:800;color:#0F172A">13 Haftalık Kasa Bakiyesi Seyri &amp; Güvenlik Eşiği</div>' +
+      '<div style="display:flex;gap:10px;font-size:11.5px">' +
+        '<span>Açılış: <b>' + money(summ.opening_cash) + '</b></span>' +
+        '<span>13. Hafta: <b style="color:' + (summ.ending_cash_week_13 >= 0 ? '#16A34A' : '#DC2626') + '">' + money(summ.ending_cash_week_13) + '</b></span>' +
+        '<span>Kritik Eşik: <b style="color:#D97706">' + money(summ.min_safety_buffer) + '</b></span>' +
+      '</div>' +
+    '</div>' +
+    '<div style="display:grid;grid-template-columns:repeat(13, 1fr);gap:6px">';
+
+  weeks.forEach(w => {
+    const isDef = w.status === 'DEFICIT';
+    const isWarn = w.status === 'WARNING';
+    const bg = isDef ? '#FEE2E2' : isWarn ? '#FEF3C7' : '#ECFDF5';
+    const border = isDef ? '#DC2626' : isWarn ? '#D97706' : '#16A34A';
+    const textColor = isDef ? '#991B1B' : isWarn ? '#92400E' : '#166534';
+    visualHtml += '<div style="background:' + bg + ';border:1.5px solid ' + border + ';border-radius:8px;padding:8px 4px;text-align:center">' +
+      '<div style="font-size:10px;font-weight:700;color:#64748B">' + esc(w.label) + '</div>' +
+      '<div style="font-size:11px;font-weight:900;color:' + textColor + ';margin:4px 0">' + (w.ending_cash < 0 ? '–' : '') + money(Math.abs(w.ending_cash)) + '</div>' +
+      '<div style="font-size:9px;font-weight:800;color:' + textColor + '">' + (isDef ? 'AÇIK 🚨' : isWarn ? 'DİKKAT ⚠️' : 'İYİ 🛡️') + '</div>' +
+    '</div>';
+  });
+  visualHtml += '</div></div>';
+  vis.innerHTML = visualHtml;
+
+  // Detailed Table
+  let tableHtml = '<table><thead><tr>' +
+    '<th>Hafta</th>' +
+    '<th>Açılış Kasa</th>' +
+    '<th>Tahsilat (Giriş)</th>' +
+    '<th>Tedarikçi Çıkışı</th>' +
+    '<th>Maaş &amp; SGK</th>' +
+    '<th>Vergi &amp; Kredi</th>' +
+    '<th>Net Kasa Değişimi</th>' +
+    '<th>Kapanış Kasa</th>' +
+    '<th>Durum</th>' +
+  '</tr></thead><tbody>';
+
+  weeks.forEach(w => {
+    const isDef = w.status === 'DEFICIT';
+    const isWarn = w.status === 'WARNING';
+    const tagClass = isDef ? 'critical' : isWarn ? 'medium' : 'positive';
+    const tagText = isDef ? 'Nakit Açığı' : isWarn ? 'Tampon Altı' : 'Güvenli';
+    const netPos = w.net_cash_flow >= 0;
+    tableHtml += '<tr>' +
+      '<td><b>' + esc(w.label) + '</b></td>' +
+      '<td>' + money(w.beginning_cash) + '</td>' +
+      '<td style="color:#16A34A;font-weight:700">+' + money(w.inflows) + '</td>' +
+      '<td style="color:#DC2626">-' + money(w.outflow_breakdown?.supplier_payments) + '</td>' +
+      '<td style="color:#DC2626">-' + money(w.outflow_breakdown?.payroll_and_opex) + '</td>' +
+      '<td style="color:#DC2626">-' + money((w.outflow_breakdown?.tax_and_sgk || 0) + (w.outflow_breakdown?.debt_service || 0)) + '</td>' +
+      '<td style="font-weight:800;color:' + (netPos ? '#16A34A' : '#DC2626') + '">' + (netPos ? '+' : '') + money(w.net_cash_flow) + '</td>' +
+      '<td style="font-weight:900;color:' + (w.ending_cash < 0 ? '#DC2626' : '#0F172A') + '">' + money(w.ending_cash) + '</td>' +
+      '<td><span class="tag ' + tagClass + '">' + tagText + '</span></td>' +
+    '</tr>';
+  });
+  tableHtml += '</tbody></table>';
+  tbl.innerHTML = tableHtml;
+}
+
+function renderTms7Statement(tms7){
+  const tbl = $('tms7TableWrap');
+  if(!tbl || !tms7) return;
+
+  const op = tms7.operating_activities || {};
+  const inv = tms7.investing_activities || {};
+  const fin = tms7.financing_activities || {};
+  const summ = tms7.summary || {};
+
+  tbl.innerHTML = '<table>' +
+    '<thead><tr><th>TMS 7 Dolaylı Nakit Akış Kalemi</th><th style="text-align:right">Tutar (TL)</th><th style="text-align:right">Nitelik</th></tr></thead>' +
+    '<tbody>' +
+      '<tr style="background:#F8FAFC;font-weight:800"><td colspan="3">A. İŞLETME FAALİYETLERİNDEN NAKİT AKIŞLARI</td></tr>' +
+      '<tr><td>• Dönem Net Kârı / (Zararı)</td><td style="text-align:right"><b>' + money(op.net_profit) + '</b></td><td style="text-align:right">Tahakkuk Kârı</td></tr>' +
+      '<tr><td>• (+) Amortisman ve İtfa Payları Düzeltmesi</td><td style="text-align:right">+' + money(op.depreciation_addback) + '</td><td style="text-align:right">Nakit Çıkışı Gerektirmeyen Gider</td></tr>' +
+      '<tr><td>• (+) Finansman Giderleri Düzeltmesi</td><td style="text-align:right">+' + money(op.finance_costs_addback) + '</td><td style="text-align:right">Finansman Bölümüne Aktarılan</td></tr>' +
+      '<tr><td>• Ticari Alacaklardaki Değişim (120)</td><td style="text-align:right;color:' + (op.receivables_change < 0 ? '#DC2626' : '#16A34A') + '">' + (op.receivables_change > 0 ? '+' : '') + money(op.receivables_change) + '</td><td style="text-align:right">İşletme Sermayesi</td></tr>' +
+      '<tr><td>• Stoklardaki Değişim (150/153)</td><td style="text-align:right;color:' + (op.inventory_change < 0 ? '#DC2626' : '#16A34A') + '">' + (op.inventory_change > 0 ? '+' : '') + money(op.inventory_change) + '</td><td style="text-align:right">İşletme Sermayesi</td></tr>' +
+      '<tr><td>• Ticari Borçlardaki Değişim (320)</td><td style="text-align:right;color:' + (op.payables_change < 0 ? '#DC2626' : '#16A34A') + '">' + (op.payables_change > 0 ? '+' : '') + money(op.payables_change) + '</td><td style="text-align:right">Tedarikçi Finansmanı</td></tr>' +
+      '<tr style="background:#F0FDF4;font-weight:900"><td>İşletme Faaliyetlerinden Net Nakit Akışı</td><td style="text-align:right;color:' + (op.net_operating_cash_flow >= 0 ? '#16A34A' : '#DC2626') + '">' + (op.net_operating_cash_flow > 0 ? '+' : '') + money(op.net_operating_cash_flow) + '</td><td style="text-align:right">Esas Faaliyet Nakdi</td></tr>' +
+
+      '<tr style="background:#F8FAFC;font-weight:800"><td colspan="3">B. YATIRIM FAALİYETLERİNDEN NAKİT AKIŞLARI</td></tr>' +
+      '<tr><td>• Maddi ve Maddi Olmayan Duran Varlık Alımları (CAPEX)</td><td style="text-align:right;color:#DC2626">' + money(inv.capex_tangible_assets) + '</td><td style="text-align:right">Kapasite Yatırımı</td></tr>' +
+      '<tr style="background:#FEF2F2;font-weight:900"><td>Yatırım Faaliyetlerinden Net Nakit Akışı</td><td style="text-align:right;color:' + (inv.net_investing_cash_flow >= 0 ? '#16A34A' : '#DC2626') + '">' + money(inv.net_investing_cash_flow) + '</td><td style="text-align:right">Yatırım Çıkışı</td></tr>' +
+
+      '<tr style="background:#F8FAFC;font-weight:800"><td colspan="3">C. FİNANSMAN FAALİYETLERİNDEN NAKİT AKIŞLARI</td></tr>' +
+      '<tr><td>• Net Finansal Borç Değişimi (Kredi Kullanımı / Geri Ödemesi)</td><td style="text-align:right;color:' + (fin.net_debt_change >= 0 ? '#16A34A' : '#DC2626') + '">' + (fin.net_debt_change > 0 ? '+' : '') + money(fin.net_debt_change) + '</td><td style="text-align:right">Banka Kredileri</td></tr>' +
+      '<tr><td>• Ödenen Faiz ve Finansman Giderleri (780)</td><td style="text-align:right;color:#DC2626">' + money(fin.finance_costs_paid) + '</td><td style="text-align:right">Faiz Servisi</td></tr>' +
+      '<tr style="background:#EFF6FF;font-weight:900"><td>Finansman Faaliyetlerinden Net Nakit Akışı</td><td style="text-align:right;color:' + (fin.net_financing_cash_flow >= 0 ? '#16A34A' : '#DC2626') + '">' + (fin.net_financing_cash_flow > 0 ? '+' : '') + money(fin.net_financing_cash_flow) + '</td><td style="text-align:right">Dış Finansman</td></tr>' +
+
+      '<tr style="background:#0F172A;color:#FFFFFF;font-weight:900"><td colspan="3">DÖNEM SONU NAKİT VE KASA MUTABAKATI</td></tr>' +
+      '<tr><td><b>Dönem Başı Hazır Değerler (Kasa &amp; Banka)</b></td><td style="text-align:right"><b>' + money(summ.opening_cash) + '</b></td><td style="text-align:right">Açılış Likit</td></tr>' +
+      '<tr><td><b>Dönem İçi Net Nakit Değişimi (A + B + C)</b></td><td style="text-align:right;font-weight:800;color:' + (summ.net_cash_change >= 0 ? '#16A34A' : '#DC2626') + '">' + (summ.net_cash_change > 0 ? '+' : '') + money(summ.net_cash_change) + '</td><td style="text-align:right">Net Değişim</td></tr>' +
+      '<tr style="background:#F0FDF4;font-size:14px;font-weight:900"><td>Dönem Sonu Hazır Değerler (Mizan 100+102)</td><td style="text-align:right;color:#1D4ED8">' + money(summ.closing_cash) + '</td><td style="text-align:right">Resmi Kasa</td></tr>' +
+    '</tbody>' +
+  '</table>';
 }
 
 function renderCustomerProfitabilityMatrix(cp){

@@ -11,6 +11,7 @@ from .trend_engine import build_trend_analysis
 from .benchmarking_engine import build_benchmark_analysis
 from .executive_summary_engine import build_executive_summary
 from .cash_bridge_engine import build_cash_bridge
+from .cash_flow_engine import build_cash_flow_engine
 from .profit_quality_engine import build_profit_quality
 from .action_engine import build_management_actions
 from .validation_engine import build_calculation_audit
@@ -360,6 +361,7 @@ def build_finance_business_partner_analysis(
 
     previous_statement = previous_periods[-1].get("statements") if previous_periods else None
     cash_bridge = build_cash_bridge(statements, previous_statement)
+    cash_flow = build_cash_flow_engine(statements, previous_statement, ccc=ccc, data_hub=data_hub)
     profit_quality = build_profit_quality(statements, findings=findings_sorted)
     management_actions = build_management_actions(
         findings_sorted, opportunities_sorted, statements,
@@ -533,6 +535,7 @@ def build_finance_business_partner_analysis(
         "trend_analysis": trend,
         "benchmarking": benchmark,
         "cash_bridge_engine": cash_bridge,
+        "cash_flow_engine": cash_flow,
         "profit_quality_engine": profit_quality,
         "management_actions": management_actions,
         "calculation_audit": calculation_audit,
