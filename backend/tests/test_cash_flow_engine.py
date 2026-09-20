@@ -143,3 +143,51 @@ def test_decision_engine_integration_includes_cash_flow_engine():
     assert "patron_cockpit" in cfe
     assert "thirteen_week_projection" in cfe
     assert "tms7_statement" in cfe
+
+
+@pytest.mark.anyio
+async def test_cash_flow_engine_zero_discrepancy_with_data_hub_demo():
+    from app import _SAMPLE_FILES, _PROJECT_ROOT, _analyze_data_hub_raw, DATA_HUB_SAMPLE_KEYS
+
+    raw_files = []
+    for k in DATA_HUB_SAMPLE_KEYS:
+        fn = _SAMPLE_FILES[k][0]
+        fpath = os.path.join(_PROJECT_ROOT, fn)
+        with open(fpath, "rb") as f:
+            raw_files.append((fn, f.read()))
+
+    res = await _analyze_data_hub_raw(raw_files, sector="Genel")
+    bp = res.get("business_partner", {})
+
+    cb = bp.get("cash_bridge_engine", {})
+    ra = bp.get("resource_allocation_engine", {})
+    ma = bp.get("management_actions", [])
+    cfe = bp.get("cash_flow_engine", {})
+
+    assert cfe.get("available") is True
+
+    # 1. TMS 7 vs Cash Bridge reconciliation (exact match)
+    tms7_op = cfe["tms7_statement"]["operating_activities"]
+    assert tms7_op["net_operating_cash_flow"] == cb["operating_cash_flow_proxy"]
+    assert tms7_op["receivables_change"] == cb["working_capital_components"]["receivables_effect"]
+    assert tms7_op["inventory_change"] == cb["working_capital_components"]["inventory_effect"]
+    assert tms7_op["payables_change"] == cb["working_capital_components"]["payables_effect"]
+    assert cfe["tms7_statement"]["summary"]["reconciliation_difference"] == 0.0
+
+    # 2. "Para Nerede?" vs Resource Allocation reconciliation
+    where = cfe["patron_cockpit"]["where_is_the_money"]
+    ra_money = ra["where_is_money"]
+    assert where["headline"] == ra_money["summary_narrative"]
+    assert where["cash_amount"] == ra_money["free_cash"]
+    assert where["receivables_amount"] == ra_money["breakdown"][0]["amount"]
+
+    # 3. Actions vs Management Actions (action specificity)
+    cockpit_actions = cfe["patron_cockpit"]["actions"]
+    assert len(cockpit_actions) > 0
+    # The top cockpit action matches the top prioritized management action
+    assert cockpit_actions[0]["id"] == ma[0]["action_id"]
+    assert cockpit_actions[0]["owner"] == ma[0]["owner"]
+    assert cockpit_actions[0]["task"] == ma[0]["action"]
+    assert "whatsapp_template" in cockpit_actions[0]
+    assert cockpit_actions[0]["whatsapp_template"] != ""
+

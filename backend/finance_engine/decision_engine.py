@@ -361,7 +361,6 @@ def build_finance_business_partner_analysis(
 
     previous_statement = previous_periods[-1].get("statements") if previous_periods else None
     cash_bridge = build_cash_bridge(statements, previous_statement)
-    cash_flow = build_cash_flow_engine(statements, previous_statement, ccc=ccc, data_hub=data_hub)
     profit_quality = build_profit_quality(statements, findings=findings_sorted)
     management_actions = build_management_actions(
         findings_sorted, opportunities_sorted, statements,
@@ -419,6 +418,17 @@ def build_finance_business_partner_analysis(
 
     from .liquidity_stress_testing_engine import build_liquidity_stress_test
     liquidity_stress_test = build_liquidity_stress_test(statements, data_hub)
+
+    cash_flow = build_cash_flow_engine(
+        statements,
+        previous_statement=previous_statement,
+        ccc=ccc,
+        data_hub=data_hub,
+        cash_bridge=cash_bridge,
+        management_actions=management_actions,
+        resource_allocation=resource_allocation,
+        liquidity_stress_test=liquidity_stress_test,
+    )
 
     from .fx_rates_provider import resolve_fx_rates
     period_meta = statements.get("period_metadata") or {}
