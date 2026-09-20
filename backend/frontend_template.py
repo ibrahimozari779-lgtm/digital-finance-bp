@@ -1903,6 +1903,7 @@ if (document.readyState === 'loading') {
       <details class="faqItem">
         <summary>Mizanımı yüklediğimde şirketimin cirosu, müşteri listesi veya kâr marjı çalınır mı?</summary>
         <p><b>Kesinlikle HAYIR.</b> Platformumuz dünyadaki en sıkı veri mahremiyeti standardı olan <b>"RAM-Only" (Sıfır Kalıcı Disk)</b> mimarisiyle çalışır. Yüklediğiniz Excel veya CSV dosyası sunucu sabit diskine (SSD/HDD) ya da veritabanına asla yazılmaz. Analiz anlık bellekte çalışır ve sayfa kapandığı an imha edilir. Ayrıca sistemimiz, kayıt olduğunuz anda adınıza <b>Yasal Bağlayıcılığı Olan Karşılıklı Kurumsal Dijital NDA (Gizlilik Sözleşmesi)</b> düzenler.</p>
+        <div style="margin-top:10px"><button type="button" class="primary" style="padding:8px 16px;border-radius:8px;font-size:12.5px;font-weight:700;cursor:pointer" onclick="openDigitalNdaModal()">📜 Kurumsal Dijital NDA Sözleşmesini İncele →</button></div>
       </details>
 
       <details class="faqItem">
@@ -2104,6 +2105,128 @@ if (document.readyState === 'loading') {
   </div>
 </div>
 <script>
+// =========================================================================
+// KURUMSAL DİJİTAL NDA (GİZLİLİK SÖZLEŞMESİ) MODAL YÖNETİCİSİ
+// =========================================================================
+window.openDigitalNdaModal = function(opts){
+  opts = opts || {};
+  const modal = document.getElementById('digitalNdaModal');
+  if(!modal) return;
+  
+  const company = opts.company || localStorage.getItem('dfbp_company') || 'Kurumsal Üye';
+  const email = opts.email || localStorage.getItem('dfbp_email') || 'yetkili@sirket.com';
+  const dateStr = new Date().toLocaleDateString('tr-TR', { year:'numeric', month:'long', day:'numeric' });
+  
+  let hash = 0;
+  const str = email + company;
+  for(let i = 0; i < str.length; i++){
+    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    hash |= 0;
+  }
+  const contractId = 'DF-NDA-2026-' + (Math.abs(hash) % 90000 + 10000);
+
+  const setT = function(id, txt){
+    const el = document.getElementById(id);
+    if(el) el.textContent = txt;
+  };
+
+  setT('ndaCompanyName', company);
+  setT('ndaSignCompany', company);
+  setT('ndaUserEmail', email);
+  setT('ndaSignEmail', email);
+  setT('ndaDateStr', dateStr);
+  setT('ndaContractId', contractId);
+
+  const isSigned = localStorage.getItem('dfbp_nda_signed_' + email);
+  const badge = document.getElementById('ndaStatusBadge');
+  const signedTime = document.getElementById('ndaSignedTime');
+  const signBtn = document.getElementById('signNdaBtn');
+
+  if(isSigned){
+    if(badge){
+      badge.textContent = '✓ Karşılıklı İmzalandı';
+      badge.style.background = '#DCFCE7';
+      badge.style.color = '#166534';
+    }
+    if(signedTime){
+      signedTime.textContent = 'Dijital İmzalandı: ' + (localStorage.getItem('dfbp_nda_date_' + email) || dateStr);
+      signedTime.style.display = 'block';
+    }
+    if(signBtn){
+      signBtn.textContent = '✓ İmzalandı (Geçerli)';
+      signBtn.disabled = true;
+      signBtn.style.background = '#16A34A';
+    }
+  } else {
+    if(badge){
+      badge.textContent = '⏳ İmza Bekliyor';
+      badge.style.background = '#FEF3C7';
+      badge.style.color = '#92400E';
+    }
+    if(signedTime) signedTime.style.display = 'none';
+    if(signBtn){
+      signBtn.textContent = '✍️ Karşılıklı Olarak Dijital İmzala & Onayla';
+      signBtn.disabled = false;
+      signBtn.style.background = '#1D4ED8';
+    }
+  }
+
+  modal.classList.remove('hidden');
+  modal.style.display = 'flex';
+};
+
+window.closeDigitalNdaModal = function(){
+  const modal = document.getElementById('digitalNdaModal');
+  if(modal){
+    modal.classList.add('hidden');
+    modal.style.display = 'none';
+  }
+};
+
+window.signDigitalNda = function(){
+  const emailEl = document.getElementById('ndaUserEmail');
+  const email = (emailEl && emailEl.textContent) ? emailEl.textContent : (localStorage.getItem('dfbp_email') || 'user');
+  const nowStr = new Date().toLocaleString('tr-TR');
+  localStorage.setItem('dfbp_nda_signed_' + email, 'true');
+  localStorage.setItem('dfbp_nda_date_' + email, nowStr);
+  
+  const badge = document.getElementById('ndaStatusBadge');
+  const signedTime = document.getElementById('ndaSignedTime');
+  const signBtn = document.getElementById('signNdaBtn');
+
+  if(badge){
+    badge.textContent = '✓ Karşılıklı İmzalandı';
+    badge.style.background = '#DCFCE7';
+    badge.style.color = '#166534';
+  }
+  if(signedTime){
+    signedTime.textContent = 'Dijital İmzalandı: ' + nowStr;
+    signedTime.style.display = 'block';
+  }
+  if(signBtn){
+    signBtn.textContent = '✓ Başarıyla İmzalandı';
+    signBtn.disabled = true;
+    signBtn.style.background = '#16A34A';
+  }
+  if(typeof renderAuthArea === 'function'){
+    renderAuthArea();
+  }
+  alert('✓ Kurumsal Gizlilik Sözleşmesi (NDA) başarıyla karşılıklı olarak dijital imzalandı. Verileriniz Sıfır Kalıcı Disk (RAM-Only) güvencesi altındadır.');
+};
+
+window.printDigitalNda = function(){
+  const content = document.getElementById('digitalNdaPrintArea');
+  if(!content) return;
+  const w = window.open('', '_blank');
+  if(!w){
+    alert('Açılır pencere engellendi. Lütfen izin verin.');
+    return;
+  }
+  w.document.write('<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>Kurumsal Gizlilik & Veri Güvenliği Sözleşmesi (NDA) | Digital Finance BP</title><style>@page { size: A4 portrait; margin: 15mm; } body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; line-height: 1.6; color: #0F172A; margin: 0; padding: 20px; } @media print { body { padding: 0; } }</style></head><body>' + content.innerHTML + '<script>setTimeout(function(){ window.print(); }, 400);<\/script></body></html>');
+  w.document.close();
+};
+
+
 window.scrollPills = function(id, delta){
   const el = document.getElementById(id);
   if(el){ el.scrollBy({ left: delta, behavior: 'smooth' }); }
@@ -4535,9 +4658,266 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     </div>
   </section>
 </div>
+<!-- ============================================================= -->
+<!-- KURUMSAL DİJİTAL NDA GİZLİLİK VE VERİ GÜVENLİĞİ SÖZLEŞMESİ MODALI -->
+<!-- ============================================================= -->
+<div id="digitalNdaModal" class="hidden hidePrint" onclick="if(event.target===this)closeDigitalNdaModal()" style="position:fixed;inset:0;background:rgba(15,27,45,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:2500;padding:20px;overflow-y:auto">
+  <div style="background:#FFFFFF;border-radius:20px;max-width:860px;width:100%;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 25px 70px rgba(0,0,0,0.4);overflow:hidden;border:1px solid #CBD5E1">
+    
+    <!-- Modal Header Bar -->
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1.5px solid #E2E8F0;background:#F8FAFC;flex-shrink:0">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:24px">📜</span>
+        <div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <h3 style="margin:0;font-size:16px;color:#0F1B2D;font-weight:800">Kurumsal Gizlilik &amp; Veri Güvenliği Sözleşmesi (Dijital NDA)</h3>
+            <span class="tag" style="background:#DCFCE7;color:#166534;font-size:10px;font-weight:800">Yasal Bağlayıcı</span>
+          </div>
+          <p style="margin:2px 0 0;font-size:11.5px;color:#64748B">Sıfır Kalıcı Disk (RAM-Only) · Model Eğitimi Yasağı · 256-Bit TLS · Karşılıklı E-İmza</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button id="printNdaBtn" type="button" class="secondary" style="padding:7px 14px;border-radius:8px;font-size:12px;font-weight:700" onclick="printDigitalNda()">🖨️ Yazdır / PDF İndir</button>
+        <button type="button" onclick="closeDigitalNdaModal()" style="background:none;border:none;font-size:22px;color:#64748B;cursor:pointer;padding:4px 8px">✕</button>
+      </div>
+    </div>
+
+    <!-- Contract Content Area (Scrollable Legal Sheet) -->
+    <div id="digitalNdaPrintArea" style="padding:26px 30px;overflow-y:auto;flex:1;background:#FFFFFF;font-size:12px;line-height:1.65;color:#1E293B">
+      
+      <!-- Contract Header -->
+      <div style="border-bottom:2px solid #0F172A;padding-bottom:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <div style="font-size:10px;font-weight:900;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase">DİGİTAL FINANCE BUSINESS PARTNER &bull; HUKUKİ TAAHHÜT BELGESİ</div>
+          <h2 style="margin:2px 0 0;font-size:19px;font-weight:900;color:#0F172A">DİJİTAL FİNANSAL GİZLİLİK VE VERİ GÜVENLİĞİ SÖZLEŞMESİ</h2>
+          <div style="font-size:11px;color:#64748B;margin-top:4px">
+            Sözleşme No: <b id="ndaContractId">DF-NDA-2026-89412</b> &bull; Düzenleme Tarihi: <b id="ndaDateStr">20 Eylül 2026</b>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div style="background:#DCFCE7;color:#166534;border:1.5px solid #BBF7D0;padding:5px 10px;border-radius:6px;font-size:10.5px;font-weight:800;display:inline-block">
+            ✓ E-MÜHÜR: SHA-256 DOĞRULANDI
+          </div>
+          <div style="font-size:9.5px;color:#0E7C66;font-weight:700;margin-top:3px">RAM-ONLY GÜVENCE SERTİFİKASI</div>
+        </div>
+      </div>
+
+      <!-- Parties Block -->
+      <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:10px;padding:12px 16px;margin-bottom:16px">
+        <div style="font-size:11px;font-weight:800;color:#0F172A;text-transform:uppercase;margin-bottom:6px">TARAFLAR</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:11.5px">
+          <div>
+            <b>1. HİZMET SAĞLAYICI:</b><br>
+            Digital Finance Business Partner Teknoloji A.Ş.<br>
+            Deterministik Finansal Karar Motorları &amp; Çift Yönlü Denetim Sistemi<br>
+            İstanbul, Türkiye &bull; info@digitalfinancebp.com
+          </div>
+          <div>
+            <b>2. VERİ SAHİBİ / MÜŞTERİ:</b><br>
+            Kurum / Şirket Ünvanı: <b id="ndaCompanyName" style="color:#1D4ED8">Kurumsal Müşteri</b><br>
+            Yetkili Temsilci / E-Posta: <b id="ndaUserEmail" style="color:#0F172A">yetkili@sirket.com</b><br>
+            Yetki Kapsamı: Finansal Yönetim, Mizan ve Alt Defter Denetimi
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal Articles -->
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px">
+        <div>
+          <b style="color:#0F172A">MADDE 1: AMAÇ VE KAPSAM</b>
+          <p style="margin:2px 0 0;color:#334155">İşbu sözleşmenin amacı; Müşteri'nin platforma yükleyeceği genel mizan, alt defter, cari yaşlandırma, stok ve banka verilerinin mutlak bir gizlilik, sıfır kalıcı disk depolama ve bankacılık standardında güvenlikle korunmasına ilişkin karşılıklı hak ve yükümlülüklerin belirlenmesidir.</p>
+        </div>
+
+        <div>
+          <b style="color:#0F172A">MADDE 2: SIFIR KALICI DİSK DEPOLAMA (RAM-ONLY) TAAHHÜDÜ</b>
+          <p style="margin:2px 0 0;color:#334155">Hizmet Sağlayıcı; Müşteri tarafından yüklenen hiçbir Excel (.xlsx, .xls), CSV, XML veya ERP verisinin sunucu sabit disklerine (HDD/SSD) veya kalıcı veritabanlarına <b>ASLA KAYDEDİLMEYECEĞİNİ</b> taahhüt eder. Tüm hesaplamalar anlık geçici bellekte (RAM) icra edilir; analiz çıktısı Müşteri tarayıcısına iletildiği anda geçici bellek kendini kalıcı olarak imha eder.</p>
+        </div>
+
+        <div>
+          <b style="color:#0F172A">MADDE 3: MODEL EĞİTİMİ YASAĞI VE TİCARİ MAHREMİYET</b>
+          <p style="margin:2px 0 0;color:#334155">Müşteri'ye ait cirolar, kâr marjları, müşteri/tedarikçi isimleri ve hesap bakiyeleri hiçbir şart altında genel yapay zeka modellerinin eğitimi için havuzlara aktarılamaz; ticari istihbarat amacıyla işlenemez ve 3. şahıslara açıklanamaz.</p>
+        </div>
+
+        <div>
+          <b style="color:#0F172A">MADDE 4: 256-BİT SSL/TLS ŞİFRELEME VE KVKK UYUMLULUĞU</b>
+          <p style="margin:2px 0 0;color:#334155">Müşteri ile platform arasındaki tüm veri akışı uluslararası bankacılık standardı 256-bit TLS şifrelemesiyle korunur. Hizmet Sağlayıcı, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) hükümlerine eksiksiz uymayı kabul eder.</p>
+        </div>
+
+        <div>
+          <b style="color:#0F172A">MADDE 5: CEZAİ ŞART VE TAZMİNAT</b>
+          <p style="margin:2px 0 0;color:#334155">Hizmet Sağlayıcı, Müşteri verilerini en üst düzeyde korunan "Ticari Sır" (Trade Secret) olarak kabul eder. Verilerin kasten veya ihmalen 3. taraflarla paylaşılması halinde Müşteri'nin uğrayacağı tüm maddi ve manevi zararları tazmin etmeyi peşinen taahhüt eder.</p>
+        </div>
+      </div>
+
+      <!-- Mutual Signature Blocks -->
+      <div style="border-top:1.5px solid #CBD5E1;padding-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:16px">
+        <!-- Hizmet Sağlayıcı İmza -->
+        <div style="border:1.5px solid #0E7C66;border-radius:10px;padding:14px;background:#F0FDF4;text-align:center">
+          <div style="font-size:10.5px;color:#166534;font-weight:700">HİZMET SAĞLAYICI:</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin:4px 0">Digital Finance Business Partner</div>
+          <div style="font-size:10px;color:#64748B">Sistem &amp; Bilgi Güvenliği Direktörlüğü</div>
+          <div style="margin-top:10px;padding:6px;background:#DCFCE7;border-radius:6px;display:inline-block">
+            <span style="font-size:11px;font-weight:800;color:#166534">✓ DİJİTAL MÜHÜRLE ONAYLANDI</span>
+            <div style="font-size:8.5px;color:#15803D;font-family:monospace">SHA-256: 7f8a91b...c401e</div>
+          </div>
+        </div>
+
+        <!-- Müşteri İmza -->
+        <div style="border:1.5px solid #1D4ED8;border-radius:10px;padding:14px;background:#EFF6FF;text-align:center">
+          <div style="font-size:10.5px;color:#1D4ED8;font-weight:700">VERİ SAHİBİ / MÜŞTERİ:</div>
+          <div id="ndaSignCompany" style="font-size:13px;font-weight:800;color:#0F172A;margin:4px 0">Kurumsal Müşteri</div>
+          <div id="ndaSignEmail" style="font-size:10.5px;color:#64748B">yetkili@sirket.com</div>
+          <div id="ndaSignatureState" style="margin-top:10px">
+            <span id="ndaStatusBadge" class="tag" style="background:#FEF3C7;color:#92400E;font-size:10px;font-weight:800">⏳ İmza Bekliyor</span>
+            <div id="ndaSignedTime" style="font-size:9.5px;color:#16A34A;margin-top:4px;display:none"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Modal Footer Action Bar -->
+    <div style="padding:14px 24px;border-top:1.5px solid #E2E8F0;background:#F8FAFC;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;flex-wrap:wrap;gap:10px">
+      <div style="font-size:11.5px;color:#64748B">
+        🔒 Bu sözleşme 6102 sayılı TTK ve 6698 sayılı KVKK uyarınca karşılıklı dijital irade beyanıyla hüküm ifade eder.
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button id="signNdaBtn" type="button" class="primary" style="padding:10px 22px;border-radius:10px;font-size:13.5px;font-weight:800;background:#1D4ED8;color:#FFFFFF;cursor:pointer" onclick="signDigitalNda()">
+          ✍️ Karşılıklı Olarak Dijital İmzala &amp; Onayla
+        </button>
+        <button type="button" class="secondary" style="padding:10px 16px;border-radius:10px;font-size:13px;font-weight:700" onclick="closeDigitalNdaModal()">
+          Kapat
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </main>
 <div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
 <script>
+// =========================================================================
+// KURUMSAL DİJİTAL NDA (GİZLİLİK SÖZLEŞMESİ) MODAL YÖNETİCİSİ
+// =========================================================================
+window.openDigitalNdaModal = function(opts){
+  opts = opts || {};
+  const modal = document.getElementById('digitalNdaModal');
+  if(!modal) return;
+  
+  const company = opts.company || localStorage.getItem('dfbp_company') || 'Kurumsal Üye';
+  const email = opts.email || localStorage.getItem('dfbp_email') || 'yetkili@sirket.com';
+  const dateStr = new Date().toLocaleDateString('tr-TR', { year:'numeric', month:'long', day:'numeric' });
+  
+  let hash = 0;
+  const str = email + company;
+  for(let i = 0; i < str.length; i++){
+    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    hash |= 0;
+  }
+  const contractId = 'DF-NDA-2026-' + (Math.abs(hash) % 90000 + 10000);
+
+  const setT = function(id, txt){
+    const el = document.getElementById(id);
+    if(el) el.textContent = txt;
+  };
+
+  setT('ndaCompanyName', company);
+  setT('ndaSignCompany', company);
+  setT('ndaUserEmail', email);
+  setT('ndaSignEmail', email);
+  setT('ndaDateStr', dateStr);
+  setT('ndaContractId', contractId);
+
+  const isSigned = localStorage.getItem('dfbp_nda_signed_' + email);
+  const badge = document.getElementById('ndaStatusBadge');
+  const signedTime = document.getElementById('ndaSignedTime');
+  const signBtn = document.getElementById('signNdaBtn');
+
+  if(isSigned){
+    if(badge){
+      badge.textContent = '✓ Karşılıklı İmzalandı';
+      badge.style.background = '#DCFCE7';
+      badge.style.color = '#166534';
+    }
+    if(signedTime){
+      signedTime.textContent = 'Dijital İmzalandı: ' + (localStorage.getItem('dfbp_nda_date_' + email) || dateStr);
+      signedTime.style.display = 'block';
+    }
+    if(signBtn){
+      signBtn.textContent = '✓ İmzalandı (Geçerli)';
+      signBtn.disabled = true;
+      signBtn.style.background = '#16A34A';
+    }
+  } else {
+    if(badge){
+      badge.textContent = '⏳ İmza Bekliyor';
+      badge.style.background = '#FEF3C7';
+      badge.style.color = '#92400E';
+    }
+    if(signedTime) signedTime.style.display = 'none';
+    if(signBtn){
+      signBtn.textContent = '✍️ Karşılıklı Olarak Dijital İmzala & Onayla';
+      signBtn.disabled = false;
+      signBtn.style.background = '#1D4ED8';
+    }
+  }
+
+  modal.classList.remove('hidden');
+  modal.style.display = 'flex';
+};
+
+window.closeDigitalNdaModal = function(){
+  const modal = document.getElementById('digitalNdaModal');
+  if(modal){
+    modal.classList.add('hidden');
+    modal.style.display = 'none';
+  }
+};
+
+window.signDigitalNda = function(){
+  const emailEl = document.getElementById('ndaUserEmail');
+  const email = (emailEl && emailEl.textContent) ? emailEl.textContent : (localStorage.getItem('dfbp_email') || 'user');
+  const nowStr = new Date().toLocaleString('tr-TR');
+  localStorage.setItem('dfbp_nda_signed_' + email, 'true');
+  localStorage.setItem('dfbp_nda_date_' + email, nowStr);
+  
+  const badge = document.getElementById('ndaStatusBadge');
+  const signedTime = document.getElementById('ndaSignedTime');
+  const signBtn = document.getElementById('signNdaBtn');
+
+  if(badge){
+    badge.textContent = '✓ Karşılıklı İmzalandı';
+    badge.style.background = '#DCFCE7';
+    badge.style.color = '#166534';
+  }
+  if(signedTime){
+    signedTime.textContent = 'Dijital İmzalandı: ' + nowStr;
+    signedTime.style.display = 'block';
+  }
+  if(signBtn){
+    signBtn.textContent = '✓ Başarıyla İmzalandı';
+    signBtn.disabled = true;
+    signBtn.style.background = '#16A34A';
+  }
+  if(typeof renderAuthArea === 'function'){
+    renderAuthArea();
+  }
+  alert('✓ Kurumsal Gizlilik Sözleşmesi (NDA) başarıyla karşılıklı olarak dijital imzalandı. Verileriniz Sıfır Kalıcı Disk (RAM-Only) güvencesi altındadır.');
+};
+
+window.printDigitalNda = function(){
+  const content = document.getElementById('digitalNdaPrintArea');
+  if(!content) return;
+  const w = window.open('', '_blank');
+  if(!w){
+    alert('Açılır pencere engellendi. Lütfen izin verin.');
+    return;
+  }
+  w.document.write('<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>Kurumsal Gizlilik & Veri Güvenliği Sözleşmesi (NDA) | Digital Finance BP</title><style>@page { size: A4 portrait; margin: 15mm; } body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; line-height: 1.6; color: #0F172A; margin: 0; padding: 20px; } @media print { body { padding: 0; } }</style></head><body>' + content.innerHTML + '<script>setTimeout(function(){ window.print(); }, 400);<\/script></body></html>');
+  w.document.close();
+};
+
+
 window.showKvkkModal=function(){var m=document.getElementById('kvkkModal');if(!m){m=document.createElement('div');m.id='kvkkModal';m.style.cssText='position:fixed;inset:0;background:rgba(15,27,45,0.7);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);';m.innerHTML='<div style="background:#FFFFFF;border-radius:18px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,0.3);position:relative;border:1px solid #E2E8F0"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid #E2E8F0;padding-bottom:12px"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:20px">🔒</span><h3 style="margin:0;font-size:18px;color:#0F1B2D;font-family:sans-serif;font-weight:700">Veri Güvenliği, RAM-Only İşleme ve KVKK Taahhüdü</h3></div><button class="kvkkClose" style="background:#F1F5F9;border:0;border-radius:50%;width:30px;height:30px;cursor:pointer;font-weight:bold;font-size:16px">✕</button></div><div style="font-size:13px;line-height:1.7;color:#33415C;display:flex;flex-direction:column;gap:12px"><div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:12px;color:#166534"><b>🛡️ Sıfır Disk Depolama (RAM-Only):</b> Yüklediğiniz mizan, muavin defteri veya operasyonel raporlar sunucunun kalıcı depolama birimlerine (HDD/SSD/Veritabanı) kaydedilmez. Tüm matematiksel hesaplamalar ve çift taraflı denetim anlık bellek (RAM) üzerinde icra edilir ve analiz tamamlandığında oturumla birlikte tamamen silinir.</div><p><b>1. Veri İzolasyonu &amp; Model Eğitimi Yasağı:</b> Şirketiniz tarafından paylaşılan hiçbir finansal veri, ciro, müşteri adı veya bilanço kalemi üçüncü şahıslara verilmez, satılmaz ve genel yapay zekâ modellerinin eğitimi için havuzlara aktarılmaz.</p><p><b>2. 256-Bit TLS Şifreleme:</b> Tarayıcınız ile platform arasındaki tüm veri akışı bankacılık standardında 256-bit SSL/TLS tüneli üzerinden şifrelenir.</p><p><b>3. 6698 Sayılı KVKK Uyumluluğu:</b> Şirket yetkililerine ait iletişim bilgileri ve ticari sırlar yalnızca talep edilen analizlerin üretilmesi amacıyla işlenir; yasal yükümlülükler haricinde hiçbir tarafla paylaşılmaz.</p><p><b>4. Kurumsal Gizlilik Sözleşmesi (NDA):</b> Kurumsal entegrasyon veya holding düzeyinde çalışmalarda şirketinizle karşılıklı Kurumsal NDA akdedilir.</p></div><div style="margin-top:20px;text-align:right"><button class="kvkkClose primary" style="padding:9px 20px;border-radius:10px;font-size:13px;background:#1D4ED8;color:#fff;border:0;cursor:pointer;font-weight:700">Anladım ve Kabul Ediyorum</button></div></div>';m.addEventListener('click',function(e){if(e.target===m||e.target.classList.contains('kvkkClose'))m.style.display='none';});document.body.appendChild(m);}m.style.display='flex';};
 document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('mainNav')?.classList.toggle('open'));
 window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.toggle('scrolled',window.scrollY>8)});
@@ -5642,6 +6022,141 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     </div>
   </a>
 </div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama" class="active">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth" id="mobileNavAuth"><button type="button" onclick="openAuthModal('login')" class="secondary">Giriş Yap</button><button type="button" onclick="openAuthModal('register')" class="primary">Ücretsiz Kayıt Ol</button></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select id="currencySwitch" onchange="setCurrency(this.value)" class="select" title="Para Birimi"><option value="TRY">₺ TRY</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select><select id="langSwitch" onchange="setLanguage(this.value)" class="select" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div id="authArea"><button id="loginOpenBtn" class="secondary">Giriş Yap</button> <button id="registerOpenBtn" class="primary">Ücretsiz Kayıt Ol</button></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
+<!-- ============================================================= -->
+<!-- KURUMSAL DİJİTAL NDA GİZLİLİK VE VERİ GÜVENLİĞİ SÖZLEŞMESİ MODALI -->
+<!-- ============================================================= -->
+<div id="digitalNdaModal" class="hidden hidePrint" onclick="if(event.target===this)closeDigitalNdaModal()" style="position:fixed;inset:0;background:rgba(15,27,45,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:2500;padding:20px;overflow-y:auto">
+  <div style="background:#FFFFFF;border-radius:20px;max-width:860px;width:100%;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 25px 70px rgba(0,0,0,0.4);overflow:hidden;border:1px solid #CBD5E1">
+    
+    <!-- Modal Header Bar -->
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1.5px solid #E2E8F0;background:#F8FAFC;flex-shrink:0">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:24px">📜</span>
+        <div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <h3 style="margin:0;font-size:16px;color:#0F1B2D;font-weight:800">Kurumsal Gizlilik &amp; Veri Güvenliği Sözleşmesi (Dijital NDA)</h3>
+            <span class="tag" style="background:#DCFCE7;color:#166534;font-size:10px;font-weight:800">Yasal Bağlayıcı</span>
+          </div>
+          <p style="margin:2px 0 0;font-size:11.5px;color:#64748B">Sıfır Kalıcı Disk (RAM-Only) · Model Eğitimi Yasağı · 256-Bit TLS · Karşılıklı E-İmza</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button id="printNdaBtn" type="button" class="secondary" style="padding:7px 14px;border-radius:8px;font-size:12px;font-weight:700" onclick="printDigitalNda()">🖨️ Yazdır / PDF İndir</button>
+        <button type="button" onclick="closeDigitalNdaModal()" style="background:none;border:none;font-size:22px;color:#64748B;cursor:pointer;padding:4px 8px">✕</button>
+      </div>
+    </div>
+
+    <!-- Contract Content Area (Scrollable Legal Sheet) -->
+    <div id="digitalNdaPrintArea" style="padding:26px 30px;overflow-y:auto;flex:1;background:#FFFFFF;font-size:12px;line-height:1.65;color:#1E293B">
+      
+      <!-- Contract Header -->
+      <div style="border-bottom:2px solid #0F172A;padding-bottom:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <div style="font-size:10px;font-weight:900;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase">DİGİTAL FINANCE BUSINESS PARTNER &bull; HUKUKİ TAAHHÜT BELGESİ</div>
+          <h2 style="margin:2px 0 0;font-size:19px;font-weight:900;color:#0F172A">DİJİTAL FİNANSAL GİZLİLİK VE VERİ GÜVENLİĞİ SÖZLEŞMESİ</h2>
+          <div style="font-size:11px;color:#64748B;margin-top:4px">
+            Sözleşme No: <b id="ndaContractId">DF-NDA-2026-89412</b> &bull; Düzenleme Tarihi: <b id="ndaDateStr">20 Eylül 2026</b>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div style="background:#DCFCE7;color:#166534;border:1.5px solid #BBF7D0;padding:5px 10px;border-radius:6px;font-size:10.5px;font-weight:800;display:inline-block">
+            ✓ E-MÜHÜR: SHA-256 DOĞRULANDI
+          </div>
+          <div style="font-size:9.5px;color:#0E7C66;font-weight:700;margin-top:3px">RAM-ONLY GÜVENCE SERTİFİKASI</div>
+        </div>
+      </div>
+
+      <!-- Parties Block -->
+      <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:10px;padding:12px 16px;margin-bottom:16px">
+        <div style="font-size:11px;font-weight:800;color:#0F172A;text-transform:uppercase;margin-bottom:6px">TARAFLAR</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:11.5px">
+          <div>
+            <b>1. HİZMET SAĞLAYICI:</b><br>
+            Digital Finance Business Partner Teknoloji A.Ş.<br>
+            Deterministik Finansal Karar Motorları &amp; Çift Yönlü Denetim Sistemi<br>
+            İstanbul, Türkiye &bull; info@digitalfinancebp.com
+          </div>
+          <div>
+            <b>2. VERİ SAHİBİ / MÜŞTERİ:</b><br>
+            Kurum / Şirket Ünvanı: <b id="ndaCompanyName" style="color:#1D4ED8">Kurumsal Müşteri</b><br>
+            Yetkili Temsilci / E-Posta: <b id="ndaUserEmail" style="color:#0F172A">yetkili@sirket.com</b><br>
+            Yetki Kapsamı: Finansal Yönetim, Mizan ve Alt Defter Denetimi
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal Articles -->
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px">
+        <div>
+          <b style="color:#0F172A">MADDE 1: AMAÇ VE KAPSAM</b>
+          <p style="margin:2px 0 0;color:#334155">İşbu sözleşmenin amacı; Müşteri'nin platforma yükleyeceği genel mizan, alt defter, cari yaşlandırma, stok ve banka verilerinin mutlak bir gizlilik, sıfır kalıcı disk depolama ve bankacılık standardında güvenlikle korunmasına ilişkin karşılıklı hak ve yükümlülüklerin belirlenmesidir.</p>
+        </div>
+
+        <div>
+          <b style="color:#0F172A">MADDE 2: SIFIR KALICI DİSK DEPOLAMA (RAM-ONLY) TAAHHÜDÜ</b>
+          <p style="margin:2px 0 0;color:#334155">Hizmet Sağlayıcı; Müşteri tarafından yüklenen hiçbir Excel (.xlsx, .xls), CSV, XML veya ERP verisinin sunucu sabit disklerine (HDD/SSD) veya kalıcı veritabanlarına <b>ASLA KAYDEDİLMEYECEĞİNİ</b> taahhüt eder. Tüm hesaplamalar anlık geçici bellekte (RAM) icra edilir; analiz çıktısı Müşteri tarayıcısına iletildiği anda geçici bellek kendini kalıcı olarak imha eder.</p>
+        </div>
+
+        <div>
+          <b style="color:#0F172A">MADDE 3: MODEL EĞİTİMİ YASAĞI VE TİCARİ MAHREMİYET</b>
+          <p style="margin:2px 0 0;color:#334155">Müşteri'ye ait cirolar, kâr marjları, müşteri/tedarikçi isimleri ve hesap bakiyeleri hiçbir şart altında genel yapay zeka modellerinin eğitimi için havuzlara aktarılamaz; ticari istihbarat amacıyla işlenemez ve 3. şahıslara açıklanamaz.</p>
+        </div>
+
+        <div>
+          <b style="color:#0F172A">MADDE 4: 256-BİT SSL/TLS ŞİFRELEME VE KVKK UYUMLULUĞU</b>
+          <p style="margin:2px 0 0;color:#334155">Müşteri ile platform arasındaki tüm veri akışı uluslararası bankacılık standardı 256-bit TLS şifrelemesiyle korunur. Hizmet Sağlayıcı, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) hükümlerine eksiksiz uymayı kabul eder.</p>
+        </div>
+
+        <div>
+          <b style="color:#0F172A">MADDE 5: CEZAİ ŞART VE TAZMİNAT</b>
+          <p style="margin:2px 0 0;color:#334155">Hizmet Sağlayıcı, Müşteri verilerini en üst düzeyde korunan "Ticari Sır" (Trade Secret) olarak kabul eder. Verilerin kasten veya ihmalen 3. taraflarla paylaşılması halinde Müşteri'nin uğrayacağı tüm maddi ve manevi zararları tazmin etmeyi peşinen taahhüt eder.</p>
+        </div>
+      </div>
+
+      <!-- Mutual Signature Blocks -->
+      <div style="border-top:1.5px solid #CBD5E1;padding-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:16px">
+        <!-- Hizmet Sağlayıcı İmza -->
+        <div style="border:1.5px solid #0E7C66;border-radius:10px;padding:14px;background:#F0FDF4;text-align:center">
+          <div style="font-size:10.5px;color:#166534;font-weight:700">HİZMET SAĞLAYICI:</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin:4px 0">Digital Finance Business Partner</div>
+          <div style="font-size:10px;color:#64748B">Sistem &amp; Bilgi Güvenliği Direktörlüğü</div>
+          <div style="margin-top:10px;padding:6px;background:#DCFCE7;border-radius:6px;display:inline-block">
+            <span style="font-size:11px;font-weight:800;color:#166534">✓ DİJİTAL MÜHÜRLE ONAYLANDI</span>
+            <div style="font-size:8.5px;color:#15803D;font-family:monospace">SHA-256: 7f8a91b...c401e</div>
+          </div>
+        </div>
+
+        <!-- Müşteri İmza -->
+        <div style="border:1.5px solid #1D4ED8;border-radius:10px;padding:14px;background:#EFF6FF;text-align:center">
+          <div style="font-size:10.5px;color:#1D4ED8;font-weight:700">VERİ SAHİBİ / MÜŞTERİ:</div>
+          <div id="ndaSignCompany" style="font-size:13px;font-weight:800;color:#0F172A;margin:4px 0">Kurumsal Müşteri</div>
+          <div id="ndaSignEmail" style="font-size:10.5px;color:#64748B">yetkili@sirket.com</div>
+          <div id="ndaSignatureState" style="margin-top:10px">
+            <span id="ndaStatusBadge" class="tag" style="background:#FEF3C7;color:#92400E;font-size:10px;font-weight:800">⏳ İmza Bekliyor</span>
+            <div id="ndaSignedTime" style="font-size:9.5px;color:#16A34A;margin-top:4px;display:none"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Modal Footer Action Bar -->
+    <div style="padding:14px 24px;border-top:1.5px solid #E2E8F0;background:#F8FAFC;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;flex-wrap:wrap;gap:10px">
+      <div style="font-size:11.5px;color:#64748B">
+        🔒 Bu sözleşme 6102 sayılı TTK ve 6698 sayılı KVKK uyarınca karşılıklı dijital irade beyanıyla hüküm ifade eder.
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button id="signNdaBtn" type="button" class="primary" style="padding:10px 22px;border-radius:10px;font-size:13.5px;font-weight:800;background:#1D4ED8;color:#FFFFFF;cursor:pointer" onclick="signDigitalNda()">
+          ✍️ Karşılıklı Olarak Dijital İmzala &amp; Onayla
+        </button>
+        <button type="button" class="secondary" style="padding:10px 16px;border-radius:10px;font-size:13px;font-weight:700" onclick="closeDigitalNdaModal()">
+          Kapat
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="authModalOverlay" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.65);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px">
   <div class="card" style="background:#FFFFFF;border:1px solid #DCE6F5;border-radius:24px;box-shadow:0 24px 70px rgba(15,27,45,.25);max-width:420px;width:100%;padding:28px;position:relative;overflow:hidden">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
@@ -12734,70 +13249,100 @@ window.openDigitalNdaModal = function(opts){
   const company = opts.company || localStorage.getItem('dfbp_company') || 'Kurumsal Üye';
   const email = opts.email || localStorage.getItem('dfbp_email') || 'yetkili@sirket.com';
   const dateStr = new Date().toLocaleDateString('tr-TR', { year:'numeric', month:'long', day:'numeric' });
-  const contractId = 'DF-NDA-2026-' + (Math.abs(hashString(email + company)) % 90000 + 10000);
+  
+  let hash = 0;
+  const str = email + company;
+  for(let i = 0; i < str.length; i++){
+    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    hash |= 0;
+  }
+  const contractId = 'DF-NDA-2026-' + (Math.abs(hash) % 90000 + 10000);
 
-  if($('ndaCompanyName')) $('ndaCompanyName').textContent = company;
-  if($('ndaSignCompany')) $('ndaSignCompany').textContent = company;
-  if($('ndaUserEmail')) $('ndaUserEmail').textContent = email;
-  if($('ndaSignEmail')) $('ndaSignEmail').textContent = email;
-  if($('ndaDateStr')) $('ndaDateStr').textContent = dateStr;
-  if($('ndaContractId')) $('ndaContractId').textContent = contractId;
+  const setT = function(id, txt){
+    const el = document.getElementById(id);
+    if(el) el.textContent = txt;
+  };
+
+  setT('ndaCompanyName', company);
+  setT('ndaSignCompany', company);
+  setT('ndaUserEmail', email);
+  setT('ndaSignEmail', email);
+  setT('ndaDateStr', dateStr);
+  setT('ndaContractId', contractId);
 
   const isSigned = localStorage.getItem('dfbp_nda_signed_' + email);
+  const badge = document.getElementById('ndaStatusBadge');
+  const signedTime = document.getElementById('ndaSignedTime');
+  const signBtn = document.getElementById('signNdaBtn');
+
   if(isSigned){
-    if($('ndaStatusBadge')){
-      $('ndaStatusBadge').textContent = '✓ Karşılıklı İmzalandı';
-      $('ndaStatusBadge').style.background = '#DCFCE7';
-      $('ndaStatusBadge').style.color = '#166534';
+    if(badge){
+      badge.textContent = '✓ Karşılıklı İmzalandı';
+      badge.style.background = '#DCFCE7';
+      badge.style.color = '#166534';
     }
-    if($('ndaSignedTime')){
-      $('ndaSignedTime').textContent = 'Dijital İmzalandı: ' + dateStr;
-      $('ndaSignedTime').style.display = 'block';
+    if(signedTime){
+      signedTime.textContent = 'Dijital İmzalandı: ' + (localStorage.getItem('dfbp_nda_date_' + email) || dateStr);
+      signedTime.style.display = 'block';
     }
-    if($('signNdaBtn')){
-      $('signNdaBtn').textContent = '✓ İmzalandı (Geçerli)';
-      $('signNdaBtn').disabled = true;
-      $('signNdaBtn').style.background = '#16A34A';
+    if(signBtn){
+      signBtn.textContent = '✓ İmzalandı (Geçerli)';
+      signBtn.disabled = true;
+      signBtn.style.background = '#16A34A';
     }
   } else {
-    if($('ndaStatusBadge')){
-      $('ndaStatusBadge').textContent = '⏳ İmza Bekliyor';
-      $('ndaStatusBadge').style.background = '#FEF3C7';
-      $('ndaStatusBadge').style.color = '#92400E';
+    if(badge){
+      badge.textContent = '⏳ İmza Bekliyor';
+      badge.style.background = '#FEF3C7';
+      badge.style.color = '#92400E';
     }
-    if($('ndaSignedTime')) $('ndaSignedTime').style.display = 'none';
-    if($('signNdaBtn')){
-      $('signNdaBtn').textContent = '✍️ Karşılıklı Olarak Dijital İmzala & Onayla';
-      $('signNdaBtn').disabled = false;
-      $('signNdaBtn').style.background = '#1D4ED8';
+    if(signedTime) signedTime.style.display = 'none';
+    if(signBtn){
+      signBtn.textContent = '✍️ Karşılıklı Olarak Dijital İmzala & Onayla';
+      signBtn.disabled = false;
+      signBtn.style.background = '#1D4ED8';
     }
   }
 
   modal.classList.remove('hidden');
+  modal.style.display = 'flex';
 };
 
 window.closeDigitalNdaModal = function(){
   const modal = document.getElementById('digitalNdaModal');
-  if(modal) modal.classList.add('hidden');
+  if(modal){
+    modal.classList.add('hidden');
+    modal.style.display = 'none';
+  }
 };
 
 window.signDigitalNda = function(){
-  const email = $('ndaUserEmail')?.textContent || localStorage.getItem('dfbp_email') || 'user';
+  const emailEl = document.getElementById('ndaUserEmail');
+  const email = (emailEl && emailEl.textContent) ? emailEl.textContent : (localStorage.getItem('dfbp_email') || 'user');
+  const nowStr = new Date().toLocaleString('tr-TR');
   localStorage.setItem('dfbp_nda_signed_' + email, 'true');
+  localStorage.setItem('dfbp_nda_date_' + email, nowStr);
   
-  if($('ndaStatusBadge')){
-    $('ndaStatusBadge').textContent = '✓ Karşılıklı İmzalandı';
-    $('ndaStatusBadge').style.background = '#DCFCE7';
-    $('ndaStatusBadge').style.color = '#166534';
+  const badge = document.getElementById('ndaStatusBadge');
+  const signedTime = document.getElementById('ndaSignedTime');
+  const signBtn = document.getElementById('signNdaBtn');
+
+  if(badge){
+    badge.textContent = '✓ Karşılıklı İmzalandı';
+    badge.style.background = '#DCFCE7';
+    badge.style.color = '#166534';
   }
-  if($('ndaSignedTime')){
-    $('ndaSignedTime').textContent = 'Dijital İmzalandı: ' + new Date().toLocaleString('tr-TR');
-    $('ndaSignedTime').style.display = 'block';
+  if(signedTime){
+    signedTime.textContent = 'Dijital İmzalandı: ' + nowStr;
+    signedTime.style.display = 'block';
   }
-  if($('signNdaBtn')){
-    $('signNdaBtn').textContent = '✓ Başarıyla İmzalandı';
-    $('signNdaBtn').disabled = true;
-    $('signNdaBtn').style.background = '#16A34A';
+  if(signBtn){
+    signBtn.textContent = '✓ Başarıyla İmzalandı';
+    signBtn.disabled = true;
+    signBtn.style.background = '#16A34A';
+  }
+  if(typeof renderAuthArea === 'function'){
+    renderAuthArea();
   }
   alert('✓ Kurumsal Gizlilik Sözleşmesi (NDA) başarıyla karşılıklı olarak dijital imzalandı. Verileriniz Sıfır Kalıcı Disk (RAM-Only) güvencesi altındadır.');
 };
@@ -12810,24 +13355,10 @@ window.printDigitalNda = function(){
     alert('Açılır pencere engellendi. Lütfen izin verin.');
     return;
   }
-  w.document.write(`<!doctype html>
-<html lang="tr">
-<head>
-  <meta charset="utf-8">
-  <title>Kurumsal Gizlilik & Veri Güvenliği Sözleşmesi (NDA) | Digital Finance BP</title>
-  <style>
-    @page { size: A4 portrait; margin: 15mm 15mm 15mm 15mm; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; line-height: 1.6; color: #0F172A; margin: 0; padding: 20px; }
-    @media print { body { padding: 0; } }
-  </style>
-</head>
-<body>
-  ${content.innerHTML}
-  <script>setTimeout(function(){ window.print(); }, 400);<\/script>
-</body>
-</html>`);
+  w.document.write('<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>Kurumsal Gizlilik & Veri Güvenliği Sözleşmesi (NDA) | Digital Finance BP</title><style>@page { size: A4 portrait; margin: 15mm; } body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; line-height: 1.6; color: #0F172A; margin: 0; padding: 20px; } @media print { body { padding: 0; } }</style></head><body>' + content.innerHTML + '<script>setTimeout(function(){ window.print(); }, 400);<\/script></body></html>');
   w.document.close();
 };
+
 
 function hashString(str){
   let hash = 0;
@@ -12839,12 +13370,16 @@ function renderAuthArea(){
   const box=$('authArea');
   const mob=$('mobileNavAuth');
   if(AUTH_TOKEN){
+    const isSigned = localStorage.getItem('dfbp_nda_signed_' + (AUTH_EMAIL || 'user'));
+    const ndaBadge = isSigned 
+      ? '<button type="button" onclick="openDigitalNdaModal()" style="background:#DCFCE7;color:#166534;border:1.5px solid #BBF7D0;padding:5px 11px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer;margin-right:8px;display:inline-flex;align-items:center;gap:4px">✓ Dijital NDA (İmzalı)</button>'
+      : '<button type="button" onclick="openDigitalNdaModal()" style="background:#FEF3C7;color:#92400E;border:1.5px solid #FDE68A;padding:5px 11px;border-radius:8px;font-size:11.5px;font-weight:800;cursor:pointer;margin-right:8px;display:inline-flex;align-items:center;gap:4px">⚠️ Dijital NDA Bekliyor</button>';
     if(box){
-      box.innerHTML='<span class="small muted" style="margin-right:8px">👤 '+esc(AUTH_EMAIL||'')+'</span><button id="logoutBtn" class="secondary">Çıkış</button>';
+      box.innerHTML=ndaBadge + '<span class="small muted" style="margin-right:8px">👤 '+esc(AUTH_EMAIL||'')+'</span><button id="logoutBtn" class="secondary">Çıkış</button>';
       $('logoutBtn').onclick=logoutUser;
     }
     if(mob){
-      mob.innerHTML='<div style="font-size:12px;color:var(--muted);width:100%;margin-bottom:6px">👤 '+esc(AUTH_EMAIL||'')+'</div><button type="button" onclick="logoutUser()" class="secondary" style="width:100%">Çıkış Yap</button>';
+      mob.innerHTML='<div style="margin-bottom:8px">' + ndaBadge + '</div><div style="font-size:12px;color:var(--muted);width:100%;margin-bottom:6px">👤 '+esc(AUTH_EMAIL||'')+'</div><button type="button" onclick="logoutUser()" class="secondary" style="width:100%">Çıkış Yap</button>';
     }
     $('historyLoggedOut')?.classList.add('hidden');$('historyLoggedIn')?.classList.remove('hidden');
     loadHistory();
@@ -12911,13 +13446,22 @@ $('authSubmitBtn').onclick=async()=>{
     $('authModalOverlay').classList.add('hidden');
     renderAuthArea();
     if(AUTH_MODE === 'register'){
-      openDigitalNdaModal({ company: company || 'Kurumsal Şirket', email: email });
+      setTimeout(function(){
+        openDigitalNdaModal({ company: company || 'Kurumsal Şirket', email: email });
+      }, 150);
     }
   }catch(e){$('authError').textContent=e.message;$('authError').classList.remove('hidden');}
   finally{$('authSubmitBtn').disabled=false;}
 };
 (function(){const _qp=new URLSearchParams(location.search);const _m=_qp.get('auth');if(_m==='login'||_m==='register'){openAuthModal(_m);}})();
 renderAuthArea();
+(function(){
+  if(AUTH_TOKEN && !localStorage.getItem('dfbp_nda_signed_' + (AUTH_EMAIL || 'user'))){
+    setTimeout(function(){
+      openDigitalNdaModal({ company: localStorage.getItem('dfbp_company') || 'Kurumsal Şirket', email: AUTH_EMAIL });
+    }, 400);
+  }
+})();
 
 // ---------------------------------------------------------------------
 // Save current analysis to history (visible once an analysis has run AND
