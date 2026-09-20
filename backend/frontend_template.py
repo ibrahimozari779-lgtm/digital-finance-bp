@@ -7335,10 +7335,10 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
           <h2>📅 13 Haftalık Dinamik Nakit Akış Projeksiyonu</h2>
           <p>Haftalık tahsilat hızı, tedarikçi ödemeleri, maaş ve vergi kümelenmelerine göre kasanın seyri</p>
         </div>
-        <button id="toggle13WeekTableBtn" class="secondary hidePrint" style="font-size:12px;padding:6px 12px" onclick="toggle13WeekTable()">📊 Detay Tabloyu Göster / Gizle</button>
+        <button id="toggle13WeekTableBtn" class="secondary hidePrint" style="font-size:12px;padding:6px 12px" onclick="toggle13WeekTable()">📊 Detay Tabloyu Gizle / Göster</button>
       </div>
       <div id="thirteenWeekVisual" style="margin-bottom:16px"></div>
-      <div id="thirteenWeekTableWrap" class="tableWrap hidden" style="margin-top:12px"></div>
+      <div id="thirteenWeekTableWrap" class="tableWrap" style="margin-top:12px"></div>
     </div>
 
     <!-- TMS 7 Dolaylı Nakit Akış Tablosu -->
@@ -12831,8 +12831,12 @@ function renderResourceAllocation(ra){
 
 function toggle13WeekTable(){
   const el = $('thirteenWeekTableWrap');
+  const btn = $('toggle13WeekTableBtn');
   if(!el) return;
   el.classList.toggle('hidden');
+  if(btn) {
+    btn.textContent = el.classList.contains('hidden') ? '📊 Detay Tabloyu Göster' : '📊 Detay Tabloyu Gizle';
+  }
 }
 
 function toggleTms7Table(){
@@ -12966,18 +12970,19 @@ function renderCashFlowCockpit(cfe){
   renderTms7Statement(cfe.tms7_statement);
 }
 
-function render13WeekProjection(proj){
-  const vis = $('thirteenWeekVisual');
-  const tbl = $('thirteenWeekTableWrap');
-  if(!vis || !proj || !proj.weeks) return;
+window._twBaseline = null;
+window._twCurrent = null;
 
-  const weeks = proj.weeks;
-  const summ = proj.summary || {};
+function render13WeekVisualOnly(){
+  const vis = $('thirteenWeekVisual');
+  if(!vis || !window._twCurrent || !window._twCurrent.weeks) return;
+  const weeks = window._twCurrent.weeks;
+  const summ = window._twCurrent.summary || {};
 
   let visualHtml = '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:14px;margin-bottom:12px">' +
     '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px">' +
       '<div style="font-size:13px;font-weight:800;color:#0F172A">13 Haftalık Kasa Bakiyesi Seyri &amp; Güvenlik Eşiği</div>' +
-      '<div style="display:flex;gap:10px;font-size:11.5px">' +
+      '<div style="display:flex;gap:12px;font-size:11.5px">' +
         '<span>Açılış: <b>' + money(summ.opening_cash) + '</b></span>' +
         '<span>13. Hafta: <b style="color:' + (summ.ending_cash_week_13 >= 0 ? '#16A34A' : '#DC2626') + '">' + money(summ.ending_cash_week_13) + '</b></span>' +
         '<span>Kritik Eşik: <b style="color:#D97706">' + money(summ.min_safety_buffer) + '</b></span>' +
@@ -12999,36 +13004,182 @@ function render13WeekProjection(proj){
   });
   visualHtml += '</div></div>';
   vis.innerHTML = visualHtml;
+}
 
-  // Detailed Table
-  let tableHtml = '<table><thead><tr>' +
+function update13WeekCell(rowIdx, field, val){
+  if(!window._twCurrent || !window._twCurrent.weeks) return;
+  const numVal = Math.max(0, parseFloat(val) || 0);
+  const targetWeek = window._twCurrent.weeks[rowIdx];
+  if(!targetWeek) return;
+
+  if(!targetWeek.outflow_breakdown) targetWeek.outflow_breakdown = {};
+
+  if(field === 'inflow') {
+    targetWeek.inflows = numVal;
+  } else if(field === 'supplier') {
+    targetWeek.outflow_breakdown.supplier_payments = numVal;
+  } else if(field === 'payroll') {
+    targetWeek.outflow_breakdown.payroll_and_opex = numVal;
+  } else if(field === 'tax_debt') {
+    targetWeek.outflow_breakdown.tax_and_sgk = numVal;
+    targetWeek.outflow_breakdown.debt_service = 0;
+  }
+
+  recalc13Weeks();
+}
+
+function recalc13Weeks(){
+  if(!window._twCurrent || !window._twCurrent.weeks) return;
+  const weeks = window._twCurrent.weeks;
+  const summ = window._twCurrent.summary || {};
+  const safetyBuffer = summ.min_safety_buffer || 50000;
+  
+  let runningCash = weeks[0].beginning_cash;
+  let firstDeficitWeek = null;
+
+  weeks.forEach((w, i) => {
+    w.beginning_cash = runningCash;
+    const supp = w.outflow_breakdown?.supplier_payments || 0;
+    const payr = w.outflow_breakdown?.payroll_and_opex || 0;
+    const taxD = (w.outflow_breakdown?.tax_and_sgk || 0) + (w.outflow_breakdown?.debt_service || 0);
+    const totalOutflows = supp + payr + taxD;
+    w.outflows = totalOutflows;
+    w.net_cash_flow = (w.inflows || 0) - totalOutflows;
+    w.ending_cash = w.beginning_cash + w.net_cash_flow;
+    runningCash = w.ending_cash;
+
+    if(w.ending_cash < 0) {
+      w.status = 'DEFICIT';
+      if(firstDeficitWeek === null) firstDeficitWeek = (i + 1);
+    } else if(w.ending_cash < safetyBuffer) {
+      w.status = 'WARNING';
+    } else {
+      w.status = 'HEALTHY';
+    }
+
+    // Live update table row cells
+    const openEl = $('tw_open_' + i);
+    if(openEl) openEl.textContent = money(w.beginning_cash);
+
+    const netEl = $('tw_net_' + i);
+    if(netEl) {
+      const isNetPos = w.net_cash_flow >= 0;
+      netEl.textContent = (isNetPos ? '+' : '') + money(w.net_cash_flow);
+      netEl.style.color = isNetPos ? '#16A34A' : '#DC2626';
+    }
+
+    const closeEl = $('tw_close_' + i);
+    if(closeEl) {
+      closeEl.textContent = money(w.ending_cash);
+      closeEl.style.color = w.ending_cash < 0 ? '#DC2626' : '#0F172A';
+    }
+
+    const statusEl = $('tw_status_' + i);
+    if(statusEl) {
+      const isDef = w.status === 'DEFICIT';
+      const isWarn = w.status === 'WARNING';
+      statusEl.className = 'tag ' + (isDef ? 'critical' : isWarn ? 'medium' : 'positive');
+      statusEl.textContent = isDef ? 'Nakit Açığı 🚨' : isWarn ? 'Tampon Altı ⚠️' : 'Güvenli 🛡️';
+    }
+  });
+
+  summ.ending_cash_week_13 = weeks[weeks.length - 1].ending_cash;
+  render13WeekVisualOnly();
+
+  // Update runway badge in Patron Cockpit if present
+  const runwayBadge = $('patronRunwayBadge');
+  if(runwayBadge) {
+    const rwWeeks = firstDeficitWeek !== null ? (firstDeficitWeek - 1) : 13;
+    const rwClass = rwWeeks < 2 ? 'critical' : rwWeeks < 4 ? 'medium' : 'positive';
+    const rwIcon = rwWeeks < 2 ? '🚨' : rwWeeks < 4 ? '⚠️' : '🛡️';
+    runwayBadge.innerHTML = '<span class="tag ' + rwClass + '" style="font-weight:800;font-size:12px;padding:5px 10px">' + rwIcon + ' Kasa Tamponu: ' + (rwWeeks >= 13 ? '13+ Hafta' : num(rwWeeks) + ' Hafta') + '</span>';
+  }
+}
+
+function reset13WeekProjection(){
+  if(!window._twBaseline) return;
+  window._twCurrent = JSON.parse(JSON.stringify(window._twBaseline));
+  render13WeekProjection(window._twCurrent, true);
+}
+
+function render13WeekProjection(proj, isReset){
+  const vis = $('thirteenWeekVisual');
+  const tbl = $('thirteenWeekTableWrap');
+  if(!vis || !proj || !proj.weeks) return;
+
+  if(!isReset) {
+    window._twBaseline = JSON.parse(JSON.stringify(proj));
+  }
+  window._twCurrent = JSON.parse(JSON.stringify(proj));
+
+  const weeks = window._twCurrent.weeks;
+  const summ = window._twCurrent.summary || {};
+
+  render13WeekVisualOnly();
+
+  // Detailed Interactive Table
+  let tableHtml = '<div style="display:flex;justify-content:space-between;align-items:center;background:#EFF6FF;border:1.5px solid #BFDBFE;border-radius:10px;padding:10px 14px;margin-bottom:12px;flex-wrap:wrap;gap:10px">' +
+    '<div style="font-size:12px;color:#1E40AF;line-height:1.5">' +
+      '✍️ <b>Canlı İnteraktif Simülatör:</b> Yeşil kutudaki <b>Tahsilat (Giriş)</b> ve kırmızı kutulardaki <b>Harcamaları</b> şirketinize veya hedefinize göre değiştirebilirsiniz. Rakamları değiştirdiğiniz anda sonraki tüm haftaların <b>Net Kasa Değişimi</b>, <b>Kapanış Kasası</b> ve <b>Haftalık Kasa Alarmları</b> anında yeniden hesaplanır.' +
+    '</div>' +
+    '<button type="button" class="secondary" onclick="reset13WeekProjection()" style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;font-size:11.5px;font-weight:800;background:#FFFFFF;border:1.5px solid #93C5FD;color:#1D4ED8;border-radius:8px;cursor:pointer">' +
+      '<span>🔄</span> Motor Tahminlerine Sıfırla' +
+    '</button>' +
+  '</div>';
+
+  tableHtml += '<table><thead><tr>' +
     '<th>Hafta</th>' +
     '<th>Açılış Kasa</th>' +
-    '<th>Tahsilat (Giriş)</th>' +
-    '<th>Tedarikçi Çıkışı</th>' +
-    '<th>Maaş &amp; SGK</th>' +
-    '<th>Vergi &amp; Kredi</th>' +
-    '<th>Net Kasa Değişimi</th>' +
-    '<th>Kapanış Kasa</th>' +
-    '<th>Durum</th>' +
+    '<th style="text-align:right">Tahsilat (Giriş) <span style="font-weight:normal;font-size:10px;color:#166534">✏️</span></th>' +
+    '<th style="text-align:right">Tedarikçi Çıkışı <span style="font-weight:normal;font-size:10px;color:#991B1B">✏️</span></th>' +
+    '<th style="text-align:right">Maaş &amp; SGK <span style="font-weight:normal;font-size:10px;color:#991B1B">✏️</span></th>' +
+    '<th style="text-align:right">Vergi &amp; Kredi <span style="font-weight:normal;font-size:10px;color:#991B1B">✏️</span></th>' +
+    '<th style="text-align:right">Net Kasa Değişimi</th>' +
+    '<th style="text-align:right">Kapanış Kasa</th>' +
+    '<th style="text-align:center">Durum</th>' +
   '</tr></thead><tbody>';
 
-  weeks.forEach(w => {
+  weeks.forEach((w, idx) => {
     const isDef = w.status === 'DEFICIT';
     const isWarn = w.status === 'WARNING';
     const tagClass = isDef ? 'critical' : isWarn ? 'medium' : 'positive';
-    const tagText = isDef ? 'Nakit Açığı' : isWarn ? 'Tampon Altı' : 'Güvenli';
+    const tagText = isDef ? 'Nakit Açığı 🚨' : isWarn ? 'Tampon Altı ⚠️' : 'Güvenli 🛡️';
     const netPos = w.net_cash_flow >= 0;
+
+    const suppVal = Math.round(w.outflow_breakdown?.supplier_payments || 0);
+    const payrVal = Math.round(w.outflow_breakdown?.payroll_and_opex || 0);
+    const taxDebtVal = Math.round((w.outflow_breakdown?.tax_and_sgk || 0) + (w.outflow_breakdown?.debt_service || 0));
+
     tableHtml += '<tr>' +
       '<td><b>' + esc(w.label) + '</b></td>' +
-      '<td>' + money(w.beginning_cash) + '</td>' +
-      '<td style="color:#16A34A;font-weight:700">+' + money(w.inflows) + '</td>' +
-      '<td style="color:#DC2626">-' + money(w.outflow_breakdown?.supplier_payments) + '</td>' +
-      '<td style="color:#DC2626">-' + money(w.outflow_breakdown?.payroll_and_opex) + '</td>' +
-      '<td style="color:#DC2626">-' + money((w.outflow_breakdown?.tax_and_sgk || 0) + (w.outflow_breakdown?.debt_service || 0)) + '</td>' +
-      '<td style="font-weight:800;color:' + (netPos ? '#16A34A' : '#DC2626') + '">' + (netPos ? '+' : '') + money(w.net_cash_flow) + '</td>' +
-      '<td style="font-weight:900;color:' + (w.ending_cash < 0 ? '#DC2626' : '#0F172A') + '">' + money(w.ending_cash) + '</td>' +
-      '<td><span class="tag ' + tagClass + '">' + tagText + '</span></td>' +
+      '<td id="tw_open_' + idx + '" style="font-weight:700;color:#334155">' + money(w.beginning_cash) + '</td>' +
+      '<td>' +
+        '<div style="display:flex;align-items:center;gap:3px;justify-content:flex-end">' +
+          '<span style="color:#166534;font-weight:800;font-size:11px">+</span>' +
+          '<input type="number" step="1000" min="0" value="' + Math.round(w.inflows) + '" oninput="update13WeekCell(' + idx + ', \'inflow\', this.value)" style="width:105px;padding:4px 6px;border:1.5px solid #86EFAC;background:#F0FDF4;border-radius:6px;font-size:11.5px;font-weight:800;color:#166534;text-align:right" title="Tahsilat Girişini Düzenle">' +
+        '</div>' +
+      '</td>' +
+      '<td>' +
+        '<div style="display:flex;align-items:center;gap:3px;justify-content:flex-end">' +
+          '<span style="color:#991B1B;font-weight:800;font-size:11px">-</span>' +
+          '<input type="number" step="1000" min="0" value="' + suppVal + '" oninput="update13WeekCell(' + idx + ', \'supplier\', this.value)" style="width:105px;padding:4px 6px;border:1.5px solid #FECACA;background:#FEF2F2;border-radius:6px;font-size:11.5px;font-weight:800;color:#991B1B;text-align:right" title="Tedarikçi Çıkışını Düzenle">' +
+        '</div>' +
+      '</td>' +
+      '<td>' +
+        '<div style="display:flex;align-items:center;gap:3px;justify-content:flex-end">' +
+          '<span style="color:#991B1B;font-weight:800;font-size:11px">-</span>' +
+          '<input type="number" step="1000" min="0" value="' + payrVal + '" oninput="update13WeekCell(' + idx + ', \'payroll\', this.value)" style="width:105px;padding:4px 6px;border:1.5px solid #FECACA;background:#FEF2F2;border-radius:6px;font-size:11.5px;font-weight:800;color:#991B1B;text-align:right" title="Maaş &amp; SGK Çıkışını Düzenle">' +
+        '</div>' +
+      '</td>' +
+      '<td>' +
+        '<div style="display:flex;align-items:center;gap:3px;justify-content:flex-end">' +
+          '<span style="color:#991B1B;font-weight:800;font-size:11px">-</span>' +
+          '<input type="number" step="1000" min="0" value="' + taxDebtVal + '" oninput="update13WeekCell(' + idx + ', \'tax_debt\', this.value)" style="width:105px;padding:4px 6px;border:1.5px solid #FECACA;background:#FEF2F2;border-radius:6px;font-size:11.5px;font-weight:800;color:#991B1B;text-align:right" title="Vergi &amp; Kredi Taksitini Düzenle">' +
+        '</div>' +
+      '</td>' +
+      '<td id="tw_net_' + idx + '" style="font-weight:800;color:' + (netPos ? '#16A34A' : '#DC2626') + ';text-align:right">' + (netPos ? '+' : '') + money(w.net_cash_flow) + '</td>' +
+      '<td id="tw_close_' + idx + '" style="font-weight:900;color:' + (w.ending_cash < 0 ? '#DC2626' : '#0F172A') + ';text-align:right">' + money(w.ending_cash) + '</td>' +
+      '<td style="text-align:center"><span id="tw_status_' + idx + '" class="tag ' + tagClass + '">' + tagText + '</span></td>' +
     '</tr>';
   });
   tableHtml += '</tbody></table>';
