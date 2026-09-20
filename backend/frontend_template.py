@@ -13550,8 +13550,6 @@ function setupInteractiveScenario(d){
     $('sliderDsoVal').textContent = curDso != null ? (Math.round(curDso) + ' ➔ ' + Math.max(0, Math.round(curDso - dsoDays)) + ' gün (-' + dsoDays + 'g)') : (dsoDays + ' gün kısaltma');
     if($('sliderDioVal')) $('sliderDioVal').textContent = curDio != null ? (Math.round(curDio) + ' ➔ ' + Math.max(0, Math.round(curDio - dioDays)) + ' gün (-' + dioDays + 'g)') : (dioDays + ' gün kısaltma');
     $('sliderMarginVal').textContent = '+' + marginDeltaPct.toFixed(1) + '%' + (curMargin ? ' (➔ %' + (curMargin + marginDeltaPct).toFixed(1) + ')' : '');
-    $('sliderOpexVal').textContent = opexCutPct + '% Tasarruf' + (profitFromOpex > 0 ? ' (➔ +' + money(profitFromOpex) + ')' : '');
-    if($('simCostOfCapitalVal')) $('simCostOfCapitalVal').textContent='%'+waccPct.toFixed(1);
 
     const cashFromDso = sales > 0 ? (dsoDays / daysInYear) * sales : 0;
     const cashFromDio = cogs > 0 ? (dioDays / daysInYear) * cogs : 0;
@@ -13566,6 +13564,9 @@ function setupInteractiveScenario(d){
     const newNetProfit = netProfit + totalProfitImpact;
     const newMargin = sales > 0 ? (newNetProfit / sales * 100) : 0;
     const newCcc = curCcc != null ? (curCcc - dsoDays - dioDays) : null;
+
+    $('sliderOpexVal').textContent = opexCutPct + '% Tasarruf' + (profitFromOpex > 0 ? ' (➔ +' + money(profitFromOpex) + ')' : '');
+    if($('simCostOfCapitalVal')) $('simCostOfCapitalVal').textContent='%'+waccPct.toFixed(1);
 
     $('simCashImpact').textContent=(totalCashImpact>=0?'+':'')+money(totalCashImpact);
     $('simProfitImpact').textContent=(totalProfitImpact>=0?'+':'')+money(totalProfitImpact);
