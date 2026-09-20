@@ -733,12 +733,12 @@ _SAMPLE_FILES = {
     # Data Hub demo set — a matching mizan + AR/AP aging + inventory + sales ledger
     # so the multi-source engines (AR/AP intelligence, inventory, PVM/sales-driven
     # profit bridge) actually have data to run against in the one-click demo.
-    'hub_mizan': ('demo_data/sample_mizan_2025_donem2.xlsx', 'Data Hub — Mizan (2025 Cari Dönem)'),
-    'hub_mizan_prior': ('demo_data/sample_mizan_2024_donem1.xlsx', 'Data Hub — Mizan (2024 Önceki Dönem)'),
-    'ar_aging': ('demo_data/sample_ar_aging.xlsx', 'Data Hub — AR Yaşlandırma'),
-    'ap_aging': ('demo_data/sample_ap_aging.xlsx', 'Data Hub — AP Yaşlandırma'),
-    'inventory': ('demo_data/sample_inventory.xlsx', 'Data Hub — Stok'),
-    'sales_ledger': ('demo_data/sample_sales_ledger.xlsx', 'Data Hub — Satış Defteri'),
+    'hub_mizan': ('demo_data/sample_mizan_2025_donem2.xlsx', 'Çoklu Veri — Mizan (2025 Cari Dönem)'),
+    'hub_mizan_prior': ('demo_data/sample_mizan_2024_donem1.xlsx', 'Çoklu Veri — Mizan (2024 Önceki Dönem)'),
+    'ar_aging': ('demo_data/sample_ar_aging.xlsx', 'Çoklu Veri — Müşteri Alacak Yaşlandırma'),
+    'ap_aging': ('demo_data/sample_ap_aging.xlsx', 'Çoklu Veri — Tedarikçi Borç Yaşlandırma'),
+    'inventory': ('demo_data/sample_inventory.xlsx', 'Çoklu Veri — Stok'),
+    'sales_ledger': ('demo_data/sample_sales_ledger.xlsx', 'Çoklu Veri — Satış Defteri'),
 }
 # The set of keys fetched together for the one-click "Data Hub'ı örnekle dene" demo.
 DATA_HUB_SAMPLE_KEYS = ['hub_mizan_prior', 'hub_mizan', 'ar_aging', 'ap_aging', 'inventory', 'sales_ledger']
@@ -1286,7 +1286,7 @@ async def analyze_data_hub(
     sector: str | None = Form(None),
 ) -> dict[str, Any]:
     if not files:
-        raise HTTPException(status_code=400, detail='Data Hub için en az bir dosya yükleyin.')
+        raise HTTPException(status_code=400, detail='Çoklu Veri için en az bir dosya yükleyin.')
     raw=[]
     for f in files:
         if not f.filename: continue
