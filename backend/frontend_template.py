@@ -5274,6 +5274,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     <button id="sampleHubBtn" type="button" class="secondary" style="background:#FFFFFF;color:#1D4ED8;border:1.5px solid #CBD5E1;padding:9px 14px;border-radius:10px;font-weight:700;font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
       🗂️ 6-Dosyalı Data Hub
     </button>
+    <button type="button" onclick="openConnectorModal()" class="secondary" style="background:#F0FDF4;color:#166534;border:1.5px solid #86EFAC;padding:9px 14px;border-radius:10px;font-weight:800;font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+      ⚙️ API Anahtarını Kaydet / ERP Bağla
+    </button>
     <span id="sampleStatus" class="small muted" style="margin-left:4px"></span>
   </div>
 </div>
@@ -5312,8 +5315,11 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:11px">🇩🇪 DATEV</span>
       <span class="tag" style="background:#F1F5F9;font-size:11px">Excel / CSV</span>
     </div>
-    <button type="button" onclick="downloadSampleMizan()" class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px">📥 Standart Mizan Şablonu İndir (.csv)</button>
-    <button type="button" onclick="openErpGuideModal()" class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;color:#1D4ED8;font-weight:700">📂 Logo / Mikro / Zirve / Luca Mizan Alma Rehberi</button>
+    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+      <button type="button" onclick="openConnectorModal()" class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;background:#F0FDF4;color:#166534;font-weight:800;border:1px solid #86EFAC">⚙️ API Anahtarını Kaydet / Bağlantı Ekle</button>
+      <button type="button" onclick="downloadSampleMizan()" class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px">📥 Standart Mizan Şablonu İndir (.csv)</button>
+      <button type="button" onclick="openErpGuideModal()" class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;color:#1D4ED8;font-weight:700">📂 Logo / Mikro / Zirve / Luca Mizan Alma Rehberi</button>
+    </div>
   </div>
   <input id="file" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm,.xml,.json" multiple style="display:none">
   <div id="fileListSingle" class="selectedFilesList"></div>
