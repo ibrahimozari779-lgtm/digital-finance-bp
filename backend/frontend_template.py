@@ -3612,7 +3612,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <div class="pageHead reveal in">
   <span class="eyebrow" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">DOĞUŞ SÜRECİ &bull; MİMARİ İHTİYAÇLAR</span>
   <h1>Reel Sektörün İhtiyaçlarından Doğan Deterministik Finansal Karar Altyapısı</h1>
-  <p>Geleneksel muhasebe geçmiş faturaları toplayarak devlete vergi beyan eder; yönetici ise yarın sabah şirketini kârda ve nakitte tutacak kararları almak zorundadır. Digital Finance BP, bu derin boşluğu kapatmak ve finansal körlüğü ortadan kaldırmak için doğrudan sahadaki somut gereksinimlerden doğdu.</p>
+  <p>Mizanlar ve mali tablolar şirketlerin finansal hafızasını tutar; yönetim ise geleceğin kârlılığını ve nakit gücünü belirleyecek kararlara ihtiyaç duyar. Digital Finance BP; karmaşık muhasebe kayıtlarını doğrudan şirket ortakları ve finans yöneticilerinin masasına koyabileceği somut ticari kararlara, gizli kâr sızıntısı teşhisine ve nakit kurtarma aksiyonlarına dönüştürmek amacıyla geliştirildi.</p>
 </div>
 
 <!-- 1. BÖLÜM: SAHADAKİ 3 TEMEL TIKANIKLIK (NEDEN BU PLATFORMA İHTİYAÇ VARDI?) -->
