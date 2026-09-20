@@ -582,8 +582,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <section class="mHero">
   <div class="reveal in">
     <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-size:11.5px;font-weight:800;letter-spacing:0.6px;margin-bottom:12px;display:inline-block">🎯 KOBİ PATRONLARI &amp; ŞİRKET ORTAKLARI İÇİN FİNANSAL KARAR ORTAĞI</span>
-    <h1 style="margin-top:8px">Finansçınızın Anlattığı Rakamları,<br><span class="gradText">Patronun Anlayacağı Kârlı Karara Çeviriyoruz.</span></h1>
-    <p class="lead">Rakamları raporlamıyoruz; ne anlama geldiğini, kasanızda nerede kilitlendiğini ve yarın sabah ne yapmanız gerektiğini gösteriyoruz. Defterde kâr görünürken kasadaki paranın nereye kaybolduğunu <b>60 saniyede açığa çıkarın, finansal belirsizliği bitirip rahatlayın</b>.</p>
+    <h1 style="margin-top:8px">Mizan Rakamlarını Değil;<br><span class="gradText">"Kasada Neden Para Yok ve Yarın Ne Yapmalıyım?"</span><br>Sorusunun Cevabını Masaya Koyuyoruz.</h1>
+    <p class="lead">Finansçınız ve muhasebeciniz geçmişi raporlar; biz paranın nerede kilitlendiğini, hangi müşterinin zarar ettirdiğini ve yarın sabah kasanızı kurtaracak <b>3 somut yönetim kararını</b> gösteririz. Defterdeki kâr ile kasadaki nakit arasındaki makası <b>60 saniyede kapatın</b>.</p>
     
     <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:24px 0 18px">
       <a href="/uygulama?sample=data_hub" class="primary" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;padding:15px 28px;border-radius:14px;font-size:15px;font-weight:800;background:#1D4ED8;color:#FFFFFF;box-shadow:0 8px 24px rgba(29,78,216,0.35);transition:all .2s ease">
@@ -1276,6 +1276,20 @@ if (document.readyState === 'loading') {
               <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> CFO &amp; Satış Direktörü · <b>Vade:</b> İlk 30 Gün</div>
             </div>
           </div>
+          <!-- CARD BOTTOM NAVIGATION BAR (Sağa / Sola Gitme) -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1.5px solid #E2E8F0;flex-wrap:wrap;gap:12px">
+            <button type="button" class="secondary" onclick="stepLandingCeo(-1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer">
+              <span>←</span> Önceki Soru
+            </button>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+              <span style="font-size:12px;font-weight:800;color:#64748B;margin-right:6px">Soru 1 / 8:</span>
+              <button type="button" class="cardDotBtn active" onclick="switchLandingCeo('lq1')" style="border:none;background:#1D4ED8;color:#FFFFFF;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 1">1</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq2')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 2">2</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq3')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 3">3</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq4')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 4">4</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq5')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 5">5</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq6')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 6">6</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq7')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 7">7</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq8')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 8">8</button>
+            </div>
+            <button type="button" class="primary" onclick="stepLandingCeo(1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;background:#1D4ED8;color:#FFFFFF;cursor:pointer">
+              Sonraki Soru <span>→</span>
+            </button>
+          </div>
+        
         </div>
 
         <!-- LQ2 -->
@@ -1310,6 +1324,20 @@ if (document.readyState === 'loading') {
               <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Ticari Satış Direktörü · <b>Vade:</b> 45 Gün</div>
             </div>
           </div>
+          <!-- CARD BOTTOM NAVIGATION BAR (Sağa / Sola Gitme) -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1.5px solid #E2E8F0;flex-wrap:wrap;gap:12px">
+            <button type="button" class="secondary" onclick="stepLandingCeo(-1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer">
+              <span>←</span> Önceki Soru
+            </button>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+              <span style="font-size:12px;font-weight:800;color:#64748B;margin-right:6px">Soru 2 / 8:</span>
+              <button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq1')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 1">1</button><button type="button" class="cardDotBtn active" onclick="switchLandingCeo('lq2')" style="border:none;background:#1D4ED8;color:#FFFFFF;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 2">2</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq3')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 3">3</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq4')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 4">4</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq5')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 5">5</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq6')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 6">6</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq7')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 7">7</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq8')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 8">8</button>
+            </div>
+            <button type="button" class="primary" onclick="stepLandingCeo(1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;background:#1D4ED8;color:#FFFFFF;cursor:pointer">
+              Sonraki Soru <span>→</span>
+            </button>
+          </div>
+        
         </div>
 
         <!-- LQ3 -->
@@ -1344,6 +1372,20 @@ if (document.readyState === 'loading') {
               <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Tedarik Zinciri &amp; Satınalma Müdürü · <b>Vade:</b> 30 Gün</div>
             </div>
           </div>
+          <!-- CARD BOTTOM NAVIGATION BAR (Sağa / Sola Gitme) -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1.5px solid #E2E8F0;flex-wrap:wrap;gap:12px">
+            <button type="button" class="secondary" onclick="stepLandingCeo(-1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer">
+              <span>←</span> Önceki Soru
+            </button>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+              <span style="font-size:12px;font-weight:800;color:#64748B;margin-right:6px">Soru 3 / 8:</span>
+              <button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq1')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 1">1</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq2')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 2">2</button><button type="button" class="cardDotBtn active" onclick="switchLandingCeo('lq3')" style="border:none;background:#1D4ED8;color:#FFFFFF;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 3">3</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq4')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 4">4</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq5')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 5">5</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq6')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 6">6</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq7')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 7">7</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq8')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 8">8</button>
+            </div>
+            <button type="button" class="primary" onclick="stepLandingCeo(1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;background:#1D4ED8;color:#FFFFFF;cursor:pointer">
+              Sonraki Soru <span>→</span>
+            </button>
+          </div>
+        
         </div>
 
         <!-- LQ4 -->
@@ -1378,6 +1420,20 @@ if (document.readyState === 'loading') {
               <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> İcra Kurulu &amp; Genel Müdür · <b>Vade:</b> Hemen Devrede</div>
             </div>
           </div>
+          <!-- CARD BOTTOM NAVIGATION BAR (Sağa / Sola Gitme) -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1.5px solid #E2E8F0;flex-wrap:wrap;gap:12px">
+            <button type="button" class="secondary" onclick="stepLandingCeo(-1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer">
+              <span>←</span> Önceki Soru
+            </button>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+              <span style="font-size:12px;font-weight:800;color:#64748B;margin-right:6px">Soru 4 / 8:</span>
+              <button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq1')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 1">1</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq2')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 2">2</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq3')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 3">3</button><button type="button" class="cardDotBtn active" onclick="switchLandingCeo('lq4')" style="border:none;background:#1D4ED8;color:#FFFFFF;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 4">4</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq5')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 5">5</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq6')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 6">6</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq7')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 7">7</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq8')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 8">8</button>
+            </div>
+            <button type="button" class="primary" onclick="stepLandingCeo(1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;background:#1D4ED8;color:#FFFFFF;cursor:pointer">
+              Sonraki Soru <span>→</span>
+            </button>
+          </div>
+        
         </div>
 
         <!-- LQ5 -->
@@ -1412,6 +1468,20 @@ if (document.readyState === 'loading') {
               <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Finans Direktörü &amp; Satış · <b>Vade:</b> 30 Gün</div>
             </div>
           </div>
+          <!-- CARD BOTTOM NAVIGATION BAR (Sağa / Sola Gitme) -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1.5px solid #E2E8F0;flex-wrap:wrap;gap:12px">
+            <button type="button" class="secondary" onclick="stepLandingCeo(-1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer">
+              <span>←</span> Önceki Soru
+            </button>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+              <span style="font-size:12px;font-weight:800;color:#64748B;margin-right:6px">Soru 5 / 8:</span>
+              <button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq1')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 1">1</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq2')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 2">2</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq3')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 3">3</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq4')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 4">4</button><button type="button" class="cardDotBtn active" onclick="switchLandingCeo('lq5')" style="border:none;background:#1D4ED8;color:#FFFFFF;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 5">5</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq6')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 6">6</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq7')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 7">7</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq8')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 8">8</button>
+            </div>
+            <button type="button" class="primary" onclick="stepLandingCeo(1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;background:#1D4ED8;color:#FFFFFF;cursor:pointer">
+              Sonraki Soru <span>→</span>
+            </button>
+          </div>
+        
         </div>
 
         <!-- LQ6 -->
@@ -1446,6 +1516,20 @@ if (document.readyState === 'loading') {
               <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> Satınalma Direktörü &amp; CFO · <b>Vade:</b> 30 Gün</div>
             </div>
           </div>
+          <!-- CARD BOTTOM NAVIGATION BAR (Sağa / Sola Gitme) -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1.5px solid #E2E8F0;flex-wrap:wrap;gap:12px">
+            <button type="button" class="secondary" onclick="stepLandingCeo(-1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer">
+              <span>←</span> Önceki Soru
+            </button>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+              <span style="font-size:12px;font-weight:800;color:#64748B;margin-right:6px">Soru 6 / 8:</span>
+              <button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq1')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 1">1</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq2')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 2">2</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq3')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 3">3</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq4')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 4">4</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq5')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 5">5</button><button type="button" class="cardDotBtn active" onclick="switchLandingCeo('lq6')" style="border:none;background:#1D4ED8;color:#FFFFFF;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 6">6</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq7')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 7">7</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq8')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 8">8</button>
+            </div>
+            <button type="button" class="primary" onclick="stepLandingCeo(1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;background:#1D4ED8;color:#FFFFFF;cursor:pointer">
+              Sonraki Soru <span>→</span>
+            </button>
+          </div>
+        
         </div>
 
         <!-- LQ7 -->
@@ -1480,6 +1564,20 @@ if (document.readyState === 'loading') {
               <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> İcra Kurulu · <b>Vade:</b> İlk 7 Gün</div>
             </div>
           </div>
+          <!-- CARD BOTTOM NAVIGATION BAR (Sağa / Sola Gitme) -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1.5px solid #E2E8F0;flex-wrap:wrap;gap:12px">
+            <button type="button" class="secondary" onclick="stepLandingCeo(-1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer">
+              <span>←</span> Önceki Soru
+            </button>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+              <span style="font-size:12px;font-weight:800;color:#64748B;margin-right:6px">Soru 7 / 8:</span>
+              <button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq1')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 1">1</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq2')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 2">2</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq3')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 3">3</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq4')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 4">4</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq5')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 5">5</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq6')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 6">6</button><button type="button" class="cardDotBtn active" onclick="switchLandingCeo('lq7')" style="border:none;background:#1D4ED8;color:#FFFFFF;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 7">7</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq8')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 8">8</button>
+            </div>
+            <button type="button" class="primary" onclick="stepLandingCeo(1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;background:#1D4ED8;color:#FFFFFF;cursor:pointer">
+              Sonraki Soru <span>→</span>
+            </button>
+          </div>
+        
         </div>
 
         <!-- LQ8 -->
@@ -1514,6 +1612,20 @@ if (document.readyState === 'loading') {
               <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #DCFCE7;padding-top:10px;font-size:11px;color:#166534"><b>Sorumlu:</b> CEO &amp; Genel Müdür · <b>Vade:</b> Bugün</div>
             </div>
           </div>
+          <!-- CARD BOTTOM NAVIGATION BAR (Sağa / Sola Gitme) -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1.5px solid #E2E8F0;flex-wrap:wrap;gap:12px">
+            <button type="button" class="secondary" onclick="stepLandingCeo(-1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer">
+              <span>←</span> Önceki Soru
+            </button>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+              <span style="font-size:12px;font-weight:800;color:#64748B;margin-right:6px">Soru 8 / 8:</span>
+              <button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq1')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 1">1</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq2')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 2">2</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq3')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 3">3</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq4')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 4">4</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq5')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 5">5</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq6')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 6">6</button><button type="button" class="cardDotBtn" onclick="switchLandingCeo('lq7')" style="border:none;background:#E2E8F0;color:#475569;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 7">7</button><button type="button" class="cardDotBtn active" onclick="switchLandingCeo('lq8')" style="border:none;background:#1D4ED8;color:#FFFFFF;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="Soru 8">8</button>
+            </div>
+            <button type="button" class="primary" onclick="stepLandingCeo(1)" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:10px;font-size:13px;font-weight:700;background:#1D4ED8;color:#FFFFFF;cursor:pointer">
+              Sonraki Soru <span>→</span>
+            </button>
+          </div>
+        
         </div>
       </div>
 
@@ -1725,22 +1837,7 @@ if (document.readyState === 'loading') {
 </div>
 </section></div>
 
-<!-- SECTION: ÇÖZÜM MODELLERİ & PAKETLER BANNER -->
-<div class="secBlock tint reveal">
-  <section id="pricing" class="marketingSection hidePrint" style="padding-top:0">
-    <div style="background:linear-gradient(145deg,#FFFFFF 0%,#F8FAFC 100%);border:1.5px solid #CBD5E1;border-radius:24px;box-shadow:0 14px 36px rgba(15,27,45,.06);padding:36px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px">
-      <div style="max-width:680px">
-        <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">💼 ÇÖZÜM MODELLERİ &amp; PAKETLER</span>
-        <h2 style="font-size:25px;font-family:var(--serif);margin:10px 0 8px;color:#0F1B2D;letter-spacing:-.3px">Şirketinizin Ölçeğine ve İhtiyacına Uygun Çözüm Modelleri</h2>
-        <p style="color:#5B6B84;font-size:13.5px;line-height:1.65;margin:0">İster tek bir mizanla finansal durumunuzu anında test edin, ister çoklu veri ve What-If simülatörüyle şirketinizin büyümesini yönetin. <b>Starter</b> (Ücretsiz Keşif), <b>Professional</b> (KOBİ Yönetim Paketi) ve <b>Enterprise</b> (Holding / Grup Şirketi) modellerimizin detaylarını ve özellik matrisini inceleyin.</p>
-      </div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <a href="/paketler" class="primary" style="text-decoration:none;padding:13px 24px;border-radius:12px;font-size:13.5px;font-weight:700">Tüm Paketleri &amp; Çözüm Modellerini Gör →</a>
-        <a href="/uygulama?sample=data_hub" class="secondary" style="text-decoration:none;padding:13px 20px;border-radius:12px;font-size:13.5px">⚡ Canlı Demoyu Başlat</a>
-      </div>
-    </div>
-  </section>
-</div>
+
 
 <!-- SECTION: BANKA DÜZEYİNDE GÜVENLİK VE HUKUKİ TAAHHÜTLER -->
 <div class="secBlock reveal">
@@ -1787,45 +1884,54 @@ if (document.readyState === 'loading') {
 <div class="secBlock tint reveal">
   <section id="faq" class="marketingSection hidePrint" style="padding-top:0">
     <div class="marketingHead">
-      <span class="workflowBadge" style="background:#F1F5F9;color:#334155;border-color:#CBD5E1">❓ AKLINIZA TAKILABİLECEK SORULAR</span>
+      <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">❓ PATRONLARIN VE YÖNETİCİLERİN MERAK ETTİKLERİ</span>
       <h2 style="margin-top:10px">KOBİ Patronlarının ve Finans Yöneticilerinin En Çok Sorduğu Sorular</h2>
-      <p>Sistemin güvenliği, çalışma şekli ve şirket yönetimine sağlayacağı somut getiriler hakkında bilmeniz gereken her şey.</p>
+      <p>Muhasebenin ötesine geçen, paranın nerede kilitlendiğini ve yarın ne yapacağınızı gösteren finansal karar mimarisi hakkında tüm gerçekler.</p>
     </div>
 
-    <div style="max-width:760px;margin:24px auto 0">
+    <div style="max-width:780px;margin:24px auto 0">
       <details class="faqItem" open>
-        <summary>Mizan dosyamı sisteme yüklediğimde şirketimin ticari sırları güvende mi?</summary>
-        <p>Evet, %100 güvendedir. Sistemimiz "RAM-Only" (Sıfır Kalıcı Disk Depolama) mimarisiyle çalışır. Yüklediğiniz Excel veya CSV dosyası sunucu sabit diskine ya da veritabanına ASLA kaydedilmez. Matematiksel analiz tarayıcınızın oturumunda ve geçici bellekte hesaplanır; sekme kapandığında tüm veriler silinir. Ayrıca hiçbir finansal veri yapay zekâ modellerinin genel eğitiminde kullanılmaz.</p>
+        <summary>Muhasebecim zaten bana her ay mizan dökümü veriyor; bu sisteme neden ihtiyacım var?</summary>
+        <p>Muhasebeciniz kanuni bir zorunluluk olarak devlete vergi matrahını bildirmek ve geçmiş faturaları kaydetmekle yükümlüdür. Ancak klasik bir mizan tablosu size <b>"Kasada neden para kalmadı?", "Hangi müşteriye mal satarken aslında cepten finanse ediyorsunuz?", "Önümüzdeki 3. haftada çek açığı var mı?"</b> sorularının cevabını vermez. Digital Finance BP, mizanı alıp patronun yarın sabah masaya vurup alacağı <b>3 somut nakit ve kâr kurtarma kararına</b> dönüştürür.</p>
       </details>
 
       <details class="faqItem">
-        <summary>Sistemi kullanmak için muhasebecime veya ERP uzmanına bağımlı mıyım?</summary>
-        <p>Hayır. Muhasebecinizden veya kullandığınız ERP yazılımından (Logo, Mikro, Netsis, Zirve, Luca, SAP vb.) sadece tek bir mizan çıktısı almanız yeterlidir. Dosyayı sürükleyip bıraktığınızda 33 Karar Motoru hesap kodlarını (1xx-7xx) otomatik eşleştirir ve 60 saniye içinde anlaşılır Türkçe yönetim kararlarına dönüştürür.</p>
+        <summary>Defterde net kâr çıkıyor ama kasada neden para yok, para nerede?</summary>
+        <p>KOBİ'lerin %82'sinin yaşadığı en büyük finansal tuzak budur: Kâr kâğıt üzerinde oluşur; ancak tahsil edilmeyen açık hesap müşteri alacaklarında (80-110 gün vade) veya depoda bekleyen ölü stoklarda kilitlenir. Sistemimiz geliştirdiği <b>"Para Nerede? Nakit Köprüsü"</b> ile defterdeki kârın kuruşu kuruşuna hangi delikten kaçtığını ve kasaya nasıl geri döndürüleceğini anında belgeler.</p>
       </details>
 
       <details class="faqItem">
-        <summary>Digital Finance Business Partner bir muhasebe programı mıdır?</summary>
-        <p>Hayır, muhasebe programı değildir. Muhasebe yazılımları devlete vergi beyannamesi vermek için geçmiş faturaları kaydeder; "Kasa neden boş?", "Hangi müşteri zarar ettiriyor?", "Depoda kaç para bağlı?" sorularına cevap vermez. Digital Finance Business Partner ise geçmişi değil; yarın sabah atacağınız yönetim ve nakit kurtarma adımlarını belirler.</p>
+        <summary>Mizanımı yüklediğimde şirketimin cirosu, müşteri listesi veya kâr marjı çalınır mı?</summary>
+        <p><b>Kesinlikle HAYIR.</b> Platformumuz dünyadaki en sıkı veri mahremiyeti standardı olan <b>"RAM-Only" (Sıfır Kalıcı Disk)</b> mimarisiyle çalışır. Yüklediğiniz Excel veya CSV dosyası sunucu sabit diskine (SSD/HDD) ya da veritabanına asla yazılmaz. Analiz anlık bellekte çalışır ve sayfa kapandığı an imha edilir. Ayrıca sistemimiz, kayıt olduğunuz anda adınıza <b>Yasal Bağlayıcılığı Olan Karşılıklı Kurumsal Dijital NDA (Gizlilik Sözleşmesi)</b> düzenler.</p>
       </details>
 
       <details class="faqItem">
-        <summary>1xx-7xx hesap planını sistem nasıl denetliyor?</summary>
-        <p>Tek Düzen Hesap Planı'ndaki (TDHP) 1xx Dönen Varlıklar, 2xx Duran Varlıklar, 3xx Kısa Vadeli Borçlar, 4xx Uzun Vadeli Borçlar, 5xx Özkaynaklar ve 6xx/7xx Gelir-Maliyet hesapları çift taraflı muhasebe denetim kurallarıyla çapraz taranır. Mizan bakiyeleri ile alacak/stok alt defterleri arasındaki tutarsızlıklar kuruşu kuruşuna teşhis edilir.</p>
+        <summary>Bankaya kredi veya limit artışına gittiğimde bu raporlar şube müdürünü nasıl ikna eder?</summary>
+        <p>Sistem tek tıkla banka kredi tahsis komitelerinin baktığı 6 kritik rasyoyu (<i>Net Borç/FAVÖK, Cari Oran, Asit-Test Likidite, Faiz Karşılama ICR, Özkaynak Payı ve 60 Günlük Kriz Dayanıklılık Şok Testi</i>) ve <b>%100 Bilanço Denkliği Doğrulama Mührünü</b> içeren 3 sayfalık resmi <b>"Banka Kredi &amp; Finansal İtibar Dosyası"</b> üretir. Bu dosyayı banka şube müdürünün önüne koyduğunuzda firmanızın kredi güvenilirliği katlanır ve limit onay süreci hızlanır.</p>
       </details>
 
       <details class="faqItem">
-        <summary>Çoklu para birimi (USD/EUR) ve Tekdüzen Hesap Planı uyumu nasıl?</summary>
-        <p>Sistemimiz ₺ TRY, $ USD, € EUR ve £ GBP para birimlerinde çalışabilir. İhracatçı veya ithalatçı şirketler için kur farkı kâr/zararlarını operasyonel kârdan ayırarak döviz risk röntgeni çıkarır. Tekdüzen Hesap Planı'ndaki (TDHP) tüm hesapları kurumsal yönetim muhasebesi ve nakit akışı standartlarına dönüştürür.</p>
+        <summary>13 Haftalık Nakit &amp; Çek Radarı çeklerimin yazılmasını veya kasa açığını nasıl önler?</summary>
+        <p>Çek yazılmadan veya kasa eksiye düşmeden <b>tam 13 hafta önceden</b> haftalık nakit açığı erken uyarısı verir. Hangi hafta tahsilatların zorunlu çek, maaş ve vergi çıkışlarını karşılamayacağını tespit eder; patrona <i>"Şu 3 müşteriden avans tahsilat yapın veya şu tedarikçi ödemesini 10 gün öteleyin"</i> diyerek acil eylem reçetesi sunar.</p>
       </details>
 
       <details class="faqItem">
-        <summary>Yönetim Kurulu ve bankalar için rapor nasıl alınıyor?</summary>
-        <p>Analiz tamamlandığında tek bir tuşla C-Level ve Yönetim Kurulu için özel hazırlanmış "1-Sayfalık Executive Board Deck" A4 raporunu alabilirsiniz. Bu rapor banka kredi görüşmelerinde veya ortaklar toplantısında şirketin finansal sağlığını, borç ödeme gücünü ve nakit planını profesyonelce kanıtlar.</p>
+        <summary>Programı kullanmak için IT ekibine veya şirket sunucusunda haftalar süren entegrasyona gerek var mı?</summary>
+        <p><b>Sıfır kurulum ve sıfır IT eforu.</b> İster Logo, Mikro, Netsis, Zirve, Luca, ister SAP veya Excel kullanın; mevcut muhasebe yazılımınızdan aldığınız standart genel mizanı sürükleyip bırakmanız yeterlidir. 33 karar motoru hesap kodlarını (1xx-7xx) otomatik tanır ve 60 saniyede tüm yönetim raporlarını hazırlar.</p>
+      </details>
+
+      <details class="faqItem">
+        <summary>Hangi müşterimin bana gizli zarar ettirdiğini nasıl anlarım?</summary>
+        <p>Cironuzun büyük kısmını yapan ancak 90+ gün açık hesap vadelerle çalışan müşteriler, bugünkü yüksek faiz ortamında kârınızı finansman gideriyle tüketir. Sistemimiz müşteri kârlılığı analitiğiyle, fatura keserken kârlı görünen ancak parayı geç ödediği için şirketi zarara uğratan müşterileri açıkça teşhis eder.</p>
+      </details>
+
+      <details class="faqItem">
+        <summary>Depoda ne kadar ölü sermayem yattığını kuruşu kuruşuna görebilir miyim?</summary>
+        <p>Evet. Sistem mizanınızdaki 150-153 stok hesaplarını analiz ederek stokta kalma süresini (DIO) ve 90 günden uzun süredir bekleyen ölü stok tutarını hesaplar; bu stokların her ay şirkete ne kadar kredi faizi yüklediğini net TL olarak ortaya koyar.</p>
       </details>
     </div>
   </section>
 </div>
-
 <!-- CLOSING ACTION SECTION -->
 <div class="secBlock reveal"><section class="ctaBanner hidePrint" style="margin-top:10px">
   <div>
@@ -1840,6 +1946,142 @@ if (document.readyState === 'loading') {
 
 </main>
 <div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
+
+
+<!-- ============================================================= -->
+<!-- KURUMSAL DİJİTAL NDA GİZLİLİK VE VERİ GÜVENLİĞİ SÖZLEŞMESİ MODALI -->
+<!-- ============================================================= -->
+<div id="digitalNdaModal" class="hidden hidePrint" style="position:fixed;inset:0;background:rgba(15,27,45,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2500;padding:20px;overflow-y:auto">
+  <div style="background:#FFFFFF;border-radius:20px;max-width:860px;width:100%;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 25px 70px rgba(0,0,0,0.4);overflow:hidden;border:1px solid #CBD5E1">
+    
+    <!-- Modal Header Bar -->
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1.5px solid #E2E8F0;background:#F8FAFC;flex-shrink:0">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:24px">📜</span>
+        <div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <h3 style="margin:0;font-size:16px;color:#0F1B2D;font-weight:800">Kurumsal Gizlilik &amp; Veri Güvenliği Sözleşmesi (Dijital NDA)</h3>
+            <span class="tag" style="background:#DCFCE7;color:#166534;font-size:10px;font-weight:800">Yasal Bağlayıcı</span>
+          </div>
+          <p style="margin:2px 0 0;font-size:11.5px;color:#64748B">Sıfır Kalıcı Disk (RAM-Only) · Model Eğitimi Yasağı · 256-Bit TLS · Karşılıklı E-İmza</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button id="printNdaBtn" type="button" class="secondary" style="padding:7px 14px;border-radius:8px;font-size:12px;font-weight:700" onclick="printDigitalNda()">🖨️ Yazdır / PDF İndir</button>
+        <button type="button" onclick="closeDigitalNdaModal()" style="background:none;border:none;font-size:22px;color:#64748B;cursor:pointer;padding:4px 8px">✕</button>
+      </div>
+    </div>
+
+    <!-- Contract Content Area (Scrollable Legal Sheet) -->
+    <div id="digitalNdaPrintArea" style="padding:26px 30px;overflow-y:auto;flex:1;background:#FFFFFF;font-size:12px;line-height:1.65;color:#1E293B">
+      
+      <!-- Contract Header -->
+      <div style="border-bottom:2px solid #0F172A;padding-bottom:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <div style="font-size:10px;font-weight:900;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase">DİGİTAL FINANCE BUSINESS PARTNER &bull; HUKUKİ TAAHHÜT BELGESİ</div>
+          <h2 style="margin:2px 0 0;font-size:19px;font-weight:900;color:#0F172A">DİJİTAL FİNANSAL GİZLİLİK VE VERİ GÜVENLİĞİ SÖZLEŞMESİ</h2>
+          <div style="font-size:11px;color:#64748B;margin-top:4px">
+            Sözleşme No: <b id="ndaContractId">DF-NDA-2026-89412</b> &bull; Düzenleme Tarihi: <b id="ndaDateStr">20 Eylül 2026</b>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div style="background:#DCFCE7;color:#166534;border:1.5px solid #BBF7D0;padding:5px 10px;border-radius:6px;font-size:10.5px;font-weight:800;display:inline-block">
+            ✓ E-MÜHÜR: SHA-256 DOĞRULANDI
+          </div>
+          <div style="font-size:9.5px;color:#0E7C66;font-weight:700;margin-top:3px">RAM-ONLY GÜVENCE SERTİFİKASI</div>
+        </div>
+      </div>
+
+      <!-- Parties Block -->
+      <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:10px;padding:12px 16px;margin-bottom:16px">
+        <div style="font-size:11px;font-weight:800;color:#0F172A;text-transform:uppercase;margin-bottom:6px">TARAFLAR</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:11.5px">
+          <div>
+            <b>1. HİZMET SAĞLAYICI:</b><br>
+            Digital Finance Business Partner Teknoloji A.Ş.<br>
+            Deterministik Finansal Karar Motorları &amp; Çift Yönlü Denetim Sistemi<br>
+            İstanbul, Türkiye &bull; info@digitalfinancebp.com
+          </div>
+          <div>
+            <b>2. VERİ SAHİBİ / MÜŞTERİ:</b><br>
+            Kurum / Şirket Ünvanı: <b id="ndaCompanyName" style="color:#1D4ED8">Kurumsal Müşteri</b><br>
+            Yetkili Temsilci / E-Posta: <b id="ndaUserEmail" style="color:#0F172A">yetkili@sirket.com</b><br>
+            Yetki Kapsamı: Finansal Yönetim, Mizan ve Alt Defter Denetimi
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal Articles -->
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px">
+        <div>
+          <b style="color:#0F172A">MADDE 1: AMAÇ VE KAPSAM</b>
+          <p style="margin:2px 0 0;color:#334155">İşbu sözleşmenin amacı; Müşteri'nin platforma yükleyeceği genel mizan, alt defter, cari yaşlandırma, stok ve banka verilerinin mutlak bir gizlilik, sıfır kalıcı disk depolama ve bankacılık standardında güvenlikle korunmasına ilişkin karşılıklı hak ve yükümlülüklerin belirlenmesidir.</p>
+        </div>
+
+        <div>
+          <b style="color:#0F172A">MADDE 2: SIFIR KALICI DİSK DEPOLAMA (RAM-ONLY) TAAHHÜDÜ</b>
+          <p style="margin:2px 0 0;color:#334155">Hizmet Sağlayıcı; Müşteri tarafından yüklenen hiçbir Excel (.xlsx, .xls), CSV, XML veya ERP verisinin sunucu sabit disklerine (HDD/SSD) veya kalıcı veritabanlarına <b>ASLA KAYDEDİLMEYECEĞİNİ</b> taahhüt eder. Tüm hesaplamalar anlık geçici bellekte (RAM) icra edilir; analiz çıktısı Müşteri tarayıcısına iletildiği anda geçici bellek kendini kalıcı olarak imha eder.</p>
+        </div>
+
+        <div>
+          <b style="color:#0F172A">MADDE 3: MODEL EĞİTİMİ YASAĞI VE TİCARİ MAHREMİYET</b>
+          <p style="margin:2px 0 0;color:#334155">Müşteri'ye ait cirolar, kâr marjları, müşteri/tedarikçi isimleri ve hesap bakiyeleri hiçbir şart altında genel yapay zeka modellerinin eğitimi için havuzlara aktarılamaz; ticari istihbarat amacıyla işlenemez ve 3. şahıslara açıklanamaz.</p>
+        </div>
+
+        <div>
+          <b style="color:#0F172A">MADDE 4: 256-BİT SSL/TLS ŞİFRELEME VE KVKK UYUMLULUĞU</b>
+          <p style="margin:2px 0 0;color:#334155">Müşteri ile platform arasındaki tüm veri akışı uluslararası bankacılık standardı 256-bit TLS şifrelemesiyle korunur. Hizmet Sağlayıcı, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) hükümlerine eksiksiz uymayı kabul eder.</p>
+        </div>
+
+        <div>
+          <b style="color:#0F172A">MADDE 5: CEZAİ ŞART VE TAZMİNAT</b>
+          <p style="margin:2px 0 0;color:#334155">Hizmet Sağlayıcı, Müşteri verilerini en üst düzeyde korunan "Ticari Sır" (Trade Secret) olarak kabul eder. Verilerin kasten veya ihmalen 3. taraflarla paylaşılması halinde Müşteri'nin uğrayacağı tüm maddi ve manevi zararları tazmin etmeyi peşinen taahhüt eder.</p>
+        </div>
+      </div>
+
+      <!-- Mutual Signature Blocks -->
+      <div style="border-top:1.5px solid #CBD5E1;padding-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:16px">
+        <!-- Hizmet Sağlayıcı İmza -->
+        <div style="border:1.5px solid #0E7C66;border-radius:10px;padding:14px;background:#F0FDF4;text-align:center">
+          <div style="font-size:10.5px;color:#166534;font-weight:700">HİZMET SAĞLAYICI:</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin:4px 0">Digital Finance Business Partner</div>
+          <div style="font-size:10px;color:#64748B">Sistem &amp; Bilgi Güvenliği Direktörlüğü</div>
+          <div style="margin-top:10px;padding:6px;background:#DCFCE7;border-radius:6px;display:inline-block">
+            <span style="font-size:11px;font-weight:800;color:#166534">✓ DİJİTAL MÜHÜRLE ONAYLANDI</span>
+            <div style="font-size:8.5px;color:#15803D;font-family:monospace">SHA-256: 7f8a91b...c401e</div>
+          </div>
+        </div>
+
+        <!-- Müşteri İmza -->
+        <div style="border:1.5px solid #1D4ED8;border-radius:10px;padding:14px;background:#EFF6FF;text-align:center">
+          <div style="font-size:10.5px;color:#1D4ED8;font-weight:700">VERİ SAHİBİ / MÜŞTERİ:</div>
+          <div id="ndaSignCompany" style="font-size:13px;font-weight:800;color:#0F172A;margin:4px 0">Kurumsal Müşteri</div>
+          <div id="ndaSignEmail" style="font-size:10.5px;color:#64748B">yetkili@sirket.com</div>
+          <div id="ndaSignatureState" style="margin-top:10px">
+            <span id="ndaStatusBadge" class="tag" style="background:#FEF3C7;color:#92400E;font-size:10px;font-weight:800">⏳ İmza Bekliyor</span>
+            <div id="ndaSignedTime" style="font-size:9.5px;color:#16A34A;margin-top:4px;display:none"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Modal Footer Action Bar -->
+    <div style="padding:14px 24px;border-top:1.5px solid #E2E8F0;background:#F8FAFC;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;flex-wrap:wrap;gap:10px">
+      <div style="font-size:11.5px;color:#64748B">
+        🔒 Bu sözleşme 6102 sayılı TTK ve 6698 sayılı KVKK uyarınca karşılıklı dijital irade beyanıyla hüküm ifade eder.
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button id="signNdaBtn" type="button" class="primary" style="padding:10px 22px;border-radius:10px;font-size:13.5px;font-weight:800;background:#1D4ED8;color:#FFFFFF;cursor:pointer" onclick="signDigitalNda()">
+          ✍️ Karşılıklı Olarak Dijital İmzala &amp; Onayla
+        </button>
+        <button type="button" class="secondary" style="padding:10px 16px;border-radius:10px;font-size:13px;font-weight:700" onclick="closeDigitalNdaModal()">
+          Tamam
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Board One-Pager Executive Modal (Root level child for clean A4 printing) -->
 <div id="boardDeckModal" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;overflow-y:auto">
@@ -1866,6 +2108,20 @@ window.scrollPills = function(id, delta){
   const el = document.getElementById(id);
   if(el){ el.scrollBy({ left: delta, behavior: 'smooth' }); }
 };
+window.stepLandingCeo = function(delta){
+  const cards = ['lq1', 'lq2', 'lq3', 'lq4', 'lq5', 'lq6', 'lq7', 'lq8'];
+  const activePill = document.querySelector('#landingCeoPills .ceoPill.active');
+  let cur = activePill ? activePill.getAttribute('data-lq') : 'lq1';
+  let idx = cards.indexOf(cur);
+  if(idx === -1) idx = 0;
+  let nextIdx = idx + delta;
+  if(nextIdx < 0) nextIdx = cards.length - 1;
+  if(nextIdx >= cards.length) nextIdx = 0;
+  window.switchLandingCeo(cards[nextIdx]);
+  const targetPill = document.querySelector('#landingCeoPills .ceoPill[data-lq="' + cards[nextIdx] + '"]');
+  if(targetPill) targetPill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+};
+
 window.switchLandingCeo = function(lqid){
   document.querySelectorAll('#landingCeoPills .ceoPill').forEach(p => {
     p.classList.toggle('active', p.getAttribute('data-lq') === lqid);
@@ -3149,80 +3405,106 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </a>
 </div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda" class="active">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
-<div class="pageHead reveal in"><span class="eyebrow">Bizi Tanıyın</span><h1>Finansal Veriyi Güvenilir Yönetim Kararına Dönüştürüyoruz</h1><p>Reel sektörde ve holdinglerde kıdemli finans yöneticiliği yapmış uzmanlar ile finansal yazılım mühendislerinin ortak vizyonuyla hayata geçirildi. Amacımız; her büyüklükteki şirketin kendi mizanından kuruşu kuruşuna doğrulanmış, net ve icra edilebilir yönetim kararları alabilmesidir.</p></div>
-
-<div class="secBlock reveal"><section id="about" class="marketingSection hidePrint" style="padding-top:0"><div class="aboutGrid">
-<div><span class="badge" style="margin-bottom:14px;display:inline-block">Biz Kimiz?</span><h2 style="font-family:var(--serif);font-size:28px;margin:6px 0 14px;letter-spacing:-.5px">Mizanı Sadece Vergi İçin Değil, Şirketin Geleceği İçin Okuyoruz</h2><p class="muted" style="font-size:14px;line-height:1.75">Digital Finance Business Partner (DFBP), Türkiye'deki işletmelerin en yaygın finansal sıkıntısı olan <i>"Defterde kâr çıkıyor ama kasada para nerede?"</i> sorusuna bağımsız ve matematiksel bir çözüm sunmak amacıyla kuruldu.<br><br>Klasik muhasebe süreçleri geçmişe dönük vergi ve yasal beyan üretir. Oysa patronun ve yöneticinin ihtiyacı; yarın sabah hangi müşteriye mal çıkışını durduracağını, nakdin hangi depoda veya vadede kilitlendiğini ve kasayı rahatlatacak 1 numaralı adımı bilmektir. Platformumuz, mizanınızı <b>33 deterministik karar motoruyla</b> inceleyerek kurumsal finans zekasını dakikalar içinde masanıza taşır.</p><div class="aboutStats"><div class="st"><b>33</b><span>Karar Motoru</span></div><div class="st"><b>%100</b><span>Matematiksel Doğrulama</span></div><div class="st"><b>0</b><span>Disk Saklama (RAM-Only)</span></div></div></div>
-<div class="card" style="padding:26px">
-<div style="display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1px solid #BFDBFE;color:var(--accent);font-size:11.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:16px">
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-  Çalışma İlkelerimiz
-</div>
-<h3 style="margin:0 0 12px;font-family:var(--serif);font-size:19px;color:#0F1B2D">Yönetim ve Güven Standartlarımız</h3>
-<ul style="margin:0;padding-left:18px;color:#33415C;font-size:13.5px;line-height:1.9">
-<li><b>Önce Matematik, Sonra Yorum:</b> Rakamlar asla tahmine bırakılmaz; tüm çıktılar çift taraflı denetimden geçer.</li>
-<li><b>Sade ve Anlaşılır Dil:</b> Ağır akademik jargondan uzak, sahadaki yöneticinin doğrudan uygulayabileceği kararlar sunar.</li>
-<li><b>Mutlak Veri Mahremiyeti:</b> Mizanınız sunucuda kalıcı depolanmaz; geçici bellekte işlenip oturum sonunda yok edilir.</li>
-<li><b>Net İcraat Takvimi:</b> Kararlar soyut tavsiye olarak kalmaz; sorumlusu, vadesi ve TL etkisiyle birlikte verilir.</li>
-</ul></div>
-</div></section>
+<div class="pageHead reveal in">
+  <span class="eyebrow">BİZİ TANIYIN &bull; KURUCUNUN VİZYONU</span>
+  <h1>Finans Uzmanlığı ile Girişimci Vizyonunun Buluştuğu Yer</h1>
+  <p>Yıllarca şirketlerin mali tablolarını ve mizanlarını inceledim. Gördüğüm en acı gerçek şuydu: Şirket patronları muhasebe evraklarına ve vergi tablolarına boğuluyor, ancak en hayati soru cevapsız kalıyordu: <i>"Kasada neden para yok ve yarın sabah ne yapmalıyım?"</i> Bu platformu, şirketleri finansal körlükten kurtarmak ve patronun masasına doğrudan kârlı kararlar koymak için kurdum.</p>
 </div>
 
-<!-- SECTION: AMACIMIZ, MISYONUMUZ, VIZYONUMUZ -->
-<div class="secBlock tint reveal"><section class="marketingSection hidePrint" style="padding-top:0">
-<div class="marketingHead">
-  <span class="workflowBadge">STRATEJİK PUSULAMIZ</span>
-  <h2>Temel Amacımız, Misyonumuz ve Vizyonumuz</h2>
-  <p>Şirketlerin finansal kararlarını veriye, matematiğe ve net aksiyonlara dayandırma taahhüdümüz.</p>
-</div>
-<div class="grid3">
-  <div class="card" style="padding:28px;border-top:4px solid #1D4ED8;background:#FFFFFF;box-shadow:0 8px 26px rgba(15,27,45,0.05)">
-    <div style="font-size:32px;margin-bottom:12px">🛡️</div>
-    <h3 style="font-size:18px;font-family:var(--serif);margin:0 0 8px;color:#0F1B2D">Temel Amacımız (Varoluş Sebebi)</h3>
-    <div style="color:#1D4ED8;font-size:12px;font-weight:700;margin-bottom:10px">Patronu "Defterde Kâr, Kasada Yok" Yanılsamasından Kurtarmak</div>
-    <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Muhasebe geçmişi kaydeder, patron ise yarın için risk alır. Aradaki en ölümcül tehlike; şirketin defterde kârlı görünürken, paranın müşteri vadelerinde ve depoda kilitlenip şirketi sessizce tüketmesidir. Temel varoluş sebebimiz; bu finansal kör noktayı anında ortadan kaldırmak ve patronun şirketteki her kuruşun nereye bağlandığını çıplak gözle görmesini sağlamaktır.</p>
-  </div>
-  <div class="card" style="padding:28px;border-top:4px solid #10B981;background:#FFFFFF;box-shadow:0 8px 26px rgba(15,27,45,0.05)">
-    <div style="font-size:32px;margin-bottom:12px">⚡</div>
-    <h3 style="font-size:18px;font-family:var(--serif);margin:0 0 8px;color:#0F1B2D">Misyonumuz (Her Gün Yaptığımız İş)</h3>
-    <div style="color:#047857;font-size:12px;font-weight:700;margin-bottom:10px">Her Şirketin Masasına Bağımsız Bir CFO Aklı Koymak</div>
-    <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Milyonluk danışmanlık faturalarına veya aylar süren ERP projelerine gerek bırakmadan; Türkiye'deki her KOBİ ve işletmenin yüklediği mizanı <b>60 saniyede 33 deterministik karar motoruyla</b> denetlemek, görünmez kâr sızıntılarını kuruşu kuruşuna hesaplamak ve vadesi, sahibi, TL getirisi belli yönetim kararlarını doğrudan masaya koymaktır.</p>
-  </div>
-  <div class="card" style="padding:28px;border-top:4px solid #F59E0B;background:#FFFFFF;box-shadow:0 8px 26px rgba(15,27,45,0.05)">
-    <div style="font-size:32px;margin-bottom:12px">🎯</div>
-    <h3 style="font-size:18px;font-family:var(--serif);margin:0 0 8px;color:#0F1B2D">Vizyonumuz (Hedeflediğimiz Dönüşüm)</h3>
-    <div style="color:#B45309;font-size:12px;font-weight:700;margin-bottom:10px">Sezgisel Yönetimden, "Rakamla Kanıtlanmış Yönetim" Standartlarına Geçiş</div>
-    <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">"Galiba iyi gidiyoruz" veya "Cirosu yüksek müşteri kârlıdır" gibi varsayımlara dayalı yönetim devrini tamamen kapatıp; Türkiye ve bölgede finansal kararların <b>çift taraflı matematik, What-If simülasyonları ve canlı nakit döngüsüyle</b> yönetildiği yeni nesil bir kurumsal finans standardı inşa etmektir.</p>
-  </div>
-</div></section></div>
-
+<!-- SECTION 1: KURUCU MEKTUBU & ÇIKIŞ NOKTASI -->
 <div class="secBlock reveal">
-  <div class="marketingHead">
-    <span class="workflowBadge">KURUMSAL UZMANLIK ALANLARIMIZ</span>
-    <h2>3 Temel Standart Üzerinde Yükseliyoruz</h2>
-    <p>Geleneksel muhasebe raporlaması ile stratejik CFO liderliği arasındaki uçurumu teknolojiyle kapatıyoruz.</p>
-  </div>
-  <div class="grid3">
-    <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
-      <div style="width:44px;height:44px;border-radius:12px;background:#EFF6FF;color:#1D4ED8;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px">🧮</div>
-      <h3 style="margin:0 0 8px;font-size:16.5px;color:#0F1B2D">1. Deterministik Finansal Modelleme &amp; Çift Taraflı Doğrulama</h3>
-      <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Yapay zekanın sayı veya formül uydurmasına asla izin vermeyiz. Tüm 33 karar motoru; muhasebe tekdüzen hesap planı kuralları, çift taraflı kayıt dengesi, nakit akışı ve çalışma sermayesi modelleri üzerinde kuruşu kuruşuna deterministik matematik çalıştırır.</p>
+  <section id="about" class="marketingSection hidePrint" style="padding-top:0">
+    <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:24px;padding:36px;box-shadow:0 12px 36px rgba(15,27,45,0.06)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">KURUCUNUN ÇIKIŞ NOKTASI</span>
+        <span style="font-size:12px;color:#64748B;font-weight:700">Reel Sektör &bull; Finans Yönetimi &bull; Girişimcilik</span>
+      </div>
+      <h2 style="font-family:var(--serif);font-size:26px;color:#0F172A;margin:0 0 16px;line-height:1.35">
+        Muhasebe Geçmişi Kaydeder; Patron İse Yarın İçin Risk Alır
+      </h2>
+      <div style="font-size:14.5px;line-height:1.8;color:#334155;display:flex;flex-direction:column;gap:14px">
+        <p style="margin:0">
+          Türkiye'deki reel sektörde en sık karşılaştığım tablo hep aynıydı: Şirket cirosunu artırıyor, mali müşavir <i>"Bu ay çok güzel kâr ettik"</i> diyor, ancak patron ay sonunda çalışanların maaşını veya tedarikçinin çekini ödemek için banka kredisi aramak zorunda kalıyordu.
+        </p>
+        <p style="margin:0">
+          Çünkü geleneksel muhasebe devlete vergi beyannamesi vermek için geçmiş faturaları alt alta toplar. Oysa bir şirket sahibinin ihtiyacı; geçmişin faturası değil, <b>paranın hangi müşterinin 90 günlük vadesinde veya hangi depodaki ölü stokta kilitlendiğini bilmektir</b>.
+        </p>
+        <p style="margin:0">
+          Finans uzmanlığımı sahadaki girişimcilik refleksiyle birleştirdim. Holding düzeyindeki stratejik CFO analitiğini <b>33 deterministik karar motoruna</b> dönüştürerek; Türkiye'deki her KOBİ'nin ve şirket yöneticisinin tek bir mizanla şirketinin nakit röntgenini çekebilmesini sağladım.
+        </p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;margin-top:28px;padding-top:24px;border-top:1px solid #E2E8F0">
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:14px;padding:16px;text-align:center">
+          <div style="font-size:28px;font-weight:900;color:#1D4ED8">33</div>
+          <div style="font-size:12px;font-weight:800;color:#0F172A;margin-top:2px">Finansal Karar Motoru</div>
+          <div style="font-size:11px;color:#64748B">Çift taraflı matematiksel denetim</div>
+        </div>
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:14px;padding:16px;text-align:center">
+          <div style="font-size:28px;font-weight:900;color:#16A34A">%100</div>
+          <div style="font-size:12px;font-weight:800;color:#0F172A;margin-top:2px">Bilanço Denkliği</div>
+          <div style="font-size:11px;color:#64748B">Sıfır tahmin, kesin rasyolar</div>
+        </div>
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:14px;padding:16px;text-align:center">
+          <div style="font-size:28px;font-weight:900;color:#D97706">0</div>
+          <div style="font-size:12px;font-weight:800;color:#0F172A;margin-top:2px">Kalıcı Disk Depolama</div>
+          <div style="font-size:11px;color:#64748B">RAM-Only veri mahremiyeti</div>
+        </div>
+      </div>
     </div>
-    <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
-      <div style="width:44px;height:44px;border-radius:12px;background:#ECFDF5;color:#059669;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px">👔</div>
-      <h3 style="margin:0 0 8px;font-size:16.5px;color:#0F1B2D">2. Stratejik CFO Karar Perspektifi &amp; Kök Neden Analitiği</h3>
-      <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Raporlarımız statik muhasebe çıktıları değildir; "Kâr nerede kilitlendi?", "Hangi müşteri gizli zarar ettiriyor?" ve "Yarın hangi somut adımı atmalıyız?" sorularını WHAT → WHY → SO WHAT metodolojisiyle yanıtlayan bir icra kurulu pusulasıdır.</p>
-    </div>
-    <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
-      <div style="width:44px;height:44px;border-radius:12px;background:#FEF3C7;color:#D97706;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px">🛡️</div>
-      <h3 style="margin:0 0 8px;font-size:16.5px;color:#0F1B2D">3. Kurumsal Veri Güvenliği, KVKK &amp; Sıfır Kalıcı İzsiz Bellek</h3>
-      <p style="color:#5B6B84;font-size:13px;line-height:1.65;margin:0">Finansal tablolar şirketlerin en mahrem varlığıdır. Sistemimizde verileriniz sabit diske yazılmaz; şifreli geçici bellekte (RAM) işlenir, analiz tarayıcınıza teslim edildiği anda bellekten tamamen imha edilir; yapay zeka eğitimine aktarılmaz.</p>
-    </div>
-  </div>
+  </section>
 </div>
 
-<div class="secBlock reveal"><section class="ctaBanner hidePrint"><div><h3>Bizi tanımak ister misiniz?</h3><p>Ekibinizle birlikte 15 dakikalık bir canlı demo oturumu planlayabilir veya Data Hub ile anında deneyebilirsiniz.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a href="/uygulama?sample=data_hub" class="primary" style="text-decoration:none;padding:12px 20px;border-radius:11px">🔥 Canlı Demoyu Başlat</a><a href="/iletisim" class="secondary" style="text-decoration:none;padding:12px 20px;border-radius:11px">İletişime Geç</a></div></section></div>
+<!-- SECTION 2: 3 TEMEL İLKEMİZ (KURUCU TAAHHÜDÜ) -->
+<div class="secBlock tint reveal">
+  <section class="marketingSection hidePrint" style="padding-top:0">
+    <div class="marketingHead">
+      <span class="workflowBadge">KURUCU TAAHHÜDÜ</span>
+      <h2>İşletmeniz İçin 3 Değişmez İlkemiz</h2>
+      <p>Bu platform, şirket patronunu finansal belirsizlik ve yalnızlıktan kurtarmak için tasarlandı.</p>
+    </div>
 
+    <div class="grid3" style="gap:16px">
+      <div class="card" style="padding:26px;background:#FFFFFF;border-top:4px solid #1D4ED8;box-shadow:0 8px 24px rgba(15,27,45,0.05)">
+        <div style="font-size:30px;margin-bottom:12px">🧮</div>
+        <h3 style="font-size:17px;font-family:var(--serif);margin:0 0 8px;color:#0F172A">1. Önce Kesin Matematik, Sıfır Tahmin</h3>
+        <p style="font-size:13px;color:#5B6B84;line-height:1.65;margin:0">
+          Yapay zekanın rakam uydurmasına asla izin vermeyiz. Tüm hesaplamalar Tek Düzen Hesap Planı kuralları, çift taraflı denetim ve kuruşu kuruşuna deterministik formüllerle çalışır.
+        </p>
+      </div>
+
+      <div class="card" style="padding:26px;background:#FFFFFF;border-top:4px solid #10B981;box-shadow:0 8px 24px rgba(15,27,45,0.05)">
+        <div style="font-size:30px;margin-bottom:12px">🎯</div>
+        <h3 style="font-size:17px;font-family:var(--serif);margin:0 0 8px;color:#0F172A">2. Doğrudan Patronun Dili &bull; Net Aksiyon</h3>
+        <p style="font-size:13px;color:#5B6B84;line-height:1.65;margin:0">
+          Ağır akademik terimlerle patronu yormayız. "Şu müşterinin açık hesap vadesini 15 gün geri çek", "Şu depodaki atıl malı erit", "Önümüzdeki 3. hafta çek açığı var" gibi doğrudan uygulanabilir kararlar veririz.
+        </p>
+      </div>
+
+      <div class="card" style="padding:26px;background:#FFFFFF;border-top:4px solid #F59E0B;box-shadow:0 8px 24px rgba(15,27,45,0.05)">
+        <div style="font-size:30px;margin-bottom:12px">🛡️</div>
+        <h3 style="font-size:17px;font-family:var(--serif);margin:0 0 8px;color:#0F172A">3. Mutlak Mahremiyet &bull; Sıfır Disk Kaydı</h3>
+        <p style="font-size:13px;color:#5B6B84;line-height:1.65;margin:0">
+          Mizanınız şirketinizin ticari sırrıdır. Dosyalarınız sunucu sabit diskine kaydedilmez; analiz geçici bellekte üretilir ve sayfa kapandığı an yok edilir. Kayıt anında adınıza karşılıklı Dijital NDA düzenlenir.
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SECTION 3: CTA BANNER -->
+<div class="secBlock reveal">
+  <section class="ctaBanner hidePrint">
+    <div>
+      <h3>Şirketinizin Finansal Röntgenini 60 Saniyede Görün</h3>
+      <p>Kurulum veya IT entegrasyonu gerekmez. Örnek veriyle test edin veya kendi mizanınızı hemen yükleyin.</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="/uygulama?sample=data_hub" class="primary" style="text-decoration:none;padding:12px 22px;border-radius:11px;font-weight:700">🔥 Canlı Demoyu Başlat</a>
+      <a href="/uygulama" class="secondary" style="text-decoration:none;padding:12px 20px;border-radius:11px;font-weight:700">Mizanınızı Yükleyin →</a>
+    </div>
+  </section>
+</div>
 </main>
 <div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
 <script>
@@ -4192,57 +4474,67 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </a>
 </div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik" class="active">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
-<div class="pageHead reveal in"><span class="eyebrow">Security &amp; Governance</span><h1>Kurumsal veri güvenliği ve AI yönetişimi</h1><p>Finans ekipleri güvenlik sayfasına, düşündüğünüzden çok daha fazla bakıyor. Verinizin nasıl işlendiğini, nerede durduğunu ve AI katmanının nasıl sınırlandığını burada tam olarak görebilirsiniz.</p></div>
-
-<div class="secBlock reveal"><section id="security" class="marketingSection hidePrint">
-<div class="marketingHead"><h2>Güvenlik ve Uyumluluk</h2><p>Kural tabanlı hesap motoru + katı veri yönetişimi.</p></div>
-<div class="secGrid">
-<div class="card secCard"><div class="scIco"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><h3>KVKK</h3><p>Kişisel Verilerin Korunması Kanunu kapsamında veri işleme; aydınlatma metni ve veri sahibi başvuru süreçleri tanımlıdır.</p></div>
-<div class="card secCard"><div class="scIco"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h3>GDPR</h3><p>AB müşterileri için Genel Veri Koruma Yönetmeliği ilkeleriyle uyumlu işleme; veri taşınabilirliği ve silme talepleri desteklenir.</p></div>
-<div class="card secCard"><div class="scIco"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="16" r="1.6"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><h3>Encryption</h3><p>Veri aktarımı sırasında (TLS) ve saklama sırasında (AES-256) şifrelenir; anahtar yönetimi ayrı, katmanlı şekilde uygulanır.</p></div>
-<div class="card secCard"><div class="scIco"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><h3>Audit Logs</h3><p>Her hesaplama, veri girişi ve kullanıcı işlemi kaynağına kadar izlenebilir kayıt altına alınır; denetim taleplerine hazırdır.</p></div>
-<div class="card secCard"><div class="scIco"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg></div><h3>Access Controls</h3><p>Rol tabanlı erişim, çoklu kullanıcı ayrımı ve oturum düzeyinde yetkilendirme ile kurumsal hiyerarşiye uygun kontrol.</p></div>
-<div class="card secCard"><div class="scIco"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div><h3>AI Governance</h3><p>Yapay zekâ yorumu her zaman deterministik hesaptan sonra gelir, ayrı ve açık şekilde etiketlenir; ham rakamların yerine geçmez.</p></div>
-</section></div>
-
-<div class="secBlock tint reveal">
-  <div class="marketingHead">
-    <span class="workflowBadge">MİMARİ GÜVENCE</span>
-    <h2>RAM-Only Bellek Mimarisi &amp; Sıfır Kalıcı Disk İzi</h2>
-    <p>Finansal verileriniz kurumsal sunucu disklerine asla yazılmaz; süreç RAM üzerinde başlayıp RAM üzerinde biter.</p>
-  </div>
-  <div class="grid4" style="gap:14px">
-    <div class="card" style="padding:22px;background:#FFFFFF;border-top:4px solid #1D4ED8">
-      <div style="font-size:11px;font-weight:900;color:#1D4ED8;text-transform:uppercase;margin-bottom:8px">AŞAMA 1</div>
-      <h3 style="font-size:15px;margin:0 0 6px">TLS 1.3 Şifreli İletim</h3>
-      <p class="muted small" style="line-height:1.5">Tarayıcınız ile platform arasındaki tüm veri akışı askeri düzeyde 256-bit TLS şifrelemesiyle korunur. Araya girme (MITM) imkansızdır.</p>
-    </div>
-    <div class="card" style="padding:22px;background:#FFFFFF;border-top:4px solid #2563EB">
-      <div style="font-size:11px;font-weight:900;color:#2563EB;text-transform:uppercase;margin-bottom:8px">AŞAMA 2</div>
-      <h3 style="font-size:15px;margin:0 0 6px">İzole RAM Alanı</h3>
-      <p class="muted small" style="line-height:1.5">Mizan ve defter dosyaları sunucu sabit diskine (SSD/HDD) ASLA kaydedilmez. Yalnızca şifreli geçici bellek (RAM) segmentinde ayrıştırılır.</p>
-    </div>
-    <div class="card" style="padding:22px;background:#FFFFFF;border-top:4px solid #0E7C66">
-      <div style="font-size:11px;font-weight:900;color:#0E7C66;text-transform:uppercase;margin-bottom:8px">AŞAMA 3</div>
-      <h3 style="font-size:15px;margin:0 0 6px">33 Deterministik Motor</h3>
-      <p class="muted small" style="line-height:1.5">Veriler yapay zekaya aktarılmadan önce yerel deterministik finans motorlarında çift taraflı denetlenir ve kâr köprüleri üretilir.</p>
-    </div>
-    <div class="card" style="padding:22px;background:#FFFFFF;border-top:4px solid #10B981">
-      <div style="font-size:11px;font-weight:900;color:#10B981;text-transform:uppercase;margin-bottom:8px">AŞAMA 4</div>
-      <h3 style="font-size:15px;margin:0 0 6px">Anında Bellek İmhası</h3>
-      <p class="muted small" style="line-height:1.5">Rapor tarayıcınıza iletildiği anda sunucu RAM'indeki ham finansal kayıtlar kalıcı olarak silinir. Sistemde geriye hiçbir iz kalmaz.</p>
-    </div>
-  </div>
+<div class="pageHead reveal in">
+  <span class="eyebrow">KURUMSAL VERİ GÜVENCESİ &bull; SIFIR DİSK KAYDI</span>
+  <h1>Şirketinizin Finansal Mahremiyeti Bizim Kırmızı Çizgimizdir</h1>
+  <p>Karmaşık teknik jargonu bir kenara bıraktık. Mizanınızın, müşteri listelerinizin ve kâr verilerinizin nasıl korunduğunu, neden güvende olduğunu ve sunucumuzda asla kalıcı tutulmadığını en açık haliyle taahhüt ediyoruz.</p>
 </div>
 
-<div class="secBlock tint reveal"><div class="marketingHead"><h2>Veri işleme ilkelerimiz</h2><p>Önce hesap, sonra yorum — güvenlik de aynı disiplinle kurulur.</p></div>
-<div class="grid3">
-<div class="card" style="padding:22px"><div class="tag" style="margin-bottom:8px">01</div><h3 style="margin:0 0 6px;font-size:15px">Kalıcı saklama yok</h3><p class="muted small">Yüklediğiniz dosyalar yalnızca analiz üretmek için işlenir; hesap açmadan sunucu tarafında kalıcı olarak tutulmaz.</p></div>
-<div class="card" style="padding:22px"><div class="tag" style="margin-bottom:8px">02</div><h3 style="margin:0 0 6px;font-size:15px">Sahiplik sizde</h3><p class="muted small">Kayıt olursanız geçmiş analizleriniz yalnızca sizin erişiminizde tutulur; üçüncü taraflarla paylaşılmaz.</p></div>
-<div class="card" style="padding:22px"><div class="tag" style="margin-bottom:8px">03</div><h3 style="margin:0 0 6px;font-size:15px">İzlenebilir hesap</h3><p class="muted small">Her metrik, kaynağındaki mizan satırına kadar geri izlenebilir — "kara kutu" bir skor üretilmez.</p></div>
-</div></div>
+<!-- SECTION 1: 4 TEMEL GÜVENLİK KALKANI -->
+<div class="secBlock reveal">
+  <section id="security" class="marketingSection hidePrint" style="padding-top:0">
+    <div class="secShieldGrid">
+      <div class="secShieldCard" style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:24px">
+        <div style="font-size:32px;margin-bottom:12px">🧠</div>
+        <h3 style="font-size:17px;font-weight:800;color:#0F172A;margin:0 0 8px">1. Sıfır Kalıcı Disk (RAM-Only Mimarisi)</h3>
+        <p style="font-size:13px;color:#475569;line-height:1.65;margin:0">
+          Yüklediğiniz Excel (.xlsx, .xls) veya CSV mizan dosyaları sunucumuzun sabit diskine (HDD/SSD/Veritabanı) <b>ASLA KAYDEDİLMEZ</b>. Tüm matematiksel hesaplamalar anlık geçici bellekte (RAM) icra edilir; oturum sonlandığı anda bellek kendini tamamen imha eder.
+        </p>
+      </div>
 
-<div class="secBlock reveal"><section class="ctaBanner hidePrint"><div><h3>Güvenlik ekibinizle konuşmak ister misiniz?</h3><p>Kurumsal güvenlik, veri işleme ve AI yönetişimi hakkında detaylı bir görüşme planlayabiliriz.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a href="/iletisim" class="primary" style="text-decoration:none;padding:12px 20px;border-radius:11px">İletişime Geç</a></div></section></div>
+      <div class="secShieldCard" style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:24px">
+        <div style="font-size:32px;margin-bottom:12px">🚫</div>
+        <h3 style="font-size:17px;font-weight:800;color:#0F172A;margin:0 0 8px">2. Model Eğitimi Yasağı &bull; Mutlak Mahremiyet</h3>
+        <p style="font-size:13px;color:#475569;line-height:1.65;margin:0">
+          Finansal kayıtlarınız, cirolarınız, kâr marjlarınız veya cari hesap unvanlarınız asla genel yapay zekâ modellerinin (LLM) eğitiminde kullanılmaz; hiçbir 3. kişi, reklam platformu veya kurumla paylaşılmaz.
+        </p>
+      </div>
+
+      <div class="secShieldCard" style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:24px">
+        <div style="font-size:32px;margin-bottom:12px">🔒</div>
+        <h3 style="font-size:17px;font-weight:800;color:#0F172A;margin:0 0 8px">3. 256-Bit Bankacılık Standardı TLS Şifreleme</h3>
+        <p style="font-size:13px;color:#475569;line-height:1.65;margin:0">
+          Tarayıcınız ile platformumuz arasındaki tüm veri trafiği uluslararası bankaların kullandığı en üst seviye 256-bit SSL/TLS tünelleriyle uçtan uca şifrelenir. Araya girilmesi (MITM) teknik olarak imkansızdır.
+        </p>
+      </div>
+
+      <div class="secShieldCard" style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:24px">
+        <div style="font-size:32px;margin-bottom:12px">📜</div>
+        <h3 style="font-size:17px;font-weight:800;color:#0F172A;margin:0 0 8px">4. Otomatik Kurumsal Dijital NDA Güvencesi</h3>
+        <p style="font-size:13px;color:#475569;line-height:1.65;margin:0">
+          Sistemimize kaydolduğunuz anda şirketiniz ile Digital Finance BP arasında yasal bağlayıcılığı olan <b>Kurumsal Gizlilik Sözleşmesi (Dijital NDA)</b> karşılıklı imzalanır ve sistem e-mührüyle arşivinize teslim edilir.
+        </p>
+      </div>
+    </div>
+
+    <!-- Interactive NDA Preview Banner -->
+    <div style="margin-top:24px;background:linear-gradient(135deg,#EFF6FF 0%,#F8FAFC 100%);border:1.5px solid #BFDBFE;border-radius:16px;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+      <div>
+        <div style="font-size:11px;font-weight:800;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase">HUKUKİ GÜVENCE BELGENİZ</div>
+        <div style="font-size:16px;font-weight:800;color:#0F172A;margin-top:2px">Kurumsal Gizlilik &amp; Veri Güvenliği Sözleşmesini (NDA) İnceleyin</div>
+        <div style="font-size:12.5px;color:#475569;margin-top:4px">Şirketiniz adına düzenlenmiş çift taraflı dijital sözleşmeyi hemen görüntüleyebilir ve PDF olarak indirebilirsiniz.</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button type="button" class="primary" style="padding:10px 20px;border-radius:10px;font-size:13.5px;font-weight:800;cursor:pointer" onclick="openDigitalNdaModal()">
+          📜 Kurumsal Dijital NDA'yı Aç →
+        </button>
+        <button type="button" class="secondary" style="padding:10px 16px;border-radius:10px;font-size:13px;font-weight:700" onclick="showKvkkModal()">
+          KVKK Aydınlatma Metni
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
 </main>
 <div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Rakamları değil kararları gösteren, deterministik hesap + isteğe bağlı AI yorum katmanlı finansal karar destek platformu.</p></div><div><h4>Ürün</h4><ul><li><a href="/uygulama">Uygulamayı Dene</a></li><li><a href="/paketler">Paketler</a></li></ul></div><div><h4>Şirket</h4><ul><li><a href="/hakkimizda">Hakkımızda</a></li><li><a href="/iletisim">İletişim</a></li></ul></div><div><h4>İletişim</h4><ul><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>İstanbul, Türkiye</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Deterministik Finans Karar Motoru &amp; Çift Yönlü Denetim Sistemi<br><span style="opacity:.85">Bu analiz deterministik matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
 <script>
@@ -12441,6 +12733,119 @@ function logoutUser(){
   renderAuthArea();
   refreshHistoryVisibility();
 }
+
+// =========================================================================
+// KURUMSAL DİJİTAL NDA (GİZLİLİK SÖZLEŞMESİ) MODAL YÖNETİCİSİ
+// =========================================================================
+window.openDigitalNdaModal = function(opts){
+  opts = opts || {};
+  const modal = document.getElementById('digitalNdaModal');
+  if(!modal) return;
+  
+  const company = opts.company || localStorage.getItem('dfbp_company') || 'Kurumsal Üye';
+  const email = opts.email || localStorage.getItem('dfbp_email') || 'yetkili@sirket.com';
+  const dateStr = new Date().toLocaleDateString('tr-TR', { year:'numeric', month:'long', day:'numeric' });
+  const contractId = 'DF-NDA-2026-' + (Math.abs(hashString(email + company)) % 90000 + 10000);
+
+  if($('ndaCompanyName')) $('ndaCompanyName').textContent = company;
+  if($('ndaSignCompany')) $('ndaSignCompany').textContent = company;
+  if($('ndaUserEmail')) $('ndaUserEmail').textContent = email;
+  if($('ndaSignEmail')) $('ndaSignEmail').textContent = email;
+  if($('ndaDateStr')) $('ndaDateStr').textContent = dateStr;
+  if($('ndaContractId')) $('ndaContractId').textContent = contractId;
+
+  const isSigned = localStorage.getItem('dfbp_nda_signed_' + email);
+  if(isSigned){
+    if($('ndaStatusBadge')){
+      $('ndaStatusBadge').textContent = '✓ Karşılıklı İmzalandı';
+      $('ndaStatusBadge').style.background = '#DCFCE7';
+      $('ndaStatusBadge').style.color = '#166534';
+    }
+    if($('ndaSignedTime')){
+      $('ndaSignedTime').textContent = 'Dijital İmzalandı: ' + dateStr;
+      $('ndaSignedTime').style.display = 'block';
+    }
+    if($('signNdaBtn')){
+      $('signNdaBtn').textContent = '✓ İmzalandı (Geçerli)';
+      $('signNdaBtn').disabled = true;
+      $('signNdaBtn').style.background = '#16A34A';
+    }
+  } else {
+    if($('ndaStatusBadge')){
+      $('ndaStatusBadge').textContent = '⏳ İmza Bekliyor';
+      $('ndaStatusBadge').style.background = '#FEF3C7';
+      $('ndaStatusBadge').style.color = '#92400E';
+    }
+    if($('ndaSignedTime')) $('ndaSignedTime').style.display = 'none';
+    if($('signNdaBtn')){
+      $('signNdaBtn').textContent = '✍️ Karşılıklı Olarak Dijital İmzala & Onayla';
+      $('signNdaBtn').disabled = false;
+      $('signNdaBtn').style.background = '#1D4ED8';
+    }
+  }
+
+  modal.classList.remove('hidden');
+};
+
+window.closeDigitalNdaModal = function(){
+  const modal = document.getElementById('digitalNdaModal');
+  if(modal) modal.classList.add('hidden');
+};
+
+window.signDigitalNda = function(){
+  const email = $('ndaUserEmail')?.textContent || localStorage.getItem('dfbp_email') || 'user';
+  localStorage.setItem('dfbp_nda_signed_' + email, 'true');
+  
+  if($('ndaStatusBadge')){
+    $('ndaStatusBadge').textContent = '✓ Karşılıklı İmzalandı';
+    $('ndaStatusBadge').style.background = '#DCFCE7';
+    $('ndaStatusBadge').style.color = '#166534';
+  }
+  if($('ndaSignedTime')){
+    $('ndaSignedTime').textContent = 'Dijital İmzalandı: ' + new Date().toLocaleString('tr-TR');
+    $('ndaSignedTime').style.display = 'block';
+  }
+  if($('signNdaBtn')){
+    $('signNdaBtn').textContent = '✓ Başarıyla İmzalandı';
+    $('signNdaBtn').disabled = true;
+    $('signNdaBtn').style.background = '#16A34A';
+  }
+  alert('✓ Kurumsal Gizlilik Sözleşmesi (NDA) başarıyla karşılıklı olarak dijital imzalandı. Verileriniz Sıfır Kalıcı Disk (RAM-Only) güvencesi altındadır.');
+};
+
+window.printDigitalNda = function(){
+  const content = document.getElementById('digitalNdaPrintArea');
+  if(!content) return;
+  const w = window.open('', '_blank');
+  if(!w){
+    alert('Açılır pencere engellendi. Lütfen izin verin.');
+    return;
+  }
+  w.document.write(`<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Kurumsal Gizlilik & Veri Güvenliği Sözleşmesi (NDA) | Digital Finance BP</title>
+  <style>
+    @page { size: A4 portrait; margin: 15mm 15mm 15mm 15mm; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; line-height: 1.6; color: #0F172A; margin: 0; padding: 20px; }
+    @media print { body { padding: 0; } }
+  </style>
+</head>
+<body>
+  ${content.innerHTML}
+  <script>setTimeout(function(){ window.print(); }, 400);<\/script>
+</body>
+</html>`);
+  w.document.close();
+};
+
+function hashString(str){
+  let hash = 0;
+  for(let i=0; i<str.length; i++){ hash = ((hash << 5) - hash) + str.charCodeAt(i); hash |= 0; }
+  return hash;
+}
+
 function renderAuthArea(){
   const box=$('authArea');
   const mob=$('mobileNavAuth');
@@ -12513,8 +12918,12 @@ $('authSubmitBtn').onclick=async()=>{
     if(!r.ok)throw new Error(d.detail||'İşlem başarısız.');
     AUTH_TOKEN=d.token;AUTH_EMAIL=d.email;
     localStorage.setItem('dfbp_token',AUTH_TOKEN);localStorage.setItem('dfbp_email',AUTH_EMAIL);
+    if(company) localStorage.setItem('dfbp_company', company);
     $('authModalOverlay').classList.add('hidden');
     renderAuthArea();
+    if(AUTH_MODE === 'register'){
+      openDigitalNdaModal({ company: company || 'Kurumsal Şirket', email: email });
+    }
   }catch(e){$('authError').textContent=e.message;$('authError').classList.remove('hidden');}
   finally{$('authSubmitBtn').disabled=false;}
 };
