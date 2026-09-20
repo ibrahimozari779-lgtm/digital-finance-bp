@@ -3529,98 +3529,246 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda" class="active">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in">
-  <span class="eyebrow">BİZİ TANIYIN &bull; KURUCUNUN VİZYONU</span>
-  <h1>Finans Uzmanlığı ile Girişimci Vizyonunun Buluştuğu Yer</h1>
-  <p>Yıllarca şirketlerin mali tablolarını ve mizanlarını inceledim. Gördüğüm en acı gerçek şuydu: Şirket patronları muhasebe evraklarına ve vergi tablolarına boğuluyor, ancak en hayati soru cevapsız kalıyordu: <i>"Kasada neden para yok ve yarın sabah ne yapmalıyım?"</i> Bu platformu, şirketleri finansal körlükten kurtarmak ve patronun masasına doğrudan kârlı kararlar koymak için kurdum.</p>
+  <span class="eyebrow" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">DOĞUŞ SÜRECİ &bull; MİMARİ İHTİYAÇLAR</span>
+  <h1>Reel Sektörün İhtiyaçlarından Doğan Deterministik Finansal Karar Altyapısı</h1>
+  <p>Geleneksel muhasebe geçmiş faturaları toplayarak devlete vergi beyan eder; yönetici ise yarın sabah şirketini kârda ve nakitte tutacak kararları almak zorundadır. Digital Finance BP, bu derin boşluğu kapatmak ve finansal körlüğü ortadan kaldırmak için doğrudan sahadaki somut gereksinimlerden doğdu.</p>
 </div>
 
-<!-- SECTION 1: KURUCU MEKTUBU & ÇIKIŞ NOKTASI -->
+<!-- 1. BÖLÜM: SAHADAKİ 3 TEMEL TIKANIKLIK (NEDEN BU PLATFORMA İHTİYAÇ VARDI?) -->
 <div class="secBlock reveal">
-  <section id="about" class="marketingSection hidePrint" style="padding-top:0">
-    <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:24px;padding:36px;box-shadow:0 12px 36px rgba(15,27,45,0.06)">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-        <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">KURUCUNUN ÇIKIŞ NOKTASI</span>
-        <span style="font-size:12px;color:#64748B;font-weight:700">Reel Sektör &bull; Finans Yönetimi &bull; Girişimcilik</span>
+  <section class="marketingSection hidePrint" style="padding-top:0">
+    <div class="sectionHead" style="border-bottom:1.5px solid #E2E8F0;padding-bottom:14px;margin-bottom:20px">
+      <div>
+        <span style="font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#1D4ED8">ÇIKIŞ NOKTASI</span>
+        <h2 style="font-size:22px;color:#0F172A;margin:3px 0 0">Sahada Karşılaşılan 3 Kritik Finansal Tıkanıklık</h2>
       </div>
-      <h2 style="font-family:var(--serif);font-size:26px;color:#0F172A;margin:0 0 16px;line-height:1.35">
-        Muhasebe Geçmişi Kaydeder; Patron İse Yarın İçin Risk Alır
-      </h2>
-      <div style="font-size:14.5px;line-height:1.8;color:#334155;display:flex;flex-direction:column;gap:14px">
-        <p style="margin:0">
-          Türkiye'deki reel sektörde en sık karşılaştığım tablo hep aynıydı: Şirket cirosunu artırıyor, mali müşavir <i>"Bu ay çok güzel kâr ettik"</i> diyor, ancak patron ay sonunda çalışanların maaşını veya tedarikçinin çekini ödemek için banka kredisi aramak zorunda kalıyordu.
+      <p style="font-size:13px;color:#64748B;max-width:480px;text-align:right">Yüzlerce şirketin mizanında tekrar eden bu problemler, platformun ana motorlarını şekillendirdi.</p>
+    </div>
+
+    <div class="grid3" style="gap:20px">
+      <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #CBD5E1;border-radius:18px;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(15,27,45,0.04)">
+        <div style="width:42px;height:42px;border-radius:12px;background:#EFF6FF;border:1px solid #BFDBFE;display:flex;align-items:center;justify-content:center;color:#1D4ED8;font-weight:900;font-size:16px;margin-bottom:14px">01</div>
+        <h3 style="font-size:16.5px;color:#0F172A;margin:0 0 10px;font-weight:800;line-height:1.35">Muhasebe Geçmişi Kaydeder, Yönetici Geleceği Yönetir</h3>
+        <p style="font-size:13px;color:#475569;line-height:1.65;margin:0;flex:1">
+          Genel mizan tabloları kanuni bir zorunluluktur; ancak şirket sahibinin en hayati soruları olan <b>"Kasada neden para yok?", "Önümüzdeki 3. haftada çek açığımız var mı?"</b> ve <b>"Hangi müşteriye mal satarken aslında cepten finanse ediyoruz?"</b> sorularına yanıt veremez.
         </p>
-        <p style="margin:0">
-          Çünkü geleneksel muhasebe devlete vergi beyannamesi vermek için geçmiş faturaları alt alta toplar. Oysa bir şirket sahibinin ihtiyacı; geçmişin faturası değil, <b>paranın hangi müşterinin 90 günlük vadesinde veya hangi depodaki ölü stokta kilitlendiğini bilmektir</b>.
-        </p>
-        <p style="margin:0">
-          Finans uzmanlığımı sahadaki girişimcilik refleksiyle birleştirdim. Holding düzeyindeki stratejik CFO analitiğini <b>33 deterministik karar motoruna</b> dönüştürerek; Türkiye'deki her KOBİ'nin ve şirket yöneticisinin tek bir mizanla şirketinin nakit röntgenini çekebilmesini sağladım.
-        </p>
+        <div style="margin-top:16px;padding-top:12px;border-top:1px solid #E2E8F0;font-size:11.5px;color:#1D4ED8;font-weight:700">
+          ↳ Çözüm: 8 Kritik Yönetici Karar Katmanı
+        </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;margin-top:28px;padding-top:24px;border-top:1px solid #E2E8F0">
-        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:14px;padding:16px;text-align:center">
-          <div style="font-size:28px;font-weight:900;color:#1D4ED8">33</div>
-          <div style="font-size:12px;font-weight:800;color:#0F172A;margin-top:2px">Finansal Karar Motoru</div>
-          <div style="font-size:11px;color:#64748B">Çift taraflı matematiksel denetim</div>
+      <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #CBD5E1;border-radius:18px;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(15,27,45,0.04)">
+        <div style="width:42px;height:42px;border-radius:12px;background:#F0FDF4;border:1px solid #BBF7D0;display:flex;align-items:center;justify-content:center;color:#166534;font-weight:900;font-size:16px;margin-bottom:14px">02</div>
+        <h3 style="font-size:16.5px;color:#0F172A;margin:0 0 10px;font-weight:800;line-height:1.35">Defterdeki Kâr ile Kasadaki Nakit Uyuşmazlığı</h3>
+        <p style="font-size:13px;color:#475569;line-height:1.65;margin:0;flex:1">
+          KOBİ'lerin en büyük yanılgısı defterdeki kârdır. Kâr kâğıt üzerinde oluşur; ancak tahsil edilmeyen açık hesap vadelerde (85-120 gün) veya depodaki atıl stoklarda kilitlenir. Kârın nereye kaçtığını kuruşu kuruşuna gösteren bir köprüye ihtiyaç vardı.
+        </p>
+        <div style="margin-top:16px;padding-top:12px;border-top:1px solid #E2E8F0;font-size:11.5px;color:#166534;font-weight:700">
+          ↳ Çözüm: DuPont Kâr &bull; Nakit Köprüsü &bull; Kök Neden Analizi
         </div>
-        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:14px;padding:16px;text-align:center">
-          <div style="font-size:28px;font-weight:900;color:#16A34A">%100</div>
-          <div style="font-size:12px;font-weight:800;color:#0F172A;margin-top:2px">Bilanço Denkliği</div>
-          <div style="font-size:11px;color:#64748B">Sıfır tahmin, kesin rasyolar</div>
-        </div>
-        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:14px;padding:16px;text-align:center">
-          <div style="font-size:28px;font-weight:900;color:#D97706">0</div>
-          <div style="font-size:12px;font-weight:800;color:#0F172A;margin-top:2px">Kalıcı Disk Depolama</div>
-          <div style="font-size:11px;color:#64748B">RAM-Only veri mahremiyeti</div>
+      </div>
+
+      <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #CBD5E1;border-radius:18px;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(15,27,45,0.04)">
+        <div style="width:42px;height:42px;border-radius:12px;background:#FEF3C7;border:1px solid #FDE68A;display:flex;align-items:center;justify-content:center;color:#92400E;font-weight:900;font-size:16px;margin-bottom:14px">03</div>
+        <h3 style="font-size:16.5px;color:#0F172A;margin:0 0 10px;font-weight:800;line-height:1.35">Banka &amp; Kredi Masalarında Yaşanan Savunmasızlık</h3>
+        <p style="font-size:13px;color:#475569;line-height:1.65;margin:0;flex:1">
+          Şirketler kredi veya limit artışına gittiğinde banka kredi tahsis komitelerinin hangi rasyolarla (Net Borç/FAVÖK, ICR, Likidite vb.) kendilerini elediğini bilmez. Masaya CFO yetkinliğinde savunulabilir bir itibar dosyası koyma zorunluluğu doğdu.
+        </p>
+        <div style="margin-top:16px;padding-top:12px;border-top:1px solid #E2E8F0;font-size:11.5px;color:#92400E;font-weight:700">
+          ↳ Çözüm: 3 Sayfalık Banka Kredi &amp; İtibar Dosyası
         </div>
       </div>
     </div>
   </section>
 </div>
 
-<!-- SECTION 2: 3 TEMEL İLKEMİZ (KURUCU TAAHHÜDÜ) -->
+<!-- 2. BÖLÜM: 4 AŞAMALI GELİŞTİRME VE İNŞA SÜRECİ (SÜREÇ MİMARİSİ) -->
 <div class="secBlock tint reveal">
   <section class="marketingSection hidePrint" style="padding-top:0">
-    <div class="marketingHead">
-      <span class="workflowBadge">KURUCU TAAHHÜDÜ</span>
-      <h2>İşletmeniz İçin 3 Değişmez İlkemiz</h2>
-      <p>Bu platform, şirket patronunu finansal belirsizlik ve yalnızlıktan kurtarmak için tasarlandı.</p>
+    <div class="marketingHead" style="margin-bottom:28px">
+      <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">SÜREÇ MİMARİSİ</span>
+      <h2 style="font-size:26px">Problemin Tesisinden Karar Motorlarına: 4 Aşamalı Süreç</h2>
+      <p>Süslü sunumlar ve teorik formüller yerine, sahadaki gerçek bilanço dinamiklerini koda döktük.</p>
     </div>
 
-    <div class="grid3" style="gap:16px">
-      <div class="card" style="padding:26px;background:#FFFFFF;border-top:4px solid #1D4ED8;box-shadow:0 8px 24px rgba(15,27,45,0.05)">
-        <div style="font-size:30px;margin-bottom:12px">🧮</div>
-        <h3 style="font-size:17px;font-family:var(--serif);margin:0 0 8px;color:#0F172A">1. Önce Kesin Matematik, Sıfır Tahmin</h3>
-        <p style="font-size:13px;color:#5B6B84;line-height:1.65;margin:0">
-          Yapay zekanın rakam uydurmasına asla izin vermeyiz. Tüm hesaplamalar Tek Düzen Hesap Planı kuralları, çift taraflı denetim ve kuruşu kuruşuna deterministik formüllerle çalışır.
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative">
+      <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:22px;position:relative;box-shadow:0 4px 14px rgba(15,27,45,0.04)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <span style="font-size:11px;font-weight:900;color:#1D4ED8;letter-spacing:1px">AŞAMA 1</span>
+          <span style="background:#EFF6FF;color:#1D4ED8;font-size:10px;font-weight:800;padding:2px 8px;border-radius:6px">Teşhis</span>
+        </div>
+        <h3 style="font-size:15.5px;font-weight:800;color:#0F172A;margin:0 0 8px">Saha Tespiti &amp; Veri Haritalama</h3>
+        <p style="font-size:12.5px;color:#475569;line-height:1.6;margin:0">
+          Farklı sektörlerden yüzlerce mizan, muavin defteri ve yaşlandırma tablosu incelendi. Kâr sızıntılarının ve kasa açıklarının ortak kök neden modelleri çıkarıldı.
         </p>
       </div>
 
-      <div class="card" style="padding:26px;background:#FFFFFF;border-top:4px solid #10B981;box-shadow:0 8px 24px rgba(15,27,45,0.05)">
-        <div style="font-size:30px;margin-bottom:12px">🎯</div>
-        <h3 style="font-size:17px;font-family:var(--serif);margin:0 0 8px;color:#0F172A">2. Doğrudan Patronun Dili &bull; Net Aksiyon</h3>
-        <p style="font-size:13px;color:#5B6B84;line-height:1.65;margin:0">
-          Ağır akademik terimlerle patronu yormayız. "Şu müşterinin açık hesap vadesini 15 gün geri çek", "Şu depodaki atıl malı erit", "Önümüzdeki 3. hafta çek açığı var" gibi doğrudan uygulanabilir kararlar veririz.
+      <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:22px;position:relative;box-shadow:0 4px 14px rgba(15,27,45,0.04)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <span style="font-size:11px;font-weight:900;color:#1D4ED8;letter-spacing:1px">AŞAMA 2</span>
+          <span style="background:#F0FDF4;color:#166534;font-size:10px;font-weight:800;padding:2px 8px;border-radius:6px">Deterministik Kod</span>
+        </div>
+        <h3 style="font-size:15.5px;font-weight:800;color:#0F172A;margin:0 0 8px">33 Karar Motorunun İnşası</h3>
+        <p style="font-size:12.5px;color:#475569;line-height:1.6;margin:0">
+          Yapay zekanın rakam uydurmasına izin verilmeden, Tek Düzen Hesap Planı matematiği çift yönlü denetim algoritmalarıyla deterministik kod bloklarına dönüştürüldü.
         </p>
       </div>
 
-      <div class="card" style="padding:26px;background:#FFFFFF;border-top:4px solid #F59E0B;box-shadow:0 8px 24px rgba(15,27,45,0.05)">
-        <div style="font-size:30px;margin-bottom:12px">🛡️</div>
-        <h3 style="font-size:17px;font-family:var(--serif);margin:0 0 8px;color:#0F172A">3. Mutlak Mahremiyet &bull; Sıfır Disk Kaydı</h3>
-        <p style="font-size:13px;color:#5B6B84;line-height:1.65;margin:0">
-          Mizanınız şirketinizin ticari sırrıdır. Dosyalarınız sunucu sabit diskine kaydedilmez; analiz geçici bellekte üretilir ve sayfa kapandığı an yok edilir. Kayıt anında adınıza karşılıklı Dijital NDA düzenlenir.
+      <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:22px;position:relative;box-shadow:0 4px 14px rgba(15,27,45,0.04)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <span style="font-size:11px;font-weight:900;color:#1D4ED8;letter-spacing:1px">AŞAMA 3</span>
+          <span style="background:#FEF3C7;color:#92400E;font-size:10px;font-weight:800;padding:2px 8px;border-radius:6px">Yönetici Dili</span>
+        </div>
+        <h3 style="font-size:15.5px;font-weight:800;color:#0F172A;margin:0 0 8px">8 CEO Karar Katmanı &amp; Simülatör</h3>
+        <p style="font-size:12.5px;color:#475569;line-height:1.6;margin:0">
+          Teknik finansal rasyolar, patronun doğrudan uygulayabileceği 8 yönetim kararına çevrildi. Ciro, vade ve kredi faiz maliyetini test eden simülatörler entegre edildi.
+        </p>
+      </div>
+
+      <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:22px;position:relative;box-shadow:0 4px 14px rgba(15,27,45,0.04)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <span style="font-size:11px;font-weight:900;color:#1D4ED8;letter-spacing:1px">AŞAMA 4</span>
+          <span style="background:#DCFCE7;color:#166534;font-size:10px;font-weight:800;padding:2px 8px;border-radius:6px">Güvenli Bulut</span>
+        </div>
+        <h3 style="font-size:15.5px;font-weight:800;color:#0F172A;margin:0 0 8px">Sıfır Kurulum &amp; RAM-Only Güvenlik</h3>
+        <p style="font-size:12.5px;color:#475569;line-height:1.6;margin:0">
+          Kurulum ve IT personeli gerektirmeyen, sunucu sabit diskine asla veri yazmayan (RAM-Only) ve otomatik karşılıklı Dijital NDA düzenleyen kurumsal platform tamamlandı.
         </p>
       </div>
     </div>
   </section>
 </div>
 
-<!-- SECTION 3: CTA BANNER -->
+<!-- 3. BÖLÜM: GELENEKSEL MUHASEBE / ERP VS. DIGITAL FINANCE BP MATRİSİ -->
+<div class="secBlock reveal">
+  <section class="marketingSection hidePrint" style="padding-top:0">
+    <div class="sectionHead" style="border-bottom:1.5px solid #E2E8F0;padding-bottom:14px;margin-bottom:20px">
+      <div>
+        <span style="font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#1D4ED8">DOĞRUDAN KARŞILAŞTIRMA</span>
+        <h2 style="font-size:22px;color:#0F172A;margin:3px 0 0">Geleneksel Muhasebe / ERP ile Digital Finance BP Farkı</h2>
+      </div>
+      <p style="font-size:13px;color:#64748B">Muhasebe geçmişi belgeler; platformumuz ise kârlı kararları üretir.</p>
+    </div>
+
+    <div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:18px;overflow:hidden;box-shadow:0 8px 30px rgba(15,27,45,0.05)">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;text-align:left">
+        <thead>
+          <tr style="background:#F8FAFC;border-bottom:1.5px solid #CBD5E1">
+            <th style="padding:14px 18px;font-weight:800;color:#0F172A;width:24%">Karşılaştırma Kriteri</th>
+            <th style="padding:14px 18px;font-weight:700;color:#64748B;width:38%">Geleneksel Muhasebe &amp; Standart ERP</th>
+            <th style="padding:14px 18px;font-weight:800;color:#1D4ED8;width:38%;background:#EFF6FF">Digital Finance Business Partner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #E2E8F0">
+            <td style="padding:14px 18px;font-weight:700;color:#0F172A">Temel Amaç</td>
+            <td style="padding:14px 18px;color:#475569">Geçmiş faturaları işlemek, vergi matrahını ve beyannameyi devlete bildirmek.</td>
+            <td style="padding:14px 18px;color:#0F172A;font-weight:600;background:#F8FAFF">Gelecek 13 haftanın nakdini korumak, kâr sızıntılarını ve kilitli nakdi kurtarmak.</td>
+          </tr>
+          <tr style="border-bottom:1px solid #E2E8F0">
+            <td style="padding:14px 18px;font-weight:700;color:#0F172A">Kasa &amp; Nakit Görünürlüğü</td>
+            <td style="padding:14px 18px;color:#475569">Yalnızca o anki banka/kasa bakiyesini gösterir. Çek açığını öngöremez.</td>
+            <td style="padding:14px 18px;color:#0F172A;font-weight:600;background:#F8FAFF">13 Haftalık Erken Uyarı Radarı ile hangi hafta nakit açığı olacağını önceden uyarır.</td>
+          </tr>
+          <tr style="border-bottom:1px solid #E2E8F0">
+            <td style="padding:14px 18px;font-weight:700;color:#0F172A">Kâr Sızıntısı Tespiti</td>
+            <td style="padding:14px 18px;color:#475569">Rakamlar binlerce satıra dağılır; paranın hangi delikten kaçtığını söylemez.</td>
+            <td style="padding:14px 18px;color:#0F172A;font-weight:600;background:#F8FAFF">DuPont Kâr Köprüsü ve Sızıntı Teşhis Motoru ile kuruşu kuruşuna belgeler.</td>
+          </tr>
+          <tr style="border-bottom:1px solid #E2E8F0">
+            <td style="padding:14px 18px;font-weight:700;color:#0F172A">Senaryo &amp; Simülasyon</td>
+            <td style="padding:14px 18px;color:#475569">Statiktir. "Ciro %15 düşerse veya kredi faizi %45 olursa ne olur?" cevabı yoktur.</td>
+            <td style="padding:14px 18px;color:#0F172A;font-weight:600;background:#F8FAFF">İnteraktif sürgülerle ciro, vade, kâr marjı ve sermaye faiz maliyetini canlı simüle eder.</td>
+          </tr>
+          <tr style="border-bottom:1px solid #E2E8F0">
+            <td style="padding:14px 18px;font-weight:700;color:#0F172A">Çıktı Formatı</td>
+            <td style="padding:14px 18px;color:#475569">Yöneticinin okuyamadığı onlarca sayfalık teknik mizan veya hesap ekstresi.</td>
+            <td style="padding:14px 18px;color:#0F172A;font-weight:600;background:#F8FAFF">1 sayfalık Yönetim Kurulu Karar Özeti + 8 sayfalık CFO Raporu + Banka Dosyası.</td>
+          </tr>
+          <tr>
+            <td style="padding:14px 18px;font-weight:700;color:#0F172A">Veri Güvenliği</td>
+            <td style="padding:14px 18px;color:#475569">Yerel sunucularda veya harici veritabanlarında kalıcı olarak depolanır.</td>
+            <td style="padding:14px 18px;color:#0F172A;font-weight:600;background:#F8FAFF">Sıfır Kalıcı Disk (RAM-Only), oturum bitince tam imha ve Karşılıklı Dijital NDA.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<!-- 4. BÖLÜM: 3 TEMEL MÜHENDİSLİK İLKESİ -->
+<div class="secBlock tint reveal">
+  <section class="marketingSection hidePrint" style="padding-top:0">
+    <div class="marketingHead" style="margin-bottom:28px">
+      <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">MÜHENDİSLİK FELSEFESİ</span>
+      <h2 style="font-size:26px">Platformun 3 Değişmez Tasarım İlkesi</h2>
+      <p>Bu platform, şirket yöneticisini finansal yalnızlıktan ve belirsizlikten kurtarmak için kodlandı.</p>
+    </div>
+
+    <div class="grid3" style="gap:20px">
+      <div class="card" style="padding:26px;background:#FFFFFF;border-top:4px solid #1D4ED8;border-radius:16px;box-shadow:0 8px 24px rgba(15,27,45,0.04)">
+        <div style="font-size:28px;margin-bottom:10px">🧮</div>
+        <h3 style="font-size:16px;font-weight:800;color:#0F172A;margin:0 0 8px">1. Kesin Matematik &bull; Sıfır Tahmin</h3>
+        <p style="font-size:12.5px;color:#475569;line-height:1.65;margin:0">
+          Yapay zekanın rakam uydurmasına veya halüsinasyon görmesine asla izin verilmez. Tüm oranlar Tek Düzen Hesap Planı kuralları ve çift taraflı denetimle kuruşu kuruşuna hesaplanır.
+        </p>
+      </div>
+
+      <div class="card" style="padding:26px;background:#FFFFFF;border-top:4px solid #10B981;border-radius:16px;box-shadow:0 8px 24px rgba(15,27,45,0.04)">
+        <div style="font-size:28px;margin-bottom:10px">🎯</div>
+        <h3 style="font-size:16px;font-weight:800;color:#0F172A;margin:0 0 8px">2. Doğrudan Patronun Dili &bull; Net Aksiyon</h3>
+        <p style="font-size:12.5px;color:#475569;line-height:1.65;margin:0">
+          Ağır akademik terimler elenmiştir. "Şu müşterinin 110 günlük açık hesap vadesini 15 gün kısaltın", "Şu depodaki atıl malı tasfiye edin", "Kredi faiz maliyetinizi sınırlandırın" gibi net talimatlar verilir.
+        </p>
+      </div>
+
+      <div class="card" style="padding:26px;background:#FFFFFF;border-top:4px solid #F59E0B;border-radius:16px;box-shadow:0 8px 24px rgba(15,27,45,0.04)">
+        <div style="font-size:28px;margin-bottom:10px">🛡️</div>
+        <h3 style="font-size:16px;font-weight:800;color:#0F172A;margin:0 0 8px">3. Sıfır Kalıcı Disk &bull; Mutlak Mahremiyet</h3>
+        <p style="font-size:12.5px;color:#475569;line-height:1.65;margin:0">
+          Mizanınız şirketinizin en mahrem sırrıdır. Sunucu sabit diskine (HDD/SSD/DB) hiçbir kayıt yapılmaz. Analiz bittiği milisaniyede geçici bellek kendini kalıcı olarak yok eder.
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 5. BÖLÜM: SAYISAL MİMARİ VE KAPASİTE -->
+<div class="secBlock reveal">
+  <section class="marketingSection hidePrint" style="padding-top:0">
+    <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:22px;padding:32px;box-shadow:0 10px 30px rgba(15,27,45,0.05)">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center">
+        <div style="padding:10px">
+          <div style="font-size:36px;font-weight:900;color:#1D4ED8;font-family:var(--serif);line-height:1">33</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin-top:6px">Finansal Karar Motoru</div>
+          <div style="font-size:11.5px;color:#64748B;margin-top:2px">Çift taraflı muhasebe denetimi</div>
+        </div>
+        <div style="padding:10px;border-left:1px solid #E2E8F0">
+          <div style="font-size:36px;font-weight:900;color:#0E7C66;font-family:var(--serif);line-height:1">8</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin-top:6px">Kritik Yönetim Sorusu</div>
+          <div style="font-size:11.5px;color:#64748B;margin-top:2px">Patron masası karar kartları</div>
+        </div>
+        <div style="padding:10px;border-left:1px solid #E2E8F0">
+          <div style="font-size:36px;font-weight:900;color:#D97706;font-family:var(--serif);line-height:1">13 Hafta</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin-top:6px">Nakit &amp; Çek Radarı</div>
+          <div style="font-size:11.5px;color:#64748B;margin-top:2px">Haftalık nakit açığı uyarısı</div>
+        </div>
+        <div style="padding:10px;border-left:1px solid #E2E8F0">
+          <div style="font-size:36px;font-weight:900;color:#16A34A;font-family:var(--serif);line-height:1">%100</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin-top:6px">Bilanço Denkliği Mührü</div>
+          <div style="font-size:11.5px;color:#64748B;margin-top:2px">Aktif = Pasif kesin doğrulama</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 6. BÖLÜM: CTA BANNER -->
 <div class="secBlock reveal">
   <section class="ctaBanner hidePrint">
     <div>
-      <h3>Şirketinizin Finansal Röntgenini 60 Saniyede Görün</h3>
-      <p>Kurulum veya IT entegrasyonu gerekmez. Örnek veriyle test edin veya kendi mizanınızı hemen yükleyin.</p>
+      <h3 style="margin:0 0 6px">Şirketinizin Finansal Röntgenini 60 Saniyede Görün</h3>
+      <p style="margin:0">Kurulum veya IT entegrasyonu gerekmez. Örnek veriyle sistemi hemen test edin veya mizanınızı güvenle yükleyin.</p>
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
       <a href="/uygulama?sample=data_hub" class="primary" style="text-decoration:none;padding:12px 22px;border-radius:11px;font-weight:700">🔥 Canlı Demoyu Başlat</a>
@@ -4598,60 +4746,201 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </div><div class="headerRight"><nav class="topNav hidePrint" id="mainNav"><a href="/">Anasayfa</a><a href="/hakkimizda">Hakkımızda</a><a href="/uygulama">Uygulama</a><a href="/paketler">Paketler</a><a href="/guvenlik" class="active">Güvenlik</a><a href="/iletisim">İletişim</a><div class="mobileNavAuth"><a href="/uygulama?auth=login" class="secondary">Giriş Yap</a><a href="/uygulama?auth=register" class="primary">Ücretsiz Kayıt Ol</a></div></nav><div class="authCluster hidePrint"><div class="headerSwitches"><select class="globalLangSwitch select" onchange="setGlobalLanguage(this.value)" style="padding:2px 7px;font-size:11px;font-weight:600;border-radius:6px;background:#F1F5F9;border:1px solid #CBD5E1;color:#475569;cursor:pointer;height:22px;line-height:1" title="Dil / Language"><option value="tr">🇹🇷 TR</option><option value="en">🇬🇧 EN</option><option value="de">🇩🇪 DE</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="it">🇮🇹 IT</option><option value="nl">🇳🇱 NL</option></select></div><div class="navBtns"><a href="/uygulama?auth=login" class="navBtn sec">Giriş Yap</a><a href="/uygulama?auth=register" class="navBtn pri">Ücretsiz Kayıt Ol</a></div></div><button id="navToggle" class="navToggle hidePrint" aria-label="Menü">☰</button></div></div></header>
 <main class="wrap">
 <div class="pageHead reveal in">
-  <span class="eyebrow">KURUMSAL VERİ GÜVENCESİ &bull; SIFIR DİSK KAYDI</span>
-  <h1>Şirketinizin Finansal Mahremiyeti Bizim Kırmızı Çizgimizdir</h1>
-  <p>Karmaşık teknik jargonu bir kenara bıraktık. Mizanınızın, müşteri listelerinizin ve kâr verilerinizin nasıl korunduğunu, neden güvende olduğunu ve sunucumuzda asla kalıcı tutulmadığını en açık haliyle taahhüt ediyoruz.</p>
+  <span class="eyebrow" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">BİLGİ GÜVENLİĞİ &bull; RAM-ONLY MİMARİ</span>
+  <h1>Mizanınız Sunucu Sabit Disklerine Asla Kaydedilmez</h1>
+  <p>Şirketinizin cirosu, müşteri listeleri ve kâr marjları mutlak ticari sırdır. Digital Finance BP; dünyanın en sıkı veri mahremiyeti standardı olan "Sıfır Kalıcı Disk (RAM-Only)" mimarisi ve yasal bağlayıcılığı olan Karşılıklı Kurumsal Dijital NDA ile korunur.</p>
 </div>
 
-<!-- SECTION 1: 4 TEMEL GÜVENLİK KALKANI -->
+<!-- 1. BÖLÜM: VERİ AKIŞI VE YAŞAM DÖNGÜSÜ (DATA LIFECYCLE) -->
 <div class="secBlock reveal">
-  <section id="security" class="marketingSection hidePrint" style="padding-top:0">
-    <div class="secShieldGrid">
-      <div class="secShieldCard" style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:24px">
-        <div style="font-size:32px;margin-bottom:12px">🧠</div>
-        <h3 style="font-size:17px;font-weight:800;color:#0F172A;margin:0 0 8px">1. Sıfır Kalıcı Disk (RAM-Only Mimarisi)</h3>
+  <section class="marketingSection hidePrint" style="padding-top:0">
+    <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:22px;padding:32px;box-shadow:0 10px 32px rgba(15,27,45,0.04)">
+      <div style="border-bottom:1px solid #E2E8F0;padding-bottom:14px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px">
+        <div>
+          <span style="font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#1D4ED8">VERİ AKIŞI &amp; YAŞAM DÖNGÜSÜ</span>
+          <h2 style="font-size:22px;color:#0F172A;margin:4px 0 0">Mizanınız Nasıl İşlenir ve Nasıl Yok Edilir?</h2>
+        </div>
+        <span class="tag" style="background:#DCFCE7;color:#166534;font-size:11px;font-weight:800">Sıfır Kalıcı İz (Zero-Trace) Garantisi</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative">
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:14px;padding:20px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+            <span style="width:26px;height:26px;border-radius:50%;background:#1D4ED8;color:#FFF;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900">1</span>
+            <span style="font-size:13px;font-weight:800;color:#0F172A">256-Bit TLS Aktarım</span>
+          </div>
+          <p style="font-size:12px;color:#475569;line-height:1.6;margin:0">
+            Yüklediğiniz Excel veya CSV dosyası bankacılık standardında 256-bit TLS kriptolu tünel üzerinden güvenle aktarılır. Araya girilemez.
+          </p>
+        </div>
+
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:14px;padding:20px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+            <span style="width:26px;height:26px;border-radius:50%;background:#1D4ED8;color:#FFF;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900">2</span>
+            <span style="font-size:13px;font-weight:800;color:#0F172A">Geçici RAM Bellek</span>
+          </div>
+          <p style="font-size:12px;color:#475569;line-height:1.6;margin:0">
+            Dosya doğrudan sunucu geçici belleğine (RAM) alınır. Sunucu sabit diskine (SSD/HDD) veya veritabanına <b>tek bir bayt dahi yazılmaz</b>.
+          </p>
+        </div>
+
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:14px;padding:20px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+            <span style="width:26px;height:26px;border-radius:50%;background:#1D4ED8;color:#FFF;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900">3</span>
+            <span style="font-size:13px;font-weight:800;color:#0F172A">Deterministik Hesap</span>
+          </div>
+          <p style="font-size:12px;color:#475569;line-height:1.6;margin:0">
+            33 finansal karar motoru çift taraflı muhasebe denetimini icra eder. Rapor ve grafik çıktıları hazırlanarak tarayıcınıza iletilir.
+          </p>
+        </div>
+
+        <div style="background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:14px;padding:20px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+            <span style="width:26px;height:26px;border-radius:50%;background:#16A34A;color:#FFF;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900">✓</span>
+            <span style="font-size:13px;font-weight:800;color:#166534">Anında Bellek İmhası</span>
+          </div>
+          <p style="font-size:12px;color:#15803D;line-height:1.6;margin:0">
+            Analiz tarayıcınıza ulaştığı milisaniyede geçici bellek alanı kalıcı olarak sıfırlanır. Sunucuda hiçbir finansal veri izi kalmaz.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 2. BÖLÜM: 4 TEMEL TEKNİK VE HUKUKİ TAAHHÜT -->
+<div class="secBlock tint reveal">
+  <section class="marketingSection hidePrint" style="padding-top:0">
+    <div class="marketingHead" style="margin-bottom:28px">
+      <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">GÜVENCE SÜTUNLARI</span>
+      <h2 style="font-size:26px">Hukuki ve Teknik Güvence Standartlarımız</h2>
+      <p>Pazarlama vaatleri değil; sözleşmeyle garanti altına alınan mühendislik kuralları.</p>
+    </div>
+
+    <div class="grid2" style="gap:20px">
+      <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #CBD5E1;border-radius:18px;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div style="width:38px;height:38px;border-radius:10px;background:#EFF6FF;border:1px solid #BFDBFE;display:flex;align-items:center;justify-content:center;color:#1D4ED8;font-size:18px">🛡️</div>
+          <div>
+            <h3 style="margin:0;font-size:16px;color:#0F172A;font-weight:800">1. Sıfır Kalıcı Disk (RAM-Only) Depolama</h3>
+            <span style="font-size:11px;color:#64748B">Stateless / Hafızasız Mimari</span>
+          </div>
+        </div>
         <p style="font-size:13px;color:#475569;line-height:1.65;margin:0">
-          Yüklediğiniz Excel (.xlsx, .xls) veya CSV mizan dosyaları sunucumuzun sabit diskine (HDD/SSD/Veritabanı) <b>ASLA KAYDEDİLMEZ</b>. Tüm matematiksel hesaplamalar anlık geçici bellekte (RAM) icra edilir; oturum sonlandığı anda bellek kendini tamamen imha eder.
+          Mizan dosyaları sunucunun kalıcı depolama birimlerine (HDD/SSD/Veritabanı) kaydedilmez. Tüm matematiksel hesaplamalar ve çift taraflı denetim geçici bellekte icra edilir. Analiz bitince bellek boşaltılır.
         </p>
       </div>
 
-      <div class="secShieldCard" style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:24px">
-        <div style="font-size:32px;margin-bottom:12px">🚫</div>
-        <h3 style="font-size:17px;font-weight:800;color:#0F172A;margin:0 0 8px">2. Model Eğitimi Yasağı &bull; Mutlak Mahremiyet</h3>
+      <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #CBD5E1;border-radius:18px;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div style="width:38px;height:38px;border-radius:10px;background:#FEF2F2;border:1px solid #FECACA;display:flex;align-items:center;justify-content:center;color:#DC2626;font-size:18px">🚫</div>
+          <div>
+            <h3 style="margin:0;font-size:16px;color:#0F172A;font-weight:800">2. Model Eğitimi ve Veri Madenciliği Yasağı</h3>
+            <span style="font-size:11px;color:#64748B">Tam Ticari İzolasyon</span>
+          </div>
+        </div>
         <p style="font-size:13px;color:#475569;line-height:1.65;margin:0">
-          Finansal kayıtlarınız, cirolarınız, kâr marjlarınız veya cari hesap unvanlarınız asla genel yapay zekâ modellerinin (LLM) eğitiminde kullanılmaz; hiçbir 3. kişi, reklam platformu veya kurumla paylaşılmaz.
+          Şirketinizin cirosu, kâr marjları, müşteri unvanları veya bilanço kalemleri genel yapay zeka modellerinin eğitiminde asla kullanılamaz; pazar araştırması için havuzlara aktarılamaz ve 3. şahıslara verilemez.
         </p>
       </div>
 
-      <div class="secShieldCard" style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:24px">
-        <div style="font-size:32px;margin-bottom:12px">🔒</div>
-        <h3 style="font-size:17px;font-weight:800;color:#0F172A;margin:0 0 8px">3. 256-Bit Bankacılık Standardı TLS Şifreleme</h3>
+      <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #CBD5E1;border-radius:18px;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div style="width:38px;height:38px;border-radius:10px;background:#F0FDF4;border:1px solid #BBF7D0;display:flex;align-items:center;justify-content:center;color:#166534;font-size:18px">🔒</div>
+          <div>
+            <h3 style="margin:0;font-size:16px;color:#0F172A;font-weight:800">3. 256-Bit Bankacılık Standardı TLS 1.3</h3>
+            <span style="font-size:11px;color:#64748B">Uçtan Uca Şifreli Tünel</span>
+          </div>
+        </div>
         <p style="font-size:13px;color:#475569;line-height:1.65;margin:0">
-          Tarayıcınız ile platformumuz arasındaki tüm veri trafiği uluslararası bankaların kullandığı en üst seviye 256-bit SSL/TLS tünelleriyle uçtan uca şifrelenir. Araya girilmesi (MITM) teknik olarak imkansızdır.
+          Tarayıcınız ile platform arasındaki tüm veri akışı uluslararası finans kuruluşlarının tercih ettiği 256-bit SSL/TLS tüneli üzerinden şifrelenir. Araya girilmesi (Man-in-the-Middle) teknik olarak imkansızdır.
         </p>
       </div>
 
-      <div class="secShieldCard" style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:24px">
-        <div style="font-size:32px;margin-bottom:12px">📜</div>
-        <h3 style="font-size:17px;font-weight:800;color:#0F172A;margin:0 0 8px">4. Otomatik Kurumsal Dijital NDA Güvencesi</h3>
+      <div class="card" style="padding:26px;background:#FFFFFF;border:1px solid #CBD5E1;border-radius:18px;box-shadow:0 6px 20px rgba(15,27,45,0.04)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div style="width:38px;height:38px;border-radius:10px;background:#EFF6FF;border:1px solid #BFDBFE;display:flex;align-items:center;justify-content:center;color:#1D4ED8;font-size:18px">📜</div>
+          <div>
+            <h3 style="margin:0;font-size:16px;color:#0F172A;font-weight:800">4. Karşılıklı Kurumsal Dijital NDA</h3>
+            <span style="font-size:11px;color:#64748B">6102 TTK ve 6698 KVKK Dayanağı</span>
+          </div>
+        </div>
         <p style="font-size:13px;color:#475569;line-height:1.65;margin:0">
-          Sistemimize kaydolduğunuz anda şirketiniz ile Digital Finance BP arasında yasal bağlayıcılığı olan <b>Kurumsal Gizlilik Sözleşmesi (Dijital NDA)</b> karşılıklı imzalanır ve sistem e-mührüyle arşivinize teslim edilir.
+          Kayıt olduğunuz anda şirketiniz adına bağlayıcı Dijital NDA düzenlenir. Şirket verileriniz "Ticari Sır" sayılır; olası ihlallerde peşinen cezai şart ve tazminat sorumluluğu taahhüt edilir.
         </p>
       </div>
     </div>
+  </section>
+</div>
 
-    <!-- Interactive NDA Preview Banner -->
-    <div style="margin-top:24px;background:linear-gradient(135deg,#EFF6FF 0%,#F8FAFC 100%);border:1.5px solid #BFDBFE;border-radius:16px;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+<!-- 3. BÖLÜM: ŞEFFAFLIK & UYUMLULUK MATRİSİ (NE YAPIYORUZ? / NE YAPMIYORUZ?) -->
+<div class="secBlock reveal">
+  <section class="marketingSection hidePrint" style="padding-top:0">
+    <div class="sectionHead" style="border-bottom:1.5px solid #E2E8F0;padding-bottom:14px;margin-bottom:20px">
       <div>
-        <div style="font-size:11px;font-weight:800;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase">HUKUKİ GÜVENCE BELGENİZ</div>
-        <div style="font-size:16px;font-weight:800;color:#0F172A;margin-top:2px">Kurumsal Gizlilik &amp; Veri Güvenliği Sözleşmesini (NDA) İnceleyin</div>
-        <div style="font-size:12.5px;color:#475569;margin-top:4px">Şirketiniz adına düzenlenmiş çift taraflı dijital sözleşmeyi hemen görüntüleyebilir ve PDF olarak indirebilirsiniz.</div>
+        <span style="font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#1D4ED8">ŞEFFAFLIK MATRİSİ</span>
+        <h2 style="font-size:22px;color:#0F172A;margin:3px 0 0">Veri Güvenliğinde Ne Yapıyoruz? Ne Yapmıyoruz?</h2>
       </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button type="button" class="primary" style="padding:10px 20px;border-radius:10px;font-size:13.5px;font-weight:800;cursor:pointer" onclick="openDigitalNdaModal()">
-          📜 Kurumsal Dijital NDA'yı Aç →
+      <p style="font-size:13px;color:#64748B">Finansal verilerinizin sınırlarını net çizgilerle belirledik.</p>
+    </div>
+
+    <div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:18px;overflow:hidden;box-shadow:0 6px 24px rgba(15,27,45,0.04)">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;text-align:left">
+        <thead>
+          <tr style="background:#F8FAFC;border-bottom:1.5px solid #CBD5E1">
+            <th style="padding:14px 18px;font-weight:800;color:#0F172A;width:30%">Güvenlik Parametresi</th>
+            <th style="padding:14px 18px;font-weight:800;color:#166534;background:#F0FDF4;width:35%">✓ Standart Uygulamamız</th>
+            <th style="padding:14px 18px;font-weight:800;color:#DC2626;background:#FEF2F2;width:35%">✕ Asla Yapılmayanlar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #E2E8F0">
+            <td style="padding:14px 18px;font-weight:700;color:#0F172A">Sunucu Depolaması</td>
+            <td style="padding:14px 18px;color:#166534;background:#F9FDFB">Anlık geçici bellek (RAM) üzerinde işlem</td>
+            <td style="padding:14px 18px;color:#DC2626;background:#FFFBFB">Sabit diske (HDD/SSD/SQL) mizan kaydetmek</td>
+          </tr>
+          <tr style="border-bottom:1px solid #E2E8F0">
+            <td style="padding:14px 18px;font-weight:700;color:#0F172A">Veri Saklama Süresi</td>
+            <td style="padding:14px 18px;color:#166534;background:#F9FDFB">0 Saniye (Analiz iletimi bitince tam imha)</td>
+            <td style="padding:14px 18px;color:#DC2626;background:#FFFBFB">Sunucuda dosya arşivi tutmak</td>
+          </tr>
+          <tr style="border-bottom:1px solid #E2E8F0">
+            <td style="padding:14px 18px;font-weight:700;color:#0F172A">Yapay Zeka &amp; LLM</td>
+            <td style="padding:14px 18px;color:#166534;background:#F9FDFB">Sıfır halüsinasyon, 33 deterministik kural motoru</td>
+            <td style="padding:14px 18px;color:#DC2626;background:#FFFBFB">Şirket verisini model eğitim havuzuna aktarmak</td>
+          </tr>
+          <tr style="border-bottom:1px solid #E2E8F0">
+            <td style="padding:14px 18px;font-weight:700;color:#0F172A">3. Taraf Paylaşımı</td>
+            <td style="padding:14px 18px;color:#166534;background:#F9FDFB">Uçtan uca şifreli oturum, mutlak mahremiyet</td>
+            <td style="padding:14px 18px;color:#DC2626;background:#FFFBFB">Veriyi reklam, pazar araştırması vb. ile paylaşmak</td>
+          </tr>
+          <tr>
+            <td style="padding:14px 18px;font-weight:700;color:#0F172A">Hukuki Taahhüt</td>
+            <td style="padding:14px 18px;color:#166534;background:#F9FDFB">Karşılıklı imzalı Kurumsal Dijital NDA belgesi</td>
+            <td style="padding:14px 18px;color:#DC2626;background:#FFFBFB">Sorumluluk reddeden tek taraflı feragatnameler</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<!-- 4. BÖLÜM: DİJİTAL NDA VE KVKK DOĞRUDAN AKSİYON KARTI -->
+<div class="secBlock reveal">
+  <section class="marketingSection hidePrint" style="padding-top:0">
+    <div style="background:linear-gradient(135deg,#EFF6FF 0%,#F8FAFC 100%);border:1.5px solid #BFDBFE;border-radius:20px;padding:28px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px">
+      <div>
+        <div style="font-size:11px;font-weight:900;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase">YASAL BAĞLAYICI BELGENİZ</div>
+        <h2 style="font-size:20px;color:#0F172A;margin:4px 0 6px;font-weight:800">Kurumsal Gizlilik &amp; Veri Güvenliği Sözleşmesi (Dijital NDA)</h2>
+        <p style="font-size:13px;color:#475569;margin:0;max-width:620px;line-height:1.6">
+          Şirketiniz adına düzenlenmiş çift taraflı dijital sözleşmeyi hemen açıp inceleyebilir, karşılıklı e-imzalayabilir ve A4 PDF olarak arşivinize indirebilirsiniz.
+        </p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <button type="button" class="primary" style="padding:12px 24px;border-radius:11px;font-size:14px;font-weight:800;cursor:pointer;background:#1D4ED8" onclick="openDigitalNdaModal()">
+          📜 Kurumsal Dijital NDA'yı Aç &amp; İncele →
         </button>
-        <button type="button" class="secondary" style="padding:10px 16px;border-radius:10px;font-size:13px;font-weight:700" onclick="showKvkkModal()">
+        <button type="button" class="secondary" style="padding:12px 18px;border-radius:11px;font-size:13.5px;font-weight:700" onclick="showKvkkModal()">
           KVKK Aydınlatma Metni
         </button>
       </div>
