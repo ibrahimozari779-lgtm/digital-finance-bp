@@ -55,7 +55,7 @@ def build_liquidity_stress_test(
 
     # Risk Düzeyi
     if net_cash_60d < 0:
-        stress_status = "KRİTİK NAKİT AÇIĞI (SOLVENCY ALARMI)"
+        stress_status = "KRİTİK NAKİT AÇIĞI (ÖDEME GÜCÜ ALARMI)"
         severity = "critical"
         deficit_summary = (
             f"İlk 3 müşterinizin ödemeyi 60 gün geciktirmesi halinde, şirket kasanızda "

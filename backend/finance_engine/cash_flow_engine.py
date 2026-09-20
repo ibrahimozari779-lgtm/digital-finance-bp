@@ -412,9 +412,9 @@ def build_cash_flow_engine(
         actions.append({
             "id": "ACT-AR-1",
             "task": f"İlk 5 Müşteriden Vadeli Çek Yerine DBS veya Erken Tahsilat İskontosu Talep Et (Mevcut DSO: {dso:.0f} gün)",
-            "owner": "CFO / Credit Control",
+            "owner": "Kredi & Tahsilat Yönetimi",
             "deadline": "0-15 gün",
-            "kpi": f"DSO ({dso:.0f} gün → {max(30, dso - 15):.0f} gün)",
+            "kpi": f"Tahsilat Süresi (DSO: {dso:.0f} gün → {max(30, dso - 15):.0f} gün)",
             "cash_impact_tl": ar_target,
             "whatsapp_template": (
                 f"Sayın Kredi Kontrol ve Satış Yöneticim, haftalık nakit projeksiyonumuza göre acil likidite sağlamamız gerekiyor. "
@@ -427,9 +427,9 @@ def build_cash_flow_engine(
         actions.append({
             "id": "ACT-AP-1",
             "task": f"Kritik Tedarikçilerle Görüşüp Ödeme Vadelerini Genişlet (Mevcut DPO: {dpo:.0f} gün, Vade Makası: {round(dso-dpo)} gün)",
-            "owner": "CFO / Treasury",
+            "owner": "Satınalma & Hazine Yönetimi",
             "deadline": "0-30 gün",
-            "kpi": f"DPO / CCC (DPO: {dpo:.0f} gün → {dpo + 15:.0f} gün)",
+            "kpi": f"Tedarikçi Ödeme Vadesi (DPO: {dpo:.0f} gün → {dpo + 15:.0f} gün)",
             "cash_impact_tl": ap_target,
             "whatsapp_template": (
                 f"Sayın Hazine ve Satınalma Yöneticim, tedarikçi ödeme vadelerimizi incelediğimizde müşteriye göre çok erken "
@@ -442,9 +442,9 @@ def build_cash_flow_engine(
         actions.append({
             "id": "ACT-INV-1",
             "task": f"Depodaki Hareketsiz Stoklar İçin Hızlı Tasfiye / İskonto Kampanyası Başlat (Mevcut DIO: {dio:.0f} gün)",
-            "owner": "CFO / Operations",
+            "owner": "Tedarik Zinciri & Depo",
             "deadline": "0-30 gün",
-            "kpi": f"DIO / Stale Inventory ({dio:.0f} gün → {max(30, dio - 18):.0f} gün)",
+            "kpi": f"Stok Bekleme Süresi (DIO: {dio:.0f} gün → {max(30, dio - 18):.0f} gün)",
             "cash_impact_tl": inv_target,
             "whatsapp_template": (
                 f"Operasyon ve Satış Ekibine: Depomuzda bekleyen stoklar her ay finansman faizi üretmektedir. "
