@@ -508,16 +508,17 @@ def build_executive_summary(
 
     if cash_bridge and cash_bridge.get("available") and cash_bridge.get("cash_realization_pct") is not None:
         crp = cash_bridge["cash_realization_pct"]
+        base_name = cash_bridge.get("profit_base_label") or "Faaliyet kârı"
         if crp <= 0:
             parts.append(
-                f"Net kâr nakde dönüşmüyor (dönüşüm: %{crp:.0f}); işletme sermayesi kilitlenmesi kârı yutarak operasyonel nakit açığı yaratıyor — defter kârı henüz kasaya girmiş değil."
+                f"{base_name} nakde dönüşmüyor (dönüşüm: %{crp:.0f}); işletme sermayesi kilitlenmesi kârı yutarak operasyonel nakit açığı yaratıyor — defter kârı henüz kasaya girmiş değil."
             )
         elif crp < 50:
             parts.append(
-                f"Net kârın yalnızca yaklaşık %{crp:.0f}'i işletme nakdine dönüşüyor; geri kalanı alacak/stok/borç kalemlerinde bağlı — defter kârı henüz kasaya girmiş değil."
+                f"{base_name} tutarının yalnızca yaklaşık %{crp:.0f}'i işletme nakdine dönüşüyor; geri kalanı alacak/stok/borç kalemlerinde bağlı — defter kârı henüz kasaya girmiş değil."
             )
         else:
-            parts.append(f"Net kârın yaklaşık %{crp:.0f}'i işletme nakdine dönüşüyor.")
+            parts.append(f"{base_name} tutarının yaklaşık %{crp:.0f}'i işletme nakdine dönüşüyor.")
 
     # ---- Decision-oriented close: this is the part a manager actually acts
     # on. Every sentence above is a fact; this paragraph turns those facts
@@ -569,7 +570,8 @@ def build_executive_summary(
     if benchmark.get("overall_score") is not None:
         key_points.append(f"Sektör kıyası ({benchmark['sector']}): {benchmark['overall_label']}")
     if cash_bridge and cash_bridge.get("available") and cash_bridge.get("cash_realization_pct") is not None:
-        key_points.append(f"Net kâr → nakit dönüşümü: %{cash_bridge['cash_realization_pct']:.0f}")
+        p_lbl = cash_bridge.get("profit_base_label") or "Net kâr"
+        key_points.append(f"{p_lbl} → nakit dönüşümü: %{cash_bridge['cash_realization_pct']:.0f}")
 
     summary_text = " ".join(parts)
 

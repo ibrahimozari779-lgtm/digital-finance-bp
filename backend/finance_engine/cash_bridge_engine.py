@@ -22,9 +22,12 @@ def build_cash_bridge(current: dict[str,Any], previous: dict[str,Any] | None = N
     non_operating_addback = op - net_profit  # finance costs + tax + non-operating items, net
     operating_cash_flow_proxy = op + wc_release
     profit_base = op if op > 0 else (net_profit if net_profit > 0 else 0)
+    profit_base_label = 'Faaliyet Kârı (EBIT)' if (profit_base == op and op > 0) else 'Net Kâr'
     if profit_base > 0:
         cash_realization_pct = round((operating_cash_flow_proxy / profit_base) * 100, 1)
     else:
         cash_realization_pct = round((operating_cash_flow_proxy / abs(net_profit)) * 100, 1) if net_profit != 0 else None
-    return {'available':True,'mode':'management_bridge','opening_cash':float(pk.get('cash') or 0),'closing_cash':float(ck.get('cash') or 0),'cash_change':cash_change,'operating_profit':op,'net_profit':net_profit,'working_capital_effect':wc_release,'working_capital_components':{'receivables_effect':-dr,'inventory_effect':-di,'payables_effect':dp},'debt_change':debt_change,'unexplained_cash_change':cash_change-operating_proxy-debt_change,'operating_cash_flow_proxy':operating_cash_flow_proxy,'non_operating_addback':non_operating_addback,'cash_realization_pct':cash_realization_pct,'note':'Bu köprü yönetimsel bir proxydir. Gerçek CFO cash flow için banka hareketleri, capex ve finansman işlemleri gerekir.'}
+    op_cash_realization = round((operating_cash_flow_proxy / op) * 100, 1) if op != 0 else None
+    net_cash_realization = round((operating_cash_flow_proxy / abs(net_profit)) * 100, 1) if net_profit != 0 else None
+    return {'available':True,'mode':'management_bridge','opening_cash':float(pk.get('cash') or 0),'closing_cash':float(ck.get('cash') or 0),'cash_change':cash_change,'operating_profit':op,'net_profit':net_profit,'working_capital_effect':wc_release,'working_capital_components':{'receivables_effect':-dr,'inventory_effect':-di,'payables_effect':dp},'debt_change':debt_change,'unexplained_cash_change':cash_change-operating_proxy-debt_change,'operating_cash_flow_proxy':operating_cash_flow_proxy,'non_operating_addback':non_operating_addback,'cash_realization_pct':cash_realization_pct,'operating_profit_cash_realization_pct':op_cash_realization,'net_profit_cash_realization_pct':net_cash_realization,'profit_base_label':profit_base_label,'note':'Bu köprü yönetimsel bir proxydir. Gerçek CFO cash flow için banka hareketleri, capex ve finansman işlemleri gerekir.'}
 

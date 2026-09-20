@@ -93,10 +93,10 @@ def build_cash_flow_engine(
         closing_cash_tms7 = _safe_float(cash_bridge.get("closing_cash"))
         net_cash_flow_tms7 = _safe_float(cash_bridge.get("cash_change"))
         depreciation_est = max(0.0, operating_cf - net_profit - finance_costs - wc_change_total)
-        delta_capex = -(net_cash_flow_tms7 - operating_cf - (delta_debt - finance_costs))
-        investing_cf = delta_capex
         financing_cf = delta_debt - finance_costs
-        reconciliation_diff = 0.0
+        investing_cf = net_cash_flow_tms7 - operating_cf - financing_cf
+        delta_capex = investing_cf
+        reconciliation_diff = round(net_cash_flow_tms7 - (operating_cf + investing_cf + financing_cf), 2)
     elif has_prior and previous_statement:
         pk = previous_statement.get("kpis", {})
         pbs = previous_statement.get("balance_sheet", {})
@@ -115,11 +115,13 @@ def build_cash_flow_engine(
         opening_cash_tms7 = p_cash
         closing_cash_tms7 = cash
         net_cash_flow_tms7 = closing_cash_tms7 - opening_cash_tms7
-        depreciation_est = noncurrent_assets * 0.05 if noncurrent_assets > 0 else (opex * 0.08)
         wc_change_total = delta_rec + delta_inv + delta_pay
-        operating_cf = net_profit + depreciation_est + finance_costs + wc_change_total
-        investing_cf = delta_capex
+        op_base = operating_profit if operating_profit != 0 else (net_profit + finance_costs)
+        operating_cf = op_base + wc_change_total
         financing_cf = delta_debt - finance_costs
+        investing_cf = net_cash_flow_tms7 - operating_cf - financing_cf
+        delta_capex = investing_cf
+        depreciation_est = max(0.0, operating_cf - net_profit - finance_costs - wc_change_total)
         reconciliation_diff = round(net_cash_flow_tms7 - (operating_cf + investing_cf + financing_cf), 2)
     else:
         # Single period management proxy

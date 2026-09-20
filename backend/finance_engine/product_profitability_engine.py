@@ -46,11 +46,11 @@ def build_product_profitability_analysis(
         tied_inv = inv_by_sku.get(lookup, 0.0)
 
         # Strategic product classification
-        if sales_share >= 15 and margin_pct >= company_margin_pct:
+        if sales_share >= 15 and margin_pct >= (company_margin_pct - 1.0):
             category = "Lokomotif Kârlı"
-        elif sales_share >= 15 and margin_pct < company_margin_pct:
-            category = "Hacimli ama Marjı Düşük (Kârı Aşağı Çeken)"
-        elif sales_share < 15 and margin_pct >= company_margin_pct:
+        elif sales_share >= 15 and margin_pct < (company_margin_pct - 1.0):
+            category = "Hacimli / Marj Baskılı"
+        elif sales_share < 15 and margin_pct >= (company_margin_pct - 1.0):
             category = "Niş Yüksek Kârlı"
         else:
             category = "Düşük Katkı"
@@ -70,8 +70,8 @@ def build_product_profitability_analysis(
     processed.sort(key=lambda x: x['sales'], reverse=True)
 
     findings = []
-    # Identify products with high sales but low margin
-    drag_products = [p for p in processed if p['sales_share_pct'] >= 15 and p['gross_margin_pct'] < company_margin_pct]
+    # Identify products with high sales but genuinely low margin (at least 2pp below company average)
+    drag_products = [p for p in processed if p['sales_share_pct'] >= 15 and p['gross_margin_pct'] < (company_margin_pct - 2.0)]
     if drag_products:
         dp = drag_products[0]
         findings.append({

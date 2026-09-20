@@ -90,7 +90,7 @@ def build_customer_profitability_analysis(
 
         # Quadrant allocation
         is_high_sales = (s >= sales_threshold)
-        is_high_margin = (margin_pct >= company_margin_pct)
+        is_high_margin = (margin_pct >= (company_margin_pct - 0.5))
 
         if is_high_sales and is_high_margin:
             item['quadrant'] = 'Q1_STARS'
@@ -98,7 +98,7 @@ def build_customer_profitability_analysis(
             q1.append(item)
         elif is_high_sales and not is_high_margin:
             item['quadrant'] = 'Q2_VOLUME_RISK'
-            item['quadrant_label'] = 'Hacimli / Düşük Marj (Fiyat/Maliyet Baskısı)'
+            item['quadrant_label'] = 'Hacimli / Marj Hassasiyeti (Fiyat/Maliyet Takibi)'
             q2.append(item)
         elif not is_high_sales and is_high_margin:
             item['quadrant'] = 'Q3_PROFITABLE_NICHE'

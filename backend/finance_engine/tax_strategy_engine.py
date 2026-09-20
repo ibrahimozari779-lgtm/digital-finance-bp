@@ -42,6 +42,7 @@ def build_tax_strategy_analysis(
     top_overdue_parties = ar_data.get('top_overdue_parties') or []
 
     strategies = []
+    tax_expense = float(pl.get('Tax expense') or 0.0)
     total_estimated_tax_saving = 0.0
 
     # 1. Finansman Gider Kısıtlaması (KVK 11/1-i)
@@ -105,25 +106,26 @@ def build_tax_strategy_analysis(
 
         strategies.append({
             'code': 'TAX-002',
-            'title': 'Gecikmiş Müşteri Alacaklarında Şüpheli Alacak Karşılığı Vergi Kalkanı',
-            'category': 'Alacak Yönetimi',
+            'title': 'Gecikmiş Müşteri Alacaklarında Şüpheli Alacak Karşılığı Matrah Kalkanı (VUK 323)',
+            'category': 'Alacak Yönetimi (Hukuki İnceleme Şartı)',
             'severity': 'high' if overdue_ar > 0 else 'medium',
             'legal_basis': 'VUK Md. 323',
             'current_state': (
-                f'Şirketin {target_overdue:,.0f} TL vadesi geçmiş tahsil edilemeyen alacağı bulunmaktadır.{party_detail_str}'
+                f'Şirketin {target_overdue:,.0f} TL vadesi geçmiş tahsil edilemeyen alacağı bulunmaktadır.{party_detail_str} '
+                f'(Not: Karşılık ayrılabilmesi için dava/icra veya protesto şartı aranır).'
             ),
             'delinquent_debtors': delinquent_list[:5],
             'calculation_steps': [
                 {'label': '1. Vadesi Geçmiş Toplam Ticari Alacak Tutarı', 'value': f'{target_overdue:,.0f} TL'},
-                {'label': '2. VUK 323 Kapsamında Açılabilecek Karşılık Oranı', 'value': '%100'},
+                {'label': '2. VUK 323 Kapsamında Şartları Sağlayan Alacaklar İçin Azami Oran', 'value': '%100'},
                 {'label': '3. Karşılık Hesabı (128 Şüpheli Alacaklar / 654 Karşılık Gideri)', 'value': f'{target_overdue:,.0f} TL'},
-                {'label': '4. Net Kurumlar Vergisi Kalkanı ve Nakit Tasarrufu (%25)', 'value': f'{bad_debt_saving:,.0f} TL'},
+                {'label': '4. Kurumlar Vergisi Matrah Kalkanı Potansiyeli (%25)', 'value': f'{bad_debt_saving:,.0f} TL'},
             ],
             'potential_saving': round(bad_debt_saving, 2),
             'action': (
-                f'Vadesi 60 günü aşan tahsil edilemeyen alacaklar için noter ihtarnamesi tanzim edilerek veya icra takibi '
-                f'başlatılarak 128 Şüpheli Ticari Alacaklar hesabına aktarılmalı ve 654 Karşılık Gideri yazılarak '
-                f'cari dönem kurumlar vergisi matrahından doğrudan {target_overdue:,.0f} TL düşülmelidir.'
+                f'Vadesi 60 günü aşan ve teminatsız alacaklar için noter ihtarnamesi veya icra takibi '
+                f'başlatılarak 128 Şüpheli Ticari Alacaklar hesabına aktarılmalı; SMMM/YMM teyidiyle '
+                f'654 Karşılık Gideri yazılarak vergi matrahından {target_overdue:,.0f} TL indirim sağlanmalıdır.'
             ),
             'legal_note': (
                 '⚠️ Hukuki & Mali Şerh: VUK 323 gereğince karşılık ayrılabilmesi için alacağın teminatsız olması, '
@@ -253,12 +255,19 @@ def build_tax_strategy_analysis(
 
     return {
         'status': 'PASS',
+        'title': 'Vergi & Teşvik Matrah Kalkanı Analizi (SMMM / YMM Değerlendirmesine Tabi)',
         'corporate_tax_rate_pct': round(corporate_tax_rate * 100, 1),
+        'current_tax_expense': round(tax_expense, 2),
         'total_estimated_tax_saving': round(total_estimated_tax_saving, 2),
         'strategy_count': len(strategies),
         'strategies': strategies,
+        'disclaimer': (
+            'Bu çalışma vergi mevzuatı çerçevesinde potansiyel fırsat havuzunu modelleyen teknik bir simülasyondur. '
+            'Fiili uygulama, şirketin cari dönem vergi matrahı, devreden zararları ve SMMM/YMM denetimi ile kesinleşir.'
+        ),
         'summary_note': (
-            f'Şirketin finansal tablolarına göre tespit edilen {len(strategies)} somut yasal vergi yönetim hamlesiyle '
-            f'yıllık tahmini {total_estimated_tax_saving:,.0f} TL yasal vergi kalkanı ve nakit tasarrufu sağlanabilir.'
+            f'Şirketin finansal tablolarına göre tespit edilen {len(strategies)} yasal vergi yönetimi hamlesiyle '
+            f'yıllık tahmini {total_estimated_tax_saving:,.0f} TL potansiyel matrah kalkanı ve erteleme imkanı mevcuttur '
+            f'(Cari dönem tahakkuk eden vergi gideri: {tax_expense:,.0f} TL — SMMM/YMM mütalaasına tabidir).'
         ),
     }

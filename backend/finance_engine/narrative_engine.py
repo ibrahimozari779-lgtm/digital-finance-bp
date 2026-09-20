@@ -151,8 +151,12 @@ def _build_context(
     if dso_old is not None and dso_new is not None and net_sales:
         dso_cash_impact = round((dso_new - dso_old) * (net_sales / period_days), 0)
 
-    dio_cash_impact = ccc.get("estimated_cash_tied_up") if ccc.get("available") else None
     inventory_balance = _safe(k.get("inventory"))
+    dio_cash_impact = None
+    if dio_old is not None and dio_new is not None and cogs:
+        dio_cash_impact = round((dio_new - dio_old) * (cogs / period_days), 0)
+    elif inventory_balance:
+        dio_cash_impact = inventory_balance
 
     cash_balance = _safe(k.get("cash"))
     monthly_burn = None
@@ -310,9 +314,9 @@ def _t_inventory_bloat() -> Trigger:
     def build(ctx: dict[str, Any]) -> dict[str, Any]:
         d = ctx["dio_new"] - ctx["dio_old"]
         maliyet = (
-            f"Yaklaşık {ctx['dio_cash_impact']:,.0f} TL stokta bağlı sermaye bulunmaktadır."
-            if ctx["dio_cash_impact"] is not None else
-            f"Dönem sonu stok bakiyesi {ctx['inventory_balance']:,.0f} TL; tam nakit döngüsü etkisi COGS verisiyle birlikte hesaplanabilir."
+            f"Stok devir süresindeki {d:.0f} günlük artış yaklaşık {ctx['dio_cash_impact']:,.0f} TL ilave nakit bağlamaktadır (toplam stok: {ctx['inventory_balance']:,.0f} TL)."
+            if ctx["dio_cash_impact"] is not None and ctx["inventory_balance"] is not None else
+            f"Dönem sonu stok bakiyesi {ctx['inventory_balance']:,.0f} TL; tam nakit döngüsü etkisi SMM verisiyle birlikte hesaplanabilir."
             if ctx["inventory_balance"] is not None else
             "Stokta bağlı sermaye tutarı hesaplanamadı."
         )
@@ -445,10 +449,11 @@ def _t_earnings_quality() -> Trigger:
 
     def build(ctx: dict[str, Any]) -> dict[str, Any]:
         crp = ctx["cash_realization_pct"]
+        base_label = ctx.get("profit_base_label") or "Faaliyet kârının"
         return {
-            "ne_oldu": f"Net kârın yalnızca yaklaşık %{crp:.0f}'i işletme nakdine dönüşüyor.",
+            "ne_oldu": f"{base_label} nakde dönüşümü yaklaşık %{crp:.0f} seviyesindedir (işletme sermayesi kilitlenmesi nakit açığı yaratıyor).",
             "neden": "Fark, alacak/stok artışı ve/veya borç ödemesinin nakti tükettiği çalışma sermayesi "
-                     "kalemlerinde bağlanıyor (cash_bridge_engine kırılımına bakınız); defter kârı gerçek "
+                     "kalemlerinde bağlanıyor (Nakit Akış Köprüsü detaylarına bakınız); defter kârı gerçek "
                      "ama henüz kasaya girmemiş durumda.",
             "maliyet": "Kâr rakamı yönetim raporlamasında güçlü görünse de, kısa vadeli nakit ihtiyacını "
                        "tek başına karşılamıyor — ek finansman veya çalışma sermayesi iyileştirmesi gerekebilir.",

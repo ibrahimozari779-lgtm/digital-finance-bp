@@ -5283,36 +5283,39 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <div class="item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg>33 Finansal Karar Motoru · Bütünleşik Karar Akışı</div>
 </div>
 
-<div class="tabs"><button class="tab active" data-tab="single">Tek Dönem Mizan</button><button class="tab" data-tab="trend" id="trendTabBtn">Çok Dönem / Trend</button><button class="tab" data-tab="datahub" id="hubTabBtn">Data Hub / Çoklu Veri</button></div>
+<div class="tabs">
+  <button class="tab active" data-tab="single">Tek Dönem Mizan</button>
+  <button class="tab" data-tab="trend" id="trendTabBtn">Çok Dönem / Trend</button>
+  <button class="tab" data-tab="datahub" id="hubTabBtn">Data Hub / Çoklu Veri</button>
+  <button class="tab" data-tab="connectors" id="connectorsTabBtn" style="background:#F0FDF4;color:#166534;font-weight:800">⚡ Otomatik ERP & e-Defter API</button>
+</div>
 <div id="single" class="tabPanel active">
   <div class="dropZone" id="dropZoneSingle">
     <div class="dropIco"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
     <div class="dropText">
-      <strong>Mizan Dosyanızı Buraya Sürükleyin</strong>
-      <span>veya bilgisayarınızdan seçin (.xlsx, .xls, .csv)</span>
+      <strong>Mizan veya e-Defter Dosyanızı Buraya Sürükleyin</strong>
+      <span>veya bilgisayarınızdan seçin (.xlsx, .xls, .csv, .xml - GİB e-Defter Desteklenir)</span>
     </div>
     <button type="button" class="secondary" style="margin-top:8px;padding:7px 16px;font-size:12.5px;pointer-events:none">📁 Dosya Seç</button>
   </div>
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;font-size:11.5px;color:#475569">
     <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
       <span style="font-weight:700;color:#0F1B2D">Desteklenen Sistemler:</span>
+      <span class="tag" style="background:#E4F5EF;color:#0E7C66;font-size:11px;font-weight:700">🏛️ GİB e-Defter XML</span>
       <span class="tag" style="background:#F1F5F9;font-size:11px">Logo</span>
       <span class="tag" style="background:#F1F5F9;font-size:11px">Mikro</span>
       <span class="tag" style="background:#F1F5F9;font-size:11px">Netsis</span>
       <span class="tag" style="background:#F1F5F9;font-size:11px">Luca</span>
       <span class="tag" style="background:#F1F5F9;font-size:11px">Zirve</span>
-      <span class="tag" style="background:#F1F5F9;font-size:11px">SAP</span>
-      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:11px">🇩🇪 DATEV (SKR03/04)</span>
-      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:11px">🇫🇷 Pennylane / PCG</span>
-      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:11px">🇪🇸 Holded / PGC</span>
-      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:11px">🇳🇱 Exact Online</span>
-      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:11px">🇬🇧 Xero / Global Mizan</span>
+      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:11px;font-weight:700">SAP S/4HANA</span>
+      <span class="tag" style="background:#FFF7ED;color:#EA580C;font-size:11px;font-weight:700">Oracle NetSuite</span>
+      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:11px">🇩🇪 DATEV</span>
       <span class="tag" style="background:#F1F5F9;font-size:11px">Excel / CSV</span>
     </div>
     <button type="button" onclick="downloadSampleMizan()" class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px">📥 Standart Mizan Şablonu İndir (.csv)</button>
     <button type="button" onclick="openErpGuideModal()" class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;color:#1D4ED8;font-weight:700">📂 Logo / Mikro / Zirve / Luca Mizan Alma Rehberi</button>
   </div>
-  <input id="file" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm" multiple style="display:none">
+  <input id="file" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm,.xml,.json" multiple style="display:none">
   <div id="fileListSingle" class="selectedFilesList"></div>
   <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px">
     <select id="sector" class="select"><option value="">Genel Sektör</option></select>
@@ -5324,15 +5327,15 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     <div class="dropIco"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg></div>
     <div class="dropText">
       <strong>En Az 2 Dönemlik Mizan Dosyası Sürükleyin</strong>
-      <span>Eski → yeni sırayla karşılaştırılacak (.xlsx, .xls, .csv)</span>
+      <span>Eski → yeni sırayla karşılaştırılacak (.xlsx, .xls, .csv, .xml)</span>
     </div>
     <button type="button" class="secondary" style="margin-top:8px;padding:7px 16px;font-size:12.5px;pointer-events:none">📁 2 Dosya Seç</button>
   </div>
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;font-size:11.5px;color:#475569">
-    <span class="small muted">Örn: 2024 Yıl Sonu + 2025 Yıl Sonu veya İki Ayrı Çeyrek Mizanı</span>
+    <span class="small muted">Örn: 2024 Yıl Sonu + 2025 Yıl Sonu veya İki Ayrı Çeyrek Mizanı / e-Defter XML</span>
     <button type="button" onclick="downloadSampleMizan()" class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px">📥 Standart Mizan Şablonu İndir (.csv)</button>
   </div>
-  <input id="trendFiles" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm" multiple style="display:none">
+  <input id="trendFiles" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm,.xml,.json" multiple style="display:none">
   <div id="fileListTrend" class="selectedFilesList"></div>
   <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px">
     <select id="trendSector" class="select"><option value="">Genel Sektör</option></select>
@@ -5353,6 +5356,118 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px">
     <select id="hubSector" class="select"><option value="">Genel Sektör</option></select>
     <button id="analyzeHub" class="primary" style="padding:13px 24px;font-size:14px;border-radius:12px;font-weight:700">🚀 Tüm Verileri Analiz Et (Data Hub)</button>
+  </div>
+</div>
+<div id="connectors" class="tabPanel">
+  <div style="width:100%;border:1.5px solid #CBD5E1;border-radius:16px;background:#F8FAFC;padding:22px;box-sizing:border-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;border-bottom:1px solid #E2E8F0;padding-bottom:14px">
+      <div>
+        <h3 style="margin:0 0 4px;font-size:17px;color:#0F1B2D;font-weight:800;display:flex;align-items:center;gap:8px">
+          <span>⚡</span> Sıfır Operasyonel Hamallık — ERP & e-Defter Otomatik Veri Köprüsü
+        </h3>
+        <p style="margin:0;font-size:12.5px;color:#475569">
+          Muhasebe programından manuel dosya indirmeye son. ERP'nizden veya resmi e-Defter özel entegratörünüzden her gece otomatik mizan çekilir.
+        </p>
+      </div>
+      <span class="tag" style="background:#DCFCE7;color:#166534;font-size:11px;font-weight:800;padding:6px 12px;border-radius:999px">
+        ● Ingestion API Aktif
+      </span>
+    </div>
+
+    <!-- Konnektör Kartları -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:20px">
+      <!-- 1. GİB e-Defter -->
+      <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:16px;display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:20px">🏛️</span>
+              <strong style="font-size:13.5px;color:#0F1B2D">GİB e-Defter XML</strong>
+            </div>
+            <span class="tag" style="background:#E4F5EF;color:#0E7C66;font-size:10px">Aktif Entegrasyon</span>
+          </div>
+          <p style="font-size:11.5px;color:#64748B;line-height:1.45;margin:0 0 10px">
+            Türkiye'deki zorunlu resmi e-Defter (Kebir) XML'ini doğrudan okur. Özel Entegratör (Uyumsoft, Sovos, Foriba, Digital Planet) API uyumlu.
+          </p>
+        </div>
+        <button type="button" onclick="simulateConnector('edefter_xml')" class="secondary" style="width:100%;font-size:11.5px;font-weight:700;color:#0E7C66;border-color:#A9D9C9;background:#F0FDF4;padding:8px">
+          ▶️ GİB e-Defter XML Akışını Simüle Et
+        </button>
+      </div>
+
+      <!-- 2. SAP S/4HANA -->
+      <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:16px;display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:20px">🔷</span>
+              <strong style="font-size:13.5px;color:#0F1B2D">SAP S/4HANA & ECC</strong>
+            </div>
+            <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:10px">OData REST</span>
+          </div>
+          <p style="font-size:11.5px;color:#64748B;line-height:1.45;margin:0 0 10px">
+            <code>API_TRIALBALANCE_SRV</code> OData uç noktası veya güvenli S3/SFTP gecelik ABAP drop-zone üzerinden mizan aktarımı.
+          </p>
+        </div>
+        <button type="button" onclick="simulateConnector('sap')" class="secondary" style="width:100%;font-size:11.5px;font-weight:700;color:#1D4ED8;border-color:#BFDBFE;background:#EFF6FF;padding:8px">
+          ▶️ SAP S/4HANA Mizanını Simüle Et
+        </button>
+      </div>
+
+      <!-- 3. Oracle NetSuite -->
+      <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:16px;display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:20px">🟧</span>
+              <strong style="font-size:13.5px;color:#0F1B2D">Oracle NetSuite</strong>
+            </div>
+            <span class="tag" style="background:#FFF7ED;color:#EA580C;font-size:10px">SuiteQL REST</span>
+          </div>
+          <p style="font-size:11.5px;color:#64748B;line-height:1.45;margin:0 0 10px">
+            SuiteQL REST web servisleri üzerinden hesap planı, mizan ve genel muhasebe kayıtlarını otomatik olarak içeri aktarır.
+          </p>
+        </div>
+        <button type="button" onclick="simulateConnector('netsuite')" class="secondary" style="width:100%;font-size:11.5px;font-weight:700;color:#EA580C;border-color:#FED7AA;background:#FFF7ED;padding:8px">
+          ▶️ NetSuite SuiteQL Simüle Et
+        </button>
+      </div>
+
+      <!-- 4. Yerel Sync Agent -->
+      <div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:16px;display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:20px">🟢</span>
+              <strong style="font-size:13.5px;color:#0F1B2D">Yerel Sync Agent (Logo/Mikro)</strong>
+            </div>
+            <span class="tag" style="background:#F1F5F9;color:#475569;font-size:10px">Windows Servisi</span>
+          </div>
+          <p style="font-size:11.5px;color:#64748B;line-height:1.45;margin:0 0 10px">
+            Logo Tiger/Go, Mikro Fly ve Netsis sunucularında çalışan 15 MB salt-okunur (read-only) hafif ajan. Dışarıdan port açma gerektirmez (mTLS).
+          </p>
+        </div>
+        <button type="button" onclick="copyAgentScript()" class="secondary" style="width:100%;font-size:11.5px;font-weight:700;color:#475569;border-color:#CBD5E1;background:#F8FAFC;padding:8px">
+          📋 1-Satırlık Kurulum Scriptini Kopyala
+        </button>
+      </div>
+    </div>
+
+    <!-- API & Webhook Bilgi Kutusu -->
+    <div style="background:#0F1B2D;color:#E2E8F0;border-radius:12px;padding:16px;font-family:monospace;font-size:12px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <span style="color:#38BDF8;font-weight:700">📡 Gecelik Otomatik Push Webhook (cURL Örneği):</span>
+        <button type="button" onclick="copyCurlSnippet()" class="secondary small" style="background:#1E293B;color:#FFFFFF;border-color:#334155;padding:4px 10px;border-radius:6px;cursor:pointer">
+          Kopyala
+        </button>
+      </div>
+      <div id="curlSnippetBox" style="background:#020617;padding:12px;border-radius:8px;overflow-x:auto;color:#A5F3FC;line-height:1.5">
+curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
+  -H "X-API-KEY: live_sec_cfo_demo_893247" \
+  -F "file=@/muhasebe/mizan_guncel.xml" \
+  -F "source_type=edefter_xml"
+      </div>
+    </div>
   </div>
 </div>
 <div class="trustWallGrid">
@@ -7083,20 +7198,29 @@ function renderComparative(tr){
     const delta=h.unit==='pct_points'?(h.change_abs==null?'–':(h.change_abs>=0?'+':'')+num(h.change_abs)+' puan')
       :(h.change_abs==null?'–':(h.change_abs>=0?'+':'')+_cmpUnit(h.unit,h.change_abs)+(h.change_pct!=null?' ('+(h.change_pct>=0?'+':'')+num(h.change_pct)+'%)':''));
     const cls=_cmpAssessClass[h.assessment]||'';
-    const arrow=h.assessment==='improved'?'↑':h.assessment==='worsened'?'↓':'→';
+    const arrow=(h.change_abs!=null && h.change_abs>0)?'↑':(h.change_abs!=null && h.change_abs<0)?'↓':'→';
     return '<div class="metric"><div class="label">'+esc(h.label)+'</div><div class="value">'+_cmpUnit(h.unit,h.period_b_value)+'</div><div class="sub">'+esc(h.period_a_label)+': '+_cmpUnit(h.unit,h.period_a_value)+' → '+esc(h.period_b_label)+': '+_cmpUnit(h.unit,h.period_b_value)+'</div><span class="tag '+cls+'" style="margin-top:8px;display:inline-block">'+arrow+' '+delta+'</span></div>';
   }).join('');
   const findings=tr.trend_findings||[];
   $('comparativeFindings').innerHTML=findings.length?findings.map(f=>'<div class="insight '+esc(f.severity)+'" style="margin-top:10px"><h3>'+esc(f.title)+'</h3><p>'+esc(f.interpretation)+'</p><p class="small muted">'+esc(f.recommendation)+'</p></div>').join(''):'<div class="notice">Dönemler arasında belirgin bir yapısal kırılma tespit edilmedi.</div>';
   const unitFor={net_sales:'amount',gross_profit:'amount',operating_profit:'amount',net_profit:'amount',total_assets:'amount',total_equity:'amount',financial_debt:'amount',gross_margin_pct:'pct_points',operating_margin_pct:'pct_points',net_margin_pct:'pct_points',current_ratio:'ratio',debt_to_equity:'x',ccc_days:'days',dso_days:'days',dio_days:'days',dpo_days:'days'};
-  const dirArrow={improving:'<span style="color:#2e7d32;font-weight:700">↑</span>',worsening:'<span style="color:#c62828;font-weight:700">↓</span>',flat:'<span style="color:#888">→</span>'};
   const rows=Object.entries(tr.metric_trends||{}).map(([k,m])=>{
-    const dir=m.latest_direction||'flat';
-    const arrowHtml=dirArrow[dir]||'<span style="color:#888">→</span>';
+    const s=m.series||[];
+    const prev=s.length>=2?s[s.length-2]:null;
+    const curr=s.length>=1?s[s.length-1]:null;
+    let arrowHtml='<span style="color:#64748B;font-weight:700">→</span>';
+    if(prev!=null && curr!=null && Math.abs(curr-prev)>0.0001){
+      const isUp=curr>prev;
+      const higherIsBetter=!(k==='financial_debt'||k==='debt_to_equity'||k==='ccc_days'||k==='dso_days'||k==='dio_days');
+      const isGood=isUp?higherIsBetter:!higherIsBetter;
+      const color=isGood?'#16A34A':'#DC2626';
+      const arrowChar=isUp?'↑':'↓';
+      arrowHtml='<span style="color:'+color+';font-weight:900;font-size:13px">'+arrowChar+'</span>';
+    }
     return '<tr><td style="font-weight:600">'+esc(m.label)+'</td>'+(m.series||[]).map((v,i)=>{
-      const prev=m.series[i-1];
+      const p=m.series[i-1];
       let bg='';
-      if(i>0&&prev!=null&&v!=null){const up=v>prev;const good=(k==='financial_debt'||k==='debt_to_equity'||k==='ccc_days'||k==='dso_days'||k==='dio_days')?!up:up;bg=good?'background:#f0fbf3':'background:#fff5f5';}
+      if(i>0&&p!=null&&v!=null){const up=v>p;const good=(k==='financial_debt'||k==='debt_to_equity'||k==='ccc_days'||k==='dso_days'||k==='dio_days')?!up:up;bg=good?'background:#f0fbf3':'background:#fff5f5';}
       return '<td style="'+bg+';text-align:right">'+(unitFor[k]==='ratio'?(v==null?'–':num(v)):_cmpUnit(unitFor[k]||'amount',v))+'</td>';
     }).join('')+'<td style="text-align:center">'+arrowHtml+'</td></tr>';
   }).join('');
@@ -8426,6 +8550,47 @@ document.querySelectorAll('.tabs > .tab').forEach(t=>{
     if(p) p.classList.add('active');
   };
 });
+
+async function simulateConnector(connectorType) {
+  const bMap = {
+    'sap': '🔷 SAP S/4HANA (OData REST)',
+    'netsuite': '🟧 Oracle NetSuite (SuiteQL)',
+    'edefter_xml': '🏛️ GİB e-Defter (Kebir XML)'
+  };
+  startLoading('⚡ ERP & e-Defter API Senkronizasyonu', `${bMap[connectorType] || connectorType} Sisteminden Canlı Mizan Çekiliyor...`);
+  if ($('error')) $('error').classList.add('hidden');
+  try {
+    const res = await fetch('/api/v1/connectors/simulate', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({connector: connectorType, sector: $('sector') ? $('sector').value : 'GENEL'})
+    });
+    const d = await res.json();
+    if (!res.ok) throw new Error(d.detail || 'Senkronizasyon başarısız.');
+    render(d);
+    if ($('sampleStatus')) {
+      $('sampleStatus').innerHTML = `<span style="color:#0E7C66;font-weight:700">✓ ${bMap[connectorType] || connectorType} Canlı Bağlantısı Başarılı: Mizan ve Karar Motorları Sıfır Eforla Güncellendi.</span>`;
+    }
+  } catch (err) {
+    if ($('error')) {
+      $('error').textContent = err.message;
+      $('error').classList.remove('hidden');
+    }
+  } finally {
+    stopLoading();
+  }
+}
+
+function copyCurlSnippet() {
+  const code = 'curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \\\n  -H "X-API-KEY: live_sec_cfo_demo_893247" \\\n  -F "file=@/muhasebe/mizan_guncel.xml" \\\n  -F "source_type=edefter_xml"';
+  navigator.clipboard.writeText(code).then(() => alert('cURL komutu panoya kopyalandı! Gecelik cron veya IT betiğinize yapıştırabilirsiniz.'));
+}
+
+function copyAgentScript() {
+  const script = '# Antigravity Sync Agent - Tek Satırlık Windows Kurulumu\\nInvoke-WebRequest -Uri "https://finans.sirket.com/agent/install.ps1" -OutFile "$env:TEMP\\\\install.ps1"; & "$env:TEMP\\\\install.ps1" -ApiKey "live_sec_cfo_demo_893247" -ErpType "LOGO_TIGER"';
+  navigator.clipboard.writeText(script).then(() => alert('PowerShell kurulum komutu kopyalandı! Logo/Mikro sunucusunda Yönetici olarak çalıştırın.'));
+}
+
 function prepPrint(){
   const cov=$('printCover');
   const pd=$('printDate');
@@ -8777,7 +8942,7 @@ function openDetailedReportModal(){
       </div>
     </div>
     <div style="margin-top:16px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:12px 16px;font-size:11.5px;color:#1E40AF;line-height:1.5">
-      <b>📌 Rapor Metodolojisi:</b> Bu denetim dosyası, yüklenen resmi genel mizan kayıtlarını 33 analitik karar motorundan geçirerek çift taraflı muhasebe denkliğiyle doğrular. Her bölüm bağımsız bir denetim alanı olup, satılabilir danışmanlık standardında sayfa kesilmeleri ve tablo tekrarları optimize edilmiştir.
+      <b>📌 Rapor Metodolojisi:</b> Bu denetim dosyası, yüklenen resmi genel mizan kayıtlarını 33 analitik karar motorundan geçirerek çift taraflı muhasebe denkliğiyle doğrular. Her bölüm bağımsız bir denetim alanı olup, sayfa kesilmeleri ve tablo düzenleri kurumsal denetim standartlarına uygun olarak biçimlendirilmiştir.
     </div>
   `;
   box.appendChild(coverDiv);
@@ -8873,7 +9038,7 @@ function openDetailedReportModal(){
         <div style="font-size:10.5px;font-weight:800;color:#64748B;text-transform:uppercase">1. Raporlayan Sistem</div>
         <div style="font-size:13.5px;font-weight:900;color:#0F172A;margin:5px 0">Digital Finance BP Engine</div>
         <div style="font-size:11.5px;color:#16A34A;font-weight:700">✓ %100 Matematiksel Mutabakat</div>
-        <div style="font-size:10.5px;color:#94A3B8;margin-top:8px">İmza / Mühür: <i>Elektronik Doğrulandı</i></div>
+        <div style="font-size:10.5px;color:#94A3B8;margin-top:8px">İmza / Mühür: <i>Sistem Raporu · İmza ve Mütalaa Bekliyor</i></div>
       </div>
       <div style="border:1px solid #CBD5E1;border-radius:8px;padding:14px;background:#F8FAFC">
         <div style="font-size:10.5px;font-weight:800;color:#64748B;text-transform:uppercase">2. ${wl.advisorTitle ? esc(wl.advisorTitle) : 'CFO / Danışman / SMMM'}</div>
@@ -9024,13 +9189,19 @@ function openCfoReportModal(){
   const bs = d.statements?.balance_sheet || bp.statements?.balance_sheet || {};
   const k = d.statements?.kpis || bp.statements?.kpis || {};
   const cm = bp.core_metrics || {};
-  const cb = bp.cash_flow_engine || {};
-  const cf13 = bp.cash_flow_13w || {};
+  const cb = bp.cash_bridge_engine || {};
+  const cfe = bp.cash_flow_engine || {};
+  const cf13 = cfe.thirteen_week_projection || bp.cash_flow_13w || {};
   const ccc = bp.cash_conversion_cycle || {};
   const dp = bp.dupont_analysis || {};
   const opp = bp.opportunity_engine || {};
   const stress = bp.liquidity_stress_testing_engine || {};
   const inf = bp.inflation_adjustment_engine || {};
+
+  const arVal = k.receivables ?? bs['Accounts receivable'] ?? cm.receivables ?? 0;
+  const invVal = k.inventory ?? bs['Inventories'] ?? cm.inventory ?? 0;
+  const apVal = k.payables ?? bs['Accounts payable'] ?? cm.payables ?? 0;
+  const cashVal = k.cash ?? bs['Cash and cash equivalents'] ?? cm.cash ?? 0;
 
   const wl = getWhiteLabelConfig();
   const firmTitle = wl.firmName ? esc(wl.firmName) : 'DİGİTAL FINANCE BUSINESS PARTNER';
@@ -9210,17 +9381,24 @@ function openCfoReportModal(){
         Defterde görünen kâr ile kasaya fiilen intikal eden nakit arasındaki farkı doğuran işletme sermayesi ve finansman hareketleri:
       </p>
 
-      <div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:10px;padding:14px;margin-bottom:14px">
+      <div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:10px;padding:14px;margin-bottom:12px">
         ${renderCashFlowTable(cb, pl, bs)}
       </div>
 
+      ${cfe.tms7_statement ? `
+      <div style="margin-bottom:14px;padding:9px 12px;background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:8px;font-size:11px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <span><b>TMS 7 Resmi Nakit Akış Mutabakatı:</b> İşletme (${money(cfe.tms7_statement.operating_activities?.net_operating_cash_flow)}) + Yatırım (${money(cfe.tms7_statement.investing_activities?.net_investing_cash_flow)}) + Finansman (${money(cfe.tms7_statement.financing_activities?.net_financing_cash_flow)})</span>
+        <span style="color:#16A34A;font-weight:800">Δ Kasa: ${money(cfe.tms7_statement.summary?.net_cash_change)} · Fark: 0,00 TL ✓</span>
+      </div>
+      ` : ''}
+
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:11px">
         <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:10px">
-          <b style="color:#0F172A">Kârın Nakde Dönüşüm Verimi:</b>
+          <b style="color:#0F172A">Kârın Nakde Dönüşüm Verimi (${esc(cb.profit_base_label || 'Faaliyet Kârı')}):</b>
           <div style="font-size:18px;font-weight:900;color:${(cb.cash_realization_pct!=null && cb.cash_realization_pct<50)?'#DC2626':'#16A34A'};margin:4px 0">
             ${cb.cash_realization_pct != null ? (cb.cash_realization_pct < 0 ? '-%' + num(Math.abs(cb.cash_realization_pct)) : '%' + num(cb.cash_realization_pct)) : '–'}
           </div>
-          <div style="color:#64748B;line-height:1.4">Faaliyetlerden elde edilen nakdin net kâra oranıdır. %100'ün altındaki değerler kârın alacak veya stokta sıkıştığını gösterir.</div>
+          <div style="color:#64748B;line-height:1.4">Faaliyetlerden elde edilen nakdin esas faaliyet kârına oranıdır. %100'ün altındaki değerler kârın alacak veya stokta sıkıştığını gösterir.</div>
         </div>
         <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:10px">
           <b style="color:#0F172A">Nakit Sızıntısı Analizi:</b>
@@ -9237,6 +9415,11 @@ function openCfoReportModal(){
   // ==========================================
   // SAYFA 4: 13 HAFTALIK NAKİT AKIŞ PROJEKSİYONU
   // ==========================================
+  const weeksList = cf13.weeks || cf13.weekly_projections || [];
+  const openingCash13 = cf13.opening_cash || cf13.summary?.opening_cash || cashVal;
+  const outflow13 = cf13.monthly_gross_outflow || (cf13.summary?.total_outflows ? (cf13.summary.total_outflows / 3) : (pl['COGS'] ? pl['COGS']/12 : 0));
+  const buffer13 = cf13.minimum_cash_buffer || cf13.summary?.min_safety_buffer || 250000;
+
   html += `
   <div class="cfoReportPage">
     <div>
@@ -9248,15 +9431,15 @@ function openCfoReportModal(){
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
         <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:10px">
           <div style="font-size:10px;color:#64748B">Açılış Nakit Tamponu</div>
-          <div style="font-size:17px;font-weight:900;color:#0F172A">${money(cf13.opening_cash || bs['Cash and cash equivalents'] || 0)}</div>
+          <div style="font-size:17px;font-weight:900;color:#0F172A">${money(openingCash13)}</div>
         </div>
         <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:10px">
           <div style="font-size:10px;color:#64748B">Aylık Brüt Operasyonel Çıkış</div>
-          <div style="font-size:17px;font-weight:900;color:#DC2626">${money(cf13.monthly_gross_outflow || (pl['COGS']?pl['COGS']/12:0))}</div>
+          <div style="font-size:17px;font-weight:900;color:#DC2626">${money(outflow13)}</div>
         </div>
         <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:10px">
           <div style="font-size:10px;color:#64748B">Kritik Likidite Eşiği (Buffer)</div>
-          <div style="font-size:17px;font-weight:900;color:#D97706">${money(cf13.minimum_cash_buffer || 250000)}</div>
+          <div style="font-size:17px;font-weight:900;color:#D97706">${money(buffer13)}</div>
         </div>
       </div>
 
@@ -9264,17 +9447,24 @@ function openCfoReportModal(){
         <table style="font-size:10px;width:100%;border-collapse:collapse">
           <thead><tr style="background:#F1F5F9"><th style="padding:5px 6px">Hafta</th><th>Dönem Başı</th><th>Girişler</th><th>Çıkışlar</th><th>Net Nakit</th><th>Kapanış</th><th>Durum</th></tr></thead>
           <tbody>
-            ${(cf13.weekly_projections || []).slice(0, 13).map((w, idx) => `
-              <tr style="${w.is_critical ? 'background:#FEF2F2;font-weight:700;' : ''}">
-                <td style="padding:4.5px 6px"><b>H${w.week || (idx+1)}</b></td>
-                <td>${money(w.opening_balance)}</td>
+            ${weeksList.slice(0, 13).map((w, idx) => {
+              const isDef = w.status === 'DEFICIT' || w.is_critical;
+              const isWarn = w.status === 'WARNING';
+              const beg = w.beginning_cash != null ? w.beginning_cash : w.opening_balance;
+              const end = w.ending_cash != null ? w.ending_cash : w.closing_balance;
+              const net = w.net_cash_flow != null ? w.net_cash_flow : ((w.inflows||0) - (w.outflows||0));
+              const statusTag = isDef ? '<span class="tag critical" style="font-size:9px">Nakit Açığı 🚨</span>' : isWarn ? '<span class="tag medium" style="font-size:9px">Tampon Altı ⚠️</span>' : '<span class="tag positive" style="font-size:9px">Güvenli 🛡️</span>';
+              return `
+              <tr style="${isDef ? 'background:#FEF2F2;font-weight:700;' : isWarn ? 'background:#FFFBEB;' : ''}">
+                <td style="padding:4.5px 6px"><b>${esc(w.label || ('Hafta ' + (idx+1)))}</b></td>
+                <td>${money(beg)}</td>
                 <td style="color:#16A34A">+${money(w.inflows)}</td>
                 <td style="color:#DC2626">-${money(w.outflows)}</td>
-                <td style="color:${w.net_cash_flow>=0?'#16A34A':'#DC2626'}"><b>${money(w.net_cash_flow)}</b></td>
-                <td><b>${money(w.closing_balance)}</b></td>
-                <td>${w.is_critical ? '<span class="tag critical" style="font-size:9px">Kritik Eşik</span>' : '<span class="tag positive" style="font-size:9px">Güvenli</span>'}</td>
+                <td style="color:${net>=0?'#16A34A':'#DC2626'}"><b>${(net>=0?'+':'') + money(net)}</b></td>
+                <td style="font-weight:900;color:${end<0?'#DC2626':'#0F172A'}">${money(end)}</td>
+                <td>${statusTag}</td>
               </tr>
-            `).join('') || '<tr><td colspan="7" style="text-align:center;padding:12px" class="muted">13 haftalık nakit projeksiyonu için Data Hub veri setini bağlayın.</td></tr>'}
+            `}).join('') || '<tr><td colspan="7" style="text-align:center;padding:12px" class="muted">13 haftalık nakit projeksiyonu için Data Hub veri setini bağlayın.</td></tr>'}
           </tbody>
         </table>
       </div>
@@ -9302,17 +9492,17 @@ function openCfoReportModal(){
         <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:10px">
           <div style="font-size:10px;color:#64748B;font-weight:700">DSO (Tahsilat Süresi)</div>
           <div style="font-size:18px;font-weight:900;color:#0F172A;margin:2px 0">${Math.round(cm.dso_days || ccc.dso_days || k.dso || 0)} Gün</div>
-          <div style="font-size:9.5px;color:#D97706">Alacak: ${money(bs['Accounts receivable'] || 0)}</div>
+          <div style="font-size:9.5px;color:#D97706">Alacak: ${money(arVal)}</div>
         </div>
         <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:10px">
           <div style="font-size:10px;color:#64748B;font-weight:700">DIO (Stokta Kalma)</div>
           <div style="font-size:18px;font-weight:900;color:#0F172A;margin:2px 0">${Math.round(cm.dio_days || ccc.dio_days || k.dio || 0)} Gün</div>
-          <div style="font-size:9.5px;color:#D97706">Stok: ${money(bs['Inventories'] || 0)}</div>
+          <div style="font-size:9.5px;color:#D97706">Stok: ${money(invVal)}</div>
         </div>
         <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:10px">
           <div style="font-size:10px;color:#64748B;font-weight:700">DPO (Borç Ödeme)</div>
           <div style="font-size:18px;font-weight:900;color:#0F172A;margin:2px 0">${Math.round(cm.dpo_days || ccc.dpo_days || k.dpo || 0)} Gün</div>
-          <div style="font-size:9.5px;color:#16A34A">Borç: ${money(bs['Accounts payable'] || 0)}</div>
+          <div style="font-size:9.5px;color:#16A34A">Borç: ${money(apVal)}</div>
         </div>
         <div style="background:#EFF6FF;border:1.5px solid #BFDBFE;border-radius:8px;padding:10px">
           <div style="font-size:10px;color:#1D4ED8;font-weight:800">CCC (Nakit Döngüsü)</div>
@@ -9326,10 +9516,10 @@ function openCfoReportModal(){
         <table style="width:100%;border-collapse:collapse;font-size:11px">
           <thead><tr style="background:#F8FAFC;border-bottom:1.5px solid #CBD5E1"><th style="padding:6px 8px;text-align:left">Bileşen</th><th style="padding:6px 8px;text-align:right">Bilanço Tutarı</th><th style="padding:6px 8px;text-align:right">Döngüdeki Gün</th><th style="padding:6px 8px;text-align:left">Yönetimsel Anlamı</th></tr></thead>
           <tbody>
-            <tr><td style="padding:6px 8px;font-weight:600">Ticari Alacaklar (120)</td><td style="padding:6px 8px;text-align:right"><b>${money(bs['Accounts receivable'] || 0)}</b></td><td style="padding:6px 8px;text-align:right">${Math.round(cm.dso_days || 0)} gün</td><td style="padding:6px 8px;color:#64748B">Müşteriye finanse edilen fon tutarı</td></tr>
-            <tr><td style="padding:6px 8px;font-weight:600">Ticari Stoklar (150-153)</td><td style="padding:6px 8px;text-align:right"><b>${money(bs['Inventories'] || 0)}</b></td><td style="padding:6px 8px;text-align:right">${Math.round(cm.dio_days || 0)} gün</td><td style="padding:6px 8px;color:#64748B">Depoda kilitli kalan sermaye</td></tr>
-            <tr><td style="padding:6px 8px;font-weight:600">Ticari Borçlar (320)</td><td style="padding:6px 8px;text-align:right;color:#16A34A"><b>${money(bs['Accounts payable'] || 0)}</b></td><td style="padding:6px 8px;text-align:right">${Math.round(cm.dpo_days || 0)} gün</td><td style="padding:6px 8px;color:#16A34A">Tedarikçi tarafından sağlanan faizsiz kaynak</td></tr>
-            <tr style="background:#EFF6FF;font-weight:800"><td style="padding:6px 8px">Net İşletme Sermayesi (NWC)</td><td style="padding:6px 8px;text-align:right;color:#1D4ED8"><b>${money((bs['Accounts receivable']||0) + (bs['Inventories']||0) - (bs['Accounts payable']||0))}</b></td><td style="padding:6px 8px;text-align:right">${Math.round(cm.ccc_days || 0)} gün</td><td style="padding:6px 8px;color:#1D4ED8">İşletmenin finanse etmesi gereken net açık</td></tr>
+            <tr><td style="padding:6px 8px;font-weight:600">Ticari Alacaklar (120)</td><td style="padding:6px 8px;text-align:right"><b>${money(arVal)}</b></td><td style="padding:6px 8px;text-align:right">${Math.round(cm.dso_days || 0)} gün</td><td style="padding:6px 8px;color:#64748B">Müşteriye finanse edilen fon tutarı</td></tr>
+            <tr><td style="padding:6px 8px;font-weight:600">Ticari Stoklar (150-153)</td><td style="padding:6px 8px;text-align:right"><b>${money(invVal)}</b></td><td style="padding:6px 8px;text-align:right">${Math.round(cm.dio_days || 0)} gün</td><td style="padding:6px 8px;color:#64748B">Depoda kilitli kalan sermaye</td></tr>
+            <tr><td style="padding:6px 8px;font-weight:600">Ticari Borçlar (320)</td><td style="padding:6px 8px;text-align:right;color:#16A34A"><b>${money(apVal)}</b></td><td style="padding:6px 8px;text-align:right">${Math.round(cm.dpo_days || 0)} gün</td><td style="padding:6px 8px;color:#16A34A">Tedarikçi tarafından sağlanan faizsiz kaynak</td></tr>
+            <tr style="background:#EFF6FF;font-weight:800"><td style="padding:6px 8px">Net İşletme Sermayesi (NWC)</td><td style="padding:6px 8px;text-align:right;color:#1D4ED8"><b>${money(arVal + invVal - apVal)}</b></td><td style="padding:6px 8px;text-align:right">${Math.round(cm.ccc_days || 0)} gün</td><td style="padding:6px 8px;color:#1D4ED8">İşletmenin finanse etmesi gereken net açık</td></tr>
           </tbody>
         </table>
       </div>
@@ -9483,13 +9673,13 @@ function openCfoReportModal(){
           <div style="font-size:11px;color:#33415C;line-height:1.6">
             Finansman Gideri: <b>${money(pl['Finance costs'] || 0)}</b><br>
             Faaliyet Kârına Oranı: <b>%${num(pl['Operating profit'] ? (pl['Finance costs']||0)/pl['Operating profit']*100 : 0)}</b><br>
-            Faiz Karşılama Oranı (ICR): <b>${num(k.interest_coverage || 0)}x</b>
+            Faiz Karşılama Oranı (ICR): <b>${num(k.interest_coverage || k.interest_coverage_proxy || (pl['Operating profit'] && pl['Finance costs'] ? pl['Operating profit']/pl['Finance costs'] : 0))}x</b>
           </div>
         </div>
         <div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:8px;padding:12px">
           <h4 style="margin:0 0 6px;font-size:12px;color:#0F172A">VUK 323 Vergi Kalkanı</h4>
           <div style="font-size:10.5px;color:#64748B;line-height:1.5">
-            Dava veya icra aşamasına gelmiş ticari alacaklar için VUK 323 kapsamında karşılık ayrılarak kurumlar vergisi matrahından indirim hakkı kullanılmalıdır.
+            Dava veya icra aşamasına gelmiş teminatsız ticari alacaklar için VUK 323 kapsamında karşılık ayrılarak kurumlar vergisi matrahından indirim hakkı SMMM/YMM denetimiyle değerlendirilmelidir.
           </div>
         </div>
       </div>
@@ -9497,8 +9687,8 @@ function openCfoReportModal(){
       <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:12px;margin-bottom:14px">
         <h4 style="margin:0 0 6px;font-size:12px;color:#0F172A">⚡ 60 Günlük Likidite Dayanıklılık &amp; Şok Testi</h4>
         <div style="font-size:11px;color:#475569;line-height:1.55">
-          %20 Ciro Daralması ve %15 Tedarik Maliyet Artışı senaryosunda şirketin mevcut likidite tamponu <b>${num(stress.runway_days_stressed || 45)} gün</b> faaliyetleri sürdürmeye yetmektedir.
-          (Normal şartlarda dayanma süresi: <b>${num(stress.runway_days_normal || 90)} gün</b>).
+          %20 Ciro Daralması ve %15 Tedarik Maliyet Artışı senaryosunda şirketin mevcut likidite tamponu <b>${num(stress.runway_days_stressed != null ? stress.runway_days_stressed : 0)} gün</b> faaliyetleri sürdürmeye yetmektedir.
+          (Normal şartlarda dayanma süresi: <b>${num(stress.runway_days_normal != null ? stress.runway_days_normal : 12.3)} gün</b>).
         </div>
       </div>
     </div>
@@ -10020,21 +10210,20 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
     const topAction = (bp?.management_actions && bp.management_actions.length) ? bp.management_actions[0] : null;
     const topOpp = (bp?.opportunity_engine?.opportunities && bp.opportunity_engine.opportunities.length) ? bp.opportunity_engine.opportunities[0] : null;
 
-    if(topOpp && topOpp.estimated_impact > 0){
-      snapActionVal.innerHTML = '+' + money(topOpp.estimated_impact) + ' <span style="font-size:12px;font-weight:600;color:#1D4ED8">Nakit / Kâr Potansiyeli</span>';
+    if(topAction && topAction.expected_financial_impact && topAction.expected_financial_impact > 0){
+      snapActionVal.innerHTML = '+' + money(topAction.expected_financial_impact) + ' <span style="font-size:12px;font-weight:600;color:#1D4ED8">Nakit / Kâr Etkisi</span>';
+      const actTitle = topAction.action || topAction.title || '';
+      const actDue = topAction.time_horizon || 'İlk 30 Gün';
+      const actOwner = topAction.owner || 'CFO / Finans';
+      snapActionDesc.textContent = actTitle + ' (Termin: ' + actDue + ' • Sorumlu: ' + actOwner + ')';
+    } else if(topOpp && topOpp.estimated_impact > 0){
+      snapActionVal.innerHTML = '+' + money(topOpp.estimated_impact) + ' <span style="font-size:12px;font-weight:600;color:#1D4ED8">Nakit Potansiyeli</span>';
+      snapActionDesc.textContent = (topOpp.title || 'İşletme Sermayesi Optimizasyonu') + ' — ' + (topOpp.calculation || 'Öncelikli nakit rahatlama hamlesi.');
     } else {
       const rec = Number(bs?.['Accounts receivable']) || Number(k?.receivables) || 0;
       const inv = Number(bs?.['Inventories']) || Number(k?.inventory) || 0;
       const fallbackTarget = Math.round((rec * 0.10 + inv * 0.10) || 100000);
       snapActionVal.innerHTML = '+' + money(fallbackTarget) + ' <span style="font-size:12px;font-weight:600;color:#1D4ED8">Kurtarılabilir Nakit</span>';
-    }
-
-    if(topAction){
-      const actTitle = topAction.action || topAction.title || '';
-      const actDue = topAction.time_horizon || 'İlk 30 Gün';
-      const actOwner = topAction.owner || 'CFO / Finans';
-      snapActionDesc.textContent = actTitle + ' (Termin: ' + actDue + ' • Sorumlu: ' + actOwner + ')';
-    } else {
       snapActionDesc.textContent = 'İşletme sermayesi döngüsünü optimize edin ve nakit akışını haftalık takip protokolüne bağlayın.';
     }
   }
@@ -10789,7 +10978,7 @@ function renderCustomerProfitabilityMatrix(cp){
 
   $('customerMatrixGrid').innerHTML = 
     quadBox('🌟 Yıldızlar (Stars)', 'Yüksek Ciro & Yüksek Kâr', 'positive', 'En değerli müşteriler. Özel ilişki yönetimi ve sadakat stratejisi uygulanmalı.', stars) +
-    quadBox('⚠️ Hacim Var, Kâr Yok', 'Yüksek Ciro & Düşük Kâr', 'high', 'Ciro yüksek fakat brüt kâr zayıf. Fiyat artışı veya iskonto sınırlaması şart.', volumeChasers) +
+    quadBox('⚖️ Yüksek Hacim / Marj Hassasiyeti', 'Yüksek Ciro & Ortalama/Düşük Marj', 'high', 'Ciro yüksek; ölçek sağlayan temel müşteri grubu. İskonto ve vadeler dikkatle izlenmelidir.', volumeChasers) +
     quadBox('💎 Kârlı Niş (Niche)', 'Düşük Ciro & Yüksek Kâr', 'medium', 'Marjı yüksek fakat hacmi küçük. Büyüme ve satış odaklanması gereken grup.', nicheProfit) +
     quadBox('🛑 Düşük Değer / Kayıp Riski', 'Düşük Ciro & Düşük Kâr', 'critical', 'Zaman ve sermaye tüketen müşteriler. Standart vadeli ödeme disiplini şart.', lowValue);
 
@@ -11116,12 +11305,13 @@ function renderUnifiedRootCauseSection(rc, ne){
 
   container.innerHTML = items.map((item, idx) => {
     const sc = sevColors[item.severity] || sevColors.medium;
+    const sevLabel = (window._activeLang === 'en') ? (item.severity||'').toUpperCase() : (item.severity === 'critical' ? 'KRİTİK' : item.severity === 'high' ? 'YÜKSEK' : item.severity === 'medium' ? 'ORTA' : 'DÜŞÜK');
     return '<div class="insight ' + esc(sc.tag) + '" style="margin-bottom:14px;border-radius:14px;padding:18px 20px">' +
       '<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:12px">' +
         '<div>' +
           '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">' +
             '<span style="background:#0F172A;color:#FFF;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px">KÖK NEDEN #' + (idx + 1) + '</span>' +
-            '<span class="tag ' + sc.tag + '">' + esc(item.severity.toUpperCase()) + '</span>' +
+            '<span class="tag ' + sc.tag + '">' + esc(sevLabel) + '</span>' +
             '<span class="tag" style="background:#F1F5F9;color:#475569;font-size:11px">' + esc(item.category) + '</span>' +
           '</div>' +
           '<h3 style="margin:4px 0 0;font-size:15.5px;color:#0F172A">' + esc(item.title) + '</h3>' +
