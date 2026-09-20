@@ -5126,7 +5126,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div style="display:flex;align-items:center;gap:10px">
     <span style="font-size:16px">📑</span>
     <div>
-      <div style="font-size:13.5px;font-weight:800;color:#0F172A">Yönetici Karar Raporu &bull; 9 Aşamalı Hiyerarşik Akış</div>
+      <div style="font-size:13.5px;font-weight:800;color:#0F172A">Yönetici Karar Raporu &bull; 10 Aşamalı Hiyerarşik Akış</div>
       <div style="font-size:11.5px;color:#64748B;margin-top:1px">En kritik yönetici kararlarından operasyonel detaylara doğru birbirine bağlı sıralama</div>
     </div>
     <span class="tag positive" style="font-size:10.5px;font-weight:700">Öncelik Sıralı</span>
@@ -5148,6 +5148,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_7')">7. Kök Neden Hikâyeleri</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_8')">8. Vergi Kalkanı</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_9')">9. Senaryo Lab</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_10')">10. Enflasyon &amp; Stres Testi</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_ekA')">Ek A · Denetim</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_ekB')">Ek B · Mali Tablolar</button>
 </div>
@@ -5919,11 +5920,11 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </div>
 </section>
 
-<!-- ==================== BÖLÜM 8: ENFLASYON RÖNTGENİ & LİKİDİTE STRES TESTİ ==================== -->
-<section id="flowStep_8" class="accordionStep active">
-  <div class="accordionHeader" onclick="toggleAccordion('flowStep_8')">
+<!-- ==================== BÖLÜM 10: ENFLASYON RÖNTGENİ & LİKİDİTE STRES TESTİ ==================== -->
+<section id="flowStep_10" class="accordionStep active">
+  <div class="accordionHeader" onclick="toggleAccordion('flowStep_10')">
     <div class="accordionTitleGroup">
-      <span class="accordionNum" style="background:#DC2626;color:#FFFFFF">8</span>
+      <span class="accordionNum" style="background:#DC2626;color:#FFFFFF">10</span>
       <div>
         <h3 class="accordionTitle">Enflasyon Düzeltmeli Gerçek Kârlılık Röntgeni &amp; Müşteri Konsantrasyonu Likidite Stres Testi</h3>
         <div class="accordionSub">Fiktif stok kârı illüzyonunun deşifresi, reel sermaye erimesi ve müşteri ödeme gecikmesi şok simülasyonu</div>
@@ -6328,7 +6329,7 @@ function renderCashFlowTable(cb, pl, bs){
     +'<tr><td style="padding-left:14px">Dönem Başı Kasa &amp; Banka</td><td><b>'+money(cb.opening_cash)+'</b></td></tr>'
     +'<tr><td style="padding-left:14px">Dönem Sonu Kasa &amp; Banka</td><td><b>'+money(cb.closing_cash)+'</b></td></tr>'
     +'<tr style="font-weight:800;border-top:2px solid var(--accent)"><td>Net Kasa Değişimi</td><td style="color:'+(cb.cash_change<0?'var(--red)':'var(--green)')+'"><b>'+money(cb.cash_change)+'</b></td></tr>'
-    +(cb.cash_realization_pct!=null?'<tr><td>Kâr Nakde Dönüşüm Oranı</td><td><b style="color:'+(cb.cash_realization_pct<50?'var(--red)':'var(--green)')+'">'+pct(cb.cash_realization_pct)+'</b></td></tr>':'')
+    +(cb.cash_realization_pct!=null?'<tr><td>Kâr Nakde Dönüşüm Oranı</td><td><b style="color:'+(cb.cash_realization_pct<50?'var(--red)':'var(--green)')+'">'+(cb.cash_realization_pct<0? '-%'+num(Math.abs(cb.cash_realization_pct)) : '%'+num(cb.cash_realization_pct))+'</b></td></tr>':'')
     +'</tbody></table>';
 }
 function metric(label,value,sub){return '<div class="metric"><div class="label">'+esc(label)+'</div><div class="value">'+esc(value)+'</div><div class="sub">'+esc(sub||'')+'</div></div>'}
@@ -6764,15 +6765,16 @@ function render(d){
   // "Kâr Nakde Dönüşüyor mu?" — 3 Aşamalı Pedagojik Yönetici Hattı
   // Sağdaki squished waterfall kaldırıldı, yerine adım adım kâr -> nakit hattı kuruldu.
   if(cb.available && cb.cash_realization_pct!=null){
-    const crp=Math.max(0, Math.min(100, Math.round(cb.cash_realization_pct)));
-    const crTier=(crp>=80 && cb.operating_cash_flow_proxy>0)?'positive':(crp>=50 && cb.operating_cash_flow_proxy>0)?'medium':crp>0?'high':'critical';
-    let crExpl='';
-    if(crp<=0 || cb.operating_cash_flow_proxy<=0){
-      crExpl='⚠️ <b>Defterde '+money(cb.net_profit)+' net kâr görünmesine rağmen, işletme nakit akışı '+money(cb.operating_cash_flow_proxy)+' negatiftir (Net Kârın Nakde Dönüşümü: Negatif).</b> Net kârın tamamı ve ilave nakit alacaklarda ('+money(cb.working_capital_components?.receivables_effect)+') ve depodaki stokta ('+money(cb.working_capital_components?.inventory_effect)+') kilitlenmiştir. Kasa bu kârı görememiş, işletme operasyonel nakit açığı vermiştir. Tahsilat vadelerinin kısaltılması ve atıl stokların eritilmesi öncelikli yönetim kararı olarak değerlendirilmelidir.';
-    } else if(crp<80){
-      crExpl='Faaliyet kârı '+money(cb.operating_profit)+', net kâr '+money(cb.net_profit)+'; alacak/stok/borç hareketleri dahil edildiğinde işletme faaliyet nakdi '+money(cb.operating_cash_flow_proxy)+' oluyor — yani defter kârının yaklaşık <b>%'+crp+'\u0027i</b> fiilen kasaya giriyor. Kalan tutar müşteride veya depoda bağlı kalmaktadır.';
+    const crp = Math.round(cb.cash_realization_pct);
+    const crpLabel = crp < 0 ? '-%' + Math.abs(crp) : '%' + crp;
+    const crTier = (crp>=80 && cb.operating_cash_flow_proxy>0)?'positive':(crp>=50 && cb.operating_cash_flow_proxy>0)?'medium':crp>0?'high':'critical';
+    let crExpl = '';
+    if(crp <= 0 || cb.operating_cash_flow_proxy <= 0){
+      crExpl = '⚠️ <b>Defterde ' + money(cb.net_profit) + ' net kâr görünmesine rağmen, işletme nakit akışı ' + money(cb.operating_cash_flow_proxy) + ' ile negatiftir (Net Kârın Nakde Dönüşümü: ' + crpLabel + ').</b> Net kârın tamamı ve ilave nakit alacaklarda (' + money(cb.working_capital_components?.receivables_effect) + ') ve depodaki stokta (' + money(cb.working_capital_components?.inventory_effect) + ') kilitlenmiştir. Kasa bu kârı görememiş, işletme operasyonel nakit açığı vermiştir. Tahsilat vadelerinin kısaltılması ve atıl stokların eritilmesi öncelikli yönetim kararı olarak değerlendirilmelidir.';
+    } else if(crp < 80){
+      crExpl = 'Faaliyet kârı ' + money(cb.operating_profit) + ', net kâr ' + money(cb.net_profit) + '; alacak/stok/borç hareketleri dahil edildiğinde işletme faaliyet nakdi ' + money(cb.operating_cash_flow_proxy) + ' oluyor — yani defter kârının yaklaşık <b>' + crpLabel + '\u0027i</b> fiilen kasaya giriyor. Kalan tutar müşteride veya depoda bağlı kalmaktadır.';
     } else {
-      crExpl='Net kâr '+money(cb.net_profit)+'; işletme nakdi '+money(cb.operating_cash_flow_proxy)+'. Kâr büyük ölçüde (%'+crp+') nakde dönüşüyor; işletme sermayesi kâr üzerinde ek bir nakit baskısı yaratmıyor.';
+      crExpl = 'Net kâr ' + money(cb.net_profit) + '; işletme nakdi ' + money(cb.operating_cash_flow_proxy) + '. Kâr büyük ölçüde (' + crpLabel + ') nakde dönüşüyor; işletme sermayesi kâr üzerinde ek bir nakit baskısı yaratmıyor.';
     }
     const ocf = cb.operating_cash_flow_proxy || 0;
     const recEff = cb.working_capital_components?.receivables_effect || 0;
@@ -6796,7 +6798,7 @@ function render(d){
       '<div style="background:' + (ocf>0?'#ECFDF5':'#FEF2F2') + ';border:1.5px solid ' + (ocf>0?'#A7F3D0':'#FCA5A5') + ';border-radius:12px;padding:14px">' +
         '<div style="display:flex;justify-content:space-between;align-items:center">' +
           '<div style="font-size:11px;font-weight:800;color:' + (ocf>0?'#16A34A':'#DC2626') + ';text-transform:uppercase;letter-spacing:0.5px">3. İşletme Nakit Akışı</div>' +
-          '<span class="tag ' + (crp>=80?'positive':crp>=50?'medium':'critical') + '" style="font-weight:800;font-size:11px">%' + crp + ' Dönüşüm</span>' +
+          '<span class="tag ' + (crp>=80?'positive':crp>=50?'medium':'critical') + '" style="font-weight:800;font-size:11px">' + crpLabel + ' Dönüşüm</span>' +
         '</div>' +
         '<div style="font-size:20px;font-weight:900;color:' + (ocf>0?'#16A34A':'#DC2626') + ';margin:4px 0">' + (ocf>0?'+':'') + money(ocf) + '</div>' +
         '<div class="small" style="color:' + (ocf>0?'#065F46':'#991B1B') + '">' + (ocf>0?'Faaliyetlerden Kasaya Giren Net Nakit':'İşletme Sermayesi Nedeniyle Eriyen Kasa Nakdi') + '</div>' +
@@ -6901,7 +6903,7 @@ function render(d){
   // implication stated plainly instead of left for the reader to infer).
   $('exec').innerHTML='<div style="font-size:14px;line-height:1.65;color:#1E293B"><strong style="color:#0F172A;font-size:15px;display:inline-block;margin-bottom:6px">📋 Finansal Teşhis &amp; Yönetici Karar Brifingi:</strong><br>' + esc(bp.executive_summary) + '</div>';
   const topRisk=rr[0], topOpp=opps[0];
-  const chips=[['Sağlık Skoru',Math.round(bp.health_score)+'/100'],['Nakit Çevrim (CCC)',c.cash_conversion_cycle_days==null?'–':Math.round(Number(c.cash_conversion_cycle_days))+' gün'],(cb.available&&cb.cash_realization_pct!=null)?['Kâr → Nakit',pct(cb.cash_realization_pct)]:null,topRisk?['En Kritik Risk',topRisk.title]:null,topOpp?['En Büyük Fırsat',topOpp.title+' ('+money(topOpp.estimated_impact)+')']:null,['Sektör Konumu',bm.overall_label||'–']].filter(Boolean);
+  const chips=[['Sağlık Skoru',Math.round(bp.health_score)+'/100'],['Nakit Çevrim (CCC)',c.cash_conversion_cycle_days==null?'–':Math.round(Number(c.cash_conversion_cycle_days))+' gün'],(cb.available&&cb.cash_realization_pct!=null)?['Kâr → Nakit',(cb.cash_realization_pct<0? '-%'+num(Math.abs(cb.cash_realization_pct)) : '%'+num(cb.cash_realization_pct))]:null,topRisk?['En Kritik Risk',topRisk.title]:null,topOpp?['En Büyük Fırsat',topOpp.title+' ('+money(topOpp.estimated_impact)+')']:null,['Sektör Konumu',bm.overall_label||'–']].filter(Boolean);
   $('execChips').innerHTML=chips.map(x=>'<span class="chip">'+esc(x[0])+': <b>'+esc(x[1])+'</b></span>').join('');
   const esum=bp.executive_summary_engine||{};
   const dpoints=esum.decision_points||[];
@@ -8235,16 +8237,17 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
   const snapProfitDesc = $('snapProfitQualityDesc');
   if(snapProfitVal && snapProfitDesc){
     if(cb?.available && crp != null){
-      const crpDisplay = Math.max(0, Math.min(100, Math.round(crp)));
+      const crpRound = Math.round(crp);
+      const crpStr = crpRound < 0 ? '-%' + Math.abs(crpRound) : '%' + crpRound;
       if(crp <= 0 || (ocf != null && ocf <= 0)){
-        snapProfitVal.innerHTML = '<span style="color:#DC2626">Negatif</span> <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Dönüşümü (İşletme Nakit Açığı)</span>';
-        snapProfitDesc.textContent = 'Defterde ' + money(netIncome) + ' net kâr var ancak işletme nakit akışı eksiye (' + money(ocf) + ') düşmüş. Kârın tamamı alacak ve stokta kilitli.';
-      } else if(crpDisplay < 50){
-        snapProfitVal.innerHTML = '<span style="color:#DC2626">%' + crpDisplay + '</span> <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Realizasyonu</span>';
-        snapProfitDesc.textContent = 'Defterdeki her 100 TL kârın yalnızca ' + crpDisplay + ' TL\'si fiilen kasaya giriyor; kalan tutar müşteri alacakları ve depodaki stokta bağlı.';
+        snapProfitVal.innerHTML = '<span style="color:#DC2626">' + crpStr + '</span> <span style="font-size:12px;font-weight:600;color:#64748B">Negatif Nakit Dönüşümü (Kasa Açığı)</span>';
+        snapProfitDesc.textContent = 'Defterde ' + money(netIncome) + ' net kâr var ancak işletme nakit akışı eksiye (' + money(ocf) + ') düşmüş (Kâr Dönüşümü: ' + crpStr + '). Kârın tamamı ve fazlası alacak ve stokta kilitli.';
+      } else if(crpRound < 50){
+        snapProfitVal.innerHTML = '<span style="color:#DC2626">' + crpStr + '</span> <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Realizasyonu</span>';
+        snapProfitDesc.textContent = 'Defterdeki her 100 TL kârın yalnızca ' + crpRound + ' TL\'si fiilen kasaya giriyor; kalan tutar müşteri alacakları ve depodaki stokta bağlı.';
       } else {
-        snapProfitVal.innerHTML = '<span style="color:#16A34A">%' + crpDisplay + '</span> <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Realizasyonu</span>';
-        snapProfitDesc.textContent = money(netIncome) + ' tutarındaki kârın %' + crpDisplay + '\'si kasaya sıcak nakit olarak dönüyor. Kâr kalitesi yüksek.';
+        snapProfitVal.innerHTML = '<span style="color:#16A34A">' + crpStr + '</span> <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Realizasyonu</span>';
+        snapProfitDesc.textContent = money(netIncome) + ' tutarındaki kârın %' + crpRound + '\'si kasaya sıcak nakit olarak dönüyor. Kâr kalitesi yüksek.';
       }
     } else {
       snapProfitVal.innerHTML = money(netIncome) + ' <span style="font-size:12px;font-weight:600;color:#64748B">Net Dönem Kârı</span>';

@@ -510,9 +510,13 @@ def build_executive_summary(
 
     if cash_bridge and cash_bridge.get("available") and cash_bridge.get("cash_realization_pct") is not None:
         crp = cash_bridge["cash_realization_pct"]
-        if crp < 50:
+        if crp <= 0:
             parts.append(
-                f"Net kârın yaklaşık %{crp:.0f}'i işletme nakdine dönüşüyor; geri kalanı alacak/stok/borç kalemlerinde bağlı — defter kârı henüz kasaya girmiş değil."
+                f"Net kâr nakde dönüşmüyor (dönüşüm: %{crp:.0f}); işletme sermayesi kilitlenmesi kârı yutarak operasyonel nakit açığı yaratıyor — defter kârı henüz kasaya girmiş değil."
+            )
+        elif crp < 50:
+            parts.append(
+                f"Net kârın yalnızca yaklaşık %{crp:.0f}'i işletme nakdine dönüşüyor; geri kalanı alacak/stok/borç kalemlerinde bağlı — defter kârı henüz kasaya girmiş değil."
             )
         else:
             parts.append(f"Net kârın yaklaşık %{crp:.0f}'i işletme nakdine dönüşüyor.")
