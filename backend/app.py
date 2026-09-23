@@ -743,6 +743,104 @@ _SAMPLE_FILES = {
 # The set of keys fetched together for the one-click "Data Hub'ı örnekle dene" demo.
 DATA_HUB_SAMPLE_KEYS = ['hub_mizan_prior', 'hub_mizan', 'ar_aging', 'ap_aging', 'inventory', 'sales_ledger']
 
+SECTOR_DEMO_METADATA = [
+    {
+        "id": "uretim_sanayi",
+        "name": "Makine & Metal Sanayi A.Ş.",
+        "sector_label": "Üretim / Sanayi",
+        "icon": "🏭",
+        "tagline": "Ağır Makine & Talaşlı İmalat Sanayi",
+        "revenue": "48.5M ₺",
+        "metrics": {"dso": "78 Gün", "dio": "82 Gün", "margin": "%23 Brüt"},
+        "key_challenge": "Hammadde stoğunda kilitli nakit, 90 günü aşan sanayi müşteri vadeleri ve yüksek fabrika finansman yükü.",
+        "files_count": 6,
+    },
+    {
+        "id": "toptan_ticaret",
+        "name": "Anadolu Gıda & Toptan Dağıtım Ltd.",
+        "sector_label": "Toptan Dağıtım / Ticaret",
+        "icon": "📦",
+        "tagline": "FMCG, Gıda & Toptan Dağıtım",
+        "revenue": "92.0M ₺",
+        "metrics": {"dso": "58 Gün", "dio": "35 Gün", "margin": "%12.5 Brüt"},
+        "key_challenge": "Yüksek ciroda ince kâr marjı, bayi vadeli çekleri ve akaryakıt/lojistik operasyon sızıntıları.",
+        "files_count": 6,
+    },
+    {
+        "id": "perakende_eticaret",
+        "name": "ModaStyle Perakende & E-Ticaret A.Ş.",
+        "sector_label": "Perakende / Ticaret",
+        "icon": "🛍️",
+        "tagline": "Zincir Mağazacılık & Çok Kanallı E-Ticaret",
+        "revenue": "32.0M ₺",
+        "metrics": {"dso": "18 Gün", "dio": "115 Gün", "margin": "%42 Brüt"},
+        "key_challenge": "Hızlı POS tahsilatına karşın depoda biriken sezonluk atıl giyim stoku ve dijital reklam maliyetleri.",
+        "files_count": 6,
+    },
+    {
+        "id": "hizmet_yazilim",
+        "name": "Nova Teknoloji & B2B Yazılım A.Ş.",
+        "sector_label": "Hizmet",
+        "icon": "💻",
+        "tagline": "Kurumsal B2B SaaS & Yazılım Mühendisliği",
+        "revenue": "22.0M ₺",
+        "metrics": {"dso": "72 Gün", "dio": "0 Gün (Stoksuz)", "margin": "%62 Brüt"},
+        "key_challenge": "Sıfır stok avantajı ancak kurumsal hakediş gecikmeleri nedeniyle maaş ve SGK öncesi nakit dalgalanması.",
+        "files_count": 5,
+    },
+    {
+        "id": "insaat_taahhut",
+        "name": "Atlas Yapı & Taahhüt A.Ş.",
+        "sector_label": "İnşaat / Taahhüt",
+        "icon": "🏗️",
+        "tagline": "Proje İnşaat, Taahhüt & Altyapı",
+        "revenue": "65.0M ₺",
+        "metrics": {"dso": "95 Gün", "dio": "60 Gün", "margin": "%18 Brüt"},
+        "key_challenge": "İşveren hakediş vadelerinin uzaması, taşeron çek baskısı ve teminat mektubu komisyon maliyeti.",
+        "files_count": 6,
+    },
+]
+
+@app.get('/api/sample/sectors')
+def list_sector_demos() -> dict[str, Any]:
+    return {'sectors': SECTOR_DEMO_METADATA}
+
+@app.get('/api/sample/sector/{sector_id}/{key}')
+def get_sector_sample_file(sector_id: str, key: str):
+    from fastapi.responses import Response
+    allowed_keys = {'mizan_cur', 'mizan_prior', 'ar_aging', 'ap_aging', 'inventory', 'sales_ledger'}
+    if key not in allowed_keys:
+        raise HTTPException(status_code=400, detail='Geçersiz dosya anahtarı.')
+    fpath = _os.path.join(_PROJECT_ROOT, 'demo_data', 'sectors', sector_id, f'{key}.xlsx')
+    if not _os.path.isfile(fpath):
+        raise HTTPException(status_code=404, detail='Sektörel örnek dosya bulunamadı.')
+    with open(fpath, 'rb') as f:
+        data = f.read()
+    return Response(content=data, media_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                     headers={'Content-Disposition': f'inline; filename="{sector_id}_{key}.xlsx"'})
+
+@app.post('/api/sample/run-sector/{sector_id}')
+async def run_sector_demo(sector_id: str) -> dict[str, Any]:
+    target_meta = next((s for s in SECTOR_DEMO_METADATA if s['id'] == sector_id), None)
+    if not target_meta:
+        raise HTTPException(status_code=404, detail='Geçersiz sektör kimliği.')
+    sdir = _os.path.join(_PROJECT_ROOT, 'demo_data', 'sectors', sector_id)
+    if not _os.path.isdir(sdir):
+        raise HTTPException(status_code=404, detail='Sektör veri dizini bulunamadı.')
+    file_order = ['mizan_prior.xlsx', 'mizan_cur.xlsx', 'ar_aging.xlsx', 'ap_aging.xlsx', 'inventory.xlsx', 'sales_ledger.xlsx']
+    raw_files = []
+    for fn in file_order:
+        p = _os.path.join(sdir, fn)
+        if _os.path.isfile(p):
+            with open(p, 'rb') as f:
+                raw_files.append((fn, f.read()))
+    if not raw_files:
+        raise HTTPException(status_code=500, detail='Sektörel veri dosyaları okunamadı.')
+    result = await _analyze_data_hub_raw(raw_files, sector=target_meta['sector_label'])
+    result['sector_demo_active'] = True
+    result['sector_info'] = target_meta
+    return result
+
 @app.get('/api/sample/{key}')
 def get_sample(key: str):
     from fastapi.responses import Response
@@ -761,7 +859,9 @@ def get_sample(key: str):
 @app.get('/api/sample')
 def list_samples() -> dict[str, Any]:
     return {'samples': [{'key': k, 'filename': v[0], 'label': v[1]} for k, v in _SAMPLE_FILES.items()],
-            'data_hub_demo_keys': DATA_HUB_SAMPLE_KEYS}
+            'data_hub_demo_keys': DATA_HUB_SAMPLE_KEYS,
+            'sector_demos': SECTOR_DEMO_METADATA}
+
 
 
 def classify_sheet(sname: str, raw: pd.DataFrame) -> str:

@@ -28,6 +28,10 @@ SECTOR_WORKING_CAPITAL_BENCHMARKS: dict[str, dict[str, Any]] = {
         "median_dso": 35.0, "median_dio": 45.0, "median_ccc": 40.0,
         "indicative_borrowing_rate": 0.48,
     },
+    "Toptan Dağıtım / Ticaret": {
+        "median_dso": 45.0, "median_dio": 30.0, "median_ccc": 35.0,
+        "indicative_borrowing_rate": 0.48,
+    },
     "Üretim / Sanayi": {
         "median_dso": 75.0, "median_dio": 70.0, "median_ccc": 95.0,
         "indicative_borrowing_rate": 0.48,
@@ -38,6 +42,10 @@ SECTOR_WORKING_CAPITAL_BENCHMARKS: dict[str, dict[str, Any]] = {
     },
     "Teknoloji": {
         "median_dso": 55.0, "median_dio": 5.0, "median_ccc": 45.0,
+        "indicative_borrowing_rate": 0.48,
+    },
+    "İnşaat / Taahhüt": {
+        "median_dso": 75.0, "median_dio": 45.0, "median_ccc": 80.0,
         "indicative_borrowing_rate": 0.48,
     },
 }
@@ -52,6 +60,11 @@ SECTOR_BANDS: dict[str, dict[str, tuple[float, float, float]]] = {
         "gross_margin_pct": (18, 28, 40), "operating_margin_pct": (3, 6, 10), "net_margin_pct": (1.5, 3.5, 7),
         "current_ratio": (0.9, 1.2, 1.6), "quick_ratio": (0.4, 0.7, 1.0), "debt_to_equity": (0.8, 1.5, 2.8),
         "asset_turnover": (1.2, 1.8, 2.6), "return_on_equity_pct": (8, 15, 25),
+    },
+    "Toptan Dağıtım / Ticaret": {
+        "gross_margin_pct": (8, 14, 22), "operating_margin_pct": (2, 4.5, 8), "net_margin_pct": (1.0, 2.5, 5),
+        "current_ratio": (1.0, 1.3, 1.7), "quick_ratio": (0.6, 0.9, 1.3), "debt_to_equity": (0.7, 1.4, 2.6),
+        "asset_turnover": (1.4, 2.2, 3.2), "return_on_equity_pct": (8, 15, 24),
     },
     "Üretim / Sanayi": {
         "gross_margin_pct": (15, 22, 32), "operating_margin_pct": (5, 9, 16), "net_margin_pct": (3, 6, 11),
@@ -68,9 +81,45 @@ SECTOR_BANDS: dict[str, dict[str, tuple[float, float, float]]] = {
         "current_ratio": (1.2, 1.8, 2.6), "quick_ratio": (1.0, 1.6, 2.3), "debt_to_equity": (0.2, 0.6, 1.4),
         "asset_turnover": (0.3, 0.6, 1.0), "return_on_equity_pct": (5, 15, 28),
     },
+    "İnşaat / Taahhüt": {
+        "gross_margin_pct": (12, 18, 28), "operating_margin_pct": (3, 7, 13), "net_margin_pct": (1.5, 4, 8),
+        "current_ratio": (1.0, 1.3, 1.8), "quick_ratio": (0.6, 0.9, 1.3), "debt_to_equity": (0.8, 1.8, 3.5),
+        "asset_turnover": (0.4, 0.7, 1.2), "return_on_equity_pct": (6, 12, 22),
+    },
+}
+
+_SECTOR_ALIASES: dict[str, str] = {
+    "uretim_sanayi": "Üretim / Sanayi",
+    "uretim": "Üretim / Sanayi",
+    "sanayi": "Üretim / Sanayi",
+    "imalat": "Üretim / Sanayi",
+    "toptan_ticaret": "Toptan Dağıtım / Ticaret",
+    "toptan": "Toptan Dağıtım / Ticaret",
+    "perakende_eticaret": "Perakende / Ticaret",
+    "perakende": "Perakende / Ticaret",
+    "eticaret": "Perakende / Ticaret",
+    "e-ticaret": "Perakende / Ticaret",
+    "hizmet_yazilim": "Hizmet",
+    "hizmet": "Hizmet",
+    "yazilim": "Teknoloji",
+    "teknoloji": "Teknoloji",
+    "insaat_taahhut": "İnşaat / Taahhüt",
+    "insaat": "İnşaat / Taahhüt",
+    "taahhut": "İnşaat / Taahhüt",
 }
 
 _DEFAULT_SECTOR = "Genel"
+
+
+def resolve_sector(sector: str | None) -> str:
+    """Normalize any sector ID or label to canonical SECTOR_BANDS key."""
+    if not sector:
+        return _DEFAULT_SECTOR
+    if sector in SECTOR_BANDS:
+        return sector
+    s_clean = sector.strip().lower()
+    return _SECTOR_ALIASES.get(s_clean, _DEFAULT_SECTOR)
+
 
 
 def _clamp(v: float, lo: float, hi: float) -> float:
@@ -127,7 +176,7 @@ def build_benchmark_analysis(statements: dict[str, Any], sector: str | None = No
     industry database - and are labeled as such in every response so they
     are never mistaken for an authoritative benchmark.
     """
-    sector_key = sector if sector in SECTOR_BANDS else _DEFAULT_SECTOR
+    sector_key = resolve_sector(sector)
     bands = SECTOR_BANDS[sector_key]
     k = statements["kpis"]
 

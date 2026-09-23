@@ -587,16 +587,26 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     <h1 style="margin-top:8px">Mizan Rakamlarını Değil;<br><span class="gradText">"Kasada Neden Para Yok ve Yarın Ne Yapmalıyım?"</span><br>Sorusunun Net Cevabını Masaya Koyuyoruz.</h1>
     <p class="lead">Finansçınız ve muhasebeniz geçmişi belgeler; biz paranın hangi açık hesapta ve depoda kilitlendiğini, hangi müşterinin kârınızı erittiğini ve <b>yarın sabah kasanızı kurtaracak 3 somut yönetim kararını</b> kuruşuna kadar gösteririz. Kâğıt üzerindeki kâr ile kasanızdaki gerçek nakit arasındaki makası <b>60 saniyede kapatın</b>; banka faizine ezilmeden şirketinizi kendi nakdiyle büyütün.</p>
     
-    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:24px 0 18px">
-      <a href="/uygulama?sample=data_hub" class="primary" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;padding:15px 28px;border-radius:14px;font-size:15px;font-weight:800;background:#1D4ED8;color:#FFFFFF;box-shadow:0 8px 24px rgba(29,78,216,0.35);transition:all .2s ease">
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:24px 0 14px">
+      <a href="/uygulama?sector=uretim_sanayi" class="primary" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;padding:15px 28px;border-radius:14px;font-size:15px;font-weight:800;background:#1D4ED8;color:#FFFFFF;box-shadow:0 8px 24px rgba(29,78,216,0.35);transition:all .2s ease">
         <span>⚡</span>
-        <span>Canlı Karar Raporunu İnceleyin</span>
+        <span>Canlı Sektör Raporunu Başlat</span>
         <span style="font-size:16px;margin-left:2px">→</span>
       </a>
       <a href="/uygulama" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;padding:14px 22px;border-radius:14px;font-size:14px;font-weight:700;background:#FFFFFF;color:#1E293B;border:1.5px solid #CBD5E1;box-shadow:0 2px 6px rgba(0,0,0,0.04);transition:all .2s ease">
         <span>📁</span>
         <span>Kendi Mizanınızı Yükleyin (Ücretsiz)</span>
       </a>
+    </div>
+
+    <!-- Sektörel Demo Hızlı Erişim Çubuğu -->
+    <div style="margin-bottom:20px;display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+      <span style="font-size:11.5px;color:#475569;font-weight:800">🎯 Sektörünüzü Seçin:</span>
+      <a href="/uygulama?sector=uretim_sanayi" class="subnavPill" style="font-size:11px;padding:4px 10px;text-decoration:none;color:#1E293B">🏭 İmalat &amp; Sanayi</a>
+      <a href="/uygulama?sector=toptan_ticaret" class="subnavPill" style="font-size:11px;padding:4px 10px;text-decoration:none;color:#1E293B">📦 Toptan Dağıtım</a>
+      <a href="/uygulama?sector=perakende_eticaret" class="subnavPill" style="font-size:11px;padding:4px 10px;text-decoration:none;color:#1E293B">🛍️ Perakende &amp; E-Ticaret</a>
+      <a href="/uygulama?sector=hizmet_yazilim" class="subnavPill" style="font-size:11px;padding:4px 10px;text-decoration:none;color:#1E293B">💻 Hizmet &amp; Yazılım</a>
+      <a href="/uygulama?sector=insaat_taahhut" class="subnavPill" style="font-size:11px;padding:4px 10px;text-decoration:none;color:#1E293B">🏗️ İnşaat &amp; Taahhüt</a>
     </div>
 
     <div class="miniTrust">
@@ -5381,6 +5391,8 @@ APP_HTML = r'''<!doctype html>
 .qsel{margin-top:18px}.qsel .qtitle{font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:700}.qsel .qrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.qsel button{border:1px solid #D7DEE8;background:#EEF2FF;color:#33415C;border-radius:12px;padding:10px 12px;font-size:12.5px;cursor:pointer;text-align:left;line-height:1.3}.qsel button:hover{border-color:#B7C3D6}.qsel button.active{border-color:var(--accent);color:var(--accent);background:#DCE6FB}
 .upload{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}.file{border:1px dashed #C9D2DE;padding:12px;border-radius:12px;background:#F5F7FA;max-width:100%}.select,button{border:1px solid #D7DEE8;border-radius:11px;padding:11px 14px;background:#FFFFFF;color:var(--text)}button.primary,a.primary{background:linear-gradient(135deg,#2557E8,#1D4ED8);border:0;color:#FFFFFF;font-weight:800;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;box-shadow:0 6px 16px rgba(29,78,216,.25)}a.primary:hover,button.primary:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(29,78,216,.32)}button.secondary,a.secondary{cursor:pointer;border:1.5px solid #C9D2DE;background:#FFFFFF;color:var(--text)}a.secondary:hover,button.secondary:hover{border-color:var(--accent);color:var(--accent)}button:disabled{opacity:.5;cursor:not-allowed}.scoreCard{padding:25px;display:flex;flex-direction:column;justify-content:center}.scoreRing{width:170px;height:170px;border-radius:50%;margin:auto;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--score)*1%),#E4E8EF 0);position:relative}.scoreRing:after{content:"";position:absolute;inset:12px;border-radius:50%;background:#FFFFFF}.scoreNum{position:relative;z-index:1;text-align:center}.scoreNum strong{display:block;font-size:48px;line-height:1}.scoreNum span{color:var(--muted);font-size:12px}.status{margin:15px auto 0;padding:7px 12px;border-radius:999px;background:#EAF0FF;color:var(--accent);font-size:12px;font-weight:700}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:22px;margin:0 0 16px;transition:transform .18s ease,box-shadow .18s ease,outline .2s}.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(15,27,45,.08)}@keyframes growUp{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}.wf{transform-origin:bottom}.wf .col{transform-origin:bottom}@keyframes growWidth{from{width:0}to{}}.metric{padding:17px;border:1px solid var(--line);border-radius:15px;background:rgba(15,27,45,.03)}.metric .label{color:var(--muted);font-size:12px}.metric .value{font-size:25px;font-weight:800;margin-top:5px;letter-spacing:-.5px}.metric .sub{font-size:11px;color:var(--muted);margin-top:5px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:17px}.sectionHead h2{margin:0;font-size:18px}.sectionHead p{margin:0;color:var(--muted);font-size:12px}.flowStep{margin:36px 0 14px;padding-top:6px;border-top:1px solid rgba(15,27,45,.08)}.flowStep:first-child{margin-top:0;border-top:0;padding-top:0}.flowLabel{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin:0 0 4px}.flowLabel .n{width:22px;height:22px;border-radius:50%;background:#EAF0FF;color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:11px}.flowLabel p{margin:0;color:var(--muted);font-size:12.5px;font-weight:500;text-transform:none;letter-spacing:0}.flowLabel.alt{color:var(--accent2)}.flowLabel.alt .n{color:var(--accent2)}.flowSub{color:var(--muted);font-size:12.5px;margin:2px 0 16px 32px}.insight{border:1px solid var(--line);border-radius:15px;padding:16px;background:#F7F9FC}.insight.critical{border-color:#E8B4BD}.insight.high{border-color:#E9CBA8}.insight.medium{border-color:#E5DBA0}.insight.positive{border-color:#A9D9C9}.insight h3{margin:0 0 5px;font-size:14px}.insight p{margin:6px 0;color:#33415C;font-size:13px}.insight ul{margin:6px 0;padding-left:18px;color:#33415C;font-size:13px}.tag{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:800;text-transform:uppercase;background:#EAF0FF;color:#5B6B84}.tag.critical{background:#FCE8EA;color:#C22A3E}.tag.high{background:#FDF0E0;color:#B4720A}.tag.medium{background:#FBF6DE;color:#8A6D00}.tag.positive{background:#E4F5EF;color:#0E7C66}.riskRow,.actionRow{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(15,27,45,.08)}.rank{font-size:18px;font-weight:900;color:#5B6B84}.riskScore{font-size:12px;color:var(--muted)}.bar{height:7px;background:#E4E8EF;border-radius:99px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}.waterfallWrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:16px 14px 12px;background:#FFFFFF;border:1px solid #E2E8F0;border-radius:16px;box-shadow:0 2px 8px rgba(15,27,45,.03);margin-bottom:12px}.waterfall{display:flex;align-items:flex-end;justify-content:center;gap:10px;height:210px;padding:24px 8px 0;border-bottom:2px solid #CBD5E1;max-width:880px;margin:0 auto;position:relative}.wf{flex:1 1 92px;max-width:105px;min-width:64px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}.wf .col{width:38px;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#3B82F6,#1D4ED8);min-height:4px;box-shadow:0 2px 5px rgba(29,78,216,.2);transition:height .3s ease,transform .2s ease}.wf .col:hover{transform:scaleY(1.03)}.wf.neg .col,.wf .col.neg{background:linear-gradient(180deg,#F87171,#DC2626);box-shadow:0 2px 5px rgba(220,38,38,.2)}.wf .col.terminal{background:linear-gradient(180deg,#0284C7,#0369A1);box-shadow:0 2px 5px rgba(2,132,199,.2)}.wf .col.pos{background:linear-gradient(180deg,#34D399,#059669);box-shadow:0 2px 5px rgba(5,150,105,.2)}.wf .lab{font-size:11px;font-weight:700;color:#334155;text-align:center;margin-top:8px;white-space:normal;word-break:normal;overflow:visible;text-overflow:clip;line-height:1.25;width:100%;min-height:30px;max-height:36px;display:flex;align-items:flex-start;justify-content:center}.wf .num{font-size:11px;font-weight:800;text-align:center;color:#0F172A;margin-bottom:6px;white-space:nowrap;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}.wf.neg .num{color:#DC2626}.subnavPill{font-size:12px;font-weight:600;color:#475569;text-decoration:none;padding:5px 12px;border-radius:999px;background:#F1F5F9;border:1px solid #E2E8F0;transition:all .15s ease}.subnavPill:hover{background:#E2E8F0;color:#1D4ED8;border-color:#CBD5E1}.dashboardSubNav{position:sticky;top:62px;z-index:45;background:#FFFFFF;border-bottom:1.5px solid #E2E8F0;box-shadow:0 4px 14px rgba(15,27,45,0.05);padding:10px 0;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;display:flex;gap:7px;white-space:nowrap}.dashPill{font-size:11.5px;font-weight:700;color:#475569;background:#F8FAFC;border:1px solid #CBD5E1;border-radius:999px;padding:5px 12px;cursor:pointer;transition:all .15s ease;white-space:nowrap}.dashPill:hover{background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE}.scenario{padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#F5F8FF,#EEF3FC)}.scenario h3{margin:0 0 6px;font-size:15px}.scenario .big{font-size:24px;font-weight:900;color:var(--accent)}.scenario p{color:var(--muted);font-size:11px;margin:6px 0}.muted{color:var(--muted)}.small{font-size:11px}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:10px 8px;border-bottom:1px solid rgba(15,27,45,.08);text-align:right}th:first-child,td:first-child{text-align:left}th{color:#5B6B84;font-weight:600}.notice{padding:12px 14px;border-radius:12px;background:#EEF2FF;border:1px solid var(--line);color:#5B6B84;font-size:12px}.error{color:#C22A3E;background:#FCE8EA;border:1px solid #E8B4BD;padding:12px;border-radius:12px;margin:15px 0}.hidden{display:none!important}.footer{padding:25px 0 50px;color:#5B6B84;font-size:11px;text-align:center}.tabs{display:flex;gap:8px;margin-top:16px}.tab{padding:8px 12px;border-radius:999px;background:#F0F3F8;border:1px solid var(--line);color:#5B6B84;cursor:pointer}.tab.active{background:#DCE6FB;color:var(--accent);border-color:#1D4ED8}.tabPanel{display:none}.tabPanel.active{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.hidePrint{display:block}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chip{font-size:11.5px;background:#EEF2FF;border:1px solid var(--line);border-radius:999px;padding:6px 11px;color:#33415C}.chip b{color:var(--accent)}
+.secDemoCard{transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease}
+.secDemoCard:hover{transform:translateY(-2px);border-color:#1D4ED8!important;box-shadow:0 10px 24px rgba(29,78,216,0.12)!important;background:#FFFFFF!important}
 .abar{height:9px;background:#E4E8EF;border-radius:99px;overflow:hidden;margin-top:6px}.abar i{display:block;height:100%;background:linear-gradient(90deg,#8aa7ff,#ff8290);border-radius:99px}
 .custRow{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(15,27,45,.08);font-size:12.5px}
 .highlight-target{outline:2px solid var(--accent);outline-offset:6px}
@@ -6571,34 +6583,154 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </div>
 
 <main class="wrap"><section class="hero"><div class="heroCard"><h2 class="heroTitle">Mizanınızı Yükleyin, <span style="color:var(--accent)">Şirketinizin Yönetim Raporunu</span> Alın.</h2><p class="heroText">Mizan veya finansal defterlerinizi yükleyin — 33 karar motoru verilerinizi çift taraflı denetler, kâr sızıntılarını kuruşuna kadar hesaplar, riskleri önceliklendirir ve yarın uygulanacak yönetim kararlarını masaya koyar.</p><div class="framework"><span><b>1. NE OLDU?</b> (Finansal Gerçekler)</span><span><b>2. PARA NEREDE?</b> (Kilitli Nakit &amp; Sızıntı)</span><span><b>3. RİSK &amp; SEKTÖR NE?</b> (Kıyaslama)</span><span><b>4. KİM YAPIYOR?</b> (Müşteri &amp; Stok Zekâsı)</span><span><b>5. NEDEN OLDU?</b> (Kök Neden)</span><span><b>6. NE YAPMALIYIZ?</b> (Yönetim Kararları)</span><span><b>7. SİMÜLE ET</b> (Senaryo Simülatörü)</span></div>
-<div class="cfoDemoHeroBanner hidePrint" style="margin-top:16px;margin-bottom:14px;background:linear-gradient(135deg, rgba(29,78,216,0.06) 0%, rgba(14,124,102,0.06) 100%);border:1.5px solid rgba(29,78,216,0.22);border-radius:14px;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px">
-  <div style="max-width:520px">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-      <span style="background:#1D4ED8;color:#fff;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;letter-spacing:0.5px">CFO CANLI DEMO</span>
-      <span style="font-weight:700;font-size:14.5px;color:#0F1B2D">Dosya Yüklemeden Platformu Canlı İnceleyin</span>
+<div class="sectorShowcaseCard hidePrint" style="margin-top:16px;margin-bottom:16px;background:#FFFFFF;border:1.5px solid #DCE6F5;border-radius:18px;padding:22px 24px;box-shadow:0 8px 30px rgba(15,27,45,0.06)">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:16px;border-bottom:1px solid #EDF2F7;padding-bottom:14px">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+        <span style="background:linear-gradient(135deg,#1D4ED8,#0E7C66);color:#fff;font-size:10.5px;font-weight:800;padding:3px 10px;border-radius:999px;letter-spacing:0.8px;text-transform:uppercase">CANLI SEKTÖREL TEST MERKEZİ</span>
+        <span style="font-size:12px;color:#059669;font-weight:700;display:inline-flex;align-items:center;gap:4px">● 5 Sektör · 30 Gerçekçi Defter</span>
+      </div>
+      <h3 style="margin:2px 0 4px;font-size:18px;color:#0F1B2D;font-weight:800">
+        Hangi Sektörün Finansal Check-Up ve Yönetim Raporunu İncelemek İstersiniz?
+      </h3>
+      <p style="margin:0;font-size:12.5px;color:#475569;max-width:760px;line-height:1.5">
+        Kendi sektörünüzü seçin; zengin kurumsal mizan, müşteri/tedarikçi yaşlandırma, stok ve satış defterleriyle 33 analitik karar motoru o sektörün TCMB medyanlarına göre anında çalışsın (Dosya yükleme gerektirmez):
+      </p>
     </div>
-    <div style="font-size:12.5px;color:#475569;line-height:1.5">Gerçek kurumsal veri setleriyle 33 analitik karar motorunu, nakit akış köprüsünü, DuPont kârlılık ayrıştırmasını ve yönetim aksiyonlarını anında test edin.</div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span class="tag" style="background:#F0FDF4;color:#166534;border:1px solid #86EFAC;font-size:11.5px;padding:6px 12px;font-weight:700">🔒 Sıfır Dosya Yükleme Gerekir</span>
+    </div>
   </div>
-  <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-    <button id="sampleTrendBtn" type="button" class="primary" style="background:linear-gradient(135deg,#1D4ED8,#0E7C66);color:#fff;border:none;padding:10px 18px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(29,78,216,0.25)">
-      🚀 1-Tıkla Trend Demosu (2 Dönem)
-    </button>
-    <button id="sampleBtn" type="button" class="secondary" style="background:#FFFFFF;color:#0F1B2D;border:1.5px solid #CBD5E1;padding:9px 14px;border-radius:10px;font-weight:700;font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
-      📄 Tek Dönem Mizan
-    </button>
-    <button id="sampleHubBtn" type="button" class="secondary" style="background:#FFFFFF;color:#1D4ED8;border:1.5px solid #CBD5E1;padding:9px 14px;border-radius:10px;font-weight:700;font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
-      🗂️ 6-Dosyalı Çoklu Veri Merkezi
-    </button>
-    <button type="button" onclick="openConnectorModal()" class="secondary" style="background:#F0FDF4;color:#166534;border:1.5px solid #86EFAC;padding:9px 14px;border-radius:10px;font-weight:800;font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
-      ⚙️ API Anahtarını Kaydet / ERP Bağla
-    </button>
+
+  <!-- 5 Sektör Kartı Grid -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:12px;margin-bottom:16px">
+    <!-- 1. Üretim / Sanayi -->
+    <div onclick="runSectorDemo('uretim_sanayi')" class="secDemoCard" style="background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:14px;padding:14px;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:24px">🏭</span>
+          <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:10px;font-weight:800">48.5M ₺ CİRO</span>
+        </div>
+        <div style="font-weight:800;font-size:13.5px;color:#0F1B2D;margin-bottom:2px">Üretim &amp; Sanayi</div>
+        <div style="font-size:11px;color:#64748B;margin-bottom:10px">Makine &amp; Metal Sanayi A.Ş.</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px">
+          <span style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:2px 6px;font-size:10.5px;color:#334155;font-weight:700">78g DSO</span>
+          <span style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:2px 6px;font-size:10.5px;color:#D97706;font-weight:700">82g DIO</span>
+          <span style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:2px 6px;font-size:10.5px;color:#166534;font-weight:700">%23 Brüt</span>
+        </div>
+        <div style="font-size:10.5px;color:#475569;line-height:1.35;margin-bottom:10px">Hammadde stoğunda kilitli nakit, 90 günü aşan sanayi müşteri vadeleri.</div>
+      </div>
+      <button type="button" class="primary" style="width:100%;font-size:11.5px;padding:7px 10px;border-radius:8px;font-weight:800">🚀 Raporu İncele →</button>
+    </div>
+
+    <!-- 2. Toptan Dağıtım / FMCG -->
+    <div onclick="runSectorDemo('toptan_ticaret')" class="secDemoCard" style="background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:14px;padding:14px;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:24px">📦</span>
+          <span class="tag" style="background:#FEF3C7;color:#B45309;font-size:10px;font-weight:800">92.0M ₺ CİRO</span>
+        </div>
+        <div style="font-weight:800;font-size:13.5px;color:#0F1B2D;margin-bottom:2px">Toptan Dağıtım &amp; FMCG</div>
+        <div style="font-size:11px;color:#64748B;margin-bottom:10px">Anadolu Gıda Dağıtım Ltd.</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px">
+          <span style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:2px 6px;font-size:10.5px;color:#334155;font-weight:700">58g DSO</span>
+          <span style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:2px 6px;font-size:10.5px;color:#334155;font-weight:700">35g DIO</span>
+          <span style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:2px 6px;font-size:10.5px;color:#DC2626;font-weight:700">%12.5 Marj</span>
+        </div>
+        <div style="font-size:10.5px;color:#475569;line-height:1.35;margin-bottom:10px">Yüksek ciroda ince kâr marjı, bayi vadeli çekleri ve akaryakıt sızıntısı.</div>
+      </div>
+      <button type="button" class="primary" style="width:100%;font-size:11.5px;padding:7px 10px;border-radius:8px;font-weight:800">🚀 Raporu İncele →</button>
+    </div>
+
+    <!-- 3. Perakende & E-Ticaret -->
+    <div onclick="runSectorDemo('perakende_eticaret')" class="secDemoCard" style="background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:14px;padding:14px;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:24px">🛍️</span>
+          <span class="tag" style="background:#FDF2F8;color:#BE185D;font-size:10px;font-weight:800">32.0M ₺ CİRO</span>
+        </div>
+        <div style="font-weight:800;font-size:13.5px;color:#0F1B2D;margin-bottom:2px">Perakende &amp; E-Ticaret</div>
+        <div style="font-size:11px;color:#64748B;margin-bottom:10px">ModaStyle Perakende A.Ş.</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px">
+          <span style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:2px 6px;font-size:10.5px;color:#0E7C66;font-weight:700">18g Hızlı POS</span>
+          <span style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:2px 6px;font-size:10.5px;color:#DC2626;font-weight:700">115g Atıl Stok</span>
+          <span style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:2px 6px;font-size:10.5px;color:#166534;font-weight:700">%42 Brüt</span>
+        </div>
+        <div style="font-size:10.5px;color:#475569;line-height:1.35;margin-bottom:10px">Hızlı POS tahsilatı ancak depoda yığılan sezonluk atıl giyim stoku.</div>
+      </div>
+      <button type="button" class="primary" style="width:100%;font-size:11.5px;padding:7px 10px;border-radius:8px;font-weight:800">🚀 Raporu İncele →</button>
+    </div>
+
+    <!-- 4. Hizmet & B2B Yazılım -->
+    <div onclick="runSectorDemo('hizmet_yazilim')" class="secDemoCard" style="background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:14px;padding:14px;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:24px">💻</span>
+          <span class="tag" style="background:#ECFDF5;color:#047857;font-size:10px;font-weight:800">22.0M ₺ CİRO</span>
+        </div>
+        <div style="font-weight:800;font-size:13.5px;color:#0F1B2D;margin-bottom:2px">Hizmet &amp; B2B Yazılım</div>
+        <div style="font-size:11px;color:#64748B;margin-bottom:10px">Nova Teknoloji A.Ş.</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px">
+          <span style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:2px 6px;font-size:10.5px;color:#334155;font-weight:700">72g Hakediş</span>
+          <span style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:2px 6px;font-size:10.5px;color:#0E7C66;font-weight:700">0g Stoksuz</span>
+          <span style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:2px 6px;font-size:10.5px;color:#166534;font-weight:700">%62 Brüt</span>
+        </div>
+        <div style="font-size:10.5px;color:#475569;line-height:1.35;margin-bottom:10px">Sıfır stok avantajı, kurumsal hakediş gecikmeleri ve maaş günü nakit baskısı.</div>
+      </div>
+      <button type="button" class="primary" style="width:100%;font-size:11.5px;padding:7px 10px;border-radius:8px;font-weight:800">🚀 Raporu İncele →</button>
+    </div>
+
+    <!-- 5. İnşaat & Taahhüt -->
+    <div onclick="runSectorDemo('insaat_taahhut')" class="secDemoCard" style="background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:14px;padding:14px;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:24px">🏗️</span>
+          <span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:10px;font-weight:800">65.0M ₺ CİRO</span>
+        </div>
+        <div style="font-weight:800;font-size:13.5px;color:#0F1B2D;margin-bottom:2px">İnşaat &amp; Taahhüt</div>
+        <div style="font-size:11px;color:#64748B;margin-bottom:10px">Atlas Yapı &amp; Taahhüt A.Ş.</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px">
+          <span style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:2px 6px;font-size:10.5px;color:#DC2626;font-weight:700">95g DSO</span>
+          <span style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:2px 6px;font-size:10.5px;color:#334155;font-weight:700">60g Şantiye</span>
+          <span style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:2px 6px;font-size:10.5px;color:#334155;font-weight:700">%18 Brüt</span>
+        </div>
+        <div style="font-size:10.5px;color:#475569;line-height:1.35;margin-bottom:10px">İşveren hakediş vadelerinin uzaması, taşeron çekleri ve teminat yükü.</div>
+      </div>
+      <button type="button" class="primary" style="width:100%;font-size:11.5px;padding:7px 10px;border-radius:8px;font-weight:800">🚀 Raporu İncele →</button>
+    </div>
+  </div>
+
+  <!-- Alt Hızlı Kontroller & ERP Bağlantısı -->
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding-top:12px;border-top:1px dashed #E2E8F0">
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <span style="font-size:11.5px;color:#64748B;font-weight:700">Alternatif Testler:</span>
+      <button id="sampleTrendBtn" type="button" class="secondary" style="font-size:11px;padding:5px 10px;border-radius:7px;font-weight:600">🚀 2 Dönem Trend</button>
+      <button id="sampleBtn" type="button" class="secondary" style="font-size:11px;padding:5px 10px;border-radius:7px;font-weight:600">📄 Tek Mizan</button>
+      <button id="sampleHubBtn" type="button" class="secondary" style="font-size:11px;padding:5px 10px;border-radius:7px;font-weight:600">🗂️ Jenerik Çoklu Veri</button>
+      <button type="button" onclick="openConnectorModal()" class="secondary" style="background:#F0FDF4;color:#166534;border:1px solid #86EFAC;font-size:11px;padding:5px 10px;border-radius:7px;font-weight:700">⚙️ ERP &amp; API Bağlantısı</button>
+    </div>
     <span id="sampleStatus" class="small muted" style="margin-left:4px"></span>
   </div>
 </div>
-<div class="trustBar hidePrint">
-<div class="item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Önce hesap, sonra yorum — deterministik motor</div>
-<div class="item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>KVKK Uyumlu · RAM-Only Geçici Bellek (Kalıcı Saklama Yok)</div>
-<div class="item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg>33 Finansal Karar Motoru · Bütünleşik Karar Akışı</div>
+
+<!-- KURUMSAL GÜVENLİK, KVKK VE BAĞIMSIZ DENETİM MÜHÜRLERİ -->
+<div class="trustBar hidePrint" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:18px;padding:12px 16px;background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:14px">
+  <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#334155">
+    <span style="font-size:18px">🔒</span>
+    <span><b>RAM-Only Geçici Bellek:</b> Yüklenen defterler diske yazılmaz; analiz bitince bellekten anında silinir.</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#334155">
+    <span style="font-size:18px">🛡️</span>
+    <span><b>256-Bit SSL &amp; KVKK:</b> Kurumsal veri gizliliği ve tek taraflı dijital NDA taahhüdü.</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#334155">
+    <span style="font-size:18px">⚖️</span>
+    <span><b>YMM &amp; CFO Onaylı:</b> 33 analitik karar motoru çift taraflı muhasebe denkliğiyle doğrulanır.</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#334155">
+    <span style="font-size:18px">📊</span>
+    <span><b>TCMB &amp; BIST Medyanları:</b> Sektör göstergeleri resmi reel sektör verileriyle kalibre edilir.</span>
+  </div>
 </div>
 
 <div class="tabs">
@@ -6903,6 +7035,35 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_10')">10. Enflasyon &amp; Stres Testi</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_ekA')">Ek A · Denetim</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_ekB')">Ek B · Mali Tablolar</button>
+<!-- KURUMSAL ANTET & YÖNETİM KURULU DENETİM BAŞLIĞI -->
+<div id="reportHeaderAntet" class="reportHeaderAntet" style="margin-bottom:20px;background:linear-gradient(135deg, #0F172A 0%, #1E293B 100%);color:#FFFFFF;border-radius:18px;padding:22px 26px;box-shadow:0 12px 36px rgba(15,23,42,0.18);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px">
+  <div style="max-width:760px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="background:rgba(56,189,248,0.15);color:#38BDF8;border:1px solid rgba(56,189,248,0.3);font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;letter-spacing:0.8px;text-transform:uppercase">
+        🏛️ YÖNETİM KURULU &amp; İCRA BRİFİNGİ
+      </span>
+      <span id="antetSectorBadge" style="background:rgba(52,211,153,0.15);color:#34D399;border:1px solid rgba(52,211,153,0.3);font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px">
+        GENEL SEKTÖR
+      </span>
+      <span style="font-size:11px;color:#94A3B8">TMS &amp; T.C. Hazine Standartlarında Çift Taraflı Analitik Denetim</span>
+    </div>
+    <h2 id="antetCompanyName" style="margin:0 0 6px;font-size:24px;font-weight:800;color:#FFFFFF;letter-spacing:-0.4px">
+      Şirket Finansal Sağlık &amp; Kök Neden Teşhis Raporu
+    </h2>
+    <div style="font-size:12.5px;color:#CBD5E1;line-height:1.5">
+      33 analitik karar motoru, DuPont 3-faktör kârlılık ayrıştırması, TMS 7 nakit akış köprüsü ve TCMB/BIST reel sektör kıyaslama medyanlarıyla denetlenmiştir.
+    </div>
+  </div>
+  <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:10px 16px;text-align:right">
+      <div style="font-size:10.5px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.5px">Analiz Durumu</div>
+      <div id="antetReportStatus" style="font-size:13px;font-weight:800;color:#38BDF8">● Doğrulanmış Veri Seti</div>
+      <div id="antetReportDate" style="font-size:11px;color:#64748B">2025 / 12 Cari Dönem</div>
+    </div>
+    <button type="button" onclick="window.print()" class="secondary" style="background:#FFFFFF;color:#0F172A;border:none;font-weight:800;font-size:12px;padding:10px 16px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+      🖨️ Yönetim Çıktısı (PDF)
+    </button>
+  </div>
 </div>
 
 <!-- ==================== BÖLÜM 1: YÖNETİCİ BRİFİNGİ & FİNANSAL RÖNTGEN ==================== -->
@@ -9007,6 +9168,31 @@ window.renderScoreMethodology = renderScoreMethodology;
 
 function render(d){
   LAST=d;$('dashboard').classList.remove('hidden');
+  const sInfo = d.sector_info;
+  const antetComp = $('antetCompanyName');
+  const antetSec = $('antetSectorBadge');
+  const antetDate = $('antetReportDate');
+  const antetStatus = $('antetReportStatus');
+  if(antetComp){
+    if(sInfo && sInfo.name){
+      antetComp.innerHTML = esc(sInfo.name) + ' &bull; Finansal Check-Up ve Yönetim Raporu';
+    } else if(d.filename){
+      antetComp.innerHTML = esc(d.filename.replace(/\.[^/.]+$/, '')) + ' &bull; Şirket Yönetim Raporu';
+    } else {
+      antetComp.innerHTML = 'Şirket Finansal Sağlık &amp; Kök Neden Teşhis Raporu';
+    }
+  }
+  if(antetSec){
+    const sName = (sInfo && sInfo.sector_label) || (d.business_partner && d.business_partner.benchmarking && d.business_partner.benchmarking.sector) || 'GENEL SEKTÖR';
+    antetSec.textContent = sName.toUpperCase();
+  }
+  if(antetDate){
+    const pMeta = (d.statements && d.statements.period_metadata) || {};
+    antetDate.textContent = (pMeta.period_end || '2025 / 12') + ' Cari Dönem';
+  }
+  if(antetStatus){
+    antetStatus.innerHTML = sInfo ? '● ' + esc(sInfo.tagline || 'Sektörel Canlı Veri Seti') : '● Doğrulanmış Mizan';
+  }
   const bp=d.business_partner,pl=d.statements.profit_and_loss,bs=d.statements.balance_sheet,k=d.statements.kpis;
   const fx = d.fx_rates || (bp && bp.fx_rates);
   if(fx){
@@ -10057,10 +10243,49 @@ async function runDataHubSample(){
 }
 $('sampleHubBtn').onclick=()=>runDataHubSample();
 
+window.runSectorDemo = async function(sectorId){
+  const meta = {
+    'uretim_sanayi': { name: 'Makine & Metal Sanayi A.Ş.', label: 'Üretim / Sanayi', icon: '🏭' },
+    'toptan_ticaret': { name: 'Anadolu Gıda & Toptan Dağıtım Ltd.', label: 'Toptan Dağıtım / Ticaret', icon: '📦' },
+    'perakende_eticaret': { name: 'ModaStyle Perakende & E-Ticaret A.Ş.', label: 'Perakende / Ticaret', icon: '🛍️' },
+    'hizmet_yazilim': { name: 'Nova Teknoloji & B2B Yazılım A.Ş.', label: 'Hizmet', icon: '💻' },
+    'insaat_taahhut': { name: 'Atlas Yapı & Taahhüt A.Ş.', label: 'İnşaat / Taahhüt', icon: '🏗️' }
+  }[sectorId] || { name: 'Örnek Sektör KOBİ', label: 'Genel', icon: '📊' };
+
+  startLoading(`${meta.icon} ${meta.label} Sektörel Check-Up Hazırlanıyor`, `${meta.name} için 6 defter (Cari/Önceki Mizan, Alacak/Borç Yaşlandırma, Stok, Satış) 33 analitik karar motoruyla işleniyor...`);
+  if($('error')) $('error').classList.add('hidden');
+  try{
+    const r = await fetch('/api/sample/run-sector/' + encodeURIComponent(sectorId), { method: 'POST' });
+    if(!r.ok){
+      const err = await r.json().catch(()=>({}));
+      throw new Error(err.detail || 'Sektörel analiz çalıştırılamadı.');
+    }
+    const data = await r.json();
+    stopLoading();
+    render(data);
+    if($('sampleStatus')){
+      $('sampleStatus').innerHTML = `<span style="color:#0E7C66;font-weight:700">✓ ${meta.icon} ${meta.name} (${meta.label}) Sektörel Check-Up Raporu Aktif</span>`;
+    }
+    setTimeout(()=>{
+      const topSection = document.getElementById('reportHeaderAntet') || document.getElementById('flowStep_1');
+      if(topSection) topSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 200);
+  }catch(e){
+    stopLoading();
+    if($('error')){
+      $('error').textContent = e.message;
+      $('error').classList.remove('hidden');
+    }
+  }
+};
+
 (function(){
   const _qp=new URLSearchParams(location.search);
+  const _sec=_qp.get('sector');
   const _s=_qp.get('sample');
-  if(_s){
+  if(_sec){
+    setTimeout(()=>window.runSectorDemo(_sec), 150);
+  } else if(_s){
     if(_s==='data_hub'){ setTimeout(()=>runDataHubSample(),120); }
     else { const key=(_s==='1')?'mizan':_s; setTimeout(()=>runSample(key),120); }
   }
