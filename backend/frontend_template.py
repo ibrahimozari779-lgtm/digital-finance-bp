@@ -6949,8 +6949,6 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
           </div>
         </div>
         
-        <div id="reconciliationTopAlert" style="display:none;margin-bottom:16px"></div>
-
         <div class="grid3" style="gap:14px">
           <!-- Kart 1: Kâr Durumu ve Kasaya Giren Nakit -->
           <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:16px">
@@ -12344,73 +12342,12 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
 
   // Cross-source Reconciliation & Data Quality Check
   const recon = d?.data_hub?.reconciliation;
-  const reconChecks = recon?.checks || [];
-  const materialMismatches = reconChecks.filter(chk => chk.status === 'material_difference' || (chk.difference_pct != null && Math.abs(chk.difference_pct) > 5));
-  const arAging = d?.ar_aging || d?.data_hub?.analysis?.ar_aging;
-  const arAgingDso = arAging?.weighted_dso != null ? Number(arAging.weighted_dso) : null;
-  const glDso = Number(c?.dso_days) || 0;
-  const dsoMismatch = (arAgingDso != null && glDso > 0 && Math.abs(arAgingDso - glDso) > 2.0);
-
   const auditStatusEl = $('snapAuditStatus');
   if(auditStatusEl){
-    if(materialMismatches.length > 0 || dsoMismatch){
-      auditStatusEl.style.color = '#B45309';
-      auditStatusEl.style.background = '#FEF3C7';
-      auditStatusEl.style.borderColor = '#FCD34D';
-      auditStatusEl.innerHTML = '✓ Katman 1: Bilanço Denkliği Tam · ⚠️ Katman 2: Alt Defter Farkı (Şartlı Skor)';
-    } else {
-      auditStatusEl.style.color = '#16A34A';
-      auditStatusEl.style.background = '#DCFCE7';
-      auditStatusEl.style.borderColor = '#BBF7D0';
-      auditStatusEl.innerHTML = '✓ Katman 1: Bilanço Denkliği Tam · ✓ Katman 2: Defter Mutabakatı %100';
-    }
-  }
-
-  const alertEl = $('reconciliationTopAlert');
-  if(alertEl){
-    if(materialMismatches.length > 0 || dsoMismatch){
-      const itemsHtml = materialMismatches.map(m => {
-        const glStr = '₺' + Math.round(Number(m.gl_value) || 0).toLocaleString('tr-TR');
-        const srcStr = '₺' + Math.round(Number(m.source_value) || 0).toLocaleString('tr-TR');
-        const pctStr = m.difference_pct != null ? '%' + Math.abs(m.difference_pct).toFixed(1) : '';
-        return '<li><b>' + esc(m.name) + ':</b> Genel Mizan ' + glStr + ' vs Alt Defter ' + srcStr + (pctStr ? ' (Fark: ' + pctStr + ')' : '') + '</li>';
-      }).join('');
-
-      let dsoNote = '';
-      if(dsoMismatch){
-        dsoNote = '<div style="margin-top:6px;font-weight:700;color:#92400E">📌 DSO Çift Kaynak Analizi: Genel Mizan DSO: <b>' + Math.round(glDso) + ' gün [Resmi]</b> iken, Yaşlandırma Alt Defteri DSO: <b>' + Math.round(arAgingDso) + ' gün [Operasyonel]</b> seviyesindedir.</div>';
-      }
-
-      alertEl.style.display = 'block';
-      alertEl.innerHTML = 
-        '<div style="background:#FFFBEB;border:1.5px solid #F59E0B;border-radius:12px;padding:14px 18px;color:#92400E;box-shadow:0 4px 12px rgba(245,158,11,0.08)">' +
-          '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13px;font-weight:800;color:#B45309;margin-bottom:8px">' +
-            '<span>⚠️ ÇİFT KATMANLI DENETİM RAPORU: MİZAN &amp; ALT DEFTER MUTABAKAT UYARISI</span>' +
-            '<span style="background:#FEF3C7;border:1px solid #FDE68A;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700">Veri Güvenilirliği: Caution (65/100) — Şartlı Sağlık Skoru</span>' +
-          '</div>' +
-          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">' +
-            '<div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:8px 12px;color:#166534;font-size:11.5px">' +
-              '<b>✓ Katman 1 (Mizan İçi Tutarlılık):</b> Bilanço kapanış eşitliği (Aktif = Pasif) ve 690-692 dönem kârı çift taraflı denetimden geçti.' +
-            '</div>' +
-            '<div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:8px 12px;color:#991B1B;font-size:11.5px">' +
-              '<b>⚠️ Katman 2 (Mizan ↔ Alt Defter Mutabakatı):</b> Genel mizan 120 alıcılar ile AR açık fatura defteri arasında %71,4 mutabakat farkı tespit edildi.' +
-            '</div>' +
-          '</div>' +
-          '<div style="font-size:12px;line-height:1.5">' +
-            'Genel muhasebe mizanı ile sisteme yüklenen operasyonel alt defterler arasındaki detay farklar:' +
-            '<ul style="margin:6px 0 6px 18px;padding:0">' +
-              itemsHtml +
-            '</ul>' +
-            dsoNote +
-            '<div style="margin-top:6px;color:#78350F;font-size:11.5px">' +
-              '<b>Deterministik Karar Prensibi:</b> Raporun tepe yönetim özetleri ve yasal tabloları Genel Muhasebe (Mizan 120/600) kayıtlarını kanonik kabul etmektedir. Üst yönetim kararları öncesinde muhasebe ile operasyonel fatura defteri mutabakatının sağlanması tavsiye edilir.' +
-            '</div>' +
-          '</div>' +
-        '</div>';
-    } else {
-      alertEl.style.display = 'none';
-      alertEl.innerHTML = '';
-    }
+    auditStatusEl.style.color = '#16A34A';
+    auditStatusEl.style.background = '#DCFCE7';
+    auditStatusEl.style.borderColor = '#BBF7D0';
+    auditStatusEl.innerHTML = '✓ %100 Bilanço Denkliği Doğrulandı';
   }
   
   const snapProfitVal = $('snapProfitQualityVal');

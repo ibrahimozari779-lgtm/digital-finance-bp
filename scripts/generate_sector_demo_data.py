@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate rich, realistic, coherent multi-source demo datasets for 5 distinct industries:
+"""Generate rich, realistic, 100% reconciled multi-source demo datasets for 5 distinct industries:
 1. uretim_sanayi: Makine & Metal Sanayi A.Ş. (Manufacturing)
 2. toptan_ticaret: Anadolu Gıda & Toptan Dağıtım Ltd. (Wholesale FMCG)
 3. perakende_eticaret: ModaStyle Perakende & E-Ticaret A.Ş. (Retail & E-Commerce)
@@ -7,12 +7,12 @@
 5. insaat_taahhut: Atlas Yapı & Taahhüt A.Ş. (Construction & Projects)
 
 Each sector gets 6 synchronized files in demo_data/sectors/{sector_id}/:
-- mizan_cur.xlsx (Balanced current period trial balance with 50-120 accounts)
+- mizan_cur.xlsx (Balanced current period trial balance)
 - mizan_prior.xlsx (Balanced prior period trial balance for trend & cash bridge)
-- ar_aging.xlsx (Customer receivables aging with 30-50 real companies)
-- ap_aging.xlsx (Supplier payables aging with 20-40 real vendors)
-- inventory.xlsx (Detailed inventory stock ledger with SKUs, warehouses, aging)
-- sales_ledger.xlsx (Granular transaction ledger with units, discounts, costs)
+- ar_aging.xlsx (Customer receivables aging with 30-50 real companies - 100% GL 120 reconciled)
+- ap_aging.xlsx (Supplier payables aging with 20-40 real vendors - 100% GL 320 reconciled)
+- inventory.xlsx (Detailed inventory stock ledger - 100% GL 150-158 reconciled)
+- sales_ledger.xlsx (Granular transaction ledger - 100% GL 600/611 reconciled)
 """
 
 import os
@@ -97,44 +97,44 @@ SECTORS = [
     },
 ]
 
-# Random seed for deterministic reproducibility
 random.seed(42)
 
 def generate_trial_balance(cfg, is_prior=False):
     """Generate coherent, balanced TDHP trial balance matching sector KPIs."""
     rev_mult = 0.88 if is_prior else 1.0
-    net_sales = cfg["revenue"] * rev_mult
-    cogs = net_sales * cfg["cogs_pct"]
-    gross_profit = net_sales - cogs
-    opex = net_sales * cfg["opex_pct"]
-    fin_exp = net_sales * cfg["fin_pct"]
-    pretax_profit = gross_profit - opex - fin_exp
-    tax = net_sales * cfg["tax_pct"]
-    net_profit = pretax_profit - tax
+    net_sales = round(cfg["revenue"] * rev_mult, 2)
+    gross_sales = round(net_sales * 1.02, 2)
+    contra = round(gross_sales - net_sales, 2)
+    cogs = round(net_sales * cfg["cogs_pct"], 2)
+    gross_profit = round(net_sales - cogs, 2)
+    opex = round(net_sales * cfg["opex_pct"], 2)
+    fin_exp = round(net_sales * cfg["fin_pct"], 2)
+    pretax_profit = round(gross_profit - opex - fin_exp, 2)
+    tax = round(net_sales * cfg["tax_pct"], 2)
+    net_profit = round(pretax_profit - tax, 2)
 
     dso = cfg["dso_target"] * (1.08 if is_prior else 1.0)
     dio = cfg["dio_target"] * (1.10 if is_prior else 1.0)
     dpo = cfg["dpo_target"] * (0.95 if is_prior else 1.0)
 
-    receivables = (net_sales / 365.0) * dso
-    inventory = (cogs / 365.0) * dio if dio > 0 else 0.0
-    payables = (cogs / 365.0) * dpo
-    cash = net_sales * (0.015 if is_prior else 0.028)
-    bank_st_debt = net_sales * 0.12
-    bank_lt_debt = net_sales * 0.08
-    other_cur_assets = net_sales * 0.04
-    fixed_assets = net_sales * (0.40 if cfg["id"] in ("uretim_sanayi", "insaat_taahhut") else 0.15)
-    accum_depr = fixed_assets * 0.35
-    net_fixed_assets = fixed_assets - accum_depr
+    receivables = round((net_sales / 365.0) * dso, 2)
+    inventory = round((cogs / 365.0) * dio, 2) if dio > 0 else 0.0
+    payables = round((cogs / 365.0) * dpo, 2)
+    cash = round(net_sales * (0.015 if is_prior else 0.028), 2)
+    bank_st_debt = round(net_sales * 0.12, 2)
+    bank_lt_debt = round(net_sales * 0.08, 2)
+    other_cur_assets = round(net_sales * 0.04, 2)
+    fixed_assets = round(net_sales * (0.40 if cfg["id"] in ("uretim_sanayi", "insaat_taahhut") else 0.15), 2)
+    accum_depr = round(fixed_assets * 0.35, 2)
+    net_fixed_assets = round(fixed_assets - accum_depr, 2)
 
-    total_assets = cash + receivables + inventory + other_cur_assets + net_fixed_assets
-    other_liab = net_sales * 0.03
-    total_liab = bank_st_debt + payables + other_liab + bank_lt_debt
-    equity = total_assets - total_liab
-    capital = equity * 0.50
-    prior_retained = equity * 0.50 - net_profit
+    total_assets = round(cash + receivables + inventory + other_cur_assets + net_fixed_assets, 2)
+    other_liab = round(net_sales * 0.03, 2)
+    total_liab = round(bank_st_debt + payables + other_liab + bank_lt_debt, 2)
+    equity = round(total_assets - total_liab, 2)
+    capital = round(equity * 0.50, 2)
+    prior_retained = round(equity - capital - net_profit, 2)
 
-    # Detailed accounts breakdown
     rows = []
     def add(code, name, debit, credit):
         rows.append({"Hesap Kodu": code, "Hesap Adı": name, "Borç Bakiye": round(debit, 2), "Alacak Bakiye": round(credit, 2)})
@@ -144,37 +144,46 @@ def generate_trial_balance(cfg, is_prior=False):
     add("102.01", "Garanti BBVA Ticari TL", cash * 0.45, 0)
     add("102.02", "İş Bankası Şirket Hesabı", cash * 0.25, 0)
     add("102.03", "Yapı Kredi Döviz Tevdiat (USD/EUR)", cash * 0.15, 0)
-    if cfg["id"] == "perakende_eticaret":
-        add("108.01", "Kredi Kartı & POS Tahsilatları", receivables * 0.70, 0)
-        rec_share = 0.30
-    else:
-        rec_share = 1.0
 
-    # 120 Alıcılar
+    # 120 Alıcılar - Total Borç must be exactly receivables down to 0.00 TL
     num_cust = 20
-    cust_sum = 0
+    cust_weights = [(num_cust - i + 1) ** 1.3 for i in range(1, num_cust + 1)]
+    w_sum = sum(cust_weights)
+    allocated_ar = 0.0
     for i in range(1, num_cust + 1):
-        w = (num_cust - i + 1) ** 1.3
-        amt = (receivables * rec_share) * (w / sum((num_cust - j + 1) ** 1.3 for j in range(1, num_cust + 1)))
-        cust_sum += amt
+        if i == num_cust:
+            amt = round(receivables - allocated_ar, 2)
+        else:
+            amt = round(receivables * (cust_weights[i-1] / w_sum), 2)
+            allocated_ar += amt
         cname = f"Cari Müşteri {i:02d} - {cfg['name'].split()[0]} Portföy"
         add(f"120.{i:02d}", cname, amt, 0)
 
-    # 15 Stoklar (Hizmet sektöründe stok yok)
+    # 15 Stoklar - Total Borç must be exactly inventory down to 0.00 TL
     if inventory > 0:
         if cfg["id"] == "uretim_sanayi":
-            add("150.01", "İlk Madde ve Malzeme - Çelik & Metal", inventory * 0.45, 0)
-            add("150.02", "İlk Madde ve Malzeme - Yedek Parça & Rulman", inventory * 0.15, 0)
-            add("151.01", "Yarı Mamuller - Talaşlı İmalat Hattı", inventory * 0.15, 0)
-            add("152.01", "Mamuller - Sevke Hazır İmalat", inventory * 0.25, 0)
+            inv1 = round(inventory * 0.45, 2)
+            inv2 = round(inventory * 0.15, 2)
+            inv3 = round(inventory * 0.15, 2)
+            inv4 = round(inventory - (inv1 + inv2 + inv3), 2)
+            add("150.01", "İlk Madde ve Malzeme - Çelik & Metal", inv1, 0)
+            add("150.02", "İlk Madde ve Malzeme - Yedek Parça & Rulman", inv2, 0)
+            add("151.01", "Yarı Mamuller - Talaşlı İmalat Hattı", inv3, 0)
+            add("152.01", "Mamuller - Sevke Hazır İmalat", inv4, 0)
         elif cfg["id"] == "insaat_taahhut":
-            add("150.01", "Şantiye Demir & Çelik Stokları", inventory * 0.35, 0)
-            add("150.02", "Çimento & Hazır Beton Girdileri", inventory * 0.20, 0)
-            add("170.01", "Yıllara Yaygın İnşaat Maliyetleri (Proje A)", inventory * 0.45, 0)
+            inv1 = round(inventory * 0.40, 2)
+            inv2 = round(inventory * 0.30, 2)
+            inv3 = round(inventory - (inv1 + inv2), 2)
+            add("150.01", "Şantiye Demir & Çelik Stokları", inv1, 0)
+            add("150.02", "Çimento & Hazır Beton Girdileri", inv2, 0)
+            add("150.03", "Şantiye Yapı Malzemeleri & Yalıtım", inv3, 0)
         else:
-            add("153.01", "Ticari Mallar - Ana Kategori A", inventory * 0.55, 0)
-            add("153.02", "Ticari Mallar - Sezonluk Kategori B", inventory * 0.30, 0)
-            add("153.03", "Ticari Mallar - Tali Ürün Grubu C", inventory * 0.15, 0)
+            inv1 = round(inventory * 0.55, 2)
+            inv2 = round(inventory * 0.30, 2)
+            inv3 = round(inventory - (inv1 + inv2), 2)
+            add("153.01", "Ticari Mallar - Ana Kategori A", inv1, 0)
+            add("153.02", "Ticari Mallar - Sezonluk Kategori B", inv2, 0)
+            add("153.03", "Ticari Mallar - Tali Ürün Grubu C", inv3, 0)
 
     # Diğer Dönen Varlıklar
     add("191.01", "İndirilecek KDV", other_cur_assets * 0.60, 0)
@@ -195,11 +204,17 @@ def generate_trial_balance(cfg, is_prior=False):
     add("300.01", "Banka Kredileri (BCH / Rotatif Ticari)", 0, bank_st_debt * 0.70)
     add("300.02", "Spot & Taksitli Kredi Anapara Taksitleri", 0, bank_st_debt * 0.30)
 
-    # 320 Satıcılar
+    # 320 Satıcılar - Total Alacak must be exactly payables down to 0.00 TL
     num_vend = 15
+    vend_weights = [(num_vend - i + 1) ** 1.2 for i in range(1, num_vend + 1)]
+    vw_sum = sum(vend_weights)
+    allocated_ap = 0.0
     for i in range(1, num_vend + 1):
-        w = (num_vend - i + 1) ** 1.2
-        amt = payables * (w / sum((num_vend - j + 1) ** 1.2 for j in range(1, num_vend + 1)))
+        if i == num_vend:
+            amt = round(payables - allocated_ap, 2)
+        else:
+            amt = round(payables * (vend_weights[i-1] / vw_sum), 2)
+            allocated_ap += amt
         vname = f"Tedarikçi {i:02d} - {cfg['name'].split()[0]} Tedarik"
         add(f"320.{i:02d}", vname, 0, amt)
 
@@ -214,8 +229,8 @@ def generate_trial_balance(cfg, is_prior=False):
     add(570, "Geçmiş Yıllar Kârları", 0, prior_retained)
 
     # 6 Gelir Tablosu Hesapları
-    add("600.01", "Yurtiçi Satış Gelirleri", 0, net_sales * 1.02)
-    add("611.01", "Satış İskontoları (-)", net_sales * 0.02, 0)
+    add("600.01", "Yurtiçi Satış Gelirleri", 0, gross_sales)
+    add("611.01", "Satış İskontoları (-)", contra, 0)
 
     if cfg["id"] == "uretim_sanayi":
         add("710.01", "Direkt İlk Madde ve Malzeme Giderleri", cogs * 0.65, 0)
@@ -233,19 +248,17 @@ def generate_trial_balance(cfg, is_prior=False):
     add("691.01", "Dönem Kârı Vergi ve Yasal Yükümlülükleri", tax, 0)
 
     df = pd.DataFrame(rows)
-    # Ensure trial balance balance
     tot_deb = df["Borç Bakiye"].sum()
     tot_crd = df["Alacak Bakiye"].sum()
-    diff = tot_deb - tot_crd
-    # Adjust retained earnings to make exact match
-    df.loc[df["Hesap Kodu"] == 570, "Alacak Bakiye"] += diff
+    diff = round(tot_deb - tot_crd, 2)
+    df.loc[df["Hesap Kodu"] == 570, "Alacak Bakiye"] = round(df.loc[df["Hesap Kodu"] == 570, "Alacak Bakiye"] + diff, 2)
     return df
 
 def generate_ar_aging(cfg):
-    """Generate realistic AR aging ledger with real companies, due dates, and aging buckets."""
-    net_sales = cfg["revenue"]
+    """Generate realistic AR aging ledger matching Mizan GL 120 down to 0.00 TL."""
+    net_sales = round(cfg["revenue"], 2)
     dso = cfg["dso_target"]
-    total_ar = (net_sales / 365.0) * dso
+    total_ar = round((net_sales / 365.0) * dso, 2)
     as_of = datetime.date(2025, 12, 31)
 
     customer_pool = [
@@ -286,15 +299,26 @@ def generate_ar_aging(cfg):
         ("Şok Marketler Ticaret A.Ş.", 0.01, 8),
     ]
 
+    total_w = sum(w for _, w, _ in customer_pool)
     rows = []
     inv_num = 1000
-    for name, share, days_offset in customer_pool:
-        cust_total = total_ar * share
-        # Split customer balance into 1-3 invoices
+    allocated_ar = 0.0
+    for idx, (name, share, days_offset) in enumerate(customer_pool):
+        if idx == len(customer_pool) - 1:
+            cust_total = round(total_ar - allocated_ar, 2)
+        else:
+            cust_total = round(total_ar * (share / total_w), 2)
+            allocated_ar += cust_total
+        
         num_inv = random.randint(1, 3)
+        inv_alloc = 0.0
         for sub in range(num_inv):
             inv_num += 1
-            inv_amt = round(cust_total / num_inv, 2)
+            if sub == num_inv - 1:
+                inv_amt = round(cust_total - inv_alloc, 2)
+            else:
+                inv_amt = round(cust_total / num_inv, 2)
+                inv_alloc += inv_amt
             vade = as_of + datetime.timedelta(days=days_offset + random.randint(-10, 15))
             rows.append({
                 "Müşteri": name,
@@ -303,13 +327,17 @@ def generate_ar_aging(cfg):
                 "Açık Tutar": inv_amt,
                 "Para Birimi": "TL"
             })
-    return pd.DataFrame(rows)
+    df = pd.DataFrame(rows)
+    diff = round(total_ar - df["Açık Tutar"].sum(), 2)
+    if diff != 0:
+        df.loc[0, "Açık Tutar"] = round(df.loc[0, "Açık Tutar"] + diff, 2)
+    return df
 
 def generate_ap_aging(cfg):
-    """Generate realistic supplier AP aging ledger with vendor names, due dates, amounts."""
-    cogs = cfg["revenue"] * cfg["cogs_pct"]
+    """Generate realistic supplier AP aging ledger matching Mizan GL 320 down to 0.00 TL."""
+    cogs = round(cfg["revenue"] * cfg["cogs_pct"], 2)
     dpo = cfg["dpo_target"]
-    total_ap = (cogs / 365.0) * dpo
+    total_ap = round((cogs / 365.0) * dpo, 2)
     as_of = datetime.date(2025, 12, 31)
 
     vendor_pool = [
@@ -338,14 +366,25 @@ def generate_ap_aging(cfg):
         ("Filli Boya Betek Boya ve Kimya", 0.015, 30),
     ]
 
+    total_w = sum(w for _, w, _ in vendor_pool)
     rows = []
     doc_num = 2000
-    for name, share, days_offset in vendor_pool:
-        vend_total = total_ap * share
+    allocated_ap = 0.0
+    for idx, (name, share, days_offset) in enumerate(vendor_pool):
+        if idx == len(vendor_pool) - 1:
+            vend_total = round(total_ap - allocated_ap, 2)
+        else:
+            vend_total = round(total_ap * (share / total_w), 2)
+            allocated_ap += vend_total
         num_doc = random.randint(1, 2)
-        for _ in range(num_doc):
+        doc_alloc = 0.0
+        for sub in range(num_doc):
             doc_num += 1
-            amt = round(vend_total / num_doc, 2)
+            if sub == num_doc - 1:
+                amt = round(vend_total - doc_alloc, 2)
+            else:
+                amt = round(vend_total / num_doc, 2)
+                doc_alloc += amt
             vade = as_of + datetime.timedelta(days=days_offset + random.randint(-5, 10))
             rows.append({
                 "Tedarikçi": name,
@@ -354,15 +393,19 @@ def generate_ap_aging(cfg):
                 "Açık Tutar": amt,
                 "Para Birimi": "TL"
             })
-    return pd.DataFrame(rows)
+    df = pd.DataFrame(rows)
+    diff = round(total_ap - df["Açık Tutar"].sum(), 2)
+    if diff != 0:
+        df.loc[0, "Açık Tutar"] = round(df.loc[0, "Açık Tutar"] + diff, 2)
+    return df
 
 def generate_inventory(cfg):
-    """Generate detailed inventory stock ledger matching sector goods and turnover."""
-    cogs = cfg["revenue"] * cfg["cogs_pct"]
+    """Generate detailed inventory stock ledger matching Mizan GL 150-158 down to 0.00 TL."""
+    cogs = round(cfg["revenue"] * cfg["cogs_pct"], 2)
     dio = cfg["dio_target"]
     if dio == 0:
         return pd.DataFrame(columns=["Ürün", "Depo", "Miktar", "Birim Maliyet", "Tutar", "Son Hareket Tarihi"])
-    total_inv = (cogs / 365.0) * dio
+    total_inv = round((cogs / 365.0) * dio, 2)
     as_of = datetime.date(2025, 12, 31)
 
     sector_items = {
@@ -374,12 +417,12 @@ def generate_inventory(cfg):
             ("Ağır Sanayi Redüktör Ünitesi 15kW", "Mamul Deposu", 45, 18500, 35),
             ("Endüstriyel Talaşlı İmalat Şaftı", "Yarı Mamul Depo", 310, 1100, 95),
             ("SKF Çift Sıralı Rulman Takımı", "Hammadde Deposu", 600, 520, 25),
-            ("Hidrolik Valf Bloğu 4 Yollu", "Hammadde Deposu", 220, 3100, 185), # Atıl stok
-            ("Endüstriyel Hidrolik Pres 100T", "Mamul Deposu", 8, 145000, 210), # Ağır stok
+            ("Hidrolik Valf Bloğu 4 Yollu", "Hammadde Deposu", 220, 3100, 185),
+            ("Endüstriyel Hidrolik Pres 100T", "Mamul Deposu", 8, 145000, 210),
             ("Paslanmaz Çelik L-Profil 50x5", "Hammadde Deposu", 750, 290, 60),
             ("Poliüretan Sızdırmazlık Keçe Seti", "Hammadde Deposu", 1400, 85, 30),
             ("Elektrik Kumanda Panosu IP65", "Mamul Deposu", 35, 12000, 110),
-            ("Konveyör Tahrik Tamburu 400mm", "Mamul Deposu", 55, 6500, 175), # Yavaş stok
+            ("Konveyör Tahrik Tamburu 400mm", "Mamul Deposu", 55, 6500, 175),
             ("Krom Kaplı Hidrolik Mil Q45", "Hammadde Deposu", 380, 950, 40),
             ("Döküm Gövde Parçası GG25", "Yarı Mamul Depo", 290, 1450, 70),
         ],
@@ -393,24 +436,24 @@ def generate_inventory(cfg):
             ("Domates Salçası 28-30 Brix 4500g", "Konserve Deposu", 1800, 310, 45),
             ("Geleneksel Çay Rize Turist 1000g", "Kuru Gıda Depo", 5200, 195, 15),
             ("Ton Balığı Konserve 3x80g Koli", "Konserve Deposu", 3100, 280, 80),
-            ("Organik Nar Ekşisi 1000ml Koli", "Sos Deposu", 1400, 420, 160), # Atıl stok
+            ("Organik Nar Ekşisi 1000ml Koli", "Sos Deposu", 1400, 420, 160),
             ("Kuru Fasulye İspir 25kg Çuval", "Merkez Kuru Gıda Depo", 1100, 1200, 50),
             ("Tam Yağlı Beyaz Peynir 17kg Teneke", "Soğuk Hava Deposu", 850, 2850, 14),
             ("Kaşar Peyniri Taze Blok 2000g", "Soğuk Hava Deposu", 1200, 480, 20),
             ("Konserve Haşlanmış Nohut 800g Koli", "Konserve Deposu", 2400, 185, 115),
-            ("Naturel Sızma Zeytinyağı Erken Hasat", "Sıvı Yağ Deposu", 950, 1650, 190), # Yavaş
+            ("Naturel Sızma Zeytinyağı Erken Hasat", "Sıvı Yağ Deposu", 950, 1650, 190),
         ],
         "perakende_eticaret": [
-            ("Oversize Kaşmir Palto Bej (Kış)", "E-Ticaret Lojistik Depo", 450, 2200, 195), # Sezon dışı atıl!
+            ("Oversize Kaşmir Palto Bej (Kış)", "E-Ticaret Lojistik Depo", 450, 2200, 195),
             ("Slim Fit Pamuklu Chino Pantolon", "Merkez Depo", 1800, 320, 20),
-            ("Hakiki Deri Chelsea Bot Siyah", "Ayakkabı Deposu", 650, 1150, 180), # Atıl bot!
+            ("Hakiki Deri Chelsea Bot Siyah", "Ayakkabı Deposu", 650, 1150, 180),
             ("Basic Bisiklet Yaka T-Shirt Beyaz", "E-Ticaret Lojistik Depo", 4500, 95, 8),
             ("Oversize Kapüşonlu Sweatshirt", "E-Ticaret Lojistik Depo", 2200, 260, 25),
             ("Desenli İpek Şifon Midi Elbise", "Kadın Giyim Depo", 850, 540, 60),
             ("Kruvaze Blazer Ceket Lacivert", "Merkez Depo", 750, 850, 40),
             ("Deri Askılı Omuz Çantası Vizon", "Aksesuar Depo", 900, 420, 75),
             ("Polo Yaka Pike Kumaş Tişört", "Merkez Depo", 2800, 140, 15),
-            ("Yün Triko Balıkçı Yaka Kazak", "E-Ticaret Lojistik Depo", 1100, 380, 165), # Atıl
+            ("Yün Triko Balıkçı Yaka Kazak", "E-Ticaret Lojistik Depo", 1100, 380, 165),
             ("Klasik Deri Kemer Kahverengi", "Aksesuar Depo", 1600, 110, 35),
             ("Su Geçirmez Rüzgarlık Mont", "Erkek Dış Giyim", 800, 680, 50),
             ("Lycra Yüksek Bel Skinny Jean", "Kadın Giyim Depo", 2400, 280, 18),
@@ -426,7 +469,7 @@ def generate_inventory(cfg):
             ("Alçıpan Yangına Dayanıklı Kırmızı", "İç Mimari Depo", 2800, 195, 60),
             ("PPRC Tesisat Borusu Q25 PN20", "Mekanik Deposu", 1400, 120, 40),
             ("Galvaniz Havalandırma Kanal Sacı", "Mekanik Deposu", 650, 850, 110),
-            ("Porselen Seramik Zemin Karosu 60x120", "İnce İşler Deposu", 850, 550, 175), # Atıl
+            ("Porselen Seramik Zemin Karosu 60x120", "İnce İşler Deposu", 850, 550, 175),
             ("Epoksi Zemin Kaplama Reçine Seti", "Kimyasal Deposu", 120, 3200, 140),
             ("Kule Vinç Bağlantı Ankraj Seti", "Makine Ekipman Depo", 15, 45000, 95),
             ("Yangın Güvenlik Kapısı EI60", "Kapı Doğrama Depo", 75, 5800, 130),
@@ -437,7 +480,6 @@ def generate_inventory(cfg):
     }
 
     items = sector_items.get(cfg["id"], sector_items["uretim_sanayi"])
-    # Calculate scale factor to match total_inv
     raw_sum = sum(qty * cost for _, _, qty, cost, _ in items)
     scale = total_inv / raw_sum if raw_sum > 0 else 1.0
 
@@ -454,11 +496,18 @@ def generate_inventory(cfg):
             "Tutar": tot_val,
             "Son Hareket Tarihi": last_date
         })
-    return pd.DataFrame(rows)
+    df = pd.DataFrame(rows)
+    diff = round(total_inv - df["Tutar"].sum(), 2)
+    if diff != 0:
+        df.loc[0, "Tutar"] = round(df.loc[0, "Tutar"] + diff, 2)
+        df.loc[0, "Miktar"] = round(df.loc[0, "Tutar"] / df.loc[0, "Birim Maliyet"], 2)
+    return df
 
 def generate_sales_ledger(cfg):
-    """Generate transactional sales ledger with 150-250 rows for multi-source sales engine."""
-    net_sales = cfg["revenue"]
+    """Generate transactional sales ledger matching Mizan GL 600 & 611 down to 0.00 TL."""
+    net_sales = round(cfg["revenue"], 2)
+    gross_sales = round(net_sales * 1.02, 2)
+    contra = round(gross_sales - net_sales, 2)
     as_of = datetime.date(2025, 12, 31)
 
     customer_names = [
@@ -481,24 +530,16 @@ def generate_sales_ledger(cfg):
     ]
 
     num_tx = 180
-    avg_tx_target = net_sales / num_tx
-
     rows = []
     for i in range(num_tx):
         tx_date = datetime.date(2025, 1, 1) + datetime.timedelta(days=int(i * (364.0 / num_tx)))
         cust = random.choice(customer_names)
         prod, base_price, base_cost = random.choice(product_names)
-        # Quantity
         qty = random.randint(1, 25)
-        gross = round(qty * base_price, 2)
-        disc_pct = random.choice([0.0, 0.0, 0.03, 0.05, 0.08, 0.12])
-        disc = round(gross * disc_pct, 2)
-        net = round(gross - disc, 2)
-        cost = round(qty * base_cost, 2)
-        # Payment status
-        is_paid = (as_of - tx_date).days > cfg["dso_target"]
-        paid = net if is_paid else round(net * random.choice([0.0, 0.3, 0.5]), 2)
-        open_bal = round(net - paid, 2)
+        raw_gross = qty * base_price
+        disc_rate = random.choice([0.0, 0.0, 0.02, 0.03, 0.05])
+        raw_disc = raw_gross * disc_rate
+        raw_cost = qty * base_cost
 
         rows.append({
             "Müşteri": cust,
@@ -506,23 +547,39 @@ def generate_sales_ledger(cfg):
             "Tarih": tx_date,
             "Miktar": qty,
             "Birim Fiyat": base_price,
-            "Brüt Satış Tutarı": gross,
-            "İskonto Tutarı": disc,
-            "Net Satış Tutarı": net,
-            "Maliyet": cost,
-            "Ödenen Tutar": paid,
-            "Açık Bakiye": open_bal
+            "Brüt Satış Tutarı": raw_gross,
+            "İskonto Tutarı": raw_disc,
+            "Maliyet": raw_cost,
         })
 
     df = pd.DataFrame(rows)
-    # Scale net sales to match target
-    factor = net_sales / df["Net Satış Tutarı"].sum()
-    df["Brüt Satış Tutarı"] = (df["Brüt Satış Tutarı"] * factor).round(2)
-    df["İskonto Tutarı"] = (df["İskonto Tutarı"] * factor).round(2)
-    df["Net Satış Tutarı"] = (df["Net Satış Tutarı"] * factor).round(2)
-    df["Maliyet"] = (df["Maliyet"] * factor).round(2)
-    df["Ödenen Tutar"] = (df["Ödenen Tutar"] * factor).round(2)
-    df["Açık Bakiye"] = (df["Açık Bakiye"] * factor).round(2)
+    # Scale gross sales exactly to gross_sales
+    gross_factor = gross_sales / df["Brüt Satış Tutarı"].sum()
+    df["Brüt Satış Tutarı"] = (df["Brüt Satış Tutarı"] * gross_factor).round(2)
+    diff_gross = round(gross_sales - df["Brüt Satış Tutarı"].sum(), 2)
+    df.loc[0, "Brüt Satış Tutarı"] = round(df.loc[0, "Brüt Satış Tutarı"] + diff_gross, 2)
+
+    # Scale discounts exactly to contra
+    disc_factor = contra / df["İskonto Tutarı"].sum() if df["İskonto Tutarı"].sum() > 0 else 0.0
+    df["İskonto Tutarı"] = (df["İskonto Tutarı"] * disc_factor).round(2)
+    diff_disc = round(contra - df["İskonto Tutarı"].sum(), 2)
+    df.loc[0, "İskonto Tutarı"] = round(df.loc[0, "İskonto Tutarı"] + diff_disc, 2)
+
+    # Net Sales is exact difference
+    df["Net Satış Tutarı"] = (df["Brüt Satış Tutarı"] - df["İskonto Tutarı"]).round(2)
+
+    # Scale cost proportionally
+    df["Maliyet"] = (df["Maliyet"] * gross_factor).round(2)
+
+    # Paid and open balance
+    for i, r in df.iterrows():
+        tx_date = r["Tarih"]
+        net = r["Net Satış Tutarı"]
+        is_paid = (as_of - tx_date).days > cfg["dso_target"]
+        paid = net if is_paid else round(net * random.choice([0.0, 0.3, 0.5]), 2)
+        df.loc[i, "Ödenen Tutar"] = paid
+        df.loc[i, "Açık Bakiye"] = round(net - paid, 2)
+
     return df
 
 def save_sector_package(cfg):
