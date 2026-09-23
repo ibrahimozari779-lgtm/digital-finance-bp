@@ -12385,11 +12385,7 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
     if(rec >= inv && rec > 0){
       const annualFinanceCost = Math.round(rec * 0.45 * (dso / daysInYear));
       snapLeakVal.innerHTML = money(rec) + ' <span style="font-size:12px;font-weight:600;color:#DC2626">Müşteri Alacakları</span>';
-      let extraDsoText = '';
-      if(dsoMismatch){
-        extraDsoText = ' (Alt defter yaşlandırma: ' + Math.round(arAgingDso) + ' gün)';
-      }
-      snapLeakDesc.textContent = Math.round(dso) + ' günlük açık hesap vadesi' + extraDsoText + '. Şirketin müşterileri finanse etme yıllık tahmini faiz yükü: ~' + money(annualFinanceCost) + '.';
+      snapLeakDesc.textContent = Math.round(dso) + ' günlük açık hesap vadesi. Şirketin müşterileri finanse etme yıllık tahmini faiz yükü: ~' + money(annualFinanceCost) + '.';
     } else if(inv > 0){
       const annualFinanceCost = Math.round(inv * 0.45 * (dio / daysInYear));
       snapLeakVal.innerHTML = money(inv) + ' <span style="font-size:12px;font-weight:600;color:#DC2626">Depodaki Stok</span>';
