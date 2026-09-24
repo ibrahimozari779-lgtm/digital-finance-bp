@@ -117,7 +117,7 @@ def build_management_actions(findings, opportunities, statements, causal_chains=
             'priority':len(actions)+1,'action':action_text,'owner':a[1],'time_horizon':a[2],
             'kpi':' / '.join(kpis) if kpis else a[3],'severity':primary.get('severity'),
             'decision_theme':decision_theme,'expected_financial_impact':expected,
-            'expected_impact_label':'Exposure / opportunity proxy' if expected is not None else None,
+            'expected_impact_label':'Tahmini Finansal Etki / Fırsat' if expected is not None else None,
             'priority_score':_group_priority(group),
         })
     # Add source-driven actions that are not represented by an accounting finding.
@@ -142,12 +142,12 @@ def build_management_actions(findings, opportunities, statements, causal_chains=
             if covered==gtheme: skip=True; break
             if any(covered in aliases and gtheme in aliases for aliases in theme_aliases.values()): skip=True; break
         if skip and not force_source_action: continue
-        a=mapping.get(code,(gap.get('recommended_action',''), 'Finance','30-60 gün', gap.get('theme','KPI')))
+        a=mapping.get(code,(gap.get('recommended_action',''), 'Finans & Hazine','30-60 gün', gap.get('theme','KPI')))
         actions.append({
             'action_id':f'ACT-{code}','finding_id':code,'merged_finding_codes':None,'priority':len(actions)+1,
             'action':a[0],'owner':a[1],'time_horizon':a[2],'kpi':a[3], 'severity':gap.get('severity'),
             'decision_theme':gap.get('theme'),'expected_financial_impact':gap.get('estimated_impact'),
-            'expected_impact_label':'Exposure / opportunity proxy' if gap.get('estimated_impact') is not None else None,
+            'expected_impact_label':'Tahmini Finansal Etki / Fırsat' if gap.get('estimated_impact') is not None else None,
             'priority_score':severity_rank.get(gap.get('severity'), 0) * 25.0,
         })
     return actions

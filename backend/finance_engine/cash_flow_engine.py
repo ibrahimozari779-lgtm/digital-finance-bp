@@ -473,6 +473,86 @@ def build_cash_flow_engine(
             ).replace(",", "."),
         })
 
+    # =========================================================================
+    # D) Modül 3: Akıllı Borç Yapısı & Refinansman (60 Günlük GAP & Alternatifler)
+    # =========================================================================
+    w8_inflows = sum(w["inflows"] for w in weeks_projection[:8])
+    w8_outflows = sum(w["outflows"] for w in weeks_projection[:8])
+    w8_debt_service = sum(w["outflow_breakdown"]["debt_service"] for w in weeks_projection[:8])
+    w8_supplier_opex = w8_outflows - w8_debt_service
+
+    total_sources_60d = cash + w8_inflows
+    total_obligations_60d = w8_outflows
+    net_gap_60d = total_sources_60d - total_obligations_60d
+
+    _tl_fmt = lambda v: f"₺{abs(round(v)):,}".replace(",", ".")
+    gap_status = "DEFICIT" if net_gap_60d < 0 else "HEALTHY"
+    if net_gap_60d < 0:
+        gap_narrative = (
+            f"Önümüzdeki 60 gün içerisinde mevcut hazır nakit ({_tl_fmt(cash)}) ve beklenen tahsilatlar "
+            f"({_tl_fmt(w8_inflows)}), vadesi gelen finansal borç servisi ({_tl_fmt(w8_debt_service)}) ve "
+            f"tedarikçi/bordro yükümlülüklerini ({_tl_fmt(w8_supplier_opex)}) karşılayamamakta; "
+            f"şirket kasasında net {_tl_fmt(net_gap_60d)} tutarında likidite açığı öngörülmektedir."
+        )
+    else:
+        gap_narrative = (
+            f"Önümüzdeki 60 gün içerisinde nakit girişleri ve hazır kasa ({_tl_fmt(total_sources_60d)}), "
+            f"tüm borç servisi ve operasyonel ödemeleri ({_tl_fmt(total_obligations_60d)}) karşılayacak düzeydedir "
+            f"(+{_tl_fmt(net_gap_60d)} emniyet tamponu)."
+        )
+
+    sixty_day_gap = {
+        "status": gap_status,
+        "available_cash": round(cash, 2),
+        "expected_collections_60d": round(w8_inflows, 2),
+        "total_sources_60d": round(total_sources_60d, 2),
+        "debt_service_60d": round(w8_debt_service, 2),
+        "supplier_and_opex_60d": round(w8_supplier_opex, 2),
+        "total_obligations_60d": round(total_obligations_60d, 2),
+        "net_gap_60d": round(net_gap_60d, 2),
+        "narrative": gap_narrative,
+    }
+
+    # 2 Somut Finansal Mühendislik Alternatifi
+    alt1_stock_vol = round(inventory * 0.25, 2) if inventory > 0 else round(receivables * 0.20, 2)
+    alt1_cash = round(alt1_stock_vol * 0.85, 2)
+    alt1_annual_saving = round(alt1_cash * 0.55, 2)
+
+    alt2_vol = round(payables * 0.35, 2) if payables > 0 else round(monthly_cogs_burn * 1.5, 2)
+
+    restructuring_alternatives = [
+        {
+            "id": "ALT-1",
+            "title": "Alternatif 1: Stok İskontosu ile Yüksek Faizli Rotatif Kredi / KMH Kapatma",
+            "category": "Varlık Likidasyonu & Faiz Tasarrufu",
+            "target_volume_tl": alt1_stock_vol,
+            "net_cash_generated_tl": alt1_cash,
+            "annual_interest_saving_tl": alt1_annual_saving,
+            "description": (
+                f"Depodaki yavaş hareket eden stokların %25'i ({_tl_fmt(alt1_stock_vol)}) için peşin satışa yönelik %15 toplu tasfiye/iskonto "
+                f"kampanyası başlatılarak kasaya {_tl_fmt(alt1_cash)} sıcak nakit kazandırılır. Bu tutarla yıllık bileşik maliyeti %55'in "
+                f"üzerinde olan rotatif kredi/KMH borcu kapatılarak yılda {_tl_fmt(alt1_annual_saving)} faiz sızıntısı durdurulur."
+            ),
+            "owner": "Satış Direktörlüğü & Finans",
+            "time_horizon": "15-30 Gün",
+        },
+        {
+            "id": "ALT-2",
+            "title": "Alternatif 2: Tedarikçi Vadesini Vadeli Çek / DBS Tedarikçi Finansmanıyla Uzatma",
+            "category": "Tedarikçi Borcu Yapılandırması",
+            "target_volume_tl": alt2_vol,
+            "net_cash_generated_tl": alt2_vol,
+            "annual_interest_saving_tl": round(alt2_vol * 0.45 * (60 / 365), 2),
+            "description": (
+                f"En büyük 3 hammadde tedarikçisiyle görüşülerek {_tl_fmt(alt2_vol)} tutarındaki açık hesap borç 60-90 günlük vadeli "
+                f"çek protokolüne veya banka garantili DBS tedarikçi finansmanına bağlanır. Kasadan ani nakit çıkışı ertelenerek "
+                f"kısa vadeli banka kredi ihtiyacı ortadan kaldırılır ve 60 günlük likidite açığı kapatılır."
+            ),
+            "owner": "Satınalma & Hazine Yönetimi",
+            "time_horizon": "10-20 Gün",
+        },
+    ]
+
     total_unlockable_cash = sum(a["cash_impact_tl"] for a in actions)
 
     patron_cockpit = {
@@ -485,6 +565,8 @@ def build_cash_flow_engine(
         "anomalies": anomalies[:3],
         "actions": actions[:3],
         "total_unlockable_cash": round(total_unlockable_cash, 2),
+        "sixty_day_gap": sixty_day_gap,
+        "restructuring_alternatives": restructuring_alternatives,
     }
 
     return {
@@ -504,6 +586,8 @@ def build_cash_flow_engine(
                 "min_safety_buffer": round(min_safety_buffer, 2),
             },
         },
+        "sixty_day_gap": sixty_day_gap,
+        "restructuring_alternatives": restructuring_alternatives,
         "patron_cockpit": patron_cockpit,
     }
 

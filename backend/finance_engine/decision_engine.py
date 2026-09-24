@@ -151,13 +151,27 @@ def build_finance_business_partner_analysis(
 
     findings: list[dict[str, Any]] = []
 
+    def _tr_cur(v: float | None) -> str:
+        if v is None: return "0 TL"
+        return f"{v:,.0f}".replace(",", ".") + " TL"
+
+    def _tr_pct(v: float | None, decimals: int = 1) -> str:
+        if v is None: return "%0"
+        fmt = f"%.{decimals}f" % v
+        return "%" + fmt.replace(".", ",")
+
+    def _tr_ratio(v: float | None, decimals: int = 2) -> str:
+        if v is None: return "0x"
+        fmt = f"%.{decimals}f" % v
+        return fmt.replace(".", ",") + "x"
+
     def add_finding(code: str, category: str, severity: str, title: str, evidence: list[str], interpretation: str, recommendation: str, confidence: str = "high"):
         findings.append({
             "code": code,
             "category": category,
             "severity": severity,
             "title": title,
-            "evidence": evidence,
+            "evidence": [e for e in evidence if e],
             "interpretation": interpretation,
             "recommendation": recommendation,
             "confidence": confidence,
@@ -166,19 +180,19 @@ def build_finance_business_partner_analysis(
     # Profitability
     if operating_margin is not None:
         if operating_margin >= 12:
-            add_finding("P001", "Kârlılık", "positive", "Faaliyet kârlılığı güçlü", [f"Operating margin %{operating_margin:.1f}", f"Operating profit {operating_profit:,.0f} TL"], "Ana faaliyetler anlamlı bir kâr marjı üretiyor.", "Faaliyet marjını korurken finansman ve işletme sermayesi baskısını azaltmaya odaklan.")
+            add_finding("P001", "Kârlılık", "positive", "Faaliyet kârlılığı güçlü", [f"Faaliyet kâr marjı {_tr_pct(operating_margin)}", f"Faaliyet kârı {_tr_cur(operating_profit)}"], "Ana faaliyetler anlamlı bir kâr marjı üretiyor.", "Faaliyet marjını korurken finansman ve işletme sermayesi baskısını azaltmaya odaklan.")
         elif operating_margin < 5:
-            add_finding("P002", "Kârlılık", "high", "Faaliyet marjı zayıf", [f"Operating margin %{operating_margin:.1f}"], "Satışlar faaliyet seviyesinde sınırlı kâra dönüşüyor.", "Brüt marj, fiyatlama, ürün/müşteri karması ve faaliyet giderlerini ayrıştırarak marj kök neden analizi yap.")
+            add_finding("P002", "Kârlılık", "high", "Faaliyet marjı zayıf", [f"Faaliyet kâr marjı {_tr_pct(operating_margin)}"], "Satışlar faaliyet seviyesinde sınırlı kâra dönüşüyor.", "Brüt marj, fiyatlama, ürün/müşteri karması ve faaliyet giderlerini ayrıştırarak marj kök neden analizi yap.")
 
     if gross_margin is not None and gross_margin < 15:
-        add_finding("P003", "Kârlılık", "medium", "Brüt marj sınırlı", [f"Gross margin %{gross_margin:.1f}"], "Maliyet veya fiyatlama baskısı faaliyet kârlılığı için düşük tampon bırakıyor.", "Fiyatlama, indirimler ve satış maliyetini müşteri/ürün bazında analiz et.")
+        add_finding("P003", "Kârlılık", "medium", "Brüt marj sınırlı", [f"Brüt marj {_tr_pct(gross_margin)}"], "Maliyet veya fiyatlama baskısı faaliyet kârlılığı için düşük tampon bırakıyor.", "Fiyatlama, indirimler ve satış maliyetini müşteri/ürün bazında analiz et.")
 
     # Financing pressure
     if operating_profit is not None and operating_profit <= 0 and finance_costs is not None and finance_costs > 0:
         add_finding(
             "L001", "Borçluluk", "critical",
             "Faaliyet zararı & finansman gider yükü",
-            [f"Operating profit {operating_profit:,.0f} TL", f"Finance costs {finance_costs:,.0f} TL"],
+            [f"Faaliyet zararı {_tr_cur(operating_profit)}", f"Finansman gideri {_tr_cur(finance_costs)}"],
             "Şirket ana faaliyetlerinden kâr üretemezken finansman gideri taşımaktadır; faiz karşılama kapasitesi negatiftir.",
             "Borç servisi doğrudan nakit ve sermaye tüketmektedir; acil borç yapılandırması ve faaliyet kârlılığı restorasyonu gerekir.",
         )
@@ -195,7 +209,7 @@ def build_finance_business_partner_analysis(
         add_finding(
             "L001", "Borçluluk", sev,
             "Finansman gider baskısı" if sev != "positive" else "Finansman gider yükü kontrollü",
-            [f"Finance costs / Operating profit %{pct:.1f}", f"Finance costs {finance_costs:,.0f} TL", f"Operating profit {operating_profit:,.0f} TL"],
+            [f"Finansman gideri / Faaliyet kârı {_tr_pct(pct)}", f"Finansman gideri {_tr_cur(finance_costs)}", f"Faaliyet kârı {_tr_cur(operating_profit)}"],
             "Finansman giderleri faaliyet kârının önemli bölümünü tüketiyor." if sev != "positive" else "Faaliyet kârının büyük kısmı finansman giderlerinden sonra korunuyor.",
             "Borç kompozisyonu, faiz oranları, vade yapısı ve işletme sermayesi finansman ihtiyacını gözden geçir." if sev != "positive" else "Mevcut finansman disiplinini koru.",
         )
@@ -204,7 +218,7 @@ def build_finance_business_partner_analysis(
         add_finding(
             "L002", "Borçluluk", "critical",
             "Negatif Özkaynak / Borca Batıklık Riski (TTK 376)",
-            [f"Equity {total_equity:,.0f} TL", f"Financial debt {financial_debt:,.0f} TL" if financial_debt is not None else ""],
+            [f"Özkaynak {_tr_cur(total_equity)}", f"Finansal borç {_tr_cur(financial_debt)}" if financial_debt is not None else ""],
             "Şirket özkaynakları negatife düşmüştür; borç/özkaynak oranı matematiksel olarak tanımsızdır ve teknik iflas riski bulunmaktadır.",
             "TTK 376 kapsamında genel kurul çağrısı, sermaye tamamlama veya sermaye artırımı önlemleri acilen değerlendirilmelidir.",
         )
@@ -220,7 +234,7 @@ def build_finance_business_partner_analysis(
         add_finding(
             "L002", "Borçluluk", sev,
             "Finansal kaldıraç yüksek" if sev != "positive" else "Finansal kaldıraç makul",
-            [f"Financial debt / Equity {debt_to_equity:.2f}x", f"Financial debt {financial_debt:,.0f} TL", f"Equity {total_equity:,.0f} TL"],
+            [f"Finansal borç / Özkaynak {_tr_ratio(debt_to_equity)}", f"Finansal borç {_tr_cur(financial_debt)}", f"Özkaynak {_tr_cur(total_equity)}"],
             "Borç seviyesi özkaynak tabanına göre yüksek; refinansman ve faiz hassasiyeti artıyor." if sev != "positive" else "Borç/özkaynak dengesi genel eşiklerde yönetilebilir seviyede.",
             "Kısa vadeli borç azaltımı, özkaynak güçlendirme ve borç vadesini uzatma seçeneklerini karşılaştır." if sev != "positive" else "Borçluluk seviyesini yeni yatırımlarda disiplinli izle.",
         )
@@ -228,25 +242,25 @@ def build_finance_business_partner_analysis(
     # Liquidity
     if current_ratio is not None:
         if current_ratio < 1.0:
-            add_finding("Q001", "Likidite", "critical", "Kısa vadeli likidite açığı", [f"Current ratio {current_ratio:.2f}x"], "Dönen varlıklar kısa vadeli yükümlülükleri tam karşılamıyor.", "13 haftalık nakit planı, tahsilat hızlandırma ve kısa vadeli borç yeniden yapılandırması önceliklendirilmeli.")
+            add_finding("Q001", "Likidite", "critical", "Kısa vadeli likidite açığı", [f"Cari oran {_tr_ratio(current_ratio)}"], "Dönen varlıklar kısa vadeli yükümlülükleri tam karşılamıyor.", "13 haftalık nakit planı, tahsilat hızlandırma ve kısa vadeli borç yeniden yapılandırması önceliklendirilmeli.")
         elif current_ratio < 1.2:
-            add_finding("Q002", "Likidite", "medium", "Likidite tamponu sınırlı", [f"Current ratio {current_ratio:.2f}x", f"Cash ratio {cash_ratio:.2f}x" if cash_ratio is not None else ""], "Kısa vadeli yükümlülükler karşılanabiliyor ancak hata payı düşük.", "Nakit tamponu ve tahsilat planını stres senaryolarıyla izle.")
+            add_finding("Q002", "Likidite", "medium", "Likidite tamponu sınırlı", [f"Cari oran {_tr_ratio(current_ratio)}", f"Nakit oranı {_tr_ratio(cash_ratio)}" if cash_ratio is not None else ""], "Kısa vadeli yükümlülükler karşılanabiliyor ancak hata payı düşük.", "Nakit tamponu ve tahsilat planını stres senaryolarıyla izle.")
 
     # Cash vs debt
     if cash_to_debt is not None and cash_to_debt < 0.5:
-        add_finding("Q003", "Likidite", "high", "Nakit finansal borcu sınırlı karşılıyor", [f"Cash / Financial debt %{cash_to_debt*100:.1f}", f"Net debt {net_debt:,.0f} TL"], "Mevcut nakit finansal borcun yarısından azını karşılıyor.", "Serbest nakit yaratımı ve borç azaltımını birlikte planla.")
+        add_finding("Q003", "Likidite", "high", "Nakit finansal borcu sınırlı karşılıyor", [f"Kasa / Finansal borç {_tr_pct(cash_to_debt*100)}", f"Net borç {_tr_cur(net_debt)}"], "Mevcut nakit finansal borcun yarısından azını karşılıyor.", "Serbest nakit yaratımı ve borç azaltımını birlikte planla.")
 
     # Receivables concentration at statement level
     if receivables_to_sales is not None and receivables_to_sales > 0.50:
-        add_finding("W001", "İşletme Sermayesi", "high", "Alacak bakiyesi satışlara göre yüksek", [f"Receivables / Net sales %{receivables_to_sales*100:.1f}", f"Receivables {receivables:,.0f} TL"], "Satışların önemli bölümü bilanço tarihinde henüz nakde dönüşmemiş görünüyor. Dönem bilgisi ve aging olmadan DSO kesin hesaplanamaz.", "AR aging yükleyerek gecikme, müşteri yoğunlaşması ve DSO analizini derinleştir.", confidence="medium")
+        add_finding("W001", "İşletme Sermayesi", "high", "Alacak bakiyesi satışlara göre yüksek", [f"Alacak / Net satış {_tr_pct(receivables_to_sales*100)}", f"Ticari alacaklar {_tr_cur(receivables)}"], "Satışların önemli bölümü bilanço tarihinde henüz nakde dönüşmemiş görünüyor. Dönem bilgisi ve aging olmadan DSO kesin hesaplanamaz.", "AR aging yükleyerek gecikme, müşteri yoğunlaşması ve DSO analizini derinleştir.", confidence="medium")
 
     # Earnings quality
     if non_core_income_to_pbt is not None and non_core_income_to_pbt > 0.30:
-        add_finding("E001", "Kazanç Kalitesi", "medium", "Faaliyet dışı/ikincil gelirlerin kâra katkısı yüksek", [f"Other income / PBT %{non_core_income_to_pbt*100:.1f}", f"Other income {non_core_income:,.0f} TL"], "Vergi öncesi kârın anlamlı bir bölümü ana faaliyet dışındaki gelirlerden destekleniyor olabilir.", "Sürdürülebilir faaliyet kârlılığını diğer gelirlerden ayrı takip et.")
+        add_finding("E001", "Kazanç Kalitesi", "medium", "Faaliyet dışı/ikincil gelirlerin kâra katkısı yüksek", [f"Faaliyet dışı gelir / VÖK {_tr_pct(non_core_income_to_pbt*100)}", f"Faaliyet dışı gelir {_tr_cur(non_core_income)}"], "Vergi öncesi kârın anlamlı bir bölümü ana faaliyet dışındaki gelirlerden destekleniyor olabilir.", "Sürdürülebilir faaliyet kârlılığını diğer gelirlerden ayrı takip et.")
 
     # Efficiency
     if asset_turnover is not None and asset_turnover < 0.6:
-        add_finding("A001", "Verimlilik", "medium", "Varlık devir hızı düşük", [f"Asset turnover {asset_turnover:.2f}x"], "Varlık tabanı satış üretimine göre ağır olabilir.", "Atıl varlıklar ve sermaye bağlayan kalemleri incele.")
+        add_finding("A001", "Verimlilik", "medium", "Varlık devir hızı düşük", [f"Aktif devir hızı {_tr_ratio(asset_turnover)}"], "Varlık tabanı satış üretimine göre ağır olabilir.", "Atıl varlıklar ve sermaye bağlayan kalemleri incele.")
 
 
     # Advanced Risk Rules V1.3
@@ -254,30 +268,30 @@ def build_finance_business_partner_analysis(
     if debt_to_assets is not None:
         if debt_to_assets > 0.70:
             add_finding("D004","Borçluluk","critical","Borç yükü kritik seviyede",
-                        [f"Debt / Assets %{debt_to_assets*100:.1f}"],
+                        [f"Toplam borç / Aktif {_tr_pct(debt_to_assets*100)}"],
                         "Varlıkların önemli bölümü borç ile finanse edilmektedir.",
                         "Borç azaltımı ve sermaye güçlendirme seçenekleri değerlendirilmelidir.")
         elif debt_to_assets > 0.50:
             add_finding("D005","Borçluluk","high","Borç yoğunluğu yüksek",
-                        [f"Debt / Assets %{debt_to_assets*100:.1f}"],
+                        [f"Toplam borç / Aktif {_tr_pct(debt_to_assets*100)}"],
                         "Borç seviyesi finansal esnekliği azaltabilir.",
                         "Borç yapısı yakından izlenmelidir.")
 
     if interest_coverage_proxy is not None:
         if interest_coverage_proxy < 1.5:
             add_finding("D006","Borçluluk","critical","Faiz karşılama seviyesi kritik",
-                        [f"Interest Coverage {interest_coverage_proxy:.2f}x"],
+                        [f"Faiz karşılama oranı {_tr_ratio(interest_coverage_proxy)}"],
                         "Faaliyet karı faiz yükünü taşımakta zorlanıyor.",
                         "Borç maliyetleri ve finansman yapısı gözden geçirilmelidir.")
         elif interest_coverage_proxy < 3:
             add_finding("D007","Borçluluk","high","Faiz karşılama seviyesi zayıf",
-                        [f"Interest Coverage {interest_coverage_proxy:.2f}x"],
+                        [f"Faiz karşılama oranı {_tr_ratio(interest_coverage_proxy)}"],
                         "Faiz giderleri karlılığı baskılıyor.",
                         "Faiz maliyetlerini azaltacak aksiyonlar değerlendirilmelidir.")
 
     if total_equity < 0:
         add_finding("D008","Borçluluk","critical","Negatif özkaynak",
-                    [f"Equity {total_equity:,.0f} TL"],
+                    [f"Özkaynak {_tr_cur(total_equity)}"],
                     "Şirket sermaye erozyonu yaşamaktadır.",
                     "Özkaynak yapısı acilen güçlendirilmelidir.")
 
@@ -285,8 +299,8 @@ def build_finance_business_partner_analysis(
         if receivables_to_sales > 0.40 and debt_to_equity > 2:
             add_finding("WC004","İşletme Sermayesi","high",
                         "İşletme sermayesi finansman baskısı",
-                        [f"Receivables/Sales %{receivables_to_sales*100:.1f}",
-                         f"Debt/Equity {debt_to_equity:.2f}x"],
+                        [f"Alacak / Satış {_tr_pct(receivables_to_sales*100)}",
+                         f"Borç / Özkaynak {_tr_ratio(debt_to_equity)}"],
                         "Yüksek alacak seviyesi kredi ihtiyacını artırıyor olabilir.",
                         "Tahsilat performansı ve müşteri vadeleri analiz edilmelidir.")
 

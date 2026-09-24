@@ -160,6 +160,77 @@ def analyze_ar(df, mapping, net_sales=None, period_days=365, as_of_date=None):
         f"Tahsilat süresini 10 gün öne çekmek işletmenize yaklaşık {_tl(cash_release_10d)} serbest nakit kazandırabilir."
     )
 
+    # Modül 2: Akıllı Alacak Yönetimi (Credit Scoring & Risk Direktifleri)
+    credit_scoring = []
+    top_parties = r.get('top_parties', [])
+    overdue_by_party = r.get('overdue_by_party', {})
+    weighted_days_by_party = r.get('weighted_overdue_days_by_party', {})
+
+    for p in top_parties:
+        name = p['name']
+        bal = p['amount']
+        od = overdue_by_party.get(name, 0.0)
+        days = weighted_days_by_party.get(name, 0.0)
+        od_ratio = (od / bal * 100) if bal > 0 else 0.0
+
+        if days > 60 or od_ratio > 60:
+            tier = 'D'
+            tier_label = 'Kritik (Temerrüt Riski)'
+            color = '#DC2626'
+            directive = "DBS veya nakit teminat olmadan yeni sevkiyatı derhal durdurun; açık hesap bakiyesini yapılandırma protokolüne bağlayın."
+        elif days > 30 or od_ratio > 30:
+            tier = 'C'
+            tier_label = 'Yüksek Risk (Yakın İzleme)'
+            color = '#EA580C'
+            directive = "Açık hesap risk limitini %50 düşürün; yeni siparişlerde en az %40 peşinat veya vadeli çek şartı koşun."
+        elif days > 0 or od_ratio > 0:
+            tier = 'B'
+            tier_label = 'Orta Risk (Takip)'
+            color = '#D97706'
+            directive = "Vade gününde otomatik SMS/E-posta hatırlatması kurun; haftalık tahsilat mutabakatı yapın."
+        else:
+            tier = 'A'
+            tier_label = 'Güvenli (Düzenli)'
+            color = '#16A34A'
+            directive = "Mevcut ticari şartları koruyun; ciro artışı için erken ödeme iskontosu teklif edin."
+
+        credit_scoring.append({
+            'name': name,
+            'amount': bal,
+            'overdue': od,
+            'overdue_pct': round(od_ratio, 1),
+            'avg_overdue_days': round(days, 1),
+            'pct_of_outstanding': p.get('pct_of_outstanding'),
+            'tier': tier,
+            'tier_label': tier_label,
+            'color': color,
+            'directive': directive,
+        })
+    r['customer_credit_scoring'] = credit_scoring
+
+    # Alacak Yoğunlaşması ve Sistemik Temerrüt Şoku (Concentration Shock Simulation)
+    top_1 = top_parties[0] if top_parties else None
+    top_3_amount = sum(p['amount'] for p in top_parties[:3]) if top_parties else 0.0
+    top_3_pct = round(top_3_amount / r['outstanding'] * 100, 1) if r.get('outstanding') else 0.0
+
+    shock_sim = {
+        'top_1_name': top_1['name'] if top_1 else 'Bilinmiyor',
+        'top_1_amount': top_1['amount'] if top_1 else 0.0,
+        'top_1_pct': top_1.get('pct_of_outstanding', 0.0) if top_1 else 0.0,
+        'top_3_amount': top_3_amount,
+        'top_3_pct': top_3_pct,
+    }
+    if top_1 and top_1['amount'] > 0:
+        shock_sim['narrative'] = (
+            f"En büyük müşteriniz ({top_1['name']}) temerrüde düşer veya vadesini 60 gün geciktirirse, "
+            f"şirket kasasında {_tl(top_1['amount'])} tutarında ani bir likidite deliği oluşacaktır. "
+            f"İlk 3 müşterinizin toplam alacaklarınızın %{top_3_pct:.1f}'ini ({_tl(top_3_amount)}) oluşturması, "
+            f"tahsilat akışınızın yüksek oranda yoğunlaşma riski taşıdığını göstermektedir."
+        )
+    else:
+        shock_sim['narrative'] = "Müşteri bazlı alacak kırılımı bulunmadığından yoğunlaşma simülasyonu genel toplam üzerinden değerlendirilmiştir."
+    r['concentration_shock'] = shock_sim
+
     findings = []
     if r.get('overdue_pct') and r['overdue_pct'] >= 20:
         findings.append({
@@ -177,6 +248,27 @@ def analyze_ar(df, mapping, net_sales=None, period_days=365, as_of_date=None):
             'recommendation': "91+ gün gecikmiş alacakların en büyük bölümünü oluşturan ilk 5 müşteriyi bu hafta öncelikli tahsilat protokolüne alın; yeni sevkiyatları nakit akışına bağlayın.",
             'confidence': 'high',
         })
+
+    # Add CR-001 finding for Tier D customers if any
+    critical_customers = [c for c in credit_scoring if c['tier'] == 'D']
+    if critical_customers:
+        crit_names = ", ".join(c['name'] for c in critical_customers[:3])
+        crit_total = sum(c['overdue'] for c in critical_customers)
+        findings.append({
+            'code': 'AR-CREDIT-001',
+            'category': 'Akıllı Alacak & Müşteri Risk Skoru',
+            'severity': 'critical',
+            'title': f"{len(critical_customers)} Müşteride Kritik Temerrüt Riski (Tier D)",
+            'detail': f"{crit_names} başta olmak üzere {len(critical_customers)} müşteride 60+ gün gecikmiş toplam {_tl(crit_total)} bakiye bulunmaktadır.",
+            'evidence': [
+                f"Kritik Müşteri Sayısı: {len(critical_customers)}",
+                f"Gecikmiş Risk Maruziyeti: {_tl(crit_total)}",
+                f"Yoğunlaşma (İlk 3 Müşteri Payı): %{top_3_pct:.1f}"
+            ],
+            'recommendation': "DBS veya nakit teminat olmadan yeni sipariş onaylamayın. Açık hesap risk limitlerini dondurup yapılandırma takvimi imzalattırın.",
+            'confidence': 'high',
+        })
+
     r['findings'] = findings
     return r
 

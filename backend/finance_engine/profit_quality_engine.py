@@ -64,9 +64,42 @@ def build_profit_quality(statements: dict[str, Any], findings: list[dict[str, An
                   'Net kâr, faaliyet dışı/tek seferlik kalemler tarafından taşınıyor olabilir; sürdürülebilirliği düşük.',
                   related_code=None)
 
-    # A single, additive quality score (0-100, higher = better quality) so the
-    # section has one headline number instead of only a bag of flags. This is
-    # new information, not a restatement of any individual flag above.
+    # 1. Sürdürülebilir Kâr vs. Tek Seferlik Gelir Ayrımı (64 / 67 Hesaplar)
+    non_core_income = other
+    non_core_share_of_profit = round((other / max(1.0, abs(pbt))) * 100, 1) if pbt > 0 else 0.0
+    sustainable_operating_profit = round(op, 2)
+    is_non_core_dominated = bool(other > 0 and (non_core_share_of_profit > 30.0 or (op > 0 and other > op * 0.4)))
+    non_core_warning = None
+    if is_non_core_dominated:
+        non_core_warning = (
+            f"⚠️ Kârınızın %{non_core_share_of_profit:.0f}'i ana işinizden gelmiyor; "
+            f"tek seferlik/faaliyet dışı gelirler (₺{other:,.0f}) arındırıldığında operasyonel kârlılık risk altındadır."
+        ).replace(",", ".")
+
+    # 2. Fiktif Stok Kârı İllüzyonu Filtresi (Enflasyonist Stok İkame Maliyeti)
+    bs = statements.get('balance_sheet') or {}
+    inventories = float(bs.get('Inventories') or 0.0)
+    dio = float(k.get('dio') or 60.0)
+    cogs = float(pl.get('Cost of sales') or pl.get('COGS') or 0.0)
+    inflation_rate = 0.45  # Yıllık enflasyon varsayımı / stok yenileme farkı
+    fictitious_stock_profit = 0.0
+    real_operating_profit = op
+    fictitious_stock_pct = 0.0
+    stock_illusion_warning = None
+
+    if inventories > 0 and cogs > 0 and op > 0:
+        replacement_drag = round(inventories * (inflation_rate * (min(180.0, max(15.0, dio)) / 365.0)), 2)
+        fictitious_stock_profit = round(min(op, max(0.0, replacement_drag)), 2)
+        real_operating_profit = round(op - fictitious_stock_profit, 2)
+        fictitious_stock_pct = round((fictitious_stock_profit / op * 100), 1)
+        if fictitious_stock_pct >= 20.0:
+            stock_illusion_warning = (
+                f"📦 Fiktif Stok Kârı İllüzyonu: Yüksek enflasyon ortamında kâğıt üzerinde görünen kârın "
+                f"₺{fictitious_stock_profit:,.0f}'lik kısmı satılan malı aynı fiyattan depoya yerine koymaya "
+                f"(stok ikame maliyetine) gidecektir. Şirketin Reel Operasyonel Kârı ₺{real_operating_profit:,.0f} seviyesindedir."
+            ).replace(",", ".")
+
+    # A single, additive quality score (0-100, higher = better quality)
     quality_points = 100.0
     if finance_burden is not None:
         quality_points -= min(35.0, max(0.0, finance_burden - 20) * 0.5)
@@ -77,8 +110,11 @@ def build_profit_quality(statements: dict[str, Any], findings: list[dict[str, An
         quality_points -= min(25.0, shortfall * 40)
     if op <= 0:
         quality_points -= 20.0
+    if fictitious_stock_pct > 20:
+        quality_points -= min(20.0, (fictitious_stock_pct - 20) * 0.4)
     quality_score = round(max(0.0, min(100.0, quality_points)), 1)
     quality_label = 'Yüksek' if quality_score >= 75 else 'Orta' if quality_score >= 50 else 'Düşük'
+    qoe_grade = 'A (Çok Güçlü)' if quality_score >= 80 else 'B (Yeterli)' if quality_score >= 65 else 'C (Kırılgan)' if quality_score >= 50 else 'D (Yüksek Risk)'
 
     return {
         'available': True,
@@ -90,7 +126,17 @@ def build_profit_quality(statements: dict[str, Any], findings: list[dict[str, An
         'operating_to_net_profit_ratio': op_to_net_ratio,
         'quality_score': quality_score,
         'quality_label': quality_label,
+        'qoe_grade': qoe_grade,
+        'sustainable_operating_profit': sustainable_operating_profit,
+        'non_core_income': non_core_income,
+        'non_core_share_of_profit': non_core_share_of_profit,
+        'is_non_core_dominated': is_non_core_dominated,
+        'non_core_warning': non_core_warning,
+        'fictitious_stock_profit': fictitious_stock_profit,
+        'fictitious_stock_pct': fictitious_stock_pct,
+        'real_operating_profit': real_operating_profit,
+        'stock_illusion_warning': stock_illusion_warning,
         'flags': flags,
         'cross_references': cross_references,
-        'note': 'EBITDA yalnızca amortisman/faiz öncesi veri güvenilir biçimde ayrıştırılabildiğinde ayrıca hesaplanmalıdır. Bu bölümde, ana Bulgular listesinde zaten raporlanan bir koşulla örtüşen kalemler tekrar anlatılmaz; ilgili bulgu koduna çapraz referans verilir (bkz. cross_references).',
+        'note': 'Kâr Kalitesi Skoru (QoE), kâğıt üzerindeki kârın ne kadarının sürdürülebilir ana faaliyetlerden, ne kadarının tek seferlik veya enflasyonist stok kârından kaynaklandığını ölçer.',
     }
