@@ -799,6 +799,28 @@ SECTOR_DEMO_METADATA = [
         "key_challenge": "İşveren hakediş vadelerinin uzaması, taşeron çek baskısı ve teminat mektubu komisyon maliyeti.",
         "files_count": 6,
     },
+    {
+        "id": "saglik_medikal",
+        "name": "Medisina Sağlık & Medikal A.Ş.",
+        "sector_label": "Sağlık / Medikal",
+        "icon": "🏥",
+        "tagline": "Özel Sağlık Hizmetleri & Medikal Tedarik",
+        "revenue": "38.0M ₺",
+        "metrics": {"dso": "88 Gün", "dio": "42 Gün", "margin": "%38 Brüt"},
+        "key_challenge": "SGK ve özel sigorta geri ödeme gecikmeleri (DSO: 88 gün), medikal cihaz dövizli leasing yükü ve steril sarf stok yönetimi.",
+        "files_count": 6,
+    },
+    {
+        "id": "lojistik_tasimacilik",
+        "name": "TransGlobal Lojistik & Filo A.Ş.",
+        "sector_label": "Lojistik / Taşımacılık",
+        "icon": "🚚",
+        "tagline": "Uluslararası & Yurtiçi Filo Taşımacılığı",
+        "revenue": "54.0M ₺",
+        "metrics": {"dso": "68 Gün", "dio": "12 Gün", "margin": "%20 Brüt"},
+        "key_challenge": "Akaryakıt/motorin fiyat dalgalanması, navlun vadelerinin 68 güne uzaması ve filo leasing finansman maliyeti.",
+        "files_count": 6,
+    },
 ]
 
 @app.get('/api/sample/sectors')
@@ -1307,7 +1329,7 @@ async def _analyze_data_hub_raw(raw_files:list[tuple[str,bytes]], sector:str|Non
             years = re.findall(r'(?<!\d)(20\d{2})(?!\d)', fn)
             year_val = int(years[-1]) if years else 0
             is_prior = 0 if any(w in fn for w in ['prior', 'onceki', 'önceki', 'donem1', 'dönem1', 'period1']) else 1
-            return (end, start, year_val, is_prior)
+            return (is_prior, end, start, year_val)
 
         sorted_fin = sorted(finance_entries, key=_fin_sort_key)
         current_entry = sorted_fin[-1]

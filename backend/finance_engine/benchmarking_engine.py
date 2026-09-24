@@ -48,6 +48,14 @@ SECTOR_WORKING_CAPITAL_BENCHMARKS: dict[str, dict[str, Any]] = {
         "median_dso": 75.0, "median_dio": 45.0, "median_ccc": 80.0,
         "indicative_borrowing_rate": 0.48,
     },
+    "Sağlık / Medikal": {
+        "median_dso": 70.0, "median_dio": 35.0, "median_ccc": 60.0,
+        "indicative_borrowing_rate": 0.48,
+    },
+    "Lojistik / Taşımacılık": {
+        "median_dso": 60.0, "median_dio": 10.0, "median_ccc": 40.0,
+        "indicative_borrowing_rate": 0.48,
+    },
 }
 
 SECTOR_BANDS: dict[str, dict[str, tuple[float, float, float]]] = {
@@ -86,6 +94,16 @@ SECTOR_BANDS: dict[str, dict[str, tuple[float, float, float]]] = {
         "current_ratio": (1.0, 1.3, 1.8), "quick_ratio": (0.6, 0.9, 1.3), "debt_to_equity": (0.8, 1.8, 3.5),
         "asset_turnover": (0.4, 0.7, 1.2), "return_on_equity_pct": (6, 12, 22),
     },
+    "Sağlık / Medikal": {
+        "gross_margin_pct": (22, 34, 48), "operating_margin_pct": (5, 11, 18), "net_margin_pct": (2.5, 7, 13),
+        "current_ratio": (1.1, 1.4, 2.0), "quick_ratio": (0.8, 1.1, 1.6), "debt_to_equity": (0.5, 1.2, 2.2),
+        "asset_turnover": (0.6, 1.1, 1.8), "return_on_equity_pct": (8, 16, 26),
+    },
+    "Lojistik / Taşımacılık": {
+        "gross_margin_pct": (12, 20, 30), "operating_margin_pct": (4, 7, 12), "net_margin_pct": (1.5, 4, 8),
+        "current_ratio": (0.9, 1.2, 1.7), "quick_ratio": (0.8, 1.1, 1.5), "debt_to_equity": (0.8, 1.6, 3.0),
+        "asset_turnover": (0.8, 1.4, 2.2), "return_on_equity_pct": (6, 13, 22),
+    },
 }
 
 _SECTOR_ALIASES: dict[str, str] = {
@@ -106,6 +124,13 @@ _SECTOR_ALIASES: dict[str, str] = {
     "insaat_taahhut": "İnşaat / Taahhüt",
     "insaat": "İnşaat / Taahhüt",
     "taahhut": "İnşaat / Taahhüt",
+    "saglik_medikal": "Sağlık / Medikal",
+    "saglik": "Sağlık / Medikal",
+    "medikal": "Sağlık / Medikal",
+    "lojistik_tasimacilik": "Lojistik / Taşımacılık",
+    "lojistik": "Lojistik / Taşımacılık",
+    "tasimacilik": "Lojistik / Taşımacılık",
+    "filo": "Lojistik / Taşımacılık",
 }
 
 _DEFAULT_SECTOR = "Genel"

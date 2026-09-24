@@ -16,6 +16,8 @@ def test_resolve_sector_aliases():
     assert resolve_sector("perakende_eticaret") == "Perakende / Ticaret"
     assert resolve_sector("hizmet_yazilim") == "Hizmet"
     assert resolve_sector("insaat_taahhut") == "İnşaat / Taahhüt"
+    assert resolve_sector("saglik_medikal") == "Sağlık / Medikal"
+    assert resolve_sector("lojistik_tasimacilik") == "Lojistik / Taşımacılık"
     assert resolve_sector(None) == "Genel"
     assert resolve_sector("Bilinmeyen Sektör") == "Genel"
 
@@ -25,9 +27,12 @@ def test_list_sector_demos_endpoint():
     data = resp.json()
     assert "sectors" in data
     sectors = data["sectors"]
-    assert len(sectors) == 5
+    assert len(sectors) == 7
     sector_ids = {s["id"] for s in sectors}
-    assert sector_ids == {"uretim_sanayi", "toptan_ticaret", "perakende_eticaret", "hizmet_yazilim", "insaat_taahhut"}
+    assert sector_ids == {
+        "uretim_sanayi", "toptan_ticaret", "perakende_eticaret",
+        "hizmet_yazilim", "insaat_taahhut", "saglik_medikal", "lojistik_tasimacilik"
+    }
 
 @pytest.mark.parametrize("sector_id", [
     "uretim_sanayi",
@@ -35,6 +40,8 @@ def test_list_sector_demos_endpoint():
     "perakende_eticaret",
     "hizmet_yazilim",
     "insaat_taahhut",
+    "saglik_medikal",
+    "lojistik_tasimacilik",
 ])
 def test_run_sector_demo_end_to_end(sector_id):
     resp = client.post(f"/api/sample/run-sector/{sector_id}")
