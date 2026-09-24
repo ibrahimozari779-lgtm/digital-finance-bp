@@ -1876,3 +1876,32 @@ def save_connector_config(payload: _ConnectorSavePayload, db: _Session = _Depend
         }
     }
 
+
+class _SupportRequestPayload(_BaseModel):
+    name: str
+    company: str | None = None
+    phone: str
+    email: str | None = None
+    erp_system: str | None = None
+    topic: str | None = None
+    notes: str | None = None
+
+
+@app.post("/api/v1/support_request")
+def create_support_request(payload: _SupportRequestPayload):
+    import logging
+    logger = logging.getLogger("support_request")
+    logger.info("Assisted Onboarding Request: %s, Company: %s, Phone: %s, ERP: %s, Topic: %s",
+                payload.name, payload.company, payload.phone, payload.erp_system, payload.topic)
+    return {
+        "status": "success",
+        "message": "Destek talebiniz başarıyla alındı. Finans uzmanımız 15 dakika içinde sizinle iletişime geçecektir.",
+        "data": {
+            "name": payload.name,
+            "company": payload.company,
+            "phone": payload.phone,
+            "erp_system": payload.erp_system,
+        }
+    }
+
+

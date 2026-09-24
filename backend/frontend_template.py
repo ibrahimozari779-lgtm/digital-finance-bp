@@ -6580,43 +6580,78 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </div>
 </div>
 
-<main class="wrap"><section class="hero"><div class="heroCard"><h2 class="heroTitle">Mizanınızı Yükleyin, <span style="color:var(--accent)">Şirketinizin Yönetim Raporunu</span> Alın.</h2><p class="heroText">Mizan veya finansal defterlerinizi yükleyin — 33 karar motoru verilerinizi çift taraflı denetler, kâr sızıntılarını kuruşuna kadar hesaplar, riskleri önceliklendirir ve yarın uygulanacak yönetim kararlarını masaya koyar.</p><div class="framework"><span><b>1. NE OLDU?</b> (Finansal Gerçekler)</span><span><b>2. PARA NEREDE?</b> (Kilitli Nakit &amp; Sızıntı)</span><span><b>3. RİSK &amp; SEKTÖR NE?</b> (Kıyaslama)</span><span><b>4. KİM YAPIYOR?</b> (Müşteri &amp; Stok Zekâsı)</span><span><b>5. NEDEN OLDU?</b> (Kök Neden)</span><span><b>6. NE YAPMALIYIZ?</b> (Yönetim Kararları)</span><span><b>7. SİMÜLE ET</b> (Senaryo Simülatörü)</span></div>
-<div class="cfoDemoHeroBanner hidePrint" style="margin-top:16px;margin-bottom:14px;background:linear-gradient(135deg, rgba(29,78,216,0.07) 0%, rgba(14,124,102,0.07) 100%);border:1.5px solid rgba(29,78,216,0.25);border-radius:14px;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
-  <div style="max-width:480px">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-      <span style="background:linear-gradient(135deg,#1D4ED8,#0E7C66);color:#fff;font-size:11px;font-weight:800;padding:3px 9px;border-radius:6px;letter-spacing:0.5px">🎯 CANLI SEKTÖREL YÖNETİM DEMOSU</span>
-      <span style="font-weight:800;font-size:14.5px;color:#0F1B2D">Dosya Yüklemeden Sektörünüzü İnceleyin</span>
+<main class="wrap"><section class="hero"><div class="heroCard">
+  <div style="display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1.5px solid #BFDBFE;padding:5px 14px;border-radius:999px;font-size:12px;font-weight:800;color:#1D4ED8;letter-spacing:0.5px;margin-bottom:12px">
+    <span>⚡ ŞİRKETİNİZİN FİNANSAL RÖNTGENİNİ 60 SANİYEDE ÇEKİN</span>
+  </div>
+  <h2 class="heroTitle" style="font-size:36px;line-height:1.2;letter-spacing:-0.5px;color:#0F1B2D;margin:0 0 14px">
+    Mizan Rakamlarını Değil; <br>
+    <span style="color:var(--accent);background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent">"Kasada Neden Para Yok ve Yarın Ne Yapmalıyım?"</span> <br>
+    Sorusunun Net Cevabını Masaya Koyuyoruz.
+  </h2>
+  <p class="heroText" style="font-size:14.5px;line-height:1.6;color:#475569;max-width:820px;margin:0 0 14px">
+    Finansçınız ve muhasebeniz geçmişi belgeler; biz paranın hangi açık hesapta ve depoda kilitlendiğini, hangi müşterinin kârınızı erittiğini ve yarın sabah kasanızı kurtaracak 3 somut yönetim kararını kuruşuna kadar gösteririz. Kâğıt üzerindeki kâr ile kasanızdaki gerçek nakit arasındaki makası 60 saniyede kapatın; banka faizine ezilmeden şirketinizi kendi nakdiyle büyütün.
+  </p>
+  <div style="display:flex;flex-wrap:wrap;gap:8px 12px;margin:12px 0 16px">
+    <span style="font-size:12px;font-weight:700;color:#1E3A8A;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:8px;padding:6px 12px;display:inline-flex;align-items:center;gap:6px">🔒 Paranın nerede kilitlendiğini görün</span>
+    <span style="font-size:12px;font-weight:700;color:#92400E;background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:6px 12px;display:inline-flex;align-items:center;gap:6px">👥 Hangi müşterilerin nakdinizi tükettiğini teşhis edin</span>
+    <span style="font-size:12px;font-weight:700;color:#166534;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:6px 12px;display:inline-flex;align-items:center;gap:6px">🎯 Kasaya en hızlı etki edecek 3 somut kararı anında alın</span>
+  </div>
+  <div class="framework" style="margin-bottom:14px">
+    <span><b>1. NE OLDU?</b> (Finansal Gerçekler)</span>
+    <span><b>2. PARA NEREDE?</b> (Kilitli Nakit &amp; Sızıntı)</span>
+    <span><b>3. RİSK &amp; SEKTÖR NE?</b> (Kıyaslama)</span>
+    <span><b>4. KİM YAPIYOR?</b> (Müşteri &amp; Stok Zekâsı)</span>
+    <span><b>5. NEDEN OLDU?</b> (Kök Neden)</span>
+    <span><b>6. NE YAPMALIYIZ?</b> (Yönetim Kararları)</span>
+    <span><b>7. SİMÜLE ET</b> (Senaryo Simülatörü)</span>
+  </div>
+
+  <!-- Hizalanmış Canlı Sektörel Yönetim Demosu Kartı -->
+  <div class="cfoDemoHeroBanner hidePrint" style="margin-top:16px;margin-bottom:16px;background:linear-gradient(135deg, rgba(29,78,216,0.06) 0%, rgba(14,124,102,0.06) 100%);border:1.5px solid rgba(29,78,216,0.22);border-radius:16px;padding:18px 22px;display:grid;grid-template-columns:1.15fr 0.85fr;gap:20px;align-items:center">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        <span style="background:linear-gradient(135deg,#1D4ED8,#0E7C66);color:#fff;font-size:11px;font-weight:900;padding:3.5px 10px;border-radius:6px;letter-spacing:0.8px;text-transform:uppercase">🎯 CANLI SEKTÖREL YÖNETİM DEMOSU</span>
+        <span class="tag" style="background:#DCFCE7;color:#166534;font-size:11px;font-weight:800;border:1px solid #BBF7D0">Çift Taraflı Doğrulandı</span>
+      </div>
+      <h3 style="margin:0 0 6px;font-size:16.5px;font-weight:800;color:#0F1B2D;letter-spacing:-0.3px">Dosya Yüklemeden Kendi Sektörünüzü İnceleyin</h3>
+      <div style="font-size:12.5px;color:#475569;line-height:1.55">Kendi sektörünüzü seçin; çift taraflı denetlenmiş mizan, cari yaşlandırma ve stok defterleriyle 33 analitik karar motorunu tek tıkla canlı olarak test edin.</div>
     </div>
-    <div style="font-size:12.5px;color:#475569;line-height:1.5">Kendi sektörünüzü seçin; çift taraflı denetlenmiş mizan, cari yaşlandırma ve stok defterleriyle 33 analitik karar motorunu tek tıkla test edin.</div>
-  </div>
-  <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-    <div style="display:inline-flex;align-items:center;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:12px;padding:3px 8px;gap:6px;box-shadow:0 2px 6px rgba(0,0,0,0.04)">
-      <span style="font-size:12.5px;font-weight:700;color:#1E293B">Sektör:</span>
-      <select id="sectorSelect" style="border:none;background:transparent;font-size:13px;font-weight:700;color:#0F1B2D;padding:8px 4px;outline:none;cursor:pointer">
-        <option value="uretim_sanayi">🏭 Üretim / Ağır Makine &amp; Metal Sanayi (48.5M ₺)</option>
-        <option value="toptan_ticaret">📦 Toptan Ticaret &amp; Dağıtım / FMCG (92.0M ₺)</option>
-        <option value="perakende_eticaret">🛍️ Perakende &amp; E-Ticaret / Moda (32.0M ₺)</option>
-        <option value="hizmet_yazilim">💻 Hizmet &amp; B2B SaaS / Yazılım (22.0M ₺)</option>
-        <option value="insaat_taahhut">🏗️ İnşaat, Taahhüt &amp; Proje (65.0M ₺)</option>
-        <option value="saglik_medikal">🏥 Sağlık Hizmetleri &amp; Medikal Tedarik (38.0M ₺)</option>
-        <option value="lojistik_tasimacilik">🚚 Uluslararası Lojistik &amp; Filo Taşımacılığı (54.0M ₺)</option>
-      </select>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:10px;padding:2px 10px;box-shadow:0 2px 6px rgba(0,0,0,0.04)">
+        <span style="font-size:12px;font-weight:700;color:#64748B;white-space:nowrap;margin-right:6px">Sektör:</span>
+        <select id="sectorSelect" style="border:none;background:transparent;font-size:13px;font-weight:700;color:#0F1B2D;padding:8px 0;outline:none;cursor:pointer;width:100%">
+          <option value="uretim_sanayi">🏭 Üretim / Ağır Makine &amp; Metal Sanayi (48.5M ₺)</option>
+          <option value="toptan_ticaret">📦 Toptan Ticaret &amp; Dağıtım / FMCG (92.0M ₺)</option>
+          <option value="perakende_eticaret">🛍️ Perakende &amp; E-Ticaret / Moda (32.0M ₺)</option>
+          <option value="hizmet_yazilim">💻 Hizmet &amp; B2B SaaS / Yazılım (22.0M ₺)</option>
+          <option value="insaat_taahhut">🏗️ İnşaat, Taahhüt &amp; Proje (65.0M ₺)</option>
+          <option value="saglik_medikal">🏥 Sağlık Hizmetleri &amp; Medikal Tedarik (38.0M ₺)</option>
+          <option value="lojistik_tasimacilik">🚚 Uluslararası Lojistik &amp; Filo Taşımacılığı (54.0M ₺)</option>
+        </select>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button id="runSectorBtn" type="button" class="primary" style="flex:1;background:linear-gradient(135deg,#0E7C66,#095C4B);color:#fff;border:none;padding:11px 18px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 4px 14px rgba(14,124,102,0.25)">
+          🚀 Sektörel Demo Raporunu Başlat →
+        </button>
+        <button type="button" onclick="openConnectorModal()" class="secondary" style="background:#FFFFFF;color:#166534;border:1.5px solid #86EFAC;padding:10px 14px;border-radius:10px;font-weight:700;font-size:12px;cursor:pointer;white-space:nowrap" title="ERP veya Entegratör API Bağlantısı">
+          ⚡ ERP Bağla
+        </button>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:0 2px">
+        <span id="sampleStatus" class="small muted"></span>
+        <button type="button" onclick="openFinancialAssistanceModal()" style="background:none;border:none;color:#B45309;font-weight:800;font-size:11.5px;cursor:pointer;text-decoration:underline">
+          🤝 Mizan Hazırlamakta Yardıma mı İhtiyacınız Var? Ücretsiz Destek Alın →
+        </button>
+      </div>
     </div>
-    <button id="runSectorBtn" type="button" class="primary" style="background:linear-gradient(135deg,#0E7C66,#095C4B);color:#fff;border:none;padding:10px 20px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(14,124,102,0.25)">
-      🚀 Sektörel Raporu Başlat
-    </button>
-    <button type="button" onclick="openConnectorModal()" class="secondary" style="background:#FFFFFF;color:#166534;border:1.5px solid #86EFAC;padding:9px 14px;border-radius:10px;font-weight:700;font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
-      ⚡ ERP / API Bağla
-    </button>
-    <span id="sampleStatus" class="small muted" style="margin-left:4px"></span>
+    <!-- Hidden legacy demo triggers for JS backward compatibility -->
+    <div style="display:none">
+      <button id="sampleTrendBtn" type="button"></button>
+      <button id="sampleBtn" type="button"></button>
+      <button id="sampleHubBtn" type="button"></button>
+    </div>
   </div>
-  <!-- Hidden legacy demo triggers for JS backward compatibility -->
-  <div style="display:none">
-    <button id="sampleTrendBtn" type="button"></button>
-    <button id="sampleBtn" type="button"></button>
-    <button id="sampleHubBtn" type="button"></button>
-  </div>
-</div>
 <div class="trustBar hidePrint">
 <div class="item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Önce hesap, sonra yorum — deterministik motor</div>
 <div class="item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>KVKK Uyumlu · RAM-Only Geçici Bellek (Kalıcı Saklama Yok)</div>
@@ -6667,6 +6702,30 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <select id="sector" class="select" style="min-width:180px"><option value="">Genel Sektör</option></select>
     </div>
     <button id="analyze" class="primary" style="padding:13px 28px;font-size:14.5px;border-radius:12px;font-weight:800;box-shadow:0 4px 14px rgba(14,124,102,0.25)">🚀 Akıllı Analizi Başlat (33 Karar Motoru)</button>
+  </div>
+
+  <!-- Ücretsiz Finansal Hazırlık & Destek Köprüsü (Assisted Onboarding) -->
+  <div style="margin-top:18px;background:linear-gradient(135deg,#FFFBEB 0%,#FEF3C7 100%);border:1.5px solid #FCD34D;border-radius:14px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;box-shadow:0 4px 12px rgba(180,83,9,0.06)">
+    <div style="display:flex;align-items:center;gap:14px;max-width:680px">
+      <div style="width:44px;height:44px;border-radius:12px;background:#FDE68A;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🤝</div>
+      <div>
+        <div style="font-size:13.5px;font-weight:800;color:#92400E;display:flex;align-items:center;gap:8px">
+          <span>Mizan veya Finansalları Yüklemekte Desteğe mi İhtiyacınız Var?</span>
+          <span class="tag" style="background:#B45309;color:#FFF;font-size:10px;padding:2px 8px;border-radius:6px;font-weight:800">%100 ÜCRETSİZ DESTEK</span>
+        </div>
+        <div style="font-size:12px;color:#78350F;margin-top:3px;line-height:1.45">
+          Mali müşavirinizden mizan talep etmek, muhasebe programınızdan (Logo, Mikro, Netsis, Zirve, Luca vb.) doğru Excel/XML çıktısı almak veya verilerinizi sisteme uyarlamak için uzman finans ekibimizden <b>15 dakikada ücretsiz birebir hazırlık desteği</b> alın.
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <button type="button" onclick="openFinancialAssistanceModal()" class="primary" style="background:#B45309;color:#FFF;border:none;padding:10px 18px;border-radius:10px;font-size:12.5px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(180,83,9,0.25)">
+        📞 Ücretsiz Hazırlık Desteği Talep Et
+      </button>
+      <a href="https://wa.me/905000000000?text=Merhaba,%20finansal%20mizanımı%20yükleme%20konusunda%20ücretsiz%20destek%20almak%20istiyorum." target="_blank" class="secondary" style="background:#FFFFFF;color:#166534;border:1.5px solid #86EFAC;padding:9px 14px;border-radius:10px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px;text-decoration:none">
+        💬 WhatsApp Destek Hattı
+      </a>
+    </div>
   </div>
 </div>
 <!-- Legacy hidden panels/inputs kept for full JS backward compatibility -->
@@ -6829,11 +6888,30 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
 </div><div class="heroCard scoreCard"><div id="scoreRing" class="scoreRing" style="--score:0"><div class="scoreNum"><strong id="score">-</strong><span>Finansal Sağlık Skoru</span></div></div><div id="healthLabel" class="status">Dosya bekleniyor</div><button type="button" class="secondary small hidePrint" onclick="openScoreMethodologyModal()" style="margin:10px auto 0;font-size:11px;padding:5px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;cursor:pointer">📐 Skor Metodolojisi &amp; Formül</button>
 <div id="topFocusCard" class="hidden hidePrint" style="margin-top:14px;border-top:1px solid rgba(15,27,45,.10);padding-top:10px;text-align:left"><div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Öncelikli Odak Konuları</div><div id="topFocusList" style="display:flex;flex-direction:column;gap:6px"></div></div>
 <div id="pvPreview" class="hidePrint" style="margin-top:18px;padding-top:16px;border-top:1px solid rgba(15,27,45,.10);text-align:left">
-  <div class="pvLabel"><span style="display:inline-flex;align-items:center"><span class="dot"></span>Örnek Rapor Görünümü</span><span style="font-weight:700;color:var(--accent);background:#EFF6FF;padding:3px 10px;border-radius:6px;font-size:11px">⚡ Canlı Karar Motoru</span></div>
-  <div class="pvRow"><span>Net Satış</span><span class="n up">↑ %25</span></div>
-  <div class="pvRow"><span>Faaliyet Kârı</span><span class="n down">↓ %10</span></div>
-  <div class="pvRow"><span>Net Borç</span><span class="n down">↑ %40</span></div>
-  <div class="pvBars" title="İllüstratif çeyreklik trend"><i style="height:35%"></i><i style="height:55%"></i><i style="height:44%"></i><i style="height:70%"></i><i style="height:60%"></i><i style="height:82%"></i></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <span style="font-size:11px;font-weight:900;color:#1D4ED8;letter-spacing:0.5px;text-transform:uppercase;display:flex;align-items:center;gap:6px">
+      <span class="dot"></span>ÖRNEK RAPOR GÖRÜNÜMÜ
+    </span>
+    <span style="font-weight:800;color:#0E7C66;background:#EAF7F4;border:1px solid #A3E0D2;padding:2px 8px;border-radius:6px;font-size:10.5px">⚡ Canlı Karar Motoru</span>
+  </div>
+  <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 12px;margin-bottom:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid #F1F5F9;font-size:11.5px">
+      <span style="color:#64748B;font-weight:600">Net Satış (Ciro):</span>
+      <b style="color:#0F172A">48.500.000 ₺ <span style="color:#16A34A;font-size:10px;margin-left:2px">↑ %25</span></b>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid #F1F5F9;font-size:11.5px">
+      <span style="color:#64748B;font-weight:600">Alacakta Kilitli (DSO):</span>
+      <b style="color:#DC2626">14.200.000 ₺ <span style="font-size:10px;color:#991B1B">(92 Gün)</span></b>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:11.5px">
+      <span style="color:#64748B;font-weight:600">60G GAP Alarmı:</span>
+      <b style="color:#DC2626">-2.400.000 ₺ <span style="font-size:10px;color:#DC2626;background:#FEE2E2;padding:1px 5px;border-radius:4px">🚨 Açık</span></b>
+    </div>
+  </div>
+  <div style="font-size:11px;color:#1E3A8A;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:8px;padding:7px 10px;line-height:1.4">
+    <b>💡 Öncelikli Patron Kararı:</b> Rotatif krediyi stok iskontosuyla kapat &bull; Tier C/D açık hesap limitini %50 düşür.
+  </div>
+  <div class="pvBars" title="İllüstratif çeyreklik trend" style="margin-top:10px"><i style="height:35%"></i><i style="height:55%"></i><i style="height:44%"></i><i style="height:70%"></i><i style="height:60%"></i><i style="height:82%"></i></div>
 </div>
 <div id="saveHistoryBox" class="hidden hidePrint" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line);text-align:left">
   <div class="small muted" style="margin-bottom:6px">Bu analizi kaydet</div>
@@ -8212,6 +8290,126 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
   </div>
 </div>
 
+<!-- Ücretsiz Finansal Hazırlık & Destek Köprüsü Modalı -->
+<div id="financialAssistanceModal" class="hidden hidePrint" style="position:fixed;inset:0;background:rgba(15,27,45,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2300;padding:16px;overflow-y:auto">
+  <div style="background:#FFFFFF;border-radius:20px;max-width:680px;width:100%;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 30px 70px rgba(0,0,0,0.35);overflow:hidden;border:1px solid #E2E8F0;position:relative">
+    <!-- Header -->
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-bottom:1px solid #E2E8F0;background:linear-gradient(135deg,#FFFBEB 0%,#FEF3C7 100%)">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:40px;height:40px;border-radius:10px;background:#FDE68A;display:flex;align-items:center;justify-content:center;font-size:22px">🤝</div>
+        <div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <h3 style="margin:0;font-size:16px;color:#92400E;font-weight:900">Ücretsiz Finansal Hazırlık &amp; Mizan Desteği</h3>
+            <span class="tag" style="background:#B45309;color:#FFF;font-size:10px;padding:2px 8px;border-radius:6px;font-weight:800">15 DK'DA BİREBİR</span>
+          </div>
+          <p style="margin:2px 0 0;font-size:12px;color:#78350F">Verilerinizi sisteme uyarlamak, mizan almak ve analiz başlatmak için uzman desteği.</p>
+        </div>
+      </div>
+      <button type="button" onclick="closeFinancialAssistanceModal()" style="background:none;border:none;font-size:24px;color:#92400E;cursor:pointer;padding:4px 8px;font-weight:700">✕</button>
+    </div>
+
+    <!-- Body Form -->
+    <div id="faForm" style="padding:22px 24px;overflow-y:auto;flex:1">
+      <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:12px 14px;margin-bottom:18px;display:flex;align-items:flex-start;gap:10px">
+        <span style="font-size:18px;line-height:1">💡</span>
+        <div style="font-size:12px;color:#1E3A8A;line-height:1.45">
+          <b>Mizanınızı yüklemekte veya çıkartmakta tereddüdünüz mü var?</b><br>
+          Finans uzmanlarımız, şirketinizin kullandığı muhasebe/ERP sistemine göre doğru dosya formatını almanıza veya elinizdeki mevcut tabloları 33 analitik karar motoruna uyarlamanıza <b>tamamen ücretsiz</b> yardımcı olur.
+        </div>
+      </div>
+
+      <form onsubmit="return submitFinancialAssistance(event)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:5px">Adınız Soyadınız <span style="color:#DC2626">*</span></label>
+            <input id="faName" type="text" placeholder="Örn: Ahmet Yılmaz" required style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid #CBD5E1;border-radius:8px;font-size:13px;outline:none" />
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:5px">Şirket Ünvanı</label>
+            <input id="faCompany" type="text" placeholder="Örn: ABC Sanayi ve Tic. Ltd. Şti." style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid #CBD5E1;border-radius:8px;font-size:13px;outline:none" />
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:5px">Telefon Numarası (WhatsApp / GSM) <span style="color:#DC2626">*</span></label>
+            <input id="faPhone" type="tel" placeholder="Örn: 0532 000 00 00" required style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid #CBD5E1;border-radius:8px;font-size:13px;outline:none" />
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:5px">E-posta Adresi</label>
+            <input id="faEmail" type="email" placeholder="Örn: info@sirketiniz.com" style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid #CBD5E1;border-radius:8px;font-size:13px;outline:none" />
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:5px">Kullandığınız ERP / Muhasebe</label>
+            <select id="faErp" style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid #CBD5E1;border-radius:8px;font-size:13px;outline:none;background:#FFF">
+              <option value="Logo">Logo (Tiger / Go 3 / Mali Müşavir)</option>
+              <option value="Mikro">Mikro (Fly / Jump / V16)</option>
+              <option value="Netsis">Netsis (Standard / Enterprise)</option>
+              <option value="Zirve">Zirve Müşavir / Ticari</option>
+              <option value="Luca">Luca Web Muhasebe</option>
+              <option value="SAP / Oracle">SAP / Oracle / NetSuite</option>
+              <option value="Excel / Bilmiyorum">Excel / Emin Değilim / Diğer</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:5px">Destek Almak İstediğiniz Konu</label>
+            <select id="faTopic" style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid #CBD5E1;border-radius:8px;font-size:13px;outline:none;background:#FFF">
+              <option value="mizan_cikarisi">Mizan Çıkartma &amp; Excel/XML Formatı</option>
+              <option value="musavir_talep">Mali Müşavirimden Ne İstemeliyim?</option>
+              <option value="cari_stok_birlestirme">Cari Yaşlandırma &amp; Stok Birleştirme</option>
+              <option value="erp_api">Canlı Sistem Entegrasyonu &amp; ERP API</option>
+              <option value="genel_danismanlik">Genel Finansal Analiz &amp; Rapor Danışmanlığı</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-bottom:16px">
+          <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:5px">Eklemek İstediğiniz Detay veya Not (Opsiyonel)</label>
+          <textarea id="faNotes" rows="2" placeholder="Örn: 2025 mizanımız hazır ancak cari yaşlandırma listesini sisteme nasıl bağlayacağımızı öğrenmek istiyoruz..." style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid #CBD5E1;border-radius:8px;font-size:12.5px;outline:none;resize:vertical"></textarea>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;font-size:11px;color:#64748B">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          <span>Tüm verileriniz <b>KVKK ve Gizlilik Sözleşmesi (NDA)</b> ile koruma altındadır. Kalıcı saklanmaz.</span>
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <button type="submit" class="primary" style="flex:1.2;background:#B45309;color:#FFF;border:none;padding:12px 20px;border-radius:10px;font-size:13.5px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(180,83,9,0.3)">
+            🚀 Ücretsiz Destek Talebini Gönder (15 Dk İçinde Dönüş)
+          </button>
+          <a href="https://wa.me/905000000000?text=Merhaba,%20finansal%20mizanımı%20yükleme%20konusunda%20ücretsiz%20destek%20almak%20istiyorum." target="_blank" class="secondary" style="flex:0.8;background:#FFFFFF;color:#166534;border:1.5px solid #86EFAC;padding:11px 16px;border-radius:10px;font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none">
+            💬 WhatsApp ile Yazın
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <!-- Success State -->
+    <div id="faSuccessState" class="hidden" style="padding:40px 30px;text-align:center">
+      <div style="width:68px;height:68px;border-radius:50%;background:#DCFCE7;border:3px solid #86EFAC;color:#16A34A;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 18px">✓</div>
+      <h3 style="margin:0 0 8px;font-size:18px;color:#0F172A;font-weight:900">Destek Talebiniz Alındı!</h3>
+      <p style="margin:0 auto 20px;max-width:520px;font-size:13.5px;color:#475569;line-height:1.5">
+        Finans uzmanımız iletişim numaranız üzerinden <b>15 dakika içinde</b> sizinle irtibata geçerek mizan dosyanızı sisteme uyarlamanıza birebir yardımcı olacaktır.
+      </p>
+      <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:14px;max-width:480px;margin:0 auto 24px;text-align:left;font-size:12px;color:#334155;line-height:1.45">
+        <b style="color:#1D4ED8">📌 Bu esnada ne yapabilirsiniz?</b><br>
+        Dilerseniz ERP Mizan Alma Rehberimizden muhasebe programınızın adımlarını inceleyebilir veya doğrudan sektörünüze özel canlı demomuzu test edebilirsiniz.
+      </div>
+      <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+        <button type="button" class="secondary" style="padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700" onclick="closeFinancialAssistanceModal(); openErpGuideModal();">
+          📂 ERP Rehberini Aç
+        </button>
+        <button type="button" class="primary" style="padding:10px 24px;border-radius:10px;font-size:13px;font-weight:800" onclick="closeFinancialAssistanceModal()">
+          Tamam, Teşekkürler
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Detaylı Finansal Karar Raporu Önizleme Modalı (Root-level child for clean A4 preview & print) -->
 <div id="detailedReportModal" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;overflow-y:auto">
   <div style="background:#FFFFFF;border-radius:18px;max-width:1060px;width:100%;max-height:94vh;display:flex;flex-direction:column;box-shadow:0 25px 60px rgba(0,0,0,0.35);overflow:hidden">
@@ -8575,6 +8773,61 @@ function resetWhiteLabel(){
 
 function openErpGuideModal(){ $('erpGuideModal')?.classList.remove('hidden'); }
 function closeErpGuideModal(){ $('erpGuideModal')?.classList.add('hidden'); }
+
+function openFinancialAssistanceModal(){
+  const m = $('financialAssistanceModal');
+  if(!m) return;
+  m.classList.remove('hidden');
+  const form = $('faForm');
+  const succ = $('faSuccessState');
+  if(form) form.classList.remove('hidden');
+  if(succ) succ.classList.add('hidden');
+}
+function closeFinancialAssistanceModal(){
+  const m = $('financialAssistanceModal');
+  if(m) m.classList.add('hidden');
+}
+async function submitFinancialAssistance(e){
+  if(e && e.preventDefault) e.preventDefault();
+  const name = $('faName')?.value?.trim();
+  const phone = $('faPhone')?.value?.trim();
+  if(!name || !phone){
+    alert('Lütfen adınızı ve telefon numaranızı giriniz.');
+    return false;
+  }
+  const payload = {
+    name: name,
+    company: $('faCompany')?.value?.trim() || '',
+    phone: phone,
+    email: $('faEmail')?.value?.trim() || '',
+    erp_system: $('faErp')?.value || '',
+    topic: $('faTopic')?.value || '',
+    notes: $('faNotes')?.value?.trim() || ''
+  };
+
+  try {
+    const existing = JSON.parse(localStorage.getItem('dfbp_support_requests') || '[]');
+    existing.push({ ...payload, created_at: new Date().toISOString() });
+    localStorage.setItem('dfbp_support_requests', JSON.stringify(existing));
+  } catch(err) {}
+
+  try {
+    fetch('/api/v1/support_request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function(){});
+  } catch(err) {}
+
+  const form = $('faForm');
+  const succ = $('faSuccessState');
+  if(form) form.classList.add('hidden');
+  if(succ) succ.classList.remove('hidden');
+  return false;
+}
+window.openFinancialAssistanceModal = openFinancialAssistanceModal;
+window.closeFinancialAssistanceModal = closeFinancialAssistanceModal;
+window.submitFinancialAssistance = submitFinancialAssistance;
 
 // Action Tracker (Task Management in localStorage)
 function getActionStatuses(){
