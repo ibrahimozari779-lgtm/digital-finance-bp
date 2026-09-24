@@ -584,8 +584,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <section class="mHero">
   <div class="reveal in">
     <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-size:11.5px;font-weight:800;letter-spacing:0.6px;margin-bottom:12px;display:inline-block">🎯 KOBİ PATRONLARI &amp; ŞİRKET ORTAKLARI İÇİN FİNANSAL KARAR ORTAĞI</span>
-    <h1 style="margin-top:8px">Mizan Rakamlarını Değil;<br><span class="gradText">"Kasada Neden Para Yok ve Yarın Ne Yapmalıyım?"</span><br>Sorusunun Net Cevabını Masaya Koyuyoruz.</h1>
-    <p class="lead">Finansçınız ve muhasebeniz geçmişi belgeler; biz paranın hangi açık hesapta ve depoda kilitlendiğini, hangi müşterinin kârınızı erittiğini ve <b>yarın sabah kasanızı kurtaracak 3 somut yönetim kararını</b> kuruşuna kadar gösteririz. Kâğıt üzerindeki kâr ile kasanızdaki gerçek nakit arasındaki makası <b>60 saniyede kapatın</b>; banka faizine ezilmeden şirketinizi kendi nakdiyle büyütün.</p>
+    <h1 style="margin-top:8px">Şirketinizin Finansal Röntgenini 60 Saniyede Çekin;<br><span class="gradText">"Kasada Neden Para Yok ve Yarın Ne Yapmalıyım?"</span><br>Sorusunun Net Cevabını Masaya Koyuyoruz.</h1>
+    <p class="lead">Finansal verilerinizi stratejik yönetim kararlarına dönüştürün. Finansçınız ve muhasebeniz geçmişi belgeler; biz paranın hangi hesapta ve depoda kilitlendiğini, hangi müşterinin kârınızı erittiğini ve <b>yarın sabah kasanızı kurtaracak 3 somut yönetim kararını</b> kuruşuna kadar gösteririz. Kâğıt üzerindeki kâr ile kasanızdaki gerçek nakit arasındaki makası <b>60 saniyede kapatın</b>; banka faizine ezilmeden şirketinizi kendi nakdiyle büyütün.</p>
     
     <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:24px 0 18px">
       <a href="/uygulama?sample=data_hub" class="primary" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;padding:15px 28px;border-radius:14px;font-size:15px;font-weight:800;background:#1D4ED8;color:#FFFFFF;box-shadow:0 8px 24px rgba(29,78,216,0.35);transition:all .2s ease">
@@ -595,7 +595,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       </a>
       <a href="/uygulama" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;padding:14px 22px;border-radius:14px;font-size:14px;font-weight:700;background:#FFFFFF;color:#1E293B;border:1.5px solid #CBD5E1;box-shadow:0 2px 6px rgba(0,0,0,0.04);transition:all .2s ease">
         <span>📁</span>
-        <span>Kendi Mizanınızı Yükleyin (Ücretsiz)</span>
+        <span>Kendi Finansallarınızı Yükleyin (Ücretsiz)</span>
       </a>
     </div>
 
@@ -6581,22 +6581,15 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </div>
 
 <main class="wrap"><section class="hero"><div class="heroCard">
-  <div style="display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1.5px solid #BFDBFE;padding:5px 14px;border-radius:999px;font-size:12px;font-weight:800;color:#1D4ED8;letter-spacing:0.5px;margin-bottom:12px">
-    <span>⚡ ŞİRKETİNİZİN FİNANSAL RÖNTGENİNİ 60 SANİYEDE ÇEKİN</span>
+  <div style="display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1.5px solid #BFDBFE;padding:4px 12px;border-radius:999px;font-size:11.5px;font-weight:800;color:#1D4ED8;letter-spacing:0.5px;margin-bottom:10px">
+    <span>⚡ 60 SANİYEDE FİNANSAL TEŞHİS &amp; STRATEJİK YÖNETİM</span>
   </div>
-  <h2 class="heroTitle" style="font-size:36px;line-height:1.2;letter-spacing:-0.5px;color:#0F1B2D;margin:0 0 14px">
-    Mizan Rakamlarını Değil; <br>
-    <span style="color:var(--accent);background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent">"Kasada Neden Para Yok ve Yarın Ne Yapmalıyım?"</span> <br>
-    Sorusunun Net Cevabını Masaya Koyuyoruz.
+  <h2 class="heroTitle" style="font-size:28px;line-height:1.25;letter-spacing:-0.5px;color:#0F1B2D;margin:0 0 8px">
+    Finansal Verilerinizi <span style="color:var(--accent);background:linear-gradient(135deg,#1D4ED8 0%,#0E7C66 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Stratejik Yönetim Kararlarına</span> Dönüştürüyoruz
   </h2>
-  <p class="heroText" style="font-size:14.5px;line-height:1.6;color:#475569;max-width:820px;margin:0 0 14px">
-    Finansçınız ve muhasebeniz geçmişi belgeler; biz paranın hangi açık hesapta ve depoda kilitlendiğini, hangi müşterinin kârınızı erittiğini ve yarın sabah kasanızı kurtaracak 3 somut yönetim kararını kuruşuna kadar gösteririz. Kâğıt üzerindeki kâr ile kasanızdaki gerçek nakit arasındaki makası 60 saniyede kapatın; banka faizine ezilmeden şirketinizi kendi nakdiyle büyütün.
+  <p class="heroText" style="font-size:13.5px;line-height:1.5;color:#475569;max-width:780px;margin:0 0 12px">
+    Paranın nerede kilitlendiğini kuruşuna kadar görün, kârlılık sızıntılarını teşhis edin ve kasanızı kurtaracak somut yönetim kararlarını anında alın.
   </p>
-  <div style="display:flex;flex-wrap:wrap;gap:8px 12px;margin:12px 0 16px">
-    <span style="font-size:12px;font-weight:700;color:#1E3A8A;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:8px;padding:6px 12px;display:inline-flex;align-items:center;gap:6px">🔒 Paranın nerede kilitlendiğini görün</span>
-    <span style="font-size:12px;font-weight:700;color:#92400E;background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:6px 12px;display:inline-flex;align-items:center;gap:6px">👥 Hangi müşterilerin nakdinizi tükettiğini teşhis edin</span>
-    <span style="font-size:12px;font-weight:700;color:#166534;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:6px 12px;display:inline-flex;align-items:center;gap:6px">🎯 Kasaya en hızlı etki edecek 3 somut kararı anında alın</span>
-  </div>
   <div class="framework" style="margin-bottom:14px">
     <span><b>1. NE OLDU?</b> (Finansal Gerçekler)</span>
     <span><b>2. PARA NEREDE?</b> (Kilitli Nakit &amp; Sızıntı)</span>
@@ -6615,7 +6608,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
         <span class="tag" style="background:#DCFCE7;color:#166534;font-size:11px;font-weight:800;border:1px solid #BBF7D0">Çift Taraflı Doğrulandı</span>
       </div>
       <h3 style="margin:0 0 6px;font-size:16.5px;font-weight:800;color:#0F1B2D;letter-spacing:-0.3px">Dosya Yüklemeden Kendi Sektörünüzü İnceleyin</h3>
-      <div style="font-size:12.5px;color:#475569;line-height:1.55">Kendi sektörünüzü seçin; çift taraflı denetlenmiş mizan, cari yaşlandırma ve stok defterleriyle 33 analitik karar motorunu tek tıkla canlı olarak test edin.</div>
+      <div style="font-size:12.5px;color:#475569;line-height:1.55">Kendi sektörünüzü seçin; çift taraflı denetlenmiş finansallar, cari yaşlandırma ve stok defterleriyle 33 analitik karar motorunu tek tıkla canlı olarak test edin.</div>
     </div>
     <div style="display:flex;flex-direction:column;gap:8px">
       <div style="display:flex;align-items:center;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:10px;padding:2px 10px;box-shadow:0 2px 6px rgba(0,0,0,0.04)">
@@ -6641,7 +6634,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div style="display:flex;justify-content:space-between;align-items:center;padding:0 2px">
         <span id="sampleStatus" class="small muted"></span>
         <button type="button" onclick="openFinancialAssistanceModal()" style="background:none;border:none;color:#B45309;font-weight:800;font-size:11.5px;cursor:pointer;text-decoration:underline">
-          🤝 Mizan Hazırlamakta Yardıma mı İhtiyacınız Var? Ücretsiz Destek Alın →
+          🤝 Finansalları Hazırlamakta Yardıma mı İhtiyacınız Var? Ücretsiz Destek Alın →
         </button>
       </div>
     </div>
@@ -6710,11 +6703,11 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <div style="width:44px;height:44px;border-radius:12px;background:#FDE68A;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🤝</div>
       <div>
         <div style="font-size:13.5px;font-weight:800;color:#92400E;display:flex;align-items:center;gap:8px">
-          <span>Mizan veya Finansalları Yüklemekte Desteğe mi İhtiyacınız Var?</span>
+          <span>Finansalları Yüklemekte Desteğe mi İhtiyacınız Var?</span>
           <span class="tag" style="background:#B45309;color:#FFF;font-size:10px;padding:2px 8px;border-radius:6px;font-weight:800">%100 ÜCRETSİZ DESTEK</span>
         </div>
         <div style="font-size:12px;color:#78350F;margin-top:3px;line-height:1.45">
-          Mali müşavirinizden mizan talep etmek, muhasebe programınızdan (Logo, Mikro, Netsis, Zirve, Luca vb.) doğru Excel/XML çıktısı almak veya verilerinizi sisteme uyarlamak için uzman finans ekibimizden <b>15 dakikada ücretsiz birebir hazırlık desteği</b> alın.
+          Mali müşavirinizden bilanço ve gelir tablosu talep etmek, muhasebe programınızdan (Logo, Mikro, Netsis, Zirve, Luca vb.) doğru Excel/XML çıktısı almak veya verilerinizi sisteme uyarlamak için uzman finans ekibimizden <b>15 dakikada ücretsiz birebir hazırlık desteği</b> alın.
         </div>
       </div>
     </div>
@@ -6722,7 +6715,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <button type="button" onclick="openFinancialAssistanceModal()" class="primary" style="background:#B45309;color:#FFF;border:none;padding:10px 18px;border-radius:10px;font-size:12.5px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(180,83,9,0.25)">
         📞 Ücretsiz Hazırlık Desteği Talep Et
       </button>
-      <a href="https://wa.me/905000000000?text=Merhaba,%20finansal%20mizanımı%20yükleme%20konusunda%20ücretsiz%20destek%20almak%20istiyorum." target="_blank" class="secondary" style="background:#FFFFFF;color:#166534;border:1.5px solid #86EFAC;padding:9px 14px;border-radius:10px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px;text-decoration:none">
+      <a href="https://wa.me/905000000000?text=Merhaba,%20finansallarımı%20yükleme%20konusunda%20ücretsiz%20destek%20almak%20istiyorum." target="_blank" class="secondary" style="background:#FFFFFF;color:#166534;border:1.5px solid #86EFAC;padding:9px 14px;border-radius:10px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px;text-decoration:none">
         💬 WhatsApp Destek Hattı
       </a>
     </div>
@@ -8299,10 +8292,10 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
         <div style="width:40px;height:40px;border-radius:10px;background:#FDE68A;display:flex;align-items:center;justify-content:center;font-size:22px">🤝</div>
         <div>
           <div style="display:flex;align-items:center;gap:8px">
-            <h3 style="margin:0;font-size:16px;color:#92400E;font-weight:900">Ücretsiz Finansal Hazırlık &amp; Mizan Desteği</h3>
+            <h3 style="margin:0;font-size:16px;color:#92400E;font-weight:900">Ücretsiz Finansal Hazırlık &amp; Destek Köprüsü</h3>
             <span class="tag" style="background:#B45309;color:#FFF;font-size:10px;padding:2px 8px;border-radius:6px;font-weight:800">15 DK'DA BİREBİR</span>
           </div>
-          <p style="margin:2px 0 0;font-size:12px;color:#78350F">Verilerinizi sisteme uyarlamak, mizan almak ve analiz başlatmak için uzman desteği.</p>
+          <p style="margin:2px 0 0;font-size:12px;color:#78350F">Verilerinizi sisteme uyarlamak, finansalları yüklemek ve analiz başlatmak için uzman desteği.</p>
         </div>
       </div>
       <button type="button" onclick="closeFinancialAssistanceModal()" style="background:none;border:none;font-size:24px;color:#92400E;cursor:pointer;padding:4px 8px;font-weight:700">✕</button>
@@ -8313,7 +8306,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
       <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:12px 14px;margin-bottom:18px;display:flex;align-items:flex-start;gap:10px">
         <span style="font-size:18px;line-height:1">💡</span>
         <div style="font-size:12px;color:#1E3A8A;line-height:1.45">
-          <b>Mizanınızı yüklemekte veya çıkartmakta tereddüdünüz mü var?</b><br>
+          <b>Finansallarınızı yüklemekte veya çıkartmakta tereddüdünüz mü var?</b><br>
           Finans uzmanlarımız, şirketinizin kullandığı muhasebe/ERP sistemine göre doğru dosya formatını almanıza veya elinizdeki mevcut tabloları 33 analitik karar motoruna uyarlamanıza <b>tamamen ücretsiz</b> yardımcı olur.
         </div>
       </div>
@@ -8357,7 +8350,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
           <div>
             <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:5px">Destek Almak İstediğiniz Konu</label>
             <select id="faTopic" style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid #CBD5E1;border-radius:8px;font-size:13px;outline:none;background:#FFF">
-              <option value="mizan_cikarisi">Mizan Çıkartma &amp; Excel/XML Formatı</option>
+              <option value="finansal_cikartma">Finansalları Çıkartma &amp; Excel/XML Formatı</option>
               <option value="musavir_talep">Mali Müşavirimden Ne İstemeliyim?</option>
               <option value="cari_stok_birlestirme">Cari Yaşlandırma &amp; Stok Birleştirme</option>
               <option value="erp_api">Canlı Sistem Entegrasyonu &amp; ERP API</option>
@@ -8396,7 +8389,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
       </p>
       <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:14px;max-width:480px;margin:0 auto 24px;text-align:left;font-size:12px;color:#334155;line-height:1.45">
         <b style="color:#1D4ED8">📌 Bu esnada ne yapabilirsiniz?</b><br>
-        Dilerseniz ERP Mizan Alma Rehberimizden muhasebe programınızın adımlarını inceleyebilir veya doğrudan sektörünüze özel canlı demomuzu test edebilirsiniz.
+        Dilerseniz ERP Rehberimizden muhasebe programınızın adımlarını inceleyebilir veya doğrudan sektörünüze özel canlı demomuzu test edebilirsiniz.
       </div>
       <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
         <button type="button" class="secondary" style="padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700" onclick="closeFinancialAssistanceModal(); openErpGuideModal();">
