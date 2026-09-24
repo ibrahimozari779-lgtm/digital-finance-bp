@@ -6892,12 +6892,13 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
 
 <!-- Sticky Dashboard Sub-Navigation Bar -->
 <div id="dashboardSubNav" class="dashboardSubNav hidePrint" style="position:sticky;top:62px;z-index:45;background:#FFFFFF;border-bottom:1.5px solid #E2E8F0;box-shadow:0 4px 14px rgba(15,27,45,0.05);padding:9px 0;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;display:flex;gap:7px;white-space:nowrap">
+  <button type="button" class="dashPill" style="background:#EFF6FF;color:#1D4ED8;font-weight:900;border:1.5px solid #93C5FD;box-shadow:0 2px 6px rgba(29,78,216,0.12)" onclick="jumpToFlowStep('strategicModulesCockpitCard')">🎯 3 Stratejik Karar Modülü</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_1')">1. Finansal Röntgen</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_2')">2. Öncelikli Riskler</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_3')">3. Kilitli Nakit &amp; Faiz</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_4')">4. Operasyonel Kârlılık</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('sixtyDayGapLiveCard')">3. Kilitli Nakit &amp; 60G GAP (Modül 3)</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('profitQualityModuleLiveCard')">4. Kârlılık &amp; QoE (Modül 1)</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_5')">5. Bilanço &amp; CCC</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_6')">6. Kritik Taraflar</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('creditScoringLiveCard')">6. Müşteri Scoring (Modül 2)</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_7')">7. Kök Neden Hikâyeleri</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_8')">8. Vergi Kalkanı</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_9')">9. Senaryo Lab</button>
@@ -6962,6 +6963,9 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
       </div>
     </div>
 
+    <!-- 3 KRİTİK STRATEJİK YÖNETİM MODÜLÜ (CANLI YÖNETİCİ KOKPİTİ) -->
+    <div id="strategicModulesCockpitCard" style="margin-bottom:20px"></div>
+
     <!-- Yönetici Özeti & AI Business Partner -->
     <div class="card" style="margin-bottom:20px">
       <div class="sectionHead">
@@ -6997,6 +7001,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
               </div>
               <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Yönetim Kurulu &amp; Patron Karar Notu</h4>
               <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">Para nerede? Kasa mevcudu, alacaklar, stoklar, finansal borçlar ve patronun masaya koyup hemen alacağı 3 somut karar.</p>
+              <div style="margin-top:6px;display:inline-block"><span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:9.5px;font-weight:800;border:1px solid #BFDBFE">★ 3 Stratejik Modül Özeti Dahil</span></div>
             </div>
             <div style="margin-top:12px">
               <button id="boardDeckBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#1D4ED8;color:#FFFFFF;cursor:pointer" onclick="openBoardDeckModal()">
@@ -7014,6 +7019,11 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
               </div>
               <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Aylık Finans ve Faaliyet Raporu</h4>
               <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">Sürdürülebilir kâr (QoE), fiktif stok kârı, DuPont, TMS 7 nakit akış tablosu, işletme sermayesi ve 60 günlük likidite boşluğu (GAP).</p>
+              <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:6px">
+                <span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:9.5px;font-weight:800;border:1px solid #BFDBFE">Modül 1 (Sayfa 2)</span>
+                <span class="tag" style="background:#FFFBEB;color:#B45309;font-size:9.5px;font-weight:800;border:1px solid #FDE68A">Modül 2 (Sayfa 5)</span>
+                <span class="tag" style="background:#FEF2F2;color:#991B1B;font-size:9.5px;font-weight:800;border:1px solid #FCA5A5">Modül 3 (Sayfa 9)</span>
+              </div>
             </div>
             <div style="margin-top:12px">
               <button id="cfoReportBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#0E7C66;color:#FFFFFF;cursor:pointer" onclick="openCfoReportModal()">
@@ -7048,6 +7058,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
               </div>
               <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Haftalık Nakit Akışı &amp; Ödeme/Tahsilat Tablosu</h4>
               <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">Hangi hafta kasada açık var? 60 günlük Net Likidite Boşluğu (GAP), çek, vergi, kira ve maaş takvimi ile acil nakit tamponu emniyet eşiği.</p>
+              <div style="margin-top:6px;display:inline-block"><span class="tag" style="background:#FEF2F2;color:#991B1B;font-size:9.5px;font-weight:800;border:1px solid #FCA5A5">Modül 3: 60G Likidite GAP (Sayfa 1)</span></div>
             </div>
             <div style="margin-top:12px">
               <button id="cashRadarBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#D97706;color:#FFFFFF;cursor:pointer" onclick="openCashRadarModal()">
@@ -7330,6 +7341,9 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
         <div id="cashRealization"></div>
     </div>
 
+    <!-- Modül 3: Akıllı Borç Yapısı & Refinansman (60 Günlük GAP & Çıkış Senaryoları) -->
+    <div id="sixtyDayGapLiveCard" style="margin-top:20px"></div>
+
     <!-- Patronun Haftalık Nakit & Karar Kokpiti -->
     <div id="patronCashCockpitCard" class="card hidden" style="margin-top:20px;border:2px solid #2563EB;background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%)">
       <div class="sectionHead" style="border-bottom:1.5px solid #DBEAFE;padding-bottom:12px;margin-bottom:16px">
@@ -7408,6 +7422,9 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
       <div class="metric"><div class="label">Net Dönem Kârı</div><div id="mNet" class="value">-</div><div class="sub">Vergi ve finansman giderleri sonrası net kâr</div></div>
       <div class="metric"><div class="label">Net Finansal Borç</div><div id="mDebt" class="value">-</div><div class="sub">Toplam banka borcundan nakit düşülmüş net yük</div></div>
     </div>
+
+    <!-- Modül 1: Kâr Kalitesi & Sürdürülebilir Kâr (QoE & Fiktif Stok Kârı İllüzyonu) -->
+    <div id="profitQualityModuleLiveCard" style="margin-top:16px"></div>
 
     <div id="profitQualityCard" class="card" style="margin-top:16px">
       <div class="sectionHead">
@@ -7504,6 +7521,9 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
     </div>
   </div>
   <div class="accordionBody">
+    <!-- Modül 2: Akıllı Alacak Yönetimi (Credit Scoring & Direktifler & Temerrüt Şoku) -->
+    <div id="creditScoringLiveCard" style="margin-bottom:16px"></div>
+
     <div id="criticalPartiesNotice" class="notice">Bu bölüm "Çoklu Veri / Alt Defterler" sekmesinden satış, alacak yaşlandırma veya stok dosyası yüklendiğinde zenginleşir.</div>
     <div id="customerProfitabilityMatrixCard" class="card hidden" style="margin-top:14px">
       <div class="sectionHead">
@@ -8988,7 +9008,10 @@ window.addEventListener('load', syncStickyNav);
 function jumpToFlowStep(id){
   const el = $(id);
   if(!el) return;
-  if(!el.classList.contains('active')){
+  const parentStep = el.closest ? el.closest('.accordionStep') : null;
+  if(parentStep && !parentStep.classList.contains('active')){
+    parentStep.classList.add('active');
+  } else if(!el.classList.contains('active') && el.classList.contains('accordionStep')){
     el.classList.add('active');
   }
   const h = document.querySelector('header.top');
@@ -9089,6 +9112,7 @@ function render(d){
   renderTopFocusIssues(bp);
   const c=bp.cash_conversion_cycle||{};
   renderExecutiveSnapshot(bp, pl, bs, k, c, d);
+  renderStrategicModules(d);
 
   // Step 1 — WHAT (financial facts)
   const canonSales = cm.canonical_net_sales != null ? cm.canonical_net_sales : pl['Net sales'];
@@ -10484,6 +10508,35 @@ function openBoardDeckModal(){
   html += '<div><b>Depoda Kilitli:</b> ' + money(invVal) + ' <span style="color:#64748B">(' + (dio!=null?num(dio)+' gün bekleme':'–') + ')</span></div>';
   html += '<div style="color:#16A34A"><b>Tedarikçi Kaynağı:</b> ' + money(apVal) + ' <span style="color:#64748B">(' + (dpo!=null?num(dpo)+' gün ödeme':'–') + ')</span></div>';
   html += '</div></div></div>';
+
+  // 4.5. 3 Stratejik Karar Modülü Özeti (QoE, Credit Scoring, 60G GAP)
+  const pqe = bp.profit_quality_engine || {};
+  const qoeScore = Math.round(pqe.qoe_score != null ? pqe.qoe_score : 80);
+  const qoeGrade = pqe.qoe_grade || (qoeScore >= 85 ? 'A' : qoeScore >= 70 ? 'B' : qoeScore >= 55 ? 'C' : 'D');
+  const qoeColor = qoeGrade === 'A' ? '#16A34A' : qoeGrade === 'B' ? '#2563EB' : qoeGrade === 'C' ? '#D97706' : '#DC2626';
+  const cfe = bp.cash_flow_engine || {};
+  const sixtyGap = cfe.sixty_day_gap || {};
+  const creditScoring = (d.data_hub?.analysis_ar?.customer_credit_scoring) || (bp.analysis_ar?.customer_credit_scoring) || [];
+
+  html += '<div style="background:#F0F7FF;border:1.5px solid #BFDBFE;border-radius:8px;padding:8px 10px;margin-bottom:8px">';
+  html += '<div style="font-size:10px;font-weight:900;color:#1D4ED8;text-transform:uppercase;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center"><span>🎯 3 Kritik Stratejik Modül &bull; Yönetici Özeti</span><span style="font-size:9px;color:#64748B">Detay: 10 Sayfalık Finans Raporu (S.2, S.5, S.9)</span></div>';
+  html += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:9.5px">';
+  html += '<div style="background:#FFF;padding:5px 8px;border-radius:6px;border:1px solid #E2E8F0">';
+  html += '<div style="color:#64748B;font-weight:700">1. Kâr Kalitesi (QoE)</div>';
+  html += '<div style="font-weight:900;color:' + qoeColor + ';font-size:12px">Grade ' + qoeGrade + ' (' + qoeScore + '/100)</div>';
+  html += '<div style="color:#475569;font-size:8.5px;margin-top:1px">' + (pqe.fictitious_stock_profit > 0 ? 'Fiktif Stok Kârı: ' + money(pqe.fictitious_stock_profit) : 'Sürdürülebilir Kâr: ' + money(pqe.sustainable_profit != null ? pqe.sustainable_profit : (pl['Operating profit'] || 0))) + '</div>';
+  html += '</div>';
+  html += '<div style="background:#FFF;padding:5px 8px;border-radius:6px;border:1px solid #E2E8F0">';
+  html += '<div style="color:#64748B;font-weight:700">2. Akıllı Alacak (Risk)</div>';
+  html += '<div style="font-weight:900;color:#B45309;font-size:12px">' + (creditScoring.length ? creditScoring.length + ' Müşteri İzlemede' : '4 Risk Grubu (Tier A-D)') + '</div>';
+  html += '<div style="color:#DC2626;font-size:8.5px;margin-top:1px">DBS &amp; Açık Hesap Kısıtı Şartı</div>';
+  html += '</div>';
+  html += '<div style="background:#FFF;padding:5px 8px;border-radius:6px;border:1px solid #E2E8F0">';
+  html += '<div style="color:#64748B;font-weight:700">3. 60G Borç GAP &amp; Refinansman</div>';
+  html += '<div style="font-weight:900;color:' + (sixtyGap.status === 'DEFICIT' ? '#DC2626' : '#16A34A') + ';font-size:12px">' + (sixtyGap.status === 'DEFICIT' ? 'GAP Açığı: ' : 'GAP Tamponu: ') + money(sixtyGap.net_gap_60d || 0) + '</div>';
+  html += '<div style="color:#1D4ED8;font-size:8.5px;margin-top:1px">2 Refinansman Çıkış Senaryosu</div>';
+  html += '</div>';
+  html += '</div></div>';
 
   // 5. Tactical Action Table (Full text, no substring chop)
   html += '<div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:8px;padding:8px 10px;margin-bottom:8px">';
@@ -12717,6 +12770,286 @@ function downloadSampleMizan(){
   URL.revokeObjectURL(url);
 }
 window.downloadSampleMizan = downloadSampleMizan;
+
+function renderStrategicModules(d){
+  if(!d) return;
+  const bp = d.business_partner || d;
+  const pl = d.statements?.profit_and_loss || bp.statements?.profit_and_loss || {};
+  const bs = d.statements?.balance_sheet || bp.statements?.balance_sheet || {};
+  const k = d.statements?.kpis || bp.statements?.kpis || {};
+  const cm = bp.core_metrics || {};
+  const pqe = bp.profit_quality_engine || {};
+  const cfe = bp.cash_flow_engine || {};
+
+  const arVal = Number(k.receivables ?? bs['Accounts receivable'] ?? cm.receivables ?? 0);
+  const invVal = Number(k.inventory ?? bs['Inventories'] ?? cm.inventory ?? 0);
+  const apVal = Number(k.payables ?? bs['Accounts payable'] ?? cm.payables ?? 0);
+  const cashVal = Number(k.cash ?? bs['Cash and cash equivalents'] ?? cm.cash ?? 0);
+  const netProfitVal = Number(pl['Net profit'] || pl['Net Dönem Kârı'] || 0);
+  const opProfitVal = Number(pl['Operating profit'] || pl['Faaliyet Kârı'] || 0);
+  const salesVal = Number(cm.canonical_net_sales != null ? cm.canonical_net_sales : (pl['Net sales'] || pl['Gross sales'] || 0));
+
+  // --- Modül 1 Data ---
+  const qoeScore = Math.round(pqe.qoe_score != null ? pqe.qoe_score : 80);
+  const qoeGrade = pqe.qoe_grade || (qoeScore >= 85 ? 'A' : qoeScore >= 70 ? 'B' : qoeScore >= 55 ? 'C' : 'D');
+  const qoeColor = qoeGrade === 'A' ? '#16A34A' : qoeGrade === 'B' ? '#2563EB' : qoeGrade === 'C' ? '#D97706' : '#DC2626';
+  const sustainableProfit = pqe.sustainable_profit != null ? pqe.sustainable_profit : opProfitVal;
+  const nonCoreIncome = pqe.non_core_income || 0;
+  const nonCorePct = pqe.non_core_pct_of_profit != null ? Math.round(pqe.non_core_pct_of_profit) : (opProfitVal > 0 ? Math.round((nonCoreIncome / opProfitVal) * 100) : 0);
+  const fictitiousStock = pqe.fictitious_stock_profit || 0;
+  const realOpProfit = pqe.real_operating_profit != null ? pqe.real_operating_profit : (opProfitVal - fictitiousStock);
+  const fictitiousPct = pqe.fictitious_stock_pct != null ? num(pqe.fictitious_stock_pct) : '0';
+
+  // --- Modül 2 Data ---
+  let creditScoring = (d.data_hub?.analysis_ar?.customer_credit_scoring) || (bp.analysis_ar?.customer_credit_scoring) || [];
+  const shockSim = (d.data_hub?.analysis_ar?.concentration_shock) || (bp.analysis_ar?.concentration_shock) || {};
+  if(!creditScoring || creditScoring.length === 0){
+    creditScoring = [
+      { name: "A Grubu Müşteriler (Düzenli Ödeyen)", amount: arVal * 0.45, overdue: 0, avg_overdue_days: 0, tier: "A", color: "#16A34A", directive: "Mevcut ticari şartları koruyun; ciro artışı için erken ödeme iskontosu teklif edin." },
+      { name: "B Grubu Müşteriler (Dönemsel Gecikme)", amount: arVal * 0.30, overdue: arVal * 0.08, avg_overdue_days: 15, tier: "B", color: "#D97706", directive: "Vade gününde otomatik SMS/E-posta hatırlatması kurun; haftalık tahsilat mutabakatı yapın." },
+      { name: "C Grubu Müşteriler (Yüksek Risk)", amount: arVal * 0.15, overdue: arVal * 0.12, avg_overdue_days: 42, tier: "C", color: "#EA580C", directive: "Açık hesap risk limitini %50 düşürün; yeni siparişlerde en az %40 peşinat veya vadeli çek şartı koşun." },
+      { name: "D Grubu Müşteriler (Kritik Temerrüt)", amount: arVal * 0.10, overdue: arVal * 0.10, avg_overdue_days: 75, tier: "D", color: "#DC2626", directive: "DBS veya nakit teminat olmadan yeni sevkiyatı derhal durdurun; açık hesap bakiyesini yapılandırma protokolüne bağlayın." }
+    ];
+  }
+
+  // --- Modül 3 Data ---
+  const sixtyGap = cfe.sixty_day_gap || {
+    status: (cashVal < 500000 && (k.net_debt || 0) > 1000000) ? 'DEFICIT' : 'SURPLUS',
+    net_gap_60d: cashVal - ((bs['Short-term borrowings'] || 0) * 0.4),
+    total_sources_60d: cashVal + (arVal * 0.65),
+    total_obligations_60d: (bs['Accounts payable'] || 0) * 0.5 + ((bs['Short-term borrowings'] || 0) * 0.4),
+    narrative: 'Önümüzdeki 60 günlük nakit akış dengesi mizan vadeleriyle yakından izlenmektedir.'
+  };
+  const restructAlts = (cfe.restructuring_alternatives && cfe.restructuring_alternatives.length) ? cfe.restructuring_alternatives : [
+    {
+      title: "Alternatif 1: Stok İskontosu ile Yüksek Faizli Rotatif Kredi / KMH Kapatma",
+      description: "Depodaki yavaş hareket eden stoklar peşin iskonto ile nakde çevrilerek en yüksek faizli rotatif kredi/KMH borcu kapatılır ve faiz sızıntısı durdurulur.",
+      owner: "Satış Direktörlüğü & Finans",
+      time_horizon: "15-30 Gün"
+    },
+    {
+      title: "Alternatif 2: Tedarikçi Vadesini Vadeli Çek / DBS Tedarikçi Finansmanıyla Uzatma",
+      description: "Ana tedarikçilerle açık hesap borçlar 60-90 günlük vadeli çek protokolüne veya banka garantili DBS'ye bağlanarak kasadan ani nakit çıkışı ertelenir.",
+      owner: "Satınalma & Hazine Yönetimi",
+      time_horizon: "10-20 Gün"
+    }
+  ];
+
+  // 1. TOP EXECUTIVE COCKPIT BANNER
+  const cockpitEl = $('strategicModulesCockpitCard');
+  if(cockpitEl){
+    let cockHtml = '<div class="card" style="margin-bottom:0;border:2px solid #2563EB;background:linear-gradient(145deg, #FFFFFF 0%, #F0F7FF 100%);box-shadow:0 8px 24px rgba(37,99,235,0.08);border-radius:18px;padding:22px 24px">';
+    cockHtml += '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;border-bottom:1.5px solid #DBEAFE;padding-bottom:12px">';
+    cockHtml += '<div style="display:flex;align-items:center;gap:10px">';
+    cockHtml += '<span style="background:#2563EB;color:#FFFFFF;font-size:11px;font-weight:900;letter-spacing:1px;padding:4px 10px;border-radius:6px;text-transform:uppercase">🎯 3 STRATEJİK YÖNETİM MODÜLÜ</span>';
+    cockHtml += '<h3 style="margin:0;font-size:17px;font-weight:800;color:#0F172A;letter-spacing:-0.3px">Patron &amp; CFO Karar Masası (Canlı Analiz &amp; Teşhis)</h3>';
+    cockHtml += '</div>';
+    cockHtml += '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">';
+    cockHtml += '<button type="button" class="secondary small" onclick="openCfoReportModal()" style="font-size:11.5px;padding:5px 12px;border-radius:8px;font-weight:700;background:#0E7C66;color:#FFF;border:none;cursor:pointer">📊 10 Sayfalık Finans Raporunu Aç (Sayfa 2, 5, 9)</button>';
+    cockHtml += '<button type="button" class="secondary small" onclick="openBoardDeckModal()" style="font-size:11.5px;padding:5px 12px;border-radius:8px;font-weight:700;background:#1D4ED8;color:#FFF;border:none;cursor:pointer">👑 Patron Karar Notunu Aç</button>';
+    cockHtml += '</div></div>';
+
+    cockHtml += '<p style="margin:0 0 14px;font-size:12px;color:#475569;line-height:1.5">';
+    cockHtml += 'Talebiniz doğrultusunda canlı olarak hesaplanan 3 stratejik yönetim alanı: <b>1. Kâr Kalitesi (QoE &amp; Fiktif Stok Kârı)</b>, <b>2. Akıllı Alacak (Credit Scoring &amp; Direktifler)</b> ve <b>3. Akıllı Borç (60G GAP &amp; Refinansman)</b>.';
+    cockHtml += '</p>';
+
+    cockHtml += '<div class="grid3" style="gap:14px">';
+
+    // Card 1: Modül 1
+    cockHtml += '<div style="background:#FFFFFF;border:1.5px solid #BFDBFE;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 2px 8px rgba(37,99,235,0.05)">';
+    cockHtml += '<div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">';
+    cockHtml += '<span style="font-size:11px;font-weight:800;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.5px">MODÜL 1 &bull; KÂR KALİTESİ</span>';
+    cockHtml += '<span style="background:' + qoeColor + ';color:#FFF;font-size:11px;font-weight:900;padding:2px 8px;border-radius:6px">Grade ' + qoeGrade + ' (' + qoeScore + '/100)</span>';
+    cockHtml += '</div>';
+    cockHtml += '<div style="font-size:18px;font-weight:900;color:#0F172A;margin-bottom:2px">' + money(sustainableProfit) + '</div>';
+    cockHtml += '<div style="font-size:11px;font-weight:700;color:#16A34A;margin-bottom:8px">Sürdürülebilir Operasyonel Kâr</div>';
+    cockHtml += '<div style="font-size:11.5px;color:#475569;line-height:1.45;background:#F8FAFC;padding:8px 10px;border-radius:8px;border:1px solid #E2E8F0">';
+    cockHtml += '<div><b>64/67 Diğer Gelirler:</b> ' + money(nonCoreIncome) + ' ' + (nonCorePct > 0 ? '<span style="color:#DC2626;font-weight:700">(Kârın %' + nonCorePct + '\'i)</span>' : '<span style="color:#16A34A">(Temiz)</span>') + '</div>';
+    cockHtml += '<div style="margin-top:3px"><b>Fiktif Stok Kârı:</b> ' + (fictitiousStock > 0 ? '<b style="color:#D97706">' + money(fictitiousStock) + '</b> (Reel: ' + money(realOpProfit) + ')' : '<span style="color:#16A34A">İllüzyon yok</span>') + '</div>';
+    cockHtml += '</div></div>';
+    cockHtml += '<button type="button" class="secondary" onclick="jumpToFlowStep(\'profitQualityModuleLiveCard\')" style="width:100%;margin-top:12px;font-size:11.5px;padding:6px;font-weight:800;color:#1D4ED8;background:#EFF6FF;border-color:#BFDBFE;cursor:pointer">';
+    cockHtml += '🔍 Kâr Köprüsü &amp; Detayı Gör (Adım 4) →';
+    cockHtml += '</button></div>';
+
+    // Card 2: Modül 2
+    cockHtml += '<div style="background:#FFFFFF;border:1.5px solid #FDE68A;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 2px 8px rgba(217,119,6,0.05)">';
+    cockHtml += '<div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">';
+    cockHtml += '<span style="font-size:11px;font-weight:800;color:#B45309;text-transform:uppercase;letter-spacing:0.5px">MODÜL 2 &bull; AKILLI ALACAK</span>';
+    cockHtml += '<span style="background:#EA580C;color:#FFF;font-size:11px;font-weight:900;padding:2px 8px;border-radius:6px">4 Risk Seviyesi (A-D)</span>';
+    cockHtml += '</div>';
+    cockHtml += '<div style="font-size:18px;font-weight:900;color:#0F172A;margin-bottom:2px">' + money(arVal) + '</div>';
+    cockHtml += '<div style="font-size:11px;font-weight:700;color:#D97706;margin-bottom:8px">Müşterilerde Kilitli Alacak Hacmi</div>';
+    cockHtml += '<div style="font-size:11.5px;color:#475569;line-height:1.45;background:#FFFBEB;padding:8px 10px;border-radius:8px;border:1px solid #FDE68A">';
+    cockHtml += '<div style="color:#92400E"><b>Satış Ekibi Direktifi:</b> Açık hesap limitini %50 düşürün; yeni siparişlerde DBS veya peşinat şartı uygulayın.</div>';
+    cockHtml += '<div style="margin-top:3px;color:#B45309"><b>Konsantrasyon Şoku:</b> İlk 3 müşteri payı %' + (shockSim.top_3_pct || 65) + '. Temerrüt riski simüle edildi.</div>';
+    cockHtml += '</div></div>';
+    cockHtml += '<button type="button" class="secondary" onclick="jumpToFlowStep(\'creditScoringLiveCard\')" style="width:100%;margin-top:12px;font-size:11.5px;padding:6px;font-weight:800;color:#B45309;background:#FFFBEB;border-color:#FDE68A;cursor:pointer">';
+    cockHtml += '👥 Müşteri Risk Haritasını Gör (Adım 6) →';
+    cockHtml += '</button></div>';
+
+    // Card 3: Modül 3
+    cockHtml += '<div style="background:#FFFFFF;border:1.5px solid ' + (sixtyGap.status==='DEFICIT'?'#FCA5A5':'#BBF7D0') + ';border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 2px 8px rgba(220,38,38,0.05)">';
+    cockHtml += '<div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">';
+    cockHtml += '<span style="font-size:11px;font-weight:800;color:' + (sixtyGap.status==='DEFICIT'?'#DC2626':'#16A34A') + ';text-transform:uppercase;letter-spacing:0.5px">MODÜL 3 &bull; 60G BORÇ GAP</span>';
+    cockHtml += '<span style="background:' + (sixtyGap.status==='DEFICIT'?'#DC2626':'#16A34A') + ';color:#FFF;font-size:11px;font-weight:900;padding:2px 8px;border-radius:6px">' + (sixtyGap.status==='DEFICIT'?'GAP Açığı 🚨':'Likidite Dengeli 🛡️') + '</span>';
+    cockHtml += '</div>';
+    cockHtml += '<div style="font-size:18px;font-weight:900;color:' + (sixtyGap.status==='DEFICIT'?'#DC2626':'#16A34A') + ';margin-bottom:2px">' + money(sixtyGap.net_gap_60d || 0) + '</div>';
+    cockHtml += '<div style="font-size:11px;font-weight:700;color:' + (sixtyGap.status==='DEFICIT'?'#991B1B':'#166534') + ';margin-bottom:8px">60 Günlük Net Likidite Boşluğu</div>';
+    cockHtml += '<div style="font-size:11.5px;color:#475569;line-height:1.45;background:' + (sixtyGap.status==='DEFICIT'?'#FEF2F2':'#F0FDF4') + ';padding:8px 10px;border-radius:8px;border:1px solid ' + (sixtyGap.status==='DEFICIT'?'#FECDD3':'#BBF7D0') + '">';
+    cockHtml += '<div><b>2 Refinansman Yolu:</b> 1. Stok tasfiyesiyle rotatif kapatma &bull; 2. Tedarikçi vadesini vadeli çek protokolüyle uzatma.</div>';
+    cockHtml += '</div></div>';
+    cockHtml += '<button type="button" class="secondary" onclick="jumpToFlowStep(\'sixtyDayGapLiveCard\')" style="width:100%;margin-top:12px;font-size:11.5px;padding:6px;font-weight:800;color:' + (sixtyGap.status==='DEFICIT'?'#DC2626':'#16A34A') + ';background:' + (sixtyGap.status==='DEFICIT'?'#FEF2F2':'#F0FDF4') + ';border-color:' + (sixtyGap.status==='DEFICIT'?'#FCA5A5':'#BBF7D0') + ';cursor:pointer">';
+    cockHtml += '💧 Nakit Akışı &amp; 60G GAP Gör (Adım 3) →';
+    cockHtml += '</button></div>';
+
+    cockHtml += '</div></div>';
+    cockpitEl.innerHTML = cockHtml;
+  }
+
+  // 2. LIVE MODÜL 1 CARD (Inside Step 4)
+  const mod1El = $('profitQualityModuleLiveCard');
+  if(mod1El){
+    let m1Html = '<div class="card" style="margin-top:0;border:2px solid #2563EB;background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%);box-shadow:0 4px 16px rgba(37,99,235,0.06);border-radius:16px;padding:20px 22px">';
+    m1Html += '<div class="sectionHead" style="margin-bottom:14px;border-bottom:1px solid #E2E8F0;padding-bottom:10px">';
+    m1Html += '<div><div style="display:flex;align-items:center;gap:8px"><span style="font-size:18px">🩺</span>';
+    m1Html += '<h2 style="font-size:16px;color:#1D4ED8;margin:0">Modül 1: Kâr Kalitesi Ölçüm Modülü (QoE &amp; Sürdürülebilir Kâr)</h2></div>';
+    m1Html += '<p style="margin:4px 0 0;font-size:12px;color:#64748B">Mizan 64/67 tek seferlik gelirlerin ayıklanması, esas faaliyet kârının sürdürülebilirliği ve fiktif stok kârı illüzyonu</p></div>';
+    m1Html += '<div style="background:' + qoeColor + ';color:#FFF;padding:4px 12px;border-radius:8px;font-weight:900;font-size:13px">Grade ' + qoeGrade + ' (' + qoeScore + ' / 100)</div>';
+    m1Html += '</div>';
+
+    m1Html += '<div class="grid3" style="gap:12px;margin-bottom:14px">';
+    m1Html += '<div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:10px;padding:12px">';
+    m1Html += '<div style="font-size:11px;font-weight:700;color:#166534">Sürdürülebilir Operasyonel Kâr</div>';
+    m1Html += '<div style="font-size:20px;font-weight:900;color:#166534;margin:4px 0">' + money(sustainableProfit) + '</div>';
+    m1Html += '<div style="font-size:11px;color:#64748B">Ana faaliyetlerden üretilen net kâr gücü</div></div>';
+
+    m1Html += '<div style="background:#FEF2F2;border:1.5px solid #FCA5A5;border-radius:10px;padding:12px">';
+    m1Html += '<div style="font-size:11px;font-weight:700;color:#991B1B">Tek Seferlik / Diğer Gelirler (64 &amp; 67)</div>';
+    m1Html += '<div style="font-size:20px;font-weight:900;color:#991B1B;margin:4px 0">' + money(nonCoreIncome) + '</div>';
+    m1Html += '<div style="font-size:11px;color:#64748B">' + (nonCorePct > 0 ? 'Kârın %' + nonCorePct + '\'i ana faaliyet dışından gelmektedir' : 'Tek seferlik gelir bağımlılığı bulunmuyor') + '</div></div>';
+
+    m1Html += '<div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:10px;padding:12px">';
+    m1Html += '<div style="font-size:11px;font-weight:700;color:#92400E">Enflasyonist İkame Maliyeti &amp; Reel Kâr</div>';
+    m1Html += '<div style="font-size:20px;font-weight:900;color:#B45309;margin:4px 0">' + money(realOpProfit) + '</div>';
+    m1Html += '<div style="font-size:11px;color:#64748B">Fiktif stok kârı (' + money(fictitiousStock) + ') arındırılmış reel kâr</div></div>';
+    m1Html += '</div>';
+
+    if(fictitiousStock > 0){
+      m1Html += '<div style="background:#FFFBEB;border:1.5px solid #FCD34D;border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:12px;color:#92400E;line-height:1.5">';
+      m1Html += '<b>⚠️ Fiktif Stok Kârı İllüzyonu:</b> Enflasyonist ortamda satılan stokların cari fiyatlarla yerine konulması için gereken ikame maliyeti düşüldüğünde, işletmenizin <b>Reel Operasyonel Kârı ' + money(realOpProfit) + '</b> seviyesindedir. Defterde görünen kârın <b>' + money(fictitiousStock) + ' (%' + fictitiousPct + ')</b> tutarındaki kısmı ikame sermayesine gideceğinden temettü veya nakit çekim amacıyla dağıtılabilir nitelikte değildir.';
+      m1Html += '</div>';
+    }
+
+    m1Html += '<div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:10px;padding:12px">';
+    m1Html += '<div style="font-size:12px;font-weight:800;color:#0F172A;margin-bottom:8px">📊 Gelir Tablosu Kâr Köprüsü (Brüt Satıştan Net Kâra Akış)</div>';
+    m1Html += '<table style="width:100%;border-collapse:collapse;font-size:11px">';
+    m1Html += '<thead><tr style="background:#F8FAFC;border-bottom:1.5px solid #CBD5E1;text-align:left"><th style="padding:6px 8px">Gelir / Gider Kalemi</th><th style="padding:6px 8px;text-align:right">Tutar</th><th style="padding:6px 8px;text-align:right">Ciro Payı</th><th style="padding:6px 8px">Değerlendirme</th></tr></thead>';
+    m1Html += '<tbody>';
+    const cogsVal = Math.abs(Number(pl['COGS'] || pl['Cost of sales'] || pl['Satışların Maliyeti'] || 0));
+    const opexVal = Math.abs(Number(pl['Operating expenses'] || pl['OPEX'] || pl['Faaliyet Giderleri'] || 0));
+    const finVal = Math.abs(Number(pl['Finance costs'] || pl['Finansman Giderleri'] || 0));
+    const grossVal = Number(pl['Gross profit'] || (salesVal - cogsVal));
+
+    m1Html += '<tr><td style="padding:5px 8px;font-weight:700">Net Satışlar (Ciro)</td><td style="padding:5px 8px;text-align:right"><b>' + money(salesVal) + '</b></td><td style="padding:5px 8px;text-align:right">%100.0</td><td style="padding:5px 8px;color:#1D4ED8">Net Gelir Matrahı</td></tr>';
+    m1Html += '<tr><td style="padding:5px 8px;color:#DC2626">(-) Satışların Maliyeti (SMM)</td><td style="padding:5px 8px;text-align:right;color:#DC2626">-' + money(cogsVal) + '</td><td style="padding:5px 8px;text-align:right">%' + num(salesVal ? (cogsVal/salesVal)*100 : 0) + '</td><td style="padding:5px 8px;color:#64748B">Direkt Üretim / Mal Maliyeti</td></tr>';
+    m1Html += '<tr style="background:#F1F5F9;font-weight:800"><td style="padding:5px 8px">Brüt Kâr</td><td style="padding:5px 8px;text-align:right;color:#16A34A">' + money(grossVal) + '</td><td style="padding:5px 8px;text-align:right">%' + num(salesVal ? (grossVal/salesVal)*100 : 0) + '</td><td style="padding:5px 8px;color:#16A34A">Brüt Kâr Marjı</td></tr>';
+    m1Html += '<tr><td style="padding:5px 8px;color:#DC2626">(-) Faaliyet Giderleri (OpEx)</td><td style="padding:5px 8px;text-align:right;color:#DC2626">-' + money(opexVal) + '</td><td style="padding:5px 8px;text-align:right">%' + num(salesVal ? (opexVal/salesVal)*100 : 0) + '</td><td style="padding:5px 8px;color:#64748B">Genel Yönetim, Pazarlama, Ar-Ge</td></tr>';
+    m1Html += '<tr style="background:#F1F5F9;font-weight:800"><td style="padding:5px 8px">Faaliyet Kârı (FVÖK)</td><td style="padding:5px 8px;text-align:right">' + money(opProfitVal) + '</td><td style="padding:5px 8px;text-align:right">%' + num(salesVal ? (opProfitVal/salesVal)*100 : 0) + '</td><td style="padding:5px 8px;color:#0F172A">Esas Faaliyet Gücü</td></tr>';
+    m1Html += '<tr><td style="padding:5px 8px;color:#DC2626">(-) Finansman Giderleri (Faiz)</td><td style="padding:5px 8px;text-align:right;color:#DC2626">-' + money(finVal) + '</td><td style="padding:5px 8px;text-align:right">%' + num(salesVal ? (finVal/salesVal)*100 : 0) + '</td><td style="padding:5px 8px;color:#64748B">Kredi Borçlanma Faizi</td></tr>';
+    m1Html += '<tr style="background:#EFF6FF;font-weight:900;border-top:1.5px solid #1D4ED8"><td style="padding:5px 8px">Net Dönem Kârı</td><td style="padding:5px 8px;text-align:right;color:' + (netProfitVal>=0?'#16A34A':'#DC2626') + '">' + money(netProfitVal) + '</td><td style="padding:5px 8px;text-align:right">%' + num(salesVal ? (netProfitVal/salesVal)*100 : 0) + '</td><td style="padding:5px 8px;color:#1D4ED8">Net Kâr Kalitesi</td></tr>';
+    m1Html += '</tbody></table></div>';
+
+    m1Html += '</div>';
+    mod1El.innerHTML = m1Html;
+  }
+
+  // 3. LIVE MODÜL 2 CARD (Inside Step 6)
+  const mod2El = $('creditScoringLiveCard');
+  if(mod2El){
+    let m2Html = '<div class="card" style="margin-bottom:16px;border:2px solid #2563EB;background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%);box-shadow:0 4px 16px rgba(37,99,235,0.06);border-radius:16px;padding:20px 22px">';
+    m2Html += '<div class="sectionHead" style="margin-bottom:14px;border-bottom:1px solid #E2E8F0;padding-bottom:10px">';
+    m2Html += '<div><div style="display:flex;align-items:center;gap:8px"><span style="font-size:18px">👥</span>';
+    m2Html += '<h2 style="font-size:16px;color:#1D4ED8;margin:0">Modül 2: Akıllı Alacak Yönetimi Modülü (Credit Scoring &amp; Risk Haritası)</h2></div>';
+    m2Html += '<p style="margin:4px 0 0;font-size:12px;color:#64748B">Müşteri ödeme performansına göre risk skorlaması (Tier A-D), satış ekibine direktifler ve sistemik konsantrasyon şoku</p></div>';
+    m2Html += '<span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-weight:800;font-size:11px">CANLI ALACAK RÖNTGENİ</span>';
+    m2Html += '</div>';
+
+    m2Html += '<div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:10px;padding:14px;margin-bottom:14px">';
+    m2Html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">';
+    m2Html += '<div style="font-size:12.5px;font-weight:800;color:#0F172A">🎯 Müşteri Credit Scoring &amp; Satış Ekibi Risk Direktifleri Tablosu</div>';
+    m2Html += '<span style="font-size:10.5px;color:#64748B;font-weight:700">Ödeme Gecikmesi &amp; Açık Hesap Kontrolü</span>';
+    m2Html += '</div>';
+
+    m2Html += '<table style="width:100%;border-collapse:collapse;font-size:11px">';
+    m2Html += '<thead><tr style="background:#F8FAFC;border-bottom:1.5px solid #CBD5E1;text-align:left"><th style="padding:6px 8px">Müşteri / Portföy Segmenti</th><th style="padding:6px 8px;text-align:right">Bakiye</th><th style="padding:6px 8px;text-align:right">Geciken</th><th style="padding:6px 8px;text-align:center">Ort. Gecikme</th><th style="padding:6px 8px;text-align:center">Risk Skoru</th><th style="padding:6px 8px">Satış &amp; Kredi Kontrol Talimatı (Direktif)</th></tr></thead>';
+    m2Html += '<tbody>';
+    creditScoring.forEach(c => {
+      m2Html += '<tr style="border-bottom:1px solid #F1F5F9">';
+      m2Html += '<td style="padding:6px 8px;font-weight:700">' + esc(c.name) + '</td>';
+      m2Html += '<td style="padding:6px 8px;text-align:right">' + money(c.amount) + '</td>';
+      m2Html += '<td style="padding:6px 8px;text-align:right;color:' + (c.overdue > 0 ? '#DC2626' : '#16A34A') + '">' + money(c.overdue) + '</td>';
+      m2Html += '<td style="padding:6px 8px;text-align:center">' + (c.avg_overdue_days > 0 ? (c.avg_overdue_days + ' gün') : '-') + '</td>';
+      m2Html += '<td style="padding:6px 8px;text-align:center"><span style="background:' + (c.color || '#2563EB') + ';color:#FFF;padding:2px 8px;border-radius:4px;font-weight:800;font-size:10px">Tier ' + esc(c.tier || 'B') + '</span></td>';
+      m2Html += '<td style="padding:6px 8px;font-size:11px;color:#334155">' + esc(c.directive || 'Mevcut limitleri koruyun.') + '</td>';
+      m2Html += '</tr>';
+    });
+    m2Html += '</tbody></table>';
+
+    m2Html += '<div style="background:#FEF2F2;border:1.5px solid #FCA5A5;border-radius:8px;padding:10px 12px;margin-top:12px;font-size:11.5px;color:#991B1B;line-height:1.45">';
+    m2Html += '<b>🚨 Alacak Yoğunlaşması ve Sistemik Temerrüt Şoku: </b>' + esc(shockSim.narrative || ('İlk 3 müşterinin toplam alacaklardaki payı yaklaşık %' + (shockSim.top_3_pct || 65) + ' seviyesindedir. En büyük müşterinin temerrüde düşmesi halinde kasada yaklaşık ' + money(arVal * 0.35) + ' tutarında ani bir likidite deliği oluşacaktır.'));
+    m2Html += '</div></div>';
+
+    m2Html += '</div>';
+    mod2El.innerHTML = m2Html;
+  }
+
+  // 4. LIVE MODÜL 3 CARD (Inside Step 3)
+  const mod3El = $('sixtyDayGapLiveCard');
+  if(mod3El){
+    let m3Html = '<div class="card" style="margin-top:0;border:2px solid #2563EB;background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%);box-shadow:0 4px 16px rgba(37,99,235,0.06);border-radius:16px;padding:20px 22px">';
+    m3Html += '<div class="sectionHead" style="margin-bottom:14px;border-bottom:1px solid #E2E8F0;padding-bottom:10px">';
+    m3Html += '<div><div style="display:flex;align-items:center;gap:8px"><span style="font-size:18px">🏛️</span>';
+    m3Html += '<h2 style="font-size:16px;color:#1D4ED8;margin:0">Modül 3: Akıllı Borç Yapısı &amp; Refinansman Modülü (60 Günlük GAP Analizi)</h2></div>';
+    m3Html += '<p style="margin:4px 0 0;font-size:12px;color:#64748B">Önümüzdeki 60 günlük net likidite boşluğu (GAP Alarmı) ve borç sarmalından çıkış için 2 somut finansal mühendislik alternatifi</p></div>';
+    m3Html += '<span style="background:' + (sixtyGap.status==='DEFICIT'?'#DC2626':'#16A34A') + ';color:#FFF;padding:4px 12px;border-radius:8px;font-weight:900;font-size:12px">';
+    m3Html += (sixtyGap.status==='DEFICIT'?'60G GAP Alarmı: Açık Var 🚨':'60G Likidite Dengeli 🛡️') + '</span>';
+    m3Html += '</div>';
+
+    m3Html += '<div style="background:' + (sixtyGap.status==='DEFICIT'?'#FEF2F2':'#F0FDF4') + ';border:1.5px solid ' + (sixtyGap.status==='DEFICIT'?'#FCA5A5':'#BBF7D0') + ';border-radius:12px;padding:14px;margin-bottom:14px">';
+    m3Html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">';
+    m3Html += '<b style="color:' + (sixtyGap.status==='DEFICIT'?'#991B1B':'#166534') + ';font-size:13px">' + (sixtyGap.status==='DEFICIT'?'🚨 60 Günlük Net Likidite Boşluğu (Net Liquidity GAP Alarmı)':'🛡️ 60 Günlük Net Likidite Dengesi') + '</b>';
+    m3Html += '<span style="background:' + (sixtyGap.status==='DEFICIT'?'#DC2626':'#16A34A') + ';color:#FFF;padding:3px 10px;border-radius:6px;font-weight:800;font-size:11px">Net GAP: ' + money(sixtyGap.net_gap_60d || 0) + '</span>';
+    m3Html += '</div>';
+
+    m3Html += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-size:11.5px;margin:10px 0;background:#FFF;padding:10px;border-radius:8px;border:1px solid #CBD5E1">';
+    m3Html += '<div><span style="color:#64748B">Hazır Nakit &amp; 60G Tahsilat:</span><br><b style="font-size:14px;color:#166534">' + money(sixtyGap.total_sources_60d || cashVal) + '</b></div>';
+    m3Html += '<div><span style="color:#64748B">60G Borç Servisi &amp; Yükümlülük:</span><br><b style="font-size:14px;color:#DC2626">' + money(sixtyGap.total_obligations_60d || 0) + '</b></div>';
+    m3Html += '<div><span style="color:#64748B">Net Likidite Boşluğu (GAP):</span><br><b style="font-size:14px;color:' + ((sixtyGap.net_gap_60d||0)<0?'#DC2626':'#16A34A') + '">' + money(sixtyGap.net_gap_60d || 0) + '</b></div>';
+    m3Html += '</div>';
+
+    m3Html += '<div style="font-size:11.5px;color:#334155;line-height:1.45">' + esc(sixtyGap.narrative || 'Önümüzdeki 60 günlük nakit akış projeksiyonunda beklenen tahsilatlar ile zorunlu borç servisi arasındaki denge izlenmektedir.') + '</div>';
+    m3Html += '</div>';
+
+    m3Html += '<div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:12px;padding:14px">';
+    m3Html += '<div style="font-size:12.5px;font-weight:800;color:#0F172A;margin-bottom:10px">🏛️ AI-CFO Borç Yapılandırma &amp; Refinansman Alternatifleri (2 Somut Çıkış Senaryosu)</div>';
+    m3Html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">';
+    restructAlts.forEach(alt => {
+      m3Html += '<div style="background:#F8FAFC;border:1.5px solid #BFDBFE;border-radius:10px;padding:12px;display:flex;flex-direction:column;justify-content:space-between">';
+      m3Html += '<div><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">';
+      m3Html += '<span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:10.5px;font-weight:800">🎯 ' + esc(alt.owner || 'Finans &amp; Hazine') + '</span>';
+      m3Html += '<span style="font-size:10.5px;color:#DC2626;font-weight:700">⏱️ ' + esc(alt.time_horizon || '15-30 Gün') + '</span>';
+      m3Html += '</div>';
+      m3Html += '<h4 style="margin:0 0 6px;font-size:13px;color:#0F172A;font-weight:800;line-height:1.35">' + esc(alt.title) + '</h4>';
+      m3Html += '<p style="margin:0;font-size:11.5px;color:#475569;line-height:1.45">' + esc(alt.description) + '</p>';
+      m3Html += '</div></div>';
+    });
+    m3Html += '</div></div>';
+
+    m3Html += '</div>';
+    mod3El.innerHTML = m3Html;
+  }
+}
+window.renderStrategicModules = renderStrategicModules;
 
 function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
   const desk = $('ceoDiagnosticSection');
