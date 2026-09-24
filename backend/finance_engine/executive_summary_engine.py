@@ -437,61 +437,69 @@ def build_executive_summary(
     net_margin = float(k.get("net_margin_pct") or (net_profit / net_sales * 100 if net_sales else 0.0))
 
     parts = []
-    if net_sales > 0:
+
+    # 1. Kasa ve Kâr Gerçeği (Kâr kâğıtta mı, kasada mı?)
+    crp = None
+    base_name = "Faaliyet kârı"
+    if cash_bridge and cash_bridge.get("available") and cash_bridge.get("cash_realization_pct") is not None:
+        crp = cash_bridge["cash_realization_pct"]
+        base_name = cash_bridge.get("profit_base_label") or "Faaliyet kârı"
+
+    if crp is not None:
+        if crp <= 0:
+            parts.append(
+                f"Kasa Gerçeği: {base_name} nakde dönüşmüyor (dönüşüm: %{crp:.0f}); şirket kâğıt üzerinde kârlı görünse de işletme sermayesi kilitlenmesi kârı yutarak operasyonel nakit açığı yaratıyor — defter kârı henüz kasaya girmiş değil."
+            )
+        elif crp < 50:
+            parts.append(
+                f"Kasa Gerçeği: {base_name} tutarının yalnızca yaklaşık %{crp:.0f}'i kasaya girebiliyor; geri kalan para açık hesap alacaklarda ve depodaki stokta bağlı — defter kârı henüz kasaya girmiş değil."
+            )
+        else:
+            parts.append(
+                f"Kasa Gerçeği: Şirket ürettiği {base_name} tutarını düzenli biçimde kasadaki nakde dönüştürebilmektedir (nakit dönüşüm oranı: %{crp:.0f})."
+            )
+    elif net_sales > 0:
         parts.append(
-            f"Şirket, incelenen dönemde {net_sales:,.0f} TL net satış hacmi üzerinden %{op_margin:.1f} ({op_profit:,.0f} TL) faaliyet kârı ve %{net_margin:.1f} ({net_profit:,.0f} TL) net dönem kârı üretmiştir."
+            f"Kasa Gerçeği: Şirket incelenen dönemde {net_sales:,.0f} TL ciro üretmiş olup genel finansal sağlık skoru 100 üzerinden {health_score:.0f} ({health_label}) seviyesindedir."
         )
-    parts.append(f"Finansal sağlık skoru {health_score:.0f}/100 ({health_label}).")
+    else:
+        parts.append(f"Kasa Gerçeği: Şirketin finansal sağlık skoru 100 üzerinden {health_score:.0f} ({health_label}) seviyesindedir.")
 
-    if positives:
-        parts.append("Güçlü taraf: " + positives[0]["title"].lower() + ".")
-
-    if top_risks:
-        top = top_risks[0]
-        exposure = next(
-            (x["estimated_exposure"] for x in business_impact.get("findings_impact", []) if x["code"] == top["code"]),
-            None,
-        )
-        if exposure:
-            parts.append(f"En önemli risk: {top['title'].lower()} (yaklaşık {exposure:,.0f} TL etki büyüklüğünde).")
-        else:
-            parts.append(f"En önemli risk: {top['title'].lower()}.")
-
-    if root_cause.get("primary_margin_driver"):
-        drv = root_cause["primary_margin_driver"]
-        if drv.get("pct_of_sales") is not None:
-            parts.append(f"Marjı en çok baskılayan kalem: {drv['label'].lower()} (satışların %{abs(drv['pct_of_sales']):.1f}'i).")
-        else:
-            parts.append(f"Marjı en çok baskılayan kalem: {drv['label'].lower()}.")
-
-    if opportunities_sorted:
-        top_opp = opportunities_sorted[0]
-        parts.append(f"En yüksek ilk senaryo fırsatı: {top_opp['title'].lower()}, yaklaşık {top_opp['estimated_impact']:,.0f} TL.")
-
+    # 2. Kilitli Para (Para nerede sıkıştı?)
     if ccc.get("available") and ccc.get("cash_conversion_cycle_days") is not None:
         dso = ccc.get("dso_days")
         dio = ccc.get("dio_days")
         dpo = ccc.get("dpo_days")
         ccc_val = ccc["cash_conversion_cycle_days"]
         tied = ccc.get("estimated_cash_tied_up")
-        tied_txt = f" ve işletme sermayesinde ~{tied:,.0f} TL nakit bağlı kalmaktadır" if (tied and tied > 0) else ""
+        tied_txt = f"İşletme sermayenizde yaklaşık {tied:,.0f} TL sıcak para bağlı beklemektedir. " if (tied and tied > 0) else ""
         if dso is not None and dio is not None and dpo is not None:
             parts.append(
-                f"Nakit çevrim süresi (CCC) net {ccc_val:.0f} gün olup (tahsilat vadesi DSO: {dso:.0f} gün, stokta kalma DIO: {dio:.0f} gün, tedarikçi vadesi DPO: {dpo:.0f} gün){tied_txt}."
+                f"Kilitli Nakit Teşhisi: {tied_txt}Müşterilerden tahsilat ortalama {dso:.0f} günde gelirken, malların depodan çıkıp paraya dönmesi {dio:.0f} gün sürmektedir. Tedarikçilere ise ortalama {dpo:.0f} günde ödeme yapılmaktadır. Bu vade makası şirketin nakdini dışarıda rehin tutmaktadır."
             )
         else:
-            parts.append(f"Nakit çevrim süresi (CCC) {ccc_val:.0f} gün seviyesindedir{tied_txt}.")
+            parts.append(f"Kilitli Nakit Teşhisi: {tied_txt}Paranın kasaya geri dönme döngüsü net {ccc_val:.0f} gündür.")
 
-    if trend.get("available"):
-        nm_dir = trend["metric_trends"].get("net_margin_pct", {}).get("latest_direction")
-        if nm_dir and nm_dir != "bilinmiyor":
-            parts.append(f"Net marj trendi son dönemde {nm_dir} yönünde.")
-    else:
-        parts.append("Trend analizi için yalnızca tek dönem verisi mevcut; karşılaştırma yapılamadı.")
+    # 3. En Kritik Risk
+    if top_risks:
+        top = top_risks[0]
+        exposure = next(
+            (x["estimated_exposure"] for x in business_impact.get("findings_impact", []) if x["code"] == top["code"]),
+            None,
+        )
+        exp_txt = f" (yaklaşık {exposure:,.0f} TL risk hacmi)" if exposure else ""
+        parts.append(
+            f"En Kritik Yönetim Riski: {top['title']}{exp_txt}. Müşteriyi açık hesapla finanse etmek şirketi yüksek faizli kredilere mahkûm ederek kârınızı eritebilir."
+        )
 
-    if benchmark.get("overall_score") is not None:
-        parts.append(f"{benchmark['sector']} sektör göstergeleriyle kıyaslandığında genel konum: {benchmark['overall_label'].lower()}.")
+    # 4. Gizli Nakit Fırsatı
+    if opportunities_sorted:
+        top_opp = opportunities_sorted[0]
+        parts.append(
+            f"Gizli Nakit Fırsatı: {top_opp['title']} kararıyla kasaya yaklaşık {top_opp['estimated_impact']:,.0f} TL taze para çekilebilir."
+        )
 
+    # 5. Alt Defter Detayı (Varsa)
     if data_hub:
         ar = data_hub.get("analysis_ar") or {}
         inv = data_hub.get("analysis_inventory") or {}
@@ -500,50 +508,34 @@ def build_executive_summary(
         if ar.get("overdue_pct") and ar["overdue_pct"] > 5:
             hub_details.append(f"müşteri alacaklarının %{ar['overdue_pct']:.0f}'inin vadesi geçmiş ({ar.get('overdue', 0):,.0f} TL)")
         if inv.get("slow_moving_pct") and inv["slow_moving_pct"] > 5:
-            hub_details.append(f"stokların %{inv['slow_moving_pct']:.0f}'i yavaş hareket eden grupta")
+            hub_details.append(f"stokların %{inv['slow_moving_pct']:.0f}'i depoda hareketsiz bekliyor")
         if sales_an.get("top_10_share_pct") and sales_an["top_10_share_pct"] > 40:
-            hub_details.append(f"ciro %{sales_an['top_10_share_pct']:.0f} oranında ilk 10 müşteride yoğunlaşmış")
+            hub_details.append(f"ciro %{sales_an['top_10_share_pct']:.0f} oranında yalnızca ilk 10 müşteriye bağımlı")
         if hub_details:
-            parts.append("Alt defter detayında: " + "; ".join(hub_details) + ".")
+            parts.append("Operasyonel Detay: " + "; ".join(hub_details) + ".")
 
-    if cash_bridge and cash_bridge.get("available") and cash_bridge.get("cash_realization_pct") is not None:
-        crp = cash_bridge["cash_realization_pct"]
-        base_name = cash_bridge.get("profit_base_label") or "Faaliyet kârı"
-        if crp <= 0:
-            parts.append(
-                f"{base_name} nakde dönüşmüyor (dönüşüm: %{crp:.0f}); işletme sermayesi kilitlenmesi kârı yutarak operasyonel nakit açığı yaratıyor — defter kârı henüz kasaya girmiş değil."
-            )
-        elif crp < 50:
-            parts.append(
-                f"{base_name} tutarının yalnızca yaklaşık %{crp:.0f}'i işletme nakdine dönüşüyor; geri kalanı alacak/stok/borç kalemlerinde bağlı — defter kârı henüz kasaya girmiş değil."
-            )
-        else:
-            parts.append(f"{base_name} tutarının yaklaşık %{crp:.0f}'i işletme nakdine dönüşüyor.")
-
-    # ---- Decision-oriented close: this is the part a manager actually acts
-    # on. Every sentence above is a fact; this paragraph turns those facts
-    # into "so what do I do with this on Monday morning" — the single
-    # question an executive summary exists to answer. It leans on the same
-    # management actions shown in detail in "Now What", but states the
-    # decision implication in one sentence instead of leaving the reader to
-    # infer it from a metric.
+    # 6. Yarın Sabah Uygulanacak Yönetim Kararları
     decision_points: list[str] = []
     if management_actions:
-        top = management_actions[0]
-        impact_txt = f" (~{top['expected_financial_impact']:,.0f} TL beklenen etki)" if top.get("expected_financial_impact") else ""
-        decision_points.append(
-            f"Yönetim için ilk adım: {top.get('action', '')} — sahibi {top.get('owner', 'CFO')}, ufuk {top.get('time_horizon', '0-30 gün')}{impact_txt}."
-        )
-        if len(management_actions) > 1:
-            second = management_actions[1]
-            decision_points.append(f"Bunun hemen ardından: {second.get('action', '')} ({second.get('owner', 'CFO')}).")
+        for idx, act in enumerate(management_actions[:3], start=1):
+            impact_txt = f" (Tahmini Nakit Girişi: ~{act['expected_financial_impact']:,.0f} TL)" if act.get("expected_financial_impact") else ""
+            horizon = act.get("time_horizon", "Acil (0-30 gün)")
+            decision_points.append(
+                f"{idx}. Karar: {act.get('action', '')} — [Uygulama: {horizon}]{impact_txt}."
+            )
+    else:
+        decision_points.extend([
+            "1. Karar: Açık hesap çalışan müşterilerin vadelerini kısaltın ve vadesi geçen alacakları hızla tahsil edin.",
+            "2. Karar: Depodaki yavaş eriyen veya hareketsiz stokları iskonto/peşin kampanyasıyla sıcak paraya çevirin.",
+            "3. Karar: Tahsilattan elde edilen nakitle kısa vadeli/rotatif yüksek faizli kredileri kapatıp faiz sızıntısını durdurun."
+        ])
     if health_score is not None:
         if health_score < 40:
-            decision_points.append("Skor bandı: acil müdahale — nakit ve borç servis kapasitesi haftalık takip edilmeli, büyüme/yatırım kararları ertelenmeli.")
+            decision_points.append("🚨 Patron Alarmı: Acil nakit koruması — Yeni yatırım/harcama yapmayın; tüm nakit tahsilata ve borç kapatmaya verilmeli.")
         elif health_score < 65:
-            decision_points.append("Skor bandı: kontrollü büyüme — yeni yatırım/harcama kararları önce nakit dönüşüm ve kaldıraç iyileşmesine bağlanmalı.")
+            decision_points.append("⚠️ Patron Uyarısı: Kontrollü büyüme — Müşteri vadeleri ve stok erimeden yeni açık hesap sevkiyat yapmayın.")
         else:
-            decision_points.append("Skor bandı: sağlıklı — bu bant büyüme/yatırım kararları için elverişli, ancak yukarıdaki tekil riskler izlenmeli.")
+            decision_points.append("✅ Patron Notu: Kasa ve kâr dengeli; müşteri tahsilat disiplinini koruyarak şirketi kendi nakdiyle büyütün.")
     # NOTE: decision_points are intentionally NOT appended into `parts`/summary_text.
     # They are already rendered as their own bulleted "Yönetici bu raporla ne yapmalı"
     # block directly under this narrative (see execDecision in frontend_template.py).

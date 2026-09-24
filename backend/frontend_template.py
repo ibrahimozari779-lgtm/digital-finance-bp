@@ -584,8 +584,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <section class="mHero">
   <div class="reveal in">
     <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-size:11.5px;font-weight:800;letter-spacing:0.6px;margin-bottom:12px;display:inline-block">🎯 KOBİ PATRONLARI &amp; ŞİRKET ORTAKLARI İÇİN FİNANSAL KARAR ORTAĞI</span>
-    <h1 style="margin-top:8px">Şirketinizin Finansal Röntgenini 60 Saniyede Çekin;<br><span class="gradText">"Kasada Neden Para Yok ve Yarın Ne Yapmalıyım?"</span><br>Sorusunun Net Cevabını Masaya Koyuyoruz.</h1>
-    <p class="lead">Finansal verilerinizi stratejik yönetim kararlarına dönüştürün. Finansçınız ve muhasebeniz geçmişi belgeler; biz paranın hangi hesapta ve depoda kilitlendiğini, hangi müşterinin kârınızı erittiğini ve <b>yarın sabah kasanızı kurtaracak 3 somut yönetim kararını</b> kuruşuna kadar gösteririz. Kâğıt üzerindeki kâr ile kasanızdaki gerçek nakit arasındaki makası <b>60 saniyede kapatın</b>; banka faizine ezilmeden şirketinizi kendi nakdiyle büyütün.</p>
+    <h1 style="margin-top:8px">60 Saniyede Şirketinizin<br><span class="gradText">Gizli Nakit Fırsatlarını</span><br>Ortaya Çıkarın.</h1>
+    <p class="lead">Kasada neden para olmadığını öğrenin, nakdinizi serbest bırakın ve <b>yarın uygulayabileceğiniz en kritik 3 yönetim kararını</b> alın. Finansal verilerinizi karmaşık muhasebe tablolarından kurtarın; banka faizine ezilmeden şirketinizi kendi nakdiyle büyütün.</p>
     
     <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:24px 0 18px">
       <a href="/uygulama?sample=data_hub" class="primary" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;padding:15px 28px;border-radius:14px;font-size:15px;font-weight:800;background:#1D4ED8;color:#FFFFFF;box-shadow:0 8px 24px rgba(29,78,216,0.35);transition:all .2s ease">
@@ -9623,17 +9623,30 @@ function render(d){
   const opps=bp.opportunity_engine?.opportunities||[];
   $('opportunities').innerHTML=opps.map(o=>{const cs=o.current_state||{};const csTxt=Object.entries(cs).filter(([k,v])=>v!=null).map(([k,v])=>formatCsEntry(k,v)).join(' · ');return '<div class="scenario"><div class="small muted">#'+esc(o.rank)+' · '+esc(o.area)+'</div><h3>'+esc(o.title)+'</h3><div class="big">'+money(o.estimated_impact)+'</div><p>'+esc(impactLabels[o.impact_type]||o.impact_type||'')+'</p><p class="small muted">Hesaplama: '+esc(o.calculation||'')+'</p><p class="small muted">Varsayım: '+esc(o.assumption||'')+'</p>'+(csTxt?'<div class="small muted" style="margin-top:6px">Mevcut durum: '+esc(csTxt)+'</div>':'')+'<div class="small" style="margin-top:6px">Satışın %'+esc(o.pct_of_net_sales??'–')+' · Net kârın %'+esc(o.pct_of_net_profit??'–')+'</div></div>'}).join('')||'<div class="notice">Fırsat bulunamadı.</div>';
 
-  // Step 7 — AI CFO: narrative + grounded KPI chips + an explicit "what should
-  // the manager do with this" block, built from the same management actions
-  // shown in "Now What" (no new numbers invented here, just the decision
-  // implication stated plainly instead of left for the reader to infer).
-  $('exec').innerHTML='<div style="font-size:14px;line-height:1.65;color:#1E293B"><strong style="color:#0F172A;font-size:15px;display:inline-block;margin-bottom:6px">📋 Finansal Teşhis &amp; Yönetici Karar Brifingi:</strong><br>' + esc(bp.executive_summary) + '</div>';
+  // Step 7 — KOBİ Patron & Yönetici Karar Brifingi: sade, net ve karar odaklı görünüm
+  let execFormatted = '';
+  if(bp.executive_summary) {
+    const raw = esc(bp.executive_summary);
+    execFormatted = raw
+      .replace(/Kasa Gerçeği:/g, '<b style="color:#0E7C66;display:inline-block;margin-top:2px">💰 Kasa ve Kâr Gerçeği:</b>')
+      .replace(/Kilitli Nakit Teşhisi:/g, '<br><b style="color:#B45309;display:inline-block;margin-top:8px">🔒 Paranın Kilitlendiği Yer:</b>')
+      .replace(/En Kritik Yönetim Riski:/g, '<br><b style="color:#DC2626;display:inline-block;margin-top:8px">🚨 En Kritik Şirket Riski:</b>')
+      .replace(/Gizli Nakit Fırsatı:/g, '<br><b style="color:#1D4ED8;display:inline-block;margin-top:8px">💎 Gizli Nakit Fırsatı:</b>')
+      .replace(/Operasyonel Detay:/g, '<br><b style="color:#475569;display:inline-block;margin-top:8px">📊 Operasyonel Alt Defter Teşhisi:</b>');
+  }
+  $('exec').innerHTML='<div style="font-size:13.5px;line-height:1.65;color:#1E293B;background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:12px;padding:16px 18px">' +
+    '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;border-bottom:1px solid #E2E8F0;padding-bottom:8px">' +
+      '<strong style="color:#0F172A;font-size:15px;display:flex;align-items:center;gap:6px">📋 KOBİ Patronu Karar Brifingi (Sade &amp; Net Teşhis)</strong>' +
+      '<span class="tag" style="background:#E0F2FE;color:#0369A1;font-size:11px;font-weight:800">Rakam Yığını Değil &bull; Karar Odaklı</span>' +
+    '</div>' +
+    '<div style="line-height:1.65">' + execFormatted + '</div>' +
+  '</div>';
   const topRisk=rr[0], topOpp=opps[0];
   const chips=[['Sağlık Skoru',Math.round(bp.health_score)+'/100'],['Nakit Çevrim (CCC)',c.cash_conversion_cycle_days==null?'–':Math.round(Number(c.cash_conversion_cycle_days))+' gün'],(cb.available&&cb.cash_realization_pct!=null)?['Kâr → Nakit',(cb.cash_realization_pct<0? '-%'+num(Math.abs(cb.cash_realization_pct)) : '%'+num(cb.cash_realization_pct))]:null,topRisk?['En Kritik Risk',topRisk.title]:null,topOpp?['En Büyük Fırsat',topOpp.title+' ('+money(topOpp.estimated_impact)+')']:null,['Sektör Konumu',bm.overall_label||'–']].filter(Boolean);
   $('execChips').innerHTML=chips.map(x=>'<span class="chip">'+esc(x[0])+': <b>'+esc(x[1])+'</b></span>').join('');
   const esum=bp.executive_summary_engine||{};
   const dpoints=esum.decision_points||[];
-  $('execDecision').innerHTML=dpoints.length?'<div class="insight positive"><b>Yönetici bu raporla ne yapmalı</b><ul>'+dpoints.map(p=>'<li>'+esc(p)+'</li>').join('')+'</ul><p class="small muted" style="margin-top:6px">Ayrıntılı sahip/ufuk/KPI kırılımı "Now What — Yönetim Aksiyonları" bölümünde.</p></div>':'';
+  $('execDecision').innerHTML=dpoints.length?'<div class="insight positive" style="background:linear-gradient(135deg,#F0FDF4 0%,#ECFDF5 100%);border:1.5px solid #86EFAC;border-radius:12px;padding:16px 18px"><div style="font-size:14.5px;font-weight:800;color:#166534;margin-bottom:8px;display:flex;align-items:center;gap:6px"><span>🎯</span><span>Yarın Sabah Uygulayabileceğiniz En Kritik Yönetim Kararları</span></div><ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:13px;color:#1E293B">'+dpoints.map(p=>'<li style="line-height:1.5"><b>'+esc(p)+'</b></li>').join('')+'</ul><p class="small muted" style="margin-top:8px">Ayrıntılı görev dağılımı, zaman ufku ve sorumlular "Now What — Yönetim Aksiyonları" bölümündedir.</p></div>':'';
   $('methodNote').textContent=bp.methodology_note||'';
 
   // Appendix A — Data Quality
