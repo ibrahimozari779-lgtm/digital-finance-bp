@@ -303,11 +303,18 @@ def build_cash_flow_engine(
         cash_pct = round((cash / total_operational_capital * 100), 1) if total_operational_capital > 0 else 0.0
         rec_pct = round((receivables / total_operational_capital * 100), 1) if total_operational_capital > 0 else 0.0
         inv_pct = round((inventory / total_operational_capital * 100), 1) if total_operational_capital > 0 else 0.0
-        headline_story = (
-            f"Kasadaki sıcak para ₺{cash:,.0f} (%{cash_pct}); "
-            f"operasyonel sermayenizin %{rec_pct + inv_pct:.0f}'i "
-            f"(₺{receivables + inventory:,.0f}) müşteri senetlerinde ve depoda kilitli."
-        ).replace(",", ".")
+        if financial_debt > cash and financial_debt > 2_000_000:
+            headline_story = (
+                f"Kasadaki ₺{cash:,.0f} hazır paranın ana kaynağı kâr değil, "
+                f"şirketin ₺{financial_debt:,.0f} tutarındaki kısa vadeli finansal borçlanmasıdır (kredi/faktoring/ihraç). "
+                f"Operasyonel varlıkların %{rec_pct:.0f}'i ise müşterilerin {dso:.0f} günlük açık hesap vadesinde (₺{receivables:,.0f}) rehindir."
+            ).replace(",", ".")
+        else:
+            headline_story = (
+                f"Kasadaki sıcak para ₺{cash:,.0f} (%{cash_pct}); "
+                f"operasyonel sermayenizin %{rec_pct + inv_pct:.0f}'i "
+                f"(₺{receivables + inventory:,.0f}) müşteri senetlerinde ve depoda kilitli."
+            ).replace(",", ".")
 
     where_is_the_money = {
         "cash_amount": cash,
@@ -317,12 +324,25 @@ def build_cash_flow_engine(
         "inventory_amount": inventory,
         "inventory_pct": inv_pct,
         "payables_amount": payables,
+        "financial_debt_amount": financial_debt,
         "net_working_capital": round(receivables + inventory - payables, 2),
         "headline": headline_story,
     }
 
     # 2. "Sorun Ne & Kaç TL?" - Dynamically derived from findings & anomalies
     anomalies = []
+
+    # Anomaly 0: Ağır Finansal Borç ve Kaldıraç Baskısı
+    if financial_debt > 0 and (financial_debt > cash or (operating_profit > 0 and (finance_costs / operating_profit) > 0.35)):
+        fin_to_assets = (financial_debt / current_assets * 100) if current_assets > 0 else 0
+        anomalies.append({
+            "code": "ALM-MALI-BORC-KAPAN",
+            "title": f"Ağır Finansal Borçlanma (₺{financial_debt:,.0f} Mali Borç)".replace(",", "."),
+            "description": f"Dönen varlıkların %{fin_to_assets:.0f}'i kısa vadeli banka kredisi, faktoring ve ihraç edilen menkul kıymetlerle fonlanmaktadır. Yıllık ₺{finance_costs:,.0f} faiz sızıntısı operasyonel kârı baskılamaktadır.".replace(",", "."),
+            "exposure_tl": financial_debt,
+            "severity": "critical",
+        })
+
     # Anomaly A: Vade Makası
     if dso > dpo:
         gap_days = round(dso - dpo)

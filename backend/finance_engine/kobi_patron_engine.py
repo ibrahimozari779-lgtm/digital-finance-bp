@@ -58,6 +58,19 @@ SECTOR_CANONICAL_KEYS = {
     "nakliye": "lojistik_tasimacilik",
     "filo": "lojistik_tasimacilik",
     "navlun": "lojistik_tasimacilik",
+    "tarim_tedarik": "tarim_tedarik",
+    "tarim": "tarim_tedarik",
+    "tarfin": "tarim_tedarik",
+    "ziraat": "tarim_tedarik",
+    "gubre": "tarim_tedarik",
+    "tohum": "tarim_tedarik",
+    "yem": "tarim_tedarik",
+    "ciftci": "tarim_tedarik",
+    "hayvancilik": "tarim_tedarik",
+    "finans_fintek": "finans_fintek",
+    "fintek": "finans_fintek",
+    "finansman": "finans_fintek",
+    "faktoring": "finans_fintek",
 }
 
 def normalize_sector_key(raw_sector: str | None) -> str:
@@ -119,13 +132,18 @@ def build_kobi_patron_analysis(
     k = kpis or stmts.get("kpis") or {}
     c = stmts.get("cash_conversion") or bp.get("cash_conversion") or {} if bp else (stmts.get("cash_conversion") or {})
     
+    meta = stmts.get("period_metadata") or {}
+    co_name = meta.get("company_name") or ""
     sec_key = normalize_sector_key(sector)
+    if sec_key == "genel" and co_name:
+        sec_key = normalize_sector_key(co_name)
 
     # Core figures
     sales = float(pl.get("Net sales") or pl.get("Gross sales") or k.get("net_sales") or 10_000_000.0)
     cogs = float(pl.get("Cost of sales") or pl.get("COGS") or k.get("cogs") or sales * 0.70)
     gross_profit = float(pl.get("Gross profit") or (sales - cogs))
     op_profit = float(pl.get("Operating profit") or (sales * 0.12))
+    opex = abs(float(pl.get("Operating expenses") or pl.get("OPEX") or max(0.0, gross_profit - op_profit)))
     fin_exp = abs(float(pl.get("Finance costs") or pl.get("Financial expenses") or k.get("financial_expense") or (sales * 0.04)))
     net_profit = float(pl.get("Net profit") or (op_profit - fin_exp))
     
@@ -134,7 +152,7 @@ def build_kobi_patron_analysis(
     ar_val = float(k.get("receivables") or bs.get("Trade receivables") or (sales * 0.20))
     inv_val = float(k.get("inventory") or bs.get("Inventories") or 0.0)
     ap_val = float(k.get("payables") or bs.get("Trade payables") or (cogs * 0.15))
-    st_debt = float(k.get("financial_debt") or bs.get("Short-term financial debt") or (sales * 0.12))
+    st_debt = float(k.get("financial_debt") or bs.get("Short-term financial debt") or bs.get("Short term financial debt") or (sales * 0.12))
     fixed_assets = float(bs.get("Property, plant and equipment") or bs.get("Fixed assets") or (total_assets * 0.30))
     
     # Working capital days
@@ -147,15 +165,20 @@ def build_kobi_patron_analysis(
     dpo = float(c.get("days_payables_outstanding") or (ap_val / daily_cogs if daily_cogs > 0 else 45.0))
     ccc = dso + dio - dpo
     
-    # Has physical inventory?
-    has_inventory = (inv_val > 1000.0) and (dio > 3.0) and (sec_key not in ("hizmet_yazilim", "lojistik_tasimacilik"))
-    
     # Key ratios
     fin_to_ebit_pct = (fin_exp / op_profit * 100.0) if op_profit > 0 else 65.0
     gross_margin_pct = (gross_profit / sales * 100.0) if sales > 0 else 25.0
     net_margin_pct = (net_profit / sales * 100.0) if sales > 0 else 4.0
     vade_makasi = max(0.0, dso - dpo)
     mdv_ratio_pct = (fixed_assets / total_assets * 100.0) if total_assets > 0 else 30.0
+
+    # Financial structure flags (real data-driven, zero blind stereotypes)
+    is_fin_debt_heavy = (st_debt > sales * 0.30) or (fin_to_ebit_pct > 35.0) or (total_assets > 0 and (st_debt / total_assets) > 0.35)
+    has_significant_cash = (cash > 2_000_000.0) or (sales > 0 and (cash / sales) > 0.10) or (total_assets > 0 and (cash / total_assets) > 0.15)
+    is_opex_heavy = (sales > 0 and (opex / sales) > 0.25)
+    
+    # Has physical inventory?
+    has_inventory = (inv_val > 500_000.0 or (inv_val > 1000.0 and dio > 8.0)) and (sec_key not in ("hizmet_yazilim", "lojistik_tasimacilik", "tarim_tedarik", "finans_fintek"))
 
     # Sector specific triggers evaluation
     triggers = []
@@ -319,6 +342,28 @@ def build_kobi_patron_analysis(
             {"title": "Akaryakıt İstihbarat Yönetimi", "desc": "Taşıt tanıma tüketim verilerini haftalık takip edin; kilometre başına tüketimi %3 sapan aracı derhal servise çektirin."},
         ])
 
+    # 7. TARIM TEDARİK & FİNANSMANI / FİNTEK (Tarfin vb.)
+    elif sec_key in ("tarim_tedarik", "finans_fintek") or (sec_key == "genel" and is_fin_debt_heavy and dso > 120 and not has_inventory):
+        t1 = {"name": "Müşteri / Çiftçi Vadesi (DSO) > 120 Gün", "fired": dso > 100, "value": f"{dso:.0f} Gün"}
+        t2 = {"name": "Kısa Vadeli Borç / Varlık > %40", "fired": (st_debt / total_assets) > 0.35 if total_assets > 0 else True, "value": f"%{(st_debt / total_assets * 100):.1f}" if total_assets > 0 else "%0"}
+        t3 = {"name": "Finansman Gideri / FVÖK > %40", "fired": fin_to_ebit_pct > 35, "value": f"%{fin_to_ebit_pct:.1f}"}
+        triggers.extend([t1, t2, t3])
+        alarms.append({
+            "theme": "Tarım Tedarik Finansmanı & Mali Borç Kaldıracı",
+            "comment": (
+                f"Patron, mali tablolarınızı ve bilançoyu kalem kalem taradım. Çok açık bir teşhisim var: "
+                f"Sizin işinizde stok tutulmuyor ama müşterilere açılan {dso:.0f} günlük uzun açık hesap vadelerini taşımak için "
+                f"{fmt_tl(st_debt)} tutarında kısa vadeli banka kredisi, faktoring ve menkul kıymet ihraç borcu kullanıyorsunuz. "
+                f"Ürettiğiniz {fmt_tl(op_profit)} faaliyet kârının tam %{fin_to_ebit_pct:.0f}'i ({fmt_tl(fin_exp)}) bu borçların faiz ve komisyonlarına eriyor. "
+                f"Kasadaki {fmt_tl(cash)} hazır para kazanılan kârdan değil, sırtınızdaki finansal borç kaldıracından kaynaklanmaktadır."
+            ),
+        })
+        solutions.extend([
+            {"title": "VDMK & Tahvil İhraç Optimizasyonu", "desc": "Yüksek faizli rotatif ve faktoring borçlarını kapatıp yerine düşük maliyetli tarımsal VDMK (Varlığa Dayalı Menkul Kıymet) ihraçları koyun."},
+            {"title": "DBS & TARSİM Teminat Protokolü", "desc": "Müşteri ve çiftçi vadelerini TARSİM devlet destekli tarım sigortası ve banka garantili DBS limitleriyle teminatlandırın."},
+            {"title": "Erken Hasat İskontosu", "desc": "Hasat döneminde açık hesabı peşin kapatan bayilere %1,5 erken kapama iskontosu sunarak dış kredi ihtiyacını düşürün."},
+        ])
+
     # Default / Genel Sektör
     else:
         t1 = {"name": "Nakit Çevrim Süresi (CCC) > 60 Gün", "fired": ccc > 50, "value": f"{ccc:.0f} Gün"}
@@ -332,8 +377,38 @@ def build_kobi_patron_analysis(
 
     # BUILD 10 DYNAMIC PATRON QUESTIONS
     # -------------------------------------------------------------
-    # Soru 1: Kasada Neden Para Yok? (Dynamic inventory vs service)
-    if has_inventory:
+    # Soru 1: Kasada Neden Para Yok? (Dynamic: Borç Baskısı vs Stok vs Taahhüt vs Lojistik vs Personel vs Genel)
+    if is_fin_debt_heavy:
+        if has_significant_cash:
+            q1_title = f"Kasadaki {fmt_tl(cash)} Kârdan Değil; Kâr {fmt_tl(st_debt)}'lik Mali Borcun Faizinde Eriyor"
+            q1_desc = (
+                f"Şirket defterde <b>{fmt_tl(net_profit)}</b> net kâr üretmiş ve kasada/bankada <b>{fmt_tl(cash)}</b> hazır likidite bulunuyor görünse de, "
+                f"bu nakit kazanılan kârdan değil <b>{fmt_tl(st_debt)}'lik kısa vadeli kredi, faktoring ve menkul kıymet ihraç borçlarından</b> gelmektedir. "
+                f"Üretilen <b>{fmt_tl(op_profit)}</b> faaliyet kârının tam <b>%{fin_to_ebit_pct:.1f}'i ({fmt_tl(fin_exp)})</b> "
+                f"müşterilerin <b>{dso:.0f} günlük</b> açık hesap vadelerini (<b>{fmt_tl(ar_val)}</b>) finanse etmek için çekilen bu borçların faizine erimektedir."
+            )
+            q1_metrics = [
+                {"label": "Net Dönem Kârı", "val": fmt_tl(net_profit), "note": "Defter kârı"},
+                {"label": "Kısa Vadeli Mali Borç (30)", "val": fmt_tl(st_debt), "note": "Kredi, faktoring, ihraç"},
+                {"label": "Finansman Gideri (660)", "val": fmt_tl(fin_exp), "note": f"FVÖK'ün %{fin_to_ebit_pct:.0f}'i faize"},
+                {"label": "Hazır Değerler / Kasa (10)", "val": fmt_tl(cash), "note": "Borçla taşınan likidite"},
+            ]
+            q1_action = f"Müşterilere verilen {dso:.0f} günlük açık hesap vadelerini DBS / teminata bağlayın; faktoring ve rotatif kredi yükünü kapatıp yıllık {fmt_tl(fin_exp)} faiz sızıntısını durdurun."
+        else:
+            q1_title = f"Kâr Ne Depoda Ne Maaşta: {fmt_tl(st_debt)}'lik Borcun Faiz Yükünde Kayboluyor"
+            q1_desc = (
+                f"Şirket defterde <b>{fmt_tl(net_profit)}</b> kâr göstermesine karşın, ürettiği <b>{fmt_tl(op_profit)}</b> faaliyet kârının "
+                f"tam <b>%{fin_to_ebit_pct:.1f}'i ({fmt_tl(fin_exp)})</b> banka kredisi ve faktoring faizlerine gitmektedir. "
+                f"Müşterilerin <b>{dso:.0f} günlük</b> açık hesap vadesi (<b>{fmt_tl(ar_val)}</b>) şirketi borçlanmaya zorlamakta, kasa bu kârı görememektedir."
+            )
+            q1_metrics = [
+                {"label": "Net Dönem Kârı", "val": fmt_tl(net_profit), "note": "Defter kârı"},
+                {"label": "Müşteride Kilitli (120)", "val": fmt_tl(ar_val), "note": f"{dso:.0f} gün tahsilat"},
+                {"label": "Kısa Vadeli Borç (30)", "val": fmt_tl(st_debt), "note": "Kredi / faktoring"},
+                {"label": "Finansman Gideri (660)", "val": fmt_tl(fin_exp), "note": "Ödenen faiz"},
+            ]
+            q1_action = "Yüksek faizli rotatif kredileri kapatmak için ilk 5 müşteriden erken tahsilat iskontosuyla nakit çekin."
+    elif has_inventory:
         q1_title = "Defterdeki Kâr, Alacak ve Stok Kilitlenmesinde Kayboluyor"
         q1_desc = (
             f"Şirket defterde <b>{fmt_tl(net_profit)}</b> net kâr üretmiş görünmesine karşın, "
@@ -374,20 +449,33 @@ def build_kobi_patron_analysis(
             {"label": "Tahmini Akaryakıt Yükü", "val": "%52", "note": "Maliyet içindeki payı"},
         ]
         q1_action = "Sanayici sözleşmelerine '%30 peşin yakıt kartı veya peşin navlun' şartı koyarak peşin nakit akışı yaratın."
-    else: # SaaS / Hizmet / Stoksuz
-        q1_title = "İşinizde Stok Yok Ama Kâr Açık Hesap Vadede ve Maaş Yükünde Kayboluyor"
+    elif is_opex_heavy or sec_key == "hizmet_yazilim":
+        q1_title = "İşinizde Stok Yok Ama Kâr Açık Hesap Vadede ve Personel Yükünde Kayboluyor"
         q1_desc = (
             f"Şirket defterde <b>{fmt_tl(net_profit)}</b> net kâr üretmiş görünmesine karşın, bu kârın neredeyse tamamı müşterilerin "
-            f"<b>{dso:.0f} günlük</b> açık hesap tahsilat vadesinde (<b>{fmt_tl(ar_val)}</b>) ve ay sonu peşin ödenen yüksek personel/yazılımcı bordrolarında kilitlenmiştir. "
-            f"Kasa bu kârı görememekte, ay sonu KMH faizine sarılmaktadır."
+            f"<b>{dso:.0f} günlük</b> açık hesap tahsilat vadesinde (<b>{fmt_tl(ar_val)}</b>) ve her ay peşin ödenen personel/işletme giderlerinde (<b>{fmt_tl(opex)}</b>) kilitlenmiştir. "
+            f"Kasa bu kârı görememekte, tahsilat geciktikçe işletme sermayesi açığı büyümektedir."
         )
         q1_metrics = [
             {"label": "Net Dönem Kârı", "val": fmt_tl(net_profit), "note": "Defter kârı"},
             {"label": "Müşteride Açık Hesap (120)", "val": fmt_tl(ar_val), "note": f"{dso:.0f} gün tahsilat"},
-            {"label": "Personel & OpEx Yükü (770)", "val": fmt_tl(sales * 0.45), "note": "Yıllık işletme gideri"},
-            {"label": "Tahsilat Vade Riski", "val": f"{dso:.0f} gün", "note": "SaaS ideali: 0 gün (kartlı)"},
+            {"label": "Personel & OpEx Yükü (770)", "val": fmt_tl(opex), "note": "Yıllık işletme gideri"},
+            {"label": "Tahsilat Vade Riski", "val": f"{dso:.0f} gün", "note": "Müşteri bekleme süresi"},
         ]
-        q1_action = "Açık hesap vadeli hizmet vermeyi derhal bırakın; tüm müşterileri otomatik kredi kartlı abonelik (SaaS) modeline geçirin."
+        q1_action = "Açık hesap vadeli hizmet vermeyi derhal sınırlandırın; tüm müşterileri otomatik kredi kartlı abonelik veya peşin avans modeline geçirin."
+    else: # Genel / Ticaret / Stoksuz
+        q1_title = "Defterdeki Kâr, Uzun Müşteri Vadelerinde ve İşletme Sermayesinde Kilitli"
+        q1_desc = (
+            f"Şirket defterde <b>{fmt_tl(net_profit)}</b> net kâr üretmiş görünmesine karşın, bu kâr müşterilerin "
+            f"<b>{dso:.0f} günlük</b> tahsilat vadesinde (<b>{fmt_tl(ar_val)}</b>) bağlı kalmıştır. Kasa bu kârı zamanında görememektedir."
+        )
+        q1_metrics = [
+            {"label": "Net Dönem Kârı", "val": fmt_tl(net_profit), "note": "Defter kârı"},
+            {"label": "Müşteride Kilitli (120)", "val": fmt_tl(ar_val), "note": f"{dso:.0f} gün tahsilat"},
+            {"label": "Faaliyet Kârı (FVÖK)", "val": fmt_tl(op_profit), "note": "Operasyonel kâr"},
+            {"label": "Nakit Çevrim Süresi (CCC)", "val": f"{ccc:.0f} gün", "note": "Nakit döngüsü"},
+        ]
+        q1_action = "Açık hesap müşterilere kademeli vade farkı uygulayın ve peşin iskontoyla sıcak nakdi içeri çekin."
 
     # Soru 2: Hangi Müşteri Zarar Ettiriyor?
     q2_action = (
@@ -417,23 +505,43 @@ def build_kobi_patron_analysis(
         q3_action = "90 günden uzun süredir hareket görmeyen ölü stokları paket veya toptan iskontoyla derhal nakde çevirin. Satınalma siparişlerini haftalık kotalara bağlayın."
         q3_target_step = "inventoryCard"
         q3_target_name = "Stok Devir & Yaşlandırma Analitiği"
-    elif sec_key == "hizmet_yazilim":
-        q3_icon = "💻"
-        q3_title = "Yazılımcı ve Personel Giderleri Cironun Ne Kadarı?"
-        q3_sub = "İnsan Kaynağı Kârı Yutuyor mu?"
-        q3_cat = "İnsan Kaynağı & Bordro Verimi"
-        q3_l1_title = "İşinizde Stok Yok: Fabrikanız Yazılımcı Bordroları ve OpEx Harcamalarıdır"
+    elif is_fin_debt_heavy:
+        q3_icon = "🏦"
+        q3_title = f"{fmt_tl(st_debt)} Mali Borç: Faiz Kârı Yutuyor mu?"
+        q3_sub = "Kredi & Faktoring Yükü"
+        q3_cat = "Finansal Kaldıraç & Borçlanma Maliyeti"
+        q3_l1_title = f"İşinizde Stok Yok Ama {fmt_tl(st_debt)} Mali Borç Kârı Rehin Almış"
         q3_l1_desc = (
-            f"Hizmet ve SaaS sektöründe nakit depoda değil, <b>personel maaşları ve genel yönetim giderlerinde (770)</b> erir. "
-            f"Cironun <b>%65'i</b> personel maliyetine ve ofis giderlerine gitmekte, tahsilat geciktikçe bu bordrolar banka kredisiyle ödenmektedir."
+            f"Şirketinizde fiziki stok tutulmamaktadır; sermaye depoda değil, müşterilere açılan <b>{fmt_tl(ar_val)}'lik {dso:.0f} günlük açık vadede</b> "
+            f"ve bu alacakları taşımak için üstlenilen <b>{fmt_tl(st_debt)} tutarındaki kısa vadeli borçlarda (kredi, faktoring, ihraç)</b> rehindir. "
+            f"Faaliyet kârınızın <b>%{fin_to_ebit_pct:.1f}'i ({fmt_tl(fin_exp)})</b> doğrudan banka faizi ve finansman masraflarına erimektedir."
         )
         q3_metrics = [
-            {"label": "Faaliyet Gideri (OpEx)", "val": fmt_tl(sales * 0.45), "note": "770 Genel Yönetim"},
-            {"label": "Personel / OpEx Oranı", "val": "%68,4", "note": "Yazılımcı bordro ağırlığı"},
-            {"label": "OpEx / Ciro Oranı", "val": "%45,0", "note": "Hizmet sektörü ortalaması: %35"},
-            {"label": "Ar-Ge / Teşvik Korunumu", "val": "Riskli", "note": "Teknopark muafiyet denetimi şart"},
+            {"label": "Kısa Vadeli Mali Borç (30)", "val": fmt_tl(st_debt), "note": "Kredi, faktoring, bono"},
+            {"label": "Finansman Gideri (660)", "val": fmt_tl(fin_exp), "note": "Ödenen faiz ve masraf"},
+            {"label": "Faiz / Faaliyet Kârı", "val": fmt_pct(fin_to_ebit_pct, 1), "note": "Kâr erozyon oranı"},
+            {"label": "Alacakta Kilitli Sermaye", "val": fmt_tl(ar_val), "note": f"{dso:.0f} gün vade finansmanı"},
         ]
-        q3_action = "Mali müşavirinize talimat verip Teknopark ve Ar-Ge bordro muafiyetlerini (stopaj ve SGK teşviki) eksiksiz uygulatarak her ay %20 nakit tasarrufu sağlayın."
+        q3_action = "Yüksek faizli rotatif ve faktoring borçlarını kapatmak için alacak temlikli DBS / TARSİM protokolüne geçin ve borçlanma maliyetini düşürün."
+        q3_target_step = "debtStructureCard"
+        q3_target_name = "Finansal Borç & Kaldıraç Analitiği"
+    elif sec_key == "hizmet_yazilim" or is_opex_heavy:
+        q3_icon = "💻"
+        q3_title = "Personel ve İşletme Giderleri Cironun Ne Kadarı?"
+        q3_sub = "İnsan Kaynağı & OpEx Yükü"
+        q3_cat = "İnsan Kaynağı & Bordro Verimi"
+        q3_l1_title = "İşinizde Stok Yok: Gider Yükünüz Personel Bordroları ve Faaliyet Giderleridir"
+        q3_l1_desc = (
+            f"Hizmet ve teknoloji sektöründe nakit depoda değil, <b>personel bordroları ve genel yönetim giderlerinde (770)</b> erir. "
+            f"Yıllık <b>{fmt_tl(opex)}</b> faaliyet gideri cironun <b>%{fmt_pct(opex/sales*100,1)}</b>'ini oluşturmakta, tahsilat geciktikçe bu masraflar nakit açığı doğurmaktadır."
+        )
+        q3_metrics = [
+            {"label": "Faaliyet Gideri (OpEx)", "val": fmt_tl(opex), "note": "770 Genel Yönetim"},
+            {"label": "OpEx / Ciro Oranı", "val": fmt_pct(opex / sales * 100, 1), "note": "Faaliyet yükü"},
+            {"label": "Net Satış Hasılatı", "val": fmt_tl(sales), "note": "Yıllık ciro"},
+            {"label": "Faaliyet Marjı", "val": fmt_pct(op_profit / sales * 100, 1), "note": "Operasyonel kâr"},
+        ]
+        q3_action = "Mali müşavirinize talimat verip Teknopark ve bordro muafiyetlerini (stopaj ve SGK teşviki) eksiksiz uygulatarak her ay %20 nakit tasarrufu sağlayın."
         q3_target_step = "profitQualityCard"
         q3_target_name = "Kâr Köprüsü & OpEx Analitiği"
     elif sec_key == "lojistik_tasimacilik":
@@ -517,13 +625,22 @@ def build_kobi_patron_analysis(
         q6_action = "Ana tedarikçilerle masaya oturup vadeleri 15 gün uzatın; müşterilere tedarikçi vadesinden uzun vade vermeyi yasaklayın."
 
     # Soru 9 (YENİ): Banka Borcu & Rotatif / KMH Faiz Kapanı (Banka Kime Çalışıyor?)
-    q9_title = "Faaliyet Kârının Ne Kadarı Banka Kredi ve Rotatif Faizine Gidiyor?"
-    q9_desc = (
-        f"Şirketiniz yılda <b>{fmt_tl(fin_exp)}</b> finansman faizi ödemektedir. "
-        f"Bu tutar, ürettiğiniz operasyonel faaliyet kârının tam <b>%{fin_to_ebit_pct:.1f}'sine</b> denk gelmektedir! "
-        f"Yani yıl boyunca şirketiniz ve personeliniz aslında banka kredilerinin, rotatif faizlerinin ve KMH hesaplarının faizini finanse etmek için çalışmaktadır."
-    )
-    q9_action = "Yüksek faizli KMH ve spot rotatif kredileri, hızlandırılacak müşteri tahsilatları ve DBS nakit akışıyla ilk 60 günde %30 azaltın."
+    if is_fin_debt_heavy:
+        q9_title = f"{fmt_tl(st_debt)} Mali Borç: Faaliyet Kârının %{fin_to_ebit_pct:.0f}'i Banka Faizine Gidiyor"
+        q9_desc = (
+            f"Şirketiniz yılda <b>{fmt_tl(fin_exp)}</b> finansman faizi ve komisyon ödemektedir. "
+            f"Bu tutar, ürettiğiniz <b>{fmt_tl(op_profit)}</b> operasyonel faaliyet kârının tam <b>%{fin_to_ebit_pct:.1f}'sine</b> denk gelmektedir! "
+            f"Sırtınızdaki <b>{fmt_tl(st_debt)} tutarındaki kısa vadeli kredi, faktoring ve ihraç borçları</b> kârın neredeyse üçte ikisini tüketmektedir."
+        )
+        q9_action = "Yüksek maliyetli faktoring ve spot rotatif kredileri kapatmak için ilk 5 müşteriden erken tahsilat iskonto protokolü başlatın."
+    else:
+        q9_title = "Faaliyet Kârının Ne Kadarı Banka Kredi ve Rotatif Faizine Gidiyor?"
+        q9_desc = (
+            f"Şirketiniz yılda <b>{fmt_tl(fin_exp)}</b> finansman faizi ödemektedir. "
+            f"Bu tutar, ürettiğiniz operasyonel faaliyet kârının tam <b>%{fin_to_ebit_pct:.1f}'sine</b> denk gelmektedir! "
+            f"Yani yıl boyunca şirketiniz ve personeliniz aslında banka kredilerinin, rotatif faizlerinin ve KMH hesaplarının faizini finanse etmek için çalışmaktadır."
+        )
+        q9_action = "Yüksek faizli KMH ve spot rotatif kredileri, hızlandırılacak müşteri tahsilatları ve DBS nakit akışıyla ilk 60 günde %30 azaltın."
 
     # Soru 10 (YENİ): Vergi Kalkanı & Yasal Tasarruf Fırsatları (Devletten Ne Kadar Nakit Kurtarılabilir?)
     if sec_key == "uretim_sanayi":

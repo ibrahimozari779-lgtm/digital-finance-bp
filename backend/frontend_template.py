@@ -5974,6 +5974,10 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     box-sizing: border-box !important;
     overflow: hidden !important;
   }
+  body.cashRadarPrintMode .cashRadarPage:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
 
   /* ------------------------------------------------------------- */
   /* BANKA KREDİ & FİNANSAL İTİBAR DOSYASI PRINT MODE (3 SAYFA A4)  */
@@ -6039,6 +6043,10 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     margin: 0 !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
+  }
+  body.bankCreditPrintMode .bankCreditPage:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
   }
 
   /* ------------------------------------------------------------- */
@@ -6119,6 +6127,10 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
+  }
+  body.cfoReportPrintMode .cfoReportPage:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
   }
 
   /* ------------------------------------------------------------- */
@@ -6977,77 +6989,94 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
           </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:12px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:12px">
           <!-- 1. KOBİ Patron Karar Brifingi (1 Sayfa A4) -->
           <div style="background:#FFFFFF;border:1.5px solid #2563EB;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(37,99,235,0.08)">
             <div>
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
                 <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">👑 1. PATRONA ÖZEL</span>
-                <span style="font-size:11px;font-weight:700;color:#16A34A">⏱️ 1 Sayfa / 30 Sn</span>
+                <span style="font-size:11px;font-weight:700;color:#16A34A">⏱️ 1 Sayfa A4</span>
               </div>
               <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">KOBİ Patron Karar Brifingi</h4>
-              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">Para nerede? Kasa mevcudu, müşteri alacakları, depodaki stok ve yarın sabah patronun masaya vurup alacağı 3 somut karar.</p>
+              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">Para nerede? Kasa mevcudu, alacaklar, stoklar, finansal borçlar ve patronun masaya vurup hemen alacağı 3 somut karar.</p>
             </div>
             <div style="margin-top:12px">
-              <button id="boardDeckBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#1D4ED8;color:#FFFFFF;cursor:pointer">
-                👑 1 Sayfalık Patron Brifingini Aç →
+              <button id="boardDeckBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#1D4ED8;color:#FFFFFF;cursor:pointer" onclick="openBoardDeckModal()">
+                👑 Patron Brifingini Aç →
               </button>
             </div>
           </div>
 
-          <!-- 2. 13 Haftalık Kasa & Çek Radarı -->
-          <div style="background:#FFFFFF;border:1.5px solid #D97706;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(217,119,6,0.08)">
-            <div>
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span class="workflowBadge" style="background:#FFFBEB;color:#B45309;border-color:#FDE68A;margin:0">🗓️ 2. KASA &amp; ÇEK GÜVENCESİ</span>
-                <span style="font-size:11px;font-weight:700;color:#D97706">📊 13 Hafta Takvimi</span>
-              </div>
-              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">13 Haftalık Nakit &amp; Çek Radarı</h4>
-              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">Hangi hafta kasada açık var? Çek, vergi, kira ve maaş ödeme takvimi ile tahsilat gecikmelerinde devreye girecek acil nakit tamponu.</p>
-            </div>
-            <div style="margin-top:12px">
-              <button id="cashRadarBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#D97706;color:#FFFFFF;cursor:pointer" onclick="openCashRadarModal()">
-                🗓️ 13 Haftalık Nakit Radarını Aç →
-              </button>
-            </div>
-          </div>
-
-          <!-- 3. Banka Kredi & İtibar Dosyası (3 Sayfa A4) -->
+          <!-- 2. CFO Stratejik Yönetim & Nakit Raporu (10 Sayfa A4) -->
           <div style="background:#FFFFFF;border:1.5px solid #0E7C66;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(14,124,102,0.08)">
             <div>
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span class="workflowBadge" style="background:#EAF7F4;color:#0E7C66;border-color:#A3E0D2;margin:0">🏦 3. BANKA &amp; KREDİ</span>
-                <span style="font-size:11px;font-weight:700;color:#0E7C66">🏛️ 3 Sayfa A4</span>
+                <span class="workflowBadge" style="background:#EAF7F4;color:#0E7C66;border-color:#A3E0D2;margin:0">📊 2. CFO &amp; DİREKTÖR</span>
+                <span style="font-size:11px;font-weight:700;color:#0E7C66">📑 10 Sayfa A4</span>
               </div>
-              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Banka Kredi &amp; İtibar Dosyası</h4>
-              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">Banka şube müdürüne sunulacak kredi uygunluk karnesi, Borç/FAVÖK, faiz karşılama (ICR), cari oran, teminat ve 60 günlük stres testi.</p>
+              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">CFO Stratejik Yönetim Raporu</h4>
+              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">DuPont kâr analizi, TMS 7 nakit akış tablosu, işletme sermayesi köprüsü, 13 haftalık nakit projeksiyonu ve GAP teşhisi.</p>
             </div>
             <div style="margin-top:12px">
-              <button id="bankCreditBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#0E7C66;color:#FFFFFF;cursor:pointer" onclick="openBankCreditModal()">
-                🏦 Banka Kredi Dosyasını Aç →
+              <button id="cfoReportBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#0E7C66;color:#FFFFFF;cursor:pointer" onclick="openCfoReportModal()">
+                📊 CFO Raporunu Aç →
               </button>
             </div>
           </div>
 
-          <!-- 4. Kapsamlı Yönetim & Kâr Kaçakları Denetim Raporu -->
+          <!-- 3. Banka Kredi & Finansal İtibar Dosyası (3 Sayfa A4) -->
+          <div style="background:#FFFFFF;border:1.5px solid #4338CA;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(67,56,202,0.08)">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                <span class="workflowBadge" style="background:#EEF2FF;color:#4338CA;border-color:#C7D2FE;margin:0">🏦 3. BANKA &amp; KREDİ</span>
+                <span style="font-size:11px;font-weight:700;color:#4338CA">🏛️ 3 Sayfa A4</span>
+              </div>
+              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Banka Kredi &amp; İtibar Dosyası</h4>
+              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">Banka şube müdürüne sunulacak kredi uygunluk karnesi, Net Borç/FAVÖK, faiz karşılama (ICR), cari oran ve stres testi.</p>
+            </div>
+            <div style="margin-top:12px">
+              <button id="bankCreditBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#4338CA;color:#FFFFFF;cursor:pointer" onclick="openBankCreditModal()">
+                🏦 Banka Dosyasını Aç →
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. 13 Haftalık Kasa & Çek Radarı -->
+          <div style="background:#FFFFFF;border:1.5px solid #D97706;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(217,119,6,0.08)">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                <span class="workflowBadge" style="background:#FFFBEB;color:#B45309;border-color:#FDE68A;margin:0">🗓️ 4. KASA &amp; ÇEK TAKVİMİ</span>
+                <span style="font-size:11px;font-weight:700;color:#D97706">📊 13 Hafta</span>
+              </div>
+              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">13 Haftalık Nakit &amp; Çek Radarı</h4>
+              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">Hangi hafta kasada açık var? Çek, vergi, kira ve maaş ödeme takvimi ile acil nakit tamponu emniyet eşiği.</p>
+            </div>
+            <div style="margin-top:12px">
+              <button id="cashRadarBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#D97706;color:#FFFFFF;cursor:pointer" onclick="openCashRadarModal()">
+                🗓️ Nakit Radarını Aç →
+              </button>
+            </div>
+          </div>
+
+          <!-- 5. Kapsamlı Yönetim & Kâr Kaçakları Denetim Raporu -->
           <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,0.03)">
             <div>
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span class="workflowBadge" style="background:#F1F5F9;color:#475569;border-color:#CBD5E1;margin:0">📑 4. MALİ MÜŞAVİR &amp; DENETİM</span>
+                <span class="workflowBadge" style="background:#F1F5F9;color:#475569;border-color:#CBD5E1;margin:0">📑 5. MALİ MÜŞAVİR &amp; DENETİM</span>
                 <span style="font-size:11px;font-weight:700;color:#64748B">📋 Tam Denetim</span>
               </div>
-              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Kapsamlı Yönetim &amp; Kâr Kaçakları</h4>
-              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">33 Karar Motoru, Müşteri/Ürün kârlılık matrisi, stok/alacak yaşlandırma, P&amp;L, bilanço ve tam traceability izi.</p>
+              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Kapsamlı Yönetim &amp; Denetim</h4>
+              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">33 Karar Motoru, Müşteri/Ürün kârlılık matrisi, stok/alacak yaşlandırma, P&amp;L, bilanço ve hesap traceability izi.</p>
             </div>
             <div style="margin-top:12px">
-              <button id="printBtn" type="button" class="secondary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:700;cursor:pointer">
-                📑 Tam Denetim Raporunu Aç →
+              <button id="printBtn" type="button" class="secondary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:700;cursor:pointer" onclick="openDetailedReportModal()">
+                📑 Tam Denetimi Aç →
               </button>
             </div>
           </div>
         </div>
       </div>
-      <div id="aiBox" class="notice hidden"   <div id="aiBox" class="notice hidden" style="margin-top:12px"></div>
+      <div id="aiBox" class="notice hidden" style="margin-top:12px"></div>
       <div id="methodNote" class="notice" style="margin-top:12px"></div>
 
       <!-- AI Q&A Bar -->
@@ -8576,39 +8605,89 @@ function updateActionTrackerProgress(){
     textEl.innerHTML = `⚡ İcraat İlerlemesi: %${pct} Tamamlandı (${done}/${total} Aksiyon) · ${inProgress} İşlemde`;
   }
 }
-function renderCashFlowTable(cb, pl, bs){
+function renderCashFlowTable(cb, pl, bs, cfe, k){
+  cb = cb || (window.bp ? window.bp.cash_bridge_engine : {});
+  pl = pl || (window.bp ? (window.bp.financial_statements?.income_statement || window.bp.income_statement || {}) : {});
+  bs = bs || (window.bp ? (window.bp.financial_statements?.balance_sheet || window.bp.balance_sheet || {}) : {});
+  cfe = cfe || (window.bp ? window.bp.cash_flow_engine : {});
+  k = k || (window.bp ? window.bp.kpis : {});
+
   if(!cb || !cb.available){
-    const wc=cb?.working_capital_proxy||{};
-    return '<div class="notice" style="margin-bottom:8px"><b>Nakit Akış Tablosu (Cari Likidite)</b></div>'
-      +'<div class="small muted" style="margin-bottom:8px">Dönemsel nakit akışı köprüsü için 2 dönem karşılaştırması gereklidir. Aşağıda cari dönem likidite ve bağlı işletme sermayesi dökümü yer almaktadır.</div>'
-      +'<table><tbody>'
-      +'<tr><td>Kasa ve Bankalar (Nakit)</td><td><b>'+money(bs?.['Cash and cash equivalents']||0)+'</b></td></tr>'
-      +'<tr><td>Ticari Alacaklar (Müşteride Bağlı)</td><td><b>'+money(wc.receivables||bs?.['Accounts receivable']||0)+'</b></td></tr>'
-      +'<tr><td>Stoklar (Depoda Bağlı Sermaye)</td><td><b>'+money(wc.inventory||bs?.['Inventories']||0)+'</b></td></tr>'
-      +'<tr><td>Ticari Borçlar (Tedarikçi Kredisi)</td><td><b>'+money(wc.payables||bs?.['Accounts payable']||0)+'</b></td></tr>'
-      +'</tbody></table>'
-      +'<div style="margin-top:12px;text-align:center"><a href="/uygulama?sample=data_hub" class="secondary small" style="display:inline-block;padding:6px 12px;border-radius:8px;text-decoration:none">🔥 2 Dönemli Çoklu Veri ile Tam Tabloyu Aç</a></div>';
+    const wc = cb?.working_capital_proxy || {};
+    const wim = cfe?.where_is_the_money || {};
+    const cashVal = Number(bs?.['Cash and cash equivalents'] || bs?.['Kasa ve Bankalar'] || wim.cash_amount || 0);
+    const recVal = Number(wc.receivables || bs?.['Accounts receivable'] || bs?.['Ticari Alacaklar'] || wim.receivables_amount || 0);
+    const invVal = Number(wc.inventory || bs?.['Inventories'] || bs?.['Stoklar'] || wim.inventory_amount || 0);
+    const payVal = Number(wc.payables || bs?.['Accounts payable'] || bs?.['Ticari Borçlar'] || wim.payables_amount || 0);
+    const nwcVal = recVal + invVal - payVal;
+
+    // Financial Debt & Costs
+    const finDebtST = Number(bs?.['Short-term financial debt'] || bs?.['Kısa Vadeli Mali Borçlar'] || bs?.['Kısa Vadeli Finansal Borçlar'] || 0);
+    const finDebtLT = Number(bs?.['Long-term financial debt'] || bs?.['Uzun Vadeli Mali Borçlar'] || bs?.['Uzun Vadeli Finansal Borçlar'] || 0);
+    const finDebtTotal = Number(wim.financial_debt_amount || (finDebtST + finDebtLT) || bs?.['Financial debt'] || bs?.['Total financial debt'] || 0);
+    const finCosts = Math.abs(Number(pl?.['Finance costs'] || pl?.['Finansman giderleri'] || pl?.['Finansman Giderleri'] || 0));
+    const opProfit = Number(pl?.['Operating profit'] || pl?.['Faaliyet kârı'] || pl?.['FVÖK'] || 0);
+    const netProfit = Number(pl?.['Net profit'] || pl?.['Dönem net kârı'] || pl?.['Net kâr'] || 0);
+    const netFinDebt = Math.max(0, finDebtTotal - cashVal);
+    const icrVal = finCosts > 0 ? (opProfit / finCosts) : null;
+
+    let html = '<div class="notice" style="margin-bottom:8px"><b>Nakit Akış &amp; Finansal Borç Röntgeni (Tek Dönem Analizi)</b></div>';
+    
+    if(wim.headline){
+      html += '<div style="background:#EFF6FF;border-left:3px solid #1D4ED8;padding:8px 10px;border-radius:4px;font-size:11px;color:#1E3A8A;margin-bottom:10px;line-height:1.45"><b>🏛️ Nakit ve Borç Röntgeni Teşhisi:</b> ' + esc(wim.headline) + '</div>';
+    } else {
+      html += '<div class="small muted" style="margin-bottom:8px">Dönemsel nakit köprüsü için 2 dönem karşılaştırması gereklidir. Aşağıda cari dönem likidite, bağlı işletme sermayesi ve finansal borç yapısı dökümü yer almaktadır.</div>';
+    }
+
+    if(finDebtTotal > cashVal && finDebtTotal > 1000000){
+      html += '<div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:6px;padding:8px 10px;margin-bottom:10px;font-size:10.5px;color:#991B1B;line-height:1.45">'
+        + '⚠️ <b>Kritik Tespit:</b> Kasadaki <b>' + money(cashVal) + '</b> hazır likiditenin kaynağı faaliyet kârı değil; <b>' + money(finDebtTotal) + '</b> tutarındaki finansal borçlanmadır (banka kredisi, faktoring, menkul kıymet ihraçları). Şirketin Net Finansal Borcu <b>' + money(netFinDebt) + '</b> seviyesindedir.'
+        + '</div>';
+    }
+
+    html += '<table style="width:100%;font-size:11px;border-collapse:collapse"><tbody>'
+      + '<tr style="background:#F0F4FA;font-weight:700"><td colspan="2">I. CARİ LİKİDİTE VE BAĞLI İŞLETME SERMAYESİ</td></tr>'
+      + '<tr><td style="padding-left:14px">Kasa ve Bankalar (Hazır Likidite)</td><td style="text-align:right"><b style="color:#16A34A">' + money(cashVal) + '</b></td></tr>'
+      + '<tr><td style="padding-left:14px">Ticari Alacaklar (Müşteride Bağlı Sermaye)</td><td style="text-align:right"><b>' + money(recVal) + '</b></td></tr>'
+      + '<tr><td style="padding-left:14px">Stoklar (Depoda Bağlı Sermaye)</td><td style="text-align:right"><b>' + money(invVal) + '</b></td></tr>'
+      + '<tr><td style="padding-left:14px">(-) Ticari Borçlar (Tedarikçi Kredisi - Faizsiz Fon)</td><td style="text-align:right;color:#DC2626"><b>-' + money(payVal) + '</b></td></tr>'
+      + '<tr style="background:#F8FAFC;font-weight:800"><td style="padding-left:14px">Net Ticari İşletme Sermayesi (NWC)</td><td style="text-align:right;color:#1D4ED8"><b>' + money(nwcVal) + '</b></td></tr>'
+      
+      + '<tr style="background:#F0F4FA;font-weight:700"><td colspan="2">II. FİNANSAL BORÇ YAPISI VE FAİZ SERVİSİ</td></tr>'
+      + '<tr><td style="padding-left:14px">Kısa Vadeli Finansal Borçlar (Banka / Faktoring / İhraç)</td><td style="text-align:right"><b style="color:#DC2626">' + money(finDebtST || finDebtTotal) + '</b></td></tr>'
+      + (finDebtLT > 0 ? '<tr><td style="padding-left:14px">Uzun Vadeli Finansal Borçlar (Krediler)</td><td style="text-align:right"><b>' + money(finDebtLT) + '</b></td></tr>' : '')
+      + '<tr style="background:#F8FAFC;font-weight:800"><td style="padding-left:14px">Toplam Finansal Borç (Mali Borç Yükü)</td><td style="text-align:right;color:#DC2626"><b>' + money(finDebtTotal) + '</b></td></tr>'
+      + '<tr><td style="padding-left:14px">Yıllık Finansman Giderleri (Ödenen / Tahakkuk Eden Faiz)</td><td style="text-align:right;color:#DC2626"><b>' + money(finCosts) + '</b></td></tr>'
+      + '<tr style="font-weight:700"><td style="padding-left:14px">Net Finansal Borç (Toplam Mali Borç - Kasa)</td><td style="text-align:right;color:' + (netFinDebt > 0 ? '#DC2626' : '#16A34A') + '"><b>' + money(netFinDebt) + '</b></td></tr>'
+
+      + '<tr style="background:#F0F4FA;font-weight:700"><td colspan="2">III. OPERASYONEL KÂRLILIK VE FAİZ KARŞILAMA GÜCÜ</td></tr>'
+      + '<tr><td style="padding-left:14px">Esas Faaliyet Kârı (FVÖK)</td><td style="text-align:right"><b>' + money(opProfit) + '</b></td></tr>'
+      + '<tr><td style="padding-left:14px">Dönem Net Kârı</td><td style="text-align:right"><b style="color:' + (netProfit >= 0 ? '#16A34A' : '#DC2626') + '">' + money(netProfit) + '</b></td></tr>'
+      + (icrVal != null ? '<tr><td style="padding-left:14px">Faiz Karşılama Oranı (FVÖK / Finansman Gideri)</td><td style="text-align:right"><b style="color:' + (icrVal < 1.5 ? '#DC2626' : '#16A34A') + '">' + num(icrVal) + 'x</b></td></tr>' : '')
+      + '</tbody></table>'
+      + '<div style="margin-top:10px;text-align:center"><a href="/uygulama?sample=data_hub" class="secondary small" style="display:inline-block;padding:5px 12px;border-radius:8px;text-decoration:none;font-size:10.5px">🔥 2 Dönemli Karşılaştırmalı Veri ile Dinamik Nakit Köprüsünü Aç</a></div>';
+    return html;
   }
   const wcc=cb.working_capital_components||{};
   return '<div class="notice" style="margin-bottom:8px"><b>Nakit Akış Tablosu (Yönetimsel Nakit Köprüsü)</b></div>'
-    +'<table><tbody>'
+    +'<table style="width:100%;font-size:11px;border-collapse:collapse"><tbody>'
     +'<tr style="background:#F0F4FA"><td colspan="2"><b>I. İŞLETME FAALİYETLERİNDEN NAKİT AKIŞI</b></td></tr>'
-    +'<tr><td style="padding-left:14px">Net Dönem Kârı</td><td><b>'+money(cb.net_profit)+'</b></td></tr>'
-    +'<tr><td style="padding-left:14px">Faaliyet Dışı Düzeltmeler (Finansman/Vergi)</td><td><b>'+money(cb.non_operating_addback)+'</b></td></tr>'
-    +'<tr><td style="padding-left:14px">Faaliyet Kârı (FVÖK)</td><td><b>'+money(cb.operating_profit)+'</b></td></tr>'
-    +'<tr><td style="padding-left:14px;color:var(--muted)">Δ Ticari Alacak Değişimi (Müşteri)</td><td style="color:'+(wcc.receivables_effect<0?'var(--red)':'var(--green)')+'"><b>'+money(wcc.receivables_effect)+'</b></td></tr>'
-    +'<tr><td style="padding-left:14px;color:var(--muted)">Δ Stok Değişimi (Depo Kilidi)</td><td style="color:'+(wcc.inventory_effect<0?'var(--red)':'var(--green)')+'"><b>'+money(wcc.inventory_effect)+'</b></td></tr>'
-    +'<tr><td style="padding-left:14px;color:var(--muted)">Δ Ticari Borç Değişimi (Tedarikçi)</td><td style="color:'+(wcc.payables_effect<0?'var(--red)':'var(--green)')+'"><b>'+money(wcc.payables_effect)+'</b></td></tr>'
-    +'<tr style="font-weight:700"><td>İşletme Sermayesi Net Etkisi</td><td style="color:'+(cb.working_capital_effect<0?'var(--red)':'var(--green)')+'"><b>'+money(cb.working_capital_effect)+'</b></td></tr>'
-    +'<tr style="background:#EAF0FF;font-weight:800"><td>İşletme Faaliyetleri Nakit Akışı (Esas Faaliyet)</td><td style="color:'+(cb.operating_cash_flow_proxy<0?'var(--red)':'var(--green)')+'"><b>'+money(cb.operating_cash_flow_proxy)+'</b></td></tr>'
+    +'<tr><td style="padding-left:14px">Net Dönem Kârı</td><td style="text-align:right"><b>'+money(cb.net_profit)+'</b></td></tr>'
+    +'<tr><td style="padding-left:14px">Faaliyet Dışı Düzeltmeler (Finansman/Vergi)</td><td style="text-align:right"><b>'+money(cb.non_operating_addback)+'</b></td></tr>'
+    +'<tr><td style="padding-left:14px">Faaliyet Kârı (FVÖK)</td><td style="text-align:right"><b>'+money(cb.operating_profit)+'</b></td></tr>'
+    +'<tr><td style="padding-left:14px;color:var(--muted)">Δ Ticari Alacak Değişimi (Müşteri)</td><td style="text-align:right;color:'+(wcc.receivables_effect<0?'var(--red)':'var(--green)')+'"><b>'+money(wcc.receivables_effect)+'</b></td></tr>'
+    +'<tr><td style="padding-left:14px;color:var(--muted)">Δ Stok Değişimi (Depo Kilidi)</td><td style="text-align:right;color:'+(wcc.inventory_effect<0?'var(--red)':'var(--green)')+'"><b>'+money(wcc.inventory_effect)+'</b></td></tr>'
+    +'<tr><td style="padding-left:14px;color:var(--muted)">Δ Ticari Borç Değişimi (Tedarikçi)</td><td style="text-align:right;color:'+(wcc.payables_effect<0?'var(--red)':'var(--green)')+'"><b>'+money(wcc.payables_effect)+'</b></td></tr>'
+    +'<tr style="font-weight:700"><td>İşletme Sermayesi Net Etkisi</td><td style="text-align:right;color:'+(cb.working_capital_effect<0?'var(--red)':'var(--green)')+'"><b>'+money(cb.working_capital_effect)+'</b></td></tr>'
+    +'<tr style="background:#EAF0FF;font-weight:800"><td>İşletme Faaliyetleri Nakit Akışı (Esas Faaliyet)</td><td style="text-align:right;color:'+(cb.operating_cash_flow_proxy<0?'var(--red)':'var(--green)')+'"><b>'+money(cb.operating_cash_flow_proxy)+'</b></td></tr>'
     +'<tr style="background:#F0F4FA"><td colspan="2"><b>II. FİNANSMAN &amp; DİĞER HAREKETLER</b></td></tr>'
-    +'<tr><td style="padding-left:14px">Finansal Borç Değişimi (Net Kredi/İtfa)</td><td><b>'+money(cb.debt_change)+'</b></td></tr>'
-    +'<tr><td style="padding-left:14px">Yatırım, Vergi &amp; Diğer Düzeltmeler</td><td><b>'+money(cb.unexplained_cash_change)+'</b></td></tr>'
+    +'<tr><td style="padding-left:14px">Finansal Borç Değişimi (Net Kredi/İtfa)</td><td style="text-align:right"><b>'+money(cb.debt_change)+'</b></td></tr>'
+    +'<tr><td style="padding-left:14px">Yatırım, Vergi &amp; Diğer Düzeltmeler</td><td style="text-align:right"><b>'+money(cb.unexplained_cash_change)+'</b></td></tr>'
     +'<tr style="background:#F0F4FA"><td colspan="2"><b>III. NAKİT VE BENZERLERİ DEĞİŞİMİ</b></td></tr>'
-    +'<tr><td style="padding-left:14px">Dönem Başı Kasa &amp; Banka</td><td><b>'+money(cb.opening_cash)+'</b></td></tr>'
-    +'<tr><td style="padding-left:14px">Dönem Sonu Kasa &amp; Banka</td><td><b>'+money(cb.closing_cash)+'</b></td></tr>'
-    +'<tr style="font-weight:800;border-top:2px solid var(--accent)"><td>Net Kasa Değişimi</td><td style="color:'+(cb.cash_change<0?'var(--red)':'var(--green)')+'"><b>'+money(cb.cash_change)+'</b></td></tr>'
-    +(cb.cash_realization_pct!=null?'<tr><td>Kâr Nakde Dönüşüm Oranı</td><td><b style="color:'+(cb.cash_realization_pct<50?'var(--red)':'var(--green)')+'">'+(cb.cash_realization_pct<0? '-%'+num(Math.abs(cb.cash_realization_pct)) : '%'+num(cb.cash_realization_pct))+'</b></td></tr>':'')
+    +'<tr><td style="padding-left:14px">Dönem Başı Kasa &amp; Banka</td><td style="text-align:right"><b>'+money(cb.opening_cash)+'</b></td></tr>'
+    +'<tr><td style="padding-left:14px">Dönem Sonu Kasa &amp; Banka</td><td style="text-align:right"><b>'+money(cb.closing_cash)+'</b></td></tr>'
+    +'<tr style="font-weight:800;border-top:2px solid var(--accent)"><td>Net Kasa Değişimi</td><td style="text-align:right;color:'+(cb.cash_change<0?'var(--red)':'var(--green)')+'"><b>'+money(cb.cash_change)+'</b></td></tr>'
+    +(cb.cash_realization_pct!=null?'<tr><td>Kâr Nakde Dönüşüm Oranı</td><td style="text-align:right"><b style="color:'+(cb.cash_realization_pct<50?'var(--red)':'var(--green)')+'">'+(cb.cash_realization_pct<0? '-%'+num(Math.abs(cb.cash_realization_pct)) : '%'+num(cb.cash_realization_pct))+'</b></td></tr>':'')
     +'</tbody></table>';
 }
 function metric(label,value,sub){return '<div class="metric"><div class="label">'+esc(label)+'</div><div class="value">'+esc(value)+'</div><div class="sub">'+esc(sub||'')+'</div></div>'}
@@ -9305,7 +9384,7 @@ function render(d){
   // Appendix — trend & traceability
   const tr=bp.trend_analysis||{};$('trendBlock').innerHTML=tr.available?'<div class="small muted">Karşılaştırmalı özet ve dönemsel bulgular yukarıda, "1 — What" bölümündeki <b>Karşılaştırmalı Analiz</b> kartında gösteriliyor. Aşağıdaki Ek B ise ham hesap izini içerir.</div>':'<div class="notice">'+esc(tr.reason||'Trend için 2+ dönem gerekir.')+'</div>';
   $('plTable').innerHTML=table('Gelir Tablosu',pl);$('bsTable').innerHTML=table('Bilanço',bs);
-  if($('cfTable'))$('cfTable').innerHTML=renderCashFlowTable(cb,pl,bs);
+  if($('cfTable'))$('cfTable').innerHTML=renderCashFlowTable(cb,pl,bs,bp.cash_flow_engine,k);
   const accounts=d.canonical_model?.accounts||[];$('trace').innerHTML='<div class="notice">Traceability: '+accounts.length+' canonical account rows. Her satıra tıklayarak kaynak formülünü ve defter izini görebilirsiniz.</div><table style="margin-top:8px"><thead><tr><th>Hesap</th><th>Ad</th><th>Bakiye</th><th>Sheet</th><th>Row</th></tr></thead><tbody>'+accounts.slice(0,15).map(a=>'<tr style="cursor:pointer" onclick="showTraceModal(\'Hesap İzlenebilirliği: '+esc(a.account_code)+'\', \'<b>Hesap Adı:</b> '+esc(a.account_name)+'<br><b>Bakiye:</b> '+money(a.balance)+'<br><b>Kaynak Sayfa:</b> '+esc(a.source_sheet)+'<br><b>Kaynak Satır:</b> '+esc(a.source_row)+'<br><b>Deterministik Kural:</b> Borç Hareketi - Alacak Hareketi = Net Bakiye\')"><td><b>'+esc(a.account_code)+'</b> 🔍</td><td>'+esc(a.account_name)+'</td><td>'+money(a.balance)+'</td><td>'+esc(a.source_sheet)+'</td><td>'+esc(a.source_row)+'</td></tr>').join('')+'</tbody></table>';
   if(bp.customer_profitability_engine) renderCustomerProfitabilityMatrix(bp.customer_profitability_engine);
   if(bp.product_profitability_engine) renderProductProfitability(bp.product_profitability_engine);
@@ -10359,7 +10438,7 @@ function openBoardDeckModal(){
   // 2. KPI Strip (4 Box tailored for Patron: Ciro, Kâr, Kasa/Banka, Net Borç)
   html += '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px">';
   html += '<div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:7px 10px"><div style="font-size:9.5px;color:#64748B;font-weight:700">Net Satış Hasılatı (Ciro)</div><div style="font-size:14px;font-weight:900;color:#0F172A">' + money(canonSalesVal) + '</div><div style="font-size:9px;color:#16A34A">Brüt Marj: %' + num(k.gross_margin_pct ?? 0) + '</div></div>';
-  html += '<div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:7px 10px"><div style="font-size:9.5px;color:#64748B;font-weight:700">Faaliyet Kârı (EBIT)</div><div style="font-size:14px;font-weight:900;color:#0F172A">' + money(pl['Operating profit'] || 0) + '</div><div style="font-size:9px;color:#64748B">Net Kâr: ' + money(pl['Net profit'] || 0) + '</div></div>';
+  html += '<div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:7px 10px"><div style="font-size:9.5px;color:#64748B;font-weight:700">Faaliyet Kârı (FVÖK)</div><div style="font-size:14px;font-weight:900;color:#0F172A">' + money(pl['Operating profit'] || 0) + '</div><div style="font-size:9px;color:#64748B">Net Kâr: ' + money(pl['Net profit'] || 0) + '</div></div>';
   html += '<div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:7px 10px"><div style="font-size:9.5px;color:#166534;font-weight:700">Kasa &amp; Banka Mevcudu</div><div style="font-size:14px;font-weight:900;color:#166534">' + money(cashVal) + '</div><div style="font-size:9px;color:#16A34A">Hazır Sıcak Likidite</div></div>';
   html += '<div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:7px 10px"><div style="font-size:9.5px;color:#64748B;font-weight:700">Net Finansal Borç</div><div style="font-size:14px;font-weight:900;color:#0F172A">' + money(k.net_debt || 0) + '</div><div style="font-size:9px;color:#64748B">Kasa Sonrası Net Yük</div></div>';
   html += '</div>';
@@ -10850,6 +10929,15 @@ function openCfoReportModal(){
   const healthLabel = bp.health_label || (healthScore >= 80 ? 'Güçlü' : healthScore >= 65 ? 'İyi' : healthScore >= 50 ? 'Dengeli' : 'Riskli');
   const hColor = healthScore >= 80 ? '#16A34A' : healthScore >= 65 ? '#2563EB' : healthScore >= 50 ? '#D97706' : '#DC2626';
 
+  const trSev = (s) => {
+    s = (s || '').toLowerCase();
+    if(s === 'critical') return 'Kritik 🚨';
+    if(s === 'high') return 'Yüksek ⚠️';
+    if(s === 'medium') return 'Orta ⚡';
+    if(s === 'low') return 'Düşük ℹ️';
+    return 'Bilgi ℹ️';
+  };
+
   // Helper for running header on pages 2-10
   const runningHeader = (pgTitle, pgNum) => `
     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #0E7C66;padding-bottom:6px;margin-bottom:12px">
@@ -10915,7 +11003,7 @@ function openCfoReportModal(){
             <div style="font-size:9.5px;color:#16A34A">Brüt Marj: %${num(k.gross_margin_pct ?? 0)}</div>
           </div>
           <div style="background:#FFF;border:1px solid #CBD5E1;border-radius:8px;padding:10px">
-            <div style="font-size:10px;color:#64748B;font-weight:700">Faaliyet Kârı (EBIT)</div>
+            <div style="font-size:10px;color:#64748B;font-weight:700">Faaliyet Kârı (FVÖK)</div>
             <div style="font-size:16px;font-weight:900;color:#0F172A">${money(pl['Operating profit'] || 0)}</div>
             <div style="font-size:9.5px;color:#64748B">Faaliyet Marjı: %${num(k.operating_margin ?? 0)}</div>
           </div>
@@ -10961,7 +11049,7 @@ function openCfoReportModal(){
 
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
         <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:8px;padding:10px;text-align:center">
-          <div style="font-size:10px;color:#1D4ED8;font-weight:800">1. KÂR MARJI (Net Margin)</div>
+          <div style="font-size:10px;color:#1D4ED8;font-weight:800">1. KÂR MARJI (Net Marj)</div>
           <div style="font-size:18px;font-weight:900;color:#0F172A;margin:4px 0">%${num(dp.net_profit_margin_pct ?? k.net_margin ?? 0)}</div>
           <div style="font-size:9.5px;color:#64748B">Her 100 TL Satıştan Kalan Kâr</div>
         </div>
@@ -10987,8 +11075,8 @@ function openCfoReportModal(){
             <tr style="background:#F1F5F9;font-weight:800"><td style="padding:6px 8px">Net Satışlar</td><td style="padding:6px 8px;text-align:right">${money(pl['Net sales'] || 0)}</td><td style="padding:6px 8px;text-align:right">%100.0</td><td style="padding:6px 8px;color:#1D4ED8">Net Gelir Matrahı</td></tr>
             <tr><td style="padding:6px 8px;color:#DC2626">(-) Satışların Maliyeti (SMM)</td><td style="padding:6px 8px;text-align:right;color:#DC2626">-${money(pl['Cost of sales'] || pl['COGS'] || 0)}</td><td style="padding:6px 8px;text-align:right">%${num(pl['Net sales'] ? (pl['Cost of sales']||pl['COGS']||0)/pl['Net sales']*100 : 0)}</td><td style="padding:6px 8px;color:#64748B">Direkt Üretim / Ticari Mal Maliyeti</td></tr>
             <tr style="background:#F1F5F9;font-weight:800"><td style="padding:6px 8px">Brüt Kâr</td><td style="padding:6px 8px;text-align:right;color:#16A34A">${money(pl['Gross profit'] || 0)}</td><td style="padding:6px 8px;text-align:right">%${num(k.gross_margin_pct ?? 0)}</td><td style="padding:6px 8px;color:#16A34A">Brüt Kâr Marjı</td></tr>
-            <tr><td style="padding:6px 8px;color:#DC2626">(-) Faaliyet Giderleri (OPEX)</td><td style="padding:6px 8px;text-align:right;color:#DC2626">-${money(pl['Operating expenses'] || pl['OPEX'] || 0)}</td><td style="padding:6px 8px;text-align:right">%${num(pl['Net sales'] ? (pl['Operating expenses']||pl['OPEX']||0)/pl['Net sales']*100 : 0)}</td><td style="padding:6px 8px;color:#64748B">Pazarlama, Genel Yönetim, Ar-Ge</td></tr>
-            <tr style="background:#F1F5F9;font-weight:800"><td style="padding:6px 8px">Faaliyet Kârı (EBIT)</td><td style="padding:6px 8px;text-align:right">${money(pl['Operating profit'] || 0)}</td><td style="padding:6px 8px;text-align:right">%${num(k.operating_margin ?? 0)}</td><td style="padding:6px 8px;color:#0F172A">Esas Faaliyet Gücü</td></tr>
+            <tr><td style="padding:6px 8px;color:#DC2626">(-) Faaliyet Giderleri (Faal. Gid.)</td><td style="padding:6px 8px;text-align:right;color:#DC2626">-${money(pl['Operating expenses'] || pl['OPEX'] || 0)}</td><td style="padding:6px 8px;text-align:right">%${num(pl['Net sales'] ? (pl['Operating expenses']||pl['OPEX']||0)/pl['Net sales']*100 : 0)}</td><td style="padding:6px 8px;color:#64748B">Pazarlama, Genel Yönetim, Ar-Ge</td></tr>
+            <tr style="background:#F1F5F9;font-weight:800"><td style="padding:6px 8px">Faaliyet Kârı (FVÖK)</td><td style="padding:6px 8px;text-align:right">${money(pl['Operating profit'] || 0)}</td><td style="padding:6px 8px;text-align:right">%${num(k.operating_margin ?? 0)}</td><td style="padding:6px 8px;color:#0F172A">Esas Faaliyet Gücü</td></tr>
             <tr><td style="padding:6px 8px;color:#DC2626">(-) Finansman Giderleri (Faiz)</td><td style="padding:6px 8px;text-align:right;color:#DC2626">-${money(pl['Finance costs'] || 0)}</td><td style="padding:6px 8px;text-align:right">%${num(pl['Net sales'] ? (pl['Finance costs']||0)/pl['Net sales']*100 : 0)}</td><td style="padding:6px 8px;color:#64748B">Kredi &amp; Borçlanma Maliyetleri</td></tr>
             <tr style="background:#EFF6FF;font-weight:900;border-top:2px solid #1D4ED8"><td style="padding:6px 8px">Net Dönem Kârı</td><td style="padding:6px 8px;text-align:right;color:${(pl['Net profit']||0)>=0?'#16A34A':'#DC2626'}">${money(pl['Net profit'] || 0)}</td><td style="padding:6px 8px;text-align:right">%${num(k.net_margin ?? 0)}</td><td style="padding:6px 8px;color:#1D4ED8">Net Kâr Kalitesi</td></tr>
           </tbody>
@@ -11015,7 +11103,7 @@ function openCfoReportModal(){
       </p>
 
       <div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:10px;padding:14px;margin-bottom:12px">
-        ${renderCashFlowTable(cb, pl, bs)}
+        ${renderCashFlowTable(cb, pl, bs, cfe, k)}
       </div>
 
       ${cfe.tms7_statement ? `
@@ -11189,7 +11277,7 @@ function openCfoReportModal(){
                 <span style="font-weight:900;color:#0E7C66;font-size:11px">#${idx+1}</span>
                 <b style="font-size:11.5px;color:#0F172A">${esc(f.title)}</b>
               </div>
-              <span class="tag ${esc(f.severity || 'medium')}" style="font-size:9.5px">${esc(f.severity || 'medium')}</span>
+              <span class="tag ${esc(f.severity || 'medium')}" style="font-size:9.5px">${trSev(f.severity)}</span>
             </div>
             <div style="font-size:10.5px;color:#475569;line-height:1.4">${esc(f.interpretation || f.recommendation || f.evidence || '')}</div>
           </div>
@@ -11232,7 +11320,7 @@ function openCfoReportModal(){
                 ${act.expected_financial_impact ? `<div style="font-size:10.5px;color:#15803D;font-weight:700;margin-top:2px">Tahmini Finansal Etki: +${money(act.expected_financial_impact)}</div>` : ''}
               </div>
               <div style="text-align:right;flex-shrink:0">
-                <span class="tag ${esc(act.severity || 'medium')}" style="font-size:9px">${esc(act.severity || 'medium')}</span>
+                <span class="tag ${esc(act.severity || 'medium')}" style="font-size:9px">${trSev(act.severity)}</span>
                 <div style="margin-top:4px">${stBadge}</div>
               </div>
             </div>
@@ -11433,6 +11521,7 @@ window.openCfoReportInNewWindow = function(){
     @media print {
       body { padding: 0 !important; background: #FFF !important; }
       .cfoReportPage { border: none !important; border-radius: 0 !important; margin: 0 !important; }
+      .cfoReportPage:last-child { page-break-after: avoid !important; break-after: avoid !important; }
       button, .hidePrint { display: none !important; }
     }
   </style>
@@ -11772,7 +11861,7 @@ function openBankCreditModal(){
           <div style="font-size:9.5px;color:#64748B">Kriter: &lt; 3.0x (${debtEbitda<3?'Güçlü Borç Kapasitesi':'Yakından İzlenmeli'})</div>
         </div>
         <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:8px;padding:10px">
-          <div style="font-size:10px;color:#64748B;font-weight:700">2. Cari Oran (Current Ratio)</div>
+          <div style="font-size:10px;color:#64748B;font-weight:700">2. Cari Oran</div>
           <div style="font-size:17px;font-weight:900;color:${currRatio>=1.2?'#16A34A':'#D97706'};margin:2px 0">${num(currRatio)}x</div>
           <div style="font-size:9.5px;color:#64748B">Kriter: &gt; 1.20x (${currRatio>=1.2?'KV Borç Ödeme Rahat':'Sınırda'})</div>
         </div>
@@ -11784,7 +11873,7 @@ function openBankCreditModal(){
         <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:8px;padding:10px">
           <div style="font-size:10px;color:#64748B;font-weight:700">4. Faiz Karşılama Oranı (ICR)</div>
           <div style="font-size:17px;font-weight:900;color:${icr>=2?'#16A34A':'#DC2626'};margin:2px 0">${num(icr)}x</div>
-          <div style="font-size:9.5px;color:#64748B">Kriter: &gt; 2.0x (EBIT / Finansman Faiz Gideri)</div>
+          <div style="font-size:9.5px;color:#64748B">Kriter: &gt; 2.0x (FVÖK / Finansman Faiz Gideri)</div>
         </div>
         <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:8px;padding:10px">
           <div style="font-size:10px;color:#64748B;font-weight:700">5. Özkaynak Payı (Özsermaye)</div>
@@ -11792,7 +11881,7 @@ function openBankCreditModal(){
           <div style="font-size:9.5px;color:#64748B">Kriter: &gt; %25 (Toplam Aktif İçindeki Pay)</div>
         </div>
         <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:8px;padding:10px">
-          <div style="font-size:10px;color:#64748B;font-weight:700">6. Finansal Kaldıraç (D/E)</div>
+          <div style="font-size:10px;color:#64748B;font-weight:700">6. Finansal Kaldıraç (Borç / Özkaynak)</div>
           <div style="font-size:17px;font-weight:900;color:${debtToEquity<=2.5?'#16A34A':'#D97706'};margin:2px 0">${num(debtToEquity)}x</div>
           <div style="font-size:9.5px;color:#64748B">Kriter: &lt; 2.5x (Toplam Borç / Özkaynak)</div>
         </div>
@@ -11827,8 +11916,8 @@ function openBankCreditModal(){
             <tr><td style="padding:5px 8px;font-weight:700">Net Satış Hasılatı</td><td style="padding:5px 8px;text-align:right"><b>${money(pl['Net sales'] || pl['Gross sales'] || 0)}</b></td><td style="padding:5px 8px;text-align:right">%100.0</td><td style="padding:5px 8px;color:#64748B">Müşterilerden tahsil edilen net gelir matrahı</td></tr>
             <tr><td style="padding:5px 8px;color:#DC2626">(-) Satışların Maliyeti (SMM)</td><td style="padding:5px 8px;text-align:right;color:#DC2626">-${money(pl['Cost of sales'] || pl['COGS'] || 0)}</td><td style="padding:5px 8px;text-align:right">%${num(pl['Net sales'] ? (pl['Cost of sales']||pl['COGS']||0)/pl['Net sales']*100 : 0)}</td><td style="padding:5px 8px;color:#64748B">Üretim &amp; doğrudan mal tedarik maliyetleri</td></tr>
             <tr style="background:#F1F5F9;font-weight:800"><td style="padding:5px 8px">Brüt Faaliyet Kârı</td><td style="padding:5px 8px;text-align:right;color:#16A34A">${money(pl['Gross profit'] || 0)}</td><td style="padding:5px 8px;text-align:right">%${num(k.gross_margin_pct ?? 0)}</td><td style="padding:5px 8px;color:#16A34A">Brüt operasyonel katma değer</td></tr>
-            <tr><td style="padding:5px 8px;color:#DC2626">(-) Faaliyet Giderleri (OPEX)</td><td style="padding:5px 8px;text-align:right;color:#DC2626">-${money(pl['Operating expenses'] || pl['OPEX'] || 0)}</td><td style="padding:5px 8px;text-align:right">%${num(pl['Net sales'] ? (pl['Operating expenses']||pl['OPEX']||0)/pl['Net sales']*100 : 0)}</td><td style="padding:5px 8px;color:#64748B">Yönetim, pazarlama, dağıtım ve personel giderleri</td></tr>
-            <tr style="background:#EFF6FF;font-weight:900;border-top:1.5px solid #2563EB"><td style="padding:5px 8px">Esas Faaliyet Kârı (EBIT)</td><td style="padding:5px 8px;text-align:right;color:#1D4ED8">${money(ebit)}</td><td style="padding:5px 8px;text-align:right">%${num(k.operating_margin ?? 0)}</td><td style="padding:5px 8px;color:#1D4ED8">Borç servisi ve kredi faizi ödeme ana kaynağı</td></tr>
+            <tr><td style="padding:5px 8px;color:#DC2626">(-) Faaliyet Giderleri (Faal. Gid.)</td><td style="padding:5px 8px;text-align:right;color:#DC2626">-${money(pl['Operating expenses'] || pl['OPEX'] || 0)}</td><td style="padding:5px 8px;text-align:right">%${num(pl['Net sales'] ? (pl['Operating expenses']||pl['OPEX']||0)/pl['Net sales']*100 : 0)}</td><td style="padding:5px 8px;color:#64748B">Yönetim, pazarlama, dağıtım ve personel giderleri</td></tr>
+            <tr style="background:#EFF6FF;font-weight:900;border-top:1.5px solid #2563EB"><td style="padding:5px 8px">Esas Faaliyet Kârı (FVÖK)</td><td style="padding:5px 8px;text-align:right;color:#1D4ED8">${money(ebit)}</td><td style="padding:5px 8px;text-align:right">%${num(k.operating_margin ?? 0)}</td><td style="padding:5px 8px;color:#1D4ED8">Borç servisi ve kredi faizi ödeme ana kaynağı</td></tr>
             <tr><td style="padding:5px 8px;color:#DC2626">(-) Finansman Giderleri (Kredi Faizi)</td><td style="padding:5px 8px;text-align:right;color:#DC2626">-${money(finCosts)}</td><td style="padding:5px 8px;text-align:right">%${num(pl['Net sales'] ? (finCosts)/pl['Net sales']*100 : 0)}</td><td style="padding:5px 8px;color:#64748B">Mevcut banka kredilerinin faiz ve komisyon yükü</td></tr>
             <tr style="background:#F8FAFC;font-weight:800"><td style="padding:5px 8px">Net Dönem Kârı</td><td style="padding:5px 8px;text-align:right;color:${(pl['Net profit']||0)>=0?'#16A34A':'#DC2626'}">${money(pl['Net profit'] || 0)}</td><td style="padding:5px 8px;text-align:right">%${num(k.net_margin ?? 0)}</td><td style="padding:5px 8px;color:#64748B">Özkaynaklara aktarılacak net kâr</td></tr>
           </tbody>
@@ -11993,6 +12082,7 @@ window.openBankCreditInNewWindow = function(){
     @media print {
       body { padding: 0 !important; background: #FFF !important; }
       .bankCreditPage { border: none !important; border-radius: 0 !important; margin: 0 !important; }
+      .bankCreditPage:last-child { page-break-after: avoid !important; break-after: avoid !important; }
       button, .hidePrint { display: none !important; }
     }
   </style>
