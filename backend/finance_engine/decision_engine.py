@@ -440,6 +440,15 @@ def build_finance_business_partner_analysis(
     statements["tax_strategy"] = tax_strategy
     statements["fx_rates"] = fx_rates
 
+    from .kobi_patron_engine import build_kobi_patron_analysis
+    kobi_patron = build_kobi_patron_analysis(
+        statements=statements,
+        sector=sector,
+        data_hub=data_hub,
+        kpis=statements.get("kpis"),
+        bp={"health_score": health_score, "health_label": health_label, "cash_conversion": ccc},
+    )
+
     core_metrics = build_core_metrics(
         statements=statements,
         quality=quality,
@@ -565,4 +574,5 @@ def build_finance_business_partner_analysis(
         "inflation_adjustment_engine": inflation_adjustment,
         "liquidity_stress_testing_engine": liquidity_stress_test,
         "fx_rates": fx_rates,
+        "kobi_patron_engine": kobi_patron,
     }

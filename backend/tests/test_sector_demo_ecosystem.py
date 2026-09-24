@@ -60,6 +60,20 @@ def test_run_sector_demo_end_to_end(sector_id):
     assert "profit_and_loss" in stmts
     assert "balance_sheet" in stmts
     assert "kpis" in stmts
+    # Aging sanity checks (ensure realistic days, no 4000+ days bug)
+    dh = data.get("data_hub", {})
+    ar = dh.get("ar_aging") or {}
+    ap = dh.get("ap_aging") or {}
+    if ar.get("weighted_average_overdue_days") is not None:
+        assert ar["weighted_average_overdue_days"] <= 365, f"AR overdue too high: {ar['weighted_average_overdue_days']}"
+    if ap.get("weighted_average_overdue_days") is not None:
+        assert ap["weighted_average_overdue_days"] <= 365, f"AP overdue too high: {ap['weighted_average_overdue_days']}"
+    for p in ar.get("top_overdue_parties", []):
+        if p.get("avg_days_overdue") is not None:
+            assert p["avg_days_overdue"] <= 730, f"Party overdue days absurd: {p}"
+    for p in ap.get("top_overdue_parties", []):
+        if p.get("avg_days_overdue") is not None:
+            assert p["avg_days_overdue"] <= 730, f"Party overdue days absurd: {p}"
 
 def test_get_sector_sample_file():
     resp = client.get("/api/sample/sector/uretim_sanayi/mizan_cur")

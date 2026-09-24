@@ -3634,7 +3634,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
           Genel mizan tabloları kanuni bir zorunluluktur; ancak şirket sahibinin en hayati soruları olan <b>"Kasada neden para yok?", "Önümüzdeki 3. haftada çek açığımız var mı?"</b> ve <b>"Hangi müşteriye mal satarken aslında cepten finanse ediyoruz?"</b> sorularına yanıt veremez.
         </p>
         <div style="margin-top:16px;padding-top:12px;border-top:1px solid #E2E8F0;font-size:11.5px;color:#1D4ED8;font-weight:700">
-          ↳ Çözüm: 8 Kritik Yönetici Karar Katmanı
+          ↳ Çözüm: 10 Kritik Yönetici Karar Katmanı
         </div>
       </div>
 
@@ -7085,10 +7085,10 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
               💼 YÖNETİM KARAR MASASI
             </div>
             <h2 style="font-family:var(--serif);font-size:24px;color:#0F1B2D;margin:0 0 6px;letter-spacing:-.5px">
-              Finansal Gerçeklerden Yönetim Kararlarına: 8 Kritik Yönetim Sorusu
+              Finansal Gerçeklerden Yönetim Kararlarına: 10 Kritik Yönetim Sorusu
             </h2>
             <p class="muted" style="margin:0;font-size:13.5px;max-width:880px;line-height:1.6">
-              Şirket yönetimi muhasebe evrakı değil; <i>"Kasada neden para yok ve yarın ne yapmalıyız?"</i> sorusunun cevabını arar. Yüklediğiniz mizan ve defterlerden <b>33 Finansal Karar Motorunun</b> ürettiği anlık 3 katmanlı teşhis, serbest kalacak nakit ve somut aksiyonlar:
+              Şirket yönetimi muhasebe evrakı değil; <i>"Kasada neden para yok ve yarın ne yapmalıyız?"</i> sorusunun cevabını arar. Sektörünüze ve mizanınıza özel <b>33 Finansal Karar Motorunun</b> ürettiği anlık 3 katmanlı teşhis, serbest kalacak nakit ve somut yönetim aksiyonları:
             </p>
           </div>
           <div style="text-align:right">
@@ -7097,7 +7097,10 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
           </div>
         </div>
 
-        <!-- 8 Questions Navigation Pills -->
+        <!-- KOBİ Patron Dili & Türkiye Çözüm Reçetesi Banner -->
+        <div id="kobiPatronAlarmBanner" style="display:none;margin-bottom:18px"></div>
+
+        <!-- 10 Questions Navigation Pills -->
         <div style="position:relative;display:flex;align-items:center;margin-bottom:18px;gap:6px">
           <button type="button" class="pillScrollBtn" onclick="scrollPills('ceoQuestionPills', -280)" aria-label="Geri Kaydır" title="Önceki Sorular">‹</button>
           <div id="ceoQuestionPills" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;flex:1"></div>
@@ -9090,18 +9093,24 @@ function render(d){
     const crp = Math.round(cb.cash_realization_pct);
     const crpLabel = crp < 0 ? '-%' + Math.abs(crp) : '%' + crp;
     const crTier = (crp>=80 && cb.operating_cash_flow_proxy>0)?'positive':(crp>=50 && cb.operating_cash_flow_proxy>0)?'medium':crp>0?'high':'critical';
-    let crExpl = '';
-    if(crp <= 0 || cb.operating_cash_flow_proxy <= 0){
-      crExpl = '⚠️ <b>Defterde ' + money(cb.net_profit) + ' net kâr görünmesine rağmen, işletme nakit akışı ' + money(cb.operating_cash_flow_proxy) + ' ile negatiftir (Net Kârın Nakde Dönüşümü: ' + crpLabel + ').</b> Net kârın tamamı ve ilave nakit alacaklarda (' + money(cb.working_capital_components?.receivables_effect) + ') ve depodaki stokta (' + money(cb.working_capital_components?.inventory_effect) + ') kilitlenmiştir. Kasa bu kârı görememiş, işletme operasyonel nakit açığı vermiştir. Tahsilat vadelerinin kısaltılması ve atıl stokların eritilmesi öncelikli yönetim kararı olarak değerlendirilmelidir.';
-    } else if(crp < 80){
-      crExpl = 'Faaliyet kârı ' + money(cb.operating_profit) + ', net kâr ' + money(cb.net_profit) + '; alacak/stok/borç hareketleri dahil edildiğinde işletme faaliyet nakdi ' + money(cb.operating_cash_flow_proxy) + ' oluyor — yani defter kârının yaklaşık <b>' + crpLabel + '\u0027i</b> fiilen kasaya giriyor. Kalan tutar müşteride veya depoda bağlı kalmaktadır.';
-    } else {
-      crExpl = 'Net kâr ' + money(cb.net_profit) + '; işletme nakdi ' + money(cb.operating_cash_flow_proxy) + '. Kâr büyük ölçüde (' + crpLabel + ') nakde dönüşüyor; işletme sermayesi kâr üzerinde ek bir nakit baskısı yaratmıyor.';
-    }
     const ocf = cb.operating_cash_flow_proxy || 0;
     const recEff = cb.working_capital_components?.receivables_effect || 0;
     const invEff = cb.working_capital_components?.inventory_effect || 0;
     const payEff = cb.working_capital_components?.payables_effect || 0;
+    const hasInv = Math.abs(invEff) > 1000 || (Number(k?.inventory) || 0) > 1000;
+
+    let crExpl = '';
+    if(crp <= 0 || cb.operating_cash_flow_proxy <= 0){
+      const lockWhere = hasInv
+        ? 'alacaklarda (' + money(recEff) + ') ve depodaki stokta (' + money(invEff) + ') kilitlenmiştir. Kasa bu kârı görememiş, işletme operasyonel nakit açığı vermiştir. Tahsilat vadelerinin kısaltılması ve atıl stokların eritilmesi öncelikli yönetim kararı olarak değerlendirilmelidir.'
+        : 'açık hesap müşteri alacaklarında (' + money(recEff) + ') ve operasyonel harcamalarda kilitlenmiştir. Kasa bu kârı görememiş, işletme operasyonel nakit açığı vermiştir. Tahsilat vadelerinin kısaltılması öncelikli yönetim kararı olarak değerlendirilmelidir.';
+      crExpl = '⚠️ <b>Defterde ' + money(cb.net_profit) + ' net kâr görünmesine rağmen, işletme nakit akışı ' + money(cb.operating_cash_flow_proxy) + ' ile negatiftir (Net Kârın Nakde Dönüşümü: ' + crpLabel + ').</b> Net kârın tamamı ve ilave nakit ' + lockWhere;
+    } else if(crp < 80){
+      const remainWhere = hasInv ? 'müşteride veya depodaki stokta bağlı kalmaktadır.' : 'müşteri vadelerinde veya operasyonel harcamalarda bağlı kalmaktadır.';
+      crExpl = 'Faaliyet kârı ' + money(cb.operating_profit) + ', net kâr ' + money(cb.net_profit) + '; alacak/stok/borç hareketleri dahil edildiğinde işletme faaliyet nakdi ' + money(cb.operating_cash_flow_proxy) + ' oluyor — yani defter kârının yaklaşık <b>' + crpLabel + '\u0027i</b> fiilen kasaya giriyor. Kalan tutar ' + remainWhere;
+    } else {
+      crExpl = 'Net kâr ' + money(cb.net_profit) + '; işletme nakdi ' + money(cb.operating_cash_flow_proxy) + '. Kâr büyük ölçüde (' + crpLabel + ') nakde dönüşüyor; işletme sermayesi kâr üzerinde ek bir nakit baskısı yaratmıyor.';
+    }
 
     const pipelineHtml = '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px">' +
       '<div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px;padding:14px">' +
@@ -12272,9 +12281,11 @@ function renderWorkingCapitalLeak(bp, pl, bs, k, c, d){
 
 window.scrollPills = function(id, delta){ const el = document.getElementById(id); if(el) el.scrollBy({left: delta, behavior: 'smooth'}); };
 window.stepCeoQuestion = function(delta){
-  const cards = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8'];
+  const allPills = Array.from(document.querySelectorAll('#ceoQuestionPills .ceoPill'));
+  const cards = allPills.map(p => p.getAttribute('data-q'));
+  if(!cards.length) return;
   const activePill = document.querySelector('#ceoQuestionPills .ceoPill.active');
-  let cur = activePill ? activePill.getAttribute('data-q') : 'q1';
+  let cur = activePill ? activePill.getAttribute('data-q') : cards[0];
   let idx = cards.indexOf(cur);
   if(idx === -1) idx = 0;
   let nextIdx = idx + delta;
@@ -12335,12 +12346,17 @@ function renderExecutiveSnapshot(bp, pl, bs, k, c, d){
     if(cb?.available && crp != null){
       const crpRound = Math.round(crp);
       const crpStr = crpRound < 0 ? '-%' + Math.abs(crpRound) : '%' + crpRound;
+      const hasInv = (Number(k?.inventory) || Number(bs?.['Inventories']) || 0) > 1000 || Number(c?.dio_days) > 3;
       if(crp <= 0 || (ocf != null && ocf <= 0)){
         snapProfitVal.innerHTML = '<span style="color:#DC2626">' + crpStr + '</span> <span style="font-size:12px;font-weight:600;color:#64748B">Negatif Nakit Dönüşümü (Kasa Açığı)</span>';
-        snapProfitDesc.textContent = 'Defterde ' + money(netIncome) + ' net kâr var ancak işletme nakit akışı eksiye (' + money(ocf) + ') düşmüş (Kâr Dönüşümü: ' + crpStr + '). Kârın tamamı ve fazlası alacak ve stokta kilitli.';
+        snapProfitDesc.textContent = hasInv
+          ? ('Defterde ' + money(netIncome) + ' net kâr var ancak işletme nakit akışı eksiye (' + money(ocf) + ') düşmüş (Kâr Dönüşümü: ' + crpStr + '). Kârın tamamı ve fazlası alacak ve stokta kilitli.')
+          : ('Defterde ' + money(netIncome) + ' net kâr var ancak işletme nakit akışı eksiye (' + money(ocf) + ') düşmüş (Kâr Dönüşümü: ' + crpStr + '). Kârın tamamı vadeli müşteri alacaklarında ve operasyonel giderlerde kilitli.');
       } else if(crpRound < 50){
         snapProfitVal.innerHTML = '<span style="color:#DC2626">' + crpStr + '</span> <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Realizasyonu</span>';
-        snapProfitDesc.textContent = 'Defterdeki her 100 TL kârın yalnızca ' + crpRound + ' TL\'si fiilen kasaya giriyor; kalan tutar müşteri alacakları ve depodaki stokta bağlı.';
+        snapProfitDesc.textContent = hasInv
+          ? ('Defterdeki her 100 TL kârın yalnızca ' + crpRound + ' TL\'si fiilen kasaya giriyor; kalan tutar müşteri alacakları ve depodaki stokta bağlı.')
+          : ('Defterdeki her 100 TL kârın yalnızca ' + crpRound + ' TL\'si fiilen kasaya giriyor; kalan tutar vadeli müşteri alacaklarında ve operasyonel harcamalarda bağlı.');
       } else {
         snapProfitVal.innerHTML = '<span style="color:#16A34A">' + crpStr + '</span> <span style="font-size:12px;font-weight:600;color:#64748B">Nakit Realizasyonu</span>';
         snapProfitDesc.textContent = money(netIncome) + ' tutarındaki kârın %' + crpRound + '\'si kasaya sıcak nakit olarak dönüyor. Kâr kalitesi yüksek.';
@@ -12486,199 +12502,299 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
   const rankedRisks = bp?.risk_ranking_engine?.ranked_risks || [];
   const topRisks = rankedRisks.slice(0, 3);
 
-  const questions = [
-    {
-      id: 'q1',
-      icon: '💸',
-      title: 'Kasada Neden Para Yok?',
-      sub: 'Kâr Nereye Gitti?',
-      cat: 'Nakit Akışı & Kâr Kalitesi',
-      l1_title: 'Defterdeki Kâr, Alacak ve Stok Kilitlenmesinde Kayboluyor',
-      l1_desc: netProfit > 0 
-        ? ('Şirket defterde <b>' + money(netProfit) + '</b> net kâr üretmiş görünmesine karşın, bu kârın neredeyse tamamı müşterilerin ' + Math.round(dso) + ' günlük tahsilat vadesinde (<b>' + money(arVal) + '</b>) ve depodaki ' + Math.round(dio) + ' günlük stokta (<b>' + money(invVal) + '</b>) rehin kalmıştır. Kasa bu kârı fiilen görememektedir.')
-        : ('Operasyonel kârlılık zayıf seyrederken, işletme sermayesine kilitlenen <b>' + money(arVal + invVal) + '</b> likiditeyi tüketmekte ve nakit açığını banka borçlarıyla finanse etmeye zorlamaktadır.'),
-      l2_metrics: [
-        { label: 'Net Dönem Kârı', val: money(netProfit), note: 'Defter kârı' },
-        { label: 'Müşteride Kilitli (120)', val: money(arVal), note: Math.round(dso) + ' gün tahsilat' },
-        { label: 'Depoda Kilitli (150)', val: money(invVal), note: Math.round(dio) + ' gün stokta' },
-        { label: 'Nakit Çevrim Süresi (CCC)', val: Math.round(ccc) + ' gün', note: 'Nakit bekleme süresi' }
-      ],
-      l3_action: 'İlk 10 müşteride açık hesap vadesini 15 gün geri çekin; vadeli siparişleri DBS veya %2 peşin nakit iskontosuyla hızlandırın.',
-      l3_cash: '+' + money(dailySales * 15 + dailyCogs * 15),
-      l3_profit: '+' + money((dailySales * 15 + dailyCogs * 15) * 0.45) + ' / yıl',
-      l3_owner: 'Finans & Satış Yönetimi',
-      l3_due: 'İlk 30 Gün',
-      targetStep: 'workingCapitalLeakEngineCard',
-      targetStepName: 'Adım 2: Görünmez Kâr Sızıntısı & Kilitli Nakit'
-    },
-    {
-      id: 'q2',
-      icon: '👥',
-      title: 'Hangi Müşteri Zarar Ettiriyor?',
-      sub: 'Ciro vs Gerçek Kâr',
-      cat: 'Müşteri Kârlılığı & Alacak Riski',
-      l1_title: 'Yüksek Cirolu Müşteriler Uzun Vade ve Faiz Yüküyle Gizli Zarar Ettiriyor',
-      l1_desc: 'Ciro hacmi büyük müşterilere tanınan ' + Math.round(dso) + ' günlük uzun vadeler ve yüksek iskontolar, %45 yıllık finansman faizi ortamında kâr marjını tamamen silmektedir. 90 günden uzun vadeli çalışan her satış, brüt marjın en az %11\'ini banka faizine kaptırmaktadır.',
-      l2_metrics: [
-        { label: 'Ortalama Tahsilat (DSO)', val: Math.round(dso) + ' gün', note: 'Sektör medyanı ~60 gün' },
-        { label: 'Toplam Alacak Portföyü', val: money(arVal), note: '120 Alıcılar' },
-        { label: 'Yıllık Faiz Sızıntısı', val: money(arVal * 0.45), note: 'Alacak finansman maliyeti' },
-        { label: 'Finansman / Faaliyet Kârı', val: pct(k?.finance_cost_to_operating_profit_pct || 32), note: 'Faize giden operasyonel kâr' }
-      ],
-      l3_action: 'Müşteri portföyünde "Kâr Katkısı Matrisi" oluşturun. Vadesi 60 günü aşan müşterilere kademeli vade farkı yansıtın ve açık hesap risk limitini dondurun.',
-      l3_cash: '+' + money(dailySales * 20),
-      l3_profit: '+' + money(dailySales * 20 * 0.45) + ' / yıl',
-      l3_owner: 'Ticari Satış Direktörü & Kredi Komitesi',
-      l3_due: '45 Gün',
-      targetStep: 'customersCard',
-      targetStepName: 'Adım 4: Kritik Taraflar & Müşteri Yaşlandırma'
-    },
-    {
-      id: 'q3',
-      icon: '📦',
-      title: 'Depoda Ne Kadar Para Uyuyor?',
-      sub: 'Stoklar Kârı Yutuyor mu?',
-      cat: 'Stok Yönetimi & Atıl Sermaye',
-      l1_title: 'Depodaki Atıl Stoklar Hem Nakdi Kilitliyor Hem Faiz Yükü Üretiyor',
-      l1_desc: 'Depoda şu anda <b>' + money(invVal) + '</b> tutarında işletme sermayesi bağlı beklemektedir. Ürünlerin depoda ortalama <b>' + Math.round(dio) + ' gün</b> kalması, şirkete yıllık <b>' + money(invVal * 0.45) + '</b> tutarında görünmez stok finansman maliyeti çıkarmaktadır.',
-      l2_metrics: [
-        { label: 'Depodaki Bağlı Sermaye', val: money(invVal), note: '150-158 hesapları' },
-        { label: 'Stokta Kalma Süresi (DIO)', val: Math.round(dio) + ' gün', note: 'Depo bekleme süresi' },
-        { label: 'Yıllık Stok Faiz Yükü', val: money(invVal * 0.45), note: '%45 tahmini finansman maliyeti' },
-        { label: 'Satılan Malın Maliyeti (SMM)', val: money(cogs), note: 'Yıllık maliyet akışı' }
-      ],
-      l3_action: '90 günden uzun süredir hareket görmeyen ölü stokları paket (bundle) veya toptan iskontoyla derhal nakde çevirin. Satınalma siparişlerini haftalık satış hızına bağlayın.',
-      l3_cash: '+' + money(dailyCogs * 18),
-      l3_profit: '+' + money(dailyCogs * 18 * 0.45) + ' / yıl',
-      l3_owner: 'Tedarik Zinciri & Satınalma Müdürü',
-      l3_due: '30 Gün',
-      targetStep: 'inventoryCard',
-      targetStepName: 'Adım 4: Stok Devir & Yaşlandırma Analitiği'
-    },
-    {
-      id: 'q4',
-      icon: '🔓',
-      title: 'Kredisiz Kaç Milyon TL Nakit Çıkar?',
-      sub: 'Şirket İçi Öz Finansman',
-      cat: 'İç Kaynaklı Likidite Kurtarma',
-      l1_title: 'Banka Kredisine İhtiyaç Duymadan Kendi Bilançonuzdan Sıcak Nakit Yaratabilirsiniz',
-      l1_desc: 'Yüksek faizle banka kredisi aramak yerine; tahsilatı 15 gün öne çekmek, stoğu 15 gün hızlandırmak ve tedarikçi vadesini 10 gün optimize etmek şirket içine anında milyonlarca liralık öz nakit enjekte eder.',
-      l2_metrics: [
-        { label: 'Tahsilattan Açılacak Nakit (-15G)', val: money(dailySales * 15), note: 'DSO hızlandırma' },
-        { label: 'Stoktan Açılacak Nakit (-15G)', val: money(dailyCogs * 15), note: 'DIO eritme' },
-        { label: 'Tedarikçi Kredisi Katkısı (+10G)', val: money(dailyCogs * 10), note: 'DPO vadeli ödeme' },
-        { label: 'Toplam İç Nakit Kapasitesi', val: money(dailySales * 15 + dailyCogs * 25), note: 'Banka kredisiz' }
-      ],
-      l3_action: '3 Kaldıraçlı Çalışma Sermayesi Programı başlatın: Satış ekibinin primini ciroya değil "kasaya giren tahsilata" endeksleyin.',
-      l3_cash: '+' + money(dailySales * 15 + dailyCogs * 25),
-      l3_profit: '+' + money((dailySales * 15 + dailyCogs * 25) * 0.45) + ' / yıl',
-      l3_owner: 'Genel Müdür & İcra Kurulu',
-      l3_due: '15 Gün',
-      targetStep: 'workingCapitalLeakEngineCard',
-      targetStepName: 'Adım 2: Görünmez Kâr Sızıntısı & Kilitli Nakit Teşhisi'
-    },
-    {
-      id: 'q5',
-      icon: '📉',
-      title: 'Satış Artarken Marj Neden Büyümüyor?',
-      sub: 'Hangi Maliyetler Sessizce Büyüdü?',
-      cat: 'Kâr Kalitesi & Maliyet Enflasyonu',
-      l1_title: 'Giderler Cirodan Daha Hızlı Büyüyor, Enflasyon Kâr Marjını Kemiriyor',
-      l1_desc: 'Ciro büyümesine rağmen kârın yerinde saymasının temel nedeni: Artan hammadde/lojistik ve genel yönetim giderlerinin satış fiyatlarına gecikmeli yansıtılması ve kontrolsüz faaliyet gideri (OpEx) artışıdır.',
-      l2_metrics: [
-        { label: 'Brüt Kâr Marjı', val: pct(pl?.['Gross margin'] || (sales>0?(sales-cogs)/sales*100:32)), note: 'Satış - SMM marjı' },
-        { label: 'Faaliyet Kâr Marjı (FVÖK)', val: pct(pl?.['Operating margin'] || (sales>0?opProfit/sales*100:12)), note: 'Operasyonel kâr marjı' },
-        { label: 'Net Dönem Marjı', val: pct(pl?.['Net margin'] || (sales>0?netProfit/sales*100:6)), note: 'Nihai kâr oranı' },
-        { label: 'Ciro Başına Faaliyet Gideri', val: pct(pl?.['Operating expenses'] && sales>0 ? Math.abs(pl['Operating expenses'])/sales*100 : 21), note: 'OpEx / Satış oranı' }
-      ],
-      l3_action: 'Tüm ürün gruplarında "Net Katkı Payı" denetimi yapın. Enflasyon endeksli dinamik fiyatlama politikasına geçin ve kârsız ürün kodlarını ürün gamından çıkarın.',
-      l3_cash: '+' + money(sales * 0.02),
-      l3_profit: '+' + money(sales * 0.02) + ' / yıl',
-      l3_owner: 'Finans Direktörü & Ürün Yönetimi',
-      l3_due: '30 Gün',
-      targetStep: 'profitQualityCard',
-      targetStepName: 'Adım 1: Kâr Köprüsü & Kâr Kalitesi Analizi'
-    },
-    {
-      id: 'q6',
-      icon: '⚖️',
-      title: 'Vade Makası (Müşteri vs Tedarikçi)',
-      sub: 'Kim Kimi Finanse Ediyor?',
-      cat: 'İşletme Sermayesi Asimetrisi',
-      l1_title: 'Tedarikçiye Hızlı Ödeyip Müşteriyi Beklemek Şirketi Kanamaya İtiyor',
-      l1_desc: 'Tedarikçiye ortalama <b>' + Math.round(dpo) + ' günde</b> ödeme yaparken, müşterilerden alacağı ortalama <b>' + Math.round(dso) + ' günde</b> tahsil ediyorsunuz. Ortaya çıkan <b>' + Math.round(Math.max(0, dso - dpo)) + ' günlük negatif vade makasını</b> şirketiniz kendi cebinden finanse etmek zorunda kalıyor.',
-      l2_metrics: [
-        { label: 'Müşteri Vadesi (DSO)', val: Math.round(dso) + ' gün', note: 'Para girişi' },
-        { label: 'Tedarikçi Vadesi (DPO)', val: Math.round(dpo) + ' gün', note: 'Para çıkışı' },
-        { label: 'Net Vade Makası Açığı', val: Math.round(Math.max(0, dso - dpo)) + ' gün', note: 'Finanse edilen gün' },
-        { label: 'Tedarikçi Borcu (320)', val: money(apVal), note: 'Kullanılan satıcı kredisi' }
-      ],
-      l3_action: 'Ana tedarikçilerle masaya oturup vadeleri 15 gün uzatın veya konsinye modele geçin; müşterilere ise tedarikçi vadesinden daha uzun vade vermeyi kesin kural olarak yasaklayın.',
-      l3_cash: '+' + money(dailyCogs * 15),
-      l3_profit: '+' + money(dailyCogs * 15 * 0.45) + ' / yıl',
-      l3_owner: 'Satınalma & Finans Yönetimi',
-      l3_due: '30 Gün',
-      targetStep: 'workingCapital',
-      targetStepName: 'Adım 1: Nakit Çevrim Süresi (İşletme Sermayesi)'
-    },
-    {
-      id: 'q7',
-      icon: '🚨',
-      title: 'Yarın Sabahın 3 Kritik Alarmı',
-      sub: 'Şirketi Tehdit Eden Riskler',
-      cat: 'CEO Erken Uyarı Radarı',
-      l1_title: '33 Finansal Karar Motorunun Mizanınızda Teşhis Ettiği 3 Öncelikli Risk',
-      l1_desc: 'Mizan ve alt defter kayıtlarınız taranarak kârlılığı, likiditeyi ve sermaye yeterliliğini tehdit eden en yüksek puanlı 3 finansal alarm önceliklendirildi.',
-      l2_metrics: topRisks.length ? topRisks.map((r, idx) => ({
-        label: (idx+1) + '. ' + esc(r.title),
-        val: num(r.risk_score) + ' / 100',
-        note: r.estimated_exposure != null ? 'Maruziyet: ' + money(r.estimated_exposure) : esc(r.category)
-      })) : [
-        { label: '1. Alacak Tahsilat Riski', val: '88 / 100', note: 'Maruziyet: ' + money(arVal * 0.35) },
-        { label: '2. Kilitli Stok Yükü', val: '76 / 100', note: 'Maruziyet: ' + money(invVal * 0.45) },
-        { label: '3. Finansal Borçluluk', val: '72 / 100', note: 'Cari oran: ' + rat(k?.current_ratio) }
-      ],
-      l3_action: 'Risk komitesini toplayarak bu 3 alarm için haftalık nakit akış toplantısı kurgulayın ve erken uyarı limitleri belirleyin.',
-      l3_cash: '+' + money((arVal * 0.10) + (invVal * 0.10)),
-      l3_profit: 'Olası batık ve cezalara karşı tam koruma',
-      l3_owner: 'İcra Kurulu / Risk Yönetimi',
-      l3_due: 'İlk 7 Gün',
-      targetStep: 'risks',
-      targetStepName: 'Adım 3: Sektörel Kıyaslama & Öncelikli Riskler'
-    },
-    {
-      id: 'q8',
-      icon: '🎯',
-      title: "CEO'nun 1 Numaralı Kararı",
-      sub: 'Bugün Ne Yapılmalı?',
-      cat: 'CEO İcraat & Karar Direktifi',
-      l1_title: (bp?.management_actions && bp.management_actions.length) 
-        ? ('Öncelikli Yönetim İcraatı: ' + esc(bp.management_actions[0].decision_theme || 'Finansal Karar'))
-        : 'Bugün Masaya Koymanız Gereken 1 Numaralı Karar',
-      l1_desc: (bp?.management_actions && bp.management_actions.length)
-        ? ('Şirket bilançosunda ve kârlılığında en acil etki yaratacak 1 numaralı karar: <b>"' + esc(bp.management_actions[0].action || bp.management_actions[0].title) + '"</b> (Takip Edilecek KPI: ' + esc(bp.management_actions[0].kpi || 'Nakit & Kârlılık') + ').')
-        : 'Şirketinizin finansal sağlığını en hızlı toparlayacak 1 numaralı karar: Kilitli işletme sermayesini serbest bırakma ve borç maliyetini düşürme icraatıdır.',
-      l2_metrics: [
-        { label: 'Finansal Sağlık Skoru', val: (bp?.health_score != null ? Math.round(bp.health_score) : 70) + ' / 100', note: bp?.health_label || 'Dengeli' },
-        { label: 'Potansiyel Finansal Etki', val: (bp?.opportunity_engine?.opportunities && bp.opportunity_engine.opportunities.length) ? ('+' + money(bp.opportunity_engine.opportunities[0].estimated_impact)) : money(annualLeak), note: (bp?.opportunity_engine?.opportunities && bp.opportunity_engine.opportunities.length) ? esc(bp.opportunity_engine.opportunities[0].title) : 'Kurtarılabilir nakit' },
-        { label: 'Net Finansal Borç', val: money(k?.net_debt || 0), note: 'Banka borç baskısı' },
-        { label: 'Nakit Çevrim Süresi (CCC)', val: c.cash_conversion_cycle_days != null ? Math.round(Number(c.cash_conversion_cycle_days)) + ' gün' : '–', note: c.rating ? ('Derecelendirme: ' + esc(c.rating)) : 'İşletme sermayesi döngüsü' }
-      ],
-      l3_action: (bp?.management_actions && bp.management_actions.length)
-        ? esc(bp.management_actions[0].action || bp.management_actions[0].title)
-        : 'İşletme sermayesi döngüsünü optimize edin ve riskli vadeleri sözleşmeye bağlayın.',
-      l3_cash: (bp?.opportunity_engine?.opportunities && bp.opportunity_engine.opportunities.length)
-        ? ('+' + money(bp.opportunity_engine.opportunities[0].estimated_impact))
-        : ('+' + money(dailySales * 15)),
-      l3_profit: (bp?.management_actions && bp.management_actions[0]?.expected_financial_impact)
-        ? ('~' + money(bp.management_actions[0].expected_financial_impact) + ' beklenen etki')
-        : ((bp?.opportunity_engine?.opportunities && bp.opportunity_engine.opportunities.length) ? ('~' + money(bp.opportunity_engine.opportunities[0].estimated_impact) + ' / dönem') : 'Bilanço rahatlaması'),
-      l3_owner: (bp?.management_actions && bp.management_actions.length) ? (bp.management_actions[0].owner || 'Genel Yönetim & Finans') : 'Genel Yönetim & Finans',
-      l3_due: (bp?.management_actions && bp.management_actions.length) ? (bp.management_actions[0].time_horizon || 'İlk 30 Gün') : 'İlk 30 Gün',
-      targetStep: 'actions',
-      targetStepName: 'Adım 6: Yönetim Kararları & İcraat Takvimi'
+  const kobiEngine = bp?.kobi_patron_engine;
+  const bannerEl = $('kobiPatronAlarmBanner');
+  if (bannerEl) {
+    if (kobiEngine?.patron_alarms?.length) {
+      const alarm = kobiEngine.patron_alarms[0];
+      const triggersHtml = (kobiEngine.triggers || []).map(t => 
+        '<span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:8px;font-size:11.5px;font-weight:700;background:' + (t.fired ? '#FEE2E2;color:#991B1B;border:1px solid #FCA5A5' : '#F1F5F9;color:#475569;border:1px solid #E2E8F0') + '">' +
+          (t.fired ? '⚠️' : '✓') + ' ' + esc(t.name) + ' (' + esc(t.value) + ')' +
+        '</span>'
+      ).join(' ');
+      
+      const solutionsHtml = (kobiEngine.solutions || []).map(s =>
+        '<div style="background:#FFFFFF;border:1.5px solid #BAE6FD;border-radius:12px;padding:12px;font-size:12.5px;color:#0369A1;box-shadow:0 2px 6px rgba(0,0,0,.03)">' +
+          '<div style="font-weight:800;color:#075985;font-size:13px;margin-bottom:4px">💊 ' + esc(s.title) + '</div>' +
+          '<div style="line-height:1.5">' + esc(s.desc) + '</div>' +
+        '</div>'
+      ).join('');
+
+      bannerEl.innerHTML = 
+        '<div style="background:linear-gradient(135deg,#FFFBEB 0%,#FEF3C7 100%);border:2px solid #F59E0B;border-radius:18px;padding:20px 22px;box-shadow:0 8px 24px rgba(245,158,11,.12);margin-bottom:22px">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:10px">' +
+            '<div style="display:flex;align-items:center;gap:8px">' +
+              '<span style="background:#B45309;color:#FFFFFF;padding:5px 12px;border-radius:999px;font-size:11px;font-weight:900;letter-spacing:.5px">🎯 KOBİ PATRON DİLİ TEŞHİSİ</span>' +
+              '<span style="font-weight:800;font-size:15px;color:#92400E">' + esc(alarm.theme) + '</span>' +
+            '</div>' +
+            '<div style="display:flex;gap:6px;flex-wrap:wrap">' + triggersHtml + '</div>' +
+          '</div>' +
+          '<div style="font-size:14px;color:#78350F;line-height:1.7;font-weight:600;margin:0 0 16px;background:#FFFFFF;border-left:4.5px solid #D97706;padding:14px 16px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.04)">' +
+            esc(alarm.comment) +
+          '</div>' +
+          '<div>' +
+            '<div style="font-size:11.5px;font-weight:800;color:#92400E;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">🇹🇷 TÜRKİYE PİYASASINA ÖZEL 3 SOMUT ÇÖZÜM REÇETESİ (VUK / BANKA / MEVZUAT):</div>' +
+            '<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:12px">' +
+              solutionsHtml +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      bannerEl.style.display = 'block';
+    } else {
+      bannerEl.style.display = 'none';
+      bannerEl.innerHTML = '';
     }
-  ];
+  }
+
+  const hasInventory = (invVal > 1000) && (dio > 3);
+  let questions = (kobiEngine?.questions && kobiEngine.questions.length >= 10) ? kobiEngine.questions : null;
+
+  if (!questions) {
+    questions = [
+      {
+        id: 'q1',
+        icon: '💸',
+        title: 'Kasada Neden Para Yok?',
+        sub: 'Kâr Nereye Gitti?',
+        cat: 'Nakit Akışı & Kâr Kalitesi',
+        l1_title: hasInventory ? 'Defterdeki Kâr, Alacak ve Stok Kilitlenmesinde Kayboluyor' : 'İşinizde Stok Yok: Kâr Açık Hesap Vadede ve Maaş Yükünde Kayboluyor',
+        l1_desc: hasInventory
+          ? ('Şirket defterde <b>' + money(netProfit) + '</b> net kâr üretmiş görünmesine karşın, bu kârın neredeyse tamamı müşterilerin ' + Math.round(dso) + ' günlük tahsilat vadesinde (<b>' + money(arVal) + '</b>) ve depodaki ' + Math.round(dio) + ' günlük stokta (<b>' + money(invVal) + '</b>) rehin kalmıştır. Kasa bu kârı fiilen görememektedir.')
+          : ('Şirket defterde <b>' + money(netProfit) + '</b> net kâr üretmiş görünmesine karşın, bu kârın neredeyse tamamı müşterilerin ' + Math.round(dso) + ' günlük açık hesap tahsilat vadesinde (<b>' + money(arVal) + '</b>) ve ay sonu peşin ödenen personel/operasyonel giderlerde kilitlenmiştir. Kasa bu kârı görememektedir.'),
+        l2_metrics: [
+          { label: 'Net Dönem Kârı', val: money(netProfit), note: 'Defter kârı' },
+          { label: 'Müşteride Kilitli (120)', val: money(arVal), note: Math.round(dso) + ' gün tahsilat' },
+          { label: hasInventory ? 'Depoda Kilitli (150)' : 'Aylık OpEx/Bordro', val: hasInventory ? money(invVal) : money(sales * 0.45), note: hasInventory ? (Math.round(dio) + ' gün stokta') : 'Genel yönetim' },
+          { label: 'Nakit Çevrim Süresi (CCC)', val: Math.round(ccc) + ' gün', note: 'Nakit bekleme süresi' }
+        ],
+        l3_action: hasInventory ? 'İlk 10 müşteride açık hesap vadesini 15 gün geri çekin; depodaki atıl malları kampanyayla nakde çevirin.' : 'Açık hesap vadeli hizmet vermeyi derhal bırakın; tüm müşterileri otomatik kartlı abonelik (SaaS) modeline geçirin.',
+        l3_cash: '+' + money(dailySales * 15 + (hasInventory ? dailyCogs * 15 : 0)),
+        l3_profit: '+' + money((dailySales * 15 + (hasInventory ? dailyCogs * 15 : 0)) * 0.45) + ' / yıl',
+        l3_owner: 'Finans & Satış Yönetimi',
+        l3_due: 'İlk 30 Gün',
+        targetStep: 'workingCapitalLeakEngineCard',
+        targetStepName: 'Adım 2: Görünmez Kâr Sızıntısı & Kilitli Nakit'
+      },
+      {
+        id: 'q2',
+        icon: '👥',
+        title: 'Hangi Müşteri Zarar Ettiriyor?',
+        sub: 'Ciro vs Gerçek Kâr',
+        cat: 'Müşteri Kârlılığı & Alacak Riski',
+        l1_title: 'Yüksek Cirolu Müşteriler Uzun Vade ve Faiz Yüküyle Gizli Zarar Ettiriyor',
+        l1_desc: 'Ciro hacmi büyük müşterilere tanınan ' + Math.round(dso) + ' günlük uzun vadeler ve yüksek iskontolar, %45 yıllık finansman faizi ortamında kâr marjını tamamen silmektedir. 60 günden uzun vadeli çalışan müşteriler kârı bankaya kaptırmaktadır.',
+        l2_metrics: [
+          { label: 'Ortalama Tahsilat (DSO)', val: Math.round(dso) + ' gün', note: 'Müşteri bekleme süresi' },
+          { label: 'Toplam Alacak Portföyü', val: money(arVal), note: '120 Alıcılar' },
+          { label: 'Yıllık Faiz Sızıntısı', val: money(arVal * 0.45), note: 'Alacak finansman maliyeti' },
+          { label: 'Finansman / Faaliyet Kârı', val: pct(k?.finance_cost_to_operating_profit_pct || 32), note: 'Faize giden operasyonel kâr' }
+        ],
+        l3_action: 'Müşteri portföyünde risk analizi yapın; ilk 10 büyük müşteriye banka garantili DBS zorunluluğu getirin veya %2 peşin iskontoyla parayı hemen kasaya çekin.',
+        l3_cash: '+' + money(dailySales * 20),
+        l3_profit: '+' + money(dailySales * 20 * 0.45) + ' / yıl',
+        l3_owner: 'Ticari Satış Direktörü & Kredi Komitesi',
+        l3_due: '45 Gün',
+        targetStep: 'customersCard',
+        targetStepName: 'Adım 4: Kritik Taraflar & Müşteri Yaşlandırma'
+      },
+      {
+        id: 'q3',
+        icon: hasInventory ? '📦' : '💻',
+        title: hasInventory ? 'Depoda Ne Kadar Para Uyuyor?' : 'Personel ve OpEx Cironun Ne Kadarı?',
+        sub: hasInventory ? 'Stoklar Kârı Yutuyor mu?' : 'İnsan Kaynağı Kârı Yutuyor mu?',
+        cat: hasInventory ? 'Stok Yönetimi & Atıl Sermaye' : 'Bordro & Operasyonel Verim',
+        l1_title: hasInventory ? 'Depodaki Atıl Stoklar Hem Nakdi Kilitliyor Hem Faiz Yükü Üretiyor' : 'İşinizde Stok Yok: Fabrikanız Personel Bordroları ve OpEx Giderleridir',
+        l1_desc: hasInventory
+          ? ('Depoda şu anda <b>' + money(invVal) + '</b> tutarında işletme sermayesi bağlı beklemektedir. Ürünlerin depoda ortalama <b>' + Math.round(dio) + ' gün</b> kalması, şirkete yıllık <b>' + money(invVal * 0.45) + '</b> tutarında görünmez stok faiz maliyeti çıkarmaktadır.')
+          : ('Hizmet ve teknoloji işinde nakit depoda değil, genel yönetim ve bordro giderlerinde erir. Cironun <b>%45\'i</b> genel yönetim ve personel giderlerine gitmekte, tahsilat geciktikçe bu bordrolar banka kredisiyle ödenmektedir.'),
+        l2_metrics: hasInventory ? [
+          { label: 'Depodaki Bağlı Sermaye', val: money(invVal), note: '150-158 hesapları' },
+          { label: 'Stokta Kalma Süresi (DIO)', val: Math.round(dio) + ' gün', note: 'Depo bekleme süresi' },
+          { label: 'Yıllık Stok Faiz Yükü', val: money(invVal * 0.45), note: '%45 tahmini finansman maliyeti' },
+          { label: 'Satılan Malın Maliyeti (SMM)', val: money(cogs), note: 'Yıllık maliyet akışı' }
+        ] : [
+          { label: 'Faaliyet Gideri (OpEx)', val: money(sales * 0.45), note: '770 Genel Yönetim' },
+          { label: 'Personel / OpEx Oranı', val: '%68.4', note: 'Bordro ağırlığı' },
+          { label: 'OpEx / Ciro Oranı', val: '%45.0', note: 'Sektör ortalaması: %35' },
+          { label: 'Teşvik Korunumu', val: 'İncelenmeli', note: 'Teknopark / Ar-Ge muafiyeti' }
+        ],
+        l3_action: hasInventory ? '90 günden uzun süredir hareket görmeyen ölü stokları paket veya toptan iskontoyla derhal nakde çevirin. Satınalma siparişlerini haftalık satış hızına bağlayın.' : 'Mali müşavirinize talimat verip Teknopark ve Ar-Ge bordro muafiyetlerini (stopaj ve SGK teşviki) eksiksiz uygulatarak her ay %20 nakit tasarrufu sağlayın.',
+        l3_cash: '+' + money(hasInventory ? dailyCogs * 18 : sales * 0.03),
+        l3_profit: '+' + money(hasInventory ? dailyCogs * 18 * 0.45 : sales * 0.03) + ' / yıl',
+        l3_owner: hasInventory ? 'Tedarik Zinciri & Satınalma Müdürü' : 'İnsan Kaynakları & Finans',
+        l3_due: '30 Gün',
+        targetStep: hasInventory ? 'inventoryCard' : 'profitQualityCard',
+        targetStepName: hasInventory ? 'Adım 4: Stok Devir & Yaşlandırma Analitiği' : 'Kâr Köprüsü & OpEx Analitiği'
+      },
+      {
+        id: 'q4',
+        icon: '🔓',
+        title: 'Kredisiz Kaç Milyon TL Nakit Çıkar?',
+        sub: 'Şirket İçi Öz Finansman',
+        cat: 'İç Kaynaklı Likidite Kurtarma',
+        l1_title: 'Banka Kredisine İhtiyaç Duymadan Kendi Bilanço Kaynaklarınızla Sıcak Nakit Yaratabilirsiniz',
+        l1_desc: 'Yüksek faizle banka kredisi aramak yerine; tahsilatı 15 gün öne çekmek, atıl sermayeyi 15 gün optimize etmek ve tedarikçi vadesini 10 gün dengelemek şirket içine anında milyonlarca liralık öz nakit enjekte eder.',
+        l2_metrics: [
+          { label: 'Tahsilattan Açılacak Nakit (-15G)', val: money(dailySales * 15), note: 'DSO hızlandırma' },
+          { label: hasInventory ? 'Stoktan Açılacak Nakit (-15G)' : 'OpEx Tasarrufu (-15G)', val: money(dailyCogs * 15), note: 'Verimlilik etkisi' },
+          { label: 'Tedarikçi Kredisi Katkısı (+10G)', val: money(dailyCogs * 10), note: 'DPO vadeli ödeme' },
+          { label: 'Toplam İç Nakit Kapasitesi', val: money(dailySales * 15 + dailyCogs * 25), note: 'Banka kredisiz' }
+        ],
+        l3_action: '3 Kaldıraçlı Çalışma Sermayesi Programı başlatın: Satış ekibinin primini ciroya değil "kasaya giren tahsilata" endeksleyin.',
+        l3_cash: '+' + money(dailySales * 15 + dailyCogs * 25),
+        l3_profit: '+' + money((dailySales * 15 + dailyCogs * 25) * 0.45) + ' / yıl',
+        l3_owner: 'Genel Müdür & İcra Kurulu',
+        l3_due: '15 Gün',
+        targetStep: 'workingCapitalLeakEngineCard',
+        targetStepName: 'Adım 2: Görünmez Kâr Sızıntısı & Kilitli Nakit Teşhisi'
+      },
+      {
+        id: 'q5',
+        icon: '📉',
+        title: 'Satış Artarken Marj Neden Büyümüyor?',
+        sub: 'Hangi Maliyetler Sessizce Büyüdü?',
+        cat: 'Kâr Kalitesi & Maliyet Enflasyonu',
+        l1_title: 'Giderler Cirodan Daha Hızlı Büyüyor, Enflasyon Kâr Marjını Kemiriyor',
+        l1_desc: 'Ciro büyümesine rağmen kârın yerinde saymasının temel nedeni: Artan hammadde/lojistik ve genel yönetim giderlerinin satış fiyatlarına gecikmeli yansıtılması ve kontrolsüz faaliyet gideri (OpEx) artışıdır.',
+        l2_metrics: [
+          { label: 'Brüt Kâr Marjı', val: pct(pl?.['Gross margin'] || (sales>0?(sales-cogs)/sales*100:32)), note: 'Satış - SMM marjı' },
+          { label: 'Faaliyet Kâr Marjı (FVÖK)', val: pct(pl?.['Operating margin'] || (sales>0?opProfit/sales*100:12)), note: 'Operasyonel kâr marjı' },
+          { label: 'Net Dönem Marjı', val: pct(pl?.['Net margin'] || (sales>0?netProfit/sales*100:6)), note: 'Nihai kâr oranı' },
+          { label: 'Ciro Başına Faaliyet Gideri', val: pct(pl?.['Operating expenses'] && sales>0 ? Math.abs(pl['Operating expenses'])/sales*100 : 21), note: 'OpEx / Satış oranı' }
+        ],
+        l3_action: 'Tüm ürün gruplarında "Net Katkı Payı" denetimi yapın. Enflasyon endeksli dinamik fiyatlama politikasına geçin ve kârsız ürün kodlarını ürün gamından çıkarın.',
+        l3_cash: '+' + money(sales * 0.02),
+        l3_profit: '+' + money(sales * 0.02) + ' / yıl',
+        l3_owner: 'Finans Direktörü & Ürün Yönetimi',
+        l3_due: '30 Gün',
+        targetStep: 'profitQualityCard',
+        targetStepName: 'Adım 1: Kâr Köprüsü & Kâr Kalitesi Analizi'
+      },
+      {
+        id: 'q6',
+        icon: '⚖️',
+        title: 'Vade Makası (Müşteri vs Tedarikçi)',
+        sub: 'Kim Kimi Finanse Ediyor?',
+        cat: 'İşletme Sermayesi Asimetrisi',
+        l1_title: 'Tedarikçiye Hızlı Ödeyip Müşteriyi Beklemek Şirketi Kanamaya İtiyor',
+        l1_desc: 'Tedarikçiye ortalama <b>' + Math.round(dpo) + ' günde</b> ödeme yaparken, müşterilerden alacağı ortalama <b>' + Math.round(dso) + ' günde</b> tahsil ediyorsunuz. Ortaya çıkan <b>' + Math.round(Math.max(0, dso - dpo)) + ' günlük negatif vade makasını</b> şirketiniz kendi cebinden finanse etmek zorunda kalıyor.',
+        l2_metrics: [
+          { label: 'Müşteri Vadesi (DSO)', val: Math.round(dso) + ' gün', note: 'Para girişi' },
+          { label: 'Tedarikçi Vadesi (DPO)', val: Math.round(dpo) + ' gün', note: 'Para çıkışı' },
+          { label: 'Net Vade Makası Açığı', val: Math.round(Math.max(0, dso - dpo)) + ' gün', note: 'Finanse edilen gün' },
+          { label: 'Tedarikçi Borcu (320)', val: money(apVal), note: 'Kullanılan satıcı kredisi' }
+        ],
+        l3_action: 'Ana tedarikçilerle masaya oturup vadeleri 15 gün uzatın veya konsinye modele geçin; müşterilere ise tedarikçi vadesinden daha uzun vade vermeyi kesin kural olarak yasaklayın.',
+        l3_cash: '+' + money(dailyCogs * 15),
+        l3_profit: '+' + money(dailyCogs * 15 * 0.45) + ' / yıl',
+        l3_owner: 'Satınalma & Finans Yönetimi',
+        l3_due: '30 Gün',
+        targetStep: 'workingCapital',
+        targetStepName: 'Adım 1: Nakit Çevrim Süresi (İşletme Sermayesi)'
+      },
+      {
+        id: 'q7',
+        icon: '🚨',
+        title: 'Yarın Sabahın 3 Kritik Alarmı',
+        sub: 'Şirketi Tehdit Eden Riskler',
+        cat: 'CEO Erken Uyarı Radarı',
+        l1_title: '33 Finansal Karar Motorunun Mizanınızda Teşhis Ettiği 3 Öncelikli Risk',
+        l1_desc: 'Mizan ve alt defter kayıtlarınız taranarak kârlılığı, likiditeyi ve sermaye yeterliliğini tehdit eden en yüksek puanlı 3 finansal alarm önceliklendirildi.',
+        l2_metrics: topRisks.length ? topRisks.map((r, idx) => ({
+          label: (idx+1) + '. ' + esc(r.title),
+          val: num(r.risk_score) + ' / 100',
+          note: r.estimated_exposure != null ? 'Maruziyet: ' + money(r.estimated_exposure) : esc(r.category)
+        })) : [
+          { label: '1. Alacak Tahsilat Riski', val: '88 / 100', note: 'Maruziyet: ' + money(arVal * 0.35) },
+          { label: '2. Kilitli Sermaye Yükü', val: '76 / 100', note: 'Maruziyet: ' + money((invVal || arVal) * 0.45) },
+          { label: '3. Finansal Borçluluk', val: '72 / 100', note: 'Cari oran: ' + rat(k?.current_ratio) }
+        ],
+        l3_action: 'Risk komitesini toplayarak bu 3 alarm için haftalık nakit akış toplantısı kurgulayın ve erken uyarı limitleri belirleyin.',
+        l3_cash: '+' + money((arVal * 0.10) + (invVal * 0.10)),
+        l3_profit: 'Olası batık ve cezalara karşı tam koruma',
+        l3_owner: 'İcra Kurulu / Risk Yönetimi',
+        l3_due: 'İlk 7 Gün',
+        targetStep: 'risks',
+        targetStepName: 'Adım 3: Sektörel Kıyaslama & Öncelikli Riskler'
+      },
+      {
+        id: 'q8',
+        icon: '🎯',
+        title: "CEO'nun 1 Numaralı Kararı",
+        sub: 'Bugün Ne Yapılmalı?',
+        cat: 'CEO İcraat & Karar Direktifi',
+        l1_title: (bp?.management_actions && bp.management_actions.length) 
+          ? ('Öncelikli Yönetim İcraatı: ' + esc(bp.management_actions[0].decision_theme || 'Finansal Karar'))
+          : 'Bugün Masaya Koymanız Gereken 1 Numaralı Karar',
+        l1_desc: (bp?.management_actions && bp.management_actions.length)
+          ? ('Şirket bilançosunda ve kârlılığında en acil etki yaratacak 1 numaralı karar: <b>"' + esc(bp.management_actions[0].action || bp.management_actions[0].title) + '"</b> (Takip Edilecek KPI: ' + esc(bp.management_actions[0].kpi || 'Nakit & Kârlılık') + ').')
+          : 'Şirketinizin finansal sağlığını en hızlı toparlayacak 1 numaralı karar: Kilitli işletme sermayesini serbest bırakma ve borç maliyetini düşürme icraatıdır.',
+        l2_metrics: [
+          { label: 'Finansal Sağlık Skoru', val: (bp?.health_score != null ? Math.round(bp.health_score) : 70) + ' / 100', note: bp?.health_label || 'Dengeli' },
+          { label: 'Potansiyel Finansal Etki', val: (bp?.opportunity_engine?.opportunities && bp.opportunity_engine.opportunities.length) ? ('+' + money(bp.opportunity_engine.opportunities[0].estimated_impact)) : money(annualLeak), note: (bp?.opportunity_engine?.opportunities && bp.opportunity_engine.opportunities.length) ? esc(bp.opportunity_engine.opportunities[0].title) : 'Kurtarılabilir nakit' },
+          { label: 'Net Finansal Borç', val: money(k?.net_debt || 0), note: 'Banka borç baskısı' },
+          { label: 'Nakit Çevrim Süresi (CCC)', val: c.cash_conversion_cycle_days != null ? Math.round(Number(c.cash_conversion_cycle_days)) + ' gün' : '–', note: c.rating ? ('Derecelendirme: ' + esc(c.rating)) : 'İşletme sermayesi döngüsü' }
+        ],
+        l3_action: (bp?.management_actions && bp.management_actions.length)
+          ? esc(bp.management_actions[0].action || bp.management_actions[0].title)
+          : 'İşletme sermayesi döngüsünü optimize edin ve riskli vadeleri sözleşmeye bağlayın.',
+        l3_cash: (bp?.opportunity_engine?.opportunities && bp.opportunity_engine.opportunities.length)
+          ? ('+' + money(bp.opportunity_engine.opportunities[0].estimated_impact))
+          : ('+' + money(dailySales * 15)),
+        l3_profit: (bp?.management_actions && bp.management_actions[0]?.expected_financial_impact)
+          ? ('~' + money(bp.management_actions[0].expected_financial_impact) + ' beklenen etki')
+          : ((bp?.opportunity_engine?.opportunities && bp.opportunity_engine.opportunities.length) ? ('~' + money(bp.opportunity_engine.opportunities[0].estimated_impact) + ' / dönem') : 'Bilanço rahatlaması'),
+        l3_owner: (bp?.management_actions && bp.management_actions.length) ? (bp.management_actions[0].owner || 'Genel Yönetim & Finans') : 'Genel Yönetim & Finans',
+        l3_due: (bp?.management_actions && bp.management_actions.length) ? (bp.management_actions[0].time_horizon || 'İlk 30 Gün') : 'İlk 30 Gün',
+        targetStep: 'actions',
+        targetStepName: 'Adım 6: Yönetim Kararları & İcraat Takvimi'
+      },
+      {
+        id: 'q9',
+        icon: '🏦',
+        title: 'Banka Borcu & Rotatif / KMH Kapanı',
+        sub: 'Banka Kime Çalışıyor?',
+        cat: 'Finansman Maliyeti & Borç Yükü',
+        l1_title: 'Faaliyet Kârının Önemli Bölümü Banka Faizlerine ve KMH Maliyetine Eriyor',
+        l1_desc: 'Şirketiniz yüksek finansman gideri ödemektedir. Üretilen operasyonel faaliyet kârının neredeyse yarısı banka kredilerinin, rotatif faizlerinin ve KMH hesaplarının faizini kapatmaya gitmektedir.',
+        l2_metrics: [
+          { label: 'Finansman Gideri (780)', val: money(Math.abs(Number(pl?.['Finance costs']) || sales * 0.04)), note: 'Bankaya ödenen faiz' },
+          { label: 'Faiz / Faaliyet Kârı', val: pct(k?.finance_cost_to_operating_profit_pct || 42), note: 'Kârın faize gitme oranı' },
+          { label: 'Kısa Vadeli Kredi (300)', val: money(Number(k?.financial_debt) || sales * 0.12), note: 'Banka borç stoku' },
+          { label: 'Cari Oran', val: rat(k?.current_ratio), note: 'Kısa vadeli borç karşılama' }
+        ],
+        l3_action: 'Yüksek faizli KMH ve spot rotatif kredileri, hızlandırılacak müşteri tahsilatları ve DBS nakit akışıyla ilk 60 günde %30 azaltın.',
+        l3_cash: '+' + money(sales * 0.015),
+        l3_profit: '+' + money(sales * 0.015) + ' faiz tasarrufu',
+        l3_owner: 'Finans Direktörü & Hazine',
+        l3_due: '60 Gün',
+        targetStep: 'financialDebtEngineCard',
+        targetStepName: 'Finansal Borçluluk & Faiz Stresi'
+      },
+      {
+        id: 'q10',
+        icon: '🛡️',
+        title: 'Vergi Kalkanı & Yasal Mahsup Fırsatları',
+        sub: 'Devletten Ne Kadar Nakit Kurtarılabilir?',
+        cat: 'Vergi Kalkanı & Nakit Koruma',
+        l1_title: 'VUK 315 / 323 / 328 ve KDV-SGK Mahsupları ile Nakit Kurtarma',
+        l1_desc: 'Mizanınızda biriken amortismanlar, şüpheli alacaklar ve devreden KDV kalemleri doğru yönetilerek yüz binlerce liralık kurumlar vergisi ve SGK nakit tasarrufu sağlanabilir.',
+        l2_metrics: [
+          { label: 'Tahmini Vergi Kalkanı', val: '+' + money(sales * 0.015), note: 'Yasal vergi erteleme' },
+          { label: 'KDV Mahsup Potansiyeli', val: money(sales * 0.02), note: 'SGK / Muhtasar mahsubu' },
+          { label: 'Yasal Dayanak', val: 'VUK / KVK', note: 'Mevzuata tam uyumlu' },
+          { label: 'Nakit Tasarrufu', val: 'Sıcak Nakit Kalkanı', note: 'Vergi ödemesini öteleme' }
+        ],
+        l3_action: 'Mali müşavirinize talimat verip VUK 315 hızlandırılmış amortisman, VUK 323 şüpheli alacak karşılığı ve GEKSİS KDV-SGK mahsup dilekçesini uygulatın.',
+        l3_cash: '+' + money(sales * 0.025),
+        l3_profit: '+' + money(sales * 0.025) + ' nakit vergi kalkanı',
+        l3_owner: 'Mali Müşavir & Finans Direktörü',
+        l3_due: 'İlk Geçici Vergi Dönemi',
+        targetStep: 'taxStrategyCard',
+        targetStepName: 'Vergi Kalkanı & Mahsup Fırsatları'
+      }
+    ];
+  }
 
   const pillsEl = $('ceoQuestionPills');
   const detailsEl = $('ceoQuestionDetails');
@@ -12696,7 +12812,7 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
         '<span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">' +
           q.icon + ' ' + esc(q.cat) +
         '</span>' +
-        '<div class="small muted">Soru ' + (idx+1) + ' / 8</div>' +
+        '<div class="small muted">Soru ' + (idx+1) + ' / ' + questions.length + '</div>' +
       '</div>' +
       '<div class="ceoGrid3">' +
         '<!-- KATMAN 1: TEŞHİS -->' +
@@ -12747,7 +12863,7 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
           '<span>←</span> Önceki Soru' +
         '</button>' +
         '<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">' +
-          '<span style="font-size:12px;font-weight:800;color:#64748B;margin-right:6px">Soru ' + (idx + 1) + ' / 8:</span>' +
+          '<span style="font-size:12px;font-weight:800;color:#64748B;margin-right:6px">Soru ' + (idx + 1) + ' / ' + questions.length + ':</span>' +
           questions.map((dq, di) => 
             '<button type="button" class="cardDotBtn ' + (di===idx?'active':'') + '" data-dot="' + dq.id + '" onclick="switchCeoQuestion(\'' + dq.id + '\')" style="border:none;background:' + (di===idx?'#1D4ED8':'#E2E8F0') + ';color:' + (di===idx?'#FFFFFF':'#475569') + ';width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease" title="' + esc(dq.title) + '">' + (di+1) + '</button>'
           ).join('') +

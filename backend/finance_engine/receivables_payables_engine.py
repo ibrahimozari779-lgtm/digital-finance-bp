@@ -41,9 +41,29 @@ def _aging(df,mapping,kind,as_of_date=None):
         work['_amt']=0.0
     if mapping.get('due_date'): work['_due']=safe_dates(work[mapping['due_date']])
     else: work['_due']=None
-    today=datetime.fromisoformat(str(as_of_date)[:10]) if as_of_date else datetime.now()
-    work['_days']=work['_due'].map(lambda due: (today-due).days if due else None)
-    known_days=work['_days'].fillna(0)
+    today = None
+    if as_of_date:
+        try:
+            today = datetime.fromisoformat(str(as_of_date)[:10])
+        except Exception:
+            today = None
+    if not today:
+        valid_dues = work['_due'].dropna() if work['_due'] is not None else None
+        if valid_dues is not None and len(valid_dues) > 0:
+            today = max(valid_dues)
+        else:
+            today = datetime.now()
+    elif work['_due'] is not None:
+        valid_dues = work['_due'].dropna()
+        if len(valid_dues) > 0:
+            years = [d.year for d in valid_dues if hasattr(d, 'year')]
+            if years:
+                median_year = sorted(years)[len(years) // 2]
+                if abs(today.year - median_year) > 2:
+                    today = datetime(median_year, 12, 31)
+
+    work['_days'] = work['_due'].map(lambda due: min(730, max(-365, (today - due).days)) if due else None)
+    known_days = work['_days'].fillna(0)
     out['rows']=len(work); out['outstanding']=float(work['_amt'].sum()); out['overdue']=float(work.loc[known_days>0,'_amt'].sum())
     out['overdue_pct']=out['overdue']/out['outstanding']*100 if out['outstanding'] else None
     buckets=[('Current',(-10**9,0)),('1-30',(1,30)),('31-60',(31,60)),('61-90',(61,90)),('91-180',(91,180)),('180+',(181,10**9))]
