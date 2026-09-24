@@ -55,6 +55,9 @@ def build_root_cause_analysis(statements: dict[str, Any], findings: list[dict[st
     def pct(v: float) -> float | None:
         return round(v / net_sales * 100, 2) if net_sales else None
 
+    def _tl(v: float) -> str:
+        return f"{v:,.0f}".replace(",", ".")
+
     bridge = [
         {"label": "Net satışlar", "amount": net_sales, "pct_of_sales": pct(net_sales), "is_subtotal": True},
         {"label": "Satışların maliyeti (COGS)", "amount": -cogs, "pct_of_sales": pct(-cogs), "is_subtotal": False},
@@ -129,13 +132,13 @@ def build_root_cause_analysis(statements: dict[str, Any], findings: list[dict[st
         if operating_margin_pct is not None:
             rc_p_evidence.append(f"Faaliyet Kâr Marjı: %{operating_margin_pct:.1f}")
         if operating_profit is not None:
-            rc_p_evidence.append(f"Faaliyet Kârı: {operating_profit:,.0f} TL")
+            rc_p_evidence.append(f"Faaliyet Kârı: {_tl(operating_profit)} TL")
 
         causal_chains.append({
             "code": "RC-P", "title": "Faaliyet Kârlılığı Kök Nedeni",
             "chain": chain, "primary_driver": driver,
             "evidence": rc_p_evidence,
-            "financial_impact": f"Faaliyet kârı erimesi (~{abs(opex):,.0f} TL gider yükü)",
+            "financial_impact": f"Faaliyet kârı erimesi (~{_tl(abs(opex))} TL gider yükü)",
             "recommended_actions": [
                 "Ürün bazlı kârlılık kırılımını çıkarıp negatif marjlı ürünleri fiyatlayın",
                 "Faaliyet giderlerinde (770/760) tasarruf bütçesi belirleyin",
@@ -158,20 +161,20 @@ def build_root_cause_analysis(statements: dict[str, Any], findings: list[dict[st
 
         rc_l_evidence: list[str] = []
         if finance_costs is not None:
-            rc_l_evidence.append(f"Finansman Gideri: {finance_costs:,.0f} TL")
+            rc_l_evidence.append(f"Finansman Gideri: {_tl(finance_costs)} TL")
         if finance_cost_to_op is not None:
             rc_l_evidence.append(f"Finansman Gideri / Faaliyet Kârı: %{(finance_cost_to_op * 100):.1f}")
         if debt_to_equity is not None:
             rc_l_evidence.append(f"Borç / Özkaynak (Kaldıraç): {debt_to_equity:.2f}x")
         fin_debt = float(k.get("financial_debt") or 0.0)
         if fin_debt > 0:
-            rc_l_evidence.append(f"Toplam Finansal Borç: {fin_debt:,.0f} TL")
+            rc_l_evidence.append(f"Toplam Finansal Borç: {_tl(fin_debt)} TL")
 
         causal_chains.append({
             "code": "RC-L", "title": "Finansman Baskısı Kök Nedeni",
             "chain": chain, "primary_driver": "Finansal kaldıraç (borç seviyesi)",
             "evidence": rc_l_evidence,
-            "financial_impact": f"Yıllık {finance_costs:,.0f} TL nakit faiz sızıntısı",
+            "financial_impact": f"Yıllık {_tl(finance_costs)} TL nakit faiz sızıntısı",
             "recommended_actions": [
                 "Kredi vadelerini yeniden yapılandırın ve yüksek faizli rotatifleri kapatın",
                 "Nakit sermaye artırımı (KVK 10/1-ı) ile faiz indiriminden faydalanın",
@@ -197,7 +200,7 @@ def build_root_cause_analysis(statements: dict[str, Any], findings: list[dict[st
         rc_w_evidence: list[str] = []
         rec_val = float(k.get("receivables") or 0.0)
         if rec_val > 0:
-            rc_w_evidence.append(f"Müşteri Alacakları (120): {rec_val:,.0f} TL")
+            rc_w_evidence.append(f"Müşteri Alacakları (120): {_tl(rec_val)} TL")
         if receivables_to_sales is not None:
             rc_w_evidence.append(f"Alacak / Satış Oranı: %{(receivables_to_sales * 100):.1f}")
         dso_val = k.get("dso")
@@ -208,7 +211,7 @@ def build_root_cause_analysis(statements: dict[str, Any], findings: list[dict[st
             "code": "RC-W", "title": "İşletme Sermayesi Kök Nedeni",
             "chain": chain, "primary_driver": "Alacak tahsilat hızı",
             "evidence": rc_w_evidence,
-            "financial_impact": f"Müşteri vadelerinde kilitli {rec_val:,.0f} TL sermaye",
+            "financial_impact": f"Müşteri vadelerinde kilitli {_tl(rec_val)} TL sermaye",
             "recommended_actions": [
                 "Vadesi geçen alacaklar için DBS / teminat protokolü uygulayın",
                 "Erken ödeme yapan müşterilere peşin iskontosu sunarak nakdi çekin",

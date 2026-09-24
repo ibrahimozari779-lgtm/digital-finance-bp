@@ -53,27 +53,30 @@ def build_inflation_adjustment_analysis(
     is_capital_eroding = net_profit < equity_preservation_threshold if equity > 0 else True
     capital_erosion_amount = max(0.0, equity_preservation_threshold - net_profit) if equity > 0 else 0.0
 
+    def _tl(v: float) -> str:
+        return f"{v:,.0f}".replace(",", ".")
+
     severity = "critical" if real_economic_profit < 0 and net_profit > 0 else ("high" if is_capital_eroding else "medium")
 
     if real_economic_profit < 0 and net_profit > 0:
         executive_assessment = (
-            f"İllüzyon Kâr Uyarısı: Defterde {net_profit:,.0f} TL nominal net kâr görünmesine rağmen, "
+            f"İllüzyon Kâr Uyarısı: Defterde {_tl(net_profit)} TL nominal net kâr görünmesine rağmen, "
             f"yıllık %{annual_inflation_rate*100:.0f} enflasyon ve stok yenileme maliyeti düşüldüğünde "
-            f"şirketiniz aslında -{abs(real_economic_profit):,.0f} TL REEL ZARARDADIR. "
-            f"Kâr zannettiğiniz tutarın {phantom_inventory_profit:,.0f} TL'si satılan stoğu aynı fiyattan "
+            f"şirketiniz aslında -{_tl(abs(real_economic_profit))} TL REEL ZARARDADIR. "
+            f"Kâr zannettiğiniz tutarın {_tl(phantom_inventory_profit)} TL'si satılan stoğu aynı fiyattan "
             f"yerine koyamama (fiktif stok kârı) kaynaklıdır."
         )
     elif is_capital_eroding:
         executive_assessment = (
-            f"Sermaye Erimesi: Şirket kâr üretmektedir ancak net kâr ({net_profit:,.0f} TL), "
-            f"özkaynakların enflasyona karşı korunması için gereken {equity_preservation_threshold:,.0f} TL "
-            f"kârlılık eşiğinin altında kalmıştır. Şirket özkaynağı reel olarak yılda {capital_erosion_amount:,.0f} TL erimektedir."
+            f"Sermaye Erimesi: Şirket kâr üretmektedir ancak net kâr ({_tl(net_profit)} TL), "
+            f"özkaynakların enflasyona karşı korunması için gereken {_tl(equity_preservation_threshold)} TL "
+            f"kârlılık eşiğinin altında kalmıştır. Şirket özkaynağı reel olarak yılda {_tl(capital_erosion_amount)} TL erimektedir."
         )
     else:
         executive_assessment = (
-            f"Reel Kârlılık Pozitif: Şirket net kârı ({net_profit:,.0f} TL), "
+            f"Reel Kârlılık Pozitif: Şirket net kârı ({_tl(net_profit)} TL), "
             f"yıllık %{annual_inflation_rate*100:.0f} enflasyon ve stok ikame maliyetlerini karşılayarak "
-            f"+{real_economic_profit:,.0f} TL reel ekonomik katma değer üretmektedir."
+            f"+{_tl(real_economic_profit)} TL reel ekonomik katma değer üretmektedir."
         )
 
     return {

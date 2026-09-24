@@ -362,7 +362,7 @@ def build_cash_flow_engine(
             anomalies.append({
                 "code": "ALM-FAIZ-BASKISI",
                 "title": f"Faiz Baskısı: Kârın %{fin_to_op:.0f}'i Bankaya Gidiyor",
-                "description": f"Faaliyet kârınızın (₺{operating_profit:,.0f}) yaklaşık ₺{finance_costs:,.0f} tutarındaki kısmı kredi ve finansman faizlerine eriyor.",
+                "description": f"Faaliyet kârınızın (₺{operating_profit:,.0f}) yaklaşık ₺{finance_costs:,.0f} tutarındaki kısmı kredi ve finansman faizlerine eriyor.".replace(",", "."),
                 "exposure_tl": finance_costs,
                 "severity": "critical" if fin_to_op > 40 else "warning",
             })
@@ -491,7 +491,7 @@ def build_cash_flow_engine(
 def _build_whatsapp_directive(owner: str, task: str, horizon: str, kpi: str, impact: float | None) -> str:
     """Builds a polite, professional, and data-driven WhatsApp directive quoting real company figures."""
     salutation = f"Sayın {owner}" if owner else "Sayın Yöneticim"
-    impact_str = f" ve şirket kasasına yaklaşık ₺{impact:,.0f} likidite serbestleşmesi sağlanması" if (impact and impact > 0) else ""
+    impact_str = f" ve şirket kasasına yaklaşık ₺{impact:,.0f} likidite serbestleşmesi sağlanması".replace(",", ".") if (impact and impact > 0) else ""
     return (
         f"{salutation}, yönetim kurulu finansal değerlendirmemize göre öncelikli aksiyonumuz belirlenmiştir:\n\n"
         f"🎯 Aksiyon: {task}\n"

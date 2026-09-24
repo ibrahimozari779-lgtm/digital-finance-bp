@@ -72,6 +72,7 @@ def build_product_profitability_analysis(
     findings = []
     # Identify products with high sales but genuinely low margin (at least 2pp below company average)
     drag_products = [p for p in processed if p['sales_share_pct'] >= 15 and p['gross_margin_pct'] < (company_margin_pct - 2.0)]
+    _tl = lambda v: f"{round(v or 0):,}".replace(",", ".") + " TL"
     if drag_products:
         dp = drag_products[0]
         findings.append({
@@ -79,9 +80,9 @@ def build_product_profitability_analysis(
             'category': 'Ürün Kârlılığı',
             'severity': 'high',
             'title': f"{dp['name']} en yüksek cirolardan birini üretiyor ancak marjı kârı aşağı çekiyor",
-            'detail': f"{dp['name']} toplam satışların %{dp['sales_share_pct']}'sini ({dp['sales']:,.0f} TL) oluşturuyor fakat brüt marjı %{dp['gross_margin_pct']:.1f} ile şirket ortalamasının (%{company_margin_pct:.1f}) belirgin şekilde altında kalmaktadır.",
+            'detail': f"{dp['name']} toplam satışların %{dp['sales_share_pct']}'sini ({_tl(dp['sales'])}) oluşturuyor fakat brüt marjı %{dp['gross_margin_pct']:.1f} ile şirket ortalamasının (%{company_margin_pct:.1f}) belirgin şekilde altında kalmaktadır.",
             'evidence': [
-                f"Satış Payı: %{dp['sales_share_pct']} ({dp['sales']:,.0f} TL)",
+                f"Satış Payı: %{dp['sales_share_pct']} ({_tl(dp['sales'])})",
                 f"Brüt Marj: %{dp['gross_margin_pct']:.1f} (Ortalama: %{company_margin_pct:.1f})",
                 f"Toplam Kâra Katkı: %{dp['profit_share_pct']}"
             ],
@@ -101,10 +102,10 @@ def build_product_profitability_analysis(
             'category': 'Zarar Ettiren Ürünler',
             'severity': 'critical',
             'title': f"{len(loss_making_products)} ürün negatif brüt kârla satılarak sermaye tüketiyor",
-            'detail': f"{worst_p['name']} başta olmak üzere {len(loss_making_products)} ürünün birim satış fiyatı maliyetini (SMM) karşılamamaktadır. Toplam brüt zarar: {abs(sum(p['gross_profit'] for p in loss_making_products)):,.0f} TL.",
+            'detail': f"{worst_p['name']} başta olmak üzere {len(loss_making_products)} ürünün birim satış fiyatı maliyetini (SMM) karşılamamaktadır. Toplam brüt zarar: {_tl(abs(sum(p['gross_profit'] for p in loss_making_products)))}.",
             'evidence': [
                 f"Zarar Ettiren Ürün Sayısı: {len(loss_making_products)}",
-                f"En Zararlı Ürün: {worst_p['name']} ({worst_p['gross_profit']:,.0f} TL zarar, marj %{worst_p['gross_margin_pct']:.1f})"
+                f"En Zararlı Ürün: {worst_p['name']} ({_tl(worst_p['gross_profit'])} zarar, marj %{worst_p['gross_margin_pct']:.1f})"
             ],
             'recommendation': f"{worst_p['name']} ve diğer zarar ettiren kalemlerin satış fiyatı acilen güncellenmeli veya tedarik maliyeti düşürülemiyorsa portföyden çıkarılmalıdır.",
             'confidence': 'high',

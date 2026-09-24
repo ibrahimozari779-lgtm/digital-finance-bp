@@ -3,6 +3,12 @@ from __future__ import annotations
 from typing import Any, Callable, Optional
 
 
+def _tl(v: float | int | None) -> str:
+    if v is None:
+        return "0 TL"
+    return f"{round(v):,}".replace(",", ".") + " TL"
+
+
 # ===========================================================================
 # NARRATIVE ENGINE  —  Financial Storytelling Layer
 # ===========================================================================
@@ -243,7 +249,7 @@ def _t_margin_erosion() -> Trigger:
         )
         maliyet = (
             f"Mevcut eğilim devam ederse yıllıklandırılmış EBITDA üzerinde yaklaşık "
-            f"{ctx['ebitda_impact_annualized']:,.0f} TL negatif baskı oluşabilir."
+            f"{_tl(ctx['ebitda_impact_annualized'])} negatif baskı oluşabilir."
             if ctx["ebitda_impact_annualized"] is not None else
             "Yıllıklandırılmış etki, net satış verisi yetersiz olduğu için hesaplanamadı."
         )
@@ -277,7 +283,7 @@ def _t_dso_risk() -> Trigger:
     def build(ctx: dict[str, Any]) -> dict[str, Any]:
         d = ctx["dso_new"] - ctx["dso_old"]
         maliyet = (
-            f"{d:.0f} günlük artış, işletme sermayesinde yaklaşık {ctx['dso_cash_impact']:,.0f} TL "
+            f"{d:.0f} günlük artış, işletme sermayesinde yaklaşık {_tl(ctx['dso_cash_impact'])} "
             f"ilave nakit ihtiyacı yaratmaktadır."
             if ctx["dso_cash_impact"] is not None else
             "Nakit etkisi, net satış verisi yetersiz olduğu için hesaplanamadı."
@@ -314,9 +320,9 @@ def _t_inventory_bloat() -> Trigger:
     def build(ctx: dict[str, Any]) -> dict[str, Any]:
         d = ctx["dio_new"] - ctx["dio_old"]
         maliyet = (
-            f"Stok devir süresindeki {d:.0f} günlük artış yaklaşık {ctx['dio_cash_impact']:,.0f} TL ilave nakit bağlamaktadır (toplam stok: {ctx['inventory_balance']:,.0f} TL)."
+            f"Stok devir süresindeki {d:.0f} günlük artış yaklaşık {_tl(ctx['dio_cash_impact'])} ilave nakit bağlamaktadır (toplam stok: {_tl(ctx['inventory_balance'])})."
             if ctx["dio_cash_impact"] is not None and ctx["inventory_balance"] is not None else
-            f"Dönem sonu stok bakiyesi {ctx['inventory_balance']:,.0f} TL; tam nakit döngüsü etkisi SMM verisiyle birlikte hesaplanabilir."
+            f"Dönem sonu stok bakiyesi {_tl(ctx['inventory_balance'])}; tam nakit döngüsü etkisi SMM verisiyle birlikte hesaplanabilir."
             if ctx["inventory_balance"] is not None else
             "Stokta bağlı sermaye tutarı hesaplanamadı."
         )
@@ -350,12 +356,12 @@ def _t_cash_runway() -> Trigger:
 
     def build(ctx: dict[str, Any]) -> dict[str, Any]:
         return {
-            "ne_oldu": f"Mevcut nakit pozisyonu ({ctx['cash_balance']:,.0f} TL), kaba bir aylık faaliyet nakit "
+            "ne_oldu": f"Mevcut nakit pozisyonu ({_tl(ctx['cash_balance'])}), kaba bir aylık faaliyet nakit "
                        f"akışı (yakma hızı) tahminiyle yaklaşık {ctx['runway_months']:.1f} aylık operasyonu "
                        f"finanse edebilecek düzeydedir.",
             "neden": "Bu dönemde esas faaliyet nakit akışı negatiftir (Nakit Akış Köprüsü); aylık net nakit erimesi "
                      "(Net Cash Burn), işletme nakit açığının dönem ay sayısına oranlanmasıyla hesaplanmıştır.",
-            "maliyet": f"Aylık net operasyonel nakit tüketimi (Net Cash Burn): {ctx['monthly_burn']:,.0f} TL.",
+            "maliyet": f"Aylık net operasyonel nakit tüketimi (Net Cash Burn): {_tl(ctx['monthly_burn'])}.",
             "ne_yapmali": [
                 "Öncelikli tahsilat hızlandırma ve vade kısaltma programı",
                 "Atıl stokların tasfiyesi ve nakit serbestleştirme",
@@ -594,7 +600,7 @@ def _t_margin_improvement() -> Trigger:
             ),
             "maliyet": (
                 f"Bu eğilim korunursa yıllıklandırılmış EBITDA üzerinde yaklaşık "
-                f"+{ctx['ebitda_impact_annualized']:,.0f} TL olumlu etki oluşabilir."
+                f"+{_tl(ctx['ebitda_impact_annualized'])} olumlu etki oluşabilir."
                 if ctx["ebitda_impact_annualized"] is not None else
                 "Yıllıklandırılmış olumlu etki, veri yetersizliği nedeniyle hesaplanamadı."
             ),

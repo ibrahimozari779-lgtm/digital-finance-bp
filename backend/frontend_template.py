@@ -12756,6 +12756,11 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
   const detailsEl = $('ceoQuestionDetails');
   if(!pillsEl || !detailsEl) return;
 
+  const fixTrNum = (str) => {
+    if (!str || typeof str !== 'string') return str;
+    return str.replace(/\b(\d{1,3}(?:,\d{3})+)\b/g, m => m.replace(/,/g, '.'));
+  };
+
   pillsEl.innerHTML = questions.map((q, idx) => 
     '<button type="button" class="ceoPill ' + (idx===0?'active':'') + '" data-q="' + q.id + '" onclick="switchCeoQuestion(\'' + q.id + '\')">' +
       '<span>' + q.icon + '</span> <span>' + esc(q.title) + '</span>' +
@@ -12774,8 +12779,8 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
         '<!-- KATMAN 1: TEŞHİS -->' +
         '<div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:14px;padding:18px">' +
           '<div style="margin-bottom:10px"><span class="layerBadge l1">1. KATMAN · TEŞHİS (DURUM)</span></div>' +
-          '<h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">' + esc(q.l1_title) + '</h4>' +
-          '<p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">' + q.l1_desc + '</p>' +
+          '<h4 style="font-size:15px;color:#991B1B;margin:0 0 8px;line-height:1.4">' + esc(fixTrNum(q.l1_title)) + '</h4>' +
+          '<p style="font-size:13px;color:#7F1D1D;line-height:1.6;margin:0">' + fixTrNum(q.l1_desc) + '</p>' +
         '</div>' +
         '<!-- KATMAN 2: ANALİTİK MOTOR KANITI -->' +
         '<div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:18px">' +
@@ -12785,8 +12790,8 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
             q.l2_metrics.map(m => 
               '<div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:8px 10px">' +
                 '<div style="font-size:10.5px;color:#64748B">' + esc(m.label) + '</div>' +
-                '<div style="font-size:14px;font-weight:800;color:#0F172A;margin:2px 0">' + esc(m.val) + '</div>' +
-                '<div style="font-size:9.5px;color:#94A3B8">' + esc(m.note) + '</div>' +
+                '<div style="font-size:14px;font-weight:800;color:#0F172A;margin:2px 0">' + esc(fixTrNum(m.val)) + '</div>' +
+                '<div style="font-size:9.5px;color:#94A3B8">' + esc(fixTrNum(m.note)) + '</div>' +
               '</div>'
             ).join('') +
           '</div>' +
@@ -12794,15 +12799,15 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
         '<!-- KATMAN 3: AKSİYON MOTORU -->' +
         '<div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:18px">' +
           '<div style="margin-bottom:10px"><span class="layerBadge l3">3. KATMAN · YÖNETİM AKSİYONU (STRATEJİK YÖNETİM TAVSİYESİ)</span></div>' +
-          '<div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 ' + esc(q.l3_action) + '</div>' +
+          '<div style="font-size:13.5px;font-weight:700;color:#14532D;line-height:1.5;margin-bottom:12px">👉 ' + esc(fixTrNum(q.l3_action)) + '</div>' +
           '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">' +
             '<div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px">' +
               '<div style="font-size:10px;color:#15803D;font-weight:700">🚀 Kasaya Sıcak Nakit</div>' +
-              '<div style="font-size:14px;font-weight:800;color:#166534">' + esc(q.l3_cash) + '</div>' +
+              '<div style="font-size:14px;font-weight:800;color:#166534">' + esc(fixTrNum(q.l3_cash)) + '</div>' +
             '</div>' +
             '<div style="background:#FFFFFF;border:1px solid #86EFAC;border-radius:10px;padding:8px 10px">' +
               '<div style="font-size:10px;color:#15803D;font-weight:700">📉 Kurtarılan Kâr/Faiz</div>' +
-              '<div style="font-size:14px;font-weight:800;color:#166534">' + esc(q.l3_profit) + '</div>' +
+              '<div style="font-size:14px;font-weight:800;color:#166534">' + esc(fixTrNum(q.l3_profit)) + '</div>' +
             '</div>' +
           '</div>' +
           '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border-top:1px solid #DCFCE7;padding-top:10px">' +

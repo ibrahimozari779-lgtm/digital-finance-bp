@@ -147,14 +147,17 @@ def analyze_ar(df, mapping, net_sales=None, period_days=365, as_of_date=None):
     cash_release_10d = round(daily_sales * 10, 2)
     r['cash_release_potential_10_days'] = cash_release_10d
 
+    # Helper for Turkish currency format
+    _tl = lambda v: f"{round(v or 0):,}".replace(",", ".") + " TL"
+
     # Plain language narrative
     dso_str = f"{dso:.0f} gün" if dso else "yaklaşık 80+ gün"
-    overdue_str = f"{r['overdue']:,.0f} TL"
-    overdue_pct_str = f"%{r['overdue_pct']:.1f}" if r['overdue_pct'] is not None else "yüksek oranda"
+    overdue_str = _tl(r['overdue'])
+    overdue_pct_str = f"%{r['overdue_pct']:.1f}".replace(".", ",") if r['overdue_pct'] is not None else "yüksek oranda"
     r['narrative'] = (
-        f"Müşterileriniz ortalama {dso_str} sürede ödeme yapıyor. Toplam {r['outstanding']:,.0f} TL ticari alacağın "
+        f"Müşterileriniz ortalama {dso_str} sürede ödeme yapıyor. Toplam {_tl(r['outstanding'])} ticari alacağın "
         f"{overdue_str}'si ({overdue_pct_str}) vadesi geçmiş durumda. "
-        f"Tahsilat süresini 10 gün öne çekmek işletmenize yaklaşık {cash_release_10d:,.0f} TL serbest nakit kazandırabilir."
+        f"Tahsilat süresini 10 gün öne çekmek işletmenize yaklaşık {_tl(cash_release_10d)} serbest nakit kazandırabilir."
     )
 
     findings = []
@@ -166,8 +169,8 @@ def analyze_ar(df, mapping, net_sales=None, period_days=365, as_of_date=None):
             'title': 'Vadesi geçmiş alacak oranı nakit akışını zorluyor',
             'detail': r['narrative'],
             'evidence': [
-                f"Toplam Alacak: {r['outstanding']:,.0f} TL",
-                f"Vadesi Geçmiş: {r['overdue']:,.0f} TL (Oran: {overdue_pct_str})",
+                f"Toplam Alacak: {_tl(r['outstanding'])}",
+                f"Vadesi Geçmiş: {_tl(r['overdue'])} (Oran: {overdue_pct_str})",
                 f"Ortalama Gecikme: {r.get('weighted_average_overdue_days', 0):.0f} gün",
                 f"Alacak Tahsilat Süresi (DSO): {dso_str}"
             ],
@@ -178,14 +181,16 @@ def analyze_ar(df, mapping, net_sales=None, period_days=365, as_of_date=None):
     return r
 
 def analyze_ap(df, mapping, cogs=None, period_days=365, as_of_date=None):
+    _tl = lambda v: f"{round(v or 0):,}".replace(",", ".") + " TL"
     r = _aging(df, mapping, 'AP', as_of_date=as_of_date)
     dpo = round(r['outstanding'] / cogs * period_days, 1) if cogs and cogs > 0 else None
     r['dpo_days'] = dpo
 
     dpo_str = f"{dpo:.0f} gün" if dpo else "bilinmiyor"
+    overdue_pct_str = f"%{r.get('overdue_pct', 0):.1f}".replace(".", ",")
     r['narrative'] = (
-        f"Tedarikçilerinize ortalama {dpo_str} vadede ödeme yapıyorsunuz. Toplam {r['outstanding']:,.0f} TL borcun "
-        f"{r['overdue']:,.0f} TL'si ({r.get('overdue_pct', 0):.1f}%) vadesi geçmiş statüdedir."
+        f"Tedarikçilerinize ortalama {dpo_str} vadede ödeme yapıyorsunuz. Toplam {_tl(r['outstanding'])} borcun "
+        f"{_tl(r['overdue'])}'si ({overdue_pct_str}) vadesi geçmiş statüdedir."
     )
 
     findings = []
@@ -195,10 +200,10 @@ def analyze_ap(df, mapping, cogs=None, period_days=365, as_of_date=None):
             'category': 'Tedarikçi & Ödeme Baskısı',
             'severity': 'high',
             'title': 'Kritik tedarikçilerde ödeme takvimi ve nakit planı uyumsuzluğu',
-            'detail': f"Tedarikçi borçlarının %{r['overdue_pct']:.1f}'inde ({r['overdue']:,.0f} TL) vade aşımı oluşmuş durumdadır. Bu durum hammadde/mal tedarik güvenliğini riske sokabilir.",
+            'detail': f"Tedarikçi borçlarının {overdue_pct_str}'inde ({_tl(r['overdue'])}) vade aşımı oluşmuş durumdadır. Bu durum hammadde/mal tedarik güvenliğini riske sokabilir.",
             'evidence': [
-                f"Toplam Tedarikçi Borcu: {r['outstanding']:,.0f} TL",
-                f"Vadesi Geçen Borç: {r['overdue']:,.0f} TL",
+                f"Toplam Tedarikçi Borcu: {_tl(r['outstanding'])}",
+                f"Vadesi Geçen Borç: {_tl(r['overdue'])}",
                 f"Borç Ödeme Süresi (DPO): {dpo_str}"
             ],
             'recommendation': "Borçları tek taraflı geciktirmek yerine; kritik tedarikçilerde ödeme takvimini, vade yapısını ve 13 haftalık nakit projeksiyonunu birlikte gözden geçirin.",

@@ -300,9 +300,9 @@ def build_benchmark_analysis(statements: dict[str, Any], sector: str | None = No
         "executive_summary": (
             f"Şirketiniz sektör medyanına kıyasla alacak tahsilatında {dso_gap_days:.0f} gün, "
             f"stok eritmede ise {dio_gap_days:.0f} gün geridedir. Bu operasyonel gecikme nedeniyle "
-            f"toplam {total_excess_working_capital:,.0f} TL işletme sermayesi fazladan kilitli kalmakta "
+            f"toplam {f'{total_excess_working_capital:,.0f}'.replace(',', '.')} TL işletme sermayesi fazladan kilitli kalmakta "
             f"ve yıllık %{borrowing_rate*100:.0f} gösterge faiz maliyetiyle şirkete yılda "
-            f"yaklaşık {annual_interest_leakage:,.0f} TL (ayda {monthly_interest_leakage:,.0f} TL) "
+            f"yaklaşık {f'{annual_interest_leakage:,.0f}'.replace(',', '.')} TL (ayda {f'{monthly_interest_leakage:,.0f}'.replace(',', '.')} TL) "
             f"gizli finansman yükü oluşturmaktadır."
             if total_excess_working_capital > 0
             else "İşletme sermayesi devir hızınız sektör medyanlarının üzerinde olup fazladan faiz sızıntısı tespit edilmemiştir."
