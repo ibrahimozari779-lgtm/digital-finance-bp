@@ -7097,8 +7097,6 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
           </div>
         </div>
 
-        <!-- KOBİ Patron Dili & Türkiye Çözüm Reçetesi Banner -->
-        <div id="kobiPatronAlarmBanner" style="display:none;margin-bottom:18px"></div>
 
         <!-- 10 Questions Navigation Pills -->
         <div style="position:relative;display:flex;align-items:center;margin-bottom:18px;gap:6px">
@@ -12503,48 +12501,6 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
   const topRisks = rankedRisks.slice(0, 3);
 
   const kobiEngine = bp?.kobi_patron_engine;
-  const bannerEl = $('kobiPatronAlarmBanner');
-  if (bannerEl) {
-    if (kobiEngine?.patron_alarms?.length) {
-      const alarm = kobiEngine.patron_alarms[0];
-      const triggersHtml = (kobiEngine.triggers || []).map(t => 
-        '<span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:8px;font-size:11.5px;font-weight:700;background:' + (t.fired ? '#FEE2E2;color:#991B1B;border:1px solid #FCA5A5' : '#F1F5F9;color:#475569;border:1px solid #E2E8F0') + '">' +
-          (t.fired ? '⚠️' : '✓') + ' ' + esc(t.name) + ' (' + esc(t.value) + ')' +
-        '</span>'
-      ).join(' ');
-      
-      const solutionsHtml = (kobiEngine.solutions || []).map(s =>
-        '<div style="background:#FFFFFF;border:1.5px solid #BAE6FD;border-radius:12px;padding:12px;font-size:12.5px;color:#0369A1;box-shadow:0 2px 6px rgba(0,0,0,.03)">' +
-          '<div style="font-weight:800;color:#075985;font-size:13px;margin-bottom:4px">💊 ' + esc(s.title) + '</div>' +
-          '<div style="line-height:1.5">' + esc(s.desc) + '</div>' +
-        '</div>'
-      ).join('');
-
-      bannerEl.innerHTML = 
-        '<div style="background:linear-gradient(135deg,#FFFBEB 0%,#FEF3C7 100%);border:2px solid #F59E0B;border-radius:18px;padding:20px 22px;box-shadow:0 8px 24px rgba(245,158,11,.12);margin-bottom:22px">' +
-          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:10px">' +
-            '<div style="display:flex;align-items:center;gap:8px">' +
-              '<span style="background:#B45309;color:#FFFFFF;padding:5px 12px;border-radius:999px;font-size:11px;font-weight:900;letter-spacing:.5px">🎯 KOBİ PATRON DİLİ TEŞHİSİ</span>' +
-              '<span style="font-weight:800;font-size:15px;color:#92400E">' + esc(alarm.theme) + '</span>' +
-            '</div>' +
-            '<div style="display:flex;gap:6px;flex-wrap:wrap">' + triggersHtml + '</div>' +
-          '</div>' +
-          '<div style="font-size:14px;color:#78350F;line-height:1.7;font-weight:600;margin:0 0 16px;background:#FFFFFF;border-left:4.5px solid #D97706;padding:14px 16px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.04)">' +
-            esc(alarm.comment) +
-          '</div>' +
-          '<div>' +
-            '<div style="font-size:11.5px;font-weight:800;color:#92400E;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">🇹🇷 TÜRKİYE PİYASASINA ÖZEL 3 SOMUT ÇÖZÜM REÇETESİ (VUK / BANKA / MEVZUAT):</div>' +
-            '<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:12px">' +
-              solutionsHtml +
-            '</div>' +
-          '</div>' +
-        '</div>';
-      bannerEl.style.display = 'block';
-    } else {
-      bannerEl.style.display = 'none';
-      bannerEl.innerHTML = '';
-    }
-  }
 
   const hasInventory = (invVal > 1000) && (dio > 3);
   let questions = (kobiEngine?.questions && kobiEngine.questions.length >= 10) ? kobiEngine.questions : null;
