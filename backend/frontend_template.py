@@ -753,9 +753,10 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <span style="font-size:14px">👉</span>
     </div>
     <div class="kobiSliderNav">
+      <span class="kobiSlideBadge" id="kobiAutoPlayBadge" style="background:#DCFCE7;color:#15803D;border-color:#86EFAC;cursor:pointer" onclick="toggleKobiAutoPlay()" title="Otomatik akışı durdur / başlat">⚡ Otomatik Akış</span>
       <span class="kobiSlideBadge" id="kobiSliderCounter">1 / 10 Teşhis</span>
-      <button type="button" class="kobiNavBtn" onclick="slideKobi(-1)" aria-label="Önceki Teşhis" title="Önceki">‹</button>
-      <button type="button" class="kobiNavBtn" onclick="slideKobi(1)" aria-label="Sonraki Teşhis" title="Sonraki">›</button>
+      <button type="button" class="kobiNavBtn" onclick="slideKobi(-1, true)" aria-label="Önceki Teşhis" title="Önceki">‹</button>
+      <button type="button" class="kobiNavBtn" onclick="slideKobi(1, true)" aria-label="Sonraki Teşhis" title="Sonraki">›</button>
     </div>
   </div>
 
@@ -954,15 +955,50 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </div>
 
 <script>
-function slideKobi(direction) {
+var kobiAutoPlayActive = true;
+var kobiPauseUntil = 0;
+
+function toggleKobiAutoPlay() {
+  kobiAutoPlayActive = !kobiAutoPlayActive;
+  var b = document.getElementById('kobiAutoPlayBadge');
+  if (b) {
+    if (kobiAutoPlayActive) {
+      b.textContent = '⚡ Otomatik Akış';
+      b.style.background = '#DCFCE7';
+      b.style.color = '#15803D';
+      b.style.borderColor = '#86EFAC';
+    } else {
+      b.textContent = '⏸ Duraklatıldı';
+      b.style.background = '#F1F5F9';
+      b.style.color = '#64748B';
+      b.style.borderColor = '#CBD5E1';
+    }
+  }
+}
+
+function slideKobi(direction, isManual) {
   var track = document.getElementById('kobiSliderTrack');
   if (!track) return;
+  if (isManual) {
+    kobiPauseUntil = Date.now() + 8000;
+  }
   var visibleCards = Array.from(track.querySelectorAll('.kobiCard')).filter(function(c) {
     return c.style.display !== 'none';
   });
   if (!visibleCards.length) return;
   var cardWidth = visibleCards[0].offsetWidth + 22;
-  track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+
+  var trackRect = track.getBoundingClientRect();
+  var lastCardRect = visibleCards[visibleCards.length - 1].getBoundingClientRect();
+  var isAtEnd = (lastCardRect.right - trackRect.right) <= 30;
+
+  if (direction > 0 && isAtEnd) {
+    track.scrollTo({ left: 0, behavior: 'smooth' });
+  } else if (direction < 0 && track.scrollLeft <= 10) {
+    track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+  } else {
+    track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+  }
 }
 
 function initKobiSlider() {
@@ -1018,6 +1054,7 @@ function initKobiSlider() {
       dot.className = 'kobiDot' + (idx === 0 ? ' active' : '');
       dot.title = 'Teşhis ' + (idx + 1);
       dot.onclick = function() {
+        kobiPauseUntil = Date.now() + 8000;
         c.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
       };
       dotsWrap.appendChild(dot);
@@ -1029,6 +1066,30 @@ function initKobiSlider() {
   track.addEventListener('scroll', function() {
     clearTimeout(scrollTimer);
     scrollTimer = setTimeout(updateDotsAndCounter, 50);
+  }, { passive: true });
+
+  // Auto-play interval
+  if (window._kobiInterval) clearInterval(window._kobiInterval);
+  window._kobiInterval = setInterval(function() {
+    if (!kobiAutoPlayActive) return;
+    if (Date.now() < kobiPauseUntil) return;
+    try {
+      if (track.matches && track.matches(':hover')) return;
+    } catch(e) {}
+    slideKobi(1, false);
+  }, 4000);
+
+  track.addEventListener('mouseenter', function() {
+    kobiPauseUntil = Date.now() + 1000000;
+  });
+  track.addEventListener('mouseleave', function() {
+    kobiPauseUntil = Date.now() + 2000;
+  });
+  track.addEventListener('touchstart', function() {
+    kobiPauseUntil = Date.now() + 1000000;
+  }, { passive: true });
+  track.addEventListener('touchend', function() {
+    kobiPauseUntil = Date.now() + 3000;
   }, { passive: true });
 
   window._rebuildKobiSlider = rebuildDots;
@@ -6624,11 +6685,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
         </select>
       </div>
       <div style="display:flex;gap:8px;align-items:center">
-        <button id="runSectorBtn" type="button" class="primary" style="flex:1;background:linear-gradient(135deg,#0E7C66,#095C4B);color:#fff;border:none;padding:11px 18px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 4px 14px rgba(14,124,102,0.25)">
+        <button id="runSectorBtn" type="button" class="primary" style="width:100%;background:linear-gradient(135deg,#0E7C66,#095C4B);color:#fff;border:none;padding:12px 18px;border-radius:10px;font-weight:800;font-size:13.5px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 4px 14px rgba(14,124,102,0.25)">
           🚀 Sektörel Demo Raporunu Başlat →
-        </button>
-        <button type="button" onclick="openConnectorModal()" class="secondary" style="background:#FFFFFF;color:#166534;border:1.5px solid #86EFAC;padding:10px 14px;border-radius:10px;font-weight:700;font-size:12px;cursor:pointer;white-space:nowrap" title="ERP veya Entegratör API Bağlantısı">
-          ⚡ ERP Bağla
         </button>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:0 2px">
@@ -6645,10 +6703,10 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <button id="sampleHubBtn" type="button"></button>
     </div>
   </div>
-<div class="trustBar hidePrint">
-<div class="item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Önce hesap, sonra yorum — deterministik motor</div>
-<div class="item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>KVKK Uyumlu · RAM-Only Geçici Bellek (Kalıcı Saklama Yok)</div>
-<div class="item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg>33 Finansal Karar Motoru · Bütünleşik Karar Akışı</div>
+<div class="trustBar hidePrint" style="display:flex;justify-content:center;gap:18px;margin-bottom:14px;padding:8px 12px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;font-size:12px;color:#475569">
+  <div class="item" style="display:inline-flex;align-items:center;gap:6px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0E7C66" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg><span><b>Önce hesap, sonra yorum</b> — Çift taraflı deterministik motor</span></div>
+  <div class="item" style="display:inline-flex;align-items:center;gap:6px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg><span><b>KVKK Uyumlu</b> · RAM-Only Geçici Bellek (Kalıcı Saklama Yok)</span></div>
+  <div class="item" style="display:inline-flex;align-items:center;gap:6px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg><span><b>33 Finansal Karar Motoru</b> · Bütünleşik Yönetim Akışı</span></div>
 </div>
 
 <div class="tabs">
@@ -6656,45 +6714,58 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <button class="tab" data-tab="connectors" id="connectorsTabBtn" style="background:#F0FDF4;color:#166534;font-weight:800">⚡ Otomatik ERP &amp; e-Defter API</button>
 </div>
 <div id="single" class="tabPanel active">
-  <div class="dropZone" id="dropZoneSingle">
-    <div class="dropIco"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
-    <div class="dropText">
-      <strong style="font-size:16px">Finansal Dosyalarınızı veya Mizanınızı Buraya Sürükleyin</strong>
-      <span style="font-size:13px;color:#64748B;margin-top:4px">
-        <strong>Tek dosya</strong> (Mizan, e-Defter XML), <strong>2 Dönem</strong> (Trend Karşılaştırma) veya <strong>Çoklu Defter</strong> (Mizan + Satış + Alacak + Borç + Stok)...<br>
-        Sistem yüklediğiniz dosyaları otomatik olarak tanır, sınıflandırır ve çift taraflı denetimle işler.
-      </span>
+  <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:22px;box-shadow:0 4px 16px rgba(0,0,0,0.03)">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:14px">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:800;padding:3px 8px;border-radius:6px;margin-bottom:6px">
+          <span>📂 KENDİ FİNANSALLARINIZLA ANALİZ</span>
+        </div>
+        <h3 style="margin:0 0 4px;font-size:16.5px;font-weight:800;color:#0F1B2D">Mizan veya Finansal Tablolarınızı Yükleyin</h3>
+        <p style="margin:0;font-size:12.5px;color:#64748B;line-height:1.5">
+          Tek mizan (.xlsx, .csv), e-Defter XML veya Çoklu Defter (Satış + Alacak + Stok)... Sistem dosyaları otomatik sınıflandırır ve 60 saniyede stratejik yönetim kararlarına dönüştürür.
+        </p>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+        <button type="button" onclick="openErpGuideModal()" class="secondary" style="font-size:11.5px;padding:6px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:5px;color:#1D4ED8;font-weight:700">📂 Mizan Alma Rehberi</button>
+        <button type="button" onclick="downloadSampleMizan()" class="secondary" style="font-size:11.5px;padding:6px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:5px">📥 Standart Şablon (.csv)</button>
+        <button type="button" onclick="openConnectorModal()" class="secondary" style="font-size:11.5px;padding:6px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:5px;background:#F0FDF4;color:#166534;font-weight:800;border:1px solid #86EFAC">⚡ ERP Bağla</button>
+      </div>
     </div>
-    <button type="button" class="secondary" style="margin-top:10px;padding:8px 20px;font-size:13px;pointer-events:none;font-weight:700">📁 Dosya(ları) Seç (.xlsx, .xls, .csv, .xml)</button>
-  </div>
-  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;font-size:11.5px;color:#475569">
-    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-      <span style="font-weight:700;color:#0F1B2D">Otomatik Tanınan Sistemler:</span>
-      <span class="tag" style="background:#E4F5EF;color:#0E7C66;font-size:11px;font-weight:700">🏛️ GİB e-Defter XML</span>
-      <span class="tag" style="background:#F1F5F9;font-size:11px">Logo</span>
-      <span class="tag" style="background:#F1F5F9;font-size:11px">Mikro</span>
-      <span class="tag" style="background:#F1F5F9;font-size:11px">Netsis</span>
-      <span class="tag" style="background:#F1F5F9;font-size:11px">Luca</span>
-      <span class="tag" style="background:#F1F5F9;font-size:11px">Zirve</span>
-      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:11px;font-weight:700">SAP S/4HANA</span>
-      <span class="tag" style="background:#FFF7ED;color:#EA580C;font-size:11px;font-weight:700">Oracle NetSuite</span>
-      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:11px">🇩🇪 DATEV</span>
-      <span class="tag" style="background:#F1F5F9;font-size:11px">Excel / CSV</span>
+
+    <div class="dropZone" id="dropZoneSingle" style="padding:28px 20px;border:2px dashed #94A3B8;border-radius:14px;background:#F8FAFC;cursor:pointer;transition:all 0.2s">
+      <div class="dropIco" style="margin-bottom:8px"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+      <div class="dropText">
+        <strong style="font-size:15px;color:#0F1B2D">Finansal Dosyalarınızı veya Mizanınızı Buraya Sürükleyin ya da Tıklayın</strong>
+        <span style="font-size:12px;color:#64748B;margin-top:4px;display:block">
+          Desteklenen formatlar: .xlsx, .xls, .csv, .xml (GİB e-Defter) · İster tek mizan, ister çoklu defter
+        </span>
+      </div>
+      <button type="button" class="secondary" style="margin-top:10px;padding:7px 18px;font-size:12px;pointer-events:none;font-weight:700">📁 Dosya(ları) Seç</button>
     </div>
-    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-      <button type="button" onclick="openConnectorModal()" class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;background:#F0FDF4;color:#166534;font-weight:800;border:1px solid #86EFAC">⚙️ Otomatik ERP API Bağlantısı</button>
-      <button type="button" onclick="downloadSampleMizan()" class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px">📥 Standart Mizan Şablonu (.csv)</button>
-      <button type="button" onclick="openErpGuideModal()" class="secondary" style="font-size:11.5px;padding:5px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;color:#1D4ED8;font-weight:700">📂 Mizan Alma Rehberi</button>
+
+    <input id="file" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm,.xml,.json" multiple style="display:none">
+    <div id="fileListSingle" class="selectedFilesList" style="margin-top:10px"></div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid #F1F5F9">
+      <div style="display:inline-flex;align-items:center;gap:8px">
+        <span style="font-size:12.5px;font-weight:700;color:#334155">Sektör Kıyaslama:</span>
+        <select id="sector" class="select" style="min-width:180px"><option value="">Genel Sektör</option></select>
+      </div>
+      <button id="analyze" class="primary" style="padding:12px 26px;font-size:14px;border-radius:10px;font-weight:800;box-shadow:0 4px 14px rgba(14,124,102,0.25)">🚀 Akıllı Analizi Başlat (33 Karar Motoru)</button>
     </div>
-  </div>
-  <input id="file" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm,.xml,.json" multiple style="display:none">
-  <div id="fileListSingle" class="selectedFilesList"></div>
-  <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:12px">
-    <div style="display:inline-flex;align-items:center;gap:6px">
-      <span style="font-size:12.5px;font-weight:700;color:#334155">Sektör Kıyaslama:</span>
-      <select id="sector" class="select" style="min-width:180px"><option value="">Genel Sektör</option></select>
+
+    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:12px;font-size:11px;color:#64748B">
+      <span style="font-weight:700;color:#334155">Otomatik Tanınan Sistemler:</span>
+      <span class="tag" style="background:#E4F5EF;color:#0E7C66;font-size:10.5px;font-weight:700">🏛️ GİB e-Defter XML</span>
+      <span class="tag" style="background:#F1F5F9;font-size:10.5px">Logo</span>
+      <span class="tag" style="background:#F1F5F9;font-size:10.5px">Mikro</span>
+      <span class="tag" style="background:#F1F5F9;font-size:10.5px">Netsis</span>
+      <span class="tag" style="background:#F1F5F9;font-size:10.5px">Luca</span>
+      <span class="tag" style="background:#F1F5F9;font-size:10.5px">Zirve</span>
+      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:10.5px;font-weight:700">SAP S/4HANA</span>
+      <span class="tag" style="background:#FFF7ED;color:#EA580C;font-size:10.5px;font-weight:700">Oracle NetSuite</span>
+      <span class="tag" style="background:#F1F5F9;font-size:10.5px">Excel / CSV</span>
     </div>
-    <button id="analyze" class="primary" style="padding:13px 28px;font-size:14.5px;border-radius:12px;font-weight:800;box-shadow:0 4px 14px rgba(14,124,102,0.25)">🚀 Akıllı Analizi Başlat (33 Karar Motoru)</button>
   </div>
 
   <!-- Ücretsiz Finansal Hazırlık & Destek Köprüsü (Assisted Onboarding) -->
@@ -7541,12 +7612,12 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
     <div class="accordionTitleGroup">
       <span class="accordionNum">5</span>
       <div>
-        <h3 class="accordionTitle">Bilanço Gücü, Borç Yapısı &amp; Nakit Çevrim Süresi (CCC)</h3>
-        <div class="accordionSub">Kısa vadeli ödeme gücü, finansal borç kaldıracı ve alacak-stok-tedarikçi vadeleri</div>
+        <h3 class="accordionTitle">Bilanço Gücü, Borç Yapısı &amp; Finansal Dayanıklılık</h3>
+        <div class="accordionSub">Kısa vadeli borç ödeme kabiliyeti, finansal kaldıraç, banka yükü ve vade uyumu</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag" style="background:#F1F5F9;color:#334155;font-size:11px;font-weight:700">Ödeme Gücü &amp; Vade</span>
+      <span class="tag" style="background:#F1F5F9;color:#334155;font-size:11px;font-weight:700">Ödeme Gücü &amp; Dayanıklılık</span>
       <div class="accordionToggleIcon">▼</div>
     </div>
   </div>
@@ -7566,8 +7637,8 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
       <div class="card">
         <div class="sectionHead">
           <div>
-            <h2>Nakit Çevrim Süresi (İşletme Sermayesi)</h2>
-            <p>Cebinizden çıkan paranın tahsilatla geri kasaya dönme süresi</p>
+            <h2>İşletme Sermayesi Güvencesi &amp; Vade Uyumu</h2>
+            <p>Alacak, stok ve tedarikçi vadelerinin nakit döngüsü ve borçlanma baskısına etkisi</p>
           </div>
         </div>
         <div id="workingCapital"></div>
@@ -9377,7 +9448,20 @@ function render(d){
     { code: 'CCC', title: 'Nakit Çevrim', days: cm.ccc_days != null ? cm.ccc_days : c.cash_conversion_cycle_days, sub: 'Kasadaki nakdin dönüş hızı', color: '#7C3AED', tip: 'CCC = DSO + DIO - DPO. Hammaddeden tahsilata kadar nakdin bağlı kaldığı net gün sayısıdır.' }
   ];
   $('cccMetric').textContent = (cm.ccc_days != null ? Math.round(cm.ccc_days) : (c.cash_conversion_cycle_days == null ? '–' : Math.round(c.cash_conversion_cycle_days))) + ' gün';
-  $('workingCapital').innerHTML = '<div class="grid4">' + cccCards.map(x => 
+  const dsoVal = cm.dso_days != null ? cm.dso_days : (c.dso_days || 0);
+  const dpoVal = cm.dpo_days != null ? cm.dpo_days : (c.dpo_days || 0);
+  const spreadDays = Math.round(dsoVal - dpoVal);
+  const spreadBadge = spreadDays > 0 
+    ? '<div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:10px;padding:8px 12px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">' +
+        '<span style="font-size:12px;color:#991B1B;font-weight:700">⚠️ <b>Vade Uyumsuzluğu:</b> Tahsilat vadesi (' + Math.round(dsoVal) + 'g), tedarikçi vadesinden (' + Math.round(dpoVal) + 'g) <b>' + spreadDays + ' gün</b> daha uzun!</span>' +
+        '<span class="tag" style="background:#DC2626;color:#FFF;font-size:10.5px;font-weight:800">Müşteriyi Banka Kredisiyle Finanse Etme Riski</span>' +
+      '</div>'
+    : '<div style="background:#ECFDF5;border:1px solid #A7F3D0;border-radius:10px;padding:8px 12px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">' +
+        '<span style="font-size:12px;color:#065F46;font-weight:700">✓ <b>Dengeli Vade Yapısı:</b> Tedarikçi kredisi tamponu alacak tahsilat süresini karşılamaktadır.</span>' +
+        '<span class="tag" style="background:#059669;color:#FFF;font-size:10.5px;font-weight:800">Pozitif Vade Dengesi</span>' +
+      '</div>';
+
+  $('workingCapital').innerHTML = spreadBadge + '<div class="grid4">' + cccCards.map(x => 
     '<div class="metric" style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 10px;background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:12px">' +
       '<div style="display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:0.5px;color:' + x.color + '" title="' + esc(x.tip) + '">' + esc(x.code) + '</div>' +
       '<div style="font-size:11px;font-weight:700;color:#64748B;margin-top:2px;margin-bottom:6px;text-align:center">' + esc(x.title) + '</div>' +

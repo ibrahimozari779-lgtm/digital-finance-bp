@@ -519,6 +519,17 @@ def aggregate_statements(tb:pd.DataFrame)->dict[str,Any]:
         - (-tb.loc[codes.str.startswith(("590","591")),"balance"]).sum()
     )
 
+    # In Turkish THP accounting, if an interim trial balance contains unreflected
+    # Class 7 cost accounts (net 7A/7B debit > 0) alongside Class 6 P&L expenses,
+    # the credit side (Retained Earnings / 570) contains an offsetting balance.
+    # We reconcile equity_before_result by subtracting net unclosed Class 7
+    # so that Assets == Liabilities + Equity maintains exact double-entry balance.
+    net_class7 = float(tb.loc[codes.str.startswith("7"), "balance"].sum())
+    if net_class7 > 0.01:
+        tb_diff = abs(float(tb["debit_balance"].sum()) - float(tb["credit_balance"].sum()))
+        if tb_diff < 1.0:
+            equity_before_result -= net_class7
+
     revenue=amount(tb,"REVENUE","credit")
     contra=amount(tb,"CONTRA_REVENUE","debit")
     net_sales=revenue-contra
