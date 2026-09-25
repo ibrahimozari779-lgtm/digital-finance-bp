@@ -6703,68 +6703,68 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <button id="sampleHubBtn" type="button"></button>
     </div>
   </div>
-<div class="trustBar hidePrint" style="display:flex;justify-content:center;gap:18px;margin-bottom:14px;padding:8px 12px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;font-size:12px;color:#475569">
-  <div class="item" style="display:inline-flex;align-items:center;gap:6px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0E7C66" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg><span><b>Önce hesap, sonra yorum</b> — Çift taraflı deterministik motor</span></div>
-  <div class="item" style="display:inline-flex;align-items:center;gap:6px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg><span><b>KVKK Uyumlu</b> · RAM-Only Geçici Bellek (Kalıcı Saklama Yok)</span></div>
-  <div class="item" style="display:inline-flex;align-items:center;gap:6px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg><span><b>33 Finansal Karar Motoru</b> · Bütünleşik Yönetim Akışı</span></div>
+<!-- Hidden tab buttons for JS backward compatibility -->
+<div style="display:none">
+  <button id="singleTabBtn" data-tab="single"></button>
+  <button id="connectorsTabBtn" data-tab="connectors"></button>
 </div>
 
-<div class="tabs">
-  <button class="tab active" data-tab="single" id="singleTabBtn">📂 Akıllı Dosya Yükleme Merkezi (Tekli / Çok Dönem / Çoklu Veri)</button>
-  <button class="tab" data-tab="connectors" id="connectorsTabBtn" style="background:#F0FDF4;color:#166534;font-weight:800">⚡ Otomatik ERP &amp; e-Defter API</button>
-</div>
-<div id="single" class="tabPanel active">
-  <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px;padding:22px;box-shadow:0 4px 16px rgba(0,0,0,0.03)">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:14px">
-      <div>
-        <div style="display:inline-flex;align-items:center;gap:6px;background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:800;padding:3px 8px;border-radius:6px;margin-bottom:6px">
-          <span>📂 KENDİ FİNANSALLARINIZLA ANALİZ</span>
+<!-- Kendi Finansallarınızla Canlı Analiz Kartı (Canlı Sektörel Demo Formatında) -->
+<div id="single" class="tabPanel active" style="margin-top:16px;margin-bottom:16px">
+  <div class="cfoDemoHeroBanner hidePrint" style="background:linear-gradient(135deg, rgba(14,124,102,0.06) 0%, rgba(29,78,216,0.06) 100%);border:1.5px solid rgba(14,124,102,0.25);border-radius:16px;padding:18px 22px;display:grid;grid-template-columns:1.15fr 0.85fr;gap:20px;align-items:center">
+    <!-- Sol Kolon: Başlık, Açıklama ve Hızlı Rehber Linkleri -->
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        <span style="background:linear-gradient(135deg,#0E7C66,#1D4ED8);color:#fff;font-size:11px;font-weight:900;padding:3.5px 10px;border-radius:6px;letter-spacing:0.8px;text-transform:uppercase">📁 KENDİ FİNANSALLARINIZLA ANALİZ</span>
+        <span class="tag" style="background:#DCFCE7;color:#166534;font-size:11px;font-weight:800;border:1px solid #BBF7D0">60 Saniyede Teşhis</span>
+      </div>
+      <h3 style="margin:0 0 6px;font-size:16.5px;font-weight:800;color:#0F1B2D;letter-spacing:-0.3px">Mizan veya Finansal Dosyalarınızı Yükleyin</h3>
+      <div style="font-size:12.5px;color:#475569;line-height:1.55;margin-bottom:10px">
+        Tek mizan (.xlsx, .csv) veya GİB e-Defter dosyanızı seçin; 33 analitik karar motoru şirketinizi çift taraflı denetlesin ve yönetim kararlarınızı anında çıkarsın.
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:11.5px;flex-wrap:wrap">
+        <button type="button" onclick="openErpGuideModal()" style="background:none;border:none;color:#1D4ED8;font-size:11.5px;font-weight:700;cursor:pointer;padding:0;text-decoration:underline">📂 Mizan Alma Rehberi</button>
+        <span style="color:#CBD5E1">•</span>
+        <button type="button" onclick="downloadSampleMizan()" style="background:none;border:none;color:#475569;font-size:11.5px;font-weight:700;cursor:pointer;padding:0;text-decoration:underline">📥 Standart Şablon (.csv)</button>
+        <span style="color:#CBD5E1">•</span>
+        <button type="button" onclick="openConnectorModal()" style="background:none;border:none;color:#166534;font-size:11.5px;font-weight:700;cursor:pointer;padding:0;text-decoration:underline">⚡ ERP API Bağla</button>
+      </div>
+    </div>
+
+    <!-- Sağ Kolon: Kompakt Yükleme Alanı, Sektör ve Analiz Butonu -->
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <!-- Kompakt Dropzone / Dosya Seçici -->
+      <div class="dropZone" id="dropZoneSingle" style="background:#FFFFFF;border:1.5px dashed #94A3B8;border-radius:10px;padding:12px 14px;box-shadow:0 2px 6px rgba(0,0,0,0.03);cursor:pointer;text-align:center;transition:all 0.2s">
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0E7C66" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <span style="font-size:13px;font-weight:700;color:#0F1B2D">Mizan Dosyasını Bırakın veya Seçin</span>
         </div>
-        <h3 style="margin:0 0 4px;font-size:16.5px;font-weight:800;color:#0F1B2D">Mizan veya Finansal Tablolarınızı Yükleyin</h3>
-        <p style="margin:0;font-size:12.5px;color:#64748B;line-height:1.5">
-          Tek mizan (.xlsx, .csv), e-Defter XML veya Çoklu Defter (Satış + Alacak + Stok)... Sistem dosyaları otomatik sınıflandırır ve 60 saniyede stratejik yönetim kararlarına dönüştürür.
-        </p>
+        <span style="font-size:11px;color:#64748B;display:block;margin-top:2px">Tekli mizan veya çoklu defter (.xlsx, .xls, .csv, .xml)</span>
       </div>
-      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
-        <button type="button" onclick="openErpGuideModal()" class="secondary" style="font-size:11.5px;padding:6px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:5px;color:#1D4ED8;font-weight:700">📂 Mizan Alma Rehberi</button>
-        <button type="button" onclick="downloadSampleMizan()" class="secondary" style="font-size:11.5px;padding:6px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:5px">📥 Standart Şablon (.csv)</button>
-        <button type="button" onclick="openConnectorModal()" class="secondary" style="font-size:11.5px;padding:6px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:5px;background:#F0FDF4;color:#166534;font-weight:800;border:1px solid #86EFAC">⚡ ERP Bağla</button>
+
+      <input id="file" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm,.xml,.json" multiple style="display:none">
+      <div id="fileListSingle" class="selectedFilesList" style="margin:0"></div>
+
+      <!-- Sektör Seçimi -->
+      <div style="display:flex;align-items:center;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:10px;padding:2px 10px;box-shadow:0 2px 6px rgba(0,0,0,0.04)">
+        <span style="font-size:12px;font-weight:700;color:#64748B;white-space:nowrap;margin-right:6px">Sektör:</span>
+        <select id="sector" class="select" style="border:none;background:transparent;font-size:13px;font-weight:700;color:#0F1B2D;padding:8px 0;outline:none;cursor:pointer;width:100%"><option value="">Genel Sektör (Tüm Kriterler)</option></select>
       </div>
+
+      <!-- Analiz Butonu -->
+      <button id="analyze" class="primary" style="width:100%;background:linear-gradient(135deg,#1D4ED8,#172554);color:#fff;border:none;padding:12px 18px;border-radius:10px;font-weight:800;font-size:13.5px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 4px 14px rgba(29,78,216,0.25)">
+        🚀 Akıllı Analizi Başlat (60 Saniyede Rapor) →
+      </button>
     </div>
 
-    <div class="dropZone" id="dropZoneSingle" style="padding:28px 20px;border:2px dashed #94A3B8;border-radius:14px;background:#F8FAFC;cursor:pointer;transition:all 0.2s">
-      <div class="dropIco" style="margin-bottom:8px"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
-      <div class="dropText">
-        <strong style="font-size:15px;color:#0F1B2D">Finansal Dosyalarınızı veya Mizanınızı Buraya Sürükleyin ya da Tıklayın</strong>
-        <span style="font-size:12px;color:#64748B;margin-top:4px;display:block">
-          Desteklenen formatlar: .xlsx, .xls, .csv, .xml (GİB e-Defter) · İster tek mizan, ister çoklu defter
-        </span>
+    <!-- Alttaki Zarif Not / Footnote: Gereksiz detayları alta küçük not olarak gösterme -->
+    <div style="grid-column:1/-1;margin-top:4px;padding-top:10px;border-top:1px solid rgba(14,124,102,0.15);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:11px;color:#64748B">
+      <div style="display:inline-flex;align-items:center;gap:6px">
+        <span>🏛️ <b>Uyumlu:</b> GİB e-Defter XML · Logo · Mikro · Netsis · Luca · Zirve · SAP · Excel/CSV</span>
       </div>
-      <button type="button" class="secondary" style="margin-top:10px;padding:7px 18px;font-size:12px;pointer-events:none;font-weight:700">📁 Dosya(ları) Seç</button>
-    </div>
-
-    <input id="file" class="file" type="file" accept=".csv,.xlsx,.xls,.xlsm,.xml,.json" multiple style="display:none">
-    <div id="fileListSingle" class="selectedFilesList" style="margin-top:10px"></div>
-
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid #F1F5F9">
-      <div style="display:inline-flex;align-items:center;gap:8px">
-        <span style="font-size:12.5px;font-weight:700;color:#334155">Sektör Kıyaslama:</span>
-        <select id="sector" class="select" style="min-width:180px"><option value="">Genel Sektör</option></select>
+      <div style="display:inline-flex;align-items:center;gap:6px">
+        <span>🔒 <b>Gizlilik &amp; Denetim:</b> RAM-Only Bellek (Kalıcı Saklama Yok) · Çift Yönlü Doğrulama</span>
       </div>
-      <button id="analyze" class="primary" style="padding:12px 26px;font-size:14px;border-radius:10px;font-weight:800;box-shadow:0 4px 14px rgba(14,124,102,0.25)">🚀 Akıllı Analizi Başlat (33 Karar Motoru)</button>
-    </div>
-
-    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:12px;font-size:11px;color:#64748B">
-      <span style="font-weight:700;color:#334155">Otomatik Tanınan Sistemler:</span>
-      <span class="tag" style="background:#E4F5EF;color:#0E7C66;font-size:10.5px;font-weight:700">🏛️ GİB e-Defter XML</span>
-      <span class="tag" style="background:#F1F5F9;font-size:10.5px">Logo</span>
-      <span class="tag" style="background:#F1F5F9;font-size:10.5px">Mikro</span>
-      <span class="tag" style="background:#F1F5F9;font-size:10.5px">Netsis</span>
-      <span class="tag" style="background:#F1F5F9;font-size:10.5px">Luca</span>
-      <span class="tag" style="background:#F1F5F9;font-size:10.5px">Zirve</span>
-      <span class="tag" style="background:#EEF2FF;color:#1D4ED8;font-size:10.5px;font-weight:700">SAP S/4HANA</span>
-      <span class="tag" style="background:#FFF7ED;color:#EA580C;font-size:10.5px;font-weight:700">Oracle NetSuite</span>
-      <span class="tag" style="background:#F1F5F9;font-size:10.5px">Excel / CSV</span>
     </div>
   </div>
 
@@ -6786,9 +6786,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
       <button type="button" onclick="openFinancialAssistanceModal()" class="primary" style="background:#B45309;color:#FFF;border:none;padding:10px 18px;border-radius:10px;font-size:12.5px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(180,83,9,0.25)">
         📞 Ücretsiz Hazırlık Desteği Talep Et
       </button>
-      <a href="https://wa.me/905000000000?text=Merhaba,%20finansallarımı%20yükleme%20konusunda%20ücretsiz%20destek%20almak%20istiyorum." target="_blank" class="secondary" style="background:#FFFFFF;color:#166534;border:1.5px solid #86EFAC;padding:9px 14px;border-radius:10px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px;text-decoration:none">
-        💬 WhatsApp Destek Hattı
-      </a>
+      <button type="button" onclick="openFinancialAssistanceModal()" class="secondary" style="background:#FFFFFF;color:#166534;border:1.5px solid #86EFAC;padding:9px 14px;border-radius:10px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px;cursor:pointer">
+        💬 WhatsApp &amp; Canlı Destek Hattı
+      </button>
     </div>
   </div>
 </div>
