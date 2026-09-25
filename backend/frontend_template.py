@@ -7034,8 +7034,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
 
 <!-- Sticky Dashboard Sub-Navigation Bar -->
 <div id="dashboardSubNav" class="dashboardSubNav hidePrint" style="position:sticky;top:62px;z-index:45;background:#FFFFFF;border-bottom:1.5px solid #E2E8F0;box-shadow:0 4px 14px rgba(15,27,45,0.05);padding:9px 0;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;display:flex;gap:7px;white-space:nowrap">
-  <button type="button" class="dashPill" style="background:#EFF6FF;color:#1D4ED8;font-weight:900;border:1.5px solid #93C5FD;box-shadow:0 2px 6px rgba(29,78,216,0.12)" onclick="jumpToFlowStep('strategicModulesCockpitCard')">🎯 3 Stratejik Karar Modülü</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_1')">1. Finansal Röntgen</button>
+  <button type="button" class="dashPill active" style="background:#EFF6FF;color:#1D4ED8;font-weight:900;border:1.5px solid #93C5FD;box-shadow:0 2px 6px rgba(29,78,216,0.12)" onclick="jumpToFlowStep('flowStep_1')">👑 1. Yönetici Brifingi &amp; Teşhis</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_2')">2. Öncelikli Riskler</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('sixtyDayGapLiveCard')">3. Kilitli Nakit &amp; 60G GAP (Modül 3)</button>
   <button type="button" class="dashPill" onclick="jumpToFlowStep('profitQualityModuleLiveCard')">4. Kârlılık &amp; QoE (Modül 1)</button>
@@ -7055,12 +7054,12 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
     <div class="accordionTitleGroup">
       <span class="accordionNum">1</span>
       <div>
-        <h3 class="accordionTitle">Yönetici Brifingi, Finansal Röntgen &amp; Stratejik Soru Masası</h3>
-        <div class="accordionSub">C-Level Yönetici Özeti, 30 saniyelik teşhis, AI Finance Partner ve CEO 8 soru masası</div>
+        <h3 class="accordionTitle">Yönetici Karar Masası &amp; 30 Saniyelik Finansal Teşhis</h3>
+        <div class="accordionSub">Kâr durumu, kilitli nakit, öncelikli yönetim kararı ve 1 sayfalık patron karar notu</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:700">C-Level Snapshot</span>
+      <span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:700">Yönetici Kokpiti</span>
       <div class="accordionToggleIcon">▼</div>
     </div>
   </div>
@@ -7071,7 +7070,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;border-bottom:1px solid #E2E8F0;padding-bottom:14px">
           <div style="display:flex;align-items:center;gap:10px">
             <span style="background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-size:11px;font-weight:800;letter-spacing:1px;padding:4px 10px;border-radius:6px;text-transform:uppercase">⚡ 30 Saniyelik Teşhis</span>
-            <h3 style="margin:0;font-size:17px;font-weight:700;color:#0F1B2D;letter-spacing:-0.3px">Şirket Yönetim Özeti: Kâr Durumu, Kilitli Para ve Öncelikli Karar</h3>
+            <h3 style="margin:0;font-size:17px;font-weight:700;color:#0F1B2D;letter-spacing:-0.3px">Patron Finansal Röntgeni: Kâr, Kilitli Nakit ve Alınacak İlk Karar</h3>
           </div>
           <div style="font-size:11.5px;color:#64748B;display:flex;align-items:center;gap:8px">
             <span>Deterministik Çift Taraflı Denetim:</span>
@@ -7105,8 +7104,8 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
       </div>
     </div>
 
-    <!-- 3 KRİTİK STRATEJİK YÖNETİM MODÜLÜ (CANLI YÖNETİCİ KOKPİTİ) -->
-    <div id="strategicModulesCockpitCard" style="margin-bottom:20px"></div>
+    <!-- Hidden cockpit anchor for JS backward compatibility -->
+    <div id="strategicModulesCockpitCard" style="display:none"></div>
 
     <!-- Yönetici Özeti & AI Business Partner -->
     <div class="card" style="margin-bottom:20px">
@@ -13178,75 +13177,10 @@ function renderStrategicModules(d){
     }
   ];
 
-  // 1. TOP EXECUTIVE COCKPIT BANNER
+  // 1. TOP EXECUTIVE COCKPIT BANNER (Removed to avoid duplication with deep modules in Steps 3, 4, 6)
   const cockpitEl = $('strategicModulesCockpitCard');
   if(cockpitEl){
-    let cockHtml = '<div class="card" style="margin-bottom:0;border:2px solid #2563EB;background:linear-gradient(145deg, #FFFFFF 0%, #F0F7FF 100%);box-shadow:0 8px 24px rgba(37,99,235,0.08);border-radius:18px;padding:22px 24px">';
-    cockHtml += '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;border-bottom:1.5px solid #DBEAFE;padding-bottom:12px">';
-    cockHtml += '<div style="display:flex;align-items:center;gap:10px">';
-    cockHtml += '<span style="background:#2563EB;color:#FFFFFF;font-size:11px;font-weight:900;letter-spacing:1px;padding:4px 10px;border-radius:6px;text-transform:uppercase">🎯 3 STRATEJİK YÖNETİM MODÜLÜ</span>';
-    cockHtml += '<h3 style="margin:0;font-size:17px;font-weight:800;color:#0F172A;letter-spacing:-0.3px">Patron &amp; CFO Karar Masası (Canlı Analiz &amp; Teşhis)</h3>';
-    cockHtml += '</div>';
-    cockHtml += '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">';
-    cockHtml += '<button type="button" class="secondary small" onclick="openCfoReportModal()" style="font-size:11.5px;padding:5px 12px;border-radius:8px;font-weight:700;background:#0E7C66;color:#FFF;border:none;cursor:pointer">📊 10 Sayfalık Finans Raporunu Aç (Sayfa 2, 5, 9)</button>';
-    cockHtml += '<button type="button" class="secondary small" onclick="openBoardDeckModal()" style="font-size:11.5px;padding:5px 12px;border-radius:8px;font-weight:700;background:#1D4ED8;color:#FFF;border:none;cursor:pointer">👑 Patron Karar Notunu Aç</button>';
-    cockHtml += '</div></div>';
-
-    cockHtml += '<p style="margin:0 0 14px;font-size:12px;color:#475569;line-height:1.5">';
-    cockHtml += 'Talebiniz doğrultusunda canlı olarak hesaplanan 3 stratejik yönetim alanı: <b>1. Kâr Kalitesi (QoE &amp; Fiktif Stok Kârı)</b>, <b>2. Akıllı Alacak (Credit Scoring &amp; Direktifler)</b> ve <b>3. Akıllı Borç (60G GAP &amp; Refinansman)</b>.';
-    cockHtml += '</p>';
-
-    cockHtml += '<div class="grid3" style="gap:14px">';
-
-    // Card 1: Modül 1
-    cockHtml += '<div style="background:#FFFFFF;border:1.5px solid #BFDBFE;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 2px 8px rgba(37,99,235,0.05)">';
-    cockHtml += '<div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">';
-    cockHtml += '<span style="font-size:11px;font-weight:800;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.5px">MODÜL 1 &bull; KÂR KALİTESİ</span>';
-    cockHtml += '<span style="background:' + qoeColor + ';color:#FFF;font-size:11px;font-weight:900;padding:2px 8px;border-radius:6px">Grade ' + qoeGrade + ' (' + qoeScore + '/100)</span>';
-    cockHtml += '</div>';
-    cockHtml += '<div style="font-size:18px;font-weight:900;color:#0F172A;margin-bottom:2px">' + money(sustainableProfit) + '</div>';
-    cockHtml += '<div style="font-size:11px;font-weight:700;color:#16A34A;margin-bottom:8px">Sürdürülebilir Operasyonel Kâr</div>';
-    cockHtml += '<div style="font-size:11.5px;color:#475569;line-height:1.45;background:#F8FAFC;padding:8px 10px;border-radius:8px;border:1px solid #E2E8F0">';
-    cockHtml += '<div><b>64/67 Diğer Gelirler:</b> ' + money(nonCoreIncome) + ' ' + (nonCorePct > 0 ? '<span style="color:#DC2626;font-weight:700">(Kârın %' + nonCorePct + '\'i)</span>' : '<span style="color:#16A34A">(Temiz)</span>') + '</div>';
-    cockHtml += '<div style="margin-top:3px"><b>Fiktif Stok Kârı:</b> ' + (fictitiousStock > 0 ? '<b style="color:#D97706">' + money(fictitiousStock) + '</b> (Reel: ' + money(realOpProfit) + ')' : '<span style="color:#16A34A">İllüzyon yok</span>') + '</div>';
-    cockHtml += '</div></div>';
-    cockHtml += '<button type="button" class="secondary" onclick="jumpToFlowStep(\'profitQualityModuleLiveCard\')" style="width:100%;margin-top:12px;font-size:11.5px;padding:6px;font-weight:800;color:#1D4ED8;background:#EFF6FF;border-color:#BFDBFE;cursor:pointer">';
-    cockHtml += '🔍 Kâr Köprüsü &amp; Detayı Gör (Adım 4) →';
-    cockHtml += '</button></div>';
-
-    // Card 2: Modül 2
-    cockHtml += '<div style="background:#FFFFFF;border:1.5px solid #FDE68A;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 2px 8px rgba(217,119,6,0.05)">';
-    cockHtml += '<div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">';
-    cockHtml += '<span style="font-size:11px;font-weight:800;color:#B45309;text-transform:uppercase;letter-spacing:0.5px">MODÜL 2 &bull; AKILLI ALACAK</span>';
-    cockHtml += '<span style="background:#EA580C;color:#FFF;font-size:11px;font-weight:900;padding:2px 8px;border-radius:6px">4 Risk Seviyesi (A-D)</span>';
-    cockHtml += '</div>';
-    cockHtml += '<div style="font-size:18px;font-weight:900;color:#0F172A;margin-bottom:2px">' + money(arVal) + '</div>';
-    cockHtml += '<div style="font-size:11px;font-weight:700;color:#D97706;margin-bottom:8px">Müşterilerde Kilitli Alacak Hacmi</div>';
-    cockHtml += '<div style="font-size:11.5px;color:#475569;line-height:1.45;background:#FFFBEB;padding:8px 10px;border-radius:8px;border:1px solid #FDE68A">';
-    cockHtml += '<div style="color:#92400E"><b>Satış Ekibi Direktifi:</b> Açık hesap limitini %50 düşürün; yeni siparişlerde DBS veya peşinat şartı uygulayın.</div>';
-    cockHtml += '<div style="margin-top:3px;color:#B45309"><b>Konsantrasyon Şoku:</b> İlk 3 müşteri payı %' + (shockSim.top_3_pct || 65) + '. Temerrüt riski simüle edildi.</div>';
-    cockHtml += '</div></div>';
-    cockHtml += '<button type="button" class="secondary" onclick="jumpToFlowStep(\'creditScoringLiveCard\')" style="width:100%;margin-top:12px;font-size:11.5px;padding:6px;font-weight:800;color:#B45309;background:#FFFBEB;border-color:#FDE68A;cursor:pointer">';
-    cockHtml += '👥 Müşteri Risk Haritasını Gör (Adım 6) →';
-    cockHtml += '</button></div>';
-
-    // Card 3: Modül 3
-    cockHtml += '<div style="background:#FFFFFF;border:1.5px solid ' + (sixtyGap.status==='DEFICIT'?'#FCA5A5':'#BBF7D0') + ';border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 2px 8px rgba(220,38,38,0.05)">';
-    cockHtml += '<div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">';
-    cockHtml += '<span style="font-size:11px;font-weight:800;color:' + (sixtyGap.status==='DEFICIT'?'#DC2626':'#16A34A') + ';text-transform:uppercase;letter-spacing:0.5px">MODÜL 3 &bull; 60G BORÇ GAP</span>';
-    cockHtml += '<span style="background:' + (sixtyGap.status==='DEFICIT'?'#DC2626':'#16A34A') + ';color:#FFF;font-size:11px;font-weight:900;padding:2px 8px;border-radius:6px">' + (sixtyGap.status==='DEFICIT'?'GAP Açığı 🚨':'Likidite Dengeli 🛡️') + '</span>';
-    cockHtml += '</div>';
-    cockHtml += '<div style="font-size:18px;font-weight:900;color:' + (sixtyGap.status==='DEFICIT'?'#DC2626':'#16A34A') + ';margin-bottom:2px">' + money(sixtyGap.net_gap_60d || 0) + '</div>';
-    cockHtml += '<div style="font-size:11px;font-weight:700;color:' + (sixtyGap.status==='DEFICIT'?'#991B1B':'#166534') + ';margin-bottom:8px">60 Günlük Net Likidite Boşluğu</div>';
-    cockHtml += '<div style="font-size:11.5px;color:#475569;line-height:1.45;background:' + (sixtyGap.status==='DEFICIT'?'#FEF2F2':'#F0FDF4') + ';padding:8px 10px;border-radius:8px;border:1px solid ' + (sixtyGap.status==='DEFICIT'?'#FECDD3':'#BBF7D0') + '">';
-    cockHtml += '<div><b>2 Refinansman Yolu:</b> 1. Stok tasfiyesiyle rotatif kapatma &bull; 2. Tedarikçi vadesini vadeli çek protokolüyle uzatma.</div>';
-    cockHtml += '</div></div>';
-    cockHtml += '<button type="button" class="secondary" onclick="jumpToFlowStep(\'sixtyDayGapLiveCard\')" style="width:100%;margin-top:12px;font-size:11.5px;padding:6px;font-weight:800;color:' + (sixtyGap.status==='DEFICIT'?'#DC2626':'#16A34A') + ';background:' + (sixtyGap.status==='DEFICIT'?'#FEF2F2':'#F0FDF4') + ';border-color:' + (sixtyGap.status==='DEFICIT'?'#FCA5A5':'#BBF7D0') + ';cursor:pointer">';
-    cockHtml += '💧 Nakit Akışı &amp; 60G GAP Gör (Adım 3) →';
-    cockHtml += '</button></div>';
-
-    cockHtml += '</div></div>';
-    cockpitEl.innerHTML = cockHtml;
+    cockpitEl.innerHTML = '';
   }
 
   // 2. LIVE MODÜL 1 CARD (Inside Step 4)
