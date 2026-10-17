@@ -5663,9 +5663,9 @@ APP_HTML = r'''<!doctype html>
   .heroText{font-size:12.5px !important;line-height:1.5 !important}
   .framework{gap:6px !important;margin:12px 0 2px !important}
   .framework span{font-size:11px !important;padding:5px 9px !important}
-  .cfoDemoHeroBanner{padding:14px !important;gap:12px !important}
+  .cfoDemoHeroBanner{grid-template-columns:1fr !important;padding:14px !important;gap:12px !important}
   .cfoDemoHeroBanner > div:last-child{width:100%;display:flex;flex-direction:column;gap:8px !important}
-  .cfoDemoHeroBanner button{width:100%;justify-content:center;padding:10px 14px !important}
+  .cfoDemoHeroBanner button.primary{width:100%;justify-content:center;padding:10px 14px !important}
   .tabs{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:6px;padding-bottom:4px;width:100%;box-sizing:border-box}
   .tabs::-webkit-scrollbar{display:none}
   .tab{white-space:nowrap;flex-shrink:0;padding:7px 12px;font-size:12px}
@@ -6710,8 +6710,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </div>
 
 <!-- Kendi Finansallarınızla Canlı Analiz Kartı (Canlı Sektörel Demo Formatında) -->
-<div id="single" class="tabPanel active" style="margin-top:16px;margin-bottom:16px">
-  <div class="cfoDemoHeroBanner hidePrint" style="background:linear-gradient(135deg, rgba(14,124,102,0.06) 0%, rgba(29,78,216,0.06) 100%);border:1.5px solid rgba(14,124,102,0.25);border-radius:16px;padding:18px 22px;display:grid;grid-template-columns:1.15fr 0.85fr;gap:20px;align-items:center">
+<div id="single" class="tabPanel active" style="display:block;width:100%;margin-top:16px;margin-bottom:16px">
+  <div class="cfoDemoHeroBanner hidePrint" style="width:100%;background:linear-gradient(135deg, rgba(14,124,102,0.06) 0%, rgba(29,78,216,0.06) 100%);border:1.5px solid rgba(14,124,102,0.25);border-radius:16px;padding:18px 22px;display:grid;grid-template-columns:1.15fr 0.85fr;gap:20px;align-items:center">
     <!-- Sol Kolon: Başlık, Açıklama ve Hızlı Rehber Linkleri -->
     <div>
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
