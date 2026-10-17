@@ -79,15 +79,58 @@ def build_management_actions(findings, opportunities, statements, causal_chains=
 
     groups.sort(key=lambda g: (_group_priority(g), len(g)), reverse=True)
 
+    pl = (statements or {}).get('profit_and_loss') or {}
+    k = (statements or {}).get('kpis') or {}
+    fin_costs = float(pl.get('Finance costs') or 0.0)
+    net_sales = float(pl.get('Net sales') or 0.0)
+    opex = abs(float(pl.get('Operating expenses') or 0.0))
+    other_inc = float(pl.get('Other income') or 0.0)
+    receivables = float(k.get('receivables') or 0.0)
+    inventory = float(k.get('inventory') or 0.0)
+    payables = float(k.get('payables') or 0.0)
+    fin_debt = float(k.get('financial_debt') or 0.0)
+
+    theme_tr_map = {
+        'Capital Structure': 'Sermaye & Borç Yapısı',
+        'Borçluluk': 'Sermaye & Borç Yapısı',
+        'Profit Quality': 'Kâr Kalitesi',
+        'Working Capital': 'İşletme Sermayesi',
+        'Collections': 'Alacak & Tahsilat Yönetimi',
+        'Commercial Risk': 'Ticari Yoğunlaşma Riski',
+        'Supplier Liquidity': 'Tedarikçi & Ödeme Dengesi',
+        'Inventory': 'Stok & Depo Optimizasyonu',
+        'Liquidity': 'Likidite Yönetimi',
+    }
+
+    def _fallback_impact(code_str: str) -> float | None:
+        if code_str in {'L001', 'D006', 'D007'} and fin_costs > 0:
+            return round(fin_costs * 0.25, 2)
+        if code_str in {'L002', 'D004', 'D005', 'Q003'} and fin_debt > 0:
+            return round(fin_debt * 0.15, 2)
+        if code_str in {'W001', 'WC004', 'Q001', 'Q002', 'GAP-AR-01', 'GAP-AR-02', 'GAP-SALES-01', 'GAP-SALES-03'} and receivables > 0:
+            return round(receivables * 0.15, 2)
+        if code_str in {'P002', 'GAP-SALES-02'} and net_sales > 0:
+            return round(net_sales * 0.015, 2)
+        if code_str == 'P003' and opex > 0:
+            return round(opex * 0.05, 2)
+        if code_str == 'E001' and other_inc > 0:
+            return round(other_inc * 0.50, 2)
+        if code_str in {'A001', 'GAP-INV-01'} and inventory > 0:
+            return round(inventory * 0.15, 2)
+        if code_str == 'GAP-AP-01' and payables > 0:
+            return round(payables * 0.15, 2)
+        return None
+
     actions=[]
     for group in groups:
         if len(actions)>=8: break
         primary=sorted(group,key=lambda x:severity_rank.get(x.get('severity'),0),reverse=True)[0]
-        code=primary.get('code'); a=mapping.get(code,(primary.get('recommendation',''), 'Finance','30-60 gün', code))
+        code=primary.get('code'); a=mapping.get(code,(primary.get('recommendation',''), 'Finans & Hazine Yönetimi','30-60 gün', code))
         cid=cluster_by_code.get(code)
         cluster=cluster_meta.get(cid,{}) if cid else {}
-        decision_theme=cluster.get('title') or ('Capital Structure' if primary.get('category')=='Borçluluk' else primary.get('category'))
-        theme_aliases=[primary.get('category'), decision_theme]
+        raw_theme=cluster.get('title') or ('Capital Structure' if primary.get('category')=='Borçluluk' else primary.get('category'))
+        decision_theme=theme_tr_map.get(raw_theme, raw_theme)
+        theme_aliases=[primary.get('category'), raw_theme, decision_theme]
         if primary.get('category')=='Borçluluk': theme_aliases += ['Capital Structure','Profit Quality']
         if primary.get('category')=='İşletme Sermayesi': theme_aliases += ['Working Capital','Collections']
         if primary.get('category')=='Likidite': theme_aliases += ['Liquidity']
@@ -95,19 +138,13 @@ def build_management_actions(findings, opportunities, statements, causal_chains=
         for t in theme_aliases:
             gaps += gap_by_theme.get(t,[])
         expected=next((g.get('estimated_impact') for g in gaps if g.get('estimated_impact') is not None),None)
+        if expected is None:
+            expected=_fallback_impact(code)
         kpis=[]
         for item in group:
             cand=mapping.get(item.get('code'))
             if cand: kpis.append(cand[3])
         kpis=list(dict.fromkeys(kpis))
-        # Data-driven, situational recommendation: the generic playbook
-        # sentence (a[0]) states WHAT to do; this appends the company's own
-        # current numbers from the finding's own evidence (already computed
-        # from this period's statements), so the recommendation reads as
-        # "given your %62 receivables-to-sales ratio, do X" rather than a
-        # static template that would say the same thing regardless of the
-        # figures. No new calculation is introduced here - only the evidence
-        # already produced by the Decision Engine for this finding is quoted.
         evidence_snippet=', '.join(e for e in (primary.get('evidence') or [])[:2] if e)
         action_text=a[0]
         if evidence_snippet:
@@ -124,9 +161,9 @@ def build_management_actions(findings, opportunities, statements, causal_chains=
     represented_codes={a.get('finding_id') for a in actions}
     covered_themes={a.get('decision_theme') for a in actions}
     theme_aliases={
-        'Capital Structure': {'Capital Structure','Profit Quality','Borçluluk','Finansman Baskısı Kök Nedeni'},
-        'Working Capital': {'Working Capital','Collections','İşletme Sermayesi','İşletme Sermayesi Kök Nedeni'},
-        'Liquidity': {'Liquidity','Likidite'},
+        'Capital Structure': {'Capital Structure','Sermaye & Borç Yapısı','Profit Quality','Kâr Kalitesi','Borçluluk','Finansman Baskısı Kök Nedeni'},
+        'Working Capital': {'Working Capital','Collections','Alacak & Tahsilat Yönetimi','İşletme Sermayesi','İşletme Sermayesi Kök Nedeni'},
+        'Liquidity': {'Liquidity','Likidite','Likidite Yönetimi'},
     }
     for gap in (gap_detection or {}).get('gaps', []):
         if len(actions)>=10: break
@@ -134,20 +171,22 @@ def build_management_actions(findings, opportunities, statements, causal_chains=
         code=gap.get('code')
         if code in represented_codes: continue
         gtheme=gap.get('theme')
+        gtheme_tr=theme_tr_map.get(gtheme, gtheme)
         # Specific operational actions remain visible even when their broader theme is already covered.
         force_source_action = code in {'GAP-SALES-01','GAP-SALES-02','GAP-AR-01','GAP-INV-01','GAP-AP-01'}
         # Do not create a second action for a problem already covered by the same strategic theme.
         skip=False
         for covered in covered_themes:
-            if covered==gtheme: skip=True; break
-            if any(covered in aliases and gtheme in aliases for aliases in theme_aliases.values()): skip=True; break
+            if covered in {gtheme, gtheme_tr}: skip=True; break
+            if any(covered in aliases and (gtheme in aliases or gtheme_tr in aliases) for aliases in theme_aliases.values()): skip=True; break
         if skip and not force_source_action: continue
-        a=mapping.get(code,(gap.get('recommended_action',''), 'Finans & Hazine','30-60 gün', gap.get('theme','KPI')))
+        a=mapping.get(code,(gap.get('recommended_action',''), 'Finans & Hazine Yönetimi','30-60 gün', gtheme_tr or 'KPI'))
+        gap_impact = gap.get('estimated_impact') if gap.get('estimated_impact') is not None else _fallback_impact(code)
         actions.append({
             'action_id':f'ACT-{code}','finding_id':code,'merged_finding_codes':None,'priority':len(actions)+1,
             'action':a[0],'owner':a[1],'time_horizon':a[2],'kpi':a[3], 'severity':gap.get('severity'),
-            'decision_theme':gap.get('theme'),'expected_financial_impact':gap.get('estimated_impact'),
-            'expected_impact_label':'Tahmini Finansal Etki / Fırsat' if gap.get('estimated_impact') is not None else None,
+            'decision_theme':gtheme_tr,'expected_financial_impact':gap_impact,
+            'expected_impact_label':'Tahmini Finansal Etki / Fırsat' if gap_impact is not None else None,
             'priority_score':severity_rank.get(gap.get('severity'), 0) * 25.0,
         })
     return actions

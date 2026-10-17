@@ -22,7 +22,7 @@ def build_profit_improvement_analysis(
         net_sales = float(sales_analysis.get("net_sales") or 0.0)
 
     operating_profit = float(pl.get("Operating profit") or 0.0)
-    cogs = float(pl.get("Cost of sales") or 0.0)
+    cogs = float(pl.get("COGS") or pl.get("Cost of sales") or 0.0)
     opex = float(pl.get("Operating expenses") or (float(pl.get("Gross profit") or 0.0) - operating_profit))
 
     if net_sales <= 0:

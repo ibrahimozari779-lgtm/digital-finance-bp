@@ -291,6 +291,7 @@ def build_cash_flow_engine(
     # C) Patron Karar Kokpiti & Yönetici Yorum Motoru
     # =========================================================================
     # 1. "Para Nerede?" - 100% Aligned with Resource Allocation Engine
+    _tl_fmt = lambda v: f"₺{abs(round(v)):,}".replace(",", ".")
     if resource_allocation and resource_allocation.get("where_is_money"):
         ra_money = resource_allocation["where_is_money"]
         headline_story = ra_money.get("summary_narrative") or ""
@@ -305,16 +306,16 @@ def build_cash_flow_engine(
         inv_pct = round((inventory / total_operational_capital * 100), 1) if total_operational_capital > 0 else 0.0
         if financial_debt > cash and financial_debt > 2_000_000:
             headline_story = (
-                f"Kasadaki ₺{cash:,.0f} hazır paranın ana kaynağı kâr değil, "
-                f"şirketin ₺{financial_debt:,.0f} tutarındaki kısa vadeli finansal borçlanmasıdır (kredi/faktoring/ihraç). "
-                f"Operasyonel varlıkların %{rec_pct:.0f}'i ise müşterilerin {dso:.0f} günlük açık hesap vadesinde (₺{receivables:,.0f}) rehindir."
-            ).replace(",", ".")
+                f"Kasadaki {_tl_fmt(cash)} hazır paranın ana kaynağı kâr değil, "
+                f"şirketin {_tl_fmt(financial_debt)} tutarındaki kısa vadeli finansal borçlanmasıdır (kredi/faktoring/ihraç). "
+                f"Operasyonel varlıkların %{rec_pct:.0f}'i ise müşterilerin {dso:.0f} günlük açık hesap vadesinde ({_tl_fmt(receivables)}) rehindir."
+            )
         else:
             headline_story = (
-                f"Kasadaki sıcak para ₺{cash:,.0f} (%{cash_pct}); "
+                f"Kasadaki sıcak para {_tl_fmt(cash)} (%{cash_pct}); "
                 f"operasyonel sermayenizin %{rec_pct + inv_pct:.0f}'i "
-                f"(₺{receivables + inventory:,.0f}) müşteri senetlerinde ve depoda kilitli."
-            ).replace(",", ".")
+                f"({_tl_fmt(receivables + inventory)}) müşteri senetlerinde ve depoda kilitli."
+            )
 
     where_is_the_money = {
         "cash_amount": cash,
@@ -337,8 +338,8 @@ def build_cash_flow_engine(
         fin_to_assets = (financial_debt / current_assets * 100) if current_assets > 0 else 0
         anomalies.append({
             "code": "ALM-MALI-BORC-KAPAN",
-            "title": f"Ağır Finansal Borçlanma (₺{financial_debt:,.0f} Mali Borç)".replace(",", "."),
-            "description": f"Dönen varlıkların %{fin_to_assets:.0f}'i kısa vadeli banka kredisi, faktoring ve ihraç edilen menkul kıymetlerle fonlanmaktadır. Yıllık ₺{finance_costs:,.0f} faiz sızıntısı operasyonel kârı baskılamaktadır.".replace(",", "."),
+            "title": f"Ağır Finansal Borçlanma ({_tl_fmt(financial_debt)} Mali Borç)",
+            "description": f"Dönen varlıkların %{fin_to_assets:.0f}'i kısa vadeli banka kredisi, faktoring ve ihraç edilen menkul kıymetlerle fonlanmaktadır. Yıllık {_tl_fmt(finance_costs)} faiz sızıntısı operasyonel kârı baskılamaktadır.",
             "exposure_tl": financial_debt,
             "severity": "critical",
         })
@@ -361,7 +362,7 @@ def build_cash_flow_engine(
         deepest_deficit = abs(min(0.0, lowest_cash_point))
         anomalies.append({
             "code": "ALM-NAKIT-ACIGI",
-            "title": f"{first_def}. Haftada Kasa Açığı Riski (-₺{deepest_deficit:,.0f})".replace(",", "."),
+            "title": f"{first_def}. Haftada Kasa Açığı Riski (-{_tl_fmt(deepest_deficit)})",
             "description": f"13 haftalık projeksiyonda; maaş, SGK, vergi ve tedarikçi ödemelerinin kümelendiği {first_def}. haftada kasanız eksiye düşüyor.",
             "exposure_tl": deepest_deficit,
             "severity": "critical",
@@ -382,7 +383,7 @@ def build_cash_flow_engine(
             anomalies.append({
                 "code": "ALM-FAIZ-BASKISI",
                 "title": f"Faiz Baskısı: Kârın %{fin_to_op:.0f}'i Bankaya Gidiyor",
-                "description": f"Faaliyet kârınızın (₺{operating_profit:,.0f}) yaklaşık ₺{finance_costs:,.0f} tutarındaki kısmı kredi ve finansman faizlerine eriyor.".replace(",", "."),
+                "description": f"Faaliyet kârınızın ({_tl_fmt(operating_profit)}) yaklaşık {_tl_fmt(finance_costs)} tutarındaki kısmı kredi ve finansman faizlerine eriyor.",
                 "exposure_tl": finance_costs,
                 "severity": "critical" if fin_to_op > 40 else "warning",
             })
@@ -391,8 +392,8 @@ def build_cash_flow_engine(
     if overdue_ar > 0:
         anomalies.append({
             "code": "ALM-VADESI-GECMIS-AR",
-            "title": f"Vadesi Geçmiş Alacak Alarmı (₺{overdue_ar:,.0f})".replace(",", "."),
-            "description": f"Toplam alacakların ₺{overdue_ar:,.0f} tutarındaki kısmı vadesini aşmış ve tahsilat riski oluşturmaktadır.",
+            "title": f"Vadesi Geçmiş Alacak Alarmı ({_tl_fmt(overdue_ar)})",
+            "description": f"Toplam alacakların {_tl_fmt(overdue_ar)} tutarındaki kısmı vadesini aşmış ve tahsilat riski oluşturmaktadır.",
             "exposure_tl": overdue_ar,
             "severity": "critical",
         })
@@ -409,9 +410,20 @@ def build_cash_flow_engine(
             horizon = ma.get("time_horizon", "0-15 gün")
             kpi = ma.get("kpi", "İşletme Sermayesi")
             impact = ma.get("expected_financial_impact")
-            if impact is None:
-                # Calibrated financial impact proxy from finding evidence
-                impact = overdue_ar if "AR" in kpi or "DSO" in kpi else (finance_costs if "Finance" in kpi or "Interest" in kpi else receivables * 0.15)
+            if impact is None or impact <= 0:
+                # Calibrated financial impact proxy from finding evidence (supports both Turkish & English KPI labels)
+                if any(w in kpi for w in ("AR", "DSO", "Tahsilat", "Alacak", "Müşteri")):
+                    impact = overdue_ar if overdue_ar > 0 else receivables * 0.15
+                elif any(w in kpi for w in ("Finance", "Interest", "Finansman", "Faiz")):
+                    impact = finance_costs * 0.25 if finance_costs > 0 else financial_debt * 0.10
+                elif any(w in kpi for w in ("Stok", "DIO", "Depo")):
+                    impact = inventory * 0.15 if inventory > 0 else receivables * 0.10
+                elif any(w in kpi for w in ("Tedarikçi", "DPO")):
+                    impact = payables * 0.15 if payables > 0 else receivables * 0.10
+                elif any(w in kpi for w in ("Borç", "Nakit")):
+                    impact = financial_debt * 0.15 if financial_debt > 0 else receivables * 0.15
+                else:
+                    impact = receivables * 0.15
 
             # Build deeply personalized, data-driven WhatsApp direct message quoting company specifics
             wa_text = _build_whatsapp_directive(owner, task, horizon, kpi, impact)
@@ -438,9 +450,9 @@ def build_cash_flow_engine(
             "cash_impact_tl": ar_target,
             "whatsapp_template": (
                 f"Sayın Kredi Kontrol ve Satış Yöneticim, haftalık nakit projeksiyonumuza göre acil likidite sağlamamız gerekiyor. "
-                f"İlk 5 büyük müşterimizle görüşerek en az ₺{ar_target:,.0f} tutarında erken tahsilat veya DBS limiti "
+                f"İlk 5 büyük müşterimizle görüşerek en az {_tl_fmt(ar_target)} tutarında erken tahsilat veya DBS limiti "
                 f"sağlanmasını, vadesi geçen bakiyeler kapatılmadan yeni sevkiyat açılmamasını rica ederim."
-            ).replace(",", "."),
+            ),
         })
 
         ap_target = round(payables * 0.15, 2)
@@ -454,8 +466,8 @@ def build_cash_flow_engine(
             "whatsapp_template": (
                 f"Sayın Hazine ve Satınalma Yöneticim, tedarikçi ödeme vadelerimizi incelediğimizde müşteriye göre çok erken "
                 f"ödeme yaptığımızı görüyoruz. Ana tedarikçilerimizle görüşerek ödeme takvimine +15 gün ilave "
-                f"vade alınmasını ve kasadan çıkacak ₺{ap_target:,.0f} tutarın ertelenmesini sağlayalım."
-            ).replace(",", "."),
+                f"vade alınmasını ve kasadan çıkacak {_tl_fmt(ap_target)} tutarın ertelenmesini sağlayalım."
+            ),
         })
 
         inv_target = round(inventory * 0.15, 2)
@@ -468,9 +480,9 @@ def build_cash_flow_engine(
             "cash_impact_tl": inv_target,
             "whatsapp_template": (
                 f"Operasyon ve Satış Ekibine: Depomuzda bekleyen stoklar her ay finansman faizi üretmektedir. "
-                f"Bu hafta hareketsiz ürün listesini çıkarıp özel iskonto ile en az ₺{inv_target:,.0f} "
+                f"Bu hafta hareketsiz ürün listesini çıkarıp özel iskonto ile en az {_tl_fmt(inv_target)} "
                 f"tutarında stok tasfiyesini tamamlayalım."
-            ).replace(",", "."),
+            ),
         })
 
     # =========================================================================
@@ -485,7 +497,6 @@ def build_cash_flow_engine(
     total_obligations_60d = w8_outflows
     net_gap_60d = total_sources_60d - total_obligations_60d
 
-    _tl_fmt = lambda v: f"₺{abs(round(v)):,}".replace(",", ".")
     gap_status = "DEFICIT" if net_gap_60d < 0 else "HEALTHY"
     if net_gap_60d < 0:
         gap_narrative = (
@@ -515,24 +526,43 @@ def build_cash_flow_engine(
 
     # 2 Somut Finansal Mühendislik Alternatifi
     alt1_stock_vol = round(inventory * 0.25, 2) if inventory > 0 else round(receivables * 0.20, 2)
-    alt1_cash = round(alt1_stock_vol * 0.85, 2)
+    alt1_cash = round(alt1_stock_vol * 0.85, 2) if inventory > 0 else round(alt1_stock_vol * 0.92, 2)
     alt1_annual_saving = round(alt1_cash * 0.55, 2)
 
     alt2_vol = round(payables * 0.35, 2) if payables > 0 else round(monthly_cogs_burn * 1.5, 2)
 
+    if inventory > 0:
+        alt1_title = "Alternatif 1: Stok İskontosu ile Yüksek Faizli Rotatif Kredi / KMH Kapatma"
+        alt1_category = "Varlık Likidasyonu & Faiz Tasarrufu"
+        alt1_desc = (
+            f"Depodaki yavaş hareket eden stokların %25'i ({_tl_fmt(alt1_stock_vol)}) için peşin satışa yönelik %15 toplu tasfiye/iskonto "
+            f"kampanyası başlatılarak kasaya {_tl_fmt(alt1_cash)} sıcak nakit kazandırılır. Bu tutarla yıllık bileşik maliyeti %55'in "
+            f"üzerinde olan rotatif kredi/KMH borcu kapatılarak yılda {_tl_fmt(alt1_annual_saving)} faiz sızıntısı durdurulur."
+        )
+    else:
+        alt1_title = "Alternatif 1: Erken Tahsilat / Peşin Kapama İskontosu ile Kredi / KMH Kapatma"
+        alt1_category = "Alacak Hızlandırma & Faiz Tasarrufu"
+        alt1_desc = (
+            f"Müşterilerdeki açık hesap ticari alacakların %20'si ({_tl_fmt(alt1_stock_vol)}) için %8 erken kapama / DBS iskontosu "
+            f"uygulanarak kasaya {_tl_fmt(alt1_cash)} sıcak nakit kazandırılır. Bu tutarla yıllık bileşik maliyeti %55'in "
+            f"üzerinde olan rotatif kredi/KMH borcu kapatılarak yılda {_tl_fmt(alt1_annual_saving)} faiz sızıntısı durdurulur."
+        )
+
+    alt2_tail = (
+        "kısa vadeli banka kredi ihtiyacı ortadan kaldırılır ve 60 günlük likidite açığı kapatılır."
+        if net_gap_60d < 0
+        else "kısa vadeli banka kredi ihtiyacı azaltılır ve 60 günlük nakit emniyet tamponu güçlendirilir."
+    )
+
     restructuring_alternatives = [
         {
             "id": "ALT-1",
-            "title": "Alternatif 1: Stok İskontosu ile Yüksek Faizli Rotatif Kredi / KMH Kapatma",
-            "category": "Varlık Likidasyonu & Faiz Tasarrufu",
+            "title": alt1_title,
+            "category": alt1_category,
             "target_volume_tl": alt1_stock_vol,
             "net_cash_generated_tl": alt1_cash,
             "annual_interest_saving_tl": alt1_annual_saving,
-            "description": (
-                f"Depodaki yavaş hareket eden stokların %25'i ({_tl_fmt(alt1_stock_vol)}) için peşin satışa yönelik %15 toplu tasfiye/iskonto "
-                f"kampanyası başlatılarak kasaya {_tl_fmt(alt1_cash)} sıcak nakit kazandırılır. Bu tutarla yıllık bileşik maliyeti %55'in "
-                f"üzerinde olan rotatif kredi/KMH borcu kapatılarak yılda {_tl_fmt(alt1_annual_saving)} faiz sızıntısı durdurulur."
-            ),
+            "description": alt1_desc,
             "owner": "Satış Direktörlüğü & Finans",
             "time_horizon": "15-30 Gün",
         },
@@ -544,9 +574,9 @@ def build_cash_flow_engine(
             "net_cash_generated_tl": alt2_vol,
             "annual_interest_saving_tl": round(alt2_vol * 0.45 * (60 / 365), 2),
             "description": (
-                f"En büyük 3 hammadde tedarikçisiyle görüşülerek {_tl_fmt(alt2_vol)} tutarındaki açık hesap borç 60-90 günlük vadeli "
+                f"En büyük 3 tedarikçiyle görüşülerek {_tl_fmt(alt2_vol)} tutarındaki açık hesap borç 60-90 günlük vadeli "
                 f"çek protokolüne veya banka garantili DBS tedarikçi finansmanına bağlanır. Kasadan ani nakit çıkışı ertelenerek "
-                f"kısa vadeli banka kredi ihtiyacı ortadan kaldırılır ve 60 günlük likidite açığı kapatılır."
+                f"{alt2_tail}"
             ),
             "owner": "Satınalma & Hazine Yönetimi",
             "time_horizon": "10-20 Gün",
@@ -595,7 +625,8 @@ def build_cash_flow_engine(
 def _build_whatsapp_directive(owner: str, task: str, horizon: str, kpi: str, impact: float | None) -> str:
     """Builds a polite, professional, and data-driven WhatsApp directive quoting real company figures."""
     salutation = f"Sayın {owner}" if owner else "Sayın Yöneticim"
-    impact_str = f" ve şirket kasasına yaklaşık ₺{impact:,.0f} likidite serbestleşmesi sağlanması".replace(",", ".") if (impact and impact > 0) else ""
+    impact_fmt = f"₺{round(impact):,}".replace(",", ".") if (impact and impact > 0) else ""
+    impact_str = f" ve şirket kasasına yaklaşık {impact_fmt} likidite serbestleşmesi sağlanması" if impact_fmt else ""
     return (
         f"{salutation}, yönetim kurulu finansal değerlendirmemize göre öncelikli aksiyonumuz belirlenmiştir:\n\n"
         f"🎯 Aksiyon: {task}\n"
@@ -603,4 +634,4 @@ def _build_whatsapp_directive(owner: str, task: str, horizon: str, kpi: str, imp
         f"📊 Hedef Gösterge (KPI): {kpi}\n\n"
         f"Bu aksiyonun ivedilikle hayata geçirilmesi{impact_str} hedeflenmektedir. "
         f"Lütfen süreci başlatıp haftalık ilerlemeyi tarafıma bildirin."
-    ).replace(",", ".")
+    )

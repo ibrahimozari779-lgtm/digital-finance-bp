@@ -91,7 +91,7 @@ def build_resource_allocation_analysis(
 
     # Where are leakages? ("Nerede Kayıp Var?")
     finance_costs = float(pl.get("Finance costs") or 0.0)
-    discounts = float(pl.get("Sales discounts") or float(sales_analysis.get("discounts") or 0.0))
+    discounts = abs(float(pl.get("Sales deductions") or pl.get("Sales discounts") or float(sales_analysis.get("discounts") or 0.0)))
     inv_analysis = (data_hub or {}).get("analysis_inventory") or {}
     stale_stock = float(inv_analysis.get("stale_180_amount") or 0.0)
     ar_analysis = (data_hub or {}).get("analysis_ar") or {}
@@ -144,6 +144,6 @@ def build_resource_allocation_analysis(
         },
         'where_is_loss': {
             'leakages': leakages,
-            'total_visible_leakage': round(finance_costs + discounts + stale_stock, 2),
+            'total_visible_leakage': round(finance_costs + discounts + stale_stock + ar_overdue, 2),
         },
     }

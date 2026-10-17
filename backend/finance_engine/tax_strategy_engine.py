@@ -26,7 +26,7 @@ def build_tax_strategy_analysis(
     pre_tax_profit = float(pl.get('Pre-tax profit') or 0.0)
     finance_costs = float(pl.get('Finance costs') or 0.0)
     current_liab = float(bs.get('Current liabilities') or 0.0)
-    non_current_liab = float(bs.get('Non-current liabilities') or 0.0)
+    non_current_liab = float(bs.get('Long-term liabilities') or bs.get('Non-current liabilities') or 0.0)
     total_assets = float(bs.get('Total assets') or 0.0)
     equity = float(bs.get('Total equity incl. current result') or 0.0)
     current_assets = float(bs.get('Current assets') or 0.0)

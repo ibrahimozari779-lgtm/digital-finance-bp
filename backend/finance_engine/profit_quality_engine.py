@@ -69,35 +69,39 @@ def build_profit_quality(statements: dict[str, Any], findings: list[dict[str, An
     non_core_share_of_profit = round((other / max(1.0, abs(pbt))) * 100, 1) if pbt > 0 else 0.0
     sustainable_operating_profit = round(op, 2)
     is_non_core_dominated = bool(other > 0 and (non_core_share_of_profit > 30.0 or (op > 0 and other > op * 0.4)))
+    def _tl(v: float) -> str:
+        return f"₺{v:,.0f}".replace(",", ".")
+
     non_core_warning = None
     if is_non_core_dominated:
         non_core_warning = (
             f"⚠️ Kârınızın %{non_core_share_of_profit:.0f}'i ana işinizden gelmiyor; "
-            f"tek seferlik/faaliyet dışı gelirler (₺{other:,.0f}) arındırıldığında operasyonel kârlılık risk altındadır."
-        ).replace(",", ".")
+            f"tek seferlik/faaliyet dışı gelirler ({_tl(other)}) arındırıldığında operasyonel kârlılık risk altındadır."
+        )
 
     # 2. Fiktif Stok Kârı İllüzyonu Filtresi (Enflasyonist Stok İkame Maliyeti)
     bs = statements.get('balance_sheet') or {}
-    inventories = float(bs.get('Inventories') or 0.0)
-    dio = float(k.get('dio') or 60.0)
-    cogs = float(pl.get('Cost of sales') or pl.get('COGS') or 0.0)
+    inventories = float(k.get('inventory') or bs.get('Inventories') or 0.0)
+    cogs = abs(float(pl.get('COGS') or pl.get('Cost of sales') or 0.0))
+    dio = float(k.get('dio') or ((inventories / cogs * 365.0) if cogs > 0 else 60.0))
     inflation_rate = 0.45  # Yıllık enflasyon varsayımı / stok yenileme farkı
     fictitious_stock_profit = 0.0
     real_operating_profit = op
     fictitious_stock_pct = 0.0
     stock_illusion_warning = None
 
-    if inventories > 0 and cogs > 0 and op > 0:
-        replacement_drag = round(inventories * (inflation_rate * (min(180.0, max(15.0, dio)) / 365.0)), 2)
+    if inventories > 0 and op > 0:
+        # Enflasyonist ortamda dönem sonu stokların ikame maliyeti farkı (inflation_adjustment_engine ile uyumlu)
+        replacement_drag = round(inventories * inflation_rate, 2) if cogs > 0 else round(inventories * (inflation_rate * (min(180.0, max(15.0, dio)) / 365.0)), 2)
         fictitious_stock_profit = round(min(op, max(0.0, replacement_drag)), 2)
         real_operating_profit = round(op - fictitious_stock_profit, 2)
         fictitious_stock_pct = round((fictitious_stock_profit / op * 100), 1)
         if fictitious_stock_pct >= 20.0:
             stock_illusion_warning = (
                 f"📦 Fiktif Stok Kârı İllüzyonu: Yüksek enflasyon ortamında kâğıt üzerinde görünen kârın "
-                f"₺{fictitious_stock_profit:,.0f}'lik kısmı satılan malı aynı fiyattan depoya yerine koymaya "
-                f"(stok ikame maliyetine) gidecektir. Şirketin Reel Operasyonel Kârı ₺{real_operating_profit:,.0f} seviyesindedir."
-            ).replace(",", ".")
+                f"{_tl(fictitious_stock_profit)}'lik kısmı satılan malı aynı fiyattan depoya yerine koymaya "
+                f"(stok ikame maliyetine) gidecektir. Şirketin Reel Operasyonel Kârı {_tl(real_operating_profit)} seviyesindedir."
+            )
 
     # A single, additive quality score (0-100, higher = better quality)
     quality_points = 100.0

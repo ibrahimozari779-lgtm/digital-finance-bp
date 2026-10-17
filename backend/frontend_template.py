@@ -7729,55 +7729,35 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
       </div>
 
       <div style="margin-top:16px;background:#FFFFFF;border:1px solid #E2E8F0;border-radius:14px;padding:16px">
-        <div style="font-size:13.5px;font-weight:800;color:#0F172A;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center">
-          <span>🎛️ Çoklu Kaldıraçlı Nakit &amp; Kâr Kurtarma Simülatörü</span>
-          <span class="tag" style="background:#EFF6FF;color:var(--accent);font-size:10.5px">CANLI KARAR LABORATUVARI</span>
-        </div>
-
-        <div class="grid2" style="gap:14px">
-          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 14px">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-              <span style="font-size:12px;font-weight:700;color:#1E293B">1. Tahsilat Vadesini Kısalt (DSO Hızlandırma)</span>
-              <b id="wcSliderDsoDisplay" style="color:#1D4ED8;font-size:13px">15 Gün Erken Tahsilat</b>
-            </div>
-            <input id="wcSliderDso" type="range" min="0" max="60" value="15" step="1" style="width:100%;cursor:pointer">
-          </div>
-
-          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 14px">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-              <span style="font-size:12px;font-weight:700;color:#1E293B">2. Stokta Beklemeyi Azalt (DIO / Ölü Stok Eritme)</span>
-              <b id="wcSliderDioDisplay" style="color:#D97706;font-size:13px">10 Gün Daha Hızlı Stok</b>
-            </div>
-            <input id="wcSliderDio" type="range" min="0" max="60" value="10" step="1" style="width:100%;cursor:pointer">
-          </div>
-
-          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 14px">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-              <span style="font-size:12px;font-weight:700;color:#1E293B">3. Tedarikçi Vadesini Optimize Et (DPO Uzatma)</span>
-              <b id="wcSliderDpoDisplay" style="color:#0E7C66;font-size:13px">5 Gün Vade Öteleme</b>
-            </div>
-            <input id="wcSliderDpo" type="range" min="0" max="45" value="5" step="1" style="width:100%;cursor:pointer">
-          </div>
-
-          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 14px">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-              <span style="font-size:12px;font-weight:700;color:#1E293B">4. Brüt Kâr Marjı / Faaliyet Gider (OpEx) Tasarrufu</span>
-              <b id="wcSliderMarginDisplay" style="color:#7C3AED;font-size:13px">+1.5% Marj / Tasarruf</b>
-            </div>
-            <input id="wcSliderMargin" type="range" min="0" max="5.0" value="1.5" step="0.5" style="width:100%;cursor:pointer">
+        <div style="font-size:13.5px;font-weight:800;color:#0F172A;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <span>🚀 Hızlı İç Kaynak (Öz Finansman) Nakit Kurtarma Potansiyeli</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="tag" style="background:#EFF6FF;color:var(--accent);font-size:10.5px">15G DSO + 10G DIO + 5G DPO HEDEFİ</span>
+            <button type="button" class="primary hidePrint" onclick="jumpToFlowStep('flowStep_9')" style="padding:6px 12px;border-radius:8px;font-size:11.5px;font-weight:800;cursor:pointer">🎛️ Canlı Simülatörde Değiştir (Bölüm 9) →</button>
           </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px">
+        <div style="display:none">
+          <b id="wcSliderDsoDisplay">15 Gün Erken Tahsilat</b>
+          <input id="wcSliderDso" type="range" min="0" max="60" value="15" step="1">
+          <b id="wcSliderDioDisplay">10 Gün Daha Hızlı Stok</b>
+          <input id="wcSliderDio" type="range" min="0" max="60" value="10" step="1">
+          <b id="wcSliderDpoDisplay">5 Gün Vade Öteleme</b>
+          <input id="wcSliderDpo" type="range" min="0" max="45" value="5" step="1">
+          <b id="wcSliderMarginDisplay">+1.5% Marj / Tasarruf</b>
+          <input id="wcSliderMargin" type="range" min="0" max="5.0" value="1.5" step="0.5">
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
           <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:12px;padding:12px 16px">
             <div style="font-size:11px;font-weight:800;color:#16A34A;text-transform:uppercase">🚀 Kasaya Girecek Toplam Sıcak Nakit</div>
             <div id="wcSliderCashLiberated" style="font-size:24px;font-weight:900;color:#047857;margin-top:2px">+₺0</div>
-            <div class="small muted">Alacak tahsilatı + stok eritme + tedarikçi finansmanıyla doğrudan kasaya giren nakit</div>
+            <div class="small muted">Alacak tahsilatı (-15g) + stok devri (-10g) + tedarikçi vadesi (+5g) ile açığa çıkan nakit</div>
           </div>
           <div style="background:#EFF6FF;border:1.5px solid #BFDBFE;border-radius:12px;padding:12px 16px">
             <div style="font-size:11px;font-weight:800;color:#1D4ED8;text-transform:uppercase">📈 Yıllık Kurtarılacak Net Kâr &amp; Faiz Tasarrufu</div>
             <div id="wcSliderInterestSaved" style="font-size:24px;font-weight:900;color:#1E40AF;margin-top:2px">+₺0 / yıl</div>
-            <div class="small muted">Kurtarılan %45 kredi faizi + fiyat/gider verimliliğiyle doğrudan bilançoya eklenen kâr</div>
+            <div class="small muted">Kurtarılan kredi faizi + +1,5 puan marj/gider verimliliğiyle bilançoya eklenen yıllık kâr</div>
           </div>
         </div>
       </div>
@@ -7813,9 +7793,9 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
         <div>
           <div style="display:flex;align-items:center;gap:8px">
             <span style="font-size:20px">🏛️</span>
-            <h2 style="color:#1E3A8A;margin:0">Patronun Masası: Haftalık Nakit &amp; Karar Kokpiti</h2>
+            <h2 style="color:#1E3A8A;margin:0">Patronun Masası: Haftalık Risk Alarmları &amp; İcraat Kokpiti</h2>
           </div>
-          <p style="margin:4px 0 0">Para nerede? Sorun ne &amp; Kaç TL? Bu hafta ekibe hangi talimatı vermeliyim?</p>
+          <p style="margin:4px 0 0">Haftalık nakit darboğazları, parasal maruziyet (TL) ve bu hafta ekibe verilecek 3 somut talimat</p>
         </div>
         <div id="patronRunwayBadge" style="display:flex;gap:8px;align-items:center"></div>
       </div>
@@ -7848,12 +7828,12 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
       <div id="tms7TableWrap" class="tableWrap hidden"></div>
     </div>
 
-    <!-- Sermaye Dağılımı ve Nakit Sıkışması -->
+    <!-- Kâr Kaynakları ve Görünmez Sızıntı Haritası -->
     <div id="resourceAllocationCard" class="card hidden" style="margin-top:16px;margin-bottom:0">
       <div class="sectionHead">
         <div>
-          <h2>Sermaye Dağılımı ve Nakit Sıkışması (Para Nerede?)</h2>
-          <p>Şirketin bağladığı toplam sermaye nerede duruyor: Kasada mı, alacakta mı, stokta mı?</p>
+          <h2>Kâr Kaynakları &amp; Finansal Sızıntı Haritası (Nerede Kâr Var? &amp; Nerede Kayıp Var?)</h2>
+          <p>Brüt kârın ana taşıyıcıları ile faaliyet kârını eriten finansman faizi, iskonto, atıl stok ve gecikmiş alacak sızıntıları</p>
         </div>
       </div>
       <div id="resourceAllocationMetrics" class="grid4"></div>
@@ -7864,7 +7844,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
 </section>
 
 <!-- ==================== BÖLÜM 4: OPERASYONEL KÂRLILIK & KÂR KÖPRÜSÜ ==================== -->
-<section id="flowStep_4" class="accordionStep active">
+<section id="flowStep_4" class="accordionStep">
   <div class="accordionHeader" onclick="toggleAccordion('flowStep_4')">
     <div class="accordionTitleGroup">
       <span class="accordionNum">4</span>
@@ -7928,7 +7908,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
 </section>
 
 <!-- ==================== BÖLÜM 5: BİLANÇO GÜCÜ, BORÇ YAPISI & LİKİDİTE ==================== -->
-<section id="flowStep_5" class="accordionStep active">
+<section id="flowStep_5" class="accordionStep">
   <div class="accordionHeader" onclick="toggleAccordion('flowStep_5')">
     <div class="accordionTitleGroup">
       <span class="accordionNum">5</span>
@@ -7969,7 +7949,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
 </section>
 
 <!-- ==================== BÖLÜM 6: KRİTİK TARAFLAR & OPERASYONEL İSTİHBARAT ==================== -->
-<section id="flowStep_6" class="accordionStep active">
+<section id="flowStep_6" class="accordionStep">
   <div class="accordionHeader" onclick="toggleAccordion('flowStep_6')">
     <div class="accordionTitleGroup">
       <span class="accordionNum">6</span>
@@ -8016,7 +7996,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
 </section>
 
 <!-- ==================== BÖLÜM 7: KÖK NEDEN & KARAR HİKÂYELERİ ==================== -->
-<section id="flowStep_7" class="accordionStep active">
+<section id="flowStep_7" class="accordionStep">
   <div class="accordionHeader" onclick="toggleAccordion('flowStep_7')">
     <div class="accordionTitleGroup">
       <span class="accordionNum">7</span>
@@ -8046,7 +8026,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
 </section>
 
 <!-- ==================== BÖLÜM 8: VERGİSEL YÖNETİM AVANTAJLARI & TEŞVİKLER ==================== -->
-<section id="flowStep_8" class="accordionStep active">
+<section id="flowStep_8" class="accordionStep">
   <div class="accordionHeader" onclick="toggleAccordion('flowStep_8')">
     <div class="accordionTitleGroup">
       <span class="accordionNum">8</span>
@@ -8076,7 +8056,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
 </section>
 
 <!-- ==================== BÖLÜM 9: CANLI SENARYO SİMÜLATÖRÜ ==================== -->
-<section id="flowStep_9" class="accordionStep active">
+<section id="flowStep_9" class="accordionStep">
   <div class="accordionHeader" onclick="toggleAccordion('flowStep_9')">
     <div class="accordionTitleGroup">
       <span class="accordionNum">9</span>
@@ -8216,7 +8196,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
 </section>
 
 <!-- ==================== BÖLÜM 10: ENFLASYON RÖNTGENİ & LİKİDİTE STRES TESTİ ==================== -->
-<section id="flowStep_10" class="accordionStep active">
+<section id="flowStep_10" class="accordionStep">
   <div class="accordionHeader" onclick="toggleAccordion('flowStep_10')">
     <div class="accordionTitleGroup">
       <span class="accordionNum">10</span>
@@ -10150,8 +10130,8 @@ function renderSalesIntelligence(sales, custProf, prodProf){
 
   let html = '<div class="card">' +
     '<div class="sectionHead"><div>' +
-      '<h2>Satış Zekâsı: Müşteri &amp; Ürün Kârlılık Masası</h2>' +
-      '<p>Hangi müşteriler ve ürünler doğrudan kâr getiriyor, hangileri şirketin sermayesini tüketiyor?</p>' +
+      '<h2>Satış Kalitesi, Vade Primi &amp; İskonto Disiplini</h2>' +
+      '<p>Altın müşteriler, marjı aşağı çeken hacimli cariler ve satış defteri – mizan ciro mutabakatı</p>' +
     '</div></div>';
 
   // KPI Grid
@@ -10159,37 +10139,10 @@ function renderSalesIntelligence(sales, custProf, prodProf){
     metric('Vade Primi', s.term_premium_pct != null ? pct(s.term_premium_pct) : '–', 'Peşin → Vadeli Fiyat Farkı') +
     metric('İlk 10 Müşteri Payı', s.top_10_customer_share_pct != null ? pct(s.top_10_customer_share_pct) : '–', 'Müşteri Yoğunlaşması') +
     metric('Ortalama Brüt Marj', avgMargin != null ? pct(avgMargin) : '–', 'Şirket Kârlılık Tabanı') +
-    metric('Zarar / Risk Durumu', (lossCust.length + lossProd.length) > 0 ? (lossCust.length + lossProd.length) + ' Kalem' : 'Temiz', (lossCust.length + lossProd.length) > 0 ? 'Negatif Marjlı Kalemler' : 'Doğrudan Zarar Yok') +
+    metric('Zarar / Risk Durumu', (lossCust.length + lossProd.length) > 0 ? (lossCust.length + lossProd.length) + ' Kalem' : 'Temiz', (lossCust.length + lossProd.length) > 0 ? 'Yukarıdaki Matriste Listelendi' : 'Doğrudan Zarar Yok') +
   '</div>';
 
-  // Section 1: Hangi Müşteriler Zarar Ettiriyor?
-  html += '<div style="margin-top:14px;border:1px solid ' + (lossCust.length ? '#FDA4AF' : '#E2E8F0') + ';border-radius:12px;padding:14px;background:' + (lossCust.length ? '#FFF1F2' : '#F8FAFC') + '">' +
-    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
-      '<div style="display:flex;align-items:center;gap:8px">' +
-        '<span style="font-size:16px">' + (lossCust.length ? '🛑' : '✅') + '</span>' +
-        '<b style="font-size:13.5px;color:' + (lossCust.length ? '#9F1239' : '#0F1B2D') + '">Hangi Müşteriler Zarar Ettiriyor? (Negatif Brüt Kâr &amp; Marj Kanaması)</b>' +
-      '</div>' +
-      '<span class="tag ' + (lossCust.length ? 'critical' : 'positive') + '">' + (lossCust.length ? lossCust.length + ' Zarar Ettiren Müşteri' : 'Zarar Eden Müşteri Yok') + '</span>' +
-    '</div>';
-
-  if(lossCust.length){
-    html += '<p class="small muted" style="margin-bottom:10px;color:#9F1239">Aşağıdaki müşterilere yapılan satış fiyatı doğrudan satılan malın maliyetinin (SMM) altındadır. Her teslimatta şirket nakit ve özkaynak kaybetmektedir.</p>' +
-      '<div class="tableWrap"><table><thead><tr><th>Müşteri</th><th>Net Satış</th><th>Maliyet (SMM)</th><th>Brüt Kâr/Zarar</th><th>Brüt Marj %</th><th>Yönetici Teşhisi &amp; Kararı</th></tr></thead><tbody>' +
-      lossCust.map(c => '<tr>' +
-        '<td><b>' + esc(c.name || c.customer) + '</b></td>' +
-        '<td>' + money(c.sales || c.revenue) + '</td>' +
-        '<td>' + money(c.cogs) + '</td>' +
-        '<td style="color:var(--red);font-weight:700">' + money(c.gross_profit) + '</td>' +
-        '<td style="color:var(--red);font-weight:700">%' + num(c.gross_margin_pct) + '</td>' +
-        '<td class="small" style="color:#9F1239">Satış fiyatı maliyeti karşılamıyor. Fiyat acilen en az maliyetin %15 üstüne çıkarılmalı veya sevkiyat durdurulmalıdır.</td>' +
-      '</tr>').join('') +
-      '</tbody></table></div>';
-  } else {
-    html += '<p class="small muted" style="margin:0">Satış defterinde doğrudan negatif brüt kâr yazan müşteri tespit edilmemiştir. Bütün müşterilerin satış fiyatı birim maliyetinin üzerindedir.</p>';
-  }
-  html += '</div>';
-
-  // Section 2: Kâr Kalitesi Yüksek (Altın) Müşteriler
+  // Section 1: Kâr Kalitesi Yüksek (Altın) Müşteriler
   html += '<div style="margin-top:14px;border:1px solid #BBF7D0;border-radius:12px;padding:14px;background:#F0FDF4">' +
     '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
       '<div style="display:flex;align-items:center;gap:8px">' +
@@ -10216,7 +10169,7 @@ function renderSalesIntelligence(sales, custProf, prodProf){
   }
   html += '</div>';
 
-  // Section 3: Hacimli ama Kârı Aşağı Çeken Müşteriler
+  // Section 2: Hacimli ama Kârı Aşağı Çeken Müşteriler
   if(dilutiveCust.length){
     html += '<div style="margin-top:14px;border:1px solid #FEF08A;border-radius:12px;padding:14px;background:#FEFCE8">' +
       '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
@@ -10239,39 +10192,6 @@ function renderSalesIntelligence(sales, custProf, prodProf){
       '</tbody></table></div></div>';
   }
 
-  // Section 4: Ürün Bazlı Kâr / Zarar & Portföy Kırılımı
-  html += '<div style="margin-top:16px"><div class="sectionHead"><div>' +
-    '<h3>Ürün Bazlı Kârlılık Kırılımı (Lokomotifler vs Zarar Ettiren Kalemler)</h3>' +
-    '<p>Portföydeki hangi ürünler brüt kârı sırtlıyor, hangi ürünler kâr marjını eritiyor?</p>' +
-  '</div></div>';
-
-  html += '<div class="grid2" style="gap:14px;margin-top:10px">' +
-    '<div class="insight" style="background:#FFFFFF;border:1px solid #BBF7D0;border-radius:12px;padding:14px">' +
-      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
-        '<b>🏆 Lokomotif Kâr Lideri Ürünler (Hero SKUs)</b>' +
-        '<span class="tag positive">Yüksek Kâr</span>' +
-      '</div>' +
-      (heroProd.length ? heroProd.slice(0, 4).map(p => '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(15,27,45,0.05);font-size:12px">' +
-        '<span><b>' + esc(p.name || p.sku) + '</b></span>' +
-        '<span>' + money(p.sales || p.revenue) + ' <span class="muted">(%' + num(p.gross_margin_pct) + ' marj)</span></span>' +
-      '</div>').join('') : '<div class="small muted">Belirgin lider ürün verisi yok.</div>') +
-    '</div>' +
-    '<div class="insight" style="background:#FFFFFF;border:1px solid ' + (lossProd.length ? '#FDA4AF' : '#E2E8F0') + ';border-radius:12px;padding:14px">' +
-      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
-        '<b>' + (lossProd.length ? '🛑 Zarar Ettiren Ürünler' : '⚠️ Marjı Düşük / Kârı Eriten Ürünler') + '</b>' +
-        '<span class="tag ' + (lossProd.length ? 'critical' : 'high') + '">' + (lossProd.length ? lossProd.length + ' Kalem Zarar' : 'Düşük Marj') + '</span>' +
-      '</div>' +
-      (lossProd.length ? lossProd.slice(0, 4).map(p => '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(15,27,45,0.05);font-size:12px">' +
-        '<span style="color:var(--red)"><b>' + esc(p.name || p.sku) + '</b></span>' +
-        '<span>' + money(p.sales || p.revenue) + ' <b style="color:var(--red)">(' + money(p.gross_profit) + ')</b></span>' +
-      '</div>').join('') :
-      (pp.low_margin_eroding_products || []).slice(0, 4).map(p => '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(15,27,45,0.05);font-size:12px">' +
-        '<span>' + esc(p.name || p.sku) + '</span>' +
-        '<span>' + money(p.sales || p.revenue) + ' <span class="muted">(%' + num(p.gross_margin_pct) + ' marj)</span></span>' +
-      '</div>').join('') || '<div class="small muted">Negatif marjlı veya kârı eriten ürün bulunmadı.</div>') +
-    '</div>' +
-  '</div>';
-
   if((s.product_mix || []).length){
     const cm = (window.LAST?.business_partner?.core_metrics) || {};
     const ledgerGross = s.total_sales || (s.product_mix || []).reduce((acc, v) => acc + (v.sales || 0), 0);
@@ -10283,14 +10203,14 @@ function renderSalesIntelligence(sales, custProf, prodProf){
     }
     html += '<div class="insight" style="margin-top:12px;padding:12px 16px;background:#F8FAFC">' +
       '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px">' +
-        '<b>Ürün Satış Karması Dağılımı:</b>' +
+        '<b>Ürün Satış Karması &amp; Mizan Ciro Mutabakatı:</b>' +
         '<span style="font-size:11.5px;color:#475569">Brüt Satış (Satış Defteri): <b>' + money(ledgerGross) + '</b>' + diffBadge + '</span>' +
       '</div>' +
       s.product_mix.slice(0, 7).map(v => esc(v.name) + ': ' + money(v.sales) + ' (%' + num(v.share_pct) + ')').join(' · ') +
     '</div>';
   }
 
-  html += '</div></div>';
+  html += '</div>';
   return html;
 }
 
@@ -13296,12 +13216,27 @@ window.switchCeoQuestion = function(qid){
 };
 
 window.jumpToStep = function(stepId){
-  const el = document.getElementById(stepId);
+  const aliasMap = {
+    'customersCard': 'flowStep_6',
+    'inventoryCard': 'flowStep_6',
+    'financialDebtEngineCard': 'leverageCard'
+  };
+  const resolvedId = aliasMap[stepId] || stepId;
+  let el = document.getElementById(resolvedId) || document.getElementById(stepId);
   if(el){
-    el.scrollIntoView({behavior:'smooth', block:'start'});
-    el.style.transition = 'box-shadow .4s ease';
-    el.style.boxShadow = '0 0 0 4px #1D4ED8';
-    setTimeout(() => { el.style.boxShadow = ''; }, 2200);
+    const parentAcc = el.closest('.accordionStep');
+    if(parentAcc && !parentAcc.classList.contains('active')){
+      parentAcc.classList.add('active');
+    }
+    if(el.classList.contains('hidden') && parentAcc){
+      el = parentAcc;
+    }
+    setTimeout(() => {
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+      el.style.transition = 'box-shadow .4s ease';
+      el.style.boxShadow = '0 0 0 4px #10B981';
+      setTimeout(() => { el.style.boxShadow = ''; }, 2200);
+    }, 60);
   }
 };
 
@@ -13453,13 +13388,15 @@ function renderStrategicModules(d){
   const opProfitVal = Number(pl['Operating profit'] || pl['Faaliyet Kârı'] || 0);
   const salesVal = Number(cm.canonical_net_sales != null ? cm.canonical_net_sales : (pl['Net sales'] || pl['Gross sales'] || 0));
 
-  // --- Modül 1 Data ---
-  const qoeScore = Math.round(pqe.qoe_score != null ? pqe.qoe_score : 80);
-  const qoeGrade = pqe.qoe_grade || (qoeScore >= 85 ? 'A' : qoeScore >= 70 ? 'B' : qoeScore >= 55 ? 'C' : 'D');
-  const qoeColor = qoeGrade === 'A' ? '#16A34A' : qoeGrade === 'B' ? '#2563EB' : qoeGrade === 'C' ? '#D97706' : '#DC2626';
-  const sustainableProfit = pqe.sustainable_profit != null ? pqe.sustainable_profit : opProfitVal;
+  // --- Modül 1 Data (100% aligned with profit_quality_engine keys) ---
+  const rawQoe = pqe.quality_score != null ? pqe.quality_score : (pqe.qoe_score != null ? pqe.qoe_score : 80);
+  const qoeScore = num(rawQoe);
+  const qoeGrade = pqe.qoe_grade || (rawQoe >= 80 ? 'A (Çok Güçlü)' : rawQoe >= 65 ? 'B (Yeterli)' : rawQoe >= 50 ? 'C (Kırılgan)' : 'D (Yüksek Risk)');
+  const qoeChar = String(qoeGrade).trim().charAt(0);
+  const qoeColor = qoeChar === 'A' ? '#16A34A' : qoeChar === 'B' ? '#2563EB' : qoeChar === 'C' ? '#D97706' : '#DC2626';
+  const sustainableProfit = pqe.sustainable_operating_profit != null ? pqe.sustainable_operating_profit : (pqe.sustainable_profit != null ? pqe.sustainable_profit : opProfitVal);
   const nonCoreIncome = pqe.non_core_income || 0;
-  const nonCorePct = pqe.non_core_pct_of_profit != null ? Math.round(pqe.non_core_pct_of_profit) : (opProfitVal > 0 ? Math.round((nonCoreIncome / opProfitVal) * 100) : 0);
+  const nonCorePct = pqe.non_core_share_of_profit != null ? Math.round(pqe.non_core_share_of_profit) : (pqe.non_core_pct_of_profit != null ? Math.round(pqe.non_core_pct_of_profit) : (opProfitVal > 0 ? Math.round((nonCoreIncome / opProfitVal) * 100) : 0));
   const fictitiousStock = pqe.fictitious_stock_profit || 0;
   const realOpProfit = pqe.real_operating_profit != null ? pqe.real_operating_profit : (opProfitVal - fictitiousStock);
   const fictitiousPct = pqe.fictitious_stock_pct != null ? num(pqe.fictitious_stock_pct) : '0';
@@ -13505,58 +13442,39 @@ function renderStrategicModules(d){
     cockpitEl.innerHTML = '';
   }
 
-  // 2. LIVE MODÜL 1 CARD (Inside Step 4)
+  // 2. LIVE MODÜL 1 CARD (Inside Step 4 - Unified QoE & Fictitious Stock Profit Filter)
   const mod1El = $('profitQualityModuleLiveCard');
   if(mod1El){
     let m1Html = '<div class="card" style="margin-top:0;border:2px solid #2563EB;background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%);box-shadow:0 4px 16px rgba(37,99,235,0.06);border-radius:16px;padding:20px 22px">';
     m1Html += '<div class="sectionHead" style="margin-bottom:14px;border-bottom:1px solid #E2E8F0;padding-bottom:10px">';
     m1Html += '<div><div style="display:flex;align-items:center;gap:8px"><span style="font-size:18px">🩺</span>';
-    m1Html += '<h2 style="font-size:16px;color:#1D4ED8;margin:0">Modül 1: Kâr Kalitesi Ölçüm Modülü (QoE &amp; Sürdürülebilir Kâr)</h2></div>';
-    m1Html += '<p style="margin:4px 0 0;font-size:12px;color:#64748B">Mizan 64/67 tek seferlik gelirlerin ayıklanması, esas faaliyet kârının sürdürülebilirliği ve fiktif stok kârı illüzyonu</p></div>';
-    m1Html += '<div style="background:' + qoeColor + ';color:#FFF;padding:4px 12px;border-radius:8px;font-weight:900;font-size:13px">Grade ' + qoeGrade + ' (' + qoeScore + ' / 100)</div>';
+    m1Html += '<h2 style="font-size:16px;color:#1D4ED8;margin:0">Modül 1: Sürdürülebilir Kâr &amp; Fiktif Stok Kârı Ayrıştırması (QoE)</h2></div>';
+    m1Html += '<p style="margin:4px 0 0;font-size:12px;color:#64748B">Mizan 64/67 tek seferlik gelirlerin ayıklanması, esas faaliyet kârının sürdürülebilirliği ve enflasyonist stok ikame maliyeti</p></div>';
+    m1Html += '<div style="background:' + qoeColor + ';color:#FFF;padding:5px 12px;border-radius:8px;font-weight:900;font-size:12.5px">QoE Derecesi: ' + esc(qoeGrade) + ' (' + qoeScore + ' / 100)</div>';
     m1Html += '</div>';
 
-    m1Html += '<div class="grid3" style="gap:12px;margin-bottom:14px">';
+    m1Html += '<div class="grid3" style="gap:12px;margin-bottom:' + (fictitiousStock > 0 ? '14px' : '0') + '">';
     m1Html += '<div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:10px;padding:12px">';
-    m1Html += '<div style="font-size:11px;font-weight:700;color:#166534">Sürdürülebilir Operasyonel Kâr</div>';
+    m1Html += '<div style="font-size:11px;font-weight:700;color:#166534">Sürdürülebilir Operasyonel Kâr (FVÖK)</div>';
     m1Html += '<div style="font-size:20px;font-weight:900;color:#166534;margin:4px 0">' + money(sustainableProfit) + '</div>';
-    m1Html += '<div style="font-size:11px;color:#64748B">Ana faaliyetlerden üretilen net kâr gücü</div></div>';
+    m1Html += '<div style="font-size:11px;color:#64748B">Ana faaliyetlerden üretilen esas kâr gücü</div></div>';
 
     m1Html += '<div style="background:#FEF2F2;border:1.5px solid #FCA5A5;border-radius:10px;padding:12px">';
     m1Html += '<div style="font-size:11px;font-weight:700;color:#991B1B">Tek Seferlik / Diğer Gelirler (64 &amp; 67)</div>';
     m1Html += '<div style="font-size:20px;font-weight:900;color:#991B1B;margin:4px 0">' + money(nonCoreIncome) + '</div>';
-    m1Html += '<div style="font-size:11px;color:#64748B">' + (nonCorePct > 0 ? 'Kârın %' + nonCorePct + '\'i ana faaliyet dışından gelmektedir' : 'Tek seferlik gelir bağımlılığı bulunmuyor') + '</div></div>';
+    m1Html += '<div style="font-size:11px;color:#64748B">' + (nonCorePct > 0 ? 'Vergi öncesi kârın %' + nonCorePct + '\'i faaliyet dışı gelir' : 'Tek seferlik gelir bağımlılığı bulunmuyor') + '</div></div>';
 
     m1Html += '<div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:10px;padding:12px">';
-    m1Html += '<div style="font-size:11px;font-weight:700;color:#92400E">Enflasyonist İkame Maliyeti &amp; Reel Kâr</div>';
+    m1Html += '<div style="font-size:11px;font-weight:700;color:#92400E">Stok İkame Maliyeti Sonrası Reel FVÖK</div>';
     m1Html += '<div style="font-size:20px;font-weight:900;color:#B45309;margin:4px 0">' + money(realOpProfit) + '</div>';
-    m1Html += '<div style="font-size:11px;color:#64748B">Fiktif stok kârı (' + money(fictitiousStock) + ') arındırılmış reel kâr</div></div>';
+    m1Html += '<div style="font-size:11px;color:#64748B">Fiktif stok kârı (' + money(fictitiousStock) + ') düşülmüş reel kâr</div></div>';
     m1Html += '</div>';
 
     if(fictitiousStock > 0){
-      m1Html += '<div style="background:#FFFBEB;border:1.5px solid #FCD34D;border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:12px;color:#92400E;line-height:1.5">';
-      m1Html += '<b>⚠️ Fiktif Stok Kârı İllüzyonu:</b> Enflasyonist ortamda satılan stokların cari fiyatlarla yerine konulması için gereken ikame maliyeti düşüldüğünde, işletmenizin <b>Reel Operasyonel Kârı ' + money(realOpProfit) + '</b> seviyesindedir. Defterde görünen kârın <b>' + money(fictitiousStock) + ' (%' + fictitiousPct + ')</b> tutarındaki kısmı ikame sermayesine gideceğinden temettü veya nakit çekim amacıyla dağıtılabilir nitelikte değildir.';
+      m1Html += '<div style="background:#FFFBEB;border:1.5px solid #FCD34D;border-radius:10px;padding:12px 14px;font-size:12px;color:#92400E;line-height:1.5">';
+      m1Html += '<b>⚠️ Fiktif Stok Kârı İllüzyonu:</b> Enflasyonist ortamda satılan stokların cari fiyatlarla yerine konulması için gereken ikame maliyeti düşüldüğünde, işletmenizin <b>Reel Operasyonel Kârı ' + money(realOpProfit) + '</b> seviyesindedir. Defterde görünen faaliyet kârının <b>' + money(fictitiousStock) + ' (%' + fictitiousPct + ')</b> tutarındaki kısmı depoyu aynı miktarda malla doldurmaya (stok ikame sermayesine) gideceğinden dağıtılabilir nitelikte değildir.';
       m1Html += '</div>';
     }
-
-    m1Html += '<div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:10px;padding:12px">';
-    m1Html += '<div style="font-size:12px;font-weight:800;color:#0F172A;margin-bottom:8px">📊 Gelir Tablosu Kâr Köprüsü (Brüt Satıştan Net Kâra Akış)</div>';
-    m1Html += '<table style="width:100%;border-collapse:collapse;font-size:11px">';
-    m1Html += '<thead><tr style="background:#F8FAFC;border-bottom:1.5px solid #CBD5E1;text-align:left"><th style="padding:6px 8px">Gelir / Gider Kalemi</th><th style="padding:6px 8px;text-align:right">Tutar</th><th style="padding:6px 8px;text-align:right">Ciro Payı</th><th style="padding:6px 8px">Değerlendirme</th></tr></thead>';
-    m1Html += '<tbody>';
-    const cogsVal = Math.abs(Number(pl['COGS'] || pl['Cost of sales'] || pl['Satışların Maliyeti'] || 0));
-    const opexVal = Math.abs(Number(pl['Operating expenses'] || pl['OPEX'] || pl['Faaliyet Giderleri'] || 0));
-    const finVal = Math.abs(Number(pl['Finance costs'] || pl['Finansman Giderleri'] || 0));
-    const grossVal = Number(pl['Gross profit'] || (salesVal - cogsVal));
-
-    m1Html += '<tr><td style="padding:5px 8px;font-weight:700">Net Satışlar (Ciro)</td><td style="padding:5px 8px;text-align:right"><b>' + money(salesVal) + '</b></td><td style="padding:5px 8px;text-align:right">%100.0</td><td style="padding:5px 8px;color:#1D4ED8">Net Gelir Matrahı</td></tr>';
-    m1Html += '<tr><td style="padding:5px 8px;color:#DC2626">(-) Satışların Maliyeti (SMM)</td><td style="padding:5px 8px;text-align:right;color:#DC2626">-' + money(cogsVal) + '</td><td style="padding:5px 8px;text-align:right">%' + num(salesVal ? (cogsVal/salesVal)*100 : 0) + '</td><td style="padding:5px 8px;color:#64748B">Direkt Üretim / Mal Maliyeti</td></tr>';
-    m1Html += '<tr style="background:#F1F5F9;font-weight:800"><td style="padding:5px 8px">Brüt Kâr</td><td style="padding:5px 8px;text-align:right;color:#16A34A">' + money(grossVal) + '</td><td style="padding:5px 8px;text-align:right">%' + num(salesVal ? (grossVal/salesVal)*100 : 0) + '</td><td style="padding:5px 8px;color:#16A34A">Brüt Kâr Marjı</td></tr>';
-    m1Html += '<tr><td style="padding:5px 8px;color:#DC2626">(-) Faaliyet Giderleri (OpEx)</td><td style="padding:5px 8px;text-align:right;color:#DC2626">-' + money(opexVal) + '</td><td style="padding:5px 8px;text-align:right">%' + num(salesVal ? (opexVal/salesVal)*100 : 0) + '</td><td style="padding:5px 8px;color:#64748B">Genel Yönetim, Pazarlama, Ar-Ge</td></tr>';
-    m1Html += '<tr style="background:#F1F5F9;font-weight:800"><td style="padding:5px 8px">Faaliyet Kârı (FVÖK)</td><td style="padding:5px 8px;text-align:right">' + money(opProfitVal) + '</td><td style="padding:5px 8px;text-align:right">%' + num(salesVal ? (opProfitVal/salesVal)*100 : 0) + '</td><td style="padding:5px 8px;color:#0F172A">Esas Faaliyet Gücü</td></tr>';
-    m1Html += '<tr><td style="padding:5px 8px;color:#DC2626">(-) Finansman Giderleri (Faiz)</td><td style="padding:5px 8px;text-align:right;color:#DC2626">-' + money(finVal) + '</td><td style="padding:5px 8px;text-align:right">%' + num(salesVal ? (finVal/salesVal)*100 : 0) + '</td><td style="padding:5px 8px;color:#64748B">Kredi Borçlanma Faizi</td></tr>';
-    m1Html += '<tr style="background:#EFF6FF;font-weight:900;border-top:1.5px solid #1D4ED8"><td style="padding:5px 8px">Net Dönem Kârı</td><td style="padding:5px 8px;text-align:right;color:' + (netProfitVal>=0?'#16A34A':'#DC2626') + '">' + money(netProfitVal) + '</td><td style="padding:5px 8px;text-align:right">%' + num(salesVal ? (netProfitVal/salesVal)*100 : 0) + '</td><td style="padding:5px 8px;color:#1D4ED8">Net Kâr Kalitesi</td></tr>';
-    m1Html += '</tbody></table></div>';
 
     m1Html += '</div>';
     mod1El.innerHTML = m1Html;
@@ -14042,38 +13960,50 @@ function renderCeoDiagnosticDesk(bp, pl, bs, k, c, d){
 function renderResourceAllocation(ra){
   const el = $('resourceAllocationCard');
   if(!el) return;
-  if(!ra || !ra.capital_allocation){ el.classList.add('hidden'); return; }
+  if(!ra || (!ra.where_is_profit && !ra.where_is_loss)){ el.classList.add('hidden'); return; }
   el.classList.remove('hidden');
-  const ca = ra.capital_allocation;
-  const p = ra.percentages || {};
-  
+
+  const wp = ra.where_is_profit || {};
+  const wl = ra.where_is_loss || {};
+  const wm = ra.where_is_money || {};
+  const leakages = wl.leakages || [];
+  const drivers = wp.drivers || [];
+
   $('resourceAllocationMetrics').innerHTML = [
-    metric('Nakit & Benzerleri', money(ca.cash_and_equivalents), '%' + num(p.cash_pct) + ' pay'),
-    metric('Ticari Alacaklar', money(ca.trade_receivables), '%' + num(p.receivables_pct) + ' pay'),
-    metric('Stoklar', money(ca.inventories), '%' + num(p.inventory_pct) + ' pay'),
-    metric('Duran Varlıklar', money(ca.non_current_assets), '%' + num(p.non_current_pct) + ' pay')
+    metric('Ana Faaliyet Brüt Kârı', money(wp.gross_profit || 0), 'Satışlardan üretilen brüt katma değer'),
+    metric('Esas Faaliyet Kârı (FVÖK)', money(wp.operating_profit || 0), 'Operasyonel kâr gücü'),
+    metric('Toplam Görünür Sızıntı', money(wl.total_visible_leakage || 0), leakages.length + ' sızıntı kalemi tespit edildi'),
+    metric('Kilitli İşletme Sermayesi', money(wm.working_capital_tied || 0), 'Alacak + Stokta bekleyen sermaye')
   ].join('');
 
-  $('resourceAllocationBar').innerHTML = 
-    '<div style="font-size:11.5px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between"><span>Sermaye Dağılımı Çubuğu (Toplam: ' + money(ca.total_capital) + ')</span><span>Nakit: %' + num(p.cash_pct) + ' · Alacak: %' + num(p.receivables_pct) + ' · Stok: %' + num(p.inventory_pct) + '</span></div>' +
-    '<div style="height:14px;display:flex;border-radius:99px;overflow:hidden;background:#E4E8EF;box-shadow:inset 0 1px 2px rgba(0,0,0,0.06)">' +
-      '<div style="width:' + Math.max(2, p.cash_pct||0) + '%;background:#0E7C66" title="Nakit: %' + num(p.cash_pct) + '"></div>' +
-      '<div style="width:' + Math.max(2, p.receivables_pct||0) + '%;background:#1D4ED8" title="Alacak: %' + num(p.receivables_pct) + '"></div>' +
-      '<div style="width:' + Math.max(2, p.inventory_pct||0) + '%;background:#B4720A" title="Stok: %' + num(p.inventory_pct) + '"></div>' +
-      '<div style="width:' + Math.max(2, p.other_current_pct||0) + '%;background:#5B6B84" title="Diğer Dönen: %' + num(p.other_current_pct) + '"></div>' +
-      '<div style="width:' + Math.max(2, p.non_current_pct||0) + '%;background:#8A6D00" title="Duran: %' + num(p.non_current_pct) + '"></div>' +
-    '</div>';
+  if(leakages.length){
+    $('resourceAllocationBar').innerHTML =
+      '<div style="font-size:12.5px;font-weight:800;color:#991B1B;margin-bottom:8px">🩸 Nerede Kayıp Var? (Kârı ve Nakdi Eriten Sızıntı Kalemleri)</div>' +
+      '<div class="grid2" style="gap:10px">' +
+      leakages.map(lk => {
+        const isCrit = lk.severity === 'critical';
+        return '<div style="background:' + (isCrit ? '#FEF2F2' : '#FFFBEB') + ';border:1.5px solid ' + (isCrit ? '#FCA5A5' : '#FDE68A') + ';border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px">' +
+          '<div>' +
+            '<div style="font-size:12.5px;font-weight:800;color:' + (isCrit ? '#991B1B' : '#92400E') + '">' + esc(lk.name) + '</div>' +
+            '<div style="font-size:11.5px;color:#475569;margin-top:2px">' + esc(lk.impact_description || '') + '</div>' +
+          '</div>' +
+          '<div style="font-size:15px;font-weight:900;color:' + (isCrit ? '#DC2626' : '#D97706') + ';white-space:nowrap">-' + money(lk.amount) + '</div>' +
+        '</div>';
+      }).join('') +
+      '</div>';
+  } else {
+    $('resourceAllocationBar').innerHTML = '';
+  }
 
-  let leaksHtml = '';
-  if(ra.profit_leak_analysis && ra.profit_leak_analysis.length){
-    leaksHtml = '<div style="margin-top:10px"><b>Kâr Nereye Gitti? (Nakit vs Bağlanan Sermaye Analizi):</b><ul style="margin:6px 0;padding-left:18px">' +
-      ra.profit_leak_analysis.map(l => '<li><b>' + esc(l.item) + ':</b> ' + esc(l.observation) + ' <span class="muted">(' + esc(l.driver) + ')</span></li>').join('') +
+  let driversHtml = '';
+  if(drivers.length){
+    driversHtml = '<div style="margin-top:8px"><b>💎 Nerede Kâr Var? (Ana Kâr Taşıyıcıları):</b><ul style="margin:6px 0 0;padding-left:18px">' +
+      drivers.map(d => '<li><b>' + esc(d.area) + ' (' + money(d.amount) + '):</b> ' + esc(d.note || '') + '</li>').join('') +
       '</ul></div>';
   }
 
   $('resourceAllocationNarrative').innerHTML = '<div class="insight">' +
-    '<p>' + esc(ra.summary_narrative || '') + '</p>' +
-    leaksHtml +
+    driversHtml +
   '</div>';
 }
 
@@ -14119,47 +14049,19 @@ function renderCashFlowCockpit(cfe){
   const rwIcon = runway < 2 ? '🚨' : runway < 4 ? '⚠️' : '🛡️';
   $('patronRunwayBadge').innerHTML = '<span class="tag ' + rwClass + '" style="font-weight:800;font-size:12px;padding:5px 10px">' + rwIcon + ' Kasa Tamponu: ' + (runway >= 13 ? '13+ Hafta' : num(runway) + ' Hafta') + '</span>';
 
-  // 1. Para Nerede?
-  const whereHtml = '<div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:16px;margin-bottom:16px">' +
-    '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">' +
-      '<div style="display:flex;align-items:center;gap:6px">' +
-        '<span style="font-size:15px;font-weight:800;color:#1E3A8A">1. PARA NEREDE?</span>' +
-        '<span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:11px">Sermaye Dağılımı</span>' +
-      '</div>' +
-      '<span style="font-size:12px;font-weight:700;color:#475569">Net İşletme Sermayesi: <b>' + money(where.net_working_capital) + '</b></span>' +
+  // Concise Executive Liquidity Summary (without repeating the 4-box capital breakdown already rendered above in Step 3)
+  const whereHtml = '<div style="background:#F8FAFC;border:1.5px solid #DBEAFE;border-left:4px solid #2563EB;border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">' +
+    '<div style="font-size:12.5px;color:#1E293B;line-height:1.5;flex:1;min-width:260px">' +
+      '💬 <b>Patron Likidite Özeti:</b> ' + esc(where.headline || '') +
     '</div>' +
-    '<div class="grid4" style="gap:10px;margin-bottom:12px">' +
-      '<div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:10px;padding:10px 12px">' +
-        '<div style="font-size:11px;font-weight:700;color:#166534">Sıcak Nakit (Kasa &amp; Banka)</div>' +
-        '<div style="font-size:18px;font-weight:900;color:#15803D;margin:3px 0">' + money(where.cash_amount) + '</div>' +
-        '<div style="font-size:11px;color:#166534">Toplamın %' + num(where.cash_pct) + '\'i</div>' +
-      '</div>' +
-      '<div style="background:#EFF6FF;border:1.5px solid #BFDBFE;border-radius:10px;padding:10px 12px">' +
-        '<div style="font-size:11px;font-weight:700;color:#1E40AF">Müşteride Kilitli (120 Alacak)</div>' +
-        '<div style="font-size:18px;font-weight:900;color:#1D4ED8;margin:3px 0">' + money(where.receivables_amount) + '</div>' +
-        '<div style="font-size:11px;color:#1E40AF">Toplamın %' + num(where.receivables_pct) + '\'i</div>' +
-      '</div>' +
-      '<div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:10px;padding:10px 12px">' +
-        '<div style="font-size:11px;font-weight:700;color:#92400E">Depoda Kilitli (150/153 Stok)</div>' +
-        '<div style="font-size:18px;font-weight:900;color:#B45309;margin:3px 0">' + money(where.inventory_amount) + '</div>' +
-        '<div style="font-size:11px;color:#92400E">Toplamın %' + num(where.inventory_pct) + '\'i</div>' +
-      '</div>' +
-      '<div style="background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:10px;padding:10px 12px">' +
-        '<div style="font-size:11px;font-weight:700;color:#475569">Tedarikçiye Borç (320 Borçlar)</div>' +
-        '<div style="font-size:18px;font-weight:900;color:#334155;margin:3px 0">' + money(where.payables_amount) + '</div>' +
-        '<div style="font-size:11px;color:#64748B">Sağlanan Tedarikçi Kredisi</div>' +
-      '</div>' +
-    '</div>' +
-    '<div style="background:#F8FAFC;border-left:4px solid #2563EB;padding:10px 14px;border-radius:6px;font-size:12.5px;color:#1E293B;line-height:1.5">' +
-      '💬 <b>Patron Özeti:</b> ' + esc(where.headline || '') +
-    '</div>' +
+    '<span style="font-size:12px;font-weight:800;color:#1E3A8A;background:#EFF6FF;border:1px solid #BFDBFE;padding:5px 10px;border-radius:8px;white-space:nowrap">Net İşletme Sermayesi: <b>' + money(where.net_working_capital) + '</b></span>' +
   '</div>';
 
-  // 2. Sorun Ne & Kaç TL? (Anomalies)
+  // 1. Sorun Ne & Kaç TL? (Anomalies)
   let anomaliesHtml = '<div style="background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:16px;margin-bottom:16px">' +
     '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">' +
       '<div style="display:flex;align-items:center;gap:6px">' +
-        '<span style="font-size:15px;font-weight:800;color:#B91C1C">2. SORUN NE &amp; KAÇ TL? (Haftalık Risk Alarmları)</span>' +
+        '<span style="font-size:15px;font-weight:800;color:#B91C1C">1. SORUN NE &amp; KAÇ TL? (Haftalık Risk Alarmları)</span>' +
       '</div>' +
       '<span class="tag critical" style="font-size:11px;font-weight:800">' + anomalies.length + ' Risk Tespit Edildi</span>' +
     '</div>' +
@@ -14179,11 +14081,11 @@ function renderCashFlowCockpit(cfe){
   });
   anomaliesHtml += '</div></div>';
 
-  // 3. Bu Hafta Ne Yapmalıyım? (Action Center)
+  // 2. Bu Hafta Ne Yapmalıyım? (Action Center)
   let actionsHtml = '<div style="background:#FFFFFF;border:1.5px solid #2563EB;border-radius:14px;padding:16px">' +
     '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">' +
       '<div style="display:flex;align-items:center;gap:6px">' +
-        '<span style="font-size:15px;font-weight:800;color:#1D4ED8">3. BU HAFTA NE YAPMALIYIM? (Patron İcraat Masası)</span>' +
+        '<span style="font-size:15px;font-weight:800;color:#1D4ED8">2. BU HAFTA NE YAPMALIYIM? (Patron İcraat Masası)</span>' +
         '<span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:700">3 Somut Aksiyon</span>' +
       '</div>' +
       '<div style="font-size:13px;font-weight:800;color:#15803D;background:#F0FDF4;border:1px solid #BBF7D0;padding:4px 10px;border-radius:8px">' +
@@ -14193,7 +14095,6 @@ function renderCashFlowCockpit(cfe){
     '<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:12px">';
 
   actions.forEach((act, idx) => {
-    const btnId = 'waBtn_' + idx;
     actionsHtml += '<div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:12px;padding:14px;display:flex;flex-direction:column;justify-content:space-between">' +
       '<div>' +
         '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">' +
@@ -14202,9 +14103,8 @@ function renderCashFlowCockpit(cfe){
         '</div>' +
         '<h4 style="margin:0 0 6px;font-size:13px;color:#0F172A;line-height:1.4">' + esc(act.task) + '</h4>' +
         '<div style="font-size:11.5px;color:#64748B;margin-bottom:8px"><b>Hedef KPI:</b> ' + esc(sanitizeKpi(act.kpi)) + '</div>' +
-        '<div style="font-size:12px;font-weight:800;color:#15803D;margin-bottom:10px">Nakit Etkisi: +' + money(act.cash_impact_tl) + '</div>' +
+        '<div style="font-size:12px;font-weight:800;color:#15803D;margin-bottom:4px">Nakit Etkisi: +' + money(act.cash_impact_tl) + '</div>' +
       '</div>' +
-
     '</div>';
   });
   actionsHtml += '</div></div>';
