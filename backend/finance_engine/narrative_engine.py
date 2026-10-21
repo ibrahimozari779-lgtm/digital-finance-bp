@@ -192,6 +192,17 @@ def _build_context(
     profit_quality = profit_quality or {}
     sales_intelligence = sales_intelligence or {}
     company_gross_margin_pct = k.get("gross_margin_pct")
+    receivables_balance = _safe(k.get("receivables")) or 0.0
+    payables_balance = _safe(k.get("payables")) or 0.0
+    financial_debt_balance = _safe(k.get("financial_debt")) or 0.0
+    dso_current = _safe((ccc or {}).get("dso_days")) or _safe(k.get("dso"))
+    dio_current = _safe((ccc or {}).get("dio_days")) or _safe(k.get("dio"))
+    dpo_current = _safe((ccc or {}).get("dpo_days")) or _safe(k.get("dpo"))
+    ccc_days = _safe((ccc or {}).get("cash_conversion_cycle_days"))
+    operating_margin_pct = _safe(k.get("operating_margin_pct"))
+    current_ratio_val = _safe(k.get("current_ratio"))
+    debt_to_equity_val = _safe(k.get("debt_to_equity"))
+    opex_val = abs(_safe(pl.get("Operating expenses")) or 0.0)
 
     return {
         "sales_intelligence": sales_intelligence,
@@ -203,6 +214,13 @@ def _build_context(
         "dso_old": dso_old, "dso_new": dso_new, "dso_cash_impact": dso_cash_impact,
         "dio_old": dio_old, "dio_new": dio_new, "dio_cash_impact": dio_cash_impact,
         "inventory_balance": inventory_balance,
+        "receivables_balance": receivables_balance,
+        "payables_balance": payables_balance,
+        "financial_debt_balance": financial_debt_balance,
+        "dso_current": dso_current, "dio_current": dio_current, "dpo_current": dpo_current, "ccc_days": ccc_days,
+        "operating_margin_pct": operating_margin_pct, "current_ratio_val": current_ratio_val,
+        "debt_to_equity_val": debt_to_equity_val, "opex_val": opex_val, "op_profit_val": op_profit,
+        "period_days": period_days,
         "cash_balance": cash_balance, "monthly_burn": monthly_burn, "runway_months": runway_months,
         "period_months": period_months,
         "dte_old": dte_old, "dte_new": dte_new,
@@ -677,11 +695,180 @@ def _t_customer_margin_gap() -> Trigger:
     }
 
 
+def _t_statement_wc_lockup() -> Trigger:
+    """Tek dönemlik mizanda bile müşteri vadelerinde kilitlenen nakdi patron dilinde anlatır (NE-DSO-RISK tetiklenmediyse)."""
+    def condition(ctx: dict[str, Any]) -> bool:
+        if ctx["dso_old"] is not None:
+            return False
+        dso = ctx["dso_current"]
+        rec = ctx["receivables_balance"]
+        sales = ctx["net_sales"]
+        return bool((dso is not None and dso > 60) or (sales > 0 and rec / sales > 0.30))
+
+    def severity(ctx: dict[str, Any]) -> str:
+        dso = ctx["dso_current"] or 0
+        return "critical" if dso > 110 else "high" if dso > 80 else "medium"
+
+    def build(ctx: dict[str, Any]) -> dict[str, Any]:
+        dso = ctx["dso_current"]
+        dpo = ctx["dpo_current"]
+        rec = ctx["receivables_balance"]
+        sales = ctx["net_sales"]
+        pdays = ctx["period_days"] or 365
+        unlock_15d = round(15.0 * (sales / pdays), 0) if sales > 0 else round(rec * 0.20, 0)
+        spread_txt = (
+            f" Tedarikçilere ortalama {dpo:.0f} günde ödeme yapılırken müşterilerden {dso:.0f} günde tahsilat yapılması, "
+            f"şirketin piyasayı kendi kasasından finanse ettiğini gösteriyor."
+            if dso is not None and dpo is not None and (dso - dpo) > 15 else ""
+        )
+        return {
+            "ne_oldu": (
+                f"Müşteri alacaklarında (120) {_tl(rec)} nakit bekliyor"
+                + (f"; ortalama tahsilat vadesi (DSO) {dso:.0f} gün seviyesinde." if dso is not None else ".")
+            ),
+            "neden": (
+                "Satışların önemli bir kısmı henüz kasaya girmemiş durumda." + spread_txt
+            ),
+            "maliyet": (
+                f"Tahsilat vadesinin sadece 15 gün kısaltılması bile şirkete kredi kullanmadan yaklaşık {_tl(unlock_15d)} "
+                f"taze nakit girişi sağlayacaktır."
+            ),
+            "ne_yapmali": [
+                "Vadesi geçen ilk 10 müşteriye doğrudan tahsilat ve vade farkı protokolü uygulanması",
+                "Yeni satışlarda açık hesap yerine DBS (Doğrudan Borçlandırma Sistemi) veya teminat mektubu şartı getirilmesi",
+                "Peşin/erken ödemede finansman maliyetinin altında iskonto sunularak nakdin hızla kasaya çekilmesi",
+            ],
+        }
+
+    return {
+        "code": "NE-WC-LOCKUP", "title": "Alacaklarda Kilitli Nakit & Vade Makası", "category": "İşletme Sermayesi",
+        "condition": condition, "severity": severity, "build": build,
+        "requires": ["kpis.receivables", "cash_conversion_cycle.dso_days"],
+    }
+
+
+def _t_statement_inventory_lock() -> Trigger:
+    """Tek dönemlik mizanda stok devir hızı yavaşlığını patron dilinde anlatır (NE-INVENTORY-BLOAT tetiklenmediyse)."""
+    def condition(ctx: dict[str, Any]) -> bool:
+        if ctx["dio_old"] is not None:
+            return False
+        dio = ctx["dio_current"]
+        inv = ctx["inventory_balance"] or 0.0
+        return bool(inv > 0 and dio is not None and dio > 70)
+
+    def severity(ctx: dict[str, Any]) -> str:
+        dio = ctx["dio_current"] or 0
+        return "high" if dio > 110 else "medium"
+
+    def build(ctx: dict[str, Any]) -> dict[str, Any]:
+        dio = ctx["dio_current"] or 0
+        inv = ctx["inventory_balance"] or 0.0
+        cogs = ctx["cogs"] or 0.0
+        pdays = ctx["period_days"] or 365
+        unlock_20d = round(20.0 * (cogs / pdays), 0) if cogs > 0 else round(inv * 0.20, 0)
+        return {
+            "ne_oldu": f"Stoklarda {_tl(inv)} sermaye bağlı ve ortalama stokta kalma süresi (DIO) {dio:.0f} gün.",
+            "neden": "Envanterin nakde dönüş hızı yavaş; yavaş dönen veya güvenlik stoğu üzerinde tutulan kalemler işletme sermayesini depoda kilitliyor.",
+            "maliyet": f"Stok devir süresini 20 gün hızlandırmak, kasaya yaklaşık {_tl(unlock_20d)} serbest nakit kazandırır.",
+            "ne_yapmali": [
+                "90 günü aşan hareketsiz stokların tespit edilip paket/iskonto kampanyasıyla eritilmesi",
+                "Minimum sipariş ve emniyet stoğu seviyelerinin satış hızına göre aşağı çekilmesi",
+                "Tedarikçilerle konsinye veya tam zamanında (JIT) teslimat modeline geçilmesi",
+            ],
+        }
+
+    return {
+        "code": "NE-INVENTORY-LOCK", "title": "Depoda Kilitli Sermaye (Stok Yükü)", "category": "İşletme Sermayesi",
+        "condition": condition, "severity": severity, "build": build,
+        "requires": ["kpis.inventory", "cash_conversion_cycle.dio_days"],
+    }
+
+
+def _t_statement_margin_opex_pressure() -> Trigger:
+    """Tek dönemlik mizanda faaliyet marjı ve OPEX baskısını patron dilinde anlatır."""
+    def condition(ctx: dict[str, Any]) -> bool:
+        if ctx["gm_pp_change"] is not None:
+            return False
+        opm = ctx["operating_margin_pct"]
+        return bool(opm is not None and opm < 8.0 and ctx["net_sales"] > 0)
+
+    def severity(ctx: dict[str, Any]) -> str:
+        opm = ctx["operating_margin_pct"] or 0
+        return "critical" if opm <= 0 else "high" if opm < 4 else "medium"
+
+    def build(ctx: dict[str, Any]) -> dict[str, Any]:
+        opm = ctx["operating_margin_pct"] or 0.0
+        gm = ctx["company_gross_margin_pct"] or 0.0
+        sales = ctx["net_sales"]
+        opex = ctx["opex_val"]
+        opex_pct = round(opex / sales * 100, 1) if sales > 0 else 0.0
+        upside_3pp = round(sales * 0.03, 0)
+        return {
+            "ne_oldu": f"Brüt kâr marjı %{gm:.1f} iken esas faaliyet kâr marjı %{opm:.1f} seviyesinde kalıyor.",
+            "neden": (
+                f"Faaliyet giderleri (760/770) cironun %{opex_pct:.1f}'ini ({_tl(opex)}) tüketiyor; kazanılan brüt kârın önemli kısmı operasyonel sabit giderlerde eriyor."
+                if opex_pct >= 14 else
+                "Satış maliyetleri ve fiyat/iskonto baskısı brüt kâr tamponunu daraltarak faaliyet kârını sınırlıyor."
+            ),
+            "maliyet": f"Faaliyet marjında sağlanacak 3 puanlık iyileşme şirkete yıllık bazda doğrudan +{_tl(upside_3pp)} ilave faaliyet kârı üretir.",
+            "ne_yapmali": [
+                "Brüt marjı şirket ortalamasının altında kalan müşteri ve ürün gruplarında fiyat/iskonto revizyonu",
+                "760 Pazarlama ve 770 Genel Yönetim giderlerinde ciro üretmeyen kalemlerin budanması",
+                "Satış ekibi prim sisteminin ciro hacmi yerine tahsil edilmiş brüt kâra bağlanması",
+            ],
+        }
+
+    return {
+        "code": "NE-SINGLE-MARGIN-OPEX", "title": "Faaliyet Marjı & Gider Disiplini", "category": "Kârlılık",
+        "condition": condition, "severity": severity, "build": build,
+        "requires": ["kpis.operating_margin_pct", "kpis.gross_margin_pct"],
+    }
+
+
+def _t_statement_strong_position() -> Trigger:
+    """Güçlü kârlılık ve likiditeye sahip şirketlerde büyüme ve vergi/sermaye tahsis hikayesi üretir."""
+    def condition(ctx: dict[str, Any]) -> bool:
+        opm = ctx["operating_margin_pct"]
+        cr = ctx["current_ratio_val"]
+        fb = ctx["finance_burden_pct"]
+        return bool(
+            opm is not None and opm >= 10.0
+            and (cr is None or cr >= 1.25)
+            and (fb is None or fb <= 30.0)
+        )
+
+    def severity(ctx: dict[str, Any]) -> str:
+        return "positive"
+
+    def build(ctx: dict[str, Any]) -> dict[str, Any]:
+        opm = ctx["operating_margin_pct"] or 0.0
+        cr = ctx["current_ratio_val"] or 0.0
+        op_p = ctx["op_profit_val"] or 0.0
+        return {
+            "ne_oldu": f"Şirket %{opm:.1f} faaliyet kâr marjı ({_tl(op_p)}) ve {cr:.2f}x cari oran ile güçlü bir operasyonel bilanço sergiliyor.",
+            "neden": "Fiyatlama gücü, maliyet kontrolü ve kısa vadeli likidite tamponu sağlıklı bir denge içinde yönetiliyor.",
+            "maliyet": "Bu güçlü nakit üretim kapasitesi; tedarikçilerden erken ödeme iskontosu almak ve vergi kalkanı (Ar-Ge / Yatırım / KVK 10/1-ı) avantajlarını maksimize etmek için kaldıraç olarak kullanılabilir.",
+            "ne_yapmali": [
+                "Serbest nakit akışıyla ana tedarikçilerden %3-%6 peşin alım iskontosu talep edilmesi",
+                "Yüksek ROIC üreten lokomotif ürün/müşteri segmentlerine sermaye tahsisinin artırılması",
+                "Kârın vergi öncesi yasal kalkanlarla (yatırım teşvik / nakdi sermaye) şirket içinde büyütülmesi",
+            ],
+        }
+
+    return {
+        "code": "NE-STRONG-POSITION", "title": "Güçlü Operasyonel Bilanço & Sermaye Tahsis Fırsatı", "category": "Strateji & Büyüme",
+        "condition": condition, "severity": severity, "build": build,
+        "requires": ["kpis.operating_margin_pct", "kpis.current_ratio"],
+    }
+
+
 _TRIGGERS: list[Trigger] = [
     _t_margin_erosion(), _t_dso_risk(), _t_inventory_bloat(), _t_cash_runway(),
     _t_leverage_risk(), _t_liquidity_risk(), _t_earnings_quality(), _t_finance_cost_burden(),
     _t_sector_underperformance(), _t_growth_without_profit(), _t_margin_improvement(),
     _t_customer_margin_gap(),
+    _t_statement_wc_lockup(), _t_statement_inventory_lock(),
+    _t_statement_margin_opex_pressure(), _t_statement_strong_position(),
 ]
 
 
@@ -742,8 +929,14 @@ def build_narrative_engine(
     _sev_rank = {"critical": 4, "high": 3, "medium": 2, "positive": 1}
     stories.sort(key=lambda s: _sev_rank.get(s["severity"], 0), reverse=True)
 
+    summary_text = ""
+    if stories:
+        top_s = stories[0]
+        summary_text = f"{top_s.get('ne_oldu', '')} {top_s.get('neden', '')} {top_s.get('maliyet', '')}".strip()
+
     return {
         "available": bool(stories),
+        "summary": summary_text,
         "stories": stories,
         "triggers_evaluated": [t["code"] for t in _TRIGGERS],
         "unsupported_scenarios": [

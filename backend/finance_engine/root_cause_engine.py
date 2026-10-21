@@ -94,7 +94,7 @@ def build_root_cause_analysis(statements: dict[str, Any], findings: list[dict[st
 
     # Profitability root cause chain.
     profitability_triggered = (
-        bool(codes_present & {"P002", "P003"}) if codes_present is not None
+        bool(codes_present & {"P002", "P003", "P004"}) if codes_present is not None
         else (operating_margin_pct is not None and operating_margin_pct < 10)
     )
     if profitability_triggered:
@@ -102,7 +102,7 @@ def build_root_cause_analysis(statements: dict[str, Any], findings: list[dict[st
             "P003" in codes_present if codes_present is not None
             else (gross_margin_pct is not None and gross_margin_pct < 15)
         )
-        opex_heavy = bool(opex and net_sales and (opex / net_sales) > 0.20)
+        opex_heavy = bool((codes_present and "P004" in codes_present) or (opex and net_sales and (opex / net_sales) > 0.16))
         if gross_margin_low:
             chain = [
                 "Brüt marj düşük (fiyatlama ve/veya maliyet baskısı)",
@@ -113,8 +113,8 @@ def build_root_cause_analysis(statements: dict[str, Any], findings: list[dict[st
         elif opex_heavy:
             chain = [
                 "Brüt marj kabul edilebilir seviyede",
-                "Faaliyet giderleri satışlara göre ağır",
-                "Faaliyet kârı zayıflıyor",
+                "Faaliyet giderleri (760/770) satışlara göre ağır",
+                "Kazanılan brüt kâr OPEX içinde eriyor",
             ]
             driver = "Faaliyet giderleri (OPEX)"
         else:
@@ -143,14 +143,14 @@ def build_root_cause_analysis(statements: dict[str, Any], findings: list[dict[st
                 "Ürün bazlı kârlılık kırılımını çıkarıp negatif marjlı ürünleri fiyatlayın",
                 "Faaliyet giderlerinde (770/760) tasarruf bütçesi belirleyin",
             ],
-            "related_findings": ["P001", "P002", "P003"],
+            "related_findings": ["P001", "P002", "P003", "P004", "P005"],
             "causal_status": "likely_driver",
             "required_additional_evidence": ["product/customer margin", "pricing and discount data", "cost breakdown"],
         })
 
     # Financing pressure root cause chain.
     financing_triggered = (
-        bool(codes_present & {"L001", "L002", "D004", "D005", "D006", "D007"}) if codes_present is not None
+        bool(codes_present & {"L001", "L002", "L003", "D004", "D005", "D006", "D007", "D008"}) if codes_present is not None
         else (finance_cost_to_op is not None and finance_cost_to_op > 0.25)
     )
     if financing_triggered:
@@ -179,28 +179,31 @@ def build_root_cause_analysis(statements: dict[str, Any], findings: list[dict[st
                 "Kredi vadelerini yeniden yapılandırın ve yüksek faizli rotatifleri kapatın",
                 "Nakit sermaye artırımı (KVK 10/1-ı) ile faiz indiriminden faydalanın",
             ],
-            "related_findings": ["L001", "L002", "D004", "D005", "D006", "D007"],
+            "related_findings": ["L001", "L002", "L003", "D004", "D005", "D006", "D007", "D008"],
             "causal_status": "likely_driver",
             "required_additional_evidence": ["debt maturity schedule", "interest rates by facility", "currency mix", "cash flow forecast"],
         })
 
     # Working-capital root cause chain.
     working_capital_triggered = (
-        bool(codes_present & {"W001", "WC004"}) if codes_present is not None
+        bool(codes_present & {"W001", "W002", "W003", "W005", "WC004", "E002"}) if codes_present is not None
         else (receivables_to_sales is not None and receivables_to_sales > 0.40)
     )
     if working_capital_triggered:
-        chain = ["Ticari alacaklar satışlara göre yüksek seviyede"]
+        chain = ["Ticari alacaklar ve/veya stoklar satışlara göre yüksek seviyede"]
         if debt_to_equity is not None and debt_to_equity > 2:
-            chain.append("Tahsilatın gecikmesi işletme sermayesi açığı yaratıyor")
-            chain.append("Açık, ek borçlanma ile kapatılıyor olabilir (borç/özkaynak yüksek)")
+            chain.append("Tahsilat ve stok dönüşünün gecikmesi işletme sermayesi açığı yaratıyor")
+            chain.append("Açık, ek borçlanma ile kapatılıyor (borç/özkaynak yüksek)")
         else:
-            chain.append("Nakde dönüşüm süresi uzuyor, likidite tamponu daralabilir")
+            chain.append("Nakde dönüşüm süresi (CCC) uzuyor, likidite tamponu daralıyor")
 
         rc_w_evidence: list[str] = []
         rec_val = float(k.get("receivables") or 0.0)
+        inv_val = float(k.get("inventory") or 0.0)
         if rec_val > 0:
             rc_w_evidence.append(f"Müşteri Alacakları (120): {_tl(rec_val)} TL")
+        if inv_val > 0:
+            rc_w_evidence.append(f"Stoklar (150-153): {_tl(inv_val)} TL")
         if receivables_to_sales is not None:
             rc_w_evidence.append(f"Alacak / Satış Oranı: %{(receivables_to_sales * 100):.1f}")
         dso_val = k.get("dso")
@@ -209,14 +212,14 @@ def build_root_cause_analysis(statements: dict[str, Any], findings: list[dict[st
 
         causal_chains.append({
             "code": "RC-W", "title": "İşletme Sermayesi Kök Nedeni",
-            "chain": chain, "primary_driver": "Alacak tahsilat hızı",
+            "chain": chain, "primary_driver": "Alacak tahsilat ve stok devir hızı",
             "evidence": rc_w_evidence,
-            "financial_impact": f"Müşteri vadelerinde kilitli {_tl(rec_val)} TL sermaye",
+            "financial_impact": f"Müşteri vadeleri ve stokta kilitli {_tl(rec_val + inv_val)} TL brüt işletme sermayesi",
             "recommended_actions": [
                 "Vadesi geçen alacaklar için DBS / teminat protokolü uygulayın",
-                "Erken ödeme yapan müşterilere peşin iskontosu sunarak nakdi çekin",
+                "Erken ödeme yapan müşterilere peşin iskontosu sunarak ve hareketsiz stokları eriterek nakdi çekin",
             ],
-            "related_findings": ["W001", "WC004"],
+            "related_findings": ["W001", "W002", "W003", "W005", "WC004", "E002"],
             "causal_status": "hypothesis",
             "required_additional_evidence": ["AR aging", "customer concentration", "payment terms", "collection history"],
         })

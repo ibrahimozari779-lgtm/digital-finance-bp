@@ -48,6 +48,23 @@ DUPLICATE_GAP_TO_FINDING: dict[str, str] = {
     "GAP-PROF-01": "P003",  # brüt marj                        <-> Brüt marj sınırlı
 }
 
+# Overlapping statement-level rules in decision_engine.py that measure the
+# exact same underlying balance/ratio family (e.g. D006/D007 interest coverage
+# is the reciprocal of L001 finance-cost/operating-profit; D004/D005/D008
+# debt-to-assets / negative equity overlap with L002 leverage / TTK 376;
+# WC004 overlaps with W001 receivables-to-sales). Keeping them in raw
+# `bp["findings"]` preserves backward compatibility for unit tests, while
+# folding them here ensures `master_findings` (the single source of truth
+# for executive UI and PDF reports) NEVER repeats the same diagnosis twice.
+DUPLICATE_FINDING_TO_CANONICAL: dict[str, str] = {
+    "D004": "L002",
+    "D005": "L002",
+    "D008": "L002",
+    "D006": "L001",
+    "D007": "L001",
+    "WC004": "W001",
+}
+
 
 # Extended (data-hub) root-cause chain code -> gap code it narrates the same
 # underlying evidence as. Root Cause tells the causal story ("sales ->
@@ -218,10 +235,41 @@ def build_finding_registry(
             })
 
     # 1) Decision Engine findings are the backbone of the registry.
+    # Fold overlapping secondary statement-level codes (D004/D005/D008 -> L002,
+    # D006/D007 -> L001, WC004 -> W001) when their canonical code is present so
+    # executive views and PDF reports never show duplicate debt/interest/AR cards.
+    present_finding_codes = {f.get("code") for f in findings}
+    folded_secondary_by_canonical: dict[str, list[dict[str, Any]]] = {}
+    for f in findings:
+        c = f.get("code")
+        canon = DUPLICATE_FINDING_TO_CANONICAL.get(c or "")
+        if canon and canon in present_finding_codes:
+            folded_secondary_by_canonical.setdefault(canon, []).append(f)
+
+    _sev_order = {"critical": 4, "high": 3, "medium": 2, "low": 1, "positive": 0}
+
     for f in findings:
         code = f.get("code")
+        if code in DUPLICATE_FINDING_TO_CANONICAL and DUPLICATE_FINDING_TO_CANONICAL[code] in present_finding_codes:
+            duplicates_folded.append({
+                "finding_code": code,
+                "folded_into": DUPLICATE_FINDING_TO_CANONICAL[code],
+                "finding_title": f.get("title"),
+            })
+            continue
+
         source_engines = ["decision_engine"]
         also_reported_as: list[dict[str, str]] = []
+
+        merged_evidence = list(f.get("evidence") or [])
+        effective_severity = f.get("severity")
+        for sec_f in folded_secondary_by_canonical.get(code or "", []):
+            also_reported_as.append({"engine": "decision_engine", "code": sec_f.get("code")})
+            for ev in sec_f.get("evidence") or []:
+                if ev and ev not in merged_evidence:
+                    merged_evidence.append(ev)
+            if _sev_order.get(sec_f.get("severity"), 0) > _sev_order.get(effective_severity, 0):
+                effective_severity = sec_f.get("severity")
 
         # Fold in any gap that duplicates this exact finding.
         for gap_code, target_code in DUPLICATE_GAP_TO_FINDING.items():
@@ -259,9 +307,9 @@ def build_finding_registry(
             "id": code,
             "title": f.get("title"),
             "category": f.get("category"),
-            "severity": f.get("severity"),
+            "severity": effective_severity,
             "confidence": f.get("confidence"),
-            "evidence": f.get("evidence"),
+            "evidence": merged_evidence,
             "interpretation": f.get("interpretation"),
             "recommendation": f.get("recommendation"),
             "root_cause": f.get("root_cause"),

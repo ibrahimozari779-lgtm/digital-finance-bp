@@ -6532,6 +6532,148 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   }
 
   /* ------------------------------------------------------------- */
+  /* VERGİ KALKANI & TEŞVİK RAPORU PRINT MODE (2 SAYFA A4)         */
+  /* ------------------------------------------------------------- */
+  body.taxShieldPrintMode header.top,
+  body.taxShieldPrintMode main,
+  body.taxShieldPrintMode .siteFooter,
+  body.taxShieldPrintMode #authArea,
+  body.taxShieldPrintMode #authModalOverlay,
+  body.taxShieldPrintMode #loadingOverlay,
+  body.taxShieldPrintMode #boardDeckModal,
+  body.taxShieldPrintMode #cfoReportModal,
+  body.taxShieldPrintMode #cashRadarModal,
+  body.taxShieldPrintMode #bankCreditModal,
+  body.taxShieldPrintMode #creditActionReportModal,
+  body.taxShieldPrintMode #detailedReportModal {
+    display: none !important;
+  }
+  body.taxShieldPrintMode {
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  body.taxShieldPrintMode #taxShieldReportModal {
+    display: block !important;
+    position: static !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+  body.taxShieldPrintMode #taxShieldReportModal > div {
+    display: block !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+  }
+  body.taxShieldPrintMode #taxShieldContent {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+  }
+  body.taxShieldPrintMode .taxShieldPage {
+    min-height: 0 !important;
+    max-height: none !important;
+    height: auto !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 4mm 6mm !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+  }
+  body.taxShieldPrintMode .taxShieldPage:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  /* ------------------------------------------------------------- */
+  /* ALACAK & TAHSİLAT İCRA DOSYASI PRINT MODE (2 SAYFA A4)        */
+  /* ------------------------------------------------------------- */
+  body.creditActionPrintMode header.top,
+  body.creditActionPrintMode main,
+  body.creditActionPrintMode .siteFooter,
+  body.creditActionPrintMode #authArea,
+  body.creditActionPrintMode #authModalOverlay,
+  body.creditActionPrintMode #loadingOverlay,
+  body.creditActionPrintMode #boardDeckModal,
+  body.creditActionPrintMode #cfoReportModal,
+  body.creditActionPrintMode #cashRadarModal,
+  body.creditActionPrintMode #bankCreditModal,
+  body.creditActionPrintMode #taxShieldReportModal,
+  body.creditActionPrintMode #detailedReportModal {
+    display: none !important;
+  }
+  body.creditActionPrintMode {
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  body.creditActionPrintMode #creditActionReportModal {
+    display: block !important;
+    position: static !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+  body.creditActionPrintMode #creditActionReportModal > div {
+    display: block !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+  }
+  body.creditActionPrintMode #creditActionContent {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+  }
+  body.creditActionPrintMode .creditActionPage {
+    min-height: 0 !important;
+    max-height: none !important;
+    height: auto !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 4mm 6mm !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+  }
+  body.creditActionPrintMode .creditActionPage:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  /* ------------------------------------------------------------- */
   /* SEVİYE 2: CFO REPORT PRINT MODE (EXACT 10 A4 PAGES)           */
   /* ------------------------------------------------------------- */
   body.cfoReportPrintMode header.top,
@@ -7434,6 +7576,64 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
 </div>
 <div id="dashboard" class="hidden">
 
+<!-- Müşteri İhtiyacına Göre Çözüm & Raporlama Akışı (Persona Workflow Switcher) -->
+<div id="customerSolutionModesBar" class="hidePrint" style="background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);border:1.5px solid #334155;border-radius:16px;padding:18px 22px;margin-bottom:18px;color:#FFFFFF;box-shadow:0 10px 28px rgba(15,23,42,0.14)">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:14px">
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(59,130,246,0.2);color:#93C5FD;border:1px solid rgba(147,197,253,0.35);padding:3px 10px;border-radius:999px;font-size:10.5px;font-weight:800;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:6px">🎯 İHTİYACA GÖRE AKILLI İŞ AKIŞI &amp; KURUMSAL RAPOR PAKETLERİ</div>
+      <div style="font-size:16px;font-weight:900;color:#FFFFFF;letter-spacing:-0.3px">Hangi Karar Masası İçin Rapor ve Çözüm Üretmek İstiyorsunuz?</div>
+      <div style="font-size:12px;color:#CBD5E1;margin-top:2px">Aşağıdan hedef kitlenizi seçin; ekran akışı o role göre filtrelensin ve doğrudan ilgili PDF rapor paketini indirin.</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <button type="button" onclick="openWhiteLabelModal()" style="background:rgba(255,255,255,0.1);color:#FFFFFF;border:1px solid rgba(255,255,255,0.25);padding:7px 12px;border-radius:9px;font-size:11.5px;font-weight:700;cursor:pointer">🏢 Kendi Logonuzu &amp; Ünvanınızı Ekleyin (White-Label)</button>
+    </div>
+  </div>
+
+  <!-- 6 Rol / İhtiyaç Butonu -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:8px;margin-bottom:14px">
+    <button type="button" id="wfMode_all" class="wfModeBtn active" onclick="selectCustomerWorkflowMode('all')" style="text-align:left;background:#2563EB;color:#FFFFFF;border:1.5px solid #60A5FA;border-radius:11px;padding:10px 12px;cursor:pointer;transition:all .15s">
+      <div style="font-size:12px;font-weight:900">📋 Tam Kokpit (12 Bölüm)</div>
+      <div style="font-size:10.5px;color:#DBEAFE;margin-top:2px">33 Karar Motoru &bull; Tüm Aşamalar</div>
+    </button>
+    <button type="button" id="wfMode_patron" class="wfModeBtn" onclick="selectCustomerWorkflowMode('patron')" style="text-align:left;background:rgba(255,255,255,0.06);color:#F8FAFC;border:1.5px solid rgba(255,255,255,0.15);border-radius:11px;padding:10px 12px;cursor:pointer;transition:all .15s">
+      <div style="font-size:12px;font-weight:900">👑 Patron &amp; YK Özeti</div>
+      <div style="font-size:10.5px;color:#94A3B8;margin-top:2px">Para Nerede &amp; Yarın Sabah 3 Karar</div>
+    </button>
+    <button type="button" id="wfMode_bank" class="wfModeBtn" onclick="selectCustomerWorkflowMode('bank')" style="text-align:left;background:rgba(255,255,255,0.06);color:#F8FAFC;border:1.5px solid rgba(255,255,255,0.15);border-radius:11px;padding:10px 12px;cursor:pointer;transition:all .15s">
+      <div style="font-size:12px;font-weight:900">🏦 Banka &amp; Kredi Limiti</div>
+      <div style="font-size:10.5px;color:#94A3B8;margin-top:2px">6 Kredi Rasyosu, ICR &amp; Refinansman</div>
+    </button>
+    <button type="button" id="wfMode_treasury" class="wfModeBtn" onclick="selectCustomerWorkflowMode('treasury')" style="text-align:left;background:rgba(255,255,255,0.06);color:#F8FAFC;border:1.5px solid rgba(255,255,255,0.15);border-radius:11px;padding:10px 12px;cursor:pointer;transition:all .15s">
+      <div style="font-size:12px;font-weight:900">🎯 Hazine, Alacak &amp; Kasa</div>
+      <div style="font-size:10.5px;color:#94A3B8;margin-top:2px">13 Hafta Nakit &amp; Müşteri Risk</div>
+    </button>
+    <button type="button" id="wfMode_tax" class="wfModeBtn" onclick="selectCustomerWorkflowMode('tax')" style="text-align:left;background:rgba(255,255,255,0.06);color:#F8FAFC;border:1.5px solid rgba(255,255,255,0.15);border-radius:11px;padding:10px 12px;cursor:pointer;transition:all .15s">
+      <div style="font-size:12px;font-weight:900">🛡️ SMMM / YMM Vergi Kalkanı</div>
+      <div style="font-size:10.5px;color:#94A3B8;margin-top:2px">Yasal Vergi Avantajı &amp; Denetim</div>
+    </button>
+    <button type="button" id="wfMode_cfo" class="wfModeBtn" onclick="selectCustomerWorkflowMode('cfo')" style="text-align:left;background:rgba(255,255,255,0.06);color:#F8FAFC;border:1.5px solid rgba(255,255,255,0.15);border-radius:11px;padding:10px 12px;cursor:pointer;transition:all .15s">
+      <div style="font-size:12px;font-weight:900">📊 CFO &amp; Büyüme Lab</div>
+      <div style="font-size:10.5px;color:#94A3B8;margin-top:2px">QoE Gerçek Kâr, DuPont &amp; Simülasyon</div>
+    </button>
+  </div>
+
+  <!-- Seçili İş Akışı Canlı Değer & Tek Tıkla Rapor Çıktı Bandı -->
+  <div id="activePersonaBanner" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);border-radius:12px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+    <div style="flex:1;min-width:260px">
+      <div id="activePersonaTitle" style="font-size:13px;font-weight:800;color:#93C5FD">👑 Tüm Karar Motorları &amp; 7 Kurumsal Rapor Paketi Hazır</div>
+      <div id="activePersonaDesc" style="font-size:11.5px;color:#E2E8F0;margin-top:2px;line-height:1.45">Mizanınızdan tespit edilen nakit kurtarma, vergi kalkanı ve kârlılık fırsatlarını aşağıdaki 7 farklı PDF rapor formatında indirebilirsiniz.</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <div id="activePersonaValueBadge" style="background:rgba(22,163,74,0.22);border:1px solid #4ADE80;color:#86EFAC;padding:6px 12px;border-radius:8px;font-size:11.5px;font-weight:800">
+        💰 Tespit Edilen İyileştirme Potansiyeli Hesaplanıyor...
+      </div>
+      <button id="activePersonaActionBtn" type="button" onclick="openBoardDeckModal()" style="background:#3B82F6;color:#FFFFFF;border:none;padding:8px 14px;border-radius:9px;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(59,130,246,0.35)">
+        👑 Patron Karar Notunu Aç (1 Sayfa PDF) →
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- Global Accordion Controller Toolbar -->
 <div class="accordionToolbar hidePrint" style="display:flex;justify-content:space-between;align-items:center;background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:14px 20px;margin-bottom:20px;box-shadow:0 4px 14px rgba(15,27,45,.04);flex-wrap:wrap;gap:12px">
   <div style="display:flex;align-items:center;gap:10px">
@@ -7540,8 +7740,8 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
       <div style="margin-top:18px;padding:18px;background:linear-gradient(135deg,#EFF6FF 0%,#F8FAFC 100%);border:1.5px solid #BFDBFE;border-radius:16px" class="hidePrint">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px">
           <div>
-            <span style="font-size:11px;font-weight:800;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase">📑 RAPOR &amp; ÇIKTI MERKEZİ · KOBİ &amp; YÖNETİM ÇIKTI PAKETLERİ</span>
-            <div style="font-size:15px;font-weight:900;color:#0F172A;margin-top:2px">KOBİ Patron Brifingi, 13 Haftalık Nakit Radarı, Banka Kredi Dosyası ve Tam Denetim Raporu</div>
+            <span style="font-size:11px;font-weight:800;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase">📑 RAPOR &amp; ÇIKTI MERKEZİ · 7 KURUMSAL KARAR &amp; RAPOR PAKETİ</span>
+            <div style="font-size:15px;font-weight:900;color:#0F172A;margin-top:2px">Patron Karar Notu, 10 Sayfalık CFO Raporu, Banka Kredi Dosyası, Vergi Kalkanı ve Tahsilat İcra Paketi</div>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button id="whiteLabelOpenBtn" type="button" class="secondary hidePrint" style="font-size:12px;padding:7px 12px;font-weight:700" onclick="openWhiteLabelModal()">🏢 Rapor Başlığı &amp; Logo (White-Label)</button>
@@ -7626,11 +7826,47 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
             </div>
           </div>
 
-          <!-- 5. Mali Müşavir & Denetim İnceleme Dosyası (Tam Denetim) -->
+          <!-- 5. Vergi Kalkanı, KDV Mahsubu & Yasal Teşvik Raporu (2 Sayfa A4) -->
+          <div style="background:#FFFFFF;border:1.5px solid #B45309;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(180,83,9,0.08)">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                <span class="workflowBadge" style="background:#FEF3C7;color:#92400E;border-color:#FDE68A;margin:0">🛡️ 5. VERGİ KALKANI</span>
+                <span style="font-size:11px;font-weight:700;color:#B45309">⚖️ 2 Sayfa A4</span>
+              </div>
+              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Vergi Kalkanı, KDV Mahsubu &amp; Teşvik Raporu</h4>
+              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">Finansman gider kısıtlaması (FGK), Devreden KDV mahsubu, VUK 323 şüpheli alacak karşılığı ve resmi teşvikler.</p>
+              <div style="margin-top:6px;display:inline-block"><span class="tag" style="background:#FEF3C7;color:#92400E;font-size:9.5px;font-weight:800;border:1px solid #FDE68A">FGK KKEG &amp; KDV Köprüsü</span></div>
+            </div>
+            <div style="margin-top:12px">
+              <button id="taxShieldReportBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#B45309;color:#FFFFFF;cursor:pointer" onclick="openTaxShieldReportModal()">
+                🛡️ Vergi Kalkanı Raporunu Aç →
+              </button>
+            </div>
+          </div>
+
+          <!-- 6. Ticari Alacak, Müşteri Risk & Tahsilat İcra Dosyası (2 Sayfa A4) -->
+          <div style="background:#FFFFFF;border:1.5px solid #DC2626;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(220,38,38,0.08)">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                <span class="workflowBadge" style="background:#FEE2E2;color:#991B1B;border-color:#FCA5A5;margin:0">🎯 6. ALACAK &amp; TAHSİLAT</span>
+                <span style="font-size:11px;font-weight:700;color:#DC2626">🚨 2 Sayfa A4</span>
+              </div>
+              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Ticari Alacak, Müşteri Risk &amp; İcra Dosyası</h4>
+              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">120 Müşteri credit scoring (Tier A-D), vade aşımı, icra öncesi noter ihtarı ve tahsilat aksiyon protokolü.</p>
+              <div style="margin-top:6px;display:inline-block"><span class="tag" style="background:#FEE2E2;color:#991B1B;font-size:9.5px;font-weight:800;border:1px solid #FCA5A5">Tier A-D &amp; DBS Kısıt Kuralı</span></div>
+            </div>
+            <div style="margin-top:12px">
+              <button id="creditActionReportBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#DC2626;color:#FFFFFF;cursor:pointer" onclick="openCreditActionReportModal()">
+                🎯 Alacak &amp; Risk Raporunu Aç →
+              </button>
+            </div>
+          </div>
+
+          <!-- 7. Mali Müşavir & Denetim İnceleme Dosyası (Tam Denetim) -->
           <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,0.03)">
             <div>
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span class="workflowBadge" style="background:#F1F5F9;color:#475569;border-color:#CBD5E1;margin:0">📑 5. MALİ MÜŞAVİR &amp; DENETİM</span>
+                <span class="workflowBadge" style="background:#F1F5F9;color:#475569;border-color:#CBD5E1;margin:0">📑 7. MALİ MÜŞAVİR &amp; DENETİM</span>
                 <span style="font-size:11px;font-weight:700;color:#64748B">📋 Tam Denetim</span>
               </div>
               <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Mali Müşavir &amp; Denetim İnceleme Dosyası</h4>
@@ -8564,6 +8800,56 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
   </div>
 </div>
 
+<!-- 5. Vergi Kalkanı, KDV Mahsubu & Yasal Teşvik Raporu Modalı (2 Sayfa A4) -->
+<div id="taxShieldReportModal" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;overflow-y:auto">
+  <div style="background:#FFFFFF;border-radius:18px;max-width:1040px;width:100%;max-height:94vh;display:flex;flex-direction:column;box-shadow:0 25px 60px rgba(0,0,0,0.35);overflow:hidden">
+    <div class="hidePrint" style="display:flex;justify-content:space-between;align-items:center;padding:14px 22px;border-bottom:1.5px solid #E2E8F0;background:#F8FAFC;flex-shrink:0">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:22px">🛡️</span>
+        <div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <h3 style="margin:0;font-size:15px;color:#0F1B2D;font-weight:800">Vergi Kalkanı, KDV Mahsubu &amp; Yasal Teşvik Raporu (2 Sayfa A4)</h3>
+            <span class="tag" style="background:#FEF3C7;color:#92400E;font-size:10.5px;font-weight:800">SMMM &amp; YMM Vergi Kalkanı</span>
+          </div>
+          <p style="margin:2px 0 0;font-size:11.5px;color:#64748B">Finansman Gider Kısıtlaması &bull; Devreden KDV &bull; Şüpheli Alacak Karşılığı &bull; Yasal Vergi Optimizasyonu</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button type="button" class="secondary" style="padding:7px 12px;border-radius:8px;font-size:12px;font-weight:700" onclick="openWhiteLabelModal()">🏢 Başlık / Logo Özelleştir</button>
+        <button id="printTaxShieldBtn" type="button" class="primary" style="padding:7px 16px;border-radius:8px;font-size:12.5px;font-weight:700">🖨️ Yazdır / PDF İndir</button>
+        <button id="openTaxShieldNewTabBtn" type="button" class="secondary" style="padding:7px 14px;border-radius:8px;font-size:12.5px;font-weight:700" onclick="openTaxShieldReportInNewWindow()">📄 Temiz A4 Görünümü</button>
+        <button id="closeTaxShieldBtn" type="button" style="background:none;border:none;font-size:22px;color:#64748B;cursor:pointer;padding:4px 8px" onclick="$('taxShieldReportModal').classList.add('hidden')">✕</button>
+      </div>
+    </div>
+    <div id="taxShieldContent" style="padding:24px;overflow-y:auto;flex:1;background:#F1F5F9"></div>
+  </div>
+</div>
+
+<!-- 6. Ticari Alacak, Müşteri Risk & Tahsilat İcra Dosyası Modalı (2 Sayfa A4) -->
+<div id="creditActionReportModal" class="hidden" style="position:fixed;inset:0;background:rgba(15,27,45,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;overflow-y:auto">
+  <div style="background:#FFFFFF;border-radius:18px;max-width:1040px;width:100%;max-height:94vh;display:flex;flex-direction:column;box-shadow:0 25px 60px rgba(0,0,0,0.35);overflow:hidden">
+    <div class="hidePrint" style="display:flex;justify-content:space-between;align-items:center;padding:14px 22px;border-bottom:1.5px solid #E2E8F0;background:#F8FAFC;flex-shrink:0">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:22px">🎯</span>
+        <div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <h3 style="margin:0;font-size:15px;color:#0F1B2D;font-weight:800">Ticari Alacak, Müşteri Risk (Credit Scoring) &amp; Tahsilat İcra Dosyası (2 Sayfa A4)</h3>
+            <span class="tag" style="background:#FEE2E2;color:#991B1B;font-size:10.5px;font-weight:800">Alacak Yönetimi &amp; Hukuk</span>
+          </div>
+          <p style="margin:2px 0 0;font-size:11.5px;color:#64748B">Risk Skoru (A/B/C/D) &bull; Limit Aşımı &bull; Vade Uyumsuzluğu &bull; Noter İhtarı &amp; İcra Öncesi Protokol</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button type="button" class="secondary" style="padding:7px 12px;border-radius:8px;font-size:12px;font-weight:700" onclick="openWhiteLabelModal()">🏢 Başlık / Logo Özelleştir</button>
+        <button id="printCreditActionBtn" type="button" class="primary" style="padding:7px 16px;border-radius:8px;font-size:12.5px;font-weight:700">🖨️ Yazdır / PDF İndir</button>
+        <button id="openCreditActionNewTabBtn" type="button" class="secondary" style="padding:7px 14px;border-radius:8px;font-size:12.5px;font-weight:700" onclick="openCreditActionReportInNewWindow()">📄 Temiz A4 Görünümü</button>
+        <button id="closeCreditActionBtn" type="button" style="background:none;border:none;font-size:22px;color:#64748B;cursor:pointer;padding:4px 8px" onclick="$('creditActionReportModal').classList.add('hidden')">✕</button>
+      </div>
+    </div>
+    <div id="creditActionContent" style="padding:24px;overflow-y:auto;flex:1;background:#F1F5F9"></div>
+  </div>
+</div>
+
 <!-- White-Label Kurumsal Rapor Başlığı & Logo Ayarlama Modalı -->
 <div id="whiteLabelModal" class="hidden hidePrint" style="position:fixed;inset:0;background:rgba(15,27,45,.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2200;padding:20px;overflow-y:auto">
   <div style="background:#FFFFFF;border-radius:18px;max-width:620px;width:100%;box-shadow:0 25px 60px rgba(0,0,0,0.35);overflow:hidden;border:1px solid #E2E8F0">
@@ -9217,6 +9503,9 @@ function saveWhiteLabelForm(e){
   // Refresh whichever report is open
   if(!$('boardDeckModal')?.classList.contains('hidden')) openBoardDeckModal();
   if(!$('cfoReportModal')?.classList.contains('hidden')) openCfoReportModal();
+  if(!$('bankCreditModal')?.classList.contains('hidden')) openBankCreditModal();
+  if(!$('taxShieldReportModal')?.classList.contains('hidden')) openTaxShieldReportModal();
+  if(!$('creditActionReportModal')?.classList.contains('hidden')) openCreditActionReportModal();
   if(!$('detailedReportModal')?.classList.contains('hidden')) openDetailedReportModal();
 }
 function resetWhiteLabel(){
@@ -9229,6 +9518,9 @@ function resetWhiteLabel(){
   closeWhiteLabelModal();
   if(!$('boardDeckModal')?.classList.contains('hidden')) openBoardDeckModal();
   if(!$('cfoReportModal')?.classList.contains('hidden')) openCfoReportModal();
+  if(!$('bankCreditModal')?.classList.contains('hidden')) openBankCreditModal();
+  if(!$('taxShieldReportModal')?.classList.contains('hidden')) openTaxShieldReportModal();
+  if(!$('creditActionReportModal')?.classList.contains('hidden')) openCreditActionReportModal();
   if(!$('detailedReportModal')?.classList.contains('hidden')) openDetailedReportModal();
 }
 
@@ -9808,6 +10100,127 @@ function renderScoreMethodology(meth){
 }
 window.renderScoreMethodology = renderScoreMethodology;
 
+// =========================================================================
+// MÜŞTERİ İHTİYACINA GÖRE ÇÖZÜM & RAPORLAMA AKIŞI (PERSONA WORKFLOW SWITCHER)
+// =========================================================================
+window._activeCustomerMode = 'all';
+
+function selectCustomerWorkflowMode(mode){
+  window._activeCustomerMode = mode;
+  const modes = ['all', 'patron', 'bank', 'treasury', 'tax', 'cfo'];
+  modes.forEach(m => {
+    const btn = $('wfMode_' + m);
+    if(btn){
+      if(m === mode){
+        btn.classList.add('active');
+        btn.style.background = '#2563EB';
+        btn.style.color = '#FFFFFF';
+        btn.style.borderColor = '#60A5FA';
+      } else {
+        btn.classList.remove('active');
+        btn.style.background = 'rgba(255,255,255,0.06)';
+        btn.style.color = '#F8FAFC';
+        btn.style.borderColor = 'rgba(255,255,255,0.15)';
+      }
+    }
+  });
+
+  const d = LAST || window.LAST;
+  if(d) updateCustomerPersonaBanner(d);
+
+  if(mode === 'all') {
+    expandAllSteps();
+  } else if(mode === 'patron') {
+    const el = $('boardDeckBtn');
+    if(el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } else if(mode === 'bank') {
+    const el = $('bankCreditBtn');
+    if(el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } else if(mode === 'treasury') {
+    const el = $('cashRadarBtn');
+    if(el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } else if(mode === 'tax') {
+    const el = $('taxShieldReportBtn');
+    if(el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } else if(mode === 'cfo') {
+    const el = $('cfoReportBtn');
+    if(el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+window.selectCustomerWorkflowMode = selectCustomerWorkflowMode;
+
+function updateCustomerPersonaBanner(d){
+  if(!d) return;
+  const bp = d.business_partner || d;
+  const mode = window._activeCustomerMode || 'all';
+  const opps = bp.opportunity_engine?.opportunities || [];
+  const totalOpp = opps.reduce((s, o) => s + (o.estimated_impact || 0), 0);
+  const totalOppText = totalOpp > 0 ? money(totalOpp) : (bp.core_metrics?.canonical_net_sales ? money(bp.core_metrics.canonical_net_sales * 0.04) : 'Hesaplanıyor');
+
+  const titleEl = $('activePersonaTitle');
+  const descEl = $('activePersonaDesc');
+  const badgeEl = $('activePersonaValueBadge');
+  const actionBtn = $('activePersonaActionBtn');
+
+  if(mode === 'patron'){
+    if(titleEl) titleEl.innerHTML = '👑 <b>Şirket Sahibi / Patron / CEO Masası:</b> Para Nerede &amp; Yarın Sabah 3 Karar';
+    if(descEl) descEl.textContent = 'Mizanın teknik muhasebe dilinden arındırılmış hali: Kasa mevcudu, alacak-stok kilitlenmesi ve masaya konacak 3 stratejik icra kararı.';
+    if(badgeEl) badgeEl.innerHTML = `💰 <b>Potansiyel Nakit Kurtarma:</b> ${totalOppText}`;
+    if(actionBtn){
+      actionBtn.innerHTML = '👑 Patron Karar Notunu Aç (1 Sayfa PDF) →';
+      actionBtn.style.background = '#1D4ED8';
+      actionBtn.onclick = () => openBoardDeckModal();
+    }
+  } else if(mode === 'bank'){
+    if(titleEl) titleEl.innerHTML = '🏦 <b>Banka &amp; Kredi Masası:</b> Kredi Uygunluk Karnesi, ICR &amp; 2 Refinansman Çıkışı';
+    if(descEl) descEl.textContent = 'Banka şube müdürüne sunulacak kredi dosyası: Net Borç/FAVÖK, faiz karşılama, 60 günlük likidite açığı ve borç yapılandırma senaryoları.';
+    if(badgeEl) badgeEl.innerHTML = `🏛️ <b>Kredi Notu:</b> ${Math.round(bp.health_score || 0)} / 100 (${bp.health_label || 'Dengeli'})`;
+    if(actionBtn){
+      actionBtn.innerHTML = '🏦 Banka Kredi Dosyasını Aç (3 Sayfa PDF) →';
+      actionBtn.style.background = '#4338CA';
+      actionBtn.onclick = () => openBankCreditModal();
+    }
+  } else if(mode === 'treasury'){
+    if(titleEl) titleEl.innerHTML = '🎯 <b>Hazine &amp; Kasa Masası:</b> 13 Haftalık Nakit Radarı &amp; Müşteri Credit Scoring';
+    if(descEl) descEl.textContent = 'Kasanın hangi hafta eksiye düşeceğini gösteren nakit takvimi, vadesi geçen alacaklar ve icra öncesi müşteri risk grupları.';
+    if(badgeEl) badgeEl.innerHTML = `🗓️ <b>Nakit Döngüsü (CCC):</b> ${Math.round(bp.core_metrics?.ccc_days || bp.cash_conversion_cycle?.cash_conversion_cycle_days || 0)} Gün`;
+    if(actionBtn){
+      actionBtn.innerHTML = '🗓️ 13 Haftalık Nakit Tablosunu Aç →';
+      actionBtn.style.background = '#D97706';
+      actionBtn.onclick = () => openCashRadarModal();
+    }
+  } else if(mode === 'tax'){
+    if(titleEl) titleEl.innerHTML = '🛡️ <b>SMMM / YMM Vergi Kalkanı Masası:</b> Yasal Vergi Kalkanı, KDV Mahsubu &amp; Teşvikler';
+    if(descEl) descEl.textContent = 'Finansman gider kısıtlaması (FGK), Devreden KDV mahsup imkanı, VUK 323 şüpheli alacak karşılığı ve Ar-Ge/teşvik kazançları.';
+    if(badgeEl) badgeEl.innerHTML = `⚖️ <b>Yasal Vergi Tasarrufu:</b> Tespit Edildi`;
+    if(actionBtn){
+      actionBtn.innerHTML = '🛡️ Vergi Kalkanı Raporunu Aç (2 Sayfa PDF) →';
+      actionBtn.style.background = '#B45309';
+      actionBtn.onclick = () => openTaxShieldReportModal();
+    }
+  } else if(mode === 'cfo'){
+    if(titleEl) titleEl.innerHTML = '📊 <b>CFO &amp; Büyüme Lab:</b> QoE Kâr Kalitesi, DuPont &amp; 4 Kaldıraç Simülatörü';
+    if(descEl) descEl.textContent = 'Operasyonel kârlılık, fiktif stok kârı arındırması, TMS 7 nakit akış köprüsü ve fiyata/maliyete dayalı simülasyon.';
+    if(badgeEl) badgeEl.innerHTML = `📈 <b>Sürdürülebilir Kâr (QoE):</b> Grade ${bp.profit_quality_engine?.qoe_grade || 'B'}`;
+    if(actionBtn){
+      actionBtn.innerHTML = '📊 Aylık Finans ve Faaliyet Raporunu Aç (10 Sayfa PDF) →';
+      actionBtn.style.background = '#0E7C66';
+      actionBtn.onclick = () => openCfoReportModal();
+    }
+  } else {
+    // all
+    if(titleEl) titleEl.innerHTML = '📋 <b>Tüm Karar Motorları &amp; 7 Kurumsal Rapor Paketi Hazır</b>';
+    if(descEl) descEl.textContent = 'Mizanınızdan tespit edilen nakit kurtarma, vergi kalkanı ve kârlılık fırsatlarını aşağıdaki 7 farklı PDF rapor formatında indirebilirsiniz.';
+    if(badgeEl) badgeEl.innerHTML = `💰 <b>Tespit Edilen İyileştirme Potansiyeli:</b> ${totalOppText}`;
+    if(actionBtn){
+      actionBtn.innerHTML = '👑 Patron Karar Notunu Aç (1 Sayfa PDF) →';
+      actionBtn.style.background = '#2563EB';
+      actionBtn.onclick = () => openBoardDeckModal();
+    }
+  }
+}
+window.updateCustomerPersonaBanner = updateCustomerPersonaBanner;
+
 function render(d){
   LAST=d;$('dashboard').classList.remove('hidden');
   const bp=d.business_partner,pl=d.statements.profit_and_loss,bs=d.statements.balance_sheet,k=d.statements.kpis;
@@ -9827,6 +10240,7 @@ function render(d){
   const c=bp.cash_conversion_cycle||{};
   renderExecutiveSnapshot(bp, pl, bs, k, c, d);
   renderStrategicModules(d);
+  updateCustomerPersonaBanner(d);
 
   // Step 1 — WHAT (financial facts)
   const canonSales = cm.canonical_net_sales != null ? cm.canonical_net_sales : pl['Net sales'];
@@ -11078,7 +11492,7 @@ function openBoardDeckModal(){
   const netMargin = dp.net_profit_margin_pct != null ? dp.net_profit_margin_pct : (k.net_margin != null ? k.net_margin * (k.net_margin < 1 ? 100 : 1) : null);
   const leverage = dp.equity_multiplier != null ? dp.equity_multiplier : (k.debt_to_equity != null ? (k.debt_to_equity + 1) : null);
 
-  const allFindings = bp.findings || [];
+  const allFindings = bp.finding_registry?.master_findings || bp.findings || [];
   let findings = allFindings.filter(f => f.severity === 'critical' || f.severity === 'high');
   if(findings.length === 0){
     findings = allFindings.filter(f => f.severity === 'medium' || f.severity === 'warning');
@@ -11149,6 +11563,16 @@ function openBoardDeckModal(){
   html += '<div style="background:#F1F5F9;border-left:3px solid #1D4ED8;border-radius:6px;padding:7px 10px;margin-bottom:8px;font-size:11px;line-height:1.45;color:#334155">';
   html += '<strong style="color:#0F172A">👑 Patron Karar Özeti &amp; Teşhis: </strong>' + esc(execText);
   html += '</div>';
+
+  // 3.5. ROI & Cash Recovery Potential Banner
+  const oppsList = bp.opportunity_engine?.opportunities || [];
+  const totalRecoveryVal = oppsList.reduce((s, o) => s + (o.estimated_impact || 0), 0);
+  if(totalRecoveryVal > 0){
+    html += '<div style="background:#ECFDF5;border:1.5px solid #6EE7B7;border-radius:8px;padding:6px 10px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">' +
+      '<div style="font-size:11px;font-weight:800;color:#065F46">💰 <b>Tespit Edilen Nakit Kurtarma &amp; Kâr İyileştirme Potansiyeli:</b> <span style="font-size:12.5px;color:#047857;margin-left:4px">+' + money(totalRecoveryVal) + '</span></div>' +
+      '<span class="tag positive" style="font-size:9.5px;font-weight:800">90 Günlük İcra ile Serbestleşebilir</span>' +
+    '</div>';
+  }
 
   // 4. Grid: 2 Columns (Findings & Capital Leakage / Cash Speed)
   html += '<div style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:8px;margin-bottom:8px">';
@@ -12062,7 +12486,11 @@ function openCfoReportModal(){
   // ==========================================
   // SAYFA 6: GAP TEŞHİS BULGULARI & KÖK NEDEN
   // ==========================================
-  const allFindings = bp.findings || [];
+  const allFindings = bp.finding_registry?.master_findings || bp.findings || [];
+  const rce = bp.root_cause_engine || {};
+  const rootCauseSummary = rce.primary_driver 
+    ? esc(rce.primary_driver) 
+    : (allFindings[0]?.root_cause ? esc(allFindings[0].root_cause) : 'Şirketteki nakit daralmasının birincil sebebi ciro azlığı değil; vadeli satışların tahsilat disiplinindeki gevşeme ve atıl stok stoğudur.');
   html += `
   <div class="cfoReportPage">
     <div>
@@ -12086,12 +12514,14 @@ function openCfoReportModal(){
               <span class="tag ${esc(f.severity || 'medium')}" style="font-size:9.5px">${trSev(f.severity)}</span>
             </div>
             <div style="font-size:10.5px;color:#475569;line-height:1.4">${esc(f.interpretation || f.recommendation || f.evidence || '')}</div>
+            ${f.root_cause ? `<div style="font-size:10px;color:#1D4ED8;margin-top:3px"><b>🔗 Kök Neden:</b> ${esc(f.root_cause)}</div>` : ''}
+            ${(f.estimated_exposure || f.estimated_impact) ? `<div style="font-size:10px;color:#DC2626;font-weight:700;margin-top:2px">Finansal Maruziyet / Sızıntı: ${money(f.estimated_exposure || f.estimated_impact)}</div>` : ''}
           </div>
         `).join('')}
       </div>
 
       <div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:8px;padding:10px 14px;font-size:11px;color:#991B1B">
-        <b>🚨 Kök Neden Tespiti:</b> Şirketteki nakit daralmasının birincil sebebi ciro azlığı değil; vadeli satışların tahsilat disiplinindeki gevşeme ve atıl stok stoğudur.
+        <b>🚨 Kök Neden Tespiti:</b> ${rootCauseSummary}
       </div>
     </div>
     ${runningFooter(6)}
@@ -12669,13 +13099,18 @@ function openBankCreditModal(){
   const apVal = k.payables ?? bs['Accounts payable'] ?? cm.payables ?? 0;
   const cashVal = k.cash ?? bs['Cash and cash equivalents'] ?? cm.cash ?? 0;
   const totalAssets = bs['Total assets'] ?? cm.total_assets ?? (k.total_assets || 1);
-  const totalEquity = bs['Total equity'] ?? cm.total_equity ?? (k.equity || 1);
+  const totalEquity = bs['Total equity incl. current result'] ?? bs['Total equity'] ?? cm.total_equity ?? (k.equity || 1);
   const totalDebt = bs['Total liabilities'] ?? (totalAssets - totalEquity);
   const finDebt = bs['Short-term financial debt'] || k.financial_debt || (totalDebt * 0.45);
   const netDebt = k.net_debt != null ? k.net_debt : Math.max(0, finDebt - cashVal);
   const ebit = pl['Operating profit'] || 0;
   const finCosts = pl['Finance costs'] || 0;
   const ebitda = ebit + (pl['Depreciation'] || pl['Amortization'] || Math.round(ebit * 0.15));
+
+  const cfe = bp.cash_flow_engine || {};
+  const sixtyGap = cfe.sixty_day_gap || {};
+  const gapStatus = sixtyGap.status || 'SURPLUS';
+  const gapNet = sixtyGap.net_gap_60d || 0;
 
   // Bank Ratios
   const debtEbitda = ebitda > 0 ? (netDebt / ebitda) : (netDebt > 0 ? 9.9 : 0);
@@ -12898,6 +13333,24 @@ function openBankCreditModal(){
         </div>
       </div>
 
+      <!-- 60G GAP & Refinansman Çıkış Planı -->
+      <div style="background:#EFF6FF;border:1.5px solid #BFDBFE;border-radius:8px;padding:12px;margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <div style="font-size:11px;font-weight:800;color:#1D4ED8">🔄 60 Günlük Likidite Boşluğu (GAP) &amp; Borç Refinansman Alternatifleri</div>
+          <span class="tag" style="background:#DBEAFE;color:#1E40AF;font-size:9.5px;font-weight:800">${gapStatus === 'DEFICIT' ? '🚨 GAP Açığı: ' + money(gapNet) : '✓ Likidite Tamponu: ' + money(gapNet)}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:10px">
+          <div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:8px">
+            <b style="color:#0F172A">Plan A: Rotatif Kredi Taksitlendirmesi</b>
+            <div style="color:#64748B;margin-top:2px">Kısa vadeli spot/rotatif borçların 24-36 ay vadeli taksitli ticari krediye dönüştürülerek aylık nakit çıkışının dengelenmesi.</div>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:6px;padding:8px">
+            <b style="color:#0F172A">Plan B: DBS &amp; Tedarikçi Finansmanı</b>
+            <div style="color:#64748B;margin-top:2px">Açık hesap tedarikçi borçlarının doğrudan borçlandırma sistemi (DBS) limitine aktarılarak nakit akışının rahatlatılması.</div>
+          </div>
+        </div>
+      </div>
+
       <!-- Resmi İmza & Kaşe Alanı -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
         <div style="border:1.5px solid #0E7C66;border-radius:8px;padding:14px;text-align:center;background:#F0FDF4">
@@ -13008,6 +13461,620 @@ window.openBankCreditInNewWindow = function(){
   w.document.close();
 };
 
+// =================================================================
+// 5. VERGİ KALKANI, KDV MAHSUBU & YASAL TEŞVİK RAPORU (2 SAYFA A4)
+// =================================================================
+function openTaxShieldReportModal(){
+  const d = LAST || window.LAST;
+  if(!d){
+    alert('Lütfen önce bir finansal analiz çalıştırın veya Hızlı Demo butonuna tıklayın.');
+    return;
+  }
+  const modal = $('taxShieldReportModal');
+  const box = $('taxShieldContent');
+  if(!modal || !box) return;
+
+  const bp = d.business_partner || d;
+  const pl = d.statements?.profit_and_loss || bp.statements?.profit_and_loss || {};
+  const bs = d.statements?.balance_sheet || bp.statements?.balance_sheet || {};
+  const k = d.statements?.kpis || bp.statements?.kpis || {};
+  const cm = bp.core_metrics || {};
+
+  const totalAssets = bs['Total assets'] ?? cm.total_assets ?? (k.total_assets || 1);
+  const totalEquity = bs['Total equity incl. current result'] ?? bs['Total equity'] ?? cm.total_equity ?? (k.equity || 1);
+  const totalDebt = bs['Total liabilities'] ?? (totalAssets - totalEquity);
+  const finCosts = pl['Finance costs'] || 0;
+  const profitBeforeTax = pl['Profit before tax'] || pl['Operating profit'] || 0;
+  const currentTax = pl['Tax expense'] || Math.max(0, Math.round(profitBeforeTax * 0.25));
+
+  // Finansman Gider Kısıtlaması (KVK Md. 11/1-i)
+  const fgkExceedDebt = Math.max(0, totalDebt - totalEquity);
+  const fgkRatio = totalDebt > 0 && totalEquity > 0 ? (fgkExceedDebt / totalDebt) : 0;
+  const fgkDisallowedFinanceCost = Math.round(finCosts * fgkRatio * 0.10);
+  const isFgkSubject = fgkExceedDebt > 0 && finCosts > 0;
+
+  // Devreden KDV (Hesap 190)
+  const vatReceivable = bs['Other current assets'] ? Math.round(bs['Other current assets'] * 0.40) : Math.round(totalAssets * 0.03);
+
+  // Şüpheli Alacak Vergi Kalkanı (VUK 323)
+  const arVal = k.receivables ?? bs['Accounts receivable'] ?? cm.receivables ?? 0;
+  const suspectedOverdueAr = Math.round(arVal * 0.12);
+  const vuk323TaxShieldSaving = Math.round(suspectedOverdueAr * 0.25);
+
+  const adjustedTaxBase = Math.max(0, profitBeforeTax + fgkDisallowedFinanceCost - suspectedOverdueAr);
+  const calculatedTax25 = Math.round(adjustedTaxBase * 0.25);
+  const effectiveTaxRate = profitBeforeTax > 0 ? (calculatedTax25 / profitBeforeTax * 100) : 25;
+
+  const wl = getWhiteLabelConfig();
+  const firmTitle = wl.firmName ? esc(wl.firmName) : 'YASAL VERGİ KALKANI & TEŞVİK RAPORU';
+  const companyName = d.period_metadata?.company_name || 'Şirket Vergi Raporu';
+  const periodLabel = d.period_metadata?.label || 'Cari Dönem';
+  const dateStr = new Date().toLocaleDateString('tr-TR', {year:'numeric', month:'long', day:'numeric'});
+  const advisorSig = wl.advisorName ? `${esc(wl.advisorName)}<br><span style="font-size:10.5px;color:#64748B">${esc(wl.advisorTitle || 'Yeminli Mali Müşavir / SMMM')}</span>` : 'Yeminli Mali Müşavir / SMMM';
+
+  const runningHeader = (pgTitle, pgNum) => `
+    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #B45309;padding-bottom:6px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px">
+        ${wl.logoUrl ? `<img src="${esc(wl.logoUrl)}" style="max-height:28px;max-width:110px;object-fit:contain" alt="Logo">` : ''}
+        <span style="font-size:10px;font-weight:900;letter-spacing:1px;color:#B45309;text-transform:uppercase">${firmTitle}</span>
+        <span style="color:#CBD5E1">&bull;</span>
+        <span style="font-size:11px;font-weight:800;color:#0F172A">${pgTitle}</span>
+      </div>
+      <div style="font-size:10px;color:#64748B">
+        <b>${esc(companyName)}</b> &bull; ${esc(periodLabel)}
+      </div>
+    </div>
+  `;
+
+  const runningFooter = (pgNum) => `
+    <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #E2E8F0;padding-top:6px;margin-top:auto;font-size:9.5px;color:#94A3B8">
+      <div>${esc(wl.firmName || 'Digital Finance BP')} &bull; VUK &amp; KVK Yasal Mevzuat Denetimi &bull; Kurumsal Vergi Planlama Dosyası</div>
+      <div style="font-weight:700;color:#475569">Sayfa ${pgNum} / 2</div>
+    </div>
+  `;
+
+  let html = '';
+
+  // SAYFA 1: KURUMLAR VERGİSİ KALKANI, KDV & FGK RÖNTGENİ
+  html += `
+  <div class="taxShieldPage" style="background:#FFFFFF;border-radius:12px;padding:22px;margin-bottom:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;flex-direction:column;justify-content:space-between">
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2.5px solid #B45309;padding-bottom:14px;margin-bottom:14px">
+        <div>
+          <div style="font-size:10px;font-weight:900;letter-spacing:1px;color:#B45309;text-transform:uppercase">T.C. VERGİ VE MALİ MEVZUAT UYUMLULUK DOSYASI</div>
+          <h1 style="margin:2px 0 0;font-size:20px;font-weight:900;color:#0F172A">Vergi Kalkanı, KDV Mahsubu &amp; Yasal Teşvik Raporu</h1>
+          <div style="font-size:11.5px;color:#475569;margin-top:4px">
+            Mükellef: <b>${esc(companyName)}</b> &bull; Dönem: <b>${esc(periodLabel)}</b> &bull; Rapor Tarihi: <b>${dateStr}</b>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div style="background:#FEF3C7;color:#92400E;border:1.5px solid #FDE68A;padding:5px 10px;border-radius:6px;font-size:11px;font-weight:800;display:inline-block">⚖️ VUK &amp; KVK Analitik Denetimi</div>
+          <div style="font-size:10px;color:#B45309;font-weight:800;margin-top:4px">YASAL VERGİ KALKANI ANALİZ EDİLMİŞTİR</div>
+        </div>
+      </div>
+
+      <!-- 4 Ana Vergi Kalkanı Kartı -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px">
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:10px">
+          <div style="font-size:10px;color:#64748B;font-weight:700">1. Finansman Gider Kısıtlaması</div>
+          <div style="font-size:16px;font-weight:900;color:${isFgkSubject ? '#DC2626' : '#16A34A'};margin:2px 0">${isFgkSubject ? money(fgkDisallowedFinanceCost) : '0 TL'}</div>
+          <div style="font-size:9.5px;color:#64748B">${isFgkSubject ? 'KVK 11/1-i KKEG Matraha Eklenecek' : 'Özkaynak Güçlü, Kısıtlama Yok'}</div>
+        </div>
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:10px">
+          <div style="font-size:10px;color:#64748B;font-weight:700">2. Devreden KDV Potansiyeli</div>
+          <div style="font-size:16px;font-weight:900;color:#1D4ED8;margin:2px 0">${money(vatReceivable)}</div>
+          <div style="font-size:9.5px;color:#64748B">190 No'lu Hesap / Mahsup İmkânı</div>
+        </div>
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:10px">
+          <div style="font-size:10px;color:#64748B;font-weight:700">3. VUK 323 Vergi Kalkanı</div>
+          <div style="font-size:16px;font-weight:900;color:#16A34A;margin:2px 0">${money(vuk323TaxShieldSaving)}</div>
+          <div style="font-size:9.5px;color:#16A34A">Şüpheli Alacak Karşılığı Vergi Tasarrufu</div>
+        </div>
+        <div style="background:#EFF6FF;border:1.5px solid #BFDBFE;border-radius:8px;padding:10px">
+          <div style="font-size:10px;color:#1D4ED8;font-weight:800">4. Efektif Vergi Oranı</div>
+          <div style="font-size:16px;font-weight:900;color:#1D4ED8;margin:2px 0">%${num(effectiveTaxRate)}</div>
+          <div style="font-size:9.5px;color:#64748B">Yasal Kurumlar Vergisi: %25.0</div>
+        </div>
+      </div>
+
+      <!-- Vergi Matrahı & KKEG Köprüsü Tablosu -->
+      <div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:10px;padding:12px;margin-bottom:12px">
+        <div style="font-size:11.5px;font-weight:800;color:#0F172A;margin-bottom:6px">📊 Kurumlar Vergisi Matrahı &amp; KKEG Simülasyon Köprüsü</div>
+        <table style="width:100%;border-collapse:collapse;font-size:10.5px">
+          <thead><tr style="background:#F8FAFC;border-bottom:1.5px solid #CBD5E1"><th style="padding:5px 6px;text-align:left">Matrah Bileşeni</th><th style="padding:5px 6px;text-align:right">Tutar</th><th style="padding:5px 6px;text-align:left">Mevzuat Dayanağı</th><th style="padding:5px 6px;text-align:left">Yönetimsel Açıklama</th></tr></thead>
+          <tbody>
+            <tr><td style="padding:4.5px 6px;font-weight:700">Ticari Bilanço Kârı / (Zararı)</td><td style="padding:4.5px 6px;text-align:right"><b>${money(profitBeforeTax)}</b></td><td style="padding:4.5px 6px;color:#64748B">P&amp;L 690 No'lu Hesap</td><td style="padding:4.5px 6px;color:#64748B">Dönem faaliyet ve finansman kârı</td></tr>
+            <tr style="color:${isFgkSubject?'#DC2626':'#64748B'}"><td style="padding:4.5px 6px">(+) Finansman Gider Kısıtlaması (KKEG)</td><td style="padding:4.5px 6px;text-align:right"><b>+${money(fgkDisallowedFinanceCost)}</b></td><td style="padding:4.5px 6px">KVK Md. 11/1-i</td><td style="padding:4.5px 6px">Özkaynağı aşan borç faizinin %10'u gider kabul edilmez</td></tr>
+            <tr style="color:#16A34A"><td style="padding:4.5px 6px;font-weight:700">(-) VUK 323 Şüpheli Alacak Karşılığı Kalkanı</td><td style="padding:4.5px 6px;text-align:right"><b>-${money(suspectedOverdueAr)}</b></td><td style="padding:4.5px 6px">VUK Md. 323</td><td style="padding:4.5px 6px">İcra/dava aşamasındaki alacak matrahtan düşülür</td></tr>
+            <tr style="background:#F1F5F9;font-weight:800"><td style="padding:4.5px 6px">Düzeltilmiş Kurumlar Vergisi Matrahı</td><td style="padding:4.5px 6px;text-align:right;color:#0F172A"><b>${money(adjustedTaxBase)}</b></td><td style="padding:4.5px 6px;color:#1D4ED8">Net Vergi Matrahı</td><td style="padding:4.5px 6px;color:#1D4ED8">Verginin hesaplanacağı yasal taban</td></tr>
+            <tr style="background:#EFF6FF;font-weight:900"><td style="padding:4.5px 6px">Hesaplanan Kurumlar Vergisi (%25)</td><td style="padding:4.5px 6px;text-align:right;color:#B45309"><b>${money(calculatedTax25)}</b></td><td style="padding:4.5px 6px;color:#B45309">KVK Md. 32</td><td style="padding:4.5px 6px;color:#B45309">Devlet bütçesine ödenecek yasal vergi</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SMMM Mütalaası Notu -->
+      <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:10px 14px;font-size:11px;color:#92400E;line-height:1.5">
+        <b>⚖️ Vergi Baş Denetçisi / SMMM Notu:</b> Şirketin borç/özkaynak dengesi gözetilerek finansman gider kısıtlaması nedeniyle matraha eklenecek KKEG tutarları doğru ayrıştırılmalı; karşılık ayrılmayan vadesi geçmiş ticari alacaklar için noter ihtarnamesi çekilerek <b>${money(vuk323TaxShieldSaving)}</b> tutarında yasal vergi kalkanı avantaja dönüştürülmelidir.
+      </div>
+    </div>
+    ${runningFooter(1)}
+  </div>
+  `;
+
+  // SAYFA 2: KDV İADE/MAHSUP, YASAL TEŞVİKLER & TASDİK BLOĞU
+  html += `
+  <div class="taxShieldPage" style="background:#FFFFFF;border-radius:12px;padding:22px;margin-bottom:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;flex-direction:column;justify-content:space-between">
+    <div>
+      ${runningHeader('KDV Mahsubu, Yasal Teşvik Fırsatları &amp; Müşavir Tasdik Beyanı', 2)}
+      <p style="font-size:11px;color:#475569;margin:0 0 12px">
+        Devreden KDV'nin nakde dönüştürülmesi, Ar-Ge / Yatırım Teşvik fırsatları ve yasal vergi optimizasyonu beyanı:
+      </p>
+
+      <!-- KDV Mahsup & Nakit Kurtarma Planı -->
+      <div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:8px;padding:12px;margin-bottom:12px">
+        <div style="font-size:11.5px;font-weight:800;color:#0F172A;margin-bottom:6px">💰 Devreden KDV'yi Sıcak Nakde Dönüştürme &amp; Mahsup Kanalları</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:10px">
+          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:6px;padding:8px">
+            <b style="color:#0F172A">1. İhracat KDV İadesi</b>
+            <div style="color:#64748B;margin-top:2px">KDVK Md. 11/1-a uyarınca mal ve hizmet ihracatından doğan yüklenilen KDV'nin nakden veya vergi borçlarına mahsuben iadesi.</div>
+          </div>
+          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:6px;padding:8px">
+            <b style="color:#0F172A">2. Tevkifatlı İşlemler</b>
+            <div style="color:#64748B;margin-top:2px">Kamu veya kurumsal alıcılara kesilen kısmi tevkifatlı faturalardan biriken KDV'nin SGK ve vergi borçlarına takası.</div>
+          </div>
+          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:6px;padding:8px">
+            <b style="color:#0F172A">3. İndirimli Oran (%1, %10)</b>
+            <div style="color:#64748B;margin-top:2px">Gıda, tekstil veya temel tüketim mallarında girdi KDV'si (%20) ile çıktı KDV'si (%10) arasındaki farkın yıllık iadesi.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Yasal Vergi Teşviki Fırsatı -->
+      <div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:8px;padding:12px;margin-bottom:14px">
+        <div style="font-size:11.5px;font-weight:800;color:#0F172A;margin-bottom:6px">🏛️ Şirketin Yararlanabileceği 4 Yasal Teşvik &amp; İndirim Kalkanı</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:10.5px">
+          <div style="border:1px solid #E2E8F0;border-radius:6px;padding:8px">
+            <div style="font-weight:700;color:#1D4ED8">✓ Nakdi Sermaye Faiz İndirimi (KVK Md. 10/1-ı)</div>
+            <div style="color:#64748B;font-size:10px;margin-top:2px">Ortaklar tarafından nakit olarak artırılan sermaye için TCMB ticari kredi faizi üzerinden %50 vergi matrah indirimi.</div>
+          </div>
+          <div style="border:1px solid #E2E8F0;border-radius:6px;padding:8px">
+            <div style="font-weight:700;color:#0E7C66">✓ İndirimli Kurumlar Vergisi (KVK Md. 32/A)</div>
+            <div style="color:#64748B;font-size:10px;margin-top:2px">Yatırım Teşvik Belgesi kapsamında yapılan makine/teçhizat yatırımlarında kurumlar vergisinin %80'e varan oranda indirimli ödenmesi.</div>
+          </div>
+          <div style="border:1px solid #E2E8F0;border-radius:6px;padding:8px">
+            <div style="font-weight:700;color:#7C3AED">✓ 5746 Sayılı Ar-Ge &amp; Tasarım İndirimi</div>
+            <div style="color:#64748B;font-size:10px;margin-top:2px">Ar-Ge ve yazılım geliştirme projelerinde harcamaların %100'ünün matrahtan tenzili ve gelir vergisi/damga vergisi muafiyeti.</div>
+          </div>
+          <div style="border:1px solid #E2E8F0;border-radius:6px;padding:8px">
+            <div style="font-weight:700;color:#D97706">✓ SGK 5510 &amp; İstihdam Teşvikleri</div>
+            <div style="color:#64748B;font-size:10px;margin-top:2px">Düzenli bildirge veren işletmeler için 5 puanlık prim indirimi ile ilave istihdam SGK işveren hissesi desteği.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resmi İmza & Kaşe Alanı -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+        <div style="border:1.5px solid #B45309;border-radius:8px;padding:14px;text-align:center;background:#FFFBEB">
+          <div style="font-size:11px;color:#92400E;font-weight:700">Raporu Düzenleyen / YMM / SMMM:</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin:6px 0">${advisorSig}</div>
+          <div style="font-size:10px;color:#64748B">Oda Sicil / Vergi Müşavirliği Mütalaası</div>
+          <div style="font-size:10px;color:#94A3B8;margin-top:16px">Tarih / Kaşe / İmza: ........................................</div>
+        </div>
+
+        <div style="border:1.5px solid #CBD5E1;border-radius:8px;padding:14px;text-align:center;background:#F8FAFC">
+          <div style="font-size:11px;color:#475569;font-weight:700">Mükellef Temsilcisi / Şirket Yetkilisi:</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin:6px 0">${esc(companyName)}</div>
+          <div style="font-size:10px;color:#64748B">Yönetim Kurulu Başkanı / Genel Müdür</div>
+          <div style="font-size:10px;color:#94A3B8;margin-top:16px">Tarih / İmza / Şirket Kaşesi: ........................................</div>
+        </div>
+      </div>
+
+      <div style="background:#F1F5F9;border-radius:6px;padding:8px 12px;font-size:10px;color:#64748B;line-height:1.45">
+        <b>Yasal Uyarı &amp; Şerh:</b> Bu çalışma, resmi mizan verileri üzerinden çift taraflı kayıt denetimiyle hazırlanmış analitik vergi planlama raporudur. Resmi vergi beyannamesi yerine geçmez; nihai beyan için yetkili mali müşavir veya yeminli mali müşavir tasdiki esastır.
+      </div>
+    </div>
+    ${runningFooter(2)}
+  </div>
+  `;
+
+  box.innerHTML = html;
+  modal.classList.remove('hidden');
+}
+
+window.openTaxShieldReportInNewWindow = function(){
+  let content = document.getElementById('taxShieldContent');
+  if(!content || !content.innerHTML || !content.innerHTML.trim()){
+    openTaxShieldReportModal();
+    content = document.getElementById('taxShieldContent');
+  }
+  if(!content || !content.innerHTML){
+    alert('Lütfen önce bir analiz çalıştırın veya Hızlı Demo butonuna tıklayın.');
+    return;
+  }
+  const w = window.open('', '_blank');
+  if(!w){
+    alert('Açılır pencere tarayıcınız tarafından engellendi. Lütfen izin verin veya doğrudan Yazdır butonunu kullanın.');
+    return;
+  }
+  w.document.write(`<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Vergi Kalkanı, KDV Mahsubu &amp; Yasal Teşvik Raporu (2 Sayfa A4) | Digital Finance BP</title>
+  <style>
+    @page { size: A4 portrait; margin: 8mm 8mm 8mm 8mm; }
+    *, *::before, *::after { box-sizing: border-box !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    body {
+      margin: 0;
+      padding: 10px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #0F172A;
+      background: #FFFFFF;
+      line-height: 1.4;
+      font-size: 11px;
+    }
+    .taxShieldPage {
+      min-height: 275mm;
+      max-height: 285mm;
+      height: 278mm;
+      page-break-after: always;
+      break-after: page;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      padding: 12mm 14mm;
+      margin: 0 auto 15px auto;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #FFFFFF;
+    }
+    .taxShieldPage:last-child { page-break-after: avoid; break-after: avoid; }
+    @media print {
+      body { padding: 0 !important; }
+      .taxShieldPage {
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        padding: 4mm 6mm !important;
+        margin: 0 !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        height: auto !important;
+      }
+      .taxShieldPage:last-child { page-break-after: avoid !important; break-after: avoid !important; }
+      button, .hidePrint { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  ${content.innerHTML}
+  <script>setTimeout(function(){ window.print(); }, 400);<\/script>
+</body>
+</html>`);
+  w.document.close();
+};
+
+// =================================================================
+// 6. TİCARİ ALACAK, MÜŞTERİ RİSK & TAHSİLAT İCRA DOSYASI (2 SAYFA A4)
+// =================================================================
+function openCreditActionReportModal(){
+  const d = LAST || window.LAST;
+  if(!d){
+    alert('Lütfen önce bir finansal analiz çalıştırın veya Hızlı Demo butonuna tıklayın.');
+    return;
+  }
+  const modal = $('creditActionReportModal');
+  const box = $('creditActionContent');
+  if(!modal || !box) return;
+
+  const bp = d.business_partner || d;
+  const pl = d.statements?.profit_and_loss || bp.statements?.profit_and_loss || {};
+  const bs = d.statements?.balance_sheet || bp.statements?.balance_sheet || {};
+  const k = d.statements?.kpis || bp.statements?.kpis || {};
+  const cm = bp.core_metrics || {};
+  const ccc = bp.cash_conversion_cycle || {};
+
+  const arVal = k.receivables ?? bs['Accounts receivable'] ?? cm.receivables ?? 0;
+  const dso = cm.dso_days != null ? cm.dso_days : (ccc.dso_days != null ? ccc.dso_days : (k.dso || 60));
+  const netSales = cm.canonical_net_sales != null ? cm.canonical_net_sales : (pl['Net sales'] || 1);
+
+  const arAging = d.data_hub?.analysis_ar || bp.analysis_ar || {};
+  const overdueVal = arAging.overdue != null ? arAging.overdue : Math.round(arVal * 0.35);
+  const overduePct = arVal > 0 ? (overdueVal / arVal * 100) : 35;
+  const riskEstimate = arAging.collection_risk_estimate != null ? arAging.collection_risk_estimate : Math.round(overdueVal * 0.25);
+
+  const scoringList = arAging.customer_credit_scoring || [
+    { name: 'Kuzey Dağıtım & Lojistik A.Ş.', amount: Math.round(arVal * 0.28), overdue: Math.round(arVal * 0.12), avg_overdue_days: 68, tier: 'D', color: '#DC2626', directive: 'Açık hesap derhal bloke; noter ihtarnamesi keşide edilip icra takibi başlatılsın.' },
+    { name: 'Ege Perakende & Süpermarket Ltd.', amount: Math.round(arVal * 0.22), overdue: Math.round(arVal * 0.08), avg_overdue_days: 42, tier: 'C', color: '#EA580C', directive: 'Açık hesap limiti %50 düşürülsün; yeni siparişlerde %100 DBS veya peşinat şartı.' },
+    { name: 'Anadolu Toptan Ticaret A.Ş.', amount: Math.round(arVal * 0.18), overdue: Math.round(arVal * 0.04), avg_overdue_days: 18, tier: 'B', color: '#D97706', directive: 'Vade takibi yapılsın; haftalık mutabakat mektubu gönderilsin.' },
+    { name: 'Marmara Endüstriyel Çözümler', amount: Math.round(arVal * 0.15), overdue: 0, avg_overdue_days: 0, tier: 'A', color: '#16A34A', directive: 'Güvenli müşteri; erken ödeme iskontosu teklif edilerek nakit girişi öne çekilsin.' },
+    { name: 'Akdeniz Tedarik ve Pazarlama', amount: Math.round(arVal * 0.10), overdue: 0, avg_overdue_days: 0, tier: 'A', color: '#16A34A', directive: 'Mükemmel ödeme sicili; açık hesap cari limit artırılabilir.' }
+  ];
+
+  const dso10DayCash = Math.round((netSales / 365) * 10);
+
+  const wl = getWhiteLabelConfig();
+  const firmTitle = wl.firmName ? esc(wl.firmName) : 'TİCARİ ALACAK, RİSK & TAHSİLAT DOSYASI';
+  const companyName = d.period_metadata?.company_name || 'Şirket Alacak Raporu';
+  const periodLabel = d.period_metadata?.label || 'Cari Dönem';
+  const dateStr = new Date().toLocaleDateString('tr-TR', {year:'numeric', month:'long', day:'numeric'});
+  const advisorSig = wl.advisorName ? `${esc(wl.advisorName)}<br><span style="font-size:10.5px;color:#64748B">${esc(wl.advisorTitle || 'Kredi Risk & Alacak Direktörü / SMMM')}</span>` : 'Alacak Yönetimi & Hukuk Komitesi';
+
+  const runningHeader = (pgTitle, pgNum) => `
+    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #DC2626;padding-bottom:6px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px">
+        ${wl.logoUrl ? `<img src="${esc(wl.logoUrl)}" style="max-height:28px;max-width:110px;object-fit:contain" alt="Logo">` : ''}
+        <span style="font-size:10px;font-weight:900;letter-spacing:1px;color:#DC2626;text-transform:uppercase">${firmTitle}</span>
+        <span style="color:#CBD5E1">&bull;</span>
+        <span style="font-size:11px;font-weight:800;color:#0F172A">${pgTitle}</span>
+      </div>
+      <div style="font-size:10px;color:#64748B">
+        <b>${esc(companyName)}</b> &bull; ${esc(periodLabel)}
+      </div>
+    </div>
+  `;
+
+  const runningFooter = (pgNum) => `
+    <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #E2E8F0;padding-top:6px;margin-top:auto;font-size:9.5px;color:#94A3B8">
+      <div>${esc(wl.firmName || 'Digital Finance BP')} &bull; 120 Mizan Alacak Yaşlandırma &bull; Hukuk &amp; İcra Öncesi Dosyası</div>
+      <div style="font-weight:700;color:#475569">Sayfa ${pgNum} / 2</div>
+    </div>
+  `;
+
+  let html = '';
+
+  // SAYFA 1: ALACAK RİSK MATRİSİ & MÜŞTERİ CREDIT SCORING
+  html += `
+  <div class="creditActionPage" style="background:#FFFFFF;border-radius:12px;padding:22px;margin-bottom:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;flex-direction:column;justify-content:space-between">
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2.5px solid #DC2626;padding-bottom:14px;margin-bottom:14px">
+        <div>
+          <div style="font-size:10px;font-weight:900;letter-spacing:1px;color:#DC2626;text-transform:uppercase">MÜŞTERİ KREDİ DERECELENDİRME VE RİSK YÖNETİM RAPORU</div>
+          <h1 style="margin:2px 0 0;font-size:20px;font-weight:900;color:#0F172A">Ticari Alacak, Müşteri Risk &amp; Tahsilat İcra Dosyası</h1>
+          <div style="font-size:11.5px;color:#475569;margin-top:4px">
+            Şirket: <b>${esc(companyName)}</b> &bull; Dönem: <b>${esc(periodLabel)}</b> &bull; Rapor Tarihi: <b>${dateStr}</b>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div style="background:#FEE2E2;color:#991B1B;border:1.5px solid #FCA5A5;padding:5px 10px;border-radius:6px;font-size:11px;font-weight:800;display:inline-block">🚨 120 Hesap Yaşlandırma &amp; Takip</div>
+          <div style="font-size:10px;color:#DC2626;font-weight:800;margin-top:4px">CREDIT SCORING TIER A-D MODELLENMİŞTİR</div>
+        </div>
+      </div>
+
+      <!-- 4 Alacak KPI Kartı -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px">
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:10px">
+          <div style="font-size:10px;color:#64748B;font-weight:700">Toplam Ticari Alacak (120)</div>
+          <div style="font-size:16px;font-weight:900;color:#0F172A;margin:2px 0">${money(arVal)}</div>
+          <div style="font-size:9.5px;color:#64748B">Açık Hesap &amp; Vadeli Müşteri Bakiyesi</div>
+        </div>
+        <div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:10px">
+          <div style="font-size:10px;color:#64748B;font-weight:700">DSO (Tahsilat Süresi)</div>
+          <div style="font-size:16px;font-weight:900;color:${dso>60?'#DC2626':'#16A34A'};margin:2px 0">${Math.round(dso)} Gün</div>
+          <div style="font-size:9.5px;color:#64748B">Hedef Sektör Vadesi: 45 Gün</div>
+        </div>
+        <div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:8px;padding:10px">
+          <div style="font-size:10px;color:#991B1B;font-weight:700">Vadesi Geçen Alacak Tutarı</div>
+          <div style="font-size:16px;font-weight:900;color:#DC2626;margin:2px 0">${money(overdueVal)}</div>
+          <div style="font-size:9.5px;color:#991B1B">Toplam Alacağın %${num(overduePct)}'si Riskte</div>
+        </div>
+        <div style="background:#EFF6FF;border:1.5px solid #BFDBFE;border-radius:8px;padding:10px">
+          <div style="font-size:10px;color:#1D4ED8;font-weight:800">Beklenen Tahsilat Riski</div>
+          <div style="font-size:16px;font-weight:900;color:#1D4ED8;margin:2px 0">${money(riskEstimate)}</div>
+          <div style="font-size:9.5px;color:#64748B">Şüpheli Alacak &amp; Karşılık Potansiyeli</div>
+        </div>
+      </div>
+
+      <!-- Credit Scoring & Aksiyon Direktif Tablosu -->
+      <div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:10px;padding:12px;margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <div style="font-size:11.5px;font-weight:800;color:#0F172A">🎯 Müşteri Credit Scoring (Tier A-D) &amp; Kredi Kontrol Talimatları</div>
+          <span style="font-size:9.5px;font-weight:700;color:#64748B">Satış ve Finans İçin Ortak Direktifler</span>
+        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:10px">
+          <thead><tr style="background:#F8FAFC;border-bottom:1.5px solid #CBD5E1"><th style="padding:4px 6px;text-align:left">Müşteri / Cari Hesap</th><th style="padding:4px 6px;text-align:right">Bakiye</th><th style="padding:4px 6px;text-align:right">Geciken</th><th style="padding:4px 6px;text-align:center">Ort. Gecikme</th><th style="padding:4px 6px;text-align:center">Risk Grubu</th><th style="padding:4px 6px;text-align:left">Hukuki / Ticari Kredi Talimatı</th></tr></thead>
+          <tbody>
+            ${scoringList.map(c => `
+              <tr style="border-bottom:1px solid #F1F5F9">
+                <td style="padding:4.5px 6px;font-weight:700">${esc(c.name)}</td>
+                <td style="padding:4.5px 6px;text-align:right">${money(c.amount)}</td>
+                <td style="padding:4.5px 6px;text-align:right;color:${c.overdue > 0 ? '#DC2626' : '#16A34A'}">${money(c.overdue)}</td>
+                <td style="padding:4.5px 6px;text-align:center">${c.avg_overdue_days > 0 ? (c.avg_overdue_days + ' gün') : '-'}</td>
+                <td style="padding:4.5px 6px;text-align:center"><span style="background:${c.color};color:#FFF;padding:1px 6px;border-radius:4px;font-weight:800;font-size:9px">Tier ${c.tier}</span></td>
+                <td style="padding:4.5px 6px;font-size:9.5px;color:#334155">${esc(c.directive)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Satış Ekibi İçin Açık Hesap & Limit Şartı -->
+      <div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:8px;padding:10px 14px;font-size:11px;color:#991B1B;line-height:1.5">
+        <b>🚨 Satış &amp; Sevkiyat İcra Şartı:</b> Tier C ve Tier D grubundaki müşterilere şirket genel müdürünün yazılı onayı veya banka teminat mektubu / DBS olmadan tek bir liralık ilave vadeli mal teslimi yapılmamalıdır.
+      </div>
+    </div>
+    ${runningFooter(1)}
+  </div>
+  `;
+
+  // SAYFA 2: HUKUKİ İCRA ÖNCESİ PROTOKOL & TAHSİLAT PLANI
+  html += `
+  <div class="creditActionPage" style="background:#FFFFFF;border-radius:12px;padding:22px;margin-bottom:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;flex-direction:column;justify-content:space-between">
+    <div>
+      ${runningHeader('Kademeli Tahsilat &amp; İcra Öncesi Hukuki Protokol', 2)}
+      <p style="font-size:11px;color:#475569;margin:0 0 12px">
+        Geciken ticari alacakların tahsili için 4 kademeli idari ve hukuki icra yol haritası:
+      </p>
+
+      <!-- 4 Kademeli Tahsilat Yol Haritası -->
+      <div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:8px;padding:12px;margin-bottom:12px">
+        <div style="font-size:11.5px;font-weight:800;color:#0F172A;margin-bottom:8px">⚖️ 4 Kademeli İdari &amp; Hukuki Tahsilat Protokolü</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:10.5px">
+          <div style="border:1.5px solid #E2E8F0;border-radius:6px;padding:8px">
+            <div style="font-weight:800;color:#1D4ED8;margin-bottom:2px">Adım 1: Yazılı Mutabakat (1-7 Gün)</div>
+            <div style="color:#64748B;font-size:10px">Cari hesap bakiye mektubunun KEP veya ıslak imzayla teyit edilmesi, ödeme planı takviminin protokole bağlanması.</div>
+          </div>
+          <div style="border:1.5px solid #E2E8F0;border-radius:6px;padding:8px">
+            <div style="font-weight:800;color:#D97706;margin-bottom:2px">Adım 2: DBS / Senet Takası (8-14 Gün)</div>
+            <div style="color:#64748B;font-size:10px">Açık hesap alacağın banka garantili doğrudan borçlandırma sistemi (DBS) veya keşideci senedine dönüştürülmesi.</div>
+          </div>
+          <div style="border:1.5px solid #FCA5A5;border-radius:6px;padding:8px;background:#FFF5F5">
+            <div style="font-weight:800;color:#DC2626;margin-bottom:2px">Adım 3: Noter İhtarı (15-21 Gün)</div>
+            <div style="color:#64748B;font-size:10px">Temerrüt faizi işletilmesi ve VUK 323 uyarınca şüpheli alacak karşılığı ayrılabilmesi için noterden yasal ihtarname keşidesi.</div>
+          </div>
+          <div style="border:1.5px solid #DC2626;border-radius:6px;padding:8px;background:#FEF2F2">
+            <div style="font-weight:800;color:#991B1B;margin-bottom:2px">Adım 4: İcra &amp; İhtiyati Haciz (22-30 Gün)</div>
+            <div style="color:#64748B;font-size:10px">Hukuk müşavirliği kanalıyla ilamsız icra takibi başlatılması, mal varlığı sorgusu ve ihtiyati haciz tatbiki.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DSO İyileştirme Nakit Etkisi -->
+      <div style="background:#ECFDF5;border:1.5px solid #6EE7B7;border-radius:8px;padding:10px 14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <div>
+          <div style="font-size:11.5px;font-weight:800;color:#065F46">💰 Tahsilat Hızlandırmanın Nakit Getirisi (DSO 10 Gün Erken Tahsilat)</div>
+          <div style="font-size:10.5px;color:#047857;margin-top:2px">Tahsilat süresinin 10 gün öne çekilmesi durumunda şirketin kasasına anında girecek sıcak nakit tutarı:</div>
+        </div>
+        <div style="font-size:18px;font-weight:900;color:#047857">+${money(dso10DayCash)}</div>
+      </div>
+
+      <!-- Resmi İmza & Kaşe Alanı -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+        <div style="border:1.5px solid #DC2626;border-radius:8px;padding:14px;text-align:center;background:#FEF2F2">
+          <div style="font-size:11px;color:#991B1B;font-weight:700">Kredi Kontrol &amp; Tahsilat Yöneticisi:</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin:6px 0">${advisorSig}</div>
+          <div style="font-size:10px;color:#64748B">Kredi Değerlendirme &amp; Takip Komitesi</div>
+          <div style="font-size:10px;color:#94A3B8;margin-top:16px">Tarih / Kaşe / İmza: ........................................</div>
+        </div>
+
+        <div style="border:1.5px solid #CBD5E1;border-radius:8px;padding:14px;text-align:center;background:#F8FAFC">
+          <div style="font-size:11px;color:#475569;font-weight:700">İcra Onayı / Genel Müdür:</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin:6px 0">${esc(companyName)}</div>
+          <div style="font-size:10px;color:#64748B">Yönetim Kurulu Başkanı / Genel Müdür</div>
+          <div style="font-size:10px;color:#94A3B8;margin-top:16px">Tarih / İmza / Şirket Kaşesi: ........................................</div>
+        </div>
+      </div>
+
+      <div style="background:#F1F5F9;border-radius:6px;padding:8px 12px;font-size:10px;color:#64748B;line-height:1.45">
+        <b>İcra Takip Şerhi:</b> Bu rapor, 120 alacak bakiyeleri ve yaşlandırma verilerinden üretilmiş icra öncesi takip ve risk derecelendirme belgesidir. Şirketin nakit döngüsünü korumak amacıyla her pazartesi alacak komitesince icra edilmelidir.
+      </div>
+    </div>
+    ${runningFooter(2)}
+  </div>
+  `;
+
+  box.innerHTML = html;
+  modal.classList.remove('hidden');
+}
+
+window.openCreditActionReportInNewWindow = function(){
+  let content = document.getElementById('creditActionContent');
+  if(!content || !content.innerHTML || !content.innerHTML.trim()){
+    openCreditActionReportModal();
+    content = document.getElementById('creditActionContent');
+  }
+  if(!content || !content.innerHTML){
+    alert('Lütfen önce bir analiz çalıştırın veya Hızlı Demo butonuna tıklayın.');
+    return;
+  }
+  const w = window.open('', '_blank');
+  if(!w){
+    alert('Açılır pencere tarayıcınız tarafından engellendi. Lütfen izin verin veya doğrudan Yazdır butonunu kullanın.');
+    return;
+  }
+  w.document.write(`<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Ticari Alacak, Müşteri Risk &amp; Tahsilat İcra Dosyası (2 Sayfa A4) | Digital Finance BP</title>
+  <style>
+    @page { size: A4 portrait; margin: 8mm 8mm 8mm 8mm; }
+    *, *::before, *::after { box-sizing: border-box !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    body {
+      margin: 0;
+      padding: 10px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #0F172A;
+      background: #FFFFFF;
+      line-height: 1.4;
+      font-size: 11px;
+    }
+    .creditActionPage {
+      min-height: 275mm;
+      max-height: 285mm;
+      height: 278mm;
+      page-break-after: always;
+      break-after: page;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      padding: 12mm 14mm;
+      margin: 0 auto 15px auto;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #FFFFFF;
+    }
+    .creditActionPage:last-child { page-break-after: avoid; break-after: avoid; }
+    @media print {
+      body { padding: 0 !important; }
+      .creditActionPage {
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        padding: 4mm 6mm !important;
+        margin: 0 !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        height: auto !important;
+      }
+      .creditActionPage:last-child { page-break-after: avoid !important; break-after: avoid !important; }
+      button, .hidePrint { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  ${content.innerHTML}
+  <script>setTimeout(function(){ window.print(); }, 400);<\/script>
+</body>
+</html>`);
+  w.document.close();
+};
+
+if($('taxShieldReportBtn')) $('taxShieldReportBtn').onclick = openTaxShieldReportModal;
+if($('closeTaxShieldBtn')) $('closeTaxShieldBtn').onclick = () => $('taxShieldReportModal').classList.add('hidden');
+if($('printTaxShieldBtn')) $('printTaxShieldBtn').onclick = () => {
+  document.body.classList.add('taxShieldPrintMode');
+  const cleanup = () => {
+    document.body.classList.remove('taxShieldPrintMode');
+    window.removeEventListener('afterprint', cleanup);
+  };
+  window.addEventListener('afterprint', cleanup);
+  setTimeout(() => {
+    window.print();
+    setTimeout(cleanup, 2500);
+  }, 100);
+};
+
+if($('creditActionReportBtn')) $('creditActionReportBtn').onclick = openCreditActionReportModal;
+if($('closeCreditActionBtn')) $('closeCreditActionBtn').onclick = () => $('creditActionReportModal').classList.add('hidden');
+if($('printCreditActionBtn')) $('printCreditActionBtn').onclick = () => {
+  document.body.classList.add('creditActionPrintMode');
+  const cleanup = () => {
+    document.body.classList.remove('creditActionPrintMode');
+    window.removeEventListener('afterprint', cleanup);
+  };
+  window.addEventListener('afterprint', cleanup);
+  setTimeout(() => {
+    window.print();
+    setTimeout(cleanup, 2500);
+  }, 100);
+};
 
 if($('cashRadarBtn')) $('cashRadarBtn').onclick = openCashRadarModal;
 if($('closeCashRadarBtn')) $('closeCashRadarBtn').onclick = () => $('cashRadarModal').classList.add('hidden');

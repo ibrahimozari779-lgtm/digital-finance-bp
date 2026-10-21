@@ -32,7 +32,7 @@ def _exposure_for_finding(code: str, statements: dict[str, Any]) -> tuple[float 
     total_equity = float(bs.get("Total equity incl. current result") or 0.0)
     non_core_income = float(pl.get("Other operating income") or 0.0) + float(pl.get("Other non-operating income") or 0.0)
 
-    if code in ("P001", "P002"):
+    if code in ("P001", "P002", "P004"):
         if operating_margin is not None and net_sales:
             healthy_margin = 12.0
             gap_pp = healthy_margin - operating_margin
@@ -40,8 +40,10 @@ def _exposure_for_finding(code: str, statements: dict[str, Any]) -> tuple[float 
                 return gap_pp / 100 * net_sales, "Genel sağlıklı faaliyet marjı referansı (%12) ile aradaki farkın satışlara uygulanması", "margin_gap"
         return None, "", None
     if code == "P003":
+        if net_sales > 0:
+            return round(net_sales * 0.03, 2), "Brüt marjda 3 puanlık fiyat/maliyet iyileştirmesinin yıllık kâr etkisi", "gross_margin_gap"
         return None, "", None
-    if code == "L001":
+    if code in ("L001", "L003"):
         return finance_costs, "Yıllık finansman gideri tutarı", "finance_costs"
     if code == "L002":
         return financial_debt, "Refinansman/faiz duyarlılığına açık finansal borç tutarı", "financial_debt"
@@ -52,10 +54,19 @@ def _exposure_for_finding(code: str, statements: dict[str, Any]) -> tuple[float 
         return None, "", None
     if code == "Q003":
         return max(net_debt, 0.0), "Net borç tutarı (nakit sonrası)", "net_debt"
-    if code in ("W001", "WC004"):
+    if code in ("W001", "WC004", "W003"):
         return receivables, "Bilanço tarihi itibarıyla tahsil edilmemiş ticari alacak tutarı", "receivables"
+    if code == "W002":
+        inv = float(k.get("inventory") or 0.0)
+        return inv if inv > 0 else None, "Depoda bağlı bekleyen toplam ticari stok tutarı", "inventory"
+    if code == "W005":
+        ap = float(k.get("payables") or 0.0)
+        return ap if ap > 0 else None, "Vade baskısı altındaki ticari tedarikçi borcu", "payables"
     if code == "E001":
         return non_core_income, "Kâra katkı sağlayan faaliyet dışı/ikincil gelir tutarı", "non_core_income"
+    if code == "E002":
+        wc_lock = receivables + float(k.get("inventory") or 0.0)
+        return wc_lock if wc_lock > 0 else None, "Alacak ve stokta kilitli kalan brüt işletme sermayesi", "working_capital_lock"
     if code in ("D004", "D005"):
         return financial_debt, "Varlık tabanını finanse eden borç tutarı", "financial_debt"
     if code in ("D006", "D007"):
