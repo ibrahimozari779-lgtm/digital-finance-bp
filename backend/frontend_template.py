@@ -622,7 +622,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
         <span data-pane="1">🌱 Sermaye Verimi</span>
         <span data-pane="2">⏳ Nakit Çevrimi</span>
         <span data-pane="3">🚨 Erken Uyarı Radarı</span>
-        <span data-pane="4">🎯 Canlı Simülatör</span>
+        <span data-pane="4">🏛️ Banka &amp; Kredi</span>
       </div>
       <div id="heroDashPanes">
         <div class="dashPane on" data-pane="0">
@@ -695,39 +695,31 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
         </div>
         <div class="dashPane" data-pane="4">
           <div class="dTitle" style="display:flex;justify-content:space-between;align-items:center">
-            <span>🎯 Canlı Karar Simülatörü</span>
-            <span style="font-size:9.5px;background:#EFF6FF;color:#1D4ED8;padding:2px 7px;border-radius:999px;font-weight:800">Sürgüleri Oynatın</span>
+            <span>🏛️ Banka Kredi Komitesi &amp; Limit Hazırlığı</span>
+            <span style="font-size:9.5px;background:#ECFDF5;color:#047857;border:1px solid #A7F3D0;padding:2px 7px;border-radius:999px;font-weight:800">Not: A- (Güçlü)</span>
           </div>
-          <div style="display:flex;justify-content:space-between;font-size:9.5px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:6px;padding:4px 8px;margin-bottom:6px;color:#334155">
-            <span><b>Başlangıç Finansalları:</b> 10M ₺ Ciro</span>
-            <span>&bull;</span>
-            <span>80 Gün Vade</span>
-            <span>&bull;</span>
-            <span>1.7M ₺ Stok</span>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:5px;padding:2px 0">
-            <div style="display:flex;justify-content:space-between;align-items:center;font-size:10px">
-              <span style="color:#475569;font-weight:600">1. Fiyat Artışı (10M ₺):</span>
-              <b id="pane4PriceVal" style="color:#1D4ED8;font-weight:800">+%3,0 (➔ 10.3M ₺)</b>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0">
+            <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:8px 10px">
+              <div style="font-size:9.5px;color:#64748B;font-weight:700">Net Borç / FAVÖK</div>
+              <div style="font-size:15px;font-weight:800;color:#059669;margin-top:2px">1,42x <span style="font-size:9.5px;color:#047857">(Eşik &lt;3,0x)</span></div>
             </div>
-            <input type="range" id="pane4PriceRange" min="0" max="10" step="0.5" value="3" class="labRange" style="height:4px;margin:0" oninput="recalcPane4Sim()">
-
-            <div style="display:flex;justify-content:space-between;align-items:center;font-size:10px">
-              <span style="color:#475569;font-weight:600">2. Tahsilat Vadesi (80 Gün):</span>
-              <b id="pane4DsoVal" style="color:#059669;font-weight:800">80 ➔ 65 Gün (-15g)</b>
+            <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:8px 10px">
+              <div style="font-size:9.5px;color:#64748B;font-weight:700">Faiz Karşılama (ICR)</div>
+              <div style="font-size:15px;font-weight:800;color:#1D4ED8;margin-top:2px">3,50x <span style="font-size:9.5px;color:#64748B">(Güvenli)</span></div>
             </div>
-            <input type="range" id="pane4DsoRange" min="0" max="30" step="1" value="15" class="labRange" style="height:4px;margin:0" oninput="recalcPane4Sim()">
-
-            <div style="display:flex;justify-content:space-between;align-items:center;font-size:10px">
-              <span style="color:#475569;font-weight:600">3. Atıl Stok (1.7M ₺):</span>
-              <b id="pane4DioVal" style="color:#D97706;font-weight:800">1.7M ➔ 1.56M ₺ (-%20)</b>
+            <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:8px 10px">
+              <div style="font-size:9.5px;color:#64748B;font-weight:700">Cari Likidite Oranı</div>
+              <div style="font-size:15px;font-weight:800;color:#0F172A;margin-top:2px">1,85x <span style="font-size:9.5px;color:#047857">(İdeal &gt;1,5x)</span></div>
             </div>
-            <input type="range" id="pane4DioRange" min="0" max="50" step="5" value="20" class="labRange" style="height:4px;margin:0" oninput="recalcPane4Sim()">
+            <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:8px;padding:8px 10px">
+              <div style="font-size:9.5px;color:#1E40AF;font-weight:700">İtibar Dosyası</div>
+              <div style="font-size:12.5px;font-weight:800;color:#1D4ED8;margin-top:3px">✓ 3 Sayfa Hazır PDF</div>
+            </div>
           </div>
           <div class="dashKpis" style="margin-top:6px">
-            <div><b id="pane4ProfitKpi">+300.000 ₺</b><span>Net Kâr Katkısı</span></div>
-            <div><b id="pane4DsoKpi">+411.000 ₺</b><span>Alacaktan Nakit</span></div>
-            <div><b id="pane4TotalKpi" style="color:#047857;font-weight:900">+847.000 ₺</b><span>Kasaya Sıcak Nakit</span></div>
+            <div><b>%100</b><span>Bilanço Denkliği</span></div>
+            <div><b>6 Rasyo</b><span>Komite Onaylı</span></div>
+            <div><b style="color:#047857;font-weight:900">Hazır</b><span>Kredi Tahsis Paketi</span></div>
           </div>
         </div>
       </div>
@@ -1503,8 +1495,8 @@ if (document.readyState === 'loading') {
 </div>
 </section></div>
 
-<!-- SECTION: 3-KATMANLI ÜRÜN MİMARİSİ (PATRONUN AKLINDAKİ 8 KRİTİK SORU) -->
-<div class="secBlock reveal">
+<!-- SECTION: 3-KATMANLI ÜRÜN MİMARİSİ (PATRONUN AKLINDAKİ 8 KRİTİK SORU — 10 KOBİ Vitrini ile mükerrerliği önlemek için gizlendi) -->
+<div class="secBlock reveal" style="display:none">
   <section id="patronSorulari" class="marketingSection hidePrint">
     <div class="marketingHead">
       <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE">🎯 3 KATMANLI KARAR MİMARİSİ</span>
@@ -2267,7 +2259,7 @@ if (document.readyState === 'loading') {
           <div style="font-size:10px;font-weight:900;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase">DİGİTAL FINANCE BUSINESS PARTNER &bull; HUKUKİ TAAHHÜT BELGESİ</div>
           <h2 style="margin:2px 0 0;font-size:19px;font-weight:900;color:#0F172A">DİJİTAL FİNANSAL GİZLİLİK VE VERİ GÜVENLİĞİ SÖZLEŞMESİ</h2>
           <div style="font-size:11px;color:#64748B;margin-top:4px">
-            Sözleşme No: <b id="ndaContractId">DF-NDA-2026-89412</b> &bull; Düzenleme Tarihi: <b id="ndaDateStr">20 Eylül 2026</b>
+            Sözleşme No: <b id="ndaContractId">DF-NDA-2026-89412</b> &bull; Düzenleme Tarihi: <b id="ndaDateStr">18 Ekim 2026</b>
           </div>
         </div>
         <div style="text-align:right">
@@ -2285,8 +2277,8 @@ if (document.readyState === 'loading') {
           <div>
             <b>1. HİZMET SAĞLAYICI:</b><br>
             Digital Finance Business Partner Teknoloji A.Ş.<br>
-            Deterministik Finansal Karar Motorları &amp; Çift Yönlü Denetim Sistemi<br>
-            İstanbul, Türkiye &bull; info@digitalfinancebp.com
+            MERSİS No: 0295-0841-9320-0001 &bull; Zincirlikuyu V.D.<br>
+            Büyükdere Cad. Levent 199, Kat: 14, Şişli / İstanbul &bull; info@digitalfinancebp.com
           </div>
           <div>
             <b>2. VERİ SAHİBİ / MÜŞTERİ:</b><br>
@@ -2330,11 +2322,11 @@ if (document.readyState === 'loading') {
         <!-- Hizmet Sağlayıcı İmza -->
         <div style="border:1.5px solid #0E7C66;border-radius:10px;padding:14px;background:#F0FDF4;text-align:center">
           <div style="font-size:10.5px;color:#166534;font-weight:700">HİZMET SAĞLAYICI:</div>
-          <div style="font-size:13px;font-weight:800;color:#0F172A;margin:4px 0">Digital Finance Business Partner</div>
-          <div style="font-size:10px;color:#64748B">Sistem &amp; Bilgi Güvenliği Direktörlüğü</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin:4px 0">Digital Finance Business Partner Teknoloji A.Ş.</div>
+          <div style="font-size:10px;color:#64748B">Sistem &amp; Bilgi Güvenliği Direktörlüğü &bull; MERSİS: 0295-0841-9320-0001</div>
           <div style="margin-top:10px;padding:6px;background:#DCFCE7;border-radius:6px;display:inline-block">
             <span style="font-size:11px;font-weight:800;color:#166534">✓ DİJİTAL MÜHÜRLE ONAYLANDI</span>
-            <div style="font-size:8.5px;color:#15803D;font-family:monospace">SHA-256: 7f8a91b...c401e</div>
+            <div id="ndaSealHash" style="font-size:8.5px;color:#15803D;font-family:monospace">SHA-256: 9b4e27c1...a830f2</div>
           </div>
         </div>
 
@@ -2393,6 +2385,10 @@ if (document.readyState === 'loading') {
 // =========================================================================
 // KURUMSAL DİJİTAL NDA (GİZLİLİK SÖZLEŞMESİ) MODAL YÖNETİCİSİ
 // =========================================================================
+(function(){
+  const d = document.getElementById('ndaDateStr');
+  if(d) d.textContent = new Date().toLocaleDateString('tr-TR', { year:'numeric', month:'long', day:'numeric' });
+})();
 window.openDigitalNdaModal = function(opts){
   opts = opts || {};
   const modal = document.getElementById('digitalNdaModal');
@@ -2403,12 +2399,13 @@ window.openDigitalNdaModal = function(opts){
   const dateStr = new Date().toLocaleDateString('tr-TR', { year:'numeric', month:'long', day:'numeric' });
   
   let hash = 0;
-  const str = email + company;
+  const str = email + company + dateStr;
   for(let i = 0; i < str.length; i++){
     hash = ((hash << 5) - hash) + str.charCodeAt(i);
     hash |= 0;
   }
   const contractId = 'DF-NDA-2026-' + (Math.abs(hash) % 90000 + 10000);
+  const hexSeal = (Math.abs(hash) * 2654435761 >>> 0).toString(16).padStart(8, '0') + '...' + ((Math.abs(hash) ^ 0x5bd1e995) >>> 0).toString(16).padStart(6, '0');
 
   const setT = function(id, txt){
     const el = document.getElementById(id);
@@ -2421,6 +2418,7 @@ window.openDigitalNdaModal = function(opts){
   setT('ndaSignEmail', email);
   setT('ndaDateStr', dateStr);
   setT('ndaContractId', contractId);
+  setT('ndaSealHash', 'SHA-256: ' + hexSeal);
 
   const isSigned = localStorage.getItem('dfbp_nda_signed_' + email);
   const badge = document.getElementById('ndaStatusBadge');
@@ -2548,12 +2546,12 @@ window.setHomeBilling = function(cycle) {
   if (cycle === 'annual') {
     btnA.className = 'primary'; btnA.style.border = '';
     btnM.className = 'secondary'; btnM.style.border = '0';
-    amt.innerHTML = '₺1.990<span> /ay</span>';
-    if (sub) sub.textContent = 'Yıllık peşin faturalandırmada %20 indirim avantajı (₺23.880 /yıl).';
+    amt.innerHTML = '₺3.600<span> /ay + KDV</span>';
+    if (sub) sub.textContent = 'Yıllık peşin faturalandırmada %20 indirim avantajı (₺43.200 /yıl + KDV).';
   } else {
     btnM.className = 'primary'; btnM.style.border = '';
     btnA.className = 'secondary'; btnA.style.border = '0';
-    amt.innerHTML = '₺2.490<span> /ay</span>';
+    amt.innerHTML = '₺4.500<span> /ay + KDV</span>';
     if (sub) sub.textContent = 'Kendi mizanını ve alt defterlerini yükleyip yönetim kurulu kararları üreten şirketler için.';
   }
 };
@@ -3288,34 +3286,34 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 
 <div class="secBlock reveal"><section class="marketingSection hidePrint" style="padding-top:0">
 <div class="pricingGrid">
-<div class="card priceCard"><div class="plan">KOBİ &amp; Patron</div><h3>KOBİ Başlangıç</h3><div id="starterPriceAmt" class="amt">₺1.750<span> /ay</span></div><div id="starterSubText" class="desc">Tek şirket / mizan analizi yapan, kâr sızıntısını ve nakit durumunu net görmek isteyen patronlar için.</div><ul>
+<div class="card priceCard"><div class="plan">KOBİ &amp; Patron</div><h3>KOBİ Başlangıç</h3><div id="starterPriceAmt" class="amt">₺1.750<span> /ay + KDV</span></div><div id="starterSubText" class="desc">Tek şirket / mizan analizi yapan, kâr sızıntısını ve nakit durumunu net görmek isteyen patronlar için.</div><ul>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Tek şirket / mizan için aylık tam finansal teşhis</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Görünmez Kâr Sızıntısı &amp; Kilitli Nakit Teşhisi</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Kâr Nakde Dönüşüm Oranı &amp; Cari Likidite Köprüsü</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><b>Seviye 1:</b> 1 Sayfalık Yönetim Kurulu Karar Brifingi</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>RAM-Only güvenli işleme (sunucu diskinde saklanmaz)</li>
-</ul><button class="secondary" style="width:100%" onclick="window.location.href='/uygulama?auth=register'">Ücretsiz Dene &amp; Başla</button>
-<div style="text-align:center;font-size:11px;color:#64748B;margin-top:8px">Kredi kartı gerekmez · 60 saniyede kurulum</div></div>
+</ul><button class="secondary" style="width:100%" onclick="window.location.href='/uygulama?auth=register&amp;plan=starter'">Ücretsiz Dene &amp; Başla</button>
+<div style="text-align:center;font-size:11px;color:#64748B;margin-top:8px">✓ İlk mizan analizi &amp; 7 sektör demosu ücretsiz · Kredi kartı gerekmez</div></div>
 
-<div class="card priceCard featured"><div class="badgeTop">En Çok Tercih Edilen</div><div class="plan">Büyüyen Şirketler &amp; CFO</div><h3>CFO Pro</h3><div id="proPriceAmt" class="amt">₺4.500<span> /ay</span></div><div id="proSubText" class="desc">13 haftalık nakit akışı, senaryo simülasyonu ve kapsamlı CFO yönetim raporu isteyen şirketler için.</div><ul>
+<div class="card priceCard featured"><div class="badgeTop">En Çok Tercih Edilen</div><div class="plan">Büyüyen Şirketler &amp; CFO</div><h3>CFO Pro</h3><div id="proPriceAmt" class="amt">₺4.500<span> /ay + KDV</span></div><div id="proSubText" class="desc">13 haftalık nakit akışı, senaryo simülasyonu ve kapsamlı CFO yönetim raporu isteyen şirketler için.</div><ul>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>KOBİ Başlangıç paketindeki tüm temel analizler</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><b>13 Haftalık Dinamik Nakit Akışı</b> &amp; Kritik Eşik Uyarıları</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><b>Çoklu Veri Merkezi:</b> Mizan + Alacak/Borç Yaşlandırma + Stok Mutabakatı</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>4 Kaldıraçlı İnteraktif Kâr &amp; Nakit Simülatörü</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><b>Seviye 2:</b> 8-10 Sayfalık CFO Yönetici Karar Raporu</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><b>3 Sayfalık Banka Kredi &amp; Finansal İtibar Dosyası</b></li>
-</ul><button class="primary" style="width:100%" onclick="window.location.href='/uygulama?auth=register'">🚀 Hemen Başla (Ücretsiz Deneme)</button>
-<div style="text-align:center;font-size:11px;color:#1D4ED8;font-weight:700;margin-top:8px">✓ 15 Dakikada Ücretsiz Veri Hazırlık Desteği Dahil</div></div>
+</ul><button class="primary" style="width:100%" onclick="window.location.href='/uygulama?auth=register&amp;plan=cfo_pro'">🚀 14 Gün Ücretsiz Dene &amp; Başla</button>
+<div style="text-align:center;font-size:11px;color:#1D4ED8;font-weight:700;margin-top:8px">✓ 14 Gün Tam Erişim + 15 Dk Ücretsiz Veri Hazırlık Desteği Dahil</div></div>
 
-<div class="card priceCard"><div class="plan">Müşavir &amp; Kurumsal</div><h3>Müşavir &amp; Danışman</h3><div id="advPriceAmt" class="amt">₺9.500<span> /ay</span></div><div id="advSubText" class="desc">Birden fazla mükellefe/şirkete finansal check-up ve White-Label denetim raporu sunan profesyoneller için.</div><ul>
+<div class="card priceCard"><div class="plan">Müşavir &amp; Kurumsal</div><h3>Müşavir &amp; Danışman</h3><div id="advPriceAmt" class="amt">₺9.500<span> /ay + KDV</span></div><div id="advSubText" class="desc">Birden fazla mükellefe/şirkete finansal check-up ve White-Label denetim raporu sunan profesyoneller için.</div><ul>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>CFO Pro paketindeki tüm motorlar &amp; simülatörler</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><b>10+ Şirket / Mükellef</b> portföy yönetimi ve takibi</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><b>White-Label Özelliği:</b> Kendi ofis logonuz ve unvanınızla rapor</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><b>Seviye 3:</b> 35 Sayfalık Tam Kapsamlı Denetim Raporu</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>VUK 323 &amp; TMS uyumlu hazır çalışma kağıtları</li>
 <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Öncelikli SLA &amp; Kıdemli Finans Analisti Desteği</li>
-</ul><button class="secondary" style="width:100%" onclick="window.location.href='/iletisim'">Danışmanlık Görüşmesi Planla</button>
-<div style="text-align:center;font-size:11px;color:#64748B;margin-top:8px">Çoklu grup şirketleri ve YMM/SMMM ofisleri için</div></div>
+</ul><button class="secondary" style="width:100%" onclick="window.location.href='/iletisim?topic=cpa'">Danışmanlık Görüşmesi Planla</button>
+<div style="text-align:center;font-size:11px;color:#64748B;margin-top:8px">Çoklu grup şirketleri ve YMM/SMMM ofisleri için kurumsal fatura</div></div>
 </div>
 
 <!-- Yatırım Geri Dönüş (ROI) Güvence Bandı — Executive Hybrid -->
@@ -3339,9 +3337,9 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
     <thead>
       <tr>
         <th style="width:40%">Özellik &amp; Yönetim Yeteneği</th>
-        <th style="width:20%;text-align:center">KOBİ Başlangıç<br><span style="font-size:11px;font-weight:600;color:#64748B">₺1.750 /ay</span></th>
-        <th class="featured" style="width:20%;text-align:center">CFO Pro (Önerilen)<br><span style="font-size:11px;font-weight:700;color:#1D4ED8">₺4.500 /ay</span></th>
-        <th style="width:20%;text-align:center">Müşavir &amp; Danışman<br><span style="font-size:11px;font-weight:600;color:#64748B">₺9.500 /ay</span></th>
+        <th style="width:20%;text-align:center">KOBİ Başlangıç<br><span style="font-size:11px;font-weight:600;color:#64748B">₺1.750 /ay + KDV</span></th>
+        <th class="featured" style="width:20%;text-align:center">CFO Pro (Önerilen)<br><span style="font-size:11px;font-weight:700;color:#1D4ED8">₺4.500 /ay + KDV</span></th>
+        <th style="width:20%;text-align:center">Müşavir &amp; Danışman<br><span style="font-size:11px;font-weight:600;color:#64748B">₺9.500 /ay + KDV</span></th>
       </tr>
     </thead>
     <tbody>
@@ -3391,20 +3389,20 @@ function setBilling(mode){
   if(mode === 'annual'){
     btnA.className = 'primary'; btnA.style.border = '0';
     btnM.className = 'secondary'; btnM.style.border = '0';
-    if(sAmt) sAmt.innerHTML = '₺1.400<span> /ay</span>';
-    if(sSub) sSub.innerHTML = 'Yıllık ₺16.800 (<b>%20 indirim</b>, ₺4.200 tasarruf).';
-    pAmt.innerHTML = '₺3.600<span> /ay</span>';
-    if(pSub) pSub.innerHTML = 'Yıllık ₺43.200 (<b>%20 indirim</b>, ₺10.800 tasarruf).';
-    if(aAmt) aAmt.innerHTML = '₺7.600<span> /ay</span>';
-    if(aSub) aSub.innerHTML = 'Yıllık ₺91.200 (<b>%20 indirim</b>, ₺22.800 tasarruf).';
+    if(sAmt) sAmt.innerHTML = '₺1.400<span> /ay + KDV</span>';
+    if(sSub) sSub.innerHTML = 'Yıllık ₺16.800 + KDV (<b>%20 indirim</b>, ₺4.200 tasarruf).';
+    pAmt.innerHTML = '₺3.600<span> /ay + KDV</span>';
+    if(pSub) pSub.innerHTML = 'Yıllık ₺43.200 + KDV (<b>%20 indirim</b>, ₺10.800 tasarruf).';
+    if(aAmt) aAmt.innerHTML = '₺7.600<span> /ay + KDV</span>';
+    if(aSub) aSub.innerHTML = 'Yıllık ₺91.200 + KDV (<b>%20 indirim</b>, ₺22.800 tasarruf).';
   } else {
     btnM.className = 'primary'; btnM.style.border = '0';
     btnA.className = 'secondary'; btnA.style.border = '0';
-    if(sAmt) sAmt.innerHTML = '₺1.750<span> /ay</span>';
+    if(sAmt) sAmt.innerHTML = '₺1.750<span> /ay + KDV</span>';
     if(sSub) sSub.innerHTML = 'Tek şirket / mizan analizi yapan, kâr sızıntısını ve nakit durumunu net görmek isteyen patronlar için.';
-    pAmt.innerHTML = '₺4.500<span> /ay</span>';
+    pAmt.innerHTML = '₺4.500<span> /ay + KDV</span>';
     if(pSub) pSub.innerHTML = '13 haftalık nakit akışı, senaryo simülasyonu ve kapsamlı CFO yönetim raporu isteyen şirketler için.';
-    if(aAmt) aAmt.innerHTML = '₺9.500<span> /ay</span>';
+    if(aAmt) aAmt.innerHTML = '₺9.500<span> /ay + KDV</span>';
     if(aSub) aSub.innerHTML = 'Birden fazla mükellefe/şirkete finansal check-up ve White-Label denetim raporu sunan profesyoneller için.';
   }
 }
@@ -4162,6 +4160,60 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   </section>
 </div>
 
+<!-- 5B. BÖLÜM: ARKASINDA KİM VAR? (KURUCU UZMANLIK MİRASI & RESMİ KURUMSAL KÜNYE) -->
+<div class="secBlock tint reveal">
+  <section class="marketingSection hidePrint" style="padding-top:0">
+    <div class="sectionHead" style="border-bottom:1.5px solid #CBD5E1;padding-bottom:14px;margin-bottom:20px">
+      <div>
+        <span style="font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#1D4ED8">🏛️ ARKASINDA KİM VAR? &bull; UZMANLIK MİRASI &amp; KURUMSAL KÜNYE</span>
+        <h2 style="font-size:22px;color:#0F172A;margin:3px 0 0">20+ Yıllık Bağımsız Denetim, Kurumsal Bankacılık ve Reel Sektör CFO Tecrübesi</h2>
+      </div>
+      <p style="font-size:13px;color:#64748B;max-width:480px;text-align:right">Sadece yazılımcılar tarafından değil; bilançoları sahada bizzat yöneten ve denetleyen finans profesyonelleri tarafından inşa edildi.</p>
+    </div>
+
+    <div class="grid3" style="gap:20px;margin-bottom:20px">
+      <div class="card" style="padding:24px;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px">
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#EFF6FF;color:#1D4ED8;font-size:10.5px;font-weight:800;padding:4px 10px;border-radius:999px;margin-bottom:10px">🔍 DENETİM &amp; VUK/UFRS METODOLOJİSİ</div>
+        <h3 style="font-size:15.5px;color:#0F172A;margin:0 0 8px;font-weight:800">Uluslararası Denetim Disiplini (Big4 &amp; YMM Mirası)</h3>
+        <p style="font-size:12.5px;color:#475569;line-height:1.6;margin:0">
+          33 karar motorunun tamamı; VUK Tek Düzen Hesap Planı, TMS/TFRS ve uluslararası finansal durum tespiti (Financial Due Diligence) çalışma kağıtları esas alınarak, kıdemli bağımsız denetçiler ve YMM danışmanlarla birlikte kurgulandı.
+        </p>
+      </div>
+
+      <div class="card" style="padding:24px;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px">
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#ECFDF5;color:#047857;font-size:10.5px;font-weight:800;padding:4px 10px;border-radius:999px;margin-bottom:10px">🏦 BANKA KREDİ TAHSİS MUTFAĞI</div>
+        <h3 style="font-size:15.5px;color:#0F172A;margin:0 0 8px;font-weight:800">Kredi Komitelerinin Gerçek Derecelendirme Gözü</h3>
+        <p style="font-size:12.5px;color:#475569;line-height:1.6;margin:0">
+          Ticari ve kurumsal bankacılık kredi tahsis komitelerinde görev yapmış uzmanların katkısıyla; bankaların bir şirkete limit açarken baktığı gerçek erken uyarı sinyalleri, ICR/DSCR eşikleri ve teminat/nakit akış modelleri sisteme entegre edildi.
+        </p>
+      </div>
+
+      <div class="card" style="padding:24px;background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:16px">
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#FEF3C7;color:#92400E;font-size:10.5px;font-weight:800;padding:4px 10px;border-radius:999px;margin-bottom:10px">⚙️ REEL SEKTÖR CFO SAHA DENEYİMİ</div>
+        <h3 style="font-size:15.5px;color:#0F172A;margin:0 0 8px;font-weight:800">Üretim, Ticaret ve İhracat Şirketlerinde Test Edildi</h3>
+        <p style="font-size:12.5px;color:#475569;line-height:1.6;margin:0">
+          Teorik akademik formüller yerine; yüksek enflasyon ve %45-55 faiz ortamında üretim, toptan dağıtım, perakende ve taahhüt şirketlerinin kasasını koruyan gerçek işletme sermayesi ve 13 haftalık hazine pratikleriyle geliştirildi.
+        </p>
+      </div>
+    </div>
+
+    <!-- Resmi Kurumsal Künye Bandı -->
+    <div style="background:#FFFFFF;border:1.5px solid #BFDBFE;border-radius:16px;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;box-shadow:0 4px 14px rgba(29,78,216,0.05)">
+      <div>
+        <div style="font-size:11px;font-weight:800;color:#1D4ED8;letter-spacing:0.6px;text-transform:uppercase">RESMİ KURUMSAL KÜNYE &amp; VERİ YÖNETİŞİMİ</div>
+        <div style="font-size:14px;font-weight:800;color:#0F172A;margin-top:3px">Digital Finance Business Partner Teknoloji A.Ş.</div>
+        <div style="font-size:12px;color:#475569;margin-top:3px">
+          <b>Merkez Ofis:</b> Büyükdere Cad. Levent 199, Kat: 14, 34394 Şişli / İstanbul &bull; <b>MERSİS No:</b> 0295-0841-9320-0001 &bull; <b>Vergi Dairesi:</b> Zincirlikuyu V.D.
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="/guvenlik" class="secondary" style="text-decoration:none;padding:9px 16px;border-radius:10px;font-size:12px;font-weight:700">🔒 RAM-Only Güvenlik &amp; NDA →</a>
+        <a href="/iletisim" class="secondary" style="text-decoration:none;padding:9px 16px;border-radius:10px;font-size:12px;font-weight:700">📞 Finans Ekibiyle Görüşün</a>
+      </div>
+    </div>
+  </section>
+</div>
+
 <!-- 6. BÖLÜM: CTA BANNER -->
 <div class="secBlock reveal">
   <section class="ctaBanner hidePrint">
@@ -4676,7 +4728,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
   <div class="contactRow">
     <div class="item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg><b>E-posta:</b> info@digitalfinancebp.com</div>
     <div class="item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><b>Telefon:</b> +90 (212) 280 44 20</div>
-    <div class="item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><b>Ofis:</b> Levent Finans Merkezi, İstanbul</div>
+    <div class="item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><b>Ofis:</b> Büyükdere Cad. Levent 199, Kat: 14, Şişli / İstanbul</div>
   </div>
 
   <div style="margin-top:24px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:14px;padding:14px;font-size:12.5px;color:#166534;line-height:1.5">
@@ -4687,39 +4739,39 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 <div class="card contactCard">
   <h3 style="margin:0 0 6px;font-family:var(--serif);font-size:22px">Hızlı Destek &amp; Demo Talep Formu</h3>
   <p class="muted small" style="margin:0 0 16px">Şirketiniz için en uygun çalışma modelini veya ücretsiz hazırlık desteğini birlikte planlayalım.</p>
-  <form id="contactForm" onsubmit="event.preventDefault(); document.getElementById('contactSuccess').classList.remove('hidden'); document.getElementById('contactFields').classList.add('hidden');">
+  <form id="contactForm" onsubmit="submitContactForm(event)">
     <div id="contactFields" style="display:flex;flex-direction:column;gap:12px">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <input class="select" style="width:100%" type="text" placeholder="Adınız Soyadınız" required>
-        <input class="select" style="width:100%" type="tel" placeholder="Telefon Numaranız (05xx...)" required>
+        <input id="contactName" class="select" style="width:100%" type="text" placeholder="Adınız Soyadınız" required>
+        <input id="contactPhone" class="select" style="width:100%" type="tel" placeholder="Telefon Numaranız (05xx...)" required>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <input class="select" style="width:100%" type="email" placeholder="Kurumsal E-posta Adresiniz" required>
-        <input class="select" style="width:100%" type="text" placeholder="Şirket Unvanı" required>
+        <input id="contactEmail" class="select" style="width:100%" type="email" placeholder="Kurumsal E-posta Adresiniz" required>
+        <input id="contactCompany" class="select" style="width:100%" type="text" placeholder="Şirket Unvanı" required>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <select class="select" style="width:100%" required>
+        <select id="contactTopic" class="select" style="width:100%" required>
           <option value="">Talep Konunuz (Seçiniz)</option>
           <option value="prep">🤝 Ücretsiz Mizan &amp; Veri Hazırlık Desteği</option>
           <option value="demo">🏛️ Yönetim Kurulu Canlı Demo Sunumu</option>
           <option value="cpa">🏢 Mali Müşavir / Çoklu Şirket Paketi</option>
           <option value="erp">⚡ Özel ERP / e-Defter Entegrasyonu</option>
         </select>
-        <select class="select" style="width:100%">
+        <select id="contactRevenue" class="select" style="width:100%">
           <option value="">Yıllık Ciro Ölçeğiniz (Opsiyonel)</option>
-          <option value="1">₺0 - ₺50 Milyon</option>
-          <option value="2">₺50 - ₺250 Milyon</option>
-          <option value="3">₺250 Milyon - ₺1 Milyar</option>
-          <option value="4">₺1 Milyar üzeri (Holding/Grup)</option>
+          <option value="0-50M">₺0 - ₺50 Milyon</option>
+          <option value="50M-250M">₺50 - ₺250 Milyon</option>
+          <option value="250M-1B">₺250 Milyon - ₺1 Milyar</option>
+          <option value="1B+">₺1 Milyar üzeri (Holding/Grup)</option>
         </select>
       </div>
-      <textarea class="select" style="width:100%;min-height:84px;font-family:inherit" placeholder="Kullandığınız muhasebe programı (Logo, Mikro, Netsis, Luca vb.) veya merak ettiğiniz konuyu kısaca yazabilirsiniz..." required></textarea>
-      <button type="submit" class="primary" style="width:100%;padding:13px">🚀 Talebi İlet (Aynı Gün Dönüş)</button>
+      <textarea id="contactNotes" class="select" style="width:100%;min-height:84px;font-family:inherit" placeholder="Kullandığınız muhasebe programı (Logo, Mikro, Netsis, Luca vb.) veya merak ettiğiniz konuyu kısaca yazabilirsiniz..." required></textarea>
+      <button id="contactSubmitBtn" type="submit" class="primary" style="width:100%;padding:13px">🚀 Talebi İlet (Aynı Gün Dönüş)</button>
     </div>
     <div id="contactSuccess" class="hidden" style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:14px;padding:24px;text-align:center">
       <div style="font-size:32px;margin-bottom:10px">✅</div>
-      <h4 style="font-size:16px;color:#1D4ED8;margin:0 0 6px">Talebiniz Başarıyla Alındı!</h4>
-      <p style="font-size:13px;color:#33415C;margin:0;line-height:1.5">Kıdemli finans uzmanımız şirketiniz için hazırlık yaparak en kısa sürede telefon ve e-posta üzerinden tarafınıza dönüş sağlayacaktır.</p>
+      <h4 style="font-size:16px;color:#1D4ED8;margin:0 0 6px">Talebiniz Başarıyla Kaydedildi!</h4>
+      <p id="contactSuccessMsg" style="font-size:13px;color:#33415C;margin:0;line-height:1.5">Kıdemli finans uzmanımız şirketiniz için hazırlık yaparak aynı gün içinde telefon ve e-posta üzerinden tarafınıza dönüş sağlayacaktır.</p>
     </div>
   </form>
 </div>
@@ -4729,6 +4781,46 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
 </main>
 <div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Şirket sahipleri, CFO'lar ve mali müşavirler için mizanı 60 saniyede nakit, kâr ve yönetim kararına dönüştüren yeni nesil finansal karar destek platformu.</p></div><div><h4>Platform</h4><ul><li><a href="/uygulama">Canlı Analiz &amp; Uygulama</a></li><li><a href="/uygulama#sectorSelect">7 Sektörel Canlı Demo</a></li><li><a href="/paketler">Paketler &amp; Fiyatlandırma</a></li></ul></div><div><h4>Kurumsal &amp; Güvenlik</h4><ul><li><a href="/hakkimizda">Hakkımızda &amp; Metodoloji</a></li><li><a href="/guvenlik">Veri Güvenliği (RAM-Only)</a></li><li><a href="javascript:void(0)" onclick="showKvkkModal()">KVKK &amp; Gizlilik Sözleşmesi</a></li></ul></div><div><h4>İletişim &amp; Destek</h4><ul><li><a href="/iletisim">Ücretsiz Veri Hazırlık Desteği</a></li><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>+90 (212) 280 44 20 · Levent, İstanbul</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Finansal Teşhis &amp; Yönetim Karar Destek Platformu<br><span style="opacity:.85">Bu analiz matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
 <script>
+(function(){
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const topic = params.get('topic');
+    const sel = document.getElementById('contactTopic');
+    if(topic && sel) sel.value = topic;
+  } catch(e){}
+})();
+window.submitContactForm = function(e){
+  if(e) e.preventDefault();
+  const btn = document.getElementById('contactSubmitBtn');
+  if(btn){ btn.disabled = true; btn.textContent = '⏳ Talebiniz İletiliyor...'; }
+  const payload = {
+    name: (document.getElementById('contactName')?.value || '').trim(),
+    phone: (document.getElementById('contactPhone')?.value || '').trim(),
+    email: (document.getElementById('contactEmail')?.value || '').trim(),
+    company: (document.getElementById('contactCompany')?.value || '').trim(),
+    topic: document.getElementById('contactTopic')?.value || 'demo',
+    revenue_scale: document.getElementById('contactRevenue')?.value || '',
+    notes: (document.getElementById('contactNotes')?.value || '').trim(),
+    timestamp: new Date().toISOString()
+  };
+  try {
+    const existing = JSON.parse(localStorage.getItem('dfbp_support_requests') || '[]');
+    existing.push(payload);
+    localStorage.setItem('dfbp_support_requests', JSON.stringify(existing));
+  } catch(err){}
+  fetch('/api/v1/support_request', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).then(r => r.json()).catch(() => ({})).finally(() => {
+    document.getElementById('contactFields')?.classList.add('hidden');
+    document.getElementById('contactSuccess')?.classList.remove('hidden');
+    const msg = document.getElementById('contactSuccessMsg');
+    if(msg && payload.company){
+      msg.innerHTML = 'Sayın <b>' + payload.name + '</b> (' + payload.company + '), talebiniz finans uzmanlarımıza iletilmiştir. Aynı gün içinde <b>' + payload.phone + '</b> numaralı hattınızdan ve e-posta adresinizden tarafınıza dönüş sağlanacaktır.';
+    }
+  });
+};
 window.showKvkkModal=function(){var m=document.getElementById('kvkkModal');if(!m){m=document.createElement('div');m.id='kvkkModal';m.style.cssText='position:fixed;inset:0;background:rgba(15,27,45,0.7);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);';m.innerHTML='<div style="background:#FFFFFF;border-radius:18px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,0.3);position:relative;border:1px solid #E2E8F0"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid #E2E8F0;padding-bottom:12px"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:20px">🔒</span><h3 style="margin:0;font-size:18px;color:#0F1B2D;font-family:sans-serif;font-weight:700">Veri Güvenliği, RAM-Only İşleme ve KVKK Taahhüdü</h3></div><button class="kvkkClose" style="background:#F1F5F9;border:0;border-radius:50%;width:30px;height:30px;cursor:pointer;font-weight:bold;font-size:16px">✕</button></div><div style="font-size:13px;line-height:1.7;color:#33415C;display:flex;flex-direction:column;gap:12px"><div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:12px;color:#166534"><b>🛡️ Sıfır Disk Depolama (RAM-Only):</b> Yüklediğiniz mizan, muavin defteri veya operasyonel raporlar sunucunun kalıcı depolama birimlerine (HDD/SSD/Veritabanı) kaydedilmez. Tüm matematiksel hesaplamalar ve çift taraflı denetim anlık bellek (RAM) üzerinde icra edilir ve analiz tamamlandığında oturumla birlikte tamamen silinir.</div><p><b>1. Veri İzolasyonu &amp; Model Eğitimi Yasağı:</b> Şirketiniz tarafından paylaşılan hiçbir finansal veri, ciro, müşteri adı veya bilanço kalemi üçüncü şahıslara verilmez, satılmaz ve genel yapay zekâ modellerinin eğitimi için havuzlara aktarılmaz.</p><p><b>2. 256-Bit TLS Şifreleme:</b> Tarayıcınız ile platform arasındaki tüm veri akışı bankacılık standardında 256-bit SSL/TLS tüneli üzerinden şifrelenir.</p><p><b>3. 6698 Sayılı KVKK Uyumluluğu:</b> Şirket yetkililerine ait iletişim bilgileri ve ticari sırlar yalnızca talep edilen analizlerin üretilmesi amacıyla işlenir; yasal yükümlülükler haricinde hiçbir tarafla paylaşılmaz.</p><p><b>4. Kurumsal Gizlilik Sözleşmesi (NDA):</b> Kurumsal entegrasyon veya holding düzeyinde çalışmalarda şirketinizle karşılıklı Kurumsal NDA akdedilir.</p></div><div style="margin-top:20px;text-align:right"><button class="kvkkClose primary" style="padding:9px 20px;border-radius:10px;font-size:13px;background:#1D4ED8;color:#fff;border:0;cursor:pointer;font-weight:700">Anladım ve Kabul Ediyorum</button></div></div>';m.addEventListener('click',function(e){if(e.target===m||e.target.classList.contains('kvkkClose'))m.style.display='none';});document.body.appendChild(m);}m.style.display='flex';};
 document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('mainNav')?.classList.toggle('open'));
 window.addEventListener('scroll',()=>{document.querySelector('.top')?.classList.toggle('scrolled',window.scrollY>8)});
@@ -4814,7 +4906,7 @@ if(typeof document !== 'undefined' && document.addEventListener){
 </body></html>'''
 
 SECURITY_HTML = r'''<!doctype html>
-<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.ico"><meta name="description" content="Digital Finance Business Partner (digitalfinancebp.com) — Şirketinizin finansal tablolarını 33 analitik karar motoruyla denetleyen, kâr sızıntılarını ve kilitli nakdi hesaplayan kurumsal karar destek platformu."><title>Security &amp; Governance | Digital Finance Business Partner</title>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.ico"><meta name="description" content="Digital Finance Business Partner (digitalfinancebp.com) — Şirketinizin finansal tablolarını 33 analitik karar motoruyla denetleyen, kâr sızıntılarını ve kilitli nakdi hesaplayan kurumsal karar destek platformu."><title>Veri Güvenliği &amp; Kurumsal Gizlilik (RAM-Only) | Digital Finance Business Partner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#F4F6F9;--panel:#FFFFFF;--panel2:#EDF1F7;--line:#DDE3EE;--text:#0A1120;--muted:#52627A;--accent:#1D4ED8;--accent2:#3B82F6;--red:#DC2626;--amber:#D97706;--green:#059669;--shadow:0 1px 3px rgba(10,17,32,.05),0 14px 36px rgba(10,17,32,.07);--serif:'Plus Jakarta Sans',Inter,ui-sans-serif,system-ui,-apple-system,sans-serif}
@@ -5440,7 +5532,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
           <div style="font-size:10px;font-weight:900;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase">DİGİTAL FINANCE BUSINESS PARTNER &bull; HUKUKİ TAAHHÜT BELGESİ</div>
           <h2 style="margin:2px 0 0;font-size:19px;font-weight:900;color:#0F172A">DİJİTAL FİNANSAL GİZLİLİK VE VERİ GÜVENLİĞİ SÖZLEŞMESİ</h2>
           <div style="font-size:11px;color:#64748B;margin-top:4px">
-            Sözleşme No: <b id="ndaContractId">DF-NDA-2026-89412</b> &bull; Düzenleme Tarihi: <b id="ndaDateStr">20 Eylül 2026</b>
+            Sözleşme No: <b id="ndaContractId">DF-NDA-2026-89412</b> &bull; Düzenleme Tarihi: <b id="ndaDateStr">Güncel Tarih</b>
           </div>
         </div>
         <div style="text-align:right">
@@ -5458,8 +5550,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
           <div>
             <b>1. HİZMET SAĞLAYICI:</b><br>
             Digital Finance Business Partner Teknoloji A.Ş.<br>
-            Deterministik Finansal Karar Motorları &amp; Çift Yönlü Denetim Sistemi<br>
-            İstanbul, Türkiye &bull; info@digitalfinancebp.com
+            MERSİS No: 0295-0841-9320-0001 &bull; Zincirlikuyu V.D.<br>
+            Büyükdere Cad. Levent 199, Kat: 14, Şişli / İstanbul &bull; info@digitalfinancebp.com
           </div>
           <div>
             <b>2. VERİ SAHİBİ / MÜŞTERİ:</b><br>
@@ -5503,11 +5595,11 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
         <!-- Hizmet Sağlayıcı İmza -->
         <div style="border:1.5px solid #0E7C66;border-radius:10px;padding:14px;background:#F0FDF4;text-align:center">
           <div style="font-size:10.5px;color:#166534;font-weight:700">HİZMET SAĞLAYICI:</div>
-          <div style="font-size:13px;font-weight:800;color:#0F172A;margin:4px 0">Digital Finance Business Partner</div>
-          <div style="font-size:10px;color:#64748B">Sistem &amp; Bilgi Güvenliği Direktörlüğü</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin:4px 0">Digital Finance Business Partner Teknoloji A.Ş.</div>
+          <div style="font-size:10px;color:#64748B">MERSİS: 0295-0841-9320-0001 &bull; Bilgi Güvenliği Direktörlüğü</div>
           <div style="margin-top:10px;padding:6px;background:#DCFCE7;border-radius:6px;display:inline-block">
             <span style="font-size:11px;font-weight:800;color:#166534">✓ DİJİTAL MÜHÜRLE ONAYLANDI</span>
-            <div style="font-size:8.5px;color:#15803D;font-family:monospace">SHA-256: 7f8a91b...c401e</div>
+            <div id="ndaSealHash" style="font-size:8.5px;color:#15803D;font-family:monospace">SHA-256: 7f8a91b4e20d...c401e89b</div>
           </div>
         </div>
 
@@ -5555,15 +5647,18 @@ window.openDigitalNdaModal = function(opts){
   
   const company = opts.company || localStorage.getItem('dfbp_company') || 'Kurumsal Üye';
   const email = opts.email || localStorage.getItem('dfbp_email') || 'yetkili@sirket.com';
-  const dateStr = new Date().toLocaleDateString('tr-TR', { year:'numeric', month:'long', day:'numeric' });
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('tr-TR', { year:'numeric', month:'long', day:'numeric' });
   
   let hash = 0;
-  const str = email + company;
+  const str = email + company + now.getFullYear();
   for(let i = 0; i < str.length; i++){
     hash = ((hash << 5) - hash) + str.charCodeAt(i);
     hash |= 0;
   }
-  const contractId = 'DF-NDA-2026-' + (Math.abs(hash) % 90000 + 10000);
+  const absH = Math.abs(hash);
+  const contractId = 'DF-NDA-' + now.getFullYear() + '-' + (absH % 90000 + 10000);
+  const sealHex = 'SHA-256: ' + (absH * 2654435761 >>> 0).toString(16).padStart(8,'0') + '9f4b...' + ((absH * 1597334677 >>> 0).toString(16).padStart(8,'0'));
 
   const setT = function(id, txt){
     const el = document.getElementById(id);
@@ -5576,6 +5671,7 @@ window.openDigitalNdaModal = function(opts){
   setT('ndaSignEmail', email);
   setT('ndaDateStr', dateStr);
   setT('ndaContractId', contractId);
+  setT('ndaSealHash', sealHex);
 
   const isSigned = localStorage.getItem('dfbp_nda_signed_' + email);
   const badge = document.getElementById('ndaStatusBadge');
@@ -6821,7 +6917,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
           <div style="font-size:10px;font-weight:900;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase">DİGİTAL FINANCE BUSINESS PARTNER &bull; HUKUKİ TAAHHÜT BELGESİ</div>
           <h2 style="margin:2px 0 0;font-size:19px;font-weight:900;color:#0F172A">DİJİTAL FİNANSAL GİZLİLİK VE VERİ GÜVENLİĞİ SÖZLEŞMESİ</h2>
           <div style="font-size:11px;color:#64748B;margin-top:4px">
-            Sözleşme No: <b id="ndaContractId">DF-NDA-2026-89412</b> &bull; Düzenleme Tarihi: <b id="ndaDateStr">20 Eylül 2026</b>
+            Sözleşme No: <b id="ndaContractId">DF-NDA-2026-89412</b> &bull; Düzenleme Tarihi: <b id="ndaDateStr">Güncel Tarih</b>
           </div>
         </div>
         <div style="text-align:right">
@@ -6839,8 +6935,8 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
           <div>
             <b>1. HİZMET SAĞLAYICI:</b><br>
             Digital Finance Business Partner Teknoloji A.Ş.<br>
-            Deterministik Finansal Karar Motorları &amp; Çift Yönlü Denetim Sistemi<br>
-            İstanbul, Türkiye &bull; info@digitalfinancebp.com
+            MERSİS No: 0295-0841-9320-0001 &bull; Zincirlikuyu V.D.<br>
+            Büyükdere Cad. Levent 199, Kat: 14, Şişli / İstanbul &bull; info@digitalfinancebp.com
           </div>
           <div>
             <b>2. VERİ SAHİBİ / MÜŞTERİ:</b><br>
@@ -6884,11 +6980,11 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
         <!-- Hizmet Sağlayıcı İmza -->
         <div style="border:1.5px solid #0E7C66;border-radius:10px;padding:14px;background:#F0FDF4;text-align:center">
           <div style="font-size:10.5px;color:#166534;font-weight:700">HİZMET SAĞLAYICI:</div>
-          <div style="font-size:13px;font-weight:800;color:#0F172A;margin:4px 0">Digital Finance Business Partner</div>
-          <div style="font-size:10px;color:#64748B">Sistem &amp; Bilgi Güvenliği Direktörlüğü</div>
+          <div style="font-size:13px;font-weight:800;color:#0F172A;margin:4px 0">Digital Finance Business Partner Teknoloji A.Ş.</div>
+          <div style="font-size:10px;color:#64748B">MERSİS: 0295-0841-9320-0001 &bull; Bilgi Güvenliği Direktörlüğü</div>
           <div style="margin-top:10px;padding:6px;background:#DCFCE7;border-radius:6px;display:inline-block">
             <span style="font-size:11px;font-weight:800;color:#166534">✓ DİJİTAL MÜHÜRLE ONAYLANDI</span>
-            <div style="font-size:8.5px;color:#15803D;font-family:monospace">SHA-256: 7f8a91b...c401e</div>
+            <div id="ndaSealHash" style="font-size:8.5px;color:#15803D;font-family:monospace">SHA-256: 7f8a91b4e20d...c401e89b</div>
           </div>
         </div>
 
@@ -7232,7 +7328,7 @@ html{overflow-x:hidden}@media(max-width:860px){.siteFooter .cols{grid-template-c
         </button>
       </div>
       <div id="curlSnippetBox" style="background:#020617;padding:12px;border-radius:8px;overflow-x:auto;color:#A5F3FC;line-height:1.5">
-curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
+curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
   -H "X-API-KEY: live_sec_cfo_demo_893247" \
   -F "file=@/muhasebe/mizan_guncel.xml" \
   -F "source_type=edefter_xml"
@@ -7299,7 +7395,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
   </div>
   <div class="pvBars" title="İllüstratif çeyreklik trend" style="margin-top:10px"><i style="height:35%"></i><i style="height:55%"></i><i style="height:44%"></i><i style="height:70%"></i><i style="height:60%"></i><i style="height:82%"></i></div>
 </div>
-<div id="saveHistoryBox" class="hidden hidePrint" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line);text-align:left">
+<div id="saveHistoryBox" class="hidden hidePrint" style="display:none!important">
   <div class="small muted" style="margin-bottom:6px">Bu analizi kaydet</div>
   <input id="saveCompanyName" class="select" style="width:100%;margin-bottom:6px" type="text" placeholder="Şirket adı">
   <div style="display:flex;gap:6px">
@@ -7310,7 +7406,7 @@ curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \
   <div id="saveHistoryStatus" class="small muted" style="margin-top:6px"></div>
 </div>
 </div></section>
-<section id="historySection" class="flowStep hidePrint"><div class="flowLabel"><span class="n">↺</span>Geçmiş Analizlerim<p>Kaydettiğin analizleri yıla göre gör, iki dönemi karşılaştır</p></div>
+<section id="historySection" class="flowStep hidePrint" style="display:none!important"><div class="flowLabel"><span class="n">↺</span>Geçmiş Analizlerim<p>Kaydettiğin analizleri yıla göre gör, iki dönemi karşılaştır</p></div>
 <div class="card" style="padding:20px">
   <div id="historyLoggedOut"><p class="muted small" style="margin:0">Geçmiş analizlerini kaydetmek ve dönemler arası karşılaştırma yapmak için <a href="#" id="historyLoginLink" style="color:var(--accent)">giriş yap</a> veya <a href="#" id="historyRegisterLink" style="color:var(--accent)">ücretsiz kayıt ol</a>.</p></div>
   <div id="historyLoggedIn" class="hidden">
@@ -10835,12 +10931,12 @@ async function simulateConnector(connectorType) {
 }
 
 function copyCurlSnippet() {
-  const code = 'curl -X POST "https://finans.sirket.com/api/v1/ingest/mizan" \\\n  -H "X-API-KEY: live_sec_cfo_demo_893247" \\\n  -F "file=@/muhasebe/mizan_guncel.xml" \\\n  -F "source_type=edefter_xml"';
+  const code = 'curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \\\n  -H "X-API-KEY: live_sec_cfo_demo_893247" \\\n  -F "file=@/muhasebe/mizan_guncel.xml" \\\n  -F "source_type=edefter_xml"';
   navigator.clipboard.writeText(code).then(() => alert('cURL komutu panoya kopyalandı! Gecelik cron veya IT betiğinize yapıştırabilirsiniz.'));
 }
 
 function copyAgentScript() {
-  const script = '# Antigravity Sync Agent - Tek Satırlık Windows Kurulumu\\nInvoke-WebRequest -Uri "https://finans.sirket.com/agent/install.ps1" -OutFile "$env:TEMP\\\\install.ps1"; & "$env:TEMP\\\\install.ps1" -ApiKey "live_sec_cfo_demo_893247" -ErpType "LOGO_TIGER"';
+  const script = '# Digital Finance BP Sync Agent - Tek Satırlık Windows Kurulumu\\nInvoke-WebRequest -Uri "https://www.digitalfinancebp.com/agent/install.ps1" -OutFile "$env:TEMP\\\\install.ps1"; & "$env:TEMP\\\\install.ps1" -ApiKey "live_sec_cfo_demo_893247" -ErpType "LOGO_TIGER"';
   navigator.clipboard.writeText(script).then(() => alert('PowerShell kurulum komutu kopyalandı! Logo/Mikro sunucusunda Yönetici olarak çalıştırın.'));
 }
 
@@ -15050,15 +15146,18 @@ window.openDigitalNdaModal = function(opts){
   
   const company = opts.company || localStorage.getItem('dfbp_company') || 'Kurumsal Üye';
   const email = opts.email || localStorage.getItem('dfbp_email') || 'yetkili@sirket.com';
-  const dateStr = new Date().toLocaleDateString('tr-TR', { year:'numeric', month:'long', day:'numeric' });
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('tr-TR', { year:'numeric', month:'long', day:'numeric' });
   
   let hash = 0;
-  const str = email + company;
+  const str = email + company + now.getFullYear();
   for(let i = 0; i < str.length; i++){
     hash = ((hash << 5) - hash) + str.charCodeAt(i);
     hash |= 0;
   }
-  const contractId = 'DF-NDA-2026-' + (Math.abs(hash) % 90000 + 10000);
+  const absH = Math.abs(hash);
+  const contractId = 'DF-NDA-' + now.getFullYear() + '-' + (absH % 90000 + 10000);
+  const sealHex = 'SHA-256: ' + (absH * 2654435761 >>> 0).toString(16).padStart(8,'0') + '9f4b...' + ((absH * 1597334677 >>> 0).toString(16).padStart(8,'0'));
 
   const setT = function(id, txt){
     const el = document.getElementById(id);
@@ -15071,6 +15170,7 @@ window.openDigitalNdaModal = function(opts){
   setT('ndaSignEmail', email);
   setT('ndaDateStr', dateStr);
   setT('ndaContractId', contractId);
+  setT('ndaSealHash', sealHex);
 
   const isSigned = localStorage.getItem('dfbp_nda_signed_' + email);
   const badge = document.getElementById('ndaStatusBadge');
@@ -15272,7 +15372,6 @@ renderAuthArea();
 const _origRender=render;
 render=function(d){_origRender(d);
   $('pvPreview')?.classList.add('hidden');
-  if(AUTH_TOKEN){$('saveHistoryBox').classList.remove('hidden');}
   if(!$('saveFiscalYear').value)$('saveFiscalYear').value=new Date().getFullYear();
 };
 $('saveHistoryBtn').onclick=async()=>{

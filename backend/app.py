@@ -1895,6 +1895,7 @@ class _SupportRequestPayload(_BaseModel):
     email: str | None = None
     erp_system: str | None = None
     topic: str | None = None
+    revenue_scale: str | None = None
     notes: str | None = None
 
 
@@ -1902,16 +1903,19 @@ class _SupportRequestPayload(_BaseModel):
 def create_support_request(payload: _SupportRequestPayload):
     import logging
     logger = logging.getLogger("support_request")
-    logger.info("Assisted Onboarding Request: %s, Company: %s, Phone: %s, ERP: %s, Topic: %s",
-                payload.name, payload.company, payload.phone, payload.erp_system, payload.topic)
+    logger.info("Assisted Onboarding Request: %s, Company: %s, Phone: %s, Email: %s, ERP: %s, Topic: %s, Scale: %s",
+                payload.name, payload.company, payload.phone, payload.email, payload.erp_system, payload.topic, payload.revenue_scale)
     return {
         "status": "success",
-        "message": "Destek talebiniz başarıyla alındı. Finans uzmanımız 15 dakika içinde sizinle iletişime geçecektir.",
+        "message": "Destek talebiniz başarıyla alındı. Finans uzmanımız aynı gün içinde sizinle iletişime geçecektir.",
         "data": {
             "name": payload.name,
             "company": payload.company,
             "phone": payload.phone,
+            "email": payload.email,
             "erp_system": payload.erp_system,
+            "topic": payload.topic,
+            "revenue_scale": payload.revenue_scale,
         }
     }
 
