@@ -7576,7 +7576,6 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
 </div>
 <div id="dashboard" class="hidden">
 
-<!-- Müşteri İhtiyacına Göre Çözüm & Raporlama Akışı (Persona Workflow Switcher) -->
 <div id="customerSolutionModesBar" class="hidePrint" style="background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);border:1.5px solid #334155;border-radius:16px;padding:18px 22px;margin-bottom:18px;color:#FFFFFF;box-shadow:0 10px 28px rgba(15,23,42,0.14)">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:14px">
     <div>
@@ -7585,14 +7584,16 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
       <div style="font-size:12px;color:#CBD5E1;margin-top:2px">Aşağıdan hedef kitlenizi seçin; ekran akışı o role göre filtrelensin ve doğrudan ilgili PDF rapor paketini indirin.</div>
     </div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-      <button type="button" onclick="openWhiteLabelModal()" style="background:rgba(255,255,255,0.1);color:#FFFFFF;border:1px solid rgba(255,255,255,0.25);padding:7px 12px;border-radius:9px;font-size:11.5px;font-weight:700;cursor:pointer">🏢 Kendi Logonuzu &amp; Ünvanınızı Ekleyin (White-Label)</button>
+      <button id="whiteLabelOpenBtn" type="button" class="secondary hidePrint" onclick="openWhiteLabelModal()" style="background:rgba(255,255,255,0.1);color:#FFFFFF;border:1px solid rgba(255,255,255,0.25);padding:7px 12px;border-radius:9px;font-size:11.5px;font-weight:700;cursor:pointer">🏢 White-Label (Logo &amp; Ünvan)</button>
+      <button id="aiBtn" type="button" class="secondary hidePrint" style="background:linear-gradient(135deg,#4F46E5,#7C3AED);color:#FFFFFF;border:1px solid rgba(255,255,255,0.3);padding:7px 12px;border-radius:9px;font-size:11.5px;font-weight:700;cursor:pointer">✨ AI Finance Partner yorumunu üret (opsiyonel, LLM)</button>
+      <button id="jsonBtn" type="button" class="secondary hidePrint" style="background:rgba(255,255,255,0.1);color:#FFFFFF;border:1px solid rgba(255,255,255,0.25);padding:7px 12px;border-radius:9px;font-size:11.5px;font-weight:700;cursor:pointer">JSON İndir</button>
     </div>
   </div>
 
   <!-- 6 Rol / İhtiyaç Butonu -->
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:8px;margin-bottom:14px">
     <button type="button" id="wfMode_all" class="wfModeBtn active" onclick="selectCustomerWorkflowMode('all')" style="text-align:left;background:#2563EB;color:#FFFFFF;border:1.5px solid #60A5FA;border-radius:11px;padding:10px 12px;cursor:pointer;transition:all .15s">
-      <div style="font-size:12px;font-weight:900">📋 Tam Kokpit (12 Bölüm)</div>
+      <div style="font-size:12px;font-weight:900">📋 Tam Kokpit (7 Aşama)</div>
       <div style="font-size:10.5px;color:#DBEAFE;margin-top:2px">33 Karar Motoru &bull; Tüm Aşamalar</div>
     </button>
     <button type="button" id="wfMode_patron" class="wfModeBtn" onclick="selectCustomerWorkflowMode('patron')" style="text-align:left;background:rgba(255,255,255,0.06);color:#F8FAFC;border:1.5px solid rgba(255,255,255,0.15);border-radius:11px;padding:10px 12px;cursor:pointer;transition:all .15s">
@@ -7632,6 +7633,20 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
       </button>
     </div>
   </div>
+
+  <!-- 7 Kurumsal PDF Rapor & Karar Paketi Hızlı İndirme Bandı -->
+  <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+    <div style="font-size:11.5px;font-weight:800;color:#94A3B8;letter-spacing:0.5px">📑 7 KURUMSAL PDF RAPOR &amp; KARAR DOSYASI:</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+      <button id="boardDeckBtn" type="button" class="hidePrint" style="background:#1D4ED8;color:#FFFFFF;border:1px solid #60A5FA;padding:6px 11px;border-radius:8px;font-size:11.5px;font-weight:800;cursor:pointer" onclick="openBoardDeckModal()">👑 1. Patron Notu</button>
+      <button id="cfoReportBtn" type="button" class="hidePrint" style="background:#0E7C66;color:#FFFFFF;border:1px solid #34D399;padding:6px 11px;border-radius:8px;font-size:11.5px;font-weight:800;cursor:pointer" onclick="openCfoReportModal()">📊 2. CFO Raporu</button>
+      <button id="bankCreditBtn" type="button" class="hidePrint" style="background:#4338CA;color:#FFFFFF;border:1px solid #818CF8;padding:6px 11px;border-radius:8px;font-size:11.5px;font-weight:800;cursor:pointer" onclick="openBankCreditModal()">🏦 3. Banka Dosyası</button>
+      <button id="cashRadarBtn" type="button" class="hidePrint" style="background:#D97706;color:#FFFFFF;border:1px solid #FBBF24;padding:6px 11px;border-radius:8px;font-size:11.5px;font-weight:800;cursor:pointer" onclick="openCashRadarModal()">🗓️ 4. 13H Kasa Radarı</button>
+      <button id="taxShieldReportBtn" type="button" class="hidePrint" style="background:#B45309;color:#FFFFFF;border:1px solid #F59E0B;padding:6px 11px;border-radius:8px;font-size:11.5px;font-weight:800;cursor:pointer" onclick="openTaxShieldReportModal()">🛡️ 5. Vergi Kalkanı</button>
+      <button id="creditActionReportBtn" type="button" class="hidePrint" style="background:#DC2626;color:#FFFFFF;border:1px solid #F87171;padding:6px 11px;border-radius:8px;font-size:11.5px;font-weight:800;cursor:pointer" onclick="openCreditActionReportModal()">👥 6. Müşteri İcra</button>
+      <button id="printBtn" type="button" class="hidePrint" style="background:#475569;color:#FFFFFF;border:1px solid #94A3B8;padding:6px 11px;border-radius:8px;font-size:11.5px;font-weight:800;cursor:pointer" onclick="openDetailedReportModal()">📑 7. Denetim Dosyası</button>
+    </div>
+  </div>
 </div>
 
 <!-- Global Accordion Controller Toolbar -->
@@ -7639,10 +7654,10 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
   <div style="display:flex;align-items:center;gap:10px">
     <span style="font-size:16px">📑</span>
     <div>
-      <div style="font-size:13.5px;font-weight:800;color:#0F172A">Yönetici Karar Raporu &bull; 10 Aşamalı Hiyerarşik Akış</div>
-      <div style="font-size:11.5px;color:#64748B;margin-top:1px">En kritik yönetici kararlarından operasyonel detaylara doğru birbirine bağlı sıralama</div>
+      <div style="font-size:13.5px;font-weight:800;color:#0F172A">Yönetici Karar Raporu &bull; 7 Aşamalı Mantıksal Karar Akışı</div>
+      <div style="font-size:11.5px;color:#64748B;margin-top:1px">Finansal gerçeklerden kilitli nakde, riskten kök nedenlere ve aksiyon planına doğru birbirine bağlı sıralama</div>
     </div>
-    <span class="tag positive" style="font-size:10.5px;font-weight:700">Öncelik Sıralı</span>
+    <span class="tag positive" style="font-size:10.5px;font-weight:700">7 Aşamalı Yönetim Akışı</span>
   </div>
   <div style="display:flex;gap:8px">
     <button type="button" class="secondary" onclick="expandAllSteps()" style="font-size:11.5px;padding:6px 14px;border-radius:8px;font-weight:700">▼ Tüm Bölümleri Genişlet</button>
@@ -7652,38 +7667,32 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
 
 <!-- Sticky Dashboard Sub-Navigation Bar -->
 <div id="dashboardSubNav" class="dashboardSubNav hidePrint" style="position:sticky;top:62px;z-index:45;background:#FFFFFF;border-bottom:1.5px solid #E2E8F0;box-shadow:0 4px 14px rgba(15,27,45,0.05);padding:9px 0;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;display:flex;gap:7px;white-space:nowrap">
-  <button type="button" class="dashPill active" style="background:#EFF6FF;color:#1D4ED8;font-weight:900;border:1.5px solid #93C5FD;box-shadow:0 2px 6px rgba(29,78,216,0.12)" onclick="jumpToFlowStep('flowStep_1')">👑 1. Yönetici Brifingi &amp; Teşhis</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_2')">2. Öncelikli Riskler</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('sixtyDayGapLiveCard')">3. Kilitli Nakit &amp; 60G GAP (Modül 3)</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('profitQualityModuleLiveCard')">4. Kârlılık &amp; QoE (Modül 1)</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_5')">5. Bilanço &amp; CCC</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('creditScoringLiveCard')">6. Müşteri Scoring (Modül 2)</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_7')">7. Kök Neden Hikâyeleri</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_8')">8. Vergi Kalkanı</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_9')">9. Senaryo Lab</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_10')">10. Enflasyon &amp; Stres Testi</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_ekA')">Ek A · Denetim</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_ekB')">Ek B · Mali Tablolar</button>
+  <button type="button" class="dashPill active" style="background:#EFF6FF;color:#1D4ED8;font-weight:900;border:1.5px solid #93C5FD;box-shadow:0 2px 6px rgba(29,78,216,0.12)" onclick="jumpToFlowStep('flowStep_1')">📊 1. Ne Oldu?</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_2')">💸 2. Para Nerede?</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_3')">⚖️ 3. Risk &amp; Sektör?</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_4')">👥 4. Kim Yapıyor?</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_5')">🧠 5. Neden Oldu?</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_6')">🎯 6. Ne Yapmalıyız?</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_7')">🎛️ 7. Simüle Et!</button>
 </div>
 
-<!-- ==================== BÖLÜM 1: YÖNETİCİ BRİFİNGİ & FİNANSAL RÖNTGEN ==================== -->
+<!-- ==================== BÖLÜM 1: NE OLDU? (FİNANSAL GERÇEKLER & KÂRLILIK RÖNTGENİ) ==================== -->
 <section id="flowStep_1" class="accordionStep active">
   <div class="accordionHeader" onclick="toggleAccordion('flowStep_1')">
     <div class="accordionTitleGroup">
       <span class="accordionNum">1</span>
       <div>
-        <h3 class="accordionTitle">Yönetici Karar Masası &amp; 30 Saniyelik Finansal Teşhis</h3>
-        <div class="accordionSub">Kâr durumu, kilitli nakit, öncelikli yönetim kararı ve 1 sayfalık patron karar notu</div>
+        <h3 class="accordionTitle">1. NE OLDU? — Finansal Gerçekler &amp; Kârlılık Röntgeni</h3>
+        <div class="accordionSub">Ciro, Maliyetler, Brüt / Faaliyet / Net Kâr, Kâr Kalitesi (QoE), DuPont ROE ve Enflasyon Düzeltmesi</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:700">Yönetici Kokpiti</span>
+      <span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:700">Temel Gerçekler</span>
       <div class="accordionToggleIcon">▼</div>
     </div>
   </div>
   <div class="accordionBody">
-    <!-- 30 SANİYELİK CEO & PATRON FİNANSAL RÖNTGENİ -->
-    <div id="executiveSnapshotSection" style="margin-bottom:20px">
+<div id="executiveSnapshotSection" style="margin-bottom:20px">
       <div class="card" style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:18px;padding:22px 24px;box-shadow:0 8px 24px rgba(15,27,45,0.06);margin-bottom:0">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;border-bottom:1px solid #E2E8F0;padding-bottom:14px">
           <div style="display:flex;align-items:center;gap:10px">
@@ -7726,7 +7735,8 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
     <div id="strategicModulesCockpitCard" style="display:none"></div>
 
     <!-- Yönetici Özeti & AI Business Partner -->
-    <div class="card" style="margin-bottom:20px">
+    
+<div class="card" style="margin-bottom:20px">
       <div class="sectionHead">
         <div>
           <h2>Yönetici Hikâyesi &amp; Karar Brifingi</h2>
@@ -7737,150 +7747,7 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
       <div id="exec" class="insight"></div>
       <div id="execChips" class="chips"></div>
       <div id="execDecision" style="margin-top:14px"></div>
-      <div style="margin-top:18px;padding:18px;background:linear-gradient(135deg,#EFF6FF 0%,#F8FAFC 100%);border:1.5px solid #BFDBFE;border-radius:16px" class="hidePrint">
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px">
-          <div>
-            <span style="font-size:11px;font-weight:800;letter-spacing:1px;color:#1D4ED8;text-transform:uppercase">📑 RAPOR &amp; ÇIKTI MERKEZİ · 7 KURUMSAL KARAR &amp; RAPOR PAKETİ</span>
-            <div style="font-size:15px;font-weight:900;color:#0F172A;margin-top:2px">Patron Karar Notu, 10 Sayfalık CFO Raporu, Banka Kredi Dosyası, Vergi Kalkanı ve Tahsilat İcra Paketi</div>
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button id="whiteLabelOpenBtn" type="button" class="secondary hidePrint" style="font-size:12px;padding:7px 12px;font-weight:700" onclick="openWhiteLabelModal()">🏢 Rapor Başlığı &amp; Logo (White-Label)</button>
-            <button id="aiBtn" class="secondary hidePrint" style="font-size:12px;padding:7px 12px">✨ AI Finance Partner yorumunu üret (opsiyonel, LLM)</button>
-            <button id="jsonBtn" class="secondary hidePrint" style="font-size:12px;padding:7px 12px">JSON İndir</button>
-          </div>
-        </div>
-
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:12px">
-          <!-- 1. Yönetim Kurulu & Patron Karar Notu (1 Sayfa A4) -->
-          <div style="background:#FFFFFF;border:1.5px solid #2563EB;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(37,99,235,0.08)">
-            <div>
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span class="workflowBadge" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;margin:0">👑 1. PATRONA ÖZEL</span>
-                <span style="font-size:11px;font-weight:700;color:#16A34A">⏱️ 1 Sayfa A4</span>
-              </div>
-              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Yönetim Kurulu &amp; Patron Karar Notu</h4>
-              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">Para nerede? Kasa mevcudu, alacaklar, stoklar, finansal borçlar ve patronun masaya koyup hemen alacağı 3 somut karar.</p>
-              <div style="margin-top:6px;display:inline-block"><span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:9.5px;font-weight:800;border:1px solid #BFDBFE">★ 3 Stratejik Modül Özeti Dahil</span></div>
-            </div>
-            <div style="margin-top:12px">
-              <button id="boardDeckBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#1D4ED8;color:#FFFFFF;cursor:pointer" onclick="openBoardDeckModal()">
-                👑 Patron Karar Notunu Aç →
-              </button>
-            </div>
-          </div>
-
-          <!-- 2. Aylık Finans ve Faaliyet Raporu (10 Sayfa A4) -->
-          <div style="background:#FFFFFF;border:1.5px solid #0E7C66;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(14,124,102,0.08)">
-            <div>
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span class="workflowBadge" style="background:#EAF7F4;color:#0E7C66;border-color:#A3E0D2;margin:0">📊 2. CFO &amp; DİREKTÖR</span>
-                <span style="font-size:11px;font-weight:700;color:#0E7C66">📑 10 Sayfa A4</span>
-              </div>
-              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Aylık Finans ve Faaliyet Raporu</h4>
-              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">Sürdürülebilir kâr (QoE), fiktif stok kârı, DuPont, TMS 7 nakit akış tablosu, işletme sermayesi ve 60 günlük likidite boşluğu (GAP).</p>
-              <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:6px">
-                <span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:9.5px;font-weight:800;border:1px solid #BFDBFE">Modül 1 (Sayfa 2)</span>
-                <span class="tag" style="background:#FFFBEB;color:#B45309;font-size:9.5px;font-weight:800;border:1px solid #FDE68A">Modül 2 (Sayfa 5)</span>
-                <span class="tag" style="background:#FEF2F2;color:#991B1B;font-size:9.5px;font-weight:800;border:1px solid #FCA5A5">Modül 3 (Sayfa 9)</span>
-              </div>
-            </div>
-            <div style="margin-top:12px">
-              <button id="cfoReportBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#0E7C66;color:#FFFFFF;cursor:pointer" onclick="openCfoReportModal()">
-                📊 Finans ve Faaliyet Raporunu Aç →
-              </button>
-            </div>
-          </div>
-
-          <!-- 3. Banka Kredi & Mali Değerlendirme Raporu (3 Sayfa A4) -->
-          <div style="background:#FFFFFF;border:1.5px solid #4338CA;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(67,56,202,0.08)">
-            <div>
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span class="workflowBadge" style="background:#EEF2FF;color:#4338CA;border-color:#C7D2FE;margin:0">🏦 3. BANKA &amp; KREDİ</span>
-                <span style="font-size:11px;font-weight:700;color:#4338CA">🏛️ 3 Sayfa A4</span>
-              </div>
-              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Banka Kredi &amp; Mali Değerlendirme Raporu</h4>
-              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">Banka şube müdürüne sunulacak kredi karnesi, Net Borç/FAVÖK, faiz karşılama (ICR), cari oran ve borç refinansman alternatifleri.</p>
-            </div>
-            <div style="margin-top:12px">
-              <button id="bankCreditBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#4338CA;color:#FFFFFF;cursor:pointer" onclick="openBankCreditModal()">
-                🏦 Banka Değerlendirme Raporunu Aç →
-              </button>
-            </div>
-          </div>
-
-          <!-- 4. Haftalık Nakit Akışı & Ödeme/Tahsilat Tablosu (13 Hafta) -->
-          <div style="background:#FFFFFF;border:1.5px solid #D97706;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(217,119,6,0.08)">
-            <div>
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span class="workflowBadge" style="background:#FFFBEB;color:#B45309;border-color:#FDE68A;margin:0">🗓️ 4. KASA &amp; ÇEK TAKVİMİ</span>
-                <span style="font-size:11px;font-weight:700;color:#D97706">📊 13 Hafta</span>
-              </div>
-              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Haftalık Nakit Akışı &amp; Ödeme/Tahsilat Tablosu</h4>
-              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">Hangi hafta kasada açık var? 60 günlük Net Likidite Boşluğu (GAP), çek, vergi, kira ve maaş takvimi ile acil nakit tamponu emniyet eşiği.</p>
-              <div style="margin-top:6px;display:inline-block"><span class="tag" style="background:#FEF2F2;color:#991B1B;font-size:9.5px;font-weight:800;border:1px solid #FCA5A5">Modül 3: 60G Likidite GAP (Sayfa 1)</span></div>
-            </div>
-            <div style="margin-top:12px">
-              <button id="cashRadarBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#D97706;color:#FFFFFF;cursor:pointer" onclick="openCashRadarModal()">
-                🗓️ Haftalık Nakit Tablosunu Aç →
-              </button>
-            </div>
-          </div>
-
-          <!-- 5. Vergi Kalkanı, KDV Mahsubu & Yasal Teşvik Raporu (2 Sayfa A4) -->
-          <div style="background:#FFFFFF;border:1.5px solid #B45309;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(180,83,9,0.08)">
-            <div>
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span class="workflowBadge" style="background:#FEF3C7;color:#92400E;border-color:#FDE68A;margin:0">🛡️ 5. VERGİ KALKANI</span>
-                <span style="font-size:11px;font-weight:700;color:#B45309">⚖️ 2 Sayfa A4</span>
-              </div>
-              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Vergi Kalkanı, KDV Mahsubu &amp; Teşvik Raporu</h4>
-              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">Finansman gider kısıtlaması (FGK), Devreden KDV mahsubu, VUK 323 şüpheli alacak karşılığı ve resmi teşvikler.</p>
-              <div style="margin-top:6px;display:inline-block"><span class="tag" style="background:#FEF3C7;color:#92400E;font-size:9.5px;font-weight:800;border:1px solid #FDE68A">FGK KKEG &amp; KDV Köprüsü</span></div>
-            </div>
-            <div style="margin-top:12px">
-              <button id="taxShieldReportBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#B45309;color:#FFFFFF;cursor:pointer" onclick="openTaxShieldReportModal()">
-                🛡️ Vergi Kalkanı Raporunu Aç →
-              </button>
-            </div>
-          </div>
-
-          <!-- 6. Ticari Alacak, Müşteri Risk & Tahsilat İcra Dosyası (2 Sayfa A4) -->
-          <div style="background:#FFFFFF;border:1.5px solid #DC2626;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(220,38,38,0.08)">
-            <div>
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span class="workflowBadge" style="background:#FEE2E2;color:#991B1B;border-color:#FCA5A5;margin:0">🎯 6. ALACAK &amp; TAHSİLAT</span>
-                <span style="font-size:11px;font-weight:700;color:#DC2626">🚨 2 Sayfa A4</span>
-              </div>
-              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Ticari Alacak, Müşteri Risk &amp; İcra Dosyası</h4>
-              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">120 Müşteri credit scoring (Tier A-D), vade aşımı, icra öncesi noter ihtarı ve tahsilat aksiyon protokolü.</p>
-              <div style="margin-top:6px;display:inline-block"><span class="tag" style="background:#FEE2E2;color:#991B1B;font-size:9.5px;font-weight:800;border:1px solid #FCA5A5">Tier A-D &amp; DBS Kısıt Kuralı</span></div>
-            </div>
-            <div style="margin-top:12px">
-              <button id="creditActionReportBtn" type="button" class="primary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:800;background:#DC2626;color:#FFFFFF;cursor:pointer" onclick="openCreditActionReportModal()">
-                🎯 Alacak &amp; Risk Raporunu Aç →
-              </button>
-            </div>
-          </div>
-
-          <!-- 7. Mali Müşavir & Denetim İnceleme Dosyası (Tam Denetim) -->
-          <div style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,0.03)">
-            <div>
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span class="workflowBadge" style="background:#F1F5F9;color:#475569;border-color:#CBD5E1;margin:0">📑 7. MALİ MÜŞAVİR &amp; DENETİM</span>
-                <span style="font-size:11px;font-weight:700;color:#64748B">📋 Tam Denetim</span>
-              </div>
-              <h4 style="margin:0 0 4px;font-size:14px;color:#0F172A;font-weight:800">Mali Müşavir &amp; Denetim İnceleme Dosyası</h4>
-              <p style="margin:0;font-size:11.5px;color:#64748B;line-height:1.45">33 Karar Motoru, Müşteri/Ürün kârlılık matrisi, stok/alacak yaşlandırma, P&amp;L, bilanço ve hesap traceability izi.</p>
-            </div>
-            <div style="margin-top:12px">
-              <button id="printBtn" type="button" class="secondary" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:700;cursor:pointer" onclick="openDetailedReportModal()">
-                📑 Denetim İnceleme Dosyasını Aç →
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="aiBox" class="notice hidden" style="margin-top:12px"></div>
+<div id="aiBox" class="notice hidden" style="margin-top:12px"></div>
       <div id="methodNote" class="notice" style="margin-top:12px"></div>
 
       <!-- AI Q&A Bar -->
@@ -7910,7 +7777,8 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
     </div>
 
     <!-- CEO & YÖNETİM KURULU KARAR MASASI -->
-    <div id="ceoDiagnosticSection">
+    
+<div id="ceoDiagnosticSection">
       <div class="card" style="border:2px solid #1D4ED8;background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%);box-shadow:0 14px 40px rgba(29,78,216,.09);padding:26px;border-radius:22px;margin-bottom:0">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;border-bottom:1.5px solid #E2E8F0;padding-bottom:18px;margin-bottom:20px">
           <div>
@@ -7943,62 +7811,108 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
       </div>
     </div>
   </div>
+
+
+    <div class="grid4">
+      <div class="metric"><div class="label">Net Satış (Ciro)</div><div id="mSales" class="value">-</div><div class="sub">Doğrulanmış toplam satış hacmi</div></div>
+      <div class="metric"><div class="label">Faaliyet Kârı</div><div id="mOp" class="value">-</div><div class="sub">Esas faaliyetlerden kalan operasyonel kâr</div></div>
+      <div class="metric"><div class="label">Net Dönem Kârı</div><div id="mNet" class="value">-</div><div class="sub">Vergi ve finansman giderleri sonrası net kâr</div></div>
+      <div class="metric"><div class="label">Net Finansal Borç</div><div id="mDebt" class="value">-</div><div class="sub">Toplam banka borcundan nakit düşülmüş net yük</div></div>
+    </div>
+
+    <!-- Modül 1: Kâr Kalitesi & Sürdürülebilir Kâr (QoE & Fiktif Stok Kârı İllüzyonu) -->
+    <div id="profitQualityModuleLiveCard" style="margin-top:16px"></div>
+
+    <div id="profitQualityCard" class="card" style="margin-top:16px">
+      <div class="sectionHead">
+        <div>
+          <h2>Kâr Köprüsü &amp; Kâr Kalitesi Analizi</h2>
+          <p>Net satıştan net kâra giden yol ve bu kârın ne kadarının operasyonel olduğu</p>
+        </div>
+      </div>
+      <div class="grid2">
+        <div>
+          <div class="small muted" style="margin-bottom:8px">Kâr Köprüsü (Şelale)</div>
+          <div class="waterfallWrap"><div id="waterfall" class="waterfall"></div></div>
+        </div>
+        <div>
+          <div class="small muted" style="margin-bottom:8px">Kâr Kalitesi Metrikleri</div>
+          <div id="profitQuality"></div>
+        </div>
+      </div>
+      <div id="profitabilityCommentary" style="margin-top:14px"></div>
+    </div>
+
+    <div id="dupontCard" class="card hidden" style="margin-top:16px;margin-bottom:0">
+      <div class="sectionHead">
+        <div>
+          <h2>Özkaynak Kârlılık Ağacı (DuPont ROE Motorları)</h2>
+          <p>Hissedarın koyduğu sermayenin getirisini (ROE) belirleyen üç ana motor: Kâr Marjı × Varlık Devir Hızı × Finansal Kaldıraç</p>
+        </div>
+      </div>
+      <div class="grid4">
+        <div class="metric"><div class="label">Özkaynak Kârlılığı (ROE)</div><div id="dupontRoe" class="value">-</div><div class="sub">Hissedar Getirisi</div></div>
+        <div class="metric"><div class="label">Net Kâr Marjı</div><div id="dupontMargin" class="value">-</div><div class="sub">Operasyonel Kârlılık Oranı</div></div>
+        <div class="metric"><div class="label">Varlık Devir Hızı</div><div id="dupontTurnover" class="value">-</div><div class="sub">Varlıkları Paraya Çevirme Hızı</div></div>
+        <div class="metric"><div class="label">Kaldıraç Çarpanı</div><div id="dupontLeverage" class="value">-</div><div class="sub">Varlık / Özkaynak Çarpanı</div></div>
+      </div>
+      <div id="dupontDiagnosis" class="chips" style="margin-top:12px"></div>
+    </div>
+<!-- Card 1: Enflasyon Düzeltmeli Gerçek Kârlılık Röntgeni -->
+    <div id="inflationCard" class="card" style="border:1.5px solid #E2E8F0;border-radius:18px;padding:22px;margin-bottom:16px">
+      <div class="sectionHead" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
+        <div style="max-width:680px">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:#FEF2F2;color:#DC2626;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:0.5px;margin-bottom:8px">
+            🔥 GERÇEK KÂRLILIK RÖNTGENİ &amp; FAİZ/ENFLASYON SİMÜLATÖRÜ
+          </div>
+          <h2 style="font-size:20px;margin:0 0 6px">Enflasyon Düzeltmeli Gerçek Ekonomik Kâr &amp; Sermaye Koruma Analizi</h2>
+          <p class="muted" style="margin:0;font-size:13px">Klasik mizan enflasyonu dikkate almaz; fiktif stok kârını gerçek kâr gibi gösterir. Aşağıdaki simülatör ile piyasadaki yıllık enflasyon veya kredi faiz oranını değiştirerek kârınızın ve özkaynağınızın reel durumunu anında test edin.</p>
+        </div>
+        
+        <!-- Dinamik Enflasyon & Faiz Oranı Simülatörü Kontrol Kutusu -->
+        <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:12px 16px;min-width:280px;box-shadow:0 2px 8px rgba(15,27,45,0.03)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-size:12px;font-weight:700;color:#0F172A">📊 Test Edilen Yıllık Oran:</span>
+            <b id="infSliderVal" style="font-size:15px;font-weight:900;color:#DC2626">%45</b>
+          </div>
+          <input type="range" id="infRateSlider" min="10" max="90" step="5" value="45" style="width:100%;height:6px;accent-color:#DC2626;cursor:pointer" oninput="onInflationSliderChange(this.value)">
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:#94A3B8;margin-top:4px">
+            <span>%10 (Düşük)</span>
+            <span style="color:#64748B;font-weight:600">TCMB / Piyasa</span>
+            <span>%90 (Yüksek Şok)</span>
+          </div>
+          <div style="display:flex;gap:5px;margin-top:8px">
+            <button type="button" class="secondary" style="flex:1;padding:3px 6px;font-size:10.5px;border-radius:6px" onclick="setInfSliderRate(30)">%30 Hedef</button>
+            <button type="button" class="secondary" style="flex:1;padding:3px 6px;font-size:10.5px;border-radius:6px" onclick="setInfSliderRate(45)">%45 Standart</button>
+            <button type="button" class="secondary" style="flex:1;padding:3px 6px;font-size:10.5px;border-radius:6px" onclick="setInfSliderRate(65)">%65 Faiz/Kredi</button>
+          </div>
+        </div>
+      </div>
+      <div id="inflationMetrics" class="grid4" style="margin-top:16px"></div>
+      <div id="inflationAssessment" style="margin-top:14px"></div>
+    </div>
+
+    
+  </div>
 </section>
 
-<!-- ==================== BÖLÜM 2: ÖNCELİKLİ YÖNETİM RİSKLERİ & AKSİYON TAKVİMİ ==================== -->
+<!-- ==================== BÖLÜM 2: PARA NEREDE? (KİLİTLİ NAKİT & SIZINTI TEŞHİSİ) ==================== -->
 <section id="flowStep_2" class="accordionStep active">
   <div class="accordionHeader" onclick="toggleAccordion('flowStep_2')">
     <div class="accordionTitleGroup">
       <span class="accordionNum">2</span>
       <div>
-        <h3 class="accordionTitle">Öncelikli Yönetim Riskleri &amp; İcraat Aksiyon Takvimi</h3>
-        <div class="accordionSub">Finansal maruziyet, risk skorları, görev sahipleri, terminler ve somut icraat planı</div>
+        <h3 class="accordionTitle">2. PARA NEREDE? — Kilitli Nakit &amp; Sızıntı Teşhisi</h3>
+        <div class="accordionSub">Nakit Köprüsü, Alacak / Stok Kilitlenmesi, Nakit Döngüsü (CCC), 13 Haftalık Kasa Radarı ve TMS 7 Nakit Akışı</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag critical" style="font-size:11px;font-weight:700">Acil Eylem Planı</span>
+      <span class="tag" style="background:#FEF3C7;color:#92400E;font-size:11px;font-weight:700">Nakit Teşhisi</span>
       <div class="accordionToggleIcon">▼</div>
     </div>
   </div>
   <div class="accordionBody">
-    <div class="card">
-      <div class="sectionHead">
-        <div>
-          <h2>Öncelikli Yönetim Riskleri</h2>
-          <p>Finansal maruziyet, risk skoru ve şiddet derecesi birlikte sıralanır</p>
-        </div>
-      </div>
-      <div id="risks"></div>
-    </div>
 
-    <div class="card" style="margin-top:16px;margin-bottom:0">
-      <div class="sectionHead">
-        <div>
-          <h2>Yönetim Kararları &amp; Aksiyon Takvimi (Şimdi Ne Yapmalı?)</h2>
-          <p>Karar maddesi → Sahibi → Termini → Takip Edilecek KPI. Her aksiyon maddesi ayrı bir takip numarasına sahiptir.</p>
-        </div>
-      </div>
-      <div id="actions"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== BÖLÜM 3: PARA NEREDE? & NAKİT AKIŞ KÖPRÜSÜ ==================== -->
-<section id="flowStep_3" class="accordionStep active">
-  <div class="accordionHeader" onclick="toggleAccordion('flowStep_3')">
-    <div class="accordionTitleGroup">
-      <span class="accordionNum">3</span>
-      <div>
-        <h3 class="accordionTitle">Para Nerede? — Kilitli Nakit Teşhisi &amp; Nakit Akış Köprüsü</h3>
-        <div class="accordionSub">Müşteri vadelerinde ve depoda kilitlenen sermaye, faiz sızıntısı ve net nakit şelalesi</div>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag" style="background:#FEF3C7;color:#B45309;font-size:11px;font-weight:700">Kilitli Sermaye</span>
-      <div class="accordionToggleIcon">▼</div>
-    </div>
-  </div>
-  <div class="accordionBody">
     <!-- Görünmez Kâr Sızıntısı & Kilitli Sermaye -->
     <div id="workingCapitalLeakEngineCard" class="card" style="border:1.5px solid #CBD5E1;background:linear-gradient(145deg,#FFFFFF 0%,#F8FAFC 100%)">
       <div class="sectionHead">
@@ -8065,7 +7979,7 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
           <span>🚀 Hızlı İç Kaynak (Öz Finansman) Nakit Kurtarma Potansiyeli</span>
           <div style="display:flex;align-items:center;gap:8px">
             <span class="tag" style="background:#EFF6FF;color:var(--accent);font-size:10.5px">15G DSO + 10G DIO + 5G DPO HEDEFİ</span>
-            <button type="button" class="primary hidePrint" onclick="jumpToFlowStep('flowStep_9')" style="padding:6px 12px;border-radius:8px;font-size:11.5px;font-weight:800;cursor:pointer">🎛️ Canlı Simülatörde Değiştir (Bölüm 9) →</button>
+            <button type="button" class="primary hidePrint" onclick="jumpToFlowStep('flowStep_7')" style="padding:6px 12px;border-radius:8px;font-size:11.5px;font-weight:800;cursor:pointer">🎛️ Canlı Simülatörde Değiştir (Bölüm 7) →</button>
           </div>
         </div>
 
@@ -8116,8 +8030,16 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
         <div id="cashRealization"></div>
     </div>
 
-    <!-- Modül 3: Akıllı Borç Yapısı & Refinansman (60 Günlük GAP & Çıkış Senaryoları) -->
-    <div id="sixtyDayGapLiveCard" style="margin-top:20px"></div>
+    
+<div class="card">
+        <div class="sectionHead">
+          <div>
+            <h2>İşletme Sermayesi Güvencesi &amp; Vade Uyumu</h2>
+            <p>Alacak, stok ve tedarikçi vadelerinin nakit döngüsü ve borçlanma baskısına etkisi</p>
+          </div>
+        </div>
+        <div id="workingCapital"></div>
+
 
     <!-- Patronun Haftalık Nakit & Karar Kokpiti -->
     <div id="patronCashCockpitCard" class="card hidden" style="margin-top:20px;border:2px solid #2563EB;background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%)">
@@ -8175,88 +8097,32 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
   </div>
 </section>
 
-<!-- ==================== BÖLÜM 4: OPERASYONEL KÂRLILIK & KÂR KÖPRÜSÜ ==================== -->
-<section id="flowStep_4" class="accordionStep">
-  <div class="accordionHeader" onclick="toggleAccordion('flowStep_4')">
+<!-- ==================== BÖLÜM 3: RİSK & SEKTÖR NE? (SEKTÖREL KIYASLAMA & FİNANSAL DAYANIKLILIK) ==================== -->
+<section id="flowStep_3" class="accordionStep">
+  <div class="accordionHeader" onclick="toggleAccordion('flowStep_3')">
     <div class="accordionTitleGroup">
-      <span class="accordionNum">4</span>
+      <span class="accordionNum">3</span>
       <div>
-        <h3 class="accordionTitle">Operasyonel Kârlılık, Kâr Köprüsü &amp; Kâr Kalitesi</h3>
-        <div class="accordionSub">Net satıştan net kâra giden yol, maliyet sızıntıları ve DuPont 3-Aşamalı ROE motorları</div>
+        <h3 class="accordionTitle">3. RİSK &amp; SEKTÖR NE? — Sektörel Kıyaslama &amp; Finansal Dayanıklılık</h3>
+        <div class="accordionSub">TCMB &amp; BIST Sektör Medyanları, Likidite &amp; Borç Rasyoları, 60 Günlük GAP &amp; Refinansman, Altman Z-Score ve Yasal Vergi Kalkanı</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag" style="background:#ECFDF5;color:#065F46;font-size:11px;font-weight:700">P&amp;L Zekâsı</span>
+      <span class="tag" style="background:#FEE2E2;color:#991B1B;font-size:11px;font-weight:700">Sektör &amp; Dayanıklılık</span>
       <div class="accordionToggleIcon">▼</div>
     </div>
   </div>
   <div class="accordionBody">
-    <div class="grid4">
-      <div class="metric"><div class="label">Net Satış (Ciro)</div><div id="mSales" class="value">-</div><div class="sub">Doğrulanmış toplam satış hacmi</div></div>
-      <div class="metric"><div class="label">Faaliyet Kârı</div><div id="mOp" class="value">-</div><div class="sub">Esas faaliyetlerden kalan operasyonel kâr</div></div>
-      <div class="metric"><div class="label">Net Dönem Kârı</div><div id="mNet" class="value">-</div><div class="sub">Vergi ve finansman giderleri sonrası net kâr</div></div>
-      <div class="metric"><div class="label">Net Finansal Borç</div><div id="mDebt" class="value">-</div><div class="sub">Toplam banka borcundan nakit düşülmüş net yük</div></div>
-    </div>
-
-    <!-- Modül 1: Kâr Kalitesi & Sürdürülebilir Kâr (QoE & Fiktif Stok Kârı İllüzyonu) -->
-    <div id="profitQualityModuleLiveCard" style="margin-top:16px"></div>
-
-    <div id="profitQualityCard" class="card" style="margin-top:16px">
+<div class="card">
       <div class="sectionHead">
         <div>
-          <h2>Kâr Köprüsü &amp; Kâr Kalitesi Analizi</h2>
-          <p>Net satıştan net kâra giden yol ve bu kârın ne kadarının operasyonel olduğu</p>
+          <h2>Sektörel Kıyaslama &amp; Göstergeler (TCMB &amp; BIST)</h2>
+          <p>Yön duyarlı, gösterge amaçlı sektör bantları ve şirketin sektöre göre konumu</p>
         </div>
       </div>
-      <div class="grid2">
-        <div>
-          <div class="small muted" style="margin-bottom:8px">Kâr Köprüsü (Şelale)</div>
-          <div class="waterfallWrap"><div id="waterfall" class="waterfall"></div></div>
-        </div>
-        <div>
-          <div class="small muted" style="margin-bottom:8px">Kâr Kalitesi Metrikleri</div>
-          <div id="profitQuality"></div>
-        </div>
-      </div>
-      <div id="profitabilityCommentary" style="margin-top:14px"></div>
+      <div id="benchmark"></div>
     </div>
-
-    <div id="dupontCard" class="card hidden" style="margin-top:16px;margin-bottom:0">
-      <div class="sectionHead">
-        <div>
-          <h2>Özkaynak Kârlılık Ağacı (DuPont ROE Motorları)</h2>
-          <p>Hissedarın koyduğu sermayenin getirisini (ROE) belirleyen üç ana motor: Kâr Marjı × Varlık Devir Hızı × Finansal Kaldıraç</p>
-        </div>
-      </div>
-      <div class="grid4">
-        <div class="metric"><div class="label">Özkaynak Kârlılığı (ROE)</div><div id="dupontRoe" class="value">-</div><div class="sub">Hissedar Getirisi</div></div>
-        <div class="metric"><div class="label">Net Kâr Marjı</div><div id="dupontMargin" class="value">-</div><div class="sub">Operasyonel Kârlılık Oranı</div></div>
-        <div class="metric"><div class="label">Varlık Devir Hızı</div><div id="dupontTurnover" class="value">-</div><div class="sub">Varlıkları Paraya Çevirme Hızı</div></div>
-        <div class="metric"><div class="label">Kaldıraç Çarpanı</div><div id="dupontLeverage" class="value">-</div><div class="sub">Varlık / Özkaynak Çarpanı</div></div>
-      </div>
-      <div id="dupontDiagnosis" class="chips" style="margin-top:12px"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== BÖLÜM 5: BİLANÇO GÜCÜ, BORÇ YAPISI & LİKİDİTE ==================== -->
-<section id="flowStep_5" class="accordionStep">
-  <div class="accordionHeader" onclick="toggleAccordion('flowStep_5')">
-    <div class="accordionTitleGroup">
-      <span class="accordionNum">5</span>
-      <div>
-        <h3 class="accordionTitle">Bilanço Gücü, Borç Yapısı &amp; Finansal Dayanıklılık</h3>
-        <div class="accordionSub">Kısa vadeli borç ödeme kabiliyeti, finansal kaldıraç, banka yükü ve vade uyumu</div>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag" style="background:#F1F5F9;color:#334155;font-size:11px;font-weight:700">Ödeme Gücü &amp; Dayanıklılık</span>
-      <div class="accordionToggleIcon">▼</div>
-    </div>
-  </div>
-  <div class="accordionBody">
-    <div class="grid2">
-      <div id="leverageCard" class="card">
+<div id="leverageCard" class="card">
         <div class="sectionHead">
           <div>
             <h2>Borç Yapısı &amp; Likidite Oranları</h2>
@@ -8266,36 +8132,69 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
         <div id="liquidity" class="grid2"></div>
         <div id="leverageCommentary" style="margin-top:14px"></div>
       </div>
-
-      <div class="card">
-        <div class="sectionHead">
-          <div>
-            <h2>İşletme Sermayesi Güvencesi &amp; Vade Uyumu</h2>
-            <p>Alacak, stok ve tedarikçi vadelerinin nakit döngüsü ve borçlanma baskısına etkisi</p>
-          </div>
+<!-- Modül 3: Akıllı Borç Yapısı & Refinansman (60 Günlük GAP & Çıkış Senaryoları) -->
+    <div id="sixtyDayGapLiveCard" style="margin-top:20px"></div>
+<div class="card" style="margin-top:16px">
+      <div class="sectionHead">
+        <div>
+          <h2>Veri Kalitesi &amp; Bilanço Denkliği</h2>
+          <p>Skorlar ve bulgular, buradaki veri güvenilirliğine dayanır</p>
         </div>
-        <div id="workingCapital"></div>
       </div>
+      <div class="grid4">
+        <div class="metric"><div class="label">Veri Güvenilirlik Skoru</div><div id="dq" class="value">-</div><div class="sub" id="dqStatus">-</div></div>
+        <div class="metric"><div class="label">Çift Taraflı Denetim</div><div id="auditValue" class="value">-</div><div class="sub" id="auditSub">-</div></div>
+        <div class="metric"><div class="label">Eşlenemeyen Hesap Sayısı</div><div id="dqUnmapped" class="value">-</div><div class="sub">Eşlenemeyen hesap sayısı</div></div>
+        <div class="metric"><div class="label">Nakit Çevrim Süresi</div><div id="cccMetric" class="value">-</div><div class="sub">Gün</div></div>
+      </div>
+      <div id="dqChecks" class="tableWrap" style="margin-top:16px"></div>
+      <div id="dqIssues" style="margin-top:12px"></div>
+      <div id="dqNote" class="notice" style="margin-top:12px"></div>
+    </div>
+
+    <section id="dataHubCard" class="card hidden" style="margin-top:16px;margin-bottom:0">
+      <div class="sectionHead">
+        <div>
+          <h2>Çoklu Veri İstihbaratı (Tümleşik Analiz)</h2>
+          <p>Dosya sınıflandırma, kaynak bazlı analiz ve büyük defter mutabakatı</p>
+        </div>
+      </div>
+      <div id="hubSummary" class="grid4"></div>
+      <div id="hubSources" class="card" style="margin-top:14px"></div>
+      <div id="hubFindings" class="card" style="margin-top:14px"></div>
+      <div id="pvmIntel" class="card hidden" style="margin-top:14px"></div>
+      <div id="hubReconciliation" class="card" style="margin-top:14px">
+<div id="taxStrategyCard" class="card" style="border:1.5px solid #A7F3D0;background:linear-gradient(145deg,#FFFFFF 0%,#F0FDF4 100%);margin-bottom:0">
+      <div class="sectionHead">
+        <div>
+          <h2 style="font-size:16px;color:#047857">🏛️ Vergisel Yönetim Avantajları &amp; Yasal Nakit Tasarrufu</h2>
+          <p>Şirketin finansal tablolarından (mizan) türetilmiş yasal vergi kalkanları, KKEG optimizasyonu ve nakit tasarrufları</p>
+        </div>
+        <span class="tag positive" style="font-weight:800;font-size:11px">DİNAMİK VERGİ MOTORU</span>
+      </div>
+      <div id="taxStrategyMetrics" class="grid3" style="margin-top:12px"></div>
+      <div id="taxStrategyItems" style="margin-top:14px;display:flex;flex-direction:column;gap:12px"></div>
     </div>
   </div>
 </section>
 
-<!-- ==================== BÖLÜM 6: KRİTİK TARAFLAR & OPERASYONEL İSTİHBARAT ==================== -->
-<section id="flowStep_6" class="accordionStep">
-  <div class="accordionHeader" onclick="toggleAccordion('flowStep_6')">
+<!-- ==================== BÖLÜM 4: KİM YAPIYOR? (MÜŞTERİ & TEDARİKÇİ RİSK KARNESİ & STOK ZEKÂSI) ==================== -->
+<section id="flowStep_4" class="accordionStep">
+  <div class="accordionHeader" onclick="toggleAccordion('flowStep_4')">
     <div class="accordionTitleGroup">
-      <span class="accordionNum">6</span>
+      <span class="accordionNum">4</span>
       <div>
-        <h3 class="accordionTitle">Kritik Taraflar &amp; Operasyonel İstihbarat (Müşteri &bull; Tedarikçi &bull; Stok)</h3>
-        <div class="accordionSub">4-Kadran Müşteri Matrisi, Ürün kârlılığı, yaşlandırma vadeleri ve konsantrasyon riskleri</div>
+        <h3 class="accordionTitle">4. KİM YAPIYOR? — Müşteri &amp; Tedarikçi Risk Karnesi &amp; Stok Zekâsı</h3>
+        <div class="accordionSub">Müşteri Kredi Skorlama (Tier A-D), Satış Direktifleri, Vadesi Geçmiş Alacak/Borç Yaşlandırma, Atıl Stok ve Konsantrasyon Riski</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag" style="background:#EFF6FF;color:#2563EB;font-size:11px;font-weight:700">Operasyonel Zekâ</span>
+      <span class="tag" style="background:#E0E7FF;color:#3730A3;font-size:11px;font-weight:700">Operasyonel Zekâ</span>
       <div class="accordionToggleIcon">▼</div>
     </div>
   </div>
   <div class="accordionBody">
+
     <!-- Modül 2: Akıllı Alacak Yönetimi (Credit Scoring & Direktifler & Temerrüt Şoku) -->
     <div id="creditScoringLiveCard" style="margin-bottom:16px"></div>
 
@@ -8324,25 +8223,40 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
     <div id="salesIntel" style="margin-top:14px"></div>
     <div id="arApIntel" style="margin-top:14px"></div>
     <div id="inventoryIntel" style="margin-top:14px"></div>
+<!-- Card 2: Müşteri Konsantrasyonu Likidite Stres Testi -->
+    <div id="liquidityStressCard" class="card" style="border:1.5px solid #E2E8F0;border-radius:18px;padding:22px;margin-bottom:0">
+      <div class="sectionHead">
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:6px;background:#FFFBEB;color:#D97706;border:1px solid #FDE68A;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:0.5px;margin-bottom:8px">
+            ⚡ LİKİDİTE KIRILGANLIK &amp; TEMERRÜT ŞOKU
+          </div>
+          <h2 style="font-size:20px;margin:0 0 6px">Müşteri Konsantrasyonu Likidite Stres Testi (30 &amp; 60 Günlük Şok)</h2>
+          <p class="muted" style="margin:0;font-size:13px">"İlk 3 müşterim ödemeyi geciktirirse şirketim kaç gün ayakta kalabilir?" sorusunun deterministik simülasyonu.</p>
+        </div>
+      </div>
+      <div id="stressMetrics" class="grid4" style="margin-top:16px"></div>
+      <div id="stressAssessment" style="margin-top:14px"></div>
+    </div>
   </div>
 </section>
 
-<!-- ==================== BÖLÜM 7: KÖK NEDEN & KARAR HİKÂYELERİ ==================== -->
-<section id="flowStep_7" class="accordionStep">
-  <div class="accordionHeader" onclick="toggleAccordion('flowStep_7')">
+<!-- ==================== BÖLÜM 5: NEDEN OLDU? (5 ADIMLI ENTEGRE KÖK NEDEN ANALİZİ) ==================== -->
+<section id="flowStep_5" class="accordionStep">
+  <div class="accordionHeader" onclick="toggleAccordion('flowStep_5')">
     <div class="accordionTitleGroup">
-      <span class="accordionNum">7</span>
+      <span class="accordionNum">5</span>
       <div>
-        <h3 class="accordionTitle">5 Adımlı Kök Neden Analizleri &amp; Karar Hikâyeleri</h3>
-        <div class="accordionSub">Belirti (Ne Oldu?) ➔ Sayısal Kanıt ➔ Kök Neden (Tetikleyici) ➔ Parasal Sızıntı ➔ İcraat Kararı</div>
+        <h3 class="accordionTitle">5. NEDEN OLDU? — 5 Adımlı Entegre Kök Neden Analizi</h3>
+        <div class="accordionSub">Marj Erimesi, Kredili Satış-Tedarik Vade Makası ve Negatif Borç Taşıma Maliyetinin Kök Nedenleri</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag" style="background:#EEF2FF;color:#3B4B8A;font-size:11px;font-weight:700">Nedensellik</span>
+      <span class="tag" style="background:#F3E8FF;color:#6B21A8;font-size:11px;font-weight:700">Kök Neden Zekâsı</span>
       <div class="accordionToggleIcon">▼</div>
     </div>
   </div>
   <div class="accordionBody">
+
     <div id="rootCauseCard" class="card" style="padding:22px;border:1.5px solid #CBD5E1;margin-bottom:0">
       <div class="sectionHead">
         <div>
@@ -8357,52 +8271,62 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
   </div>
 </section>
 
-<!-- ==================== BÖLÜM 8: VERGİSEL YÖNETİM AVANTAJLARI & TEŞVİKLER ==================== -->
-<section id="flowStep_8" class="accordionStep">
-  <div class="accordionHeader" onclick="toggleAccordion('flowStep_8')">
+<!-- ==================== BÖLÜM 6: NE YAPMALIYIZ? (ÖNCELİKLİ YÖNETİM KARARLARI & İCRAAT MASASI) ==================== -->
+<section id="flowStep_6" class="accordionStep">
+  <div class="accordionHeader" onclick="toggleAccordion('flowStep_6')">
     <div class="accordionTitleGroup">
-      <span class="accordionNum">8</span>
+      <span class="accordionNum">6</span>
       <div>
-        <h3 class="accordionTitle">Vergisel Yönetim Avantajları &amp; Yasal Nakit Tasarrufu</h3>
-        <div class="accordionSub">Mizan verilerinizden türetilmiş VUK &amp; KVK uyumlu vergi kalkanları, KKEG tasarrufları ve teşvikler</div>
+        <h3 class="accordionTitle">6. NE YAPMALIYIZ? — Öncelikli Yönetim Kararları &amp; İcraat Masası</h3>
+        <div class="accordionSub">Öncelikli Risk Uyarıları, 18 Karar Kuralı, Sorumlu, Vade, KPI ve TL Etkili İcraat Takvimi</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag positive" style="font-size:11px;font-weight:700">VUK &amp; KVK Uyumlu</span>
+      <span class="tag" style="background:#ECFDF5;color:#065F46;font-size:11px;font-weight:700">İcraat Kararları</span>
       <div class="accordionToggleIcon">▼</div>
     </div>
   </div>
   <div class="accordionBody">
-    <div id="taxStrategyCard" class="card" style="border:1.5px solid #A7F3D0;background:linear-gradient(145deg,#FFFFFF 0%,#F0FDF4 100%);margin-bottom:0">
+
+    <div class="card">
       <div class="sectionHead">
         <div>
-          <h2 style="font-size:16px;color:#047857">🏛️ Vergisel Yönetim Avantajları &amp; Yasal Nakit Tasarrufu</h2>
-          <p>Şirketin finansal tablolarından (mizan) türetilmiş yasal vergi kalkanları, KKEG optimizasyonu ve nakit tasarrufları</p>
+          <h2>Öncelikli Yönetim Riskleri</h2>
+          <p>Finansal maruziyet, risk skoru ve şiddet derecesi birlikte sıralanır</p>
         </div>
-        <span class="tag positive" style="font-weight:800;font-size:11px">DİNAMİK VERGİ MOTORU</span>
       </div>
-      <div id="taxStrategyMetrics" class="grid3" style="margin-top:12px"></div>
-      <div id="taxStrategyItems" style="margin-top:14px;display:flex;flex-direction:column;gap:12px"></div>
+      <div id="risks"></div>
+    </div>
+
+    <div class="card" style="margin-top:16px;margin-bottom:0">
+      <div class="sectionHead">
+        <div>
+          <h2>Yönetim Kararları &amp; Aksiyon Takvimi (Şimdi Ne Yapmalı?)</h2>
+          <p>Karar maddesi → Sahibi → Termini → Takip Edilecek KPI. Her aksiyon maddesi ayrı bir takip numarasına sahiptir.</p>
+        </div>
+      </div>
+      <div id="actions"></div>
     </div>
   </div>
 </section>
 
-<!-- ==================== BÖLÜM 9: CANLI SENARYO SİMÜLATÖRÜ ==================== -->
-<section id="flowStep_9" class="accordionStep">
-  <div class="accordionHeader" onclick="toggleAccordion('flowStep_9')">
+<!-- ==================== BÖLÜM 7: SİMÜLE ET! (4 KOLLU SENARYO SİMÜLATÖRÜ & MALİ TABLOLAR) ==================== -->
+<section id="flowStep_7" class="accordionStep">
+  <div class="accordionHeader" onclick="toggleAccordion('flowStep_7')">
     <div class="accordionTitleGroup">
-      <span class="accordionNum">9</span>
+      <span class="accordionNum">7</span>
       <div>
-        <h3 class="accordionTitle">Varsayımı Değiştirirsek Ne Olur? (Canlı Senaryo Simülatörü)</h3>
-        <div class="accordionSub">Fiyatı artırırsak, tahsilatı çekersek veya gideri kıssak kasaya ne girer? Anlık duyarlılık testi</div>
+        <h3 class="accordionTitle">7. SİMÜLE ET! — 4 Kollu Senaryo Simülatörü &amp; Mali Tablolar</h3>
+        <div class="accordionSub">Fiyat, Tahsilat (DSO), Stok (DIO) ve Faaliyet Gideri Kaldıraçları, Kasa Etkisi ve 3 Temel Mali Tablo</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag" style="background:#FAF5FF;color:#6B21A8;font-size:11px;font-weight:700">Simülatör</span>
+      <span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:700">Senaryo Laboratuvarı</span>
       <div class="accordionToggleIcon">▼</div>
     </div>
   </div>
   <div class="accordionBody">
+
     <div class="card"><div id="opportunities" class="grid3"></div></div>
 
     <div id="interactiveScenarioCard" class="card" style="margin-top:16px;margin-bottom:0">
@@ -8524,152 +8448,7 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
 
 
     </div>
-  </div>
-</section>
 
-<!-- ==================== BÖLÜM 10: ENFLASYON RÖNTGENİ & LİKİDİTE STRES TESTİ ==================== -->
-<section id="flowStep_10" class="accordionStep">
-  <div class="accordionHeader" onclick="toggleAccordion('flowStep_10')">
-    <div class="accordionTitleGroup">
-      <span class="accordionNum">10</span>
-      <div>
-        <h3 class="accordionTitle">Enflasyon Düzeltmeli Gerçek Kârlılık Röntgeni &amp; Müşteri Konsantrasyonu Likidite Stres Testi</h3>
-        <div class="accordionSub">Fiktif stok kârı illüzyonunun deşifresi, reel sermaye erimesi ve müşteri ödeme gecikmesi şok simülasyonu</div>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag" style="background:#EEF2FF;color:#3B4B8A;font-size:11px;font-weight:700">Reel Röntgen &amp; Şok</span>
-      <div class="accordionToggleIcon">▼</div>
-    </div>
-  </div>
-  <div class="accordionBody">
-    <!-- Card 1: Enflasyon Düzeltmeli Gerçek Kârlılık Röntgeni -->
-    <div id="inflationCard" class="card" style="border:1.5px solid #E2E8F0;border-radius:18px;padding:22px;margin-bottom:16px">
-      <div class="sectionHead" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
-        <div style="max-width:680px">
-          <div style="display:inline-flex;align-items:center;gap:6px;background:#FEF2F2;color:#DC2626;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:0.5px;margin-bottom:8px">
-            🔥 GERÇEK KÂRLILIK RÖNTGENİ &amp; FAİZ/ENFLASYON SİMÜLATÖRÜ
-          </div>
-          <h2 style="font-size:20px;margin:0 0 6px">Enflasyon Düzeltmeli Gerçek Ekonomik Kâr &amp; Sermaye Koruma Analizi</h2>
-          <p class="muted" style="margin:0;font-size:13px">Klasik mizan enflasyonu dikkate almaz; fiktif stok kârını gerçek kâr gibi gösterir. Aşağıdaki simülatör ile piyasadaki yıllık enflasyon veya kredi faiz oranını değiştirerek kârınızın ve özkaynağınızın reel durumunu anında test edin.</p>
-        </div>
-        
-        <!-- Dinamik Enflasyon & Faiz Oranı Simülatörü Kontrol Kutusu -->
-        <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:14px;padding:12px 16px;min-width:280px;box-shadow:0 2px 8px rgba(15,27,45,0.03)">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-size:12px;font-weight:700;color:#0F172A">📊 Test Edilen Yıllık Oran:</span>
-            <b id="infSliderVal" style="font-size:15px;font-weight:900;color:#DC2626">%45</b>
-          </div>
-          <input type="range" id="infRateSlider" min="10" max="90" step="5" value="45" style="width:100%;height:6px;accent-color:#DC2626;cursor:pointer" oninput="onInflationSliderChange(this.value)">
-          <div style="display:flex;justify-content:space-between;font-size:10px;color:#94A3B8;margin-top:4px">
-            <span>%10 (Düşük)</span>
-            <span style="color:#64748B;font-weight:600">TCMB / Piyasa</span>
-            <span>%90 (Yüksek Şok)</span>
-          </div>
-          <div style="display:flex;gap:5px;margin-top:8px">
-            <button type="button" class="secondary" style="flex:1;padding:3px 6px;font-size:10.5px;border-radius:6px" onclick="setInfSliderRate(30)">%30 Hedef</button>
-            <button type="button" class="secondary" style="flex:1;padding:3px 6px;font-size:10.5px;border-radius:6px" onclick="setInfSliderRate(45)">%45 Standart</button>
-            <button type="button" class="secondary" style="flex:1;padding:3px 6px;font-size:10.5px;border-radius:6px" onclick="setInfSliderRate(65)">%65 Faiz/Kredi</button>
-          </div>
-        </div>
-      </div>
-      <div id="inflationMetrics" class="grid4" style="margin-top:16px"></div>
-      <div id="inflationAssessment" style="margin-top:14px"></div>
-    </div>
-
-    <!-- Card 2: Müşteri Konsantrasyonu Likidite Stres Testi -->
-    <div id="liquidityStressCard" class="card" style="border:1.5px solid #E2E8F0;border-radius:18px;padding:22px;margin-bottom:0">
-      <div class="sectionHead">
-        <div>
-          <div style="display:inline-flex;align-items:center;gap:6px;background:#FFFBEB;color:#D97706;border:1px solid #FDE68A;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:0.5px;margin-bottom:8px">
-            ⚡ LİKİDİTE KIRILGANLIK &amp; TEMERRÜT ŞOKU
-          </div>
-          <h2 style="font-size:20px;margin:0 0 6px">Müşteri Konsantrasyonu Likidite Stres Testi (30 &amp; 60 Günlük Şok)</h2>
-          <p class="muted" style="margin:0;font-size:13px">"İlk 3 müşterim ödemeyi geciktirirse şirketim kaç gün ayakta kalabilir?" sorusunun deterministik simülasyonu.</p>
-        </div>
-      </div>
-      <div id="stressMetrics" class="grid4" style="margin-top:16px"></div>
-      <div id="stressAssessment" style="margin-top:14px"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== EK A: SEKTÖREL KIYASLAMA & VERİ GÜVENİLİRLİK DENETİMİ ==================== -->
-<section id="flowStep_ekA" class="accordionStep">
-  <div class="accordionHeader" onclick="toggleAccordion('flowStep_ekA')">
-    <div class="accordionTitleGroup">
-      <span class="accordionNum alt">A</span>
-      <div>
-        <h3 class="accordionTitle">Ek A &mdash; Sektörel Kıyaslama (TCMB &amp; BIST) &amp; Veri Güvenilirlik Denetimi</h3>
-        <div class="accordionSub">Sektör bantları, bilanço denkliği, çift taraflı denetim ve Çoklu Veri mutabakatları</div>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag" style="background:#F1F5F9;color:#475569;font-size:11px;font-weight:700">Denetim</span>
-      <div class="accordionToggleIcon">▼</div>
-    </div>
-  </div>
-  <div class="accordionBody">
-    <div class="card">
-      <div class="sectionHead">
-        <div>
-          <h2>Sektörel Kıyaslama &amp; Göstergeler (TCMB &amp; BIST)</h2>
-          <p>Yön duyarlı, gösterge amaçlı sektör bantları ve şirketin sektöre göre konumu</p>
-        </div>
-      </div>
-      <div id="benchmark"></div>
-    </div>
-
-    <div class="card" style="margin-top:16px">
-      <div class="sectionHead">
-        <div>
-          <h2>Veri Kalitesi &amp; Bilanço Denkliği</h2>
-          <p>Skorlar ve bulgular, buradaki veri güvenilirliğine dayanır</p>
-        </div>
-      </div>
-      <div class="grid4">
-        <div class="metric"><div class="label">Veri Güvenilirlik Skoru</div><div id="dq" class="value">-</div><div class="sub" id="dqStatus">-</div></div>
-        <div class="metric"><div class="label">Çift Taraflı Denetim</div><div id="auditValue" class="value">-</div><div class="sub" id="auditSub">-</div></div>
-        <div class="metric"><div class="label">Eşlenemeyen Hesap Sayısı</div><div id="dqUnmapped" class="value">-</div><div class="sub">Eşlenemeyen hesap sayısı</div></div>
-        <div class="metric"><div class="label">Nakit Çevrim Süresi</div><div id="cccMetric" class="value">-</div><div class="sub">Gün</div></div>
-      </div>
-      <div id="dqChecks" class="tableWrap" style="margin-top:16px"></div>
-      <div id="dqIssues" style="margin-top:12px"></div>
-      <div id="dqNote" class="notice" style="margin-top:12px"></div>
-    </div>
-
-    <section id="dataHubCard" class="card hidden" style="margin-top:16px;margin-bottom:0">
-      <div class="sectionHead">
-        <div>
-          <h2>Çoklu Veri İstihbaratı (Tümleşik Analiz)</h2>
-          <p>Dosya sınıflandırma, kaynak bazlı analiz ve büyük defter mutabakatı</p>
-        </div>
-      </div>
-      <div id="hubSummary" class="grid4"></div>
-      <div id="hubSources" class="card" style="margin-top:14px"></div>
-      <div id="hubFindings" class="card" style="margin-top:14px"></div>
-      <div id="pvmIntel" class="card hidden" style="margin-top:14px"></div>
-      <div id="hubReconciliation" class="card" style="margin-top:14px"></div>
-    </section>
-  </div>
-</section>
-
-<!-- ==================== EK B: TREND İZLEME & 3 TEMEL MALİ TABLO ==================== -->
-<section id="flowStep_ekB" class="accordionStep">
-  <div class="accordionHeader" onclick="toggleAccordion('flowStep_ekB')">
-    <div class="accordionTitleGroup">
-      <span class="accordionNum alt">B</span>
-      <div>
-        <h3 class="accordionTitle">Ek B &mdash; Trend İzleme, İzlenebilirlik &amp; 3 Temel Mali Tablo</h3>
-        <div class="accordionSub">Dönemsel trend karşılaştırması, Gelir Tablosu, Bilanço ve Nakit Akış Tablosu</div>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag" style="background:#F1F5F9;color:#475569;font-size:11px;font-weight:700">Mali Tablolar</span>
-      <div class="accordionToggleIcon">▼</div>
-    </div>
-  </div>
-  <div class="accordionBody">
     <div id="comparativeCard" class="card hidden">
       <div class="sectionHead">
         <div>
@@ -8702,6 +8481,8 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
     </div>
   </div>
 </section>
+
+</div>
 
 </main><div class="siteFooter"><div class="wrap"><div class="cols"><div class="brandCol"><h1 style="font-size:17px;margin:0 0 8px">Digital Finance Business Partner</h1><p>Şirket sahipleri, CFO'lar ve mali müşavirler için mizanı 60 saniyede nakit, kâr ve yönetim kararına dönüştüren yeni nesil finansal karar destek platformu.</p></div><div><h4>Platform</h4><ul><li><a href="/uygulama">Canlı Analiz &amp; Uygulama</a></li><li><a href="/uygulama#sectorSelect">7 Sektörel Canlı Demo</a></li><li><a href="/paketler">Paketler &amp; Fiyatlandırma</a></li></ul></div><div><h4>Kurumsal &amp; Güvenlik</h4><ul><li><a href="/hakkimizda">Hakkımızda &amp; Metodoloji</a></li><li><a href="/guvenlik">Veri Güvenliği (RAM-Only)</a></li><li><a href="javascript:void(0)" onclick="openDigitalNdaModal()">Kurumsal Dijital NDA</a></li></ul></div><div><h4>İletişim &amp; Destek</h4><ul><li><a href="/iletisim">Ücretsiz Veri Hazırlık Desteği</a></li><li><a href="mailto:info@digitalfinancebp.com">info@digitalfinancebp.com</a></li><li>+90 (212) 280 44 20 · Levent, İstanbul</li></ul></div></div><div class="legal">Digital Finance Business Partner • <a href="https://digitalfinancebp.com" style="color:var(--accent);text-decoration:none;font-weight:700">digitalfinancebp.com</a> • Finansal Teşhis &amp; Yönetim Karar Destek Platformu<br><span style="opacity:.85">Bu analiz matematiksel hesaplamalara ve çift taraflı denetim kurallarına dayanır; resmi mali tablo veya vergi beyannamesi yerine geçmez. Nihai yönetim kararları için mali müşavirinize/YMM'nize danışın. Yüklediğiniz dosyalar yalnızca anlık analiz süresince RAM bellekte işlenir; sunucu sabit diskinde ASLA kalıcı saklanmaz. KVKK ve kurumsal gizlilik politikamız için <a href="javascript:void(0)" onclick="showKvkkModal()" style="color:var(--accent);text-decoration:underline;font-weight:600">Aydınlatma ve Gizlilik Metni</a>'ni inceleyebilirsiniz.</span></div></div></div>
 
@@ -11817,8 +11598,7 @@ function openDetailedReportModal(){
   // 2. TÜM 12 BÖLÜMÜ SIRASIYLA ENTEGRE ET
   const stepIds = [
     'flowStep_1', 'flowStep_2', 'flowStep_3', 'flowStep_4', 'flowStep_5',
-    'flowStep_6', 'flowStep_7', 'flowStep_8', 'flowStep_9', 'flowStep_10',
-    'flowStep_ekA', 'flowStep_ekB'
+    'flowStep_6', 'flowStep_7'
   ];
 
   stepIds.forEach(id => {
@@ -14380,8 +14160,8 @@ window.switchCeoQuestion = function(qid){
 
 window.jumpToStep = function(stepId){
   const aliasMap = {
-    'customersCard': 'flowStep_6',
-    'inventoryCard': 'flowStep_6',
+    'customersCard': 'flowStep_4',
+    'inventoryCard': 'flowStep_4',
     'financialDebtEngineCard': 'leverageCard'
   };
   const resolvedId = aliasMap[stepId] || stepId;
