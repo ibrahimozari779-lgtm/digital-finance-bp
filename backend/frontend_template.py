@@ -7649,49 +7649,8 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
   </div>
 </div>
 
-<!-- Global Accordion Controller Toolbar -->
-<div class="accordionToolbar hidePrint" style="display:flex;justify-content:space-between;align-items:center;background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:14px 20px;margin-bottom:20px;box-shadow:0 4px 14px rgba(15,27,45,.04);flex-wrap:wrap;gap:12px">
-  <div style="display:flex;align-items:center;gap:10px">
-    <span style="font-size:16px">📑</span>
-    <div>
-      <div style="font-size:13.5px;font-weight:800;color:#0F172A">Yönetici Karar Raporu &bull; 7 Aşamalı Mantıksal Karar Akışı</div>
-      <div style="font-size:11.5px;color:#64748B;margin-top:1px">Finansal gerçeklerden kilitli nakde, riskten kök nedenlere ve aksiyon planına doğru birbirine bağlı sıralama</div>
-    </div>
-    <span class="tag positive" style="font-size:10.5px;font-weight:700">7 Aşamalı Yönetim Akışı</span>
-  </div>
-  <div style="display:flex;gap:8px">
-    <button type="button" class="secondary" onclick="expandAllSteps()" style="font-size:11.5px;padding:6px 14px;border-radius:8px;font-weight:700">▼ Tüm Bölümleri Genişlet</button>
-    <button type="button" class="secondary" onclick="collapseAllSteps()" style="font-size:11.5px;padding:6px 14px;border-radius:8px;font-weight:700">▲ Tümünü Daralt</button>
-  </div>
-</div>
-
-<!-- Sticky Dashboard Sub-Navigation Bar -->
-<div id="dashboardSubNav" class="dashboardSubNav hidePrint" style="position:sticky;top:62px;z-index:45;background:#FFFFFF;border-bottom:1.5px solid #E2E8F0;box-shadow:0 4px 14px rgba(15,27,45,0.05);padding:9px 0;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;display:flex;gap:7px;white-space:nowrap">
-  <button type="button" class="dashPill active" style="background:#EFF6FF;color:#1D4ED8;font-weight:900;border:1.5px solid #93C5FD;box-shadow:0 2px 6px rgba(29,78,216,0.12)" onclick="jumpToFlowStep('flowStep_1')">📊 1. Ne Oldu?</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_2')">💸 2. Para Nerede?</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_3')">⚖️ 3. Risk &amp; Sektör?</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_4')">👥 4. Kim Yapıyor?</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_5')">🧠 5. Neden Oldu?</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_6')">🎯 6. Ne Yapmalıyız?</button>
-  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_7')">🎛️ 7. Simüle Et!</button>
-</div>
-
-<!-- ==================== BÖLÜM 1: NE OLDU? (FİNANSAL GERÇEKLER & KÂRLILIK RÖNTGENİ) ==================== -->
-<section id="flowStep_1" class="accordionStep active">
-  <div class="accordionHeader" onclick="toggleAccordion('flowStep_1')">
-    <div class="accordionTitleGroup">
-      <span class="accordionNum">1</span>
-      <div>
-        <h3 class="accordionTitle">1. NE OLDU? — Finansal Gerçekler &amp; Kârlılık Röntgeni</h3>
-        <div class="accordionSub">Ciro, Maliyetler, Brüt / Faaliyet / Net Kâr, Kâr Kalitesi (QoE), DuPont ROE ve Enflasyon Düzeltmesi</div>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:10px">
-      <span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:700">Temel Gerçekler</span>
-      <div class="accordionToggleIcon">▼</div>
-    </div>
-  </div>
-  <div class="accordionBody">
+<!-- 1 SAYFALIK NET YÖNETİCİ ÖZETİ (EXECUTIVE BRIEFING) -->
+<div id="executiveBriefingCard" style="margin-bottom:24px">
 <div id="executiveSnapshotSection" style="margin-bottom:20px">
       <div class="card" style="background:#FFFFFF;border:1.5px solid #CBD5E1;border-radius:18px;padding:22px 24px;box-shadow:0 8px 24px rgba(15,27,45,0.06);margin-bottom:0">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;border-bottom:1px solid #E2E8F0;padding-bottom:14px">
@@ -7736,6 +7695,7 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
 
     <!-- Yönetici Özeti & AI Business Partner -->
     
+
 <div class="card" style="margin-bottom:20px">
       <div class="sectionHead">
         <div>
@@ -7778,6 +7738,52 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
 
     <!-- CEO & YÖNETİM KURULU KARAR MASASI -->
     
+
+</div>
+
+<!-- Global Accordion Controller Toolbar -->
+<div class="accordionToolbar hidePrint" style="display:flex;justify-content:space-between;align-items:center;background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:14px 20px;margin-bottom:20px;box-shadow:0 4px 14px rgba(15,27,45,.04);flex-wrap:wrap;gap:12px">
+  <div style="display:flex;align-items:center;gap:10px">
+    <span style="font-size:16px">📑</span>
+    <div>
+      <div style="font-size:13.5px;font-weight:800;color:#0F172A">Yönetici Karar Raporu &bull; 7 Aşamalı Mantıksal Karar Akışı</div>
+      <div style="font-size:11.5px;color:#64748B;margin-top:1px">Finansal gerçeklerden kilitli nakde, riskten kök nedenlere ve aksiyon planına doğru birbirine bağlı sıralama</div>
+    </div>
+    <span class="tag positive" style="font-size:10.5px;font-weight:700">7 Aşamalı Yönetim Akışı</span>
+  </div>
+  <div style="display:flex;gap:8px">
+    <button type="button" class="secondary" onclick="expandAllSteps()" style="font-size:11.5px;padding:6px 14px;border-radius:8px;font-weight:700">▼ Tüm Bölümleri Genişlet</button>
+    <button type="button" class="secondary" onclick="collapseAllSteps()" style="font-size:11.5px;padding:6px 14px;border-radius:8px;font-weight:700">▲ Tümünü Daralt</button>
+  </div>
+</div>
+
+<!-- Sticky Dashboard Sub-Navigation Bar -->
+<div id="dashboardSubNav" class="dashboardSubNav hidePrint" style="position:sticky;top:62px;z-index:45;background:#FFFFFF;border-bottom:1.5px solid #E2E8F0;box-shadow:0 4px 14px rgba(15,27,45,0.05);padding:9px 0;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;display:flex;gap:7px;white-space:nowrap">
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_1')">📊 1. Ne Oldu?</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_2')">💸 2. Para Nerede?</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_3')">⚖️ 3. Risk &amp; Sektör?</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_4')">👥 4. Kim Yapıyor?</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_5')">🧠 5. Neden Oldu?</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_6')">🎯 6. Ne Yapmalıyız?</button>
+  <button type="button" class="dashPill" onclick="jumpToFlowStep('flowStep_7')">🎛️ 7. Simüle Et!</button>
+</div>
+
+<!-- ==================== BÖLÜM 1: NE OLDU? (FİNANSAL GERÇEKLER & KÂRLILIK RÖNTGENİ) ==================== -->
+<section id="flowStep_1" class="accordionStep">
+  <div class="accordionHeader" onclick="toggleAccordion('flowStep_1')">
+    <div class="accordionTitleGroup">
+      <span class="accordionNum">1</span>
+      <div>
+        <h3 class="accordionTitle">1. NE OLDU? — Finansal Gerçekler &amp; Kârlılık Röntgeni</h3>
+        <div class="accordionSub">Ciro, Maliyetler, Brüt / Faaliyet / Net Kâr, Kâr Kalitesi (QoE), DuPont ROE ve Enflasyon Düzeltmesi</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <span class="tag" style="background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:700">Detaylı Kârlılık &amp; P&amp;L</span>
+      <div class="accordionToggleIcon">▼</div>
+    </div>
+  </div>
+  <div class="accordionBody">
 <div id="ceoDiagnosticSection">
       <div class="card" style="border:2px solid #1D4ED8;background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%);box-shadow:0 14px 40px rgba(29,78,216,.09);padding:26px;border-radius:22px;margin-bottom:0">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;border-bottom:1.5px solid #E2E8F0;padding-bottom:18px;margin-bottom:20px">
@@ -7813,7 +7819,8 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
   </div>
 
 
-    <div class="grid4">
+    
+<div class="grid4">
       <div class="metric"><div class="label">Net Satış (Ciro)</div><div id="mSales" class="value">-</div><div class="sub">Doğrulanmış toplam satış hacmi</div></div>
       <div class="metric"><div class="label">Faaliyet Kârı</div><div id="mOp" class="value">-</div><div class="sub">Esas faaliyetlerden kalan operasyonel kâr</div></div>
       <div class="metric"><div class="label">Net Dönem Kârı</div><div id="mNet" class="value">-</div><div class="sub">Vergi ve finansman giderleri sonrası net kâr</div></div>
@@ -7858,6 +7865,7 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
       </div>
       <div id="dupontDiagnosis" class="chips" style="margin-top:12px"></div>
     </div>
+
 <!-- Card 1: Enflasyon Düzeltmeli Gerçek Kârlılık Röntgeni -->
     <div id="inflationCard" class="card" style="border:1.5px solid #E2E8F0;border-radius:18px;padding:22px;margin-bottom:16px">
       <div class="sectionHead" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
@@ -7893,11 +7901,12 @@ curl -X POST "https://www.digitalfinancebp.com/api/v1/ingest/mizan" \
     </div>
 
     
+  
   </div>
 </section>
 
 <!-- ==================== BÖLÜM 2: PARA NEREDE? (KİLİTLİ NAKİT & SIZINTI TEŞHİSİ) ==================== -->
-<section id="flowStep_2" class="accordionStep active">
+<section id="flowStep_2" class="accordionStep">
   <div class="accordionHeader" onclick="toggleAccordion('flowStep_2')">
     <div class="accordionTitleGroup">
       <span class="accordionNum">2</span>
@@ -9795,19 +9804,38 @@ window.addEventListener('load', syncStickyNav);
 function jumpToFlowStep(id){
   const el = $(id);
   if(!el) return;
-  const parentStep = el.closest ? el.closest('.accordionStep') : null;
-  if(parentStep && !parentStep.classList.contains('active')){
-    parentStep.classList.add('active');
-  } else if(!el.classList.contains('active') && el.classList.contains('accordionStep')){
-    el.classList.add('active');
+  const parentStep = el.closest ? el.closest(".accordionStep") : null;
+  if(parentStep && !parentStep.classList.contains("active")){
+    parentStep.classList.add("active");
+  } else if(!el.classList.contains("active") && el.classList.contains("accordionStep")){
+    el.classList.add("active");
   }
-  const h = document.querySelector('header.top');
-  const sub = $('dashboardSubNav');
+  const h = document.querySelector("header.top");
+  const sub = $("dashboardSubNav");
   const hHeight = h ? Math.round(h.getBoundingClientRect().height || h.offsetHeight) : 60;
   const sHeight = sub ? Math.round(sub.getBoundingClientRect().height || sub.offsetHeight) : 42;
   const totalOffset = hHeight + sHeight + 14;
   const topPos = el.getBoundingClientRect().top + window.pageYOffset - totalOffset;
-  window.scrollTo({top: Math.max(0, topPos), behavior: 'smooth'});
+  window.scrollTo({top: Math.max(0, topPos), behavior: "smooth"});
+  if(sub){
+    sub.querySelectorAll(".dashPill").forEach(p => {
+      p.classList.remove("active");
+      p.style.background = "";
+      p.style.color = "";
+      p.style.borderColor = "";
+      p.style.fontWeight = "";
+      p.style.boxShadow = "";
+    });
+    const clickedPill = sub.querySelector("button[onclick*='" + id + "']");
+    if(clickedPill){
+      clickedPill.classList.add("active");
+      clickedPill.style.background = "#EFF6FF";
+      clickedPill.style.color = "#1D4ED8";
+      clickedPill.style.borderColor = "#93C5FD";
+      clickedPill.style.fontWeight = "900";
+      clickedPill.style.boxShadow = "0 2px 6px rgba(29,78,216,0.12)";
+    }
+  }
 }
 window.jumpToFlowStep = jumpToFlowStep;
 
